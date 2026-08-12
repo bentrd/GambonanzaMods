@@ -16,6 +16,9 @@ on:
 
 permissions:
   contents: write
+  # Needed to kick the Pages deploy after committing: pushes made with
+  # GITHUB_TOKEN deliberately do not trigger other workflows on their own.
+  actions: write
 
 concurrency:
   group: registry-refresh
@@ -50,6 +53,11 @@ jobs:
             git add registry/index.json
             git commit -m 'registry: refresh index'
             git push
+            # A GITHUB_TOKEN push does not trigger the pages workflow, so the
+            # site would serve a stale index forever without this nudge.
+            gh workflow run pages.yml --ref main || true
           else
             echo "index.json unchanged."
           fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
