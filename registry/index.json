@@ -1,9 +1,130 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-12T16:54:24.968Z",
+  "generatedAt": "2026-08-12T16:59:55.680Z",
   "count": 5,
-  "releases": null,
+  "releases": {
+    "framework": {
+      "tag": "v1.2.0",
+      "version": "1.2.0",
+      "publishedAt": "2026-08-12T16:17:57Z",
+      "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+      "assets": [
+        {
+          "name": "EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/EnemyThreatOverlay.zip",
+          "size": 7616,
+          "sha256": "42cf173c098b6fe66c9a59f5fd8d15823545aa15d3e74a393048e19614cc2c21"
+        },
+        {
+          "name": "GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/GambitApi.zip",
+          "size": 16667,
+          "sha256": "9ac0e4455f6de439fce35e6a204dcbb880a37459e4263466cd5a6dd5775df9b6"
+        },
+        {
+          "name": "gambonanza-framework-linux-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-linux-arm64.zip",
+          "size": 28389539,
+          "sha256": "6f0be7a82983d5dec829c20ad947c3a2a52f7f87ea76b208c39264aba9b426c3"
+        },
+        {
+          "name": "gambonanza-framework-linux-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-linux-x64.zip",
+          "size": 29617130,
+          "sha256": "5d48bbe09ad25c1ae6ddd2eeebc968a9392eaecf503a8924bd17555e62bcfbb5"
+        },
+        {
+          "name": "gambonanza-framework-osx-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-osx-arm64.zip",
+          "size": 28619026,
+          "sha256": "e014ce143e91ecf51f3699da8a9eb3ebdbaa084ed1befc1b0665db39c1b1291f"
+        },
+        {
+          "name": "gambonanza-framework-osx-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-osx-x64.zip",
+          "size": 29966435,
+          "sha256": "2dcf071a5cfa179ea799f81dc0da7b217ea0135700b061cbbebc8f878602c1c3"
+        },
+        {
+          "name": "gambonanza-framework-win-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-win-arm64.zip",
+          "size": 28857993,
+          "sha256": "4619e19af7eca65768fd46b9f6598658345d3769ddf83fbf618f6d5c7ed2bc52"
+        },
+        {
+          "name": "gambonanza-framework-win-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-win-x64.zip",
+          "size": 29945103,
+          "sha256": "5c025f5debc7070d1ca912af8e5b8ebf2770e8be343e251e6acc240eb7f971b5"
+        },
+        {
+          "name": "KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/KamikazeGambit.zip",
+          "size": 8776,
+          "sha256": "aa1bf09d49a47e23659077b7762e56826bc0f0a4afd2fc723a4df5a857d80bdc"
+        },
+        {
+          "name": "MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/MightyKasparovEveryStage.zip",
+          "size": 4355,
+          "sha256": "313f24adb8d6f13fe484fd4834cecdce3ec35f3cf9f38b0ef6501a889c4aa3d6"
+        },
+        {
+          "name": "SpeedMod.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/SpeedMod.zip",
+          "size": 8073,
+          "sha256": "021e22c768c82f237fc9efc076499b9bd458ab49960135c6e75b05b657de4943"
+        },
+        {
+          "name": "SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/SpikesGambit.zip",
+          "size": 6490,
+          "sha256": "6bbaf7cc55f1854e7a47a7fc019b2c28a899a718de775c55fc7f45f46cb44164"
+        }
+      ]
+    },
+    "manager": {
+      "tag": "manager-v1.0.3",
+      "version": "1.0.3",
+      "publishedAt": "2026-08-12T16:47:45Z",
+      "notes": "\n- The mod list can no longer travel back in time: right after a release,\n  GitHub's CDN can briefly serve the previous registry index, which made\n  fresh mods flip back to \"coming soon\". The app now keeps the newest index\n  it has seen and falls back to a second source when a stale copy shows up.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.0.3",
+      "assets": [
+        {
+          "name": "Gambonanza.Mod.Manager-1.0.3-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.3/Gambonanza.Mod.Manager-1.0.3-arm64-mac.zip",
+          "size": 119576542,
+          "sha256": "7cef9c554c92308456c79eb2bffdc90b61886c4d44e43ee4117616e2c20f5fd0"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.0.3-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.3/Gambonanza.Mod.Manager-1.0.3-arm64.dmg",
+          "size": 119459321,
+          "sha256": "f89cfbbfd97394b43a43ed909beae39df49b507b9cbf0a3b7d37805f841cc7f1"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.0.3-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.3/Gambonanza.Mod.Manager-1.0.3-mac.zip",
+          "size": 121703085,
+          "sha256": "8b67b022bb1e6b02fa52715202306d8e22dd9265c73c711a35eab8df65b117f9"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.0.3.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.3/Gambonanza.Mod.Manager-1.0.3.AppImage",
+          "size": 127823256,
+          "sha256": "0efd77114390961d7ed94425b3a306a64e4a9a8e60a5d219712fba415126369f"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.0.3.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.3/Gambonanza.Mod.Manager-1.0.3.dmg",
+          "size": 121552798,
+          "sha256": "bd5435664a8facbdd99aa9091d6dfdecf7ec08bf157507a42656b516654a9826"
+        }
+      ]
+    }
+  },
   "mods": [
     {
       "id": "enemy-threat-overlay",
@@ -38,7 +159,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T16:45:25Z",
+      "repoPushedAt": "2026-08-12T16:54:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -75,7 +196,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T16:45:25Z",
+      "repoPushedAt": "2026-08-12T16:54:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -114,7 +235,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T16:45:25Z",
+      "repoPushedAt": "2026-08-12T16:54:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -151,7 +272,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T16:45:25Z",
+      "repoPushedAt": "2026-08-12T16:54:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -190,7 +311,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T16:45:25Z",
+      "repoPushedAt": "2026-08-12T16:54:40Z",
       "license": "MIT",
       "archived": false
     }
