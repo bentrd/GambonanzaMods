@@ -22,7 +22,9 @@ if ! [[ "$NEW_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     exit 2
 fi
 
-if [ -n "$(git status --porcelain)" ]; then
+# prebuilt/ is excluded from the dirtiness check: this script regenerates it,
+# so leftovers from an earlier (failed) run must not block a re-run.
+if [ -n "$(git status --porcelain -- ':(exclude)prebuilt' 2>/dev/null || git status --porcelain)" ]; then
     echo "error: working tree has uncommitted changes - commit or stash them first," >&2
     echo "       so the release commit contains only what this script produces." >&2
     exit 1
@@ -36,24 +38,24 @@ if git rev-parse -q --verify "refs/tags/v$NEW_VERSION" >/dev/null; then
     exit 1
 fi
 
-printf '%s\n' "$NEW_VERSION" > VERSION
-
-echo "==> Building the framework against your game install"
-./build.sh --skip-samples
-tools/package-framework.sh --stage-prebuilt
-
-# Changelog discipline, enforced gently: the Unreleased section becomes this
-# version's section. If neither exists, stop - releases without notes are
-# exactly what we promised users we wouldn't do.
+# Changelog discipline FIRST, before any expensive or tree-mutating step:
+# the Unreleased section becomes this version's section. If neither exists,
+# stop - releases without notes are exactly what we promised users we
+# wouldn't do.
 if grep -q '^## Unreleased' CHANGELOG.md; then
     tmp="$(mktemp)"
     sed "s/^## Unreleased/## $NEW_VERSION/" CHANGELOG.md > "$tmp" && mv "$tmp" CHANGELOG.md
 elif ! grep -Eq "^## \[?$NEW_VERSION" CHANGELOG.md; then
     echo "error: CHANGELOG.md has no '## Unreleased' or '## $NEW_VERSION' section." >&2
     echo "       Write one (players see it as the release notes), then re-run." >&2
-    git checkout -- VERSION
     exit 1
 fi
+
+printf '%s\n' "$NEW_VERSION" > VERSION
+
+echo "==> Building the framework against your game install"
+./build.sh --skip-samples
+tools/package-framework.sh --stage-prebuilt
 
 git add prebuilt/ VERSION CHANGELOG.md
 git commit -m "release: framework $NEW_VERSION"

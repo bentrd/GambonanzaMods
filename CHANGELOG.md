@@ -5,6 +5,25 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## 1.3.0
+
+- Disabled mods are now COMPLETELY inert: the framework previously ran every
+  mod's load code and only skipped its "enable" step, so mods doing their
+  work at load (custom gambits, for one) ignored the toggle entirely. A
+  disabled mod's DLL is no longer even loaded; enabling it from the manager
+  or the console loads it on the spot.
+- Gambit mods no longer haunt your save: uninstalling or disabling a custom
+  gambit used to leave its unlock entry in the game's save data forever -
+  the collection said "201/200" and showed stale entries. GambitApi now
+  sweeps orphaned gambit ids out of the save on startup.
+- Collection screen: the pagination patch no longer re-enforces slot
+  visibility every frame (a frame-rate sink via constant UI layout
+  rebuilds), and GambitApi logs a one-time frame-rate diagnostic the first
+  time the collection stays open, so any remaining slowdown shows up in
+  Player.log with numbers attached.
+- SpeedMod retired: Gambonanza 1.4.0 added its own game-speed setting, so
+  the mod is gone from the samples, the registry and future releases.
+
 ## 1.2.0
 
 - The Gambonanza Mod Manager: a desktop app that patches the game, installs
