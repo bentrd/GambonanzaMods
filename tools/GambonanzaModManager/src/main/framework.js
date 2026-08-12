@@ -140,6 +140,14 @@ async function ensureBundle(release, { onProgress = () => {}, signal } = {}) {
 
 /** Copy the current vanilla assembly somewhere safe before touching anything. */
 async function createBackup(info, reason) {
+  // No vanilla copy exists in this state - the live dll is patched and the
+  // .orig snapshot is gone. Backing up the patched dll as "vanilla" would
+  // poison the rotation: a later restore() would put modded code back while
+  // deleting the framework it depends on, killing the game at startup.
+  if (info.patched && !info.hasBackup) {
+    throw new Error('the game is patched but its original backup file is missing, so there is no safe copy to work from. In Steam: right-click Gambonanza → Properties → Installed Files → Verify integrity of game files, then try again.');
+  }
+
   const stamp = new Date().toISOString().replace(/[:.]/g, '-');
   const dir = path.join(paths.backupsDir(), stamp);
   await fsp.mkdir(dir, { recursive: true });
@@ -149,6 +157,13 @@ async function createBackup(info, reason) {
   const source = info.patched && info.hasBackup ? info.backupPath : info.assemblyPath;
   const dest = path.join(dir, 'Assembly-CSharp.dll');
   await fsp.copyFile(source, dest);
+
+  // Belt and braces: never store a marked dll as a vanilla snapshot, whatever
+  // path it arrived by.
+  if (await game.hasPatchMarker(dest)) {
+    await fsp.rm(dir, { recursive: true, force: true });
+    throw new Error('refusing to back up modified game files as the original. Steam-verify the game and try again.');
+  }
 
   const meta = {
     createdAt: new Date().toISOString(),
@@ -288,16 +303,22 @@ async function restore({ gameDir, removeMods = false }) {
   if (!info.valid) throw new Error(info.reason || 'that folder is not a Gambonanza install');
 
   let restoredFrom = null;
-  if (info.hasBackup) {
+  if (info.hasBackup && !(await game.hasPatchMarker(info.backupPath))) {
     await fsp.copyFile(info.backupPath, info.assemblyPath);
     restoredFrom = 'the backup the patcher keeps next to the game file';
   } else {
+    // Only ever restore a snapshot we can prove is vanilla - putting a
+    // patched dll back while deleting the framework would break the game.
     const backups = (await listBackups()).filter((b) => b.managedDir === info.managedDir);
-    if (!backups.length) {
-      throw new Error('there is no backup to restore from. In Steam, right-click Gambonanza → Properties → Installed Files → Verify integrity to get the original files back.');
+    let usable = null;
+    for (const b of backups) {
+      if (!(await game.hasPatchMarker(b.file))) { usable = b; break; }
     }
-    await fsp.copyFile(backups[0].file, info.assemblyPath);
-    restoredFrom = `a backup this app made on ${new Date(backups[0].createdAt).toLocaleString()}`;
+    if (!usable) {
+      throw new Error('there is no clean backup to restore from. In Steam, right-click Gambonanza → Properties → Installed Files → Verify integrity to get the original files back.');
+    }
+    await fsp.copyFile(usable.file, info.assemblyPath);
+    restoredFrom = `a backup this app made on ${new Date(usable.createdAt).toLocaleString()}`;
   }
 
   for (const name of [...game.FRAMEWORK_DLLS, game.INSTALL_FILE]) {
@@ -319,6 +340,9 @@ async function restoreBackup({ gameDir, id }) {
   const backups = await listBackups();
   const backup = backups.find((b) => b.id === id);
   if (!backup) throw new Error('that backup is no longer on disk');
+  if (await game.hasPatchMarker(backup.file)) {
+    throw new Error('that snapshot contains modified game files, not the original - refusing to restore it. Use Steam’s Verify integrity instead.');
+  }
 
   const info = await game.inspect(gameDir);
   if (!info.valid) throw new Error(info.reason || 'that folder is not a Gambonanza install');

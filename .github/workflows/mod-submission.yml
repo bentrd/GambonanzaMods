@@ -35,15 +35,17 @@ jobs:
           ISSUE_USER: ${{ github.event.issue.user.login }}
         run: |
           node <<'EOF'
-          const { appendFileSync, writeFileSync, mkdirSync } = require('node:fs');
+          const { appendFileSync, writeFileSync, mkdirSync, existsSync } = require('node:fs');
 
           async function main() {
             const { validateEntry } = await import(`${process.cwd()}/tools/registry/lib.mjs`);
 
-            // Issue forms render as "### <label>\n\n<value>" blocks.
+            // Issue forms render as "### <label>\n\n<value>" blocks. Capture
+            // up to the next heading (not the next '#') so values containing
+            // a hash survive.
             const body = process.env.ISSUE_BODY || '';
             const fields = {};
-            for (const match of body.matchAll(/###\s+([^\n]+)\n+([^#]*)/g)) {
+            for (const match of body.matchAll(/###\s+([^\n]+)\n+([\s\S]*?)(?=\n###\s|$)/g)) {
               const value = match[2].trim();
               fields[match[1].trim().toLowerCase()] = value === '_No response_' ? '' : value;
             }
@@ -75,6 +77,15 @@ jobs:
             };
 
             const problems = validateEntry(entry, `${entry.id}.json`);
+
+            // An id that already exists belongs to someone's live mod - a
+            // "new mod" submission must never be able to repoint its download.
+            if (!problems.length && existsSync(`registry/mods/${entry.id}.json`)) {
+              problems.push(`the id "${entry.id}" is already taken by an existing registry entry. `
+                + 'If this is your own mod and you want to change its entry, open a pull request '
+                + `editing registry/mods/${entry.id}.json instead. Otherwise pick a different id.`);
+            }
+
             if (problems.length) {
               writeFileSync('/tmp/problems.md', problems.map((p) => `- ${p}`).join('\n'));
               appendFileSync(process.env.GITHUB_OUTPUT, 'valid=false\n');
@@ -89,8 +100,23 @@ jobs:
           main().catch((err) => { console.error(err); process.exit(1); });
           EOF
 
+      - name: Cross-entry validation (bot PRs get no CI of their own)
+        id: crossval
+        if: steps.parse.outputs.valid == 'true'
+        run: |
+          # PRs opened with GITHUB_TOKEN do not trigger pull_request workflows,
+          # so the full registry validation runs here instead, before the PR
+          # exists - duplicate folders, dangling dependencies, all of it.
+          if node tools/registry/validate.mjs > /tmp/validate.log 2>&1; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            # Strip ANSI colour codes for the issue comment.
+            sed 's/\x1b\[[0-9;]*m//g' /tmp/validate.log > /tmp/problems.md
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Reply with validation problems
-        if: steps.parse.outputs.valid == 'false'
+        if: steps.parse.outputs.valid == 'false' || steps.crossval.outputs.valid == 'false'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -107,7 +133,7 @@ jobs:
           gh issue comment "${{ github.event.issue.number }}" --body-file /tmp/comment.md
 
       - name: Open the registry PR
-        if: steps.parse.outputs.valid == 'true'
+        if: steps.parse.outputs.valid == 'true' && steps.crossval.outputs.valid == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MOD_ID: ${{ steps.parse.outputs.mod_id }}
@@ -130,6 +156,8 @@ jobs:
           {
             echo "Adds **${modname}** to the mod registry, submitted by @${ISSUE_USER} in #${ISSUE_NUMBER}."
             echo
+            echo "Full registry validation already ran inside the submission workflow (bot-opened PRs don't trigger CI on their own)."
+            echo
             echo "Review checklist:"
             echo "- [ ] the linked repository contains the mod's real source"
             echo "- [ ] the release asset is what the source builds"
@@ -138,16 +166,30 @@ jobs:
             echo "Closes #${ISSUE_NUMBER}."
           } > /tmp/pr.md
 
+          # "Allow GitHub Actions to create and approve pull requests" may be
+          # off (it is by default) - the branch is pushed either way, so fall
+          # back to a one-click compare link for a maintainer.
           existing="$(gh pr list --head "$branch" --state open --json number --jq '.[0].number' || true)"
           if [ -n "$existing" ]; then
             gh pr edit "$existing" --body-file /tmp/pr.md
             url="$(gh pr view "$existing" --json url --jq .url)"
+            opened=1
+          elif url="$(gh pr create --title "Registry: add ${modname}" --body-file /tmp/pr.md --head "$branch" 2>/tmp/pr-err.txt)"; then
+            opened=1
           else
-            url="$(gh pr create --title "Registry: add ${modname}" --body-file /tmp/pr.md --head "$branch")"
+            echo "gh pr create failed:"; cat /tmp/pr-err.txt
+            url="https://github.com/${GITHUB_REPOSITORY}/compare/main...${branch}?quick_pull=1"
+            opened=0
           fi
 
           {
-            echo "All good - I opened ${url} for review. Once a maintainer merges it, your mod appears in the manager (make sure a GitHub release with the asset exists so it switches from \"coming soon\" to installable)."
+            if [ "$opened" -eq 1 ]; then
+              echo "All good - I opened ${url} for review. Once a maintainer merges it, your mod appears in the manager (make sure a GitHub release with the asset exists so it switches from \"coming soon\" to installable)."
+            else
+              echo "Your submission is valid and I pushed it to the \`${branch}\` branch, but this repository doesn't let workflows open pull requests. A maintainer can open it in one click: ${url}"
+              echo
+              echo "(Maintainer note: enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests* to make this fully automatic.)"
+            fi
             echo
             echo "---"
             echo "_Generated by [Claude Code](https://claude.ai/code)_"

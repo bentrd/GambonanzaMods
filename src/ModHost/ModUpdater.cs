@@ -13,7 +13,27 @@ namespace Gambonanza.ModHost
 {
     internal sealed class ModUpdater : MonoBehaviour
     {
-        public const string FrameworkVersion = "1.0.0";
+        /// <summary>
+        /// Displayed framework version. Read from the install metadata that both
+        /// build.sh and the Gambonanza Mod Manager write next to the DLLs, so it
+        /// tracks the actual install instead of a constant that drifts (the old
+        /// hardcoded value was still "1.0.0" when 1.1.0 shipped).
+        /// </summary>
+        public static string FrameworkVersion
+        {
+            get
+            {
+                if (_frameworkVersion == null)
+                {
+                    var meta = LoadMetadata();
+                    _frameworkVersion = string.IsNullOrEmpty(meta?.version) ? FallbackFrameworkVersion : meta.version;
+                }
+                return _frameworkVersion;
+            }
+        }
+
+        private const string FallbackFrameworkVersion = "1.1.0";
+        private static string _frameworkVersion;
 
         private const string InstallFileName = "Gambonanza.ModHost.install.json";
         private static ModUpdater _instance;

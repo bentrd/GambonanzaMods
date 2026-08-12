@@ -99,6 +99,9 @@ export function validateEntry(entry, fileName) {
     const m = entry.manifest;
     if (typeof m !== 'object' || m === null || Array.isArray(m)) fail('"manifest" must be an object');
     else {
+      for (const key of Object.keys(m)) {
+        if (key !== 'entry' && key !== 'dependencies') fail(`unknown manifest field "${key}"`);
+      }
       if (typeof m.entry !== 'string' || !m.entry.includes('.')) {
         fail('"manifest.entry" must be the fully-qualified IMod type, e.g. "Gambonanza.SpeedMod.SpeedModMain"');
       }
@@ -120,7 +123,10 @@ export function validateEntry(entry, fileName) {
 
   if (entry.dependencies !== undefined) {
     if (!isStringArray(entry.dependencies)) fail('"dependencies" must be an array of registry ids');
-    else if (entry.dependencies.includes(entry.id)) fail('a mod cannot depend on itself');
+    else {
+      if (entry.dependencies.length > 8) fail('"dependencies" allows at most 8 entries');
+      if (entry.dependencies.includes(entry.id)) fail('a mod cannot depend on itself');
+    }
   }
 
   for (const boolField of ['prerelease', 'pending']) {

@@ -142,6 +142,25 @@ test('inspect: detects a Steam update under the patch', async () => {
   assert.equal(info.state, 'stale');
 });
 
+test('inspect: detects a Steam update that wiped the patch marker', async () => {
+  // The realistic Steam-update shape: the dll is new vanilla (marker gone),
+  // but our framework DLLs and install record survived.
+  const dir = tempDir();
+  const managed = path.join(dir, 'Gambonanza_Data', 'Managed');
+  fs.mkdirSync(managed, { recursive: true });
+  fs.writeFileSync(path.join(managed, 'Assembly-CSharp.dll'), 'brand new vanilla from steam');
+  for (const dll of game.FRAMEWORK_DLLS) fs.writeFileSync(path.join(managed, dll), 'x');
+  fs.writeFileSync(path.join(managed, game.INSTALL_FILE), JSON.stringify({
+    version: '1.1.0',
+    gameAssemblySha256: 'sha-of-the-old-vanilla',
+  }));
+
+  const info = await game.inspect(dir);
+  assert.equal(info.patched, false);
+  assert.equal(info.gameUpdated, true);
+  assert.equal(info.state, 'stale');
+});
+
 test('inspect: unpatched vanilla install', async () => {
   const dir = tempDir();
   const managed = path.join(dir, 'Gambonanza_Data', 'Managed');

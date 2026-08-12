@@ -80,7 +80,8 @@ jobs:
         if: env.CLIENT_ID != ''
         env:
           CLIENT_ID: ${{ secrets.GAMBONANZA_GITHUB_CLIENT_ID }}
-        run: node -e "require('fs').writeFileSync('assets/github-oauth.json', JSON.stringify({ clientId: process.env.CLIENT_ID }))"
+        run: |
+          node -e "require('fs').writeFileSync('assets/github-oauth.json', JSON.stringify({ clientId: process.env.CLIENT_ID }))"
 
       - name: Build distributables
         run: npm run dist -- --publish never

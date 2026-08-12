@@ -229,17 +229,26 @@ async function inspect(gameDir) {
   }
   const frameworkComplete = Object.values(frameworkFiles).every(Boolean);
 
-  // The install record remembers which game build we patched. If the vanilla
-  // bytes have changed since, Steam updated the game and the framework needs
-  // to be re-applied on top of the new code.
-  const gameUpdated = !!(patched && install?.gameAssemblySha256 && vanillaSha256
+  // Steam-update detection, two shapes:
+  //
+  //   a) The usual one: Steam replaced Assembly-CSharp.dll with a new vanilla
+  //      build, wiping the patch marker. Our install record and framework
+  //      DLLs survive (Steam only touches its own files), so "record present
+  //      but marker gone" means exactly this - NOT requiring patched=true is
+  //      the whole point, a Steam update always clears the marker.
+  //   b) The rare one: still patched, but the vanilla snapshot's hash no
+  //      longer matches what we recorded (e.g. the .orig was lost or swapped).
+  //
+  // Both mean the same thing to the user: re-patch to get mods back.
+  const steamReplacedPatch = !!(!patched && install);
+  const hashMismatch = !!(patched && install?.gameAssemblySha256 && vanillaSha256
     && install.gameAssemblySha256 !== vanillaSha256);
+  const gameUpdated = steamReplacedPatch || hashMismatch;
 
   let state = 'unpatched';
   if (patched && frameworkComplete && !gameUpdated) state = 'patched';
   else if (patched && !frameworkComplete) state = 'broken';
-  else if (patched && gameUpdated) state = 'stale';
-  else if (!patched && frameworkComplete) state = 'reverted';
+  else if (gameUpdated) state = 'stale';
 
   return {
     valid: true,

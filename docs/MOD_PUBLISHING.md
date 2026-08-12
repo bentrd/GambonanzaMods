@@ -135,3 +135,8 @@ but no secret. One-time setup:
 
 Until that's configured, the Publish tab simply hides the sign-in button and
 uses the pre-filled issue path, which needs nothing.
+
+For the issue-form path to be fully automatic, also enable
+**Settings → Actions → General → Allow GitHub Actions to create and approve
+pull requests** - otherwise the submission bot pushes the branch and posts a
+one-click compare link for a maintainer instead of opening the PR itself.
