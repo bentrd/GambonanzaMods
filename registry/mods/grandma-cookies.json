@@ -1,0 +1,17 @@
+{
+  "id": "grandma-cookies",
+  "name": "GrandMa's Cookies' Gambit",
+  "author": "Agent15",
+  "summary": "At the start of a game, earn one random piece.",
+  "description": "A splice of two vanilla gambits: GrandMa's Gift's framing with Chrysalis' trigger, so every run starts with one bonus random piece in your stock (skipped if the stock is already full). Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "GrandMasCookiesGambit.zip",
+  "folder": "GrandMasCookiesGambit",
+  "tags": ["gameplay", "gambits"],
+  "dependencies": ["gambit-api"],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-12"
+}
