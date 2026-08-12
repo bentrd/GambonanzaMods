@@ -1,0 +1,16 @@
+{
+  "id": "speed-mod",
+  "name": "Speed Mod",
+  "author": "Ben",
+  "summary": "Adds a Game Speed arrow row to the settings panel.",
+  "description": "Puts a speed control in the game's own settings screen so you can fast-forward the parts of a run you have already seen. Uses the framework's UI helpers, so it looks like it shipped with the game.",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "SpeedMod.zip",
+  "folder": "SpeedMod",
+  "tags": ["quality-of-life", "ui"],
+  "frameworkVersion": ">=1.1.0",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-08-12"
+}

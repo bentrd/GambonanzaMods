@@ -1,0 +1,138 @@
+{
+  "schema": 1,
+  "frameworkRepo": "bentrd/GambonanzaMods",
+  "generatedAt": "2026-08-12T12:28:36.910Z",
+  "count": 6,
+  "mods": [
+    {
+      "id": "enemy-threat-overlay",
+      "name": "Enemy Threat Overlay",
+      "author": "nikaakaa",
+      "summary": "Hold Space to light up every square the enemy can reach.",
+      "description": "A board overlay that shows enemy coverage while you hold the key, so you can see the trap before you walk into it. Rebind the key from the in-game console (F10).",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "EnemyThreatOverlay.zip",
+      "folder": "EnemyThreatOverlay",
+      "tags": [
+        "quality-of-life",
+        "ui"
+      ],
+      "frameworkVersion": ">=1.1.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-12",
+      "official": true,
+      "latest": null,
+      "pending": true
+    },
+    {
+      "id": "gambit-api",
+      "name": "Gambit Creation API",
+      "author": "Ben",
+      "summary": "Library other mods use to build and register custom gambits.",
+      "description": "Not much to look at on its own - install it because another mod asked for it. It gives mod authors a small API for defining a gambit (art, rarity, trigger, effect) and registering it with the game at runtime.",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "GambitApi.zip",
+      "folder": "GambitApi",
+      "tags": [
+        "library",
+        "gambits"
+      ],
+      "frameworkVersion": ">=1.1.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-12",
+      "official": true,
+      "latest": null,
+      "pending": true
+    },
+    {
+      "id": "kamikaze-gambit",
+      "name": "Kamikaze Gambit",
+      "author": "Ben",
+      "summary": "A custom gambit: trade your piece to take the one that took it.",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "KamikazeGambit.zip",
+      "folder": "KamikazeGambit",
+      "tags": [
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.1.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-12",
+      "official": true,
+      "latest": null,
+      "pending": true
+    },
+    {
+      "id": "mighty-kasparov-every-stage",
+      "name": "Mighty Kasparov Every Stage",
+      "author": "Minty",
+      "summary": "Faces the Mighty Kasparov boss on every stage. Yes, really.",
+      "description": "A difficulty mod for people who have finished the game and want to suffer. Ships disabled - flip it on in the manager when you are ready.",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "MightyKasparovEveryStage.zip",
+      "folder": "MightyKasparovEveryStage",
+      "tags": [
+        "gameplay",
+        "cheats"
+      ],
+      "frameworkVersion": ">=1.1.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-12",
+      "official": true,
+      "latest": null,
+      "pending": true
+    },
+    {
+      "id": "speed-mod",
+      "name": "Speed Mod",
+      "author": "Ben",
+      "summary": "Adds a Game Speed arrow row to the settings panel.",
+      "description": "Puts a speed control in the game's own settings screen so you can fast-forward the parts of a run you have already seen. Uses the framework's UI helpers, so it looks like it shipped with the game.",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "SpeedMod.zip",
+      "folder": "SpeedMod",
+      "tags": [
+        "quality-of-life",
+        "ui"
+      ],
+      "frameworkVersion": ">=1.1.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-12",
+      "official": true,
+      "latest": null,
+      "pending": true
+    },
+    {
+      "id": "spikes-gambit",
+      "name": "Spikes' Gambit",
+      "author": "TGM",
+      "summary": "Enemies that step on TRAP tiles are captured instead of trapped.",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "SpikesGambit.zip",
+      "folder": "SpikesGambit",
+      "tags": [
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.1.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-12",
+      "official": true,
+      "latest": null,
+      "pending": true
+    }
+  ]
+}

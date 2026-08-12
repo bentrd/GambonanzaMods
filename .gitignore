@@ -1,6 +1,13 @@
 # Build output
 **/bin/
 **/obj/
+dist/
+
+# Mod manager app
+tools/GambonanzaModManager/node_modules/
+tools/GambonanzaModManager/dist/
+tools/GambonanzaModManager/assets/registry-index.json
+tools/GambonanzaModManager/assets/github-oauth.json
 
 # GambonanzaAssets working state: staged PNG replacements and the preview cache.
 # Both are per-user and rebuildable; pack/ is what you zip up to share a skin.

@@ -78,8 +78,21 @@ namespace Gambonanza.ModHost
             });
         }
 
+        /// <summary>
+        /// Installs made by the Gambonanza Mod Manager have no git checkout to pull
+        /// from - the manager downloads released bundles instead. Tell the player to
+        /// use it rather than printing a confusing "missing repoDir" error.
+        /// </summary>
+        private const string ManagerInstaller = "GambonanzaModManager";
+
+        private bool ManagedByModManager =>
+            _metadata != null &&
+            string.Equals(_metadata.managedBy, ManagerInstaller, StringComparison.OrdinalIgnoreCase);
+
         private UpdateStatus CheckForUpdate()
         {
+            if (ManagedByModManager)
+                return new UpdateStatus { CanCheck = false, Message = "this install is managed by the Gambonanza Mod Manager - open it to update the framework and your mods." };
             if (_metadata == null || string.IsNullOrEmpty(_metadata.repoDir) || !Directory.Exists(_metadata.repoDir))
                 return new UpdateStatus { CanCheck = false, Message = "install metadata missing repoDir; reinstall with ./build.sh first." };
 
@@ -116,6 +129,11 @@ namespace Gambonanza.ModHost
 
         private void BeginUpdate()
         {
+            if (ManagedByModManager)
+            {
+                _console?.PrintWarn("this install is managed by the Gambonanza Mod Manager - quit the game and hit Update there.");
+                return;
+            }
             if (_metadata == null || string.IsNullOrEmpty(_metadata.repoDir) || !Directory.Exists(_metadata.repoDir))
             {
                 _console?.PrintWarn("cannot update: install metadata missing repoDir. Reinstall manually with ./build.sh first.");
@@ -248,6 +266,8 @@ namespace Gambonanza.ModHost
             public string repoDir = null;
             public string gameDir = null;
             public string appId = null;
+            /// <summary>Which installer wrote this file, e.g. "GambonanzaModManager".</summary>
+            public string managedBy = null;
         }
 
         private sealed class UpdateStatus
