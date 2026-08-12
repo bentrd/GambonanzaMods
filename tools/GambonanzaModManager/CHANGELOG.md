@@ -4,13 +4,15 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
-## 1.0.1
+## 1.0.2
 
 - The app now updates itself: one click on "Update & restart" downloads the
   new version, verifies it, swaps it in and relaunches. No installer, no
   browser download - and on a Mac, no Gatekeeper theatre, because the app
   downloads updates itself. (The Terminal line remains a first-install-only
   ritual.)
+
+## 1.0.1
 - Fixed the enable/disable toggle rendering off-centre in its track.
 - Buttons and pills that sit next to each other now share a consistent
   height (home screen, top bar, mod browser toolbar).
