@@ -1,0 +1,63 @@
+# Keeps registry/index.json fresh: re-resolves every mod's newest GitHub
+# release (recording the asset checksum players' installs are verified
+# against) on a schedule, after registry changes, and on demand.
+# Commits only when something actually changed.
+name: Refresh registry index
+
+on:
+  schedule:
+    - cron: '17 */6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'registry/mods/**'
+      - 'tools/registry/**'
+
+permissions:
+  contents: write
+  # Needed to kick the Pages deploy after committing: pushes made with
+  # GITHUB_TOKEN deliberately do not trigger other workflows on their own.
+  actions: write
+
+concurrency:
+  group: registry-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Rebuild index.json
+        run: node tools/registry/build-index.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit if changed
+        run: |
+          # generatedAt always changes; only commit when the content did.
+          if git diff --numstat registry/index.json | grep -q .; then
+            changed_lines="$(git diff registry/index.json | grep -cE '^[+-]' || true)"
+            # 5 = +++/--- headers plus the two generatedAt lines and hunk noise.
+            if [ "$changed_lines" -le 5 ]; then
+              echo "only the timestamp moved - not committing."
+              exit 0
+            fi
+            git config user.name 'github-actions[bot]'
+            git config user.email 'github-actions[bot]@users.noreply.github.com'
+            git add registry/index.json
+            git commit -m 'registry: refresh index'
+            git push
+            # A GITHUB_TOKEN push does not trigger the pages workflow, so the
+            # site would serve a stale index forever without this nudge.
+            gh workflow run pages.yml --ref main || true
+          else
+            echo "index.json unchanged."
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

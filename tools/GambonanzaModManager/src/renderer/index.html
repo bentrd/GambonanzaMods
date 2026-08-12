@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- script-src stays strict ('self', no inline, no eval); 'unsafe-inline'
+       is granted to STYLES only, for the style="" attributes the renderer
+       sets when laying out dynamic rows. -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; img-src 'self' data: https://raw.githubusercontent.com https://avatars.githubusercontent.com https://user-images.githubusercontent.com;">
+  <title>Gambonanza Mod Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">♞</div>
+      <div>
+        <h1>Gambonanza Mods</h1>
+        <div class="sub">Mod manager</div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <div class="game-pill" id="gamePill"><span class="dot"></span><span id="gamePillText">Looking for your game…</span></div>
+    <button class="btn btn-green" id="playBtn" title="Launch Gambonanza through Steam">▶ Play</button>
+  </header>
+
+  <div class="body">
+    <nav class="side">
+      <button class="nav-btn" data-view="home"><span class="ico">⌂</span>Set up</button>
+      <button class="nav-btn" data-view="browse"><span class="ico">▦</span>Browse mods<span class="count" id="browseCount" hidden></span></button>
+      <button class="nav-btn" data-view="installed"><span class="ico">✦</span>My mods<span class="count" id="installedCount" hidden></span></button>
+      <button class="nav-btn" data-view="updates" id="updatesNav"><span class="ico">↻</span>Updates</button>
+      <button class="nav-btn" data-view="publish"><span class="ico">✎</span>Publish</button>
+      <div class="nav-foot">
+        <button class="nav-btn" data-view="settings"><span class="ico">⚙</span>Settings</button>
+      </div>
+    </nav>
+
+    <main class="content">
+
+      <!-- ============================= HOME / SET UP ==================== -->
+      <section class="view" id="view-home">
+        <div class="card-window">
+          <span class="window-title">Welcome</span>
+          <div class="hero">
+            <div class="big-status" id="homeStatus">…</div>
+            <p id="homeHint"></p>
+            <div class="home-actions" id="homeActions"></div>
+            <details class="setup-details" id="setupDetails">
+              <summary id="setupSummary">Setup details</summary>
+              <div class="steps" id="homeSteps"></div>
+            </details>
+          </div>
+          <div id="homeBanners"></div>
+        </div>
+      </section>
+
+      <!-- ============================= BROWSE =========================== -->
+      <section class="view" id="view-browse">
+        <div class="card-window">
+          <span class="window-title">Mod shop</span>
+          <div class="toolbar">
+            <div class="search"><input class="game-input" id="modSearch" type="search" placeholder="Search mods…"></div>
+            <div class="chip-row" id="tagChips"></div>
+            <button class="btn btn-cream small" id="refreshRegistry" title="Reload the mod list">↻ Refresh</button>
+          </div>
+          <div class="mod-grid" id="modGrid"></div>
+          <div class="empty-note" id="browseEmpty" hidden>No mods match that search.</div>
+        </div>
+      </section>
+
+      <!-- ============================= INSTALLED ======================== -->
+      <section class="view" id="view-installed">
+        <div class="card-window">
+          <span class="window-title">My mods</span>
+          <div id="installedList"></div>
+          <div class="empty-note" id="installedEmpty" hidden>
+            Nothing installed yet - head to <b>Browse mods</b> and grab something.
+          </div>
+          <div class="inset-row tiny" style="margin-top:12px" id="installedFootnote" hidden>
+            Enabling or disabling a mod takes effect the next time the game starts.
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================= UPDATES ========================== -->
+      <section class="view" id="view-updates">
+        <div class="card-window">
+          <span class="window-title">Updates</span>
+          <div id="updatesBody"><div class="empty-note">Checking…</div></div>
+        </div>
+      </section>
+
+      <!-- ============================= PUBLISH ========================== -->
+      <section class="view" id="view-publish">
+        <div class="card-window">
+          <span class="window-title">Publish a mod</span>
+          <p class="tiny" style="margin-top:0">
+            Your mod stays in <b>your</b> GitHub repository - the registry only stores a link to it.
+            Players download the file straight from your repo's Releases page, and everyone can read
+            your source. No uploads, no hosting, no accounts to make.
+          </p>
+          <div id="publishAuth"></div>
+          <div id="publishForm"></div>
+        </div>
+      </section>
+
+      <!-- ============================= SETTINGS ========================= -->
+      <section class="view" id="view-settings">
+        <div class="card-window">
+          <span class="window-title">Settings</span>
+          <div id="settingsBody"></div>
+        </div>
+        <div class="card-window">
+          <span class="window-title">Backups</span>
+          <p class="tiny" style="margin-top:0">
+            Every time the game is patched, the original game file is copied here first.
+            Restoring a backup puts the game back exactly as it was - you can always just
+            use Steam's "Verify integrity of game files" too.
+          </p>
+          <div id="backupsList"></div>
+        </div>
+        <div class="card-window">
+          <span class="window-title">Activity</span>
+          <div class="log-box" id="logBox"></div>
+          <div style="margin-top:10px; display:flex; gap:8px">
+            <button class="btn btn-cream small" id="openLogBtn">Open log file</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- progress / confirm modal -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h3 id="modalTitle"></h3>
+    <p id="modalBody"></p>
+    <div class="progress-track" id="modalProgress" hidden><div class="progress-fill" id="modalProgressFill"></div></div>
+    <div class="row" id="modalButtons"></div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+# Mod submission form. The Publish tab of the mod manager pre-fills this for
+# creators who don't want to sign in; a workflow turns valid submissions into
+# registry pull requests automatically.
+name: Submit a mod to the registry
+description: Add your mod to the Gambonanza Mod Manager. Your mod stays in your repository - this just links to it.
+title: '[Mod] '
+labels: [mod-submission]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for making a mod! Fill this in and a bot opens the registry pull
+        request for you. Requirements:
+        - your mod's **source code** is in a **public GitHub repository**
+        - a **GitHub release** of that repo has your mod attached, either as a
+          `.zip` containing `mod.json` + your DLL, or as a bare `.dll`
+        - it works against the current Gambonanza + framework versions
+
+        New to this? Read the [publishing guide](https://github.com/bentrd/GambonanzaMods/blob/main/docs/MOD_PUBLISHING.md).
+  - type: input
+    id: mod-name
+    attributes:
+      label: Mod name
+      description: Shown in the manager. 2-48 characters.
+      placeholder: My Cool Mod
+    validations:
+      required: true
+  - type: input
+    id: mod-id
+    attributes:
+      label: Registry id
+      description: lowercase-with-dashes, permanent. Leave blank to derive it from the name.
+      placeholder: my-cool-mod
+  - type: input
+    id: repo
+    attributes:
+      label: GitHub repository
+      description: owner/name of the public repo with your source and releases.
+      placeholder: yourname/your-mod
+    validations:
+      required: true
+  - type: input
+    id: asset
+    attributes:
+      label: Release asset
+      description: The file attached to your GitHub release. Globs work ("MyMod-*.zip").
+      placeholder: MyMod.zip
+    validations:
+      required: true
+  - type: input
+    id: folder
+    attributes:
+      label: Install folder
+      description: Folder created under the game's Mods/ directory. Usually your mod's name without spaces.
+      placeholder: MyCoolMod
+    validations:
+      required: true
+  - type: input
+    id: summary
+    attributes:
+      label: One-line summary
+      description: Shown on the mod card. 8-140 characters, just say what it does.
+      placeholder: Makes the queen breathe fire on Tuesdays.
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: 'Comma-separated, up to 5 of: gameplay, gambits, quality-of-life, ui, visual, audio, cheats, library, tools'
+      placeholder: gameplay, gambits
+  - type: input
+    id: entry-type
+    attributes:
+      label: Entry type (bare-DLL releases only)
+      description: Only needed when your release asset is a bare .dll with no mod.json - the fully-qualified IMod type.
+      placeholder: MyMod.Namespace.MyModMain
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: The repository above is public and contains the mod's full source code.
+          required: true
+        - label: A published (non-draft) GitHub release has the asset attached, or I'll publish one soon.
+          required: true
+        - label: The mod contains no malware, cryptominers, or code that phones home.
+          required: true

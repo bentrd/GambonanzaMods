@@ -1,0 +1,16 @@
+{
+  "id": "kamikaze-gambit",
+  "name": "Kamikaze Gambit",
+  "author": "Ben",
+  "summary": "A custom gambit: trade your piece to take the one that took it.",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "KamikazeGambit.zip",
+  "folder": "KamikazeGambit",
+  "tags": ["gambits", "gameplay"],
+  "dependencies": ["gambit-api"],
+  "frameworkVersion": ">=1.1.0",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-08-12"
+}

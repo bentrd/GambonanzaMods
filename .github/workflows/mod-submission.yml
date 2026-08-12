@@ -1,0 +1,191 @@
+# Turns a "Submit a mod" issue (the form in ISSUE_TEMPLATE/mod-submission.yml)
+# into a registry pull request, so creators never have to touch git.
+#
+# Security posture: the issue body is untrusted input. Everything from it goes
+# through the same validateEntry() the registry CI uses (strict patterns on
+# id/repo/folder, length caps on everything), the file path is derived from the
+# validated id only, and the JSON is written by Node - no user string is ever
+# interpolated into a shell command. The PR still needs a human review+merge;
+# this only saves the typing.
+name: Mod submission to PR
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  convert:
+    if: contains(github.event.issue.labels.*.name, 'mod-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Parse and validate the submission
+        id: parse
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_USER: ${{ github.event.issue.user.login }}
+        run: |
+          node <<'EOF'
+          const { appendFileSync, writeFileSync, mkdirSync, existsSync } = require('node:fs');
+
+          async function main() {
+            const { validateEntry } = await import(`${process.cwd()}/tools/registry/lib.mjs`);
+
+            // Issue forms render as "### <label>\n\n<value>" blocks. Capture
+            // up to the next heading (not the next '#') so values containing
+            // a hash survive.
+            const body = process.env.ISSUE_BODY || '';
+            const fields = {};
+            for (const match of body.matchAll(/###\s+([^\n]+)\n+([\s\S]*?)(?=\n###\s|$)/g)) {
+              const value = match[2].trim();
+              fields[match[1].trim().toLowerCase()] = value === '_No response_' ? '' : value;
+            }
+
+            const name = fields['mod name'] || '';
+            const id = (fields['registry id'] || name)
+              .toLowerCase().trim()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/^-+|-+$/g, '')
+              .slice(0, 40);
+            const tags = (fields.tags || '')
+              .split(',').map((t) => t.trim().toLowerCase()).filter(Boolean).slice(0, 5);
+
+            const entry = {
+              id,
+              name,
+              author: process.env.ISSUE_USER,
+              summary: fields['one-line summary'] || '',
+              repo: fields['github repository'] || '',
+              asset: fields['release asset'] || '',
+              folder: fields['install folder'] || '',
+              ...(tags.length ? { tags } : {}),
+              ...(fields['entry type (bare-dll releases only)']
+                ? { manifest: { entry: fields['entry type (bare-dll releases only)'] } }
+                : {}),
+              pending: true,
+              submittedBy: process.env.ISSUE_USER,
+              addedAt: new Date().toISOString().slice(0, 10),
+            };
+
+            const problems = validateEntry(entry, `${entry.id}.json`);
+
+            // An id that already exists belongs to someone's live mod - a
+            // "new mod" submission must never be able to repoint its download.
+            if (!problems.length && existsSync(`registry/mods/${entry.id}.json`)) {
+              problems.push(`the id "${entry.id}" is already taken by an existing registry entry. `
+                + 'If this is your own mod and you want to change its entry, open a pull request '
+                + `editing registry/mods/${entry.id}.json instead. Otherwise pick a different id.`);
+            }
+
+            if (problems.length) {
+              writeFileSync('/tmp/problems.md', problems.map((p) => `- ${p}`).join('\n'));
+              appendFileSync(process.env.GITHUB_OUTPUT, 'valid=false\n');
+              return;
+            }
+
+            mkdirSync('registry/mods', { recursive: true });
+            writeFileSync(`registry/mods/${entry.id}.json`, `${JSON.stringify(entry, null, 2)}\n`);
+            appendFileSync(process.env.GITHUB_OUTPUT, `valid=true\nmod_id=${entry.id}\n`);
+            writeFileSync('/tmp/modname.txt', entry.name);
+          }
+          main().catch((err) => { console.error(err); process.exit(1); });
+          EOF
+
+      - name: Cross-entry validation (bot PRs get no CI of their own)
+        id: crossval
+        if: steps.parse.outputs.valid == 'true'
+        run: |
+          # PRs opened with GITHUB_TOKEN do not trigger pull_request workflows,
+          # so the full registry validation runs here instead, before the PR
+          # exists - duplicate folders, dangling dependencies, all of it.
+          if node tools/registry/validate.mjs > /tmp/validate.log 2>&1; then
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          else
+            # Strip ANSI colour codes for the issue comment.
+            sed 's/\x1b\[[0-9;]*m//g' /tmp/validate.log > /tmp/problems.md
+            echo "valid=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Reply with validation problems
+        if: steps.parse.outputs.valid == 'false' || steps.crossval.outputs.valid == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          {
+            echo "Thanks for the submission! A few things need fixing before I can open the registry PR:"
+            echo
+            cat /tmp/problems.md
+            echo
+            echo "Edit the issue (three-dot menu → Edit) and I'll re-check automatically."
+          } > /tmp/comment.md
+          gh issue comment "${{ github.event.issue.number }}" --body-file /tmp/comment.md
+
+      - name: Open the registry PR
+        if: steps.parse.outputs.valid == 'true' && steps.crossval.outputs.valid == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MOD_ID: ${{ steps.parse.outputs.mod_id }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_USER: ${{ github.event.issue.user.login }}
+        run: |
+          branch="registry/${MOD_ID}"
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git checkout -B "$branch"
+          git add "registry/mods/${MOD_ID}.json"
+          if git diff --cached --quiet; then
+            echo "no changes (identical entry already exists)"
+            exit 0
+          fi
+          git commit -m "registry: add ${MOD_ID} (#${ISSUE_NUMBER})"
+          git push -f origin "$branch"
+
+          modname="$(cat /tmp/modname.txt)"
+          {
+            echo "Adds **${modname}** to the mod registry, submitted by @${ISSUE_USER} in #${ISSUE_NUMBER}."
+            echo
+            echo "Full registry validation already ran inside the submission workflow (bot-opened PRs don't trigger CI on their own)."
+            echo
+            echo "Review checklist:"
+            echo "- [ ] the linked repository contains the mod's real source"
+            echo "- [ ] the release asset is what the source builds"
+            echo "- [ ] nothing sketchy in the code (network calls, file access outside the game)"
+            echo
+            echo "Closes #${ISSUE_NUMBER}."
+          } > /tmp/pr.md
+
+          # "Allow GitHub Actions to create and approve pull requests" may be
+          # off (it is by default) - the branch is pushed either way, so fall
+          # back to a one-click compare link for a maintainer.
+          existing="$(gh pr list --head "$branch" --state open --json number --jq '.[0].number' || true)"
+          if [ -n "$existing" ]; then
+            gh pr edit "$existing" --body-file /tmp/pr.md
+            url="$(gh pr view "$existing" --json url --jq .url)"
+            opened=1
+          elif url="$(gh pr create --title "Registry: add ${modname}" --body-file /tmp/pr.md --head "$branch" 2>/tmp/pr-err.txt)"; then
+            opened=1
+          else
+            echo "gh pr create failed:"; cat /tmp/pr-err.txt
+            url="https://github.com/${GITHUB_REPOSITORY}/compare/main...${branch}?quick_pull=1"
+            opened=0
+          fi
+
+          {
+            if [ "$opened" -eq 1 ]; then
+              echo "All good - I opened ${url} for review. Once a maintainer merges it, your mod appears in the manager (make sure a GitHub release with the asset exists so it switches from \"coming soon\" to installable)."
+            else
+              echo "Your submission is valid and I pushed it to the \`${branch}\` branch, but this repository doesn't let workflows open pull requests. A maintainer can open it in one click: ${url}"
+              echo
+              echo "(Maintainer note: enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests* to make this fully automatic.)"
+            fi
+          } > /tmp/comment.md
+          gh issue comment "$ISSUE_NUMBER" --body-file /tmp/comment.md

@@ -1,0 +1,35 @@
+{
+  "name": "gambonanza-mod-manager",
+  "productName": "Gambonanza Mod Manager",
+  "version": "1.0.0",
+  "description": "Install Gambonanza mods with one click. Patches the game, keeps a backup, and keeps everything up to date.",
+  "homepage": "https://bentrd.github.io/GambonanzaMods/",
+  "author": {
+    "name": "bentrd",
+    "email": "benj.tordjman@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bentrd/GambonanzaMods.git",
+    "directory": "tools/GambonanzaModManager"
+  },
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "test": "node --test \"test/*.test.js\"",
+    "lint": "node tools/syntax-check.mjs",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "adm-zip": "0.5.16"
+  },
+  "devDependencies": {
+    "electron": "^43.0.0",
+    "electron-builder": "^26.0.0"
+  }
+}
