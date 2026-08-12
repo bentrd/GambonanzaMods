@@ -6,11 +6,15 @@
   "repo": "bentrd/GambonanzaMods",
   "asset": "SpikesGambit.zip",
   "folder": "SpikesGambit",
-  "tags": ["gambits", "gameplay"],
-  "dependencies": ["gambit-api"],
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
   "frameworkVersion": ">=1.1.0",
   "gameVersion": ">=1.0",
-  "pending": true,
   "submittedBy": "bentrd",
   "addedAt": "2026-08-12"
 }

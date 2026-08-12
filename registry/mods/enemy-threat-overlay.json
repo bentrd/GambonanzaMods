@@ -7,10 +7,12 @@
   "repo": "bentrd/GambonanzaMods",
   "asset": "EnemyThreatOverlay.zip",
   "folder": "EnemyThreatOverlay",
-  "tags": ["quality-of-life", "ui"],
+  "tags": [
+    "quality-of-life",
+    "ui"
+  ],
   "frameworkVersion": ">=1.1.0",
   "gameVersion": ">=1.0",
-  "pending": true,
   "submittedBy": "bentrd",
   "addedAt": "2026-08-12"
 }

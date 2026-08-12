@@ -7,10 +7,12 @@
   "repo": "bentrd/GambonanzaMods",
   "asset": "MightyKasparovEveryStage.zip",
   "folder": "MightyKasparovEveryStage",
-  "tags": ["gameplay", "cheats"],
+  "tags": [
+    "gameplay",
+    "cheats"
+  ],
   "frameworkVersion": ">=1.1.0",
   "gameVersion": ">=1.0",
-  "pending": true,
   "submittedBy": "bentrd",
   "addedAt": "2026-08-12"
 }
