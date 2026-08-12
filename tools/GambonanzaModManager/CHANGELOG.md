@@ -4,6 +4,13 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.0.5
+
+- "Check again" actually checks again: update checks now force a registry
+  revalidation instead of answering from the 30-minute cache, so a fresh
+  framework release shows up the moment you ask (an unchanged index costs
+  one 304 round-trip).
+
 ## 1.0.4
 
 - Downloads retry themselves once on transient network hiccups (the

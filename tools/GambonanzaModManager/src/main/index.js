@@ -141,6 +141,12 @@ async function checkForUpdates({ notify = true } = {}) {
   const result = { framework: null, manager: null };
   const gameInfo = await currentGameInfo();
 
+  // An update check must not be answered from the registry cache - force a
+  // revalidation first (cheap: ETag turns an unchanged index into a 304).
+  // Without this, "Check again" could keep saying "nothing to do" for up to
+  // 30 minutes after a release.
+  try { await registry.getIndex({ force: true }); } catch { /* offline - the cached index still answers */ }
+
   const latest = await framework.latestFrameworkRelease({});
   if (latest.ok) {
     const installedVersion = gameInfo?.frameworkVersion || null;
