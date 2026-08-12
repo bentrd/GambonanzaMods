@@ -13,32 +13,24 @@ not for us.
 
 ## Framework release
 
-CI cannot compile the framework DLLs (they reference the game's copyrighted
-assemblies, which only exist next to an installed copy of the game), so a
-maintainer refreshes the committed copies first:
+One command, on a machine with Gambonanza installed (CI cannot compile the
+framework DLLs - they reference the game's copyrighted assemblies, which only
+exist next to an installed copy of the game):
 
 ```bash
-# on a machine with Gambonanza installed
-./build.sh --skip-samples                      # build against the live game
-tools/package-framework.sh --stage-prebuilt    # copy DLLs into prebuilt/
+tools/release-framework.sh 1.2.0
 ```
 
-Then:
+It builds against your game, stages the DLLs into `prebuilt/`, writes
+`VERSION`, renames the CHANGELOG's `## Unreleased` section to the version
+(and refuses to release without one - players see it as the release notes),
+commits, tags `v1.2.0` and pushes. CI then packages
+`gambonanza-framework-<rid>.zip` for all six platforms (the patcher is
+compiled self-contained in CI - players never need .NET), zips every folder
+in `Mods/`, and publishes the release. Managers everywhere notify their
+users within six hours.
 
-1. Update `VERSION` (the release workflow refuses a tag that disagrees).
-2. Add a `## <version>` section to `CHANGELOG.md` - user-facing wording;
-   this becomes the release notes and shows up inside the mod manager.
-3. Update `GAME_BUILD` if the supported game build changed.
-4. Commit (`prebuilt/`, `VERSION`, `CHANGELOG.md`), then:
-
-```bash
-git tag v1.2.0 && git push origin main v1.2.0
-```
-
-CI packages `gambonanza-framework-<rid>.zip` for all six platforms (the
-patcher is compiled self-contained in CI - players never need .NET), zips
-every folder in `Mods/`, and publishes the release. Managers everywhere
-notify their users within six hours.
+Update `GAME_BUILD` first if the supported game build changed.
 
 ## Mod manager release
 
