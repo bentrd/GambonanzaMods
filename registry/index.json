@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-12T19:18:16.910Z",
-  "count": 5,
+  "generatedAt": "2026-08-12T23:54:29.109Z",
+  "count": 6,
   "releases": {
     "framework": {
       "tag": "v1.3.0",
@@ -159,7 +159,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:48:41Z",
+      "repoPushedAt": "2026-08-12T23:54:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -196,7 +196,35 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:48:41Z",
+      "repoPushedAt": "2026-08-12T23:54:18Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "grandma-cookies",
+      "name": "GrandMa's Cookies' Gambit",
+      "author": "Agent15",
+      "summary": "At the start of a game, earn one random piece.",
+      "description": "A splice of two vanilla gambits: GrandMa's Gift's framing with Chrysalis' trigger, so every run starts with one bonus random piece in your stock (skipped if the stock is already full). Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "GrandMasCookiesGambit.zip",
+      "folder": "GrandMasCookiesGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-12",
+      "official": false,
+      "latest": null,
+      "pending": true,
+      "stars": 0,
+      "repoPushedAt": "2026-08-12T23:39:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -235,7 +263,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:48:41Z",
+      "repoPushedAt": "2026-08-12T23:54:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -272,7 +300,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:48:41Z",
+      "repoPushedAt": "2026-08-12T23:54:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -311,7 +339,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:48:41Z",
+      "repoPushedAt": "2026-08-12T23:54:18Z",
       "license": "MIT",
       "archived": false
     }
