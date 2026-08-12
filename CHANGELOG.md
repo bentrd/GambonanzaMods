@@ -5,7 +5,7 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
-## Unreleased
+## 1.2.0
 
 - The Gambonanza Mod Manager: a desktop app that patches the game, installs
   mods from the new registry, and keeps everything current - no terminal, no
