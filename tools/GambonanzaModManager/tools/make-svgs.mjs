@@ -105,6 +105,20 @@ export const ICONS = {
     '.#..........',
     '............',
   ],
+  shield: [
+    '............',
+    '.##########.',
+    '.##########.',
+    '.###....###.',
+    '.###....###.',
+    '.##########.',
+    '..########..',
+    '..########..',
+    '...######...',
+    '....####....',
+    '.....##.....',
+    '............',
+  ],
   settings: [
     '....####....',
     '.#..####..#.',
@@ -146,6 +160,13 @@ export function knightSvg(size = 26) {
     })
     .join('');
   return `<svg class="pix" width="${size}" height="${size}" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">${layers}</svg>`;
+}
+
+/** One-colour knight silhouette (currentColor) for light backgrounds where
+ *  the full-colour cream sprite would wash out. */
+export function knightMonoSvg(size = 22) {
+  const d = gridToPath(KNIGHT_SPRITE, (c) => c !== '.');
+  return `<svg class="pix" width="${size}" height="${size}" viewBox="0 0 16 16" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><path d="${d}"/></svg>`;
 }
 
 export function iconSvg(name, size = 17) {
