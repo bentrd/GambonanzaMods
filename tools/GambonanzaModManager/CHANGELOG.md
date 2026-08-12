@@ -4,6 +4,12 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.0.4
+
+- Downloads retry themselves once on transient network hiccups (the
+  "fetch failed - clicked again and it worked" class). Checksum failures
+  and cancellations still stop immediately.
+
 ## 1.0.3
 
 - Update checks no longer touch GitHub's rate-limited API: the latest

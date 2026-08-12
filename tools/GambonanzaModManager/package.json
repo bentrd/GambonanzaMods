@@ -1,7 +1,7 @@
 {
   "name": "gambonanza-mod-manager",
   "productName": "Gambonanza Mod Manager",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Install Gambonanza mods with one click. Patches the game, keeps a backup, and keeps everything up to date.",
   "homepage": "https://bentrd.github.io/GambonanzaMods/",
   "author": {

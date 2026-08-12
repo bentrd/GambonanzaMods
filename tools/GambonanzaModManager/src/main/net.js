@@ -146,7 +146,26 @@ function describeHttpError(res, body, url) {
  * asset when a human reviewed the registry entry, and nothing gets unpacked
  * into the game folder unless the bytes still match.
  */
-async function download(url, destPath, {
+async function download(url, destPath, options = {}) {
+  // One automatic retry for transient blips ("fetch failed", resets,
+  // timeouts, 5xx) - the errors users saw and fixed by clicking again.
+  // Deliberate refusals (checksum mismatch, 4xx, cancelled) never retry.
+  try {
+    return await downloadOnce(url, destPath, options);
+  } catch (err) {
+    const cancelled = options.signal?.aborted;
+    const transient = !cancelled && (
+      err.name !== 'NetworkError'
+      || /timed out|returned 5\d\d/i.test(err.message)
+    );
+    if (!transient) throw err;
+    log.warn('net', `download failed (${err.message}) - retrying once`);
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    return downloadOnce(url, destPath, options);
+  }
+}
+
+async function downloadOnce(url, destPath, {
   token,
   onProgress,
   expectedSha256 = null,

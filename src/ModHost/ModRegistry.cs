@@ -96,19 +96,41 @@ namespace Gambonanza.ModHost
         public void LoadMod(string modDirectory, ModManifest manifest)
         {
             _seenDirs.Add(modDirectory);
+
+            // A disabled mod must be completely inert - most mods do their real
+            // work (registering gambits, spawning runners) in OnLoad, which
+            // LoadAndConstruct invokes. So for enabled:false we don't load the
+            // assembly at all; a shell entry keeps the mod visible to the
+            // console so `enable <id>` can construct it on demand.
+            if (!manifest.enabled)
+            {
+                var shell = new LoadedMod
+                {
+                    Manifest     = manifest,
+                    ManifestPath = Path.Combine(modDirectory, "mod.json"),
+                    Directory    = modDirectory,
+                    Instance     = null,
+                    Lifecycle    = null,
+                    Context      = null,
+                    Assembly     = null,
+                    IsActive     = false,
+                };
+                _mods.Add(shell);
+                _byId[manifest.id] = shell;
+                ModHost.LogLine($"'{manifest.id}' is disabled - not loaded (enable it in the mod manager or console to load it).");
+                return;
+            }
+
             var loaded = LoadAndConstruct(modDirectory, manifest);
             _mods.Add(loaded);
             _byId[loaded.Manifest.id] = loaded;
             ModHost.LogLine($"loaded '{manifest.id}' v{manifest.version} (entry={manifest.entry})");
 
-            if (loaded.Manifest.enabled)
+            loaded.IsActive = true;
+            if (loaded.Lifecycle != null)
             {
-                loaded.IsActive = true;
-                if (loaded.Lifecycle != null)
-                {
-                    try { loaded.Lifecycle.OnEnable(); }
-                    catch (Exception ex) { loaded.Context.LogLine("OnEnable threw: " + ex); }
-                }
+                try { loaded.Lifecycle.OnEnable(); }
+                catch (Exception ex) { loaded.Context.LogLine("OnEnable threw: " + ex); }
             }
         }
 
@@ -133,6 +155,27 @@ namespace Gambonanza.ModHost
             error = null;
             if (!_byId.TryGetValue(modId, out var mod)) { error = "mod not loaded"; return false; }
             if (mod.IsActive) return true;
+
+            // Skipped at startup because it was disabled - construct it now
+            // (this runs the mod's OnLoad for the first time).
+            if (mod.Instance == null)
+            {
+                try
+                {
+                    var constructed = LoadAndConstruct(mod.Directory, mod.Manifest);
+                    mod.Instance  = constructed.Instance;
+                    mod.Lifecycle = constructed.Lifecycle;
+                    mod.Context   = constructed.Context;
+                    mod.Assembly  = constructed.Assembly;
+                    ModHost.LogLine($"loaded '{mod.Manifest.id}' v{mod.Manifest.version} on enable (entry={mod.Manifest.entry})");
+                }
+                catch (Exception ex)
+                {
+                    error = $"could not load '{modId}': {ex.Message}";
+                    return false;
+                }
+            }
+
             mod.IsActive = true;
             mod.Manifest.enabled = true;
             WriteManifest(mod);

@@ -24,6 +24,8 @@ namespace Gambonanza.GambitApi
         private FieldInfo _mouseOverField;
         private MethodInfo _updateMethod;
         private int _lastIndex;
+        private int _lastEnforcedCount = -1;
+        private int _lastEnforcedIndex = -1;
         private readonly List<HintCircleBehaviour> _addedHints = new List<HintCircleBehaviour>();
 
         private void Awake()
@@ -52,6 +54,10 @@ namespace Gambonanza.GambitApi
             initField?.SetValue(_slide, false);
 
             _lastIndex = 0;
+            // Re-enforce on reopen: vanilla resets slot state while the
+            // collection is closed.
+            _lastEnforcedCount = -1;
+            _lastEnforcedIndex = -1;
 
             // Wait one frame so the slide's OnEnable -> UpdateGambit can rebuild the orderer,
             // then extend the hint dots and re-run UpdateUI to highlight the right one.
@@ -76,7 +82,7 @@ namespace Gambonanza.GambitApi
             {
                 // No partial page right now, but slots may still be hidden from an
                 // earlier partial-page state (count can change via mods rescan).
-                EnforceSlotVisibility(count, current);
+                MaybeEnforceSlotVisibility(count, current);
                 _lastIndex = current;
                 return;
             }
@@ -103,7 +109,20 @@ namespace Gambonanza.GambitApi
 
             _lastIndex = current;
 
-            EnforceSlotVisibility(count, current);
+            MaybeEnforceSlotVisibility(count, current);
+        }
+
+        // Enforce only when the page or the library count actually changed.
+        // Doing it every frame risked a SetActive tug-of-war with vanilla's
+        // own slot updates - each toggle dirties the whole canvas layout, and
+        // per-frame canvas rebuilds are exactly the kind of thing that turns
+        // the collection screen into a slideshow.
+        private void MaybeEnforceSlotVisibility(int gambitCount, int pageIndex)
+        {
+            if (gambitCount == _lastEnforcedCount && pageIndex == _lastEnforcedIndex) return;
+            _lastEnforcedCount = gambitCount;
+            _lastEnforcedIndex = pageIndex;
+            EnforceSlotVisibility(gambitCount, pageIndex);
         }
 
         // Vanilla DoNotShow() only disables the slot's three Image components; the

@@ -638,6 +638,75 @@ namespace Gambonanza.GambitApi
             }
         }
 
+        /// <summary>
+        /// Removes unlocked-gambit ids from the game's SAVE DATA that no longer
+        /// exist in the library. AutoUnlock writes custom ids (e.g. "kamikaze")
+        /// into DataManager.Data.GambitUnlocked, which the game persists - so
+        /// uninstalling or disabling a gambit mod used to leave its ghost behind:
+        /// the collection count read "201/200" and stale entries lingered forever.
+        ///
+        /// Called after ProcessPending, when every mod that will register this
+        /// session has registered. Vanilla ids all exist in GambitsInfo, so only
+        /// genuinely orphaned modded ids can match; the count guard makes sure we
+        /// never sweep against a half-initialised library.
+        /// </summary>
+        public static void PurgeStaleUnlockData()
+        {
+            try
+            {
+                var library = SingletonMonoBehaviour<GambitLibrary>.IsCreated()
+                    ? SingletonMonoBehaviour<GambitLibrary>.Instance : null;
+                if (library?.GambitsInfo == null || library.GambitsInfo.Count < 100)
+                {
+                    Debug.Log("[GambitApi] Stale-unlock sweep skipped: library not fully initialised.");
+                    return;
+                }
+
+                var unlocked = DataManager.Instance?.Data?.GambitUnlocked;
+                if (unlocked == null || unlocked.Count == 0) return;
+
+                var valid = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+                foreach (var so in library.GambitsInfo)
+                    if (so != null && !string.IsNullOrEmpty(so.ID)) valid.Add(so.ID);
+
+                var removed = new List<string>();
+                for (int i = unlocked.Count - 1; i >= 0; i--)
+                {
+                    var id = unlocked[i]?.ToString();
+                    if (string.IsNullOrEmpty(id) || valid.Contains(id)) continue;
+                    removed.Add(id);
+                    unlocked.RemoveAt(i);
+                }
+                if (removed.Count == 0) return;
+
+                Debug.Log($"[GambitApi] Removed {removed.Count} stale unlocked gambit id(s) from save data (mod removed/disabled): {string.Join(", ", removed)}");
+
+                // Persist right away if DataManager exposes a parameterless save;
+                // otherwise the game writes the cleaned list on its next own save.
+                try
+                {
+                    var dm = DataManager.Instance;
+                    var save = typeof(DataManager)
+                        .GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                        .FirstOrDefault(m => m.Name.IndexOf("save", StringComparison.OrdinalIgnoreCase) >= 0
+                                          && m.GetParameters().Length == 0 && !m.IsGenericMethod);
+                    if (save != null)
+                    {
+                        save.Invoke(dm, null);
+                        Debug.Log($"[GambitApi] Save data persisted via DataManager.{save.Name}().");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning($"[GambitApi] Could not persist the cleaned save immediately ({ex.Message}) - the game will save it itself.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogWarning($"[GambitApi] Stale-unlock sweep failed: {ex.Message}");
+            }
+        }
+
         private static void TryStartProcessing()
         {
             if (_processing) return;
