@@ -298,6 +298,35 @@ function mergeState(registryMods, installed) {
 }
 
 /**
+ * Installed mods that depend on `folder` - directly (their manifest's
+ * dependencies name its folder/id) or via the registry (their entry's
+ * dependencies name its registry id). Removing a library out from under
+ * its dependents would break them at load, so uninstall refuses while
+ * this list is non-empty.
+ */
+function findDependents(folder, registryMods, installed) {
+  const target = installed.find((m) => m.folder.toLowerCase() === String(folder).toLowerCase());
+  if (!target) return [];
+  const targetIds = new Set([target.folder.toLowerCase()]);
+  if (target.manifest?.id) targetIds.add(String(target.manifest.id).toLowerCase());
+  if (target.registryId) targetIds.add(target.registryId.toLowerCase());
+
+  const byId = new Map(registryMods.map((m) => [m.id, m]));
+  const dependents = [];
+  for (const mod of installed) {
+    if (mod.folder === target.folder) continue;
+    const declared = [
+      ...(mod.manifest?.dependencies || []),
+      ...((mod.registryId && byId.get(mod.registryId)?.dependencies) || []),
+    ];
+    if (declared.some((d) => targetIds.has(String(d).toLowerCase()))) {
+      dependents.push(mod.manifest?.name || mod.folder);
+    }
+  }
+  return dependents;
+}
+
+/**
  * Install order for a mod and its not-yet-installed registry dependencies.
  * Returns registry entries, dependencies first. Cycles just get cut - the
  * validator refuses them upstream, this is only defence in depth.
@@ -332,4 +361,5 @@ module.exports = {
   setEnabled,
   mergeState,
   resolveInstallPlan,
+  findDependents,
 };

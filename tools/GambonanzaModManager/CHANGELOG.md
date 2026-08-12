@@ -4,6 +4,18 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.0.1
+
+- Fixed the enable/disable toggle rendering off-centre in its track.
+- Buttons and pills that sit next to each other now share a consistent
+  height (home screen, top bar, mod browser toolbar).
+- Folders without a mod.json now show a clear label instead of a toggle
+  that couldn't work.
+- Library mods (like the Gambit Creation API) no longer clutter the mod
+  shop - they install automatically with whatever needs them, and can't be
+  removed while another installed mod depends on them. The "library" filter
+  chip still shows them.
+
 ## 1.0.0
 
 First release!

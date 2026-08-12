@@ -358,6 +358,16 @@ function registerIpc() {
   handle('mods:uninstall', async ({ folder }) => {
     const info = await currentGameInfo();
     if (!info?.valid) throw new Error('no game folder is configured');
+
+    // A library other installed mods depend on cannot be pulled out from
+    // under them - removing GambitApi would break every custom gambit.
+    const reg = await registry.getIndex({});
+    const installed = await modsApi.listInstalled(info.modsDir);
+    const dependents = modsApi.findDependents(folder, reg.index.mods || [], installed);
+    if (dependents.length) {
+      throw new Error(`${dependents.join(' and ')} need${dependents.length === 1 ? 's' : ''} this mod to work - remove ${dependents.length === 1 ? 'it' : 'them'} first.`);
+    }
+
     return modsApi.uninstall({ modsDir: info.modsDir, folder });
   });
 

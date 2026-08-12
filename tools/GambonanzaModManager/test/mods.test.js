@@ -112,6 +112,27 @@ test('resolveInstallPlan: dependencies come first, installed ones skipped', () =
   assert.deepEqual(plan.map((p) => p.id), ['kamikaze']);
 });
 
+test('findDependents: catches manifest and registry dependencies, by folder or id', () => {
+  const registry = [
+    { id: 'gambit-api', folder: 'GambitApi', dependencies: [] },
+    { id: 'kamikaze-gambit', folder: 'KamikazeGambit', dependencies: ['gambit-api'] },
+  ];
+  const installed = [
+    { folder: 'GambitApi', registryId: 'gambit-api', manifest: { id: 'GambitApi', name: 'Gambit Creation API' } },
+    // depends via manifest, by folder id
+    { folder: 'SpikesGambit', registryId: null, manifest: { id: 'SpikesGambit', name: "Spikes' Gambit", dependencies: ['GambitApi'] } },
+    // depends via registry entry, by registry id
+    { folder: 'KamikazeGambit', registryId: 'kamikaze-gambit', manifest: { id: 'KamikazeGambit', name: 'Kamikaze Gambit' } },
+    { folder: 'SpeedMod', registryId: 'speed-mod', manifest: { id: 'SpeedMod', name: 'Speed Mod' } },
+  ];
+
+  const dependents = mods.findDependents('GambitApi', registry, installed);
+  assert.deepEqual(dependents.sort(), ['Kamikaze Gambit', "Spikes' Gambit"]);
+
+  assert.deepEqual(mods.findDependents('SpeedMod', registry, installed), []);
+  assert.deepEqual(mods.findDependents('NotInstalled', registry, installed), []);
+});
+
 test('resolveInstallPlan: survives a dependency cycle', () => {
   const a = { id: 'a', folder: 'A', dependencies: ['b'] };
   const b = { id: 'b', folder: 'B', dependencies: ['a'] };

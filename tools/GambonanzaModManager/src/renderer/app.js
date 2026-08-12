@@ -290,8 +290,12 @@ function renderBrowse() {
   const q = state.search.trim().toLowerCase();
   const visible = registryMods.filter((m) => {
     if (state.tag && !(m.tags || []).includes(state.tag)) return false;
-    if (!q) return true;
-    return [m.name, m.author, m.summary, m.id, ...(m.tags || [])].join(' ').toLowerCase().includes(q);
+    if (q) return [m.name, m.author, m.summary, m.id, ...(m.tags || [])].join(' ').toLowerCase().includes(q);
+    // Libraries are plumbing: installed automatically with whatever needs
+    // them, so the default shelf hides them. The "library" chip (or a
+    // search) still finds them.
+    if ((m.tags || []).includes('library')) return false;
+    return true;
   });
 
   $('browseEmpty').hidden = visible.length > 0;

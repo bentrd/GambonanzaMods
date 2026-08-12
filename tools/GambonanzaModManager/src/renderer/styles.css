@@ -31,7 +31,9 @@
   --font-mono: "Jersey10", ui-monospace, monospace;
 }
 
-* { box-sizing: border-box; }
+/* The pseudo-element selectors matter: `*` alone does not reach ::before/
+   ::after, which left the toggle knob border-box-less and 2px oversized. */
+*, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
 
 body {
@@ -89,12 +91,14 @@ header.topbar {
 
 .topbar .spacer { flex: 1; }
 
+/* The pill and the Play button sit shoulder to shoulder - same height. */
+.topbar .btn, .game-pill { min-height: 44px; }
 .game-pill {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--wine-dark); color: var(--cream);
   border: 2px solid var(--ink); border-radius: 8px;
   box-shadow: 0 2px 0 0 var(--ink);
-  padding: 6px 12px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px;
+  padding: 6px 14px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px;
   max-width: 380px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .game-pill .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--red); flex-shrink: 0; border: 1px solid var(--ink); }
@@ -145,6 +149,9 @@ nav.side .nav-foot { margin-top: auto; display: grid; gap: 8px; }
   font-family: var(--font-display); font-size: 14px;
   letter-spacing: 0.8px; text-transform: uppercase;
   transition: transform 60ms ease-out, background-color 80ms ease-out, filter 80ms ease-out;
+  /* inline-flex + centering so min-height rules can equalise neighbours
+     without the label going off-centre */
+  display: inline-flex; align-items: center; justify-content: center;
 }
 .btn:active:not(:disabled) { transform: translateY(3px); }
 .btn-green {
@@ -270,10 +277,12 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 .step .t { font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.6px; }
 .step .d { font-size: 10.5px; color: rgba(90, 34, 48, 0.6); }
 
-.home-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 18px 0 6px; align-items: center; }
+.home-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 18px 0 6px; align-items: stretch; }
+/* neighbours share one height; the hero earns its weight with width + type */
+.home-actions .btn { min-height: 66px; }
 
 /* the one button most people came for */
-.btn.play-hero { font-size: 24px; padding: 20px 46px; letter-spacing: 1.4px; }
+.btn.play-hero { font-size: 24px; padding: 12px 46px; letter-spacing: 1.4px; }
 
 /* collapsed setup checklist - out of the way once everything is green */
 .setup-details { margin-top: 22px; text-align: center; }
@@ -304,6 +313,8 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 /* ---------------------------------------------------------------- browse */
 
 .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+/* the refresh button lines up with the search input beside it */
+.toolbar .btn { min-height: 40px; }
 .toolbar .search { flex: 1; min-width: 220px; position: relative; }
 .toolbar .search input { padding-left: 34px; }
 .toolbar .search::before {
@@ -317,6 +328,7 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   box-shadow: 0 2px 0 0 var(--cream-soft), 0 3px 0 0 var(--ink);
   padding: 4px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px;
   transition: transform 50ms ease-out;
+  display: inline-flex; align-items: center; min-height: 30px;
 }
 .chip:hover { background: var(--cream-light); }
 .chip:active { transform: translateY(2px); }
