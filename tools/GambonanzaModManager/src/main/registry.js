@@ -58,6 +58,12 @@ function validIndex(data) {
   return data && typeof data === 'object' && Array.isArray(data.mods);
 }
 
+/** When the index was generated, for freshness comparison. 0 = unknown. */
+function indexTime(index) {
+  const t = Date.parse(index?.generatedAt || '');
+  return Number.isFinite(t) ? t : 0;
+}
+
 /**
  * Get the registry index. `force` skips the TTL (the UI's refresh button).
  * Never throws: worst case is { index: bundled-or-empty, source: 'offline' }.
@@ -75,6 +81,15 @@ async function getIndex({ force = false } = {}) {
     return cached;
   }
 
+  // The index is served through CDNs (GitHub Pages ~10 min edge cache), so a
+  // fetch can hand back an OLDER copy than the one we already have - right
+  // after a release, some edges still hold the pre-release index. Never let
+  // stale-but-successful responses go backwards: keep the freshest of
+  // everything we see, and only accept a fetch that isn't older than the
+  // cache. generatedAt (stamped by CI) is the clock.
+  const cachedTime = validIndex(cached?.index) ? indexTime(cached.index) : -1;
+  let best = null;
+
   for (const url of config.REGISTRY_URLS) {
     const res = await net.getJson(url, {
       accept: 'application/json',
@@ -87,15 +102,32 @@ async function getIndex({ force = false } = {}) {
       return memory;
     }
     if (res.ok && validIndex(res.data)) {
-      memory = { index: res.data, fetchedAt: now, source: 'network', url, etag: res.etag };
-      await writeCache(memory).catch(() => {});
-      return memory;
+      const t = indexTime(res.data);
+      if (!best || t > indexTime(best.index)) best = { index: res.data, url, etag: res.etag };
+      // Fresh enough (not older than what we have): no need to try more URLs.
+      if (t >= cachedTime) break;
+      log.warn('registry', `${url} served an index older than the cache (CDN lag) - trying the next source`);
+      continue;
     }
     log.warn('registry', `could not fetch ${url}`, res.error || `status ${res.status}`);
   }
 
+  if (best && indexTime(best.index) >= cachedTime) {
+    memory = { index: best.index, fetchedAt: now, source: 'network', url: best.url, etag: best.etag };
+    await writeCache(memory).catch(() => {});
+    return memory;
+  }
+
   if (validIndex(cached?.index)) {
-    memory = { ...cached, source: 'cache', stale: true };
+    // Every reachable source was older than the cache - keep the cache, but
+    // refresh its clock so we do not hammer the CDN until it catches up.
+    memory = { ...cached, fetchedAt: now, source: 'cache-newer' };
+    return memory;
+  }
+
+  if (best) {
+    memory = { index: best.index, fetchedAt: now, source: 'network', url: best.url, etag: best.etag };
+    await writeCache(memory).catch(() => {});
     return memory;
   }
 
@@ -109,4 +141,4 @@ async function getIndex({ force = false } = {}) {
   return memory;
 }
 
-module.exports = { getIndex };
+module.exports = { getIndex, indexTime };

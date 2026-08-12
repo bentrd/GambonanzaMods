@@ -34,3 +34,13 @@ test('garbage does not throw', () => {
   assert.equal(compareTags(null, undefined), 0);
   assert.ok(Number.isFinite(compareTags('abc', 'abd')) || compareTags('abc', 'abd') < 0);
 });
+
+const { indexTime } = require('../src/main/registry');
+
+test('indexTime: parses generatedAt, tolerates junk', () => {
+  assert.ok(indexTime({ generatedAt: '2026-08-12T16:19:00Z' }) > 0);
+  assert.ok(indexTime({ generatedAt: '2026-08-12T16:19:00Z' }) > indexTime({ generatedAt: '2026-08-12T15:00:00Z' }));
+  assert.equal(indexTime({}), 0);
+  assert.equal(indexTime(null), 0);
+  assert.equal(indexTime({ generatedAt: 'garbage' }), 0);
+});
