@@ -14,7 +14,7 @@ namespace Gambonanza.ModHost
         public string name;
         public string version;
         public string author;
-        /// <summary>Fully qualified IMod entry type, e.g. "Gambonanza.SpeedMod.SpeedModMain".</summary>
+        /// <summary>Fully qualified IMod entry type, e.g. "Gambonanza.EnemyThreatOverlay.EnemyThreatOverlayMod".</summary>
         public string entry;
         /// <summary>If false, ModHost skips this mod entirely.</summary>
         public bool enabled = true;

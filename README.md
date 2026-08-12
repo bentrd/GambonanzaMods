@@ -61,7 +61,7 @@ GambonanzaMods/
 │   │                Assembly.LoadFroms each DLL, dispatches lifecycle events.
 │   ├── GameUI/      Pixel.* helpers for cloning game UI into mods.
 │   └── Patcher/     Cecil-based one-shot patcher.
-├── sample_mods/     Source for SpeedMod, GambitApi, custom gambits, overlays.
+├── sample_mods/     Source for GambitApi, custom gambits, overlays.
 ├── Mods/            Pre-built distributables - drop a subfolder into
 │                    Gambonanza/Mods/ if you'd rather skip building.
 ├── registry/        The mod registry: one JSON pointer per mod to its own
@@ -135,7 +135,7 @@ so the patcher can detect a previous run and stay idempotent.
 
 ## Writing a mod
 
-Read [sample_mods/README.md](sample_mods/README.md) and crib from `SpeedMod`
+Read [sample_mods/README.md](sample_mods/README.md) and crib from `EnemyThreatOverlay`
 (the smallest sample) or `KamikazeGambit` (a feature mod that registers a
 custom gambit via `GambitApi`).
 

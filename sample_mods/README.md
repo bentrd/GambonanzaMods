@@ -6,7 +6,6 @@ can build on.
 
 ```
 sample_mods/
-├── SpeedMod/                 Adds a settings row for game speed.
 ├── GambitApi/                Library mod - builder for adding new gambits.
 ├── KamikazeGambit/           Custom gambit built on GambitApi.
 ├── SpikesGambit/             Custom gambit by TGM: trap tiles capture enemies.
@@ -89,7 +88,8 @@ public sealed class MyModEntry : IMod
 - `Console` - shared in-game console for commands and messages.
 - `OnSettingsOpened` - event fired with the `SettingsCanvas` MonoBehaviour every
   time the player opens the in-game settings panel. Subscribe here to inject
-  custom rows (see `SpeedMod`).
+  custom rows (the `Gambonanza.GameUI.Pixel` helpers in
+  [docs/UI_API.md](../docs/UI_API.md) clone real game widgets for this).
 
 That is the entire public API. Everything else is your code reaching into the
 game via reflection.
@@ -98,20 +98,20 @@ game via reflection.
 
 ## The samples
 
-### SpeedMod - the smallest possible mod
+### EnemyThreatOverlay - start here
 
-[`SpeedMod/SpeedModPlugin.cs`](SpeedMod/SpeedModPlugin.cs)
+[`EnemyThreatOverlay/src/EnemyThreatOverlayMod.cs`](EnemyThreatOverlay/src/EnemyThreatOverlayMod.cs)
 
-Adds a "Game Speed" arrow row to the settings canvas. Demonstrates:
+Holds a key to highlight every square the enemy threatens. The entry class is
+~50 lines and demonstrates:
 
-- The `IMod` boilerplate.
-- Subscribing to `IModContext.OnSettingsOpened`.
-- Using `Gambonanza.GameUI.Pixel` (a helper library shipped alongside ModHost)
-  to clone real game UI components instead of recreating them by hand.
-- Setting `Time.timeScale` to mutate game speed.
+- The `IMod` / `IModLifecycle` boilerplate.
+- Declaring a rebindable keybind in `mod.json`.
+- Spawning a hidden runner `GameObject` for per-frame work.
+- Reading game state via reflection.
 
-Read this first - it is roughly 60 lines and touches every part of the
-framework once.
+(SpeedMod used to be the intro sample; Gambonanza 1.4.0 grew its own
+game-speed setting, so it retired.)
 
 ### GambitApi - a library other mods build on
 
@@ -214,7 +214,7 @@ next launch.
      "gameVersion": ">=1.0", "description": "Logs a friendly message." }
    ```
 
-3. Add a `.csproj` (copy `SpeedMod.csproj` as a starting point - it already
+3. Add a `.csproj` (copy `EnemyThreatOverlay/EnemyThreatOverlay.csproj` as a starting point - it already
    has the right reference paths into `../../refs/` and project references
    into `../../src/ModSdk/`).
 

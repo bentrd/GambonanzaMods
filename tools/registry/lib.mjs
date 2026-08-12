@@ -66,7 +66,7 @@ export function validateEntry(entry, fileName) {
     return v;
   };
 
-  const id = str('id', { required: true, re: ID_RE, reHint: 'use lowercase letters, digits and dashes, e.g. "speed-mod"' });
+  const id = str('id', { required: true, re: ID_RE, reHint: 'use lowercase letters, digits and dashes, e.g. "my-cool-mod"' });
   str('name', { required: true, min: 2, max: 48 });
   str('author', { required: true, max: 48 });
   str('summary', { required: true, min: 8, max: 140 });
@@ -103,7 +103,7 @@ export function validateEntry(entry, fileName) {
         if (key !== 'entry' && key !== 'dependencies') fail(`unknown manifest field "${key}"`);
       }
       if (typeof m.entry !== 'string' || !m.entry.includes('.')) {
-        fail('"manifest.entry" must be the fully-qualified IMod type, e.g. "Gambonanza.SpeedMod.SpeedModMain"');
+        fail('"manifest.entry" must be the fully-qualified IMod type, e.g. "MyMod.Namespace.MyModMain"');
       }
       if (m.dependencies !== undefined && !isStringArray(m.dependencies)) {
         fail('"manifest.dependencies" must be an array of strings');
@@ -159,7 +159,7 @@ export async function loadEntries(dir = MODS_DIR) {
   return out;
 }
 
-/** Convert a shell-style glob ('SpeedMod-*.zip') into an anchored RegExp. */
+/** Convert a shell-style glob ('MyMod-*.zip') into an anchored RegExp. */
 export function globToRegExp(glob) {
   const escaped = glob.replace(/[.*+?^${}()|[\]\\]/g, (c) => (c === '*' ? '\u0000' : `\\${c}`));
   return new RegExp(`^${escaped.split('\u0000').join('.*')}$`, 'i');
@@ -167,7 +167,7 @@ export function globToRegExp(glob) {
 
 /**
  * Best-effort semantic version pulled out of a release tag.
- * "v1.2.3" -> "1.2.3", "speedmod-v0.4" -> "0.4", "2026.08.01" -> "2026.08.01".
+ * "v1.2.3" -> "1.2.3", "mymod-v0.4" -> "0.4", "2026.08.01" -> "2026.08.01".
  * Falls back to the raw tag, which is fine: it is only ever compared to the
  * previously installed value of the same field.
  */

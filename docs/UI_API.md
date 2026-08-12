@@ -207,7 +207,7 @@ ctx.OnSettingsOpened += settingsCanvas =>
 {
     _row = Pixel.AddSettingsArrowRow(
         settingsCanvas,
-        injectedName: "SpeedMod_Row",
+        injectedName: "MyMod_Row",
         title:        "Animation Speed",
         initialValue: "1x",
         onLeft:       () => { Speed.Prev(); _row.SetValue(Speed.Label); },

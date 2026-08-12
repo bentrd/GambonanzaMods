@@ -110,7 +110,7 @@ namespace Gambonanza.SpikesGambit
             // Vanilla enemy movement uses DOLocalMove(..., 0.2f). Wait a little longer
             // than 0.2 game-seconds so the visual movement has actually finished.
             // WaitForSeconds is scaled by Time.timeScale, matching DOTween's default
-            // scaled-time behaviour, so this still lines up if SpeedMod is active.
+            // scaled-time behaviour, so this still lines up at modified game speeds.
             yield return new WaitForSeconds(0.24f);
 
             if (piece == null || tile == null) yield break;

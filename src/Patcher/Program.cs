@@ -14,7 +14,7 @@ namespace Gambonanza.Patcher;
 ///   3. Gambonanza.ModHost.ModHost.OnHomeMenuOpenedInvoke(this)    at CanvasMenu.OnEnable
 ///
 /// All mod-specific logic lives in mods loaded by ModHost at runtime - this patcher
-/// has no knowledge of any individual mod (including SpeedMod).
+/// has no knowledge of any individual mod.
 ///
 /// Usage:
 ///   GambonanzaPatcher &lt;ManagedFolder&gt; &lt;ModSdk.dll&gt; &lt;ModHost.dll&gt; [extra-runtime-dlls...]

@@ -44,7 +44,7 @@
       "type": "string",
       "minLength": 3,
       "maxLength": 120,
-      "description": "Release asset to download. Glob: '*' matches any run of characters (e.g. 'SpeedMod-*.zip'). Either a .zip containing mod.json + the DLL, or a bare .dll (then 'manifest' is required)."
+      "description": "Release asset to download. Glob: '*' matches any run of characters (e.g. 'MyMod-*.zip'). Either a .zip containing mod.json + the DLL, or a bare .dll (then 'manifest' is required)."
     },
     "folder": {
       "type": "string",
@@ -54,7 +54,7 @@
     "tagPattern": {
       "type": "string",
       "maxLength": 60,
-      "description": "Optional glob restricting which release tags count as this mod's releases. Useful in monorepos, e.g. 'speedmod-v*'."
+      "description": "Optional glob restricting which release tags count as this mod's releases. Useful in monorepos, e.g. 'mymod-v*'."
     },
     "prerelease": {
       "type": "boolean",
@@ -68,7 +68,7 @@
       "properties": {
         "entry": {
           "type": "string",
-          "description": "Fully-qualified IMod type, e.g. 'Gambonanza.SpeedMod.SpeedModMain'."
+          "description": "Fully-qualified IMod type, e.g. 'MyMod.Namespace.MyModMain'."
         },
         "dependencies": {
           "type": "array",

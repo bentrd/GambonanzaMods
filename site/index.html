@@ -480,7 +480,7 @@
         });
 
         var link = document.createElement('a');
-        link.href = 'https://github.com/' + m.repo;
+        link.href = m.homepage || ('https://github.com/' + m.repo);
         link.style.textDecoration = 'none';
         link.style.color = 'inherit';
         link.appendChild(h);

@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-12T16:19:50.874Z",
-  "count": 6,
+  "generatedAt": "2026-08-12T16:45:23.808Z",
+  "count": 5,
   "mods": [
     {
       "id": "enemy-threat-overlay",
@@ -13,6 +13,7 @@
       "repo": "bentrd/GambonanzaMods",
       "asset": "EnemyThreatOverlay.zip",
       "folder": "EnemyThreatOverlay",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/EnemyThreatOverlay",
       "tags": [
         "quality-of-life",
         "ui"
@@ -49,6 +50,7 @@
       "repo": "bentrd/GambonanzaMods",
       "asset": "GambitApi.zip",
       "folder": "GambitApi",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/GambitApi",
       "tags": [
         "library",
         "gambits"
@@ -84,6 +86,7 @@
       "repo": "bentrd/GambonanzaMods",
       "asset": "KamikazeGambit.zip",
       "folder": "KamikazeGambit",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/KamikazeGambit",
       "tags": [
         "gambits",
         "gameplay"
@@ -123,6 +126,7 @@
       "repo": "bentrd/GambonanzaMods",
       "asset": "MightyKasparovEveryStage.zip",
       "folder": "MightyKasparovEveryStage",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/MightyKasparovEveryStage",
       "tags": [
         "gameplay",
         "cheats"
@@ -151,42 +155,6 @@
       "archived": false
     },
     {
-      "id": "speed-mod",
-      "name": "Speed Mod",
-      "author": "Ben",
-      "summary": "Adds a Game Speed arrow row to the settings panel.",
-      "description": "Puts a speed control in the game's own settings screen so you can fast-forward the parts of a run you have already seen. Uses the framework's UI helpers, so it looks like it shipped with the game.",
-      "repo": "bentrd/GambonanzaMods",
-      "asset": "SpeedMod.zip",
-      "folder": "SpeedMod",
-      "tags": [
-        "quality-of-life",
-        "ui"
-      ],
-      "frameworkVersion": ">=1.1.0",
-      "gameVersion": ">=1.0",
-      "submittedBy": "bentrd",
-      "addedAt": "2026-08-12",
-      "official": true,
-      "latest": {
-        "tag": "v1.2.0",
-        "version": "1.2.0",
-        "publishedAt": "2026-08-12T16:17:57Z",
-        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
-        "asset": {
-          "name": "SpeedMod.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/SpeedMod.zip",
-          "size": 8073,
-          "sha256": "021e22c768c82f237fc9efc076499b9bd458ab49960135c6e75b05b657de4943"
-        }
-      },
-      "stars": 3,
-      "repoPushedAt": "2026-08-12T16:19:38Z",
-      "license": "MIT",
-      "archived": false
-    },
-    {
       "id": "spikes-gambit",
       "name": "Spikes' Gambit",
       "author": "TGM",
@@ -194,6 +162,7 @@
       "repo": "bentrd/GambonanzaMods",
       "asset": "SpikesGambit.zip",
       "folder": "SpikesGambit",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/SpikesGambit",
       "tags": [
         "gambits",
         "gameplay"

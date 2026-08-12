@@ -6,6 +6,10 @@ without a matching `package.json` version - keep both honest.
 
 ## 1.0.2
 
+- The mod list can no longer travel back in time: right after a release,
+  GitHub's CDN can briefly serve the previous registry index, which made
+  fresh mods flip back to "coming soon". The app now keeps the newest index
+  it has seen and falls back to a second source when a stale copy shows up.
 - The app now updates itself: one click on "Update & restart" downloads the
   new version, verifies it, swaps it in and relaunches. No installer, no
   browser download - and on a Mac, no Gatekeeper theatre, because the app
