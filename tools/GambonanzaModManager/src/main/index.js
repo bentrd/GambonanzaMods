@@ -145,19 +145,22 @@ async function checkForUpdates({ notify = true } = {}) {
     const installedVersion = gameInfo?.frameworkVersion || null;
     const behind = !!(gameInfo?.patched && installedVersion
       && compareTags(latest.release.version, installedVersion) > 0);
-    const needsAttention = behind || gameInfo?.gameUpdated || gameInfo?.state === 'stale';
+    // A skipped version stays skipped everywhere - banners, dots and
+    // notifications alike - until a NEWER release ships or the user un-skips.
+    const skipped = behind && latest.release.version === store.get('dismissedFrameworkVersion');
+    const needsAttention = (behind && !skipped) || !!gameInfo?.gameUpdated;
     result.framework = {
       release: latest.release,
       installedVersion,
-      updateAvailable: behind,
+      updateAvailable: behind && !skipped,
+      skippedVersion: skipped ? latest.release.version : null,
       gameUpdated: !!gameInfo?.gameUpdated,
       needsAttention,
     };
 
-    const dismissed = store.get('dismissedFrameworkVersion');
-    if (notify && needsAttention && latest.release.version !== dismissed) {
+    if (notify && needsAttention) {
       showNotification(
-        behind
+        behind && !skipped
           ? `Mod framework ${latest.release.version} is out`
           : 'Gambonanza was updated by Steam',
         'Open the mod manager to re-patch your game with one click.',
@@ -170,8 +173,13 @@ async function checkForUpdates({ notify = true } = {}) {
   const managerLatest = await framework.latestManagerRelease({});
   if (managerLatest.ok) {
     const newer = compareTags(managerLatest.release.version, app.getVersion()) > 0;
-    result.manager = { release: managerLatest.release, updateAvailable: newer };
-    if (notify && newer && managerLatest.release.version !== store.get('dismissedManagerVersion')) {
+    const skipped = newer && managerLatest.release.version === store.get('dismissedManagerVersion');
+    result.manager = {
+      release: managerLatest.release,
+      updateAvailable: newer && !skipped,
+      skippedVersion: skipped ? managerLatest.release.version : null,
+    };
+    if (notify && newer && !skipped) {
       showNotification(
         `Mod Manager ${managerLatest.release.version} is available`,
         'Download the new version from the updates panel.',

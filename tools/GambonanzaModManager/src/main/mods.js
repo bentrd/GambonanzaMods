@@ -40,6 +40,14 @@ async function listInstalled(modsDir) {
 
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
+    if (entry.name.startsWith('.')) {
+      // Our own swap-holding folders self-clean; other dot-folders are none
+      // of our business and never shown.
+      if (/\.replaced-\d+$/.test(entry.name)) {
+        fsp.rm(path.join(modsDir, entry.name), { recursive: true, force: true }).catch(() => {});
+      }
+      continue;
+    }
     const dir = path.join(modsDir, entry.name);
     const manifest = await readJson(path.join(dir, 'mod.json'));
     const receipt = await readJson(path.join(dir, RECEIPT));
@@ -146,13 +154,18 @@ async function install({ mod, modsDir, onProgress = () => {}, signal }) {
     }, null, 2)}\n`);
 
     // The swap: move the old folder aside, move the staged one in, delete the
-    // old one only after the new one is in place.
+    // old one only after the new one is in place. The holding folder is
+    // dot-prefixed so the game's mod discovery (and listInstalled) never
+    // mistakes it for a real mod if we crash mid-swap.
     await fsp.mkdir(modsDir, { recursive: true });
-    const graveyard = `${liveDir}.replaced-${Date.now()}`;
+    const graveyard = path.join(modsDir, `.${mod.folder}.replaced-${Date.now()}`);
     const hadPrevious = await fsp.rename(liveDir, graveyard).then(() => true, () => false);
     try {
       await moveDir(root, liveDir);
     } catch (err) {
+      // A failed cross-device copy can leave liveDir half-populated; clear it
+      // first so putting the original back cannot collide with the debris.
+      await fsp.rm(liveDir, { recursive: true, force: true }).catch(() => {});
       if (hadPrevious) await fsp.rename(graveyard, liveDir).catch(() => {});
       throw err;
     }

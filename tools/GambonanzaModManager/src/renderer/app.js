@@ -187,8 +187,13 @@ function renderHome() {
 
   // Once set up, the checklist earns its retirement: collapsed behind a quiet
   // dropdown. While something still needs doing it stays open and visible.
+  // Only touch the open state when settledness CHANGES - renderHome runs
+  // after every action, and stomping a disclosure the user opened is rude.
   const details = $('setupDetails');
-  details.open = !settled;
+  if (renderHome.lastSettled !== settled) {
+    details.open = !settled;
+    renderHome.lastSettled = settled;
+  }
   $('setupSummary').textContent = settled ? 'Setup details' : 'What still needs doing';
 
   const status = $('homeStatus');
@@ -356,11 +361,15 @@ function renderInstalled() {
     if (reg?.updateAvailable) bits.push('update available');
 
     const row = el('div', { class: `mod-row${m.enabled ? '' : ' disabled'}` },
-      el('button', {
-        class: `ptoggle${m.enabled ? ' on' : ''}`,
-        title: m.enabled ? 'Enabled - click to disable' : 'Disabled - click to enable',
-        onclick: () => toggleMod(m),
-      }),
+      // A folder without mod.json is never loaded by the game and has nothing
+      // to toggle - offering the switch would just throw.
+      m.hasManifest
+        ? el('button', {
+            class: `ptoggle${m.enabled ? ' on' : ''}`,
+            title: m.enabled ? 'Enabled - click to disable' : 'Disabled - click to enable',
+            onclick: () => toggleMod(m),
+          })
+        : el('span', { class: 'tag', title: 'This folder has no mod.json, so the game ignores it.' }, 'no mod.json'),
       el('div', { class: 'info' },
         el('div', { class: 'nm' }, m.manifest?.name || m.folder),
         el('div', { class: 'meta' }, bits.join(' · '))),
@@ -393,7 +402,7 @@ function renderUpdates() {
   if (fw?.error) {
     parts.push(el('div', { class: 'inset-row' }, `Could not check the framework: ${fw.error}`));
   } else if (fw) {
-    const isCurrent = game?.patched && !fw.updateAvailable && !fw.gameUpdated;
+    const isCurrent = game?.patched && !fw.updateAvailable && !fw.gameUpdated && !fw.skippedVersion;
     parts.push(el('div', { class: 'section-band' }, 'Game framework'));
     if (fw.gameUpdated) {
       parts.push(el('div', { class: 'banner danger', style: 'margin-top:10px' },
@@ -409,6 +418,10 @@ function renderUpdates() {
           el('div', { class: 'detail' }, `You have ${fw.installedVersion}. Updating re-patches the game with the new version.`)),
         el('button', { class: 'btn btn-green small', onclick: () => patchGame(fw.release.tag) }, 'Update & re-patch'),
         el('button', { class: 'btn btn-cream small', onclick: () => dismissUpdate('framework', fw.release.version) }, 'Skip')));
+    } else if (fw.skippedVersion) {
+      parts.push(el('div', { class: 'inset-row', style: 'margin-top:10px; display:flex; align-items:center; gap:10px' },
+        el('span', { style: 'flex:1' }, `You skipped framework ${fw.skippedVersion}.`),
+        el('button', { class: 'btn btn-cream small', onclick: () => dismissUpdate('framework', '') }, 'Show again')));
     } else if (isCurrent) {
       parts.push(el('div', { class: 'inset-row', style: 'margin-top:10px' },
         `You're on the newest framework (${fw.installedVersion || fw.release?.version || '?'}). Nothing to do.`));
@@ -454,6 +467,10 @@ function renderUpdates() {
       el('button', { class: 'btn btn-green small', onclick: () => api.openExternal(mgr.release.url) }, 'Download'),
       el('button', { class: 'btn btn-cream small', onclick: () => dismissUpdate('manager', mgr.release.version) }, 'Skip')));
     if (mgr.release.notes) parts.push(el('div', { class: 'release-notes' }, mgr.release.notes));
+  } else if (mgr?.skippedVersion) {
+    parts.push(el('div', { class: 'inset-row', style: 'margin-top:10px; display:flex; align-items:center; gap:10px' },
+      el('span', { style: 'flex:1' }, `You skipped Mod Manager ${mgr.skippedVersion}.`),
+      el('button', { class: 'btn btn-cream small', onclick: () => dismissUpdate('manager', '') }, 'Show again')));
   } else if (mgr) {
     parts.push(el('div', { class: 'inset-row', style: 'margin-top:10px' }, `Mod Manager ${state.data?.app?.version} is the newest version.`));
   }
@@ -609,12 +626,11 @@ async function checkUpdatesQuiet() {
 }
 
 async function dismissUpdate(kind, version) {
+  // The main process owns this state - persist, then re-derive everything
+  // from a fresh check so the skip survives restarts and periodic checks.
   await api.dismissUpdate({ kind, version });
-  if (kind === 'framework') state.updates.framework.updateAvailable = false;
-  if (kind === 'manager') state.updates.manager.updateAvailable = false;
-  renderUpdates();
-  renderHomeBanners();
-  toast('Okay - not mentioning that version again.');
+  await checkUpdatesQuiet();
+  toast(version ? 'Okay - not mentioning that version again.' : 'Update visible again.');
 }
 
 // ---------------------------------------------------------------------------

@@ -42,6 +42,11 @@ const entries = await loadEntries();
 const mods = [];
 let errors = 0;
 
+// Declared before the resolution loop below on purpose: the loop's fallback
+// paths call withRepoMeta(), and a `const` further down the file would still
+// be in its temporal dead zone at that point.
+const REPO_META_FIELDS = ['stars', 'repoPushedAt', 'license', 'archived'];
+
 for (const { fileName, entry } of entries) {
   const problems = validateEntry(entry, fileName);
   if (problems.length) {
@@ -156,8 +161,6 @@ async function hashAsset(url) {
   if (buf.length > MAX_ASSET_BYTES) throw new Error('asset exceeded the size ceiling mid-download');
   return sha256(buf);
 }
-
-const REPO_META_FIELDS = ['stars', 'repoPushedAt', 'license', 'archived'];
 
 /** Copy repo metadata forward from the previous index (offline path). */
 function withRepoMeta(record, cached) {
