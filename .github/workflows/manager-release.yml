@@ -91,7 +91,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           shopt -s nullglob
-          files=(dist/*.dmg dist/*.exe dist/*.AppImage)
+          files=(dist/*.dmg dist/*.exe dist/*.AppImage dist/*-mac.zip)
           if [ ${#files[@]} -eq 0 ]; then
             echo "::error::no distributables produced" >&2
             ls -la dist || true

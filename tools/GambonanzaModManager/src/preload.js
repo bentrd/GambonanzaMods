@@ -26,6 +26,7 @@ contextBridge.exposeInMainWorld('gambonanza', {
 
   checkUpdates: invoke('updates:check'),
   dismissUpdate: invoke('updates:dismiss'),
+  applyManagerUpdate: invoke('manager:applyUpdate'),
 
   installMod: invoke('mods:install'),
   uninstallMod: invoke('mods:uninstall'),

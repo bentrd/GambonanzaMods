@@ -46,7 +46,14 @@ async function listReleases({ token } = {}) {
       prerelease: rel.prerelease,
       notes: rel.body || '',
       url: rel.html_url,
-      assets: (rel.assets || []).map((a) => ({ name: a.name, url: a.browser_download_url, size: a.size })),
+      assets: (rel.assets || []).map((a) => ({
+        name: a.name,
+        url: a.browser_download_url,
+        size: a.size,
+        // GitHub publishes a digest per asset; the self-updater verifies
+        // downloads against it before swapping the app.
+        sha256: typeof a.digest === 'string' && a.digest.startsWith('sha256:') ? a.digest.slice(7) : null,
+      })),
     };
     if (rel.tag_name.startsWith(config.MANAGER_TAG_PREFIX)) manager.push(record);
     else framework.push(record);

@@ -15,6 +15,7 @@ const registry = require('./registry');
 const modsApi = require('./mods');
 const framework = require('./framework');
 const publish = require('./publish');
+const updater = require('./updater');
 const { compareTags } = require('./versions');
 
 // Main process: owns the window, the settings store and every privileged
@@ -319,6 +320,24 @@ function registerIpc() {
   });
 
   handle('updates:check', () => checkForUpdates({ notify: false }));
+
+  handle('manager:applyUpdate', async ({ operationId } = {}) => {
+    const latest = await framework.latestManagerRelease({});
+    if (!latest.ok) throw new Error(latest.error);
+    if (compareTags(latest.release.version, app.getVersion()) <= 0) {
+      throw new Error('you are already on the newest version');
+    }
+    const controller = beginOperation(operationId);
+    try {
+      return await updater.applyManagerUpdate({
+        release: latest.release,
+        onProgress: progressReporter(operationId),
+        signal: controller.signal,
+      });
+    } finally {
+      endOperation(operationId);
+    }
+  });
   handle('updates:dismiss', ({ kind, version }) => {
     if (kind === 'framework') store.set('dismissedFrameworkVersion', version);
     if (kind === 'manager') store.set('dismissedManagerVersion', version);

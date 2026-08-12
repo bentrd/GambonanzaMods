@@ -259,9 +259,28 @@ function renderHomeBanners() {
     box.append(el('div', { class: 'banner update' },
       el('div', { class: 'grow' },
         el('b', {}, `Mod Manager ${mgr.release.version} is available`),
-        el('div', { class: 'detail' }, 'Download the new version - it installs over this one.')),
-      el('button', { class: 'btn btn-green small', onclick: () => api.openExternal(mgr.release.url) }, 'Download'),
+        el('div', { class: 'detail' }, 'One click - the app updates and restarts itself.')),
+      el('button', { class: 'btn btn-green small', onclick: () => applyManagerUpdate(mgr) }, 'Update & restart'),
     ));
+  }
+}
+
+async function applyManagerUpdate(mgr) {
+  const operationId = `self-update-${++opCounter}`;
+  modal.open({
+    title: `Updating to ${mgr.release.version}`,
+    body: 'Getting started…',
+    progress: true,
+    buttons: [{ label: 'Cancel', kind: 'btn-cream', onClick: () => api.cancelOperation({ operationId }) }],
+  });
+  try {
+    await call(api.applyManagerUpdate, { operationId });
+    // If we're still alive the swap is staged - the app quits itself now.
+    modal.progress({ message: 'Restarting…', percent: null });
+  } catch (err) {
+    modal.close();
+    toast(`${err.message} - you can still download it manually.`, 'err');
+    api.openExternal(mgr.release.url);
   }
 }
 
@@ -467,8 +486,8 @@ function renderUpdates() {
     parts.push(el('div', { class: 'banner update', style: 'margin-top:10px' },
       el('div', { class: 'grow' },
         el('b', {}, `Mod Manager ${mgr.release.version} is available`),
-        el('div', { class: 'detail' }, `You have ${state.data?.app?.version}. Download and install over this copy.`)),
-      el('button', { class: 'btn btn-green small', onclick: () => api.openExternal(mgr.release.url) }, 'Download'),
+        el('div', { class: 'detail' }, `You have ${state.data?.app?.version}. The app updates and restarts itself.`)),
+      el('button', { class: 'btn btn-green small', onclick: () => applyManagerUpdate(mgr) }, 'Update & restart'),
       el('button', { class: 'btn btn-cream small', onclick: () => dismissUpdate('manager', mgr.release.version) }, 'Skip')));
     if (mgr.release.notes) parts.push(el('div', { class: 'release-notes' }, mgr.release.notes));
   } else if (mgr?.skippedVersion) {
