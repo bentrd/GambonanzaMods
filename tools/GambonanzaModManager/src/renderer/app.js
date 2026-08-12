@@ -172,6 +172,7 @@ function renderHome() {
   const d = state.data;
   const game = d?.game;
   const modCount = d?.installed?.length || 0;
+  const settled = !!game?.valid && game.state === 'patched';
 
   const steps = [
     { t: 'Find the game', d: game?.valid ? shortPath(game.gameDir) : 'not found yet', done: !!game?.valid },
@@ -183,6 +184,12 @@ function renderHome() {
     el('div', { class: `step${s.done ? ' done' : ''}` },
       el('div', { class: 'n' }, el('span', {}, String(i + 1))),
       el('div', {}, el('div', { class: 't' }, s.t), el('div', { class: 'd' }, s.d)))));
+
+  // Once set up, the checklist earns its retirement: collapsed behind a quiet
+  // dropdown. While something still needs doing it stays open and visible.
+  const details = $('setupDetails');
+  details.open = !settled;
+  $('setupSummary').textContent = settled ? 'Setup details' : 'What still needs doing';
 
   const status = $('homeStatus');
   const hint = $('homeHint');
@@ -197,11 +204,13 @@ function renderHome() {
       el('button', { class: 'btn btn-cream big', onclick: pickGameFolder }, 'Choose folder…'),
     );
   } else if (game.state === 'patched') {
-    status.textContent = 'You’re ready to play';
-    hint.textContent = 'The game is patched and mods will load on the next launch. Grab more from Browse mods, or hit Play.';
+    status.textContent = 'Ready to play';
+    hint.textContent = modCount
+      ? `${modCount} mod${modCount === 1 ? '' : 's'} will load on the next launch.`
+      : 'The game is patched - grab something from Browse mods, or just play.';
     actions.append(
-      el('button', { class: 'btn btn-green big', onclick: () => show('browse') }, 'Browse mods'),
-      el('button', { class: 'btn btn-wine big', onclick: launchGame }, '▶ Play Gambonanza'),
+      el('button', { class: 'btn btn-green play-hero', onclick: launchGame }, '▶ Play'),
+      el('button', { class: 'btn btn-cream', onclick: () => show('browse') }, 'Browse mods'),
     );
   } else if (game.state === 'stale') {
     status.textContent = 'Steam updated the game';
