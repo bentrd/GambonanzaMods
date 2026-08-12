@@ -21,7 +21,7 @@
 import { writeFile, readFile } from 'node:fs/promises';
 import {
   INDEX_PATH, HOME_REPO, loadEntries, validateEntry,
-  resolveLatestRelease, githubFetch, sha256,
+  resolveLatestRelease, githubFetch, sha256, versionFromTag,
 } from './lib.mjs';
 
 const args = new Set(process.argv.slice(2));
@@ -124,6 +124,16 @@ if (errors) {
 
 mods.sort((a, b) => a.name.localeCompare(b.name));
 
+// Latest framework + manager releases ride inside the index so the app's
+// update checks read Pages (no rate limit) instead of the GitHub API
+// (60/hour unauthenticated). CI resolves this with a token; the app only
+// falls back to the API when the index lacks it.
+let releases = previous?.releases ?? null;
+if (!offline) {
+  const fresh = await resolveHomeReleases();
+  if (fresh) releases = fresh;
+}
+
 const index = {
   schema: 1,
   // Version of the framework these mods are expected to run against. Bumped by
@@ -131,6 +141,7 @@ const index = {
   frameworkRepo: HOME_REPO,
   generatedAt: new Date().toISOString(),
   count: mods.length,
+  releases,
   mods,
 };
 
@@ -150,6 +161,38 @@ await writeFile(INDEX_PATH, serialized);
 console.log(`\nWrote ${INDEX_PATH} (${mods.length} mods, ${mods.filter((m) => m.latest).length} installable).`);
 
 // ---------------------------------------------------------------------------
+
+/** Newest stable framework (v*) and manager (manager-v*) releases. */
+async function resolveHomeReleases() {
+  try {
+    const res = await githubFetch(`/repos/${HOME_REPO}/releases?per_page=30`, { token });
+    if (!res.ok) {
+      console.warn(`! could not resolve ${HOME_REPO} releases (HTTP ${res.status}) - keeping previous`);
+      return null;
+    }
+    const rels = await res.json();
+    const shape = (rel) => ({
+      tag: rel.tag_name,
+      version: versionFromTag(rel.tag_name),
+      publishedAt: rel.published_at,
+      notes: rel.body || '',
+      url: rel.html_url,
+      assets: (rel.assets || []).map((a) => ({
+        name: a.name,
+        url: a.browser_download_url,
+        size: a.size,
+        sha256: typeof a.digest === 'string' && a.digest.startsWith('sha256:') ? a.digest.slice(7) : null,
+      })),
+    });
+    const framework = rels.find((r) => !r.draft && !r.prerelease && !r.tag_name.startsWith('manager-v'));
+    const manager = rels.find((r) => !r.draft && !r.prerelease && r.tag_name.startsWith('manager-v'));
+    console.log(`✓ releases → framework ${framework?.tag_name ?? 'none'}, manager ${manager?.tag_name ?? 'none'}`);
+    return { framework: framework ? shape(framework) : null, manager: manager ? shape(manager) : null };
+  } catch (err) {
+    console.warn(`! could not resolve ${HOME_REPO} releases (${err.message}) - keeping previous`);
+    return null;
+  }
+}
 
 async function hashAsset(url) {
   const res = await fetch(url, {

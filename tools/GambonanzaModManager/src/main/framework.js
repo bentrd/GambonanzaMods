@@ -10,6 +10,7 @@ const paths = require('./paths');
 const net = require('./net');
 const zip = require('./zip');
 const game = require('./game');
+const registry = require('./registry');
 const log = require('./log');
 
 const execFileAsync = promisify(execFile);
@@ -65,14 +66,38 @@ function stripTagPrefix(tag) {
   return String(tag || '').replace(new RegExp(`^${config.MANAGER_TAG_PREFIX}`), '').replace(/^v/, '');
 }
 
+/**
+ * Latest release info as recorded in the registry index. The index is served
+ * from GitHub Pages, which has NO rate limit - unlike api.github.com's 60
+ * unauthenticated requests/hour, which heavy use (or a shared office IP) can
+ * exhaust. CI resolves the release data with a token and embeds it, so for
+ * the app this path is both free and always available.
+ */
+async function latestFromIndex(kind) {
+  try {
+    const { index } = await registry.getIndex({});
+    const rel = index?.releases?.[kind];
+    if (!rel?.tag || !Array.isArray(rel.assets)) return null;
+    return { ...rel, name: rel.tag, prerelease: false };
+  } catch {
+    return null;
+  }
+}
+
 /** Newest framework release that ships a bundle for this machine. */
 async function latestFrameworkRelease({ token } = {}) {
   const rid = config.currentRid();
+  if (!rid) return { ok: false, error: `unsupported platform: ${process.platform}/${process.arch}` };
+  const assetName = config.frameworkAssetName(rid);
+
+  const fromIndex = await latestFromIndex('framework');
+  if (fromIndex) {
+    const asset = fromIndex.assets.find((a) => a.name === assetName);
+    if (asset) return { ok: true, release: { ...fromIndex, asset } };
+  }
+
   const releases = await listReleases({ token });
   if (!releases.ok) return releases;
-  if (!rid) return { ok: false, error: `unsupported platform: ${process.platform}/${process.arch}` };
-
-  const assetName = config.frameworkAssetName(rid);
   const match = releases.framework.find((rel) => !rel.prerelease && rel.assets.some((a) => a.name === assetName));
   if (!match) {
     return {
@@ -86,6 +111,9 @@ async function latestFrameworkRelease({ token } = {}) {
 
 /** Newest release of the manager app itself (tagged manager-v*). */
 async function latestManagerRelease({ token } = {}) {
+  const fromIndex = await latestFromIndex('manager');
+  if (fromIndex) return { ok: true, release: fromIndex };
+
   const releases = await listReleases({ token });
   if (!releases.ok) return releases;
   const match = releases.manager.find((rel) => !rel.prerelease);

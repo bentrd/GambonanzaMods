@@ -6,6 +6,11 @@ without a matching `package.json` version - keep both honest.
 
 ## 1.0.3
 
+- Update checks no longer touch GitHub's rate-limited API: the latest
+  framework and app releases now travel inside the registry index (served
+  from GitHub Pages, no limits). Heavy use can't produce "rate limit
+  reached - try again in N minutes" any more; the API remains only as a
+  fallback.
 - The mod list can no longer travel back in time: right after a release,
   GitHub's CDN can briefly serve the previous registry index, which made
   fresh mods flip back to "coming soon". The app now keeps the newest index

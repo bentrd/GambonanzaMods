@@ -15,6 +15,9 @@ on:
 
 permissions:
   contents: write
+  # to kick the registry refresh after publishing, so the app's update
+  # banner (which reads the index, not the API) appears within minutes
+  actions: write
 
 jobs:
   release:
@@ -70,3 +73,5 @@ jobs:
             --title "Framework $GITHUB_REF_NAME" \
             --notes-file /tmp/notes.md \
             dist/release/*
+          # Refresh the registry index so managers see this release promptly.
+          gh workflow run registry-refresh.yml --ref main || true

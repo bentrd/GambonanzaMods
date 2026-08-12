@@ -11,6 +11,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   create-release:
@@ -98,3 +99,14 @@ jobs:
             exit 1
           fi
           gh release upload "$GITHUB_REF_NAME" "${files[@]}" --clobber
+
+  refresh-registry:
+    # The index embeds latest-release info (incl. asset checksums the
+    # self-updater verifies) - refresh it as soon as all builds are attached.
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kick the registry refresh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run registry-refresh.yml --ref main -R "$GITHUB_REPOSITORY"

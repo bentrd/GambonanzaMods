@@ -1,8 +1,9 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-12T16:45:38.225Z",
+  "generatedAt": "2026-08-12T16:54:24.968Z",
   "count": 5,
+  "releases": null,
   "mods": [
     {
       "id": "enemy-threat-overlay",
