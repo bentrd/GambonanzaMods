@@ -65,6 +65,14 @@ async function extract(zipPath, destDir, { strip = 0 } = {}) {
       continue;
     }
 
+    // Check the declared uncompressed size BEFORE inflating: getData()
+    // allocates the whole entry in one Buffer, so a zip-bomb entry would OOM
+    // the main process before the running-total check below ever ran.
+    const declared = entry.header?.size ?? 0;
+    if (declared > MAX_TOTAL_BYTES || total + declared > MAX_TOTAL_BYTES) {
+      throw new Error('archive unpacks to more data than this app will accept');
+    }
+
     const data = entry.getData();
     total += data.length;
     if (total > MAX_TOTAL_BYTES) throw new Error('archive unpacks to more data than this app will accept');
