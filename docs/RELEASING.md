@@ -56,10 +56,23 @@ right one per visitor automatically.
 
 ### Signing (status quo: none)
 
-Builds are unsigned. macOS users right-click → Open on first launch; Windows
-SmartScreen shows "More info → Run anyway". If a signing cert or Apple
-developer account ever materialises, `electron-builder.yml` already has
-`hardenedRuntime` on - add the identities and delete this paragraph.
+Builds are unsigned. Consequences, and the way out:
+
+- **macOS** flags the downloaded app as "damaged" (Gatekeeper's wording for
+  any unsigned, quarantined app - right-click → Open no longer bypasses it on
+  current macOS). Users clear it once with
+  `xattr -cr "/Applications/Gambonanza Mod Manager.app"` - the site's FAQ
+  walks them through it. The real fix is an Apple Developer account
+  ($99/year): create a Developer ID Application certificate, export it as a
+  .p12, then add repository secrets and wire them into
+  `manager-release.yml`'s mac build step
+  (`CSC_LINK`/`CSC_KEY_PASSWORD` for signing; `APPLE_ID`,
+  `APPLE_APP_SPECIFIC_PASSWORD`, `APPLE_TEAM_ID` for notarization, plus
+  `notarize: true` under `mac:` in `electron-builder.yml` -
+  `hardenedRuntime` is already on). After that, the dmg opens like any
+  App Store download and the xattr FAQ entry can be deleted.
+- **Windows** SmartScreen shows "More info → Run anyway" until enough
+  downloads build reputation (or an EV certificate is bought).
 
 ## Registry
 

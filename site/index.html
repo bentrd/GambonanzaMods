@@ -231,7 +231,12 @@
     <span class="title">Getting started</span>
     <div class="steps">
       <div class="step"><span class="n"></span><div><b>Download &amp; open</b>
-        <p>Grab the app above. <span id="macGatekeeper">On a Mac the first launch needs a <b>right-click → Open</b> (the app isn't notarised with Apple - it's free software, not a company).</span></p></div></div>
+        <p>Grab the app above. <span id="macGatekeeper">On a Mac, macOS will claim the app is
+        "damaged" - it isn't. That's Apple's blanket warning for free apps that aren't in
+        their $99/year developer program. After dragging the app to Applications, open
+        <b>Terminal</b> (⌘-space, type "terminal"), paste this line and press return -
+        once, and it opens forever:</span></p>
+        <p id="macXattr"><code>xattr -cr "/Applications/Gambonanza Mod Manager.app"</code></p></div></div>
       <div class="step"><span class="n"></span><div><b>Patch the game</b>
         <p>The manager finds Gambonanza and one button adds mod support. Takes a few seconds; your original files are backed up automatically.</p></div></div>
       <div class="step"><span class="n"></span><div><b>Pick your mods</b>
@@ -256,6 +261,19 @@
         against a checksum recorded when the mod was reviewed - if a download doesn't
         match, it's refused. All of this is open source, so you don't have to take our
         word for any of it.
+      </div>
+    </details>
+    <details>
+      <summary>macOS says the app is "damaged"?</summary>
+      <div class="body">
+        It isn't - that's what macOS says about <i>any</i> app downloaded from the internet
+        whose author doesn't pay for Apple's $99/year developer program. The fix is one
+        line, once: drag the app into <b>Applications</b>, open <b>Terminal</b>
+        (⌘-space, type "terminal"), paste
+        <code>xattr -cr "/Applications/Gambonanza Mod Manager.app"</code>
+        and press return. The app opens normally from then on. The
+        <a href="https://github.com/bentrd/GambonanzaMods">entire source is public</a>
+        if you'd like to see exactly what you're running.
       </div>
     </details>
     <details>
@@ -356,6 +374,8 @@
   if (os !== 'mac') {
     var gk = document.getElementById('macGatekeeper');
     if (gk) gk.style.display = 'none';
+    var gx = document.getElementById('macXattr');
+    if (gx) gx.style.display = 'none';
   }
 
   function altLink(label, href) {
