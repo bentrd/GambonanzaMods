@@ -1,87 +1,81 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-12T17:22:19.139Z",
+  "generatedAt": "2026-08-12T17:25:45.927Z",
   "count": 5,
   "releases": {
     "framework": {
-      "tag": "v1.2.0",
-      "version": "1.2.0",
-      "publishedAt": "2026-08-12T16:17:57Z",
-      "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+      "tag": "v1.3.0",
+      "version": "1.3.0",
+      "publishedAt": "2026-08-12T17:25:29Z",
+      "notes": "\n- Disabled mods are now COMPLETELY inert: the framework previously ran every\n  mod's load code and only skipped its \"enable\" step, so mods doing their\n  work at load (custom gambits, for one) ignored the toggle entirely. A\n  disabled mod's DLL is no longer even loaded; enabling it from the manager\n  or the console loads it on the spot.\n- Gambit mods no longer haunt your save: uninstalling or disabling a custom\n  gambit used to leave its unlock entry in the game's save data forever -\n  the collection said \"201/200\" and showed stale entries. GambitApi now\n  sweeps orphaned gambit ids out of the save on startup.\n- Collection screen: the pagination patch no longer re-enforces slot\n  visibility every frame (a frame-rate sink via constant UI layout\n  rebuilds), and GambitApi logs a one-time frame-rate diagnostic the first\n  time the collection stays open, so any remaining slowdown shows up in\n  Player.log with numbers attached.\n- SpeedMod retired: Gambonanza 1.4.0 added its own game-speed setting, so\n  the mod is gone from the samples, the registry and future releases.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.0",
       "assets": [
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/EnemyThreatOverlay.zip",
           "size": 7616,
-          "sha256": "42cf173c098b6fe66c9a59f5fd8d15823545aa15d3e74a393048e19614cc2c21"
+          "sha256": "84e8ddf9381086e695122b492b8e6973a2784ba77cc69f48771069ce8cdcb623"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/GambitApi.zip",
           "size": 16667,
-          "sha256": "9ac0e4455f6de439fce35e6a204dcbb880a37459e4263466cd5a6dd5775df9b6"
+          "sha256": "863f31dc4b3be0a655e33b665f50cac45bcd3e31a7fcec21175d2068787ad7d5"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-linux-arm64.zip",
-          "size": 28389539,
-          "sha256": "6f0be7a82983d5dec829c20ad947c3a2a52f7f87ea76b208c39264aba9b426c3"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/gambonanza-framework-linux-arm64.zip",
+          "size": 28390218,
+          "sha256": "8f7b48f07b47aa3913bee79d672a227a87b05255860dd690bc521b07717b3730"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-linux-x64.zip",
-          "size": 29617130,
-          "sha256": "5d48bbe09ad25c1ae6ddd2eeebc968a9392eaecf503a8924bd17555e62bcfbb5"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/gambonanza-framework-linux-x64.zip",
+          "size": 29617346,
+          "sha256": "070abf75bd571b4bb3ef81d2b7993a464bf23b1179dbe2079affe76546a9d8b6"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-osx-arm64.zip",
-          "size": 28619026,
-          "sha256": "e014ce143e91ecf51f3699da8a9eb3ebdbaa084ed1befc1b0665db39c1b1291f"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/gambonanza-framework-osx-arm64.zip",
+          "size": 28619240,
+          "sha256": "a1825565cecaf136d6870f05c7837a994335578a09905db660f04aaf29e0bd79"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-osx-x64.zip",
-          "size": 29966435,
-          "sha256": "2dcf071a5cfa179ea799f81dc0da7b217ea0135700b061cbbebc8f878602c1c3"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/gambonanza-framework-osx-x64.zip",
+          "size": 29966277,
+          "sha256": "2e23a60dc5aa71b0b64f963ec7b9df0af4a812f2ec254e449f76de19bb4a0426"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-win-arm64.zip",
-          "size": 28857993,
-          "sha256": "4619e19af7eca65768fd46b9f6598658345d3769ddf83fbf618f6d5c7ed2bc52"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/gambonanza-framework-win-arm64.zip",
+          "size": 28857709,
+          "sha256": "1ae09854110e1f53fedd830fb3b1488a11b28703135386cbca7cc16380d050ea"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/gambonanza-framework-win-x64.zip",
-          "size": 29945103,
-          "sha256": "5c025f5debc7070d1ca912af8e5b8ebf2770e8be343e251e6acc240eb7f971b5"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/gambonanza-framework-win-x64.zip",
+          "size": 29944920,
+          "sha256": "c4843eca9a7380251a3aeb725cc73d50b2c4bad3c60def5212b11a47b85feab0"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/KamikazeGambit.zip",
           "size": 8776,
-          "sha256": "aa1bf09d49a47e23659077b7762e56826bc0f0a4afd2fc723a4df5a857d80bdc"
+          "sha256": "d2db39d9998ceb90de1d1f233b90a0129819ee8fd793b70b1dfe574331e5d3b1"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/MightyKasparovEveryStage.zip",
           "size": 4355,
-          "sha256": "313f24adb8d6f13fe484fd4834cecdce3ec35f3cf9f38b0ef6501a889c4aa3d6"
-        },
-        {
-          "name": "SpeedMod.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/SpeedMod.zip",
-          "size": 8073,
-          "sha256": "021e22c768c82f237fc9efc076499b9bd458ab49960135c6e75b05b657de4943"
+          "sha256": "43456f685cf3b795876d4dd53cd2adedb212cef317bf99e69f655308db3f820f"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/SpikesGambit.zip",
           "size": 6490,
-          "sha256": "6bbaf7cc55f1854e7a47a7fc019b2c28a899a718de775c55fc7f45f46cb44164"
+          "sha256": "e14751f25cc365df93eb3ad290480fc3d25f4bcb6cc4d33886894634eb2c510d"
         }
       ]
     },
@@ -152,20 +146,20 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.2.0",
-        "version": "1.2.0",
-        "publishedAt": "2026-08-12T16:17:57Z",
-        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "tag": "v1.3.0",
+        "version": "1.3.0",
+        "publishedAt": "2026-08-12T17:25:29Z",
+        "notes": "\n- Disabled mods are now COMPLETELY inert: the framework previously ran every\n  mod's load code and only skipped its \"enable\" step, so mods doing their\n  work at load (custom gambits, for one) ignored the toggle entirely. A\n  disabled mod's DLL is no longer even loaded; enabling it from the manager\n  or the console loads it on the spot.\n- Gambit mods no longer haunt your save: uninstalling or disabling a custom\n  gambit used to leave its unlock entry in the game's save data forever -\n  the collection said \"201/200\" and showed stale entries. GambitApi now\n  sweeps orphaned gambit ids out of the save on startup.\n- Collection screen: the pagination patch no longer re-enforces slot\n  visibility every frame (a frame-rate sink via constant UI layout\n  rebuilds), and GambitApi logs a one-time frame-rate diagnostic the first\n  time the collection stays open, so any remaining slowdown shows up in\n  Player.log with numbers attached.\n- SpeedMod retired: Gambonanza 1.4.0 added its own game-speed setting, so\n  the mod is gone from the samples, the registry and future releases.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.0",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/EnemyThreatOverlay.zip",
           "size": 7616,
-          "sha256": "42cf173c098b6fe66c9a59f5fd8d15823545aa15d3e74a393048e19614cc2c21"
+          "sha256": "84e8ddf9381086e695122b492b8e6973a2784ba77cc69f48771069ce8cdcb623"
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:20:05Z",
+      "repoPushedAt": "2026-08-12T17:24:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -189,20 +183,20 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.2.0",
-        "version": "1.2.0",
-        "publishedAt": "2026-08-12T16:17:57Z",
-        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "tag": "v1.3.0",
+        "version": "1.3.0",
+        "publishedAt": "2026-08-12T17:25:29Z",
+        "notes": "\n- Disabled mods are now COMPLETELY inert: the framework previously ran every\n  mod's load code and only skipped its \"enable\" step, so mods doing their\n  work at load (custom gambits, for one) ignored the toggle entirely. A\n  disabled mod's DLL is no longer even loaded; enabling it from the manager\n  or the console loads it on the spot.\n- Gambit mods no longer haunt your save: uninstalling or disabling a custom\n  gambit used to leave its unlock entry in the game's save data forever -\n  the collection said \"201/200\" and showed stale entries. GambitApi now\n  sweeps orphaned gambit ids out of the save on startup.\n- Collection screen: the pagination patch no longer re-enforces slot\n  visibility every frame (a frame-rate sink via constant UI layout\n  rebuilds), and GambitApi logs a one-time frame-rate diagnostic the first\n  time the collection stays open, so any remaining slowdown shows up in\n  Player.log with numbers attached.\n- SpeedMod retired: Gambonanza 1.4.0 added its own game-speed setting, so\n  the mod is gone from the samples, the registry and future releases.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.0",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/GambitApi.zip",
           "size": 16667,
-          "sha256": "9ac0e4455f6de439fce35e6a204dcbb880a37459e4263466cd5a6dd5775df9b6"
+          "sha256": "863f31dc4b3be0a655e33b665f50cac45bcd3e31a7fcec21175d2068787ad7d5"
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:20:05Z",
+      "repoPushedAt": "2026-08-12T17:24:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -228,20 +222,20 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.2.0",
-        "version": "1.2.0",
-        "publishedAt": "2026-08-12T16:17:57Z",
-        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "tag": "v1.3.0",
+        "version": "1.3.0",
+        "publishedAt": "2026-08-12T17:25:29Z",
+        "notes": "\n- Disabled mods are now COMPLETELY inert: the framework previously ran every\n  mod's load code and only skipped its \"enable\" step, so mods doing their\n  work at load (custom gambits, for one) ignored the toggle entirely. A\n  disabled mod's DLL is no longer even loaded; enabling it from the manager\n  or the console loads it on the spot.\n- Gambit mods no longer haunt your save: uninstalling or disabling a custom\n  gambit used to leave its unlock entry in the game's save data forever -\n  the collection said \"201/200\" and showed stale entries. GambitApi now\n  sweeps orphaned gambit ids out of the save on startup.\n- Collection screen: the pagination patch no longer re-enforces slot\n  visibility every frame (a frame-rate sink via constant UI layout\n  rebuilds), and GambitApi logs a one-time frame-rate diagnostic the first\n  time the collection stays open, so any remaining slowdown shows up in\n  Player.log with numbers attached.\n- SpeedMod retired: Gambonanza 1.4.0 added its own game-speed setting, so\n  the mod is gone from the samples, the registry and future releases.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.0",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/KamikazeGambit.zip",
           "size": 8776,
-          "sha256": "aa1bf09d49a47e23659077b7762e56826bc0f0a4afd2fc723a4df5a857d80bdc"
+          "sha256": "d2db39d9998ceb90de1d1f233b90a0129819ee8fd793b70b1dfe574331e5d3b1"
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:20:05Z",
+      "repoPushedAt": "2026-08-12T17:24:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -265,20 +259,20 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.2.0",
-        "version": "1.2.0",
-        "publishedAt": "2026-08-12T16:17:57Z",
-        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "tag": "v1.3.0",
+        "version": "1.3.0",
+        "publishedAt": "2026-08-12T17:25:29Z",
+        "notes": "\n- Disabled mods are now COMPLETELY inert: the framework previously ran every\n  mod's load code and only skipped its \"enable\" step, so mods doing their\n  work at load (custom gambits, for one) ignored the toggle entirely. A\n  disabled mod's DLL is no longer even loaded; enabling it from the manager\n  or the console loads it on the spot.\n- Gambit mods no longer haunt your save: uninstalling or disabling a custom\n  gambit used to leave its unlock entry in the game's save data forever -\n  the collection said \"201/200\" and showed stale entries. GambitApi now\n  sweeps orphaned gambit ids out of the save on startup.\n- Collection screen: the pagination patch no longer re-enforces slot\n  visibility every frame (a frame-rate sink via constant UI layout\n  rebuilds), and GambitApi logs a one-time frame-rate diagnostic the first\n  time the collection stays open, so any remaining slowdown shows up in\n  Player.log with numbers attached.\n- SpeedMod retired: Gambonanza 1.4.0 added its own game-speed setting, so\n  the mod is gone from the samples, the registry and future releases.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.0",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/MightyKasparovEveryStage.zip",
           "size": 4355,
-          "sha256": "313f24adb8d6f13fe484fd4834cecdce3ec35f3cf9f38b0ef6501a889c4aa3d6"
+          "sha256": "43456f685cf3b795876d4dd53cd2adedb212cef317bf99e69f655308db3f820f"
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:20:05Z",
+      "repoPushedAt": "2026-08-12T17:24:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -304,20 +298,20 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.2.0",
-        "version": "1.2.0",
-        "publishedAt": "2026-08-12T16:17:57Z",
-        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "tag": "v1.3.0",
+        "version": "1.3.0",
+        "publishedAt": "2026-08-12T17:25:29Z",
+        "notes": "\n- Disabled mods are now COMPLETELY inert: the framework previously ran every\n  mod's load code and only skipped its \"enable\" step, so mods doing their\n  work at load (custom gambits, for one) ignored the toggle entirely. A\n  disabled mod's DLL is no longer even loaded; enabling it from the manager\n  or the console loads it on the spot.\n- Gambit mods no longer haunt your save: uninstalling or disabling a custom\n  gambit used to leave its unlock entry in the game's save data forever -\n  the collection said \"201/200\" and showed stale entries. GambitApi now\n  sweeps orphaned gambit ids out of the save on startup.\n- Collection screen: the pagination patch no longer re-enforces slot\n  visibility every frame (a frame-rate sink via constant UI layout\n  rebuilds), and GambitApi logs a one-time frame-rate diagnostic the first\n  time the collection stays open, so any remaining slowdown shows up in\n  Player.log with numbers attached.\n- SpeedMod retired: Gambonanza 1.4.0 added its own game-speed setting, so\n  the mod is gone from the samples, the registry and future releases.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.0",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.0/SpikesGambit.zip",
           "size": 6490,
-          "sha256": "6bbaf7cc55f1854e7a47a7fc019b2c28a899a718de775c55fc7f45f46cb44164"
+          "sha256": "e14751f25cc365df93eb3ad290480fc3d25f4bcb6cc4d33886894634eb2c510d"
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T17:20:05Z",
+      "repoPushedAt": "2026-08-12T17:24:14Z",
       "license": "MIT",
       "archived": false
     }
