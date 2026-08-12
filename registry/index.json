@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-12T15:44:53.503Z",
+  "generatedAt": "2026-08-12T15:57:35.441Z",
   "count": 6,
   "mods": [
     {
@@ -23,7 +23,11 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": null,
-      "pending": true
+      "pending": true,
+      "stars": 3,
+      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "license": "MIT",
+      "archived": false
     },
     {
       "id": "gambit-api",
@@ -44,7 +48,11 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": null,
-      "pending": true
+      "pending": true,
+      "stars": 3,
+      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "license": "MIT",
+      "archived": false
     },
     {
       "id": "kamikaze-gambit",
@@ -67,7 +75,11 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": null,
-      "pending": true
+      "pending": true,
+      "stars": 3,
+      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "license": "MIT",
+      "archived": false
     },
     {
       "id": "mighty-kasparov-every-stage",
@@ -88,7 +100,11 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": null,
-      "pending": true
+      "pending": true,
+      "stars": 3,
+      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "license": "MIT",
+      "archived": false
     },
     {
       "id": "speed-mod",
@@ -109,7 +125,11 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": null,
-      "pending": true
+      "pending": true,
+      "stars": 3,
+      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "license": "MIT",
+      "archived": false
     },
     {
       "id": "spikes-gambit",
@@ -132,7 +152,11 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": null,
-      "pending": true
+      "pending": true,
+      "stars": 3,
+      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "license": "MIT",
+      "archived": false
     }
   ]
 }
