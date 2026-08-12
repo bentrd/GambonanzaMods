@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-12T15:57:35.441Z",
+  "generatedAt": "2026-08-12T16:19:50.874Z",
   "count": 6,
   "mods": [
     {
@@ -22,10 +22,21 @@
       "submittedBy": "bentrd",
       "addedAt": "2026-08-12",
       "official": true,
-      "latest": null,
-      "pending": true,
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-12T16:17:57Z",
+        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "asset": {
+          "name": "EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/EnemyThreatOverlay.zip",
+          "size": 7616,
+          "sha256": "42cf173c098b6fe66c9a59f5fd8d15823545aa15d3e74a393048e19614cc2c21"
+        }
+      },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "repoPushedAt": "2026-08-12T16:19:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -47,10 +58,21 @@
       "submittedBy": "bentrd",
       "addedAt": "2026-08-12",
       "official": true,
-      "latest": null,
-      "pending": true,
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-12T16:17:57Z",
+        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "asset": {
+          "name": "GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/GambitApi.zip",
+          "size": 16667,
+          "sha256": "9ac0e4455f6de439fce35e6a204dcbb880a37459e4263466cd5a6dd5775df9b6"
+        }
+      },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "repoPushedAt": "2026-08-12T16:19:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -74,10 +96,21 @@
       "submittedBy": "bentrd",
       "addedAt": "2026-08-12",
       "official": true,
-      "latest": null,
-      "pending": true,
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-12T16:17:57Z",
+        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "asset": {
+          "name": "KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/KamikazeGambit.zip",
+          "size": 8776,
+          "sha256": "aa1bf09d49a47e23659077b7762e56826bc0f0a4afd2fc723a4df5a857d80bdc"
+        }
+      },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "repoPushedAt": "2026-08-12T16:19:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -99,10 +132,21 @@
       "submittedBy": "bentrd",
       "addedAt": "2026-08-12",
       "official": true,
-      "latest": null,
-      "pending": true,
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-12T16:17:57Z",
+        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "asset": {
+          "name": "MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/MightyKasparovEveryStage.zip",
+          "size": 4355,
+          "sha256": "313f24adb8d6f13fe484fd4834cecdce3ec35f3cf9f38b0ef6501a889c4aa3d6"
+        }
+      },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "repoPushedAt": "2026-08-12T16:19:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -124,10 +168,21 @@
       "submittedBy": "bentrd",
       "addedAt": "2026-08-12",
       "official": true,
-      "latest": null,
-      "pending": true,
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-12T16:17:57Z",
+        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "asset": {
+          "name": "SpeedMod.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/SpeedMod.zip",
+          "size": 8073,
+          "sha256": "021e22c768c82f237fc9efc076499b9bd458ab49960135c6e75b05b657de4943"
+        }
+      },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "repoPushedAt": "2026-08-12T16:19:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -151,10 +206,21 @@
       "submittedBy": "bentrd",
       "addedAt": "2026-08-12",
       "official": true,
-      "latest": null,
-      "pending": true,
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-12T16:17:57Z",
+        "notes": "\n- The Gambonanza Mod Manager: a desktop app that patches the game, installs\n  mods from the new registry, and keeps everything current - no terminal, no\n  .NET SDK, no git. The `./build.sh` path still works exactly as before.\n- Framework releases now ship pre-packaged per-platform bundles\n  (`gambonanza-framework-<rid>.zip`) with a self-contained patcher.\n- The in-game updater now recognises manager-made installs and points players\n  at the app instead of suggesting `git pull`.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.2.0",
+        "asset": {
+          "name": "SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.2.0/SpikesGambit.zip",
+          "size": 6490,
+          "sha256": "6bbaf7cc55f1854e7a47a7fc019b2c28a899a718de775c55fc7f45f46cb44164"
+        }
+      },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T15:57:21Z",
+      "repoPushedAt": "2026-08-12T16:19:38Z",
       "license": "MIT",
       "archived": false
     }
