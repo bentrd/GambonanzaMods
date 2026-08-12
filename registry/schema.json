@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bentrd.github.io/GambonanzaMods/registry/schema.json",
+  "title": "Gambonanza mod registry entry",
+  "description": "One file per mod under registry/mods/<id>.json. The registry never stores mod binaries - it stores a pointer to a GitHub repository, and the mod manager downloads the DLL from that repository's own GitHub release.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "author", "summary", "repo", "asset", "folder"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$",
+      "description": "Unique, permanent, lowercase id. Must match the file name."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 48,
+      "description": "Display name shown in the mod manager."
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 48,
+      "description": "Who made it. Usually the GitHub username."
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 140,
+      "description": "One line, shown on the mod card. No marketing, just what it does."
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Optional longer text for the detail panel. Plain text or light markdown."
+    },
+    "repo": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+      "description": "GitHub repository holding the mod source AND its releases, as owner/name."
+    },
+    "asset": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 120,
+      "description": "Release asset to download. Glob: '*' matches any run of characters (e.g. 'SpeedMod-*.zip'). Either a .zip containing mod.json + the DLL, or a bare .dll (then 'manifest' is required)."
+    },
+    "folder": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9 ._-]{0,47}$",
+      "description": "Folder name created under the game's Mods/ directory."
+    },
+    "tagPattern": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Optional glob restricting which release tags count as this mod's releases. Useful in monorepos, e.g. 'speedmod-v*'."
+    },
+    "prerelease": {
+      "type": "boolean",
+      "description": "If true, GitHub pre-releases are considered too. Defaults to false."
+    },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Only for mods shipped as a bare .dll. The manager writes this out as mod.json next to the DLL.",
+      "required": ["entry"],
+      "properties": {
+        "entry": {
+          "type": "string",
+          "description": "Fully-qualified IMod type, e.g. 'Gambonanza.SpeedMod.SpeedModMain'."
+        },
+        "dependencies": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Mod ids that must load first."
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "enum": [
+          "gameplay",
+          "gambits",
+          "quality-of-life",
+          "ui",
+          "visual",
+          "audio",
+          "cheats",
+          "library",
+          "tools"
+        ]
+      }
+    },
+    "homepage": {
+      "type": "string",
+      "pattern": "^https://",
+      "maxLength": 200,
+      "description": "Optional link shown on the mod page. Defaults to the repo."
+    },
+    "icon": {
+      "type": "string",
+      "pattern": "^https://(raw\\.githubusercontent\\.com|github\\.com|user-images\\.githubusercontent\\.com)/",
+      "maxLength": 300,
+      "description": "Optional square PNG hosted on GitHub. Keep it small (<= 256x256)."
+    },
+    "gameVersion": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Informational: the Gambonanza version this was built against."
+    },
+    "frameworkVersion": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Informational: the GambonanzaMods framework version this needs."
+    },
+    "dependencies": {
+      "type": "array",
+      "maxItems": 8,
+      "items": { "type": "string" },
+      "description": "Registry ids of other mods this one needs. The manager installs them first."
+    },
+    "pending": {
+      "type": "boolean",
+      "description": "Set while the repo has no matching release yet. The manager shows the mod as 'not published yet' and CI does not fail on the missing asset. Remove it once you cut a release."
+    },
+    "submittedBy": {
+      "type": "string",
+      "maxLength": 48,
+      "description": "GitHub username of whoever submitted the entry."
+    },
+    "addedAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    }
+  }
+}

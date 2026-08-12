@@ -1,0 +1,16 @@
+{
+  "id": "spikes-gambit",
+  "name": "Spikes' Gambit",
+  "author": "TGM",
+  "summary": "Enemies that step on TRAP tiles are captured instead of trapped.",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "SpikesGambit.zip",
+  "folder": "SpikesGambit",
+  "tags": ["gambits", "gameplay"],
+  "dependencies": ["gambit-api"],
+  "frameworkVersion": ">=1.1.0",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-08-12"
+}

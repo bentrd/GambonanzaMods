@@ -1,0 +1,72 @@
+# Framework release: runs on every v* tag (manager releases use manager-v*
+# and their own workflow). Packages the per-platform framework bundles and one
+# zip per bundled mod, then publishes the GitHub release the mod manager's
+# update check looks for.
+#
+# The framework DLLs come from the committed prebuilt/ folder - CI cannot
+# compile them because they reference the game's copyrighted assemblies. See
+# docs/RELEASING.md for the two-command maintainer flow that refreshes them.
+name: Framework release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Refuse to release without prebuilt framework DLLs
+        run: |
+          for dll in Gambonanza.ModSdk.dll Gambonanza.ModHost.dll Gambonanza.GameUI.dll; do
+            if [ ! -f "prebuilt/$dll" ]; then
+              echo "::error::prebuilt/$dll is missing. Run ./build.sh && tools/package-framework.sh --stage-prebuilt locally, commit prebuilt/, and re-tag." >&2
+              exit 1
+            fi
+          done
+
+      - name: Check the tag matches VERSION
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(cat VERSION)"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::tag v$tag does not match VERSION ($version). Update VERSION (and CHANGELOG.md) first." >&2
+            exit 1
+          fi
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Package bundles + mod zips
+        run: tools/package-framework.sh
+
+      - name: Extract this version's changelog section
+        run: |
+          version="$(cat VERSION)"
+          if [ -f CHANGELOG.md ]; then
+            awk -v ver="$version" '
+              $0 ~ "^## \\[?"ver"\\]?" { grab=1; next }
+              grab && /^## / { exit }
+              grab { print }
+            ' CHANGELOG.md > /tmp/notes.md
+          fi
+          if [ ! -s /tmp/notes.md ]; then
+            echo "Framework release $version. (No CHANGELOG.md section found - add one next time!)" > /tmp/notes.md
+          fi
+          cat /tmp/notes.md
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "Framework $GITHUB_REF_NAME" \
+            --notes-file /tmp/notes.md \
+            dist/release/*

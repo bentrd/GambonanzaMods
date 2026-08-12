@@ -1,0 +1,16 @@
+{
+  "id": "mighty-kasparov-every-stage",
+  "name": "Mighty Kasparov Every Stage",
+  "author": "Minty",
+  "summary": "Faces the Mighty Kasparov boss on every stage. Yes, really.",
+  "description": "A difficulty mod for people who have finished the game and want to suffer. Ships disabled - flip it on in the manager when you are ready.",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "MightyKasparovEveryStage.zip",
+  "folder": "MightyKasparovEveryStage",
+  "tags": ["gameplay", "cheats"],
+  "frameworkVersion": ">=1.1.0",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-08-12"
+}

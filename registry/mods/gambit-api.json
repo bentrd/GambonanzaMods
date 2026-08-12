@@ -1,0 +1,16 @@
+{
+  "id": "gambit-api",
+  "name": "Gambit Creation API",
+  "author": "Ben",
+  "summary": "Library other mods use to build and register custom gambits.",
+  "description": "Not much to look at on its own - install it because another mod asked for it. It gives mod authors a small API for defining a gambit (art, rarity, trigger, effect) and registering it with the game at runtime.",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "GambitApi.zip",
+  "folder": "GambitApi",
+  "tags": ["library", "gambits"],
+  "frameworkVersion": ">=1.1.0",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-08-12"
+}

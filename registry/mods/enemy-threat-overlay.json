@@ -1,0 +1,16 @@
+{
+  "id": "enemy-threat-overlay",
+  "name": "Enemy Threat Overlay",
+  "author": "nikaakaa",
+  "summary": "Hold Space to light up every square the enemy can reach.",
+  "description": "A board overlay that shows enemy coverage while you hold the key, so you can see the trap before you walk into it. Rebind the key from the in-game console (F10).",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "EnemyThreatOverlay.zip",
+  "folder": "EnemyThreatOverlay",
+  "tags": ["quality-of-life", "ui"],
+  "frameworkVersion": ">=1.1.0",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-08-12"
+}

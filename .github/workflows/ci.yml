@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/GambonanzaModManager/**'
+      - 'tools/registry/**'
+      - 'registry/**'
+      - 'tools/package-framework.sh'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'tools/GambonanzaModManager/**'
+      - 'tools/registry/**'
+      - 'registry/**'
+      - 'tools/package-framework.sh'
+      - '.github/workflows/ci.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  manager:
+    name: Mod manager tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: tools/GambonanzaModManager
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies (no Electron binary)
+        run: npm install --no-audit --no-fund
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: '1'
+      - name: Syntax check
+        run: npm run lint
+      - name: Unit tests
+        run: npm test
+
+  registry:
+    name: Registry validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate entries (with release lookups)
+        run: node tools/registry/validate.mjs --check-releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  shell:
+    name: Shell scripts parse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash -n build.sh tools/package-framework.sh sample_mods/build.sh

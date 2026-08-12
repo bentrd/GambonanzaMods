@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gambonanza Mod Manager</title>
+<meta name="description" content="Mods for Gambonanza, one click away. Patches the game safely, keeps a backup, installs mods from a curated registry, and keeps everything up to date.">
+<meta property="og:title" content="Gambonanza Mod Manager">
+<meta property="og:description" content="Mods for Gambonanza, one click away.">
+<link rel="icon" href="favicon.png" type="image/png">
+<style>
+  @font-face {
+    font-family: "VCRosdNEUE";
+    src: url("fonts/VCRosdNEUE.ttf") format("truetype");
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Jersey10";
+    src: url("fonts/Jersey10-Regular.ttf") format("truetype");
+    font-display: swap;
+  }
+  :root {
+    --cream: #f4e5c2; --cream-light: #faf1d7; --cream-soft: #e6d2a3;
+    --wine: #7e2e3e; --wine-light: #b14f5c; --wine-dark: #5a2230; --wine-deep: #3a1521;
+    --ink: #1a0e12; --green: #7fb857; --green-dark: #4f8838; --yellow: #f4c530;
+    --font-display: "VCRosdNEUE", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "Jersey10", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background-color: var(--wine-deep);
+    background-image:
+      radial-gradient(ellipse 90% 55% at 50% -5%, rgba(126,46,62,.5) 0%, rgba(58,21,33,0) 70%),
+      radial-gradient(ellipse 110% 80% at 50% 110%, rgba(26,14,18,.45) 0%, rgba(26,14,18,0) 60%);
+    background-attachment: fixed;
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-size: 16px; letter-spacing: .4px;
+    -webkit-font-smoothing: none;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1000px; margin: 0 auto; padding: 28px 18px 60px; }
+
+  header { display: flex; align-items: center; gap: 14px; margin-bottom: 34px; flex-wrap: wrap; }
+  .logo {
+    width: 54px; height: 54px; border-radius: 12px;
+    border: 3px solid var(--ink); background: var(--wine);
+    box-shadow: 0 4px 0 0 var(--ink);
+    display: grid; place-items: center;
+    font-family: var(--font-mono); font-size: 34px; color: var(--yellow);
+    text-shadow: 0 2px 0 var(--ink);
+  }
+  header h1 { margin: 0; font-size: 26px; text-transform: uppercase; letter-spacing: 1.6px; text-shadow: 0 3px 0 var(--ink); }
+  header .sub { font-size: 12px; color: rgba(244,229,194,.55); text-transform: uppercase; letter-spacing: 1.4px; }
+  header .links { margin-left: auto; display: flex; gap: 8px; }
+
+  .btn {
+    display: inline-block; text-decoration: none; text-align: center;
+    border: 3px solid var(--ink); border-radius: 9px;
+    padding: 12px 22px;
+    font-family: var(--font-display); font-size: 16px;
+    letter-spacing: .8px; text-transform: uppercase;
+    transition: transform 60ms ease-out, background-color 80ms ease-out, filter 80ms ease-out;
+    cursor: pointer; background: none; color: inherit;
+  }
+  .btn:active { transform: translateY(3px); }
+  .btn-green {
+    background: var(--green); color: var(--cream-light);
+    box-shadow: 0 5px 0 0 var(--green-dark), 0 6px 0 0 var(--ink);
+    text-shadow: 0 2px 0 var(--green-dark);
+  }
+  .btn-green:hover { filter: brightness(1.08); }
+  .btn-green:active { box-shadow: 0 1px 0 0 var(--green-dark), 0 2px 0 0 var(--ink); }
+  .btn-cream {
+    background: var(--cream); color: var(--wine-dark);
+    box-shadow: 0 4px 0 0 var(--cream-soft), 0 5px 0 0 var(--ink);
+  }
+  .btn-cream:hover { background: var(--cream-light); }
+  .btn-cream:active { box-shadow: 0 1px 0 0 var(--cream-soft), 0 2px 0 0 var(--ink); }
+  .btn.small { padding: 7px 13px; font-size: 12.5px; border-width: 2px; }
+  .btn.big { font-size: 19px; padding: 15px 30px; }
+
+  .hero { text-align: center; padding: 10px 0 6px; }
+  .hero h2 {
+    font-family: var(--font-mono); font-size: clamp(34px, 7vw, 58px);
+    margin: 0 0 10px; line-height: 1.02; text-transform: uppercase;
+    color: var(--cream-light); text-shadow: 0 4px 0 var(--ink);
+  }
+  .hero h2 .gold { color: var(--yellow); }
+  .hero p { max-width: 620px; margin: 0 auto 24px; color: rgba(244,229,194,.8); line-height: 1.55; }
+
+  .download-box { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .os-note { font-size: 12.5px; color: rgba(244,229,194,.6); }
+  .os-note a { color: var(--yellow); }
+  .alt-links { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+
+  .card {
+    position: relative;
+    background: var(--cream); color: var(--wine-dark);
+    border: 3px solid var(--ink); border-radius: 12px;
+    box-shadow: 0 5px 0 0 var(--ink);
+    padding: 30px 22px 22px; margin-top: 44px;
+  }
+  .card .title {
+    position: absolute; top: -17px; left: 50%; transform: translateX(-50%);
+    background: var(--cream); color: var(--wine);
+    border: 3px solid var(--ink); border-radius: 10px;
+    box-shadow: 0 4px 0 0 var(--ink);
+    padding: 3px 16px; white-space: nowrap;
+    font-size: 15px; letter-spacing: 1.2px; text-transform: uppercase;
+  }
+
+  .features { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .feature {
+    background: var(--cream-light);
+    border: 2px solid var(--ink); border-radius: 9px;
+    box-shadow: 0 3px 0 0 var(--ink);
+    padding: 14px 15px;
+  }
+  .feature .ico { font-family: var(--font-mono); font-size: 26px; color: var(--wine); }
+  .feature b { display: block; margin: 6px 0 4px; text-transform: uppercase; letter-spacing: .7px; font-size: 14px; }
+  .feature p { margin: 0; font-size: 13px; line-height: 1.45; color: rgba(90,34,48,.8); }
+
+  .mod-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .mod-card {
+    background: var(--cream-light); border: 2px solid var(--ink); border-radius: 9px;
+    box-shadow: 0 3px 0 0 var(--ink); padding: 12px 13px;
+  }
+  .mod-card h3 { margin: 0 0 2px; font-size: 15.5px; }
+  .mod-card .by { font-size: 10.5px; text-transform: uppercase; letter-spacing: .7px; color: rgba(90,34,48,.55); margin-bottom: 6px; }
+  .mod-card p { margin: 0; font-size: 12.5px; line-height: 1.4; color: rgba(90,34,48,.85); }
+  .mod-card .tags { margin-top: 8px; display: flex; gap: 4px; flex-wrap: wrap; }
+  .tag {
+    background: var(--wine-dark); color: var(--cream);
+    border: 2px solid var(--ink); border-radius: 4px;
+    padding: 0 6px; font-size: 10px; letter-spacing: .8px; text-transform: uppercase;
+  }
+  .tag.gold { background: #8a6a1c; color: #ffe9a3; }
+
+  .steps { counter-reset: step; }
+  .step { display: flex; gap: 14px; padding: 10px 0; align-items: flex-start; }
+  .step .n {
+    counter-increment: step; flex-shrink: 0;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--wine); color: var(--cream);
+    border: 2px solid var(--ink); display: grid; place-items: center;
+    font-family: var(--font-mono); font-size: 19px;
+  }
+  .step .n::before { content: counter(step); }
+  .step b { text-transform: uppercase; letter-spacing: .6px; font-size: 14.5px; }
+  .step p { margin: 3px 0 0; font-size: 13.5px; line-height: 1.5; color: rgba(90,34,48,.8); }
+  .step code {
+    background: rgba(26,14,18,.08); border: 1px solid rgba(26,14,18,.2);
+    border-radius: 4px; padding: 0 5px; font-size: 12.5px;
+  }
+
+  details {
+    border: 2px solid var(--ink); border-radius: 8px;
+    background: var(--cream-light); box-shadow: 0 3px 0 0 var(--ink);
+    margin-bottom: 10px; overflow: hidden;
+  }
+  summary {
+    padding: 11px 15px; cursor: pointer;
+    font-size: 14px; text-transform: uppercase; letter-spacing: .6px;
+    list-style: none;
+  }
+  summary::before { content: "▸ "; color: var(--wine); }
+  details[open] summary::before { content: "▾ "; }
+  details .body { padding: 0 15px 13px; font-size: 13.5px; line-height: 1.55; color: rgba(90,34,48,.85); }
+  details .body a { color: var(--wine); }
+
+  footer { text-align: center; margin-top: 44px; font-size: 12px; color: rgba(244,229,194,.45); text-transform: uppercase; letter-spacing: 1px; line-height: 2; }
+  footer a { color: rgba(244,229,194,.7); }
+  .loading { text-align: center; color: rgba(90,34,48,.55); padding: 20px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="logo">♞</div>
+    <div>
+      <h1>Gambonanza Mods</h1>
+      <div class="sub">Mod manager · free & open source</div>
+    </div>
+    <div class="links">
+      <a class="btn btn-cream small" href="https://github.com/bentrd/GambonanzaMods">GitHub</a>
+      <a class="btn btn-cream small" href="https://bentrd.github.io/GambonanzaAssets/">Asset browser</a>
+      <a class="btn btn-cream small" href="https://github.com/bentrd/gambonanza-seedfinder">Seed finder</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h2>Mods for Gambonanza,<br><span class="gold">one click away</span></h2>
+    <p>
+      The mod manager patches your game safely (with a backup), installs mods from a
+      curated registry, and keeps everything up to date - no files to move, no tools
+      to install, nothing technical.
+    </p>
+    <div class="download-box">
+      <a class="btn btn-green big" id="downloadBtn" href="https://github.com/bentrd/GambonanzaMods/releases">
+        Download
+      </a>
+      <div class="os-note" id="osNote">Detecting your system…</div>
+      <div class="alt-links" id="altLinks"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="title">What it does</span>
+    <div class="features">
+      <div class="feature"><div class="ico">⚑</div><b>Finds your game</b>
+        <p>Auto-detects the Steam install on macOS, Windows and Linux. Point it at a folder if yours lives somewhere odd.</p></div>
+      <div class="feature"><div class="ico">✚</div><b>Patches safely</b>
+        <p>One click adds mod support. The original game file is backed up first, and "Restore" puts everything back - Steam's file verify works too.</p></div>
+      <div class="feature"><div class="ico">▦</div><b>A real mod registry</b>
+        <p>Browse mods with one-click install and remove. Every mod comes from a public GitHub repo with visible source code and a checksum that's verified on install.</p></div>
+      <div class="feature"><div class="ico">↻</div><b>Stays up to date</b>
+        <p>When Steam updates the game or a new framework ships, you get a notification and a one-click re-patch - with the changelog, not a shrug.</p></div>
+      <div class="feature"><div class="ico">✎</div><b>Creator friendly</b>
+        <p>Publish a mod by linking your GitHub repo's release - sign in with GitHub and the manager opens the registry pull request for you.</p></div>
+      <div class="feature"><div class="ico">♟</div><b>Part of a family</b>
+        <p>Matches the GambonanzaAssets art editor and the Seed Finder - same look, same "no setup required" attitude.</p></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="title">Getting started</span>
+    <div class="steps">
+      <div class="step"><span class="n"></span><div><b>Download &amp; open</b>
+        <p>Grab the app above. <span id="macGatekeeper">On a Mac the first launch needs a <b>right-click → Open</b> (the app isn't notarised with Apple - it's free software, not a company).</span></p></div></div>
+      <div class="step"><span class="n"></span><div><b>Patch the game</b>
+        <p>The manager finds Gambonanza and one button adds mod support. Takes a few seconds; your original files are backed up automatically.</p></div></div>
+      <div class="step"><span class="n"></span><div><b>Pick your mods</b>
+        <p>Browse the registry, hit <code>Install</code>, and play. Mods load the next time the game starts - toggle them on and off any time.</p></div></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="title">Mods in the registry</span>
+    <div class="mod-grid" id="modGrid"><div class="loading">Loading the registry…</div></div>
+  </section>
+
+  <section class="card">
+    <span class="title">Questions</span>
+    <details>
+      <summary>Is this safe? It's changing my game files.</summary>
+      <div class="body">
+        The manager makes a backup of the one file it changes before touching it, and
+        "Restore original game files" puts it back byte for byte. Worst case, Steam's
+        <i>Verify integrity of game files</i> re-downloads a clean copy. Mods are
+        downloaded only from their authors' public GitHub repositories and verified
+        against a checksum recorded when the mod was reviewed - if a download doesn't
+        match, it's refused. All of this is open source, so you don't have to take our
+        word for any of it.
+      </div>
+    </details>
+    <details>
+      <summary>Do mods break when the game updates?</summary>
+      <div class="body">
+        Steam updates overwrite the patch. The manager notices, tells you, and re-patches
+        with one click - your mods and settings survive. If a game update genuinely breaks
+        the framework, an updated framework release shows up in the manager with a changelog.
+      </div>
+    </details>
+    <details>
+      <summary>Will mods get me banned? Does this touch multiplayer?</summary>
+      <div class="body">
+        Gambonanza is a single-player game and mods only run on your machine. Play fair
+        with leaderboards: some mods (speed, cheats) are clearly labelled - use your judgement.
+      </div>
+    </details>
+    <details>
+      <summary>How do I make a mod?</summary>
+      <div class="body">
+        A Gambonanza mod is a small .NET DLL - the
+        <a href="https://github.com/bentrd/GambonanzaMods">GambonanzaMods repository</a> has the
+        SDK, working sample mods to copy from, and a
+        <a href="https://github.com/bentrd/GambonanzaMods/blob/main/docs/MOD_PUBLISHING.md">publishing guide</a>.
+        When it works, publish a GitHub release and submit it from the manager's Publish tab.
+      </div>
+    </details>
+    <details>
+      <summary>Just want to reskin the game's art?</summary>
+      <div class="body">
+        You don't even need this app -
+        <a href="https://bentrd.github.io/GambonanzaAssets/">GambonanzaAssets</a> is a no-code
+        editor for every sprite in the game.
+      </div>
+    </details>
+  </section>
+
+  <footer>
+    MIT licensed · not affiliated with Blukulele ·
+    <a href="https://github.com/bentrd/GambonanzaMods">source on GitHub</a>
+    <br>
+    <a href="https://github.com/bentrd/GambonanzaMods/issues">Report a problem</a>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var RELEASES_PAGE = 'https://github.com/bentrd/GambonanzaMods/releases';
+  var API = 'https://api.github.com/repos/bentrd/GambonanzaMods/releases?per_page=30';
+
+  // ------------------------------------------------------------------ OS detection
+  function detectOs() {
+    var ua = navigator.userAgent || '';
+    var platform = navigator.platform || '';
+    if (/Windows/i.test(ua)) return 'windows';
+    if (/Macintosh|Mac OS X/i.test(ua) || /^Mac/i.test(platform)) return 'mac';
+    if (/Linux|X11/i.test(ua)) return 'linux';
+    if (/iPhone|iPad|Android/i.test(ua)) return 'mobile';
+    return 'unknown';
+  }
+
+  // Apple Silicon vs Intel is deliberately not guessed from the UA (it lies).
+  // Default to arm64 - every Mac sold since 2020 - and offer the Intel build
+  // as the alternative link.
+  function classifyAssets(assets) {
+    var out = { macArm: null, macIntel: null, win: null, linux: null };
+    for (var i = 0; i < assets.length; i++) {
+      var a = assets[i];
+      var n = a.name.toLowerCase();
+      if (n.slice(-4) === '.dmg') {
+        if (n.indexOf('arm64') !== -1) out.macArm = a;
+        else out.macIntel = a;
+      } else if (n.slice(-4) === '.exe') {
+        out.win = a;
+      } else if (n.indexOf('.appimage') !== -1) {
+        out.linux = a;
+      }
+    }
+    if (!out.macArm) out.macArm = out.macIntel;
+    return out;
+  }
+
+  function fmtSize(bytes) {
+    return bytes ? ' (' + (bytes / 1e6).toFixed(0) + ' MB)' : '';
+  }
+
+  var btn = document.getElementById('downloadBtn');
+  var note = document.getElementById('osNote');
+  var alts = document.getElementById('altLinks');
+  var os = detectOs();
+
+  if (os !== 'mac') {
+    var gk = document.getElementById('macGatekeeper');
+    if (gk) gk.style.display = 'none';
+  }
+
+  function altLink(label, href) {
+    var a = document.createElement('a');
+    a.className = 'btn btn-cream small';
+    a.href = href;
+    a.textContent = label;
+    return a;
+  }
+
+  function applyRelease(release) {
+    var version = release.tag_name.replace(/^manager-v/, '');
+    var picked = classifyAssets(release.assets || []);
+    var main = null;
+    var label = '';
+
+    if (os === 'mac' && picked.macArm) {
+      main = picked.macArm; label = 'Download for Mac';
+      note.innerHTML = 'Version ' + version + fmtSize(main.size) +
+        (picked.macIntel && picked.macIntel !== picked.macArm
+          ? ' · Apple&nbsp;Silicon — <a href="' + picked.macIntel.browser_download_url + '">Intel Mac instead?</a>'
+          : '');
+    } else if (os === 'windows' && picked.win) {
+      main = picked.win; label = 'Download for Windows';
+      note.textContent = 'Version ' + version + fmtSize(main.size);
+    } else if (os === 'linux' && picked.linux) {
+      main = picked.linux; label = 'Download for Linux';
+      note.textContent = 'Version ' + version + fmtSize(main.size) + ' · AppImage: chmod +x, then run';
+    } else if (os === 'mobile') {
+      note.textContent = 'The manager runs on computers - come back from your Mac, Windows or Linux machine!';
+    } else {
+      note.textContent = 'Version ' + version + ' · pick your platform:';
+    }
+
+    if (main) {
+      btn.href = main.browser_download_url;
+      btn.textContent = label;
+    } else {
+      btn.href = release.html_url || RELEASES_PAGE;
+    }
+
+    alts.textContent = '';
+    if (picked.macArm && main !== picked.macArm) alts.appendChild(altLink('macOS', picked.macArm.browser_download_url));
+    if (picked.win && main !== picked.win) alts.appendChild(altLink('Windows', picked.win.browser_download_url));
+    if (picked.linux && main !== picked.linux) alts.appendChild(altLink('Linux', picked.linux.browser_download_url));
+    alts.appendChild(altLink('All downloads', release.html_url || RELEASES_PAGE));
+  }
+
+  fetch(API)
+    .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+    .then(function (releases) {
+      for (var i = 0; i < releases.length; i++) {
+        var rel = releases[i];
+        if (!rel.draft && !rel.prerelease && rel.tag_name.indexOf('manager-v') === 0) {
+          applyRelease(rel);
+          return;
+        }
+      }
+      throw new Error('no manager release yet');
+    })
+    .catch(function () {
+      // Rate-limited or nothing released yet: the button still goes somewhere useful.
+      btn.href = RELEASES_PAGE;
+      btn.textContent = 'Download';
+      note.innerHTML = 'Grab the newest release for your system from the <a href="' + RELEASES_PAGE + '">releases page</a>.';
+    });
+
+  // ------------------------------------------------------------------ registry
+  var grid = document.getElementById('modGrid');
+  fetch('registry/index.json')
+    .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
+    .then(function (index) {
+      grid.textContent = '';
+      var mods = index.mods || [];
+      if (!mods.length) throw new Error('empty');
+      for (var i = 0; i < mods.length; i++) {
+        var m = mods[i];
+        var card = document.createElement('div');
+        card.className = 'mod-card';
+
+        var h = document.createElement('h3');
+        h.textContent = m.name;
+        var by = document.createElement('div');
+        by.className = 'by';
+        by.textContent = 'by ' + m.author + (m.latest && m.latest.version ? ' · v' + m.latest.version : m.pending ? ' · coming soon' : '');
+        var p = document.createElement('p');
+        p.textContent = m.summary || '';
+
+        var tags = document.createElement('div');
+        tags.className = 'tags';
+        if (m.official) {
+          var t0 = document.createElement('span');
+          t0.className = 'tag gold';
+          t0.textContent = 'official';
+          tags.appendChild(t0);
+        }
+        (m.tags || []).forEach(function (tg) {
+          var t = document.createElement('span');
+          t.className = 'tag';
+          t.textContent = tg.replace(/-/g, ' ');
+          tags.appendChild(t);
+        });
+
+        var link = document.createElement('a');
+        link.href = 'https://github.com/' + m.repo;
+        link.style.textDecoration = 'none';
+        link.style.color = 'inherit';
+        link.appendChild(h);
+        link.appendChild(by);
+        link.appendChild(p);
+        link.appendChild(tags);
+        card.appendChild(link);
+        grid.appendChild(card);
+      }
+    })
+    .catch(function () {
+      grid.innerHTML = '<div class="loading">Could not load the registry - browse it in the app, or ' +
+        '<a href="https://github.com/bentrd/GambonanzaMods/tree/main/registry/mods">on GitHub</a>.</div>';
+    });
+})();
+</script>
+</body>
+</html>
