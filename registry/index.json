@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-13T08:46:33.345Z",
-  "count": 6,
+  "generatedAt": "2026-08-13T10:14:44.616Z",
+  "count": 13,
   "releases": {
     "framework": {
       "tag": "v1.3.0",
@@ -127,6 +127,84 @@
   },
   "mods": [
     {
+      "id": "bougie",
+      "name": "Bougie's Gambit",
+      "author": "Agent15",
+      "summary": "Every time you spend money, earn $1 back.",
+      "description": "A rare utility gambit that hooks the game's coin-spent event: whenever your money goes down (including strains), you immediately earn $1 back, complete with the floating money animation. Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "BougiesGambit.zip",
+      "folder": "BougiesGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-13",
+      "official": false,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "BougiesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/BougiesGambit.zip",
+          "size": 4690,
+          "sha256": "20553737686bbf43b0c51dc592c956777240f51f947e548802d35dcdb1553e12"
+        }
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "crybaby",
+      "name": "Crybaby's Gambit",
+      "author": "Agent15",
+      "summary": "Every turn, each of your threatened pieces also counts as a capture, firing capture-triggered effects.",
+      "description": "On each player turn, right after threats are marked, every one of your pieces under threat fires the game's capture event as if it had been captured - the piece stays on the board, but anything that triggers on captures goes off. The author notes a known issue: starting a second game in the same session can leave your pieces unresponsive. Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "CrybabysGambit.zip",
+      "folder": "CrybabysGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-13",
+      "official": false,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "CrybabysGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/CrybabysGambit.zip",
+          "size": 5340,
+          "sha256": "1c071a3f7ac1b38b0eec46698d7e537b0276aaa71edb10230b3753a84b658028"
+        }
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "enemy-threat-overlay",
       "name": "Enemy Threat Overlay",
       "author": "nikaakaa",
@@ -159,7 +237,46 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T06:50:11Z",
+      "repoPushedAt": "2026-08-13T10:14:28Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "fishing-net",
+      "name": "Fishing Net's Gambit",
+      "author": "Agent15",
+      "summary": "When an enemy piece is trapped, skip the enemy's turn.",
+      "description": "A rare trap-focused gambit: whenever an enemy piece gets trapped (hunter tiles included), the enemy's next turn is skipped, turning every trap into free tempo. Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "FishingNetsGambit.zip",
+      "folder": "FishingNetsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-13",
+      "official": false,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "FishingNetsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/FishingNetsGambit.zip",
+          "size": 4267,
+          "sha256": "ccf0a0a02860069b94000a5c0a431792d4ce3a27511dbdeb0769e67ca9695b09"
+        }
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-13T00:04:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -196,7 +313,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T06:50:11Z",
+      "repoPushedAt": "2026-08-13T10:14:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -240,6 +357,84 @@
       "archived": false
     },
     {
+      "id": "jumper-cables",
+      "name": "Jumper Cables' Gambit",
+      "author": "Agent15",
+      "summary": "After every move, a 1/5 chance to trigger one of your gambits unconditionally.",
+      "description": "An EPIC-rarity gambit that rolls a 1-in-5 chance through the game's own chance system after every move; on success it fires one of the gambits you currently own, picked at random, ignoring their usual trigger conditions. Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "JumperCablesGambit.zip",
+      "folder": "JumperCablesGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-13",
+      "official": false,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "JumperCablesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/JumperCablesGambit.zip",
+          "size": 4838,
+          "sha256": "101ec1489dfc9b0af7fd245ffe94d70db04e73ac64cd660b42684b41aab00c14"
+        }
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "junk",
+      "name": "Junk's Gambit",
+      "author": "Agent15",
+      "summary": "A joke gambit that does nothing; its card text re-rolls to a random rule description each time it appears.",
+      "description": "A one-coin prank card: the gambit itself has no gameplay effect (its trigger only plays the standard visual effect), but every time the card appears its description is re-rolled from a pool of 25 texts that mostly restate vanilla game rules, so it always claims to do something it doesn't. Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "JunksGambit.zip",
+      "folder": "JunksGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-13",
+      "official": false,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "JunksGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/JunksGambit.zip",
+          "size": 5487,
+          "sha256": "5870d4a903f053d38ffa2a13fcb777aa35dcea1aebfd53291e7de2fc204956f9"
+        }
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "kamikaze-gambit",
       "name": "Kamikaze Gambit",
       "author": "Ben",
@@ -274,7 +469,46 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T06:50:11Z",
+      "repoPushedAt": "2026-08-13T10:14:28Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "lobbyist",
+      "name": "Lobbyist's Gambit",
+      "author": "Agent15",
+      "summary": "Selling a king captures a random enemy piece.",
+      "description": "When you sell a king mid-run, a random non-boss enemy piece gets captured in return. A splice of Equivalent Exchange's sell trigger with Kamikaze's capture logic, priced as an epic. Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "LobbyistsGambit.zip",
+      "folder": "LobbyistsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-13",
+      "official": false,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "LobbyistsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/LobbyistsGambit.zip",
+          "size": 5528,
+          "sha256": "bd1b4e303c6e0ad85e1549b910262c75ef36ed013409be002f5ef530ad941801"
+        }
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-13T00:04:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -311,7 +545,46 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T06:50:11Z",
+      "repoPushedAt": "2026-08-13T10:14:28Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "recursion",
+      "name": "Recursion's Gambit",
+      "author": "Agent15",
+      "summary": "Repeating your previous move exactly (same piece, same distance, same direction) skips the enemy's turn.",
+      "description": "An epic gambit that remembers your last move: repeat it exactly with the same piece, the same distance, in the same direction, and the enemy's next turn is skipped. Move history resets between rounds; the author notes a known trigger quirk around crumbled tiles. Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "RecursionsGambit.zip",
+      "folder": "RecursionsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-13",
+      "official": false,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "RecursionsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/RecursionsGambit.zip",
+          "size": 5063,
+          "sha256": "9f0a59cf7b0e32984a2cbe589284f0f7d273b01568473043dd0353c1b12a27be"
+        }
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-13T00:04:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -350,7 +623,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T06:50:11Z",
+      "repoPushedAt": "2026-08-13T10:14:28Z",
       "license": "MIT",
       "archived": false
     }
