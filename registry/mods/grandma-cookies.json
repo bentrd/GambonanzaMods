@@ -7,11 +7,15 @@
   "repo": "Agent15/Gambit_PWR_PACK",
   "asset": "GrandMasCookiesGambit.zip",
   "folder": "GrandMasCookiesGambit",
-  "tags": ["gameplay", "gambits"],
-  "dependencies": ["gambit-api"],
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
-  "pending": true,
   "submittedBy": "Agent15",
   "addedAt": "2026-08-12"
 }

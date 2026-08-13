@@ -6,7 +6,10 @@ name: Refresh registry index
 
 on:
   schedule:
-    - cron: '17 */6 * * *'
+    # Hourly: a community author publishing a release on THEIR repo can't
+    # trigger our workflows, so this cron is the only thing that notices -
+    # 6h made freshly-released mods look stuck on "coming soon".
+    - cron: '17 * * * *'
   workflow_dispatch:
   push:
     branches: [main]
