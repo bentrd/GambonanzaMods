@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-13T17:16:57.860Z",
+  "generatedAt": "2026-08-13T18:13:05.669Z",
   "count": 13,
   "releases": {
     "framework": {
@@ -237,7 +237,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T15:18:35Z",
+      "repoPushedAt": "2026-08-13T17:16:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -313,7 +313,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T15:18:35Z",
+      "repoPushedAt": "2026-08-13T17:16:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -469,7 +469,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T15:18:35Z",
+      "repoPushedAt": "2026-08-13T17:16:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -545,7 +545,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T15:18:35Z",
+      "repoPushedAt": "2026-08-13T17:16:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -623,7 +623,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T15:18:35Z",
+      "repoPushedAt": "2026-08-13T17:16:59Z",
       "license": "MIT",
       "archived": false
     }
