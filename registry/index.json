@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-13T00:13:08.880Z",
+  "generatedAt": "2026-08-13T03:03:00.336Z",
   "count": 6,
   "releases": {
     "framework": {
@@ -159,7 +159,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T00:12:57Z",
+      "repoPushedAt": "2026-08-13T00:13:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -196,7 +196,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T00:12:57Z",
+      "repoPushedAt": "2026-08-13T00:13:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -224,8 +224,8 @@
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
-        "publishedAt": "2026-08-13T00:04:04Z",
-        "notes": "GrandMa's Cookies Gambit: At the start of a game, earn one random piece",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GrandMasCookiesGambit.zip",
@@ -274,7 +274,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T00:12:57Z",
+      "repoPushedAt": "2026-08-13T00:13:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -311,7 +311,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T00:12:57Z",
+      "repoPushedAt": "2026-08-13T00:13:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -350,7 +350,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T00:12:57Z",
+      "repoPushedAt": "2026-08-13T00:13:09Z",
       "license": "MIT",
       "archived": false
     }
