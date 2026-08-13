@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-12T23:54:29.109Z",
+  "generatedAt": "2026-08-13T00:13:08.880Z",
   "count": 6,
   "releases": {
     "framework": {
@@ -159,7 +159,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T23:54:18Z",
+      "repoPushedAt": "2026-08-13T00:12:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -196,7 +196,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T23:54:18Z",
+      "repoPushedAt": "2026-08-13T00:12:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -221,10 +221,21 @@
       "submittedBy": "Agent15",
       "addedAt": "2026-08-12",
       "official": false,
-      "latest": null,
-      "pending": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-13T00:04:04Z",
+        "notes": "GrandMa's Cookies Gambit: At the start of a game, earn one random piece",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "GrandMasCookiesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/GrandMasCookiesGambit.zip",
+          "size": 5701,
+          "sha256": "47c50f67baf53e8f6ab73f206399e5da30a171ae304f42bb3063cc0079729bbe"
+        }
+      },
       "stars": 0,
-      "repoPushedAt": "2026-08-12T23:39:43Z",
+      "repoPushedAt": "2026-08-13T00:04:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -263,7 +274,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T23:54:18Z",
+      "repoPushedAt": "2026-08-13T00:12:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -300,7 +311,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T23:54:18Z",
+      "repoPushedAt": "2026-08-13T00:12:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -339,7 +350,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-12T23:54:18Z",
+      "repoPushedAt": "2026-08-13T00:12:57Z",
       "license": "MIT",
       "archived": false
     }
