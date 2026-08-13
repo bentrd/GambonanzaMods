@@ -1,0 +1,21 @@
+{
+  "id": "junk",
+  "name": "Junk's Gambit",
+  "author": "Agent15",
+  "summary": "A joke gambit that does nothing; its card text re-rolls to a random rule description each time it appears.",
+  "description": "A one-coin prank card: the gambit itself has no gameplay effect (its trigger only plays the standard visual effect), but every time the card appears its description is re-rolled from a pool of 25 texts that mostly restate vanilla game rules, so it always claims to do something it doesn't. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "JunksGambit.zip",
+  "folder": "JunksGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-13"
+}

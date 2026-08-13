@@ -1,0 +1,21 @@
+{
+  "id": "bougie",
+  "name": "Bougie's Gambit",
+  "author": "Agent15",
+  "summary": "Every time you spend money, earn $1 back.",
+  "description": "A rare utility gambit that hooks the game's coin-spent event: whenever your money goes down (including strains), you immediately earn $1 back, complete with the floating money animation. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "BougiesGambit.zip",
+  "folder": "BougiesGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-13"
+}

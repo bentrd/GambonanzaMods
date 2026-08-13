@@ -1,0 +1,21 @@
+{
+  "id": "jumper-cables",
+  "name": "Jumper Cables' Gambit",
+  "author": "Agent15",
+  "summary": "After every move, a 1/5 chance to trigger one of your gambits unconditionally.",
+  "description": "An EPIC-rarity gambit that rolls a 1-in-5 chance through the game's own chance system after every move; on success it fires one of the gambits you currently own, picked at random, ignoring their usual trigger conditions. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "JumperCablesGambit.zip",
+  "folder": "JumperCablesGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-13"
+}

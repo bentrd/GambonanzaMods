@@ -1,0 +1,21 @@
+{
+  "id": "crybaby",
+  "name": "Crybaby's Gambit",
+  "author": "Agent15",
+  "summary": "Every turn, each of your threatened pieces also counts as a capture, firing capture-triggered effects.",
+  "description": "On each player turn, right after threats are marked, every one of your pieces under threat fires the game's capture event as if it had been captured - the piece stays on the board, but anything that triggers on captures goes off. The author notes a known issue: starting a second game in the same session can leave your pieces unresponsive. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "CrybabysGambit.zip",
+  "folder": "CrybabysGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-13"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "recursion",
+  "name": "Recursion's Gambit",
+  "author": "Agent15",
+  "summary": "Repeating your previous move exactly (same piece, same distance, same direction) skips the enemy's turn.",
+  "description": "An epic gambit that remembers your last move: repeat it exactly with the same piece, the same distance, in the same direction, and the enemy's next turn is skipped. Move history resets between rounds; the author notes a known trigger quirk around crumbled tiles. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "RecursionsGambit.zip",
+  "folder": "RecursionsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-13"
+}

@@ -1,0 +1,21 @@
+{
+  "id": "lobbyist",
+  "name": "Lobbyist's Gambit",
+  "author": "Agent15",
+  "summary": "Selling a king captures a random enemy piece.",
+  "description": "When you sell a king mid-run, a random non-boss enemy piece gets captured in return. A splice of Equivalent Exchange's sell trigger with Kamikaze's capture logic, priced as an epic. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "LobbyistsGambit.zip",
+  "folder": "LobbyistsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-13"
+}
