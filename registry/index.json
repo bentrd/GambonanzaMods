@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-14T00:01:35.326Z",
+  "generatedAt": "2026-08-14T03:02:13.621Z",
   "count": 13,
   "releases": {
     "framework": {
@@ -148,20 +148,20 @@
       "addedAt": "2026-08-13",
       "official": false,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "BougiesGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/BougiesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/BougiesGambit.zip",
           "size": 4690,
           "sha256": "20553737686bbf43b0c51dc592c956777240f51f947e548802d35dcdb1553e12"
         }
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "repoPushedAt": "2026-08-14T00:49:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -187,20 +187,20 @@
       "addedAt": "2026-08-13",
       "official": false,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "CrybabysGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/CrybabysGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/CrybabysGambit.zip",
           "size": 5340,
           "sha256": "1c071a3f7ac1b38b0eec46698d7e537b0276aaa71edb10230b3753a84b658028"
         }
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "repoPushedAt": "2026-08-14T00:49:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -237,7 +237,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T23:05:45Z",
+      "repoPushedAt": "2026-08-14T00:01:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -263,20 +263,20 @@
       "addedAt": "2026-08-13",
       "official": false,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "FishingNetsGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/FishingNetsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/FishingNetsGambit.zip",
           "size": 4267,
           "sha256": "ccf0a0a02860069b94000a5c0a431792d4ce3a27511dbdeb0769e67ca9695b09"
         }
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "repoPushedAt": "2026-08-14T00:49:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -313,7 +313,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T23:05:45Z",
+      "repoPushedAt": "2026-08-14T00:01:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -339,20 +339,20 @@
       "addedAt": "2026-08-12",
       "official": false,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "GrandMasCookiesGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/GrandMasCookiesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/GrandMasCookiesGambit.zip",
           "size": 5701,
           "sha256": "47c50f67baf53e8f6ab73f206399e5da30a171ae304f42bb3063cc0079729bbe"
         }
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "repoPushedAt": "2026-08-14T00:49:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -378,20 +378,20 @@
       "addedAt": "2026-08-13",
       "official": false,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "JumperCablesGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/JumperCablesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/JumperCablesGambit.zip",
           "size": 4838,
           "sha256": "101ec1489dfc9b0af7fd245ffe94d70db04e73ac64cd660b42684b41aab00c14"
         }
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "repoPushedAt": "2026-08-14T00:49:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -417,20 +417,20 @@
       "addedAt": "2026-08-13",
       "official": false,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "JunksGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/JunksGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/JunksGambit.zip",
           "size": 5487,
           "sha256": "5870d4a903f053d38ffa2a13fcb777aa35dcea1aebfd53291e7de2fc204956f9"
         }
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "repoPushedAt": "2026-08-14T00:49:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -469,7 +469,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T23:05:45Z",
+      "repoPushedAt": "2026-08-14T00:01:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -495,20 +495,20 @@
       "addedAt": "2026-08-13",
       "official": false,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "LobbyistsGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/LobbyistsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/LobbyistsGambit.zip",
           "size": 5528,
           "sha256": "bd1b4e303c6e0ad85e1549b910262c75ef36ed013409be002f5ef530ad941801"
         }
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "repoPushedAt": "2026-08-14T00:49:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -545,7 +545,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T23:05:45Z",
+      "repoPushedAt": "2026-08-14T00:01:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -571,20 +571,20 @@
       "addedAt": "2026-08-13",
       "official": false,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added the ZIP files for every gambit mod in the /Mods folder",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "RecursionsGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/RecursionsGambit.zip",
-          "size": 5063,
-          "sha256": "9f0a59cf7b0e32984a2cbe589284f0f7d273b01568473043dd0353c1b12a27be"
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/RecursionsGambit.zip",
+          "size": 5027,
+          "sha256": "d1e44819e2d46122135010b8058e974669c18b7435f5050037a24b0d0f19e6b2"
         }
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-13T00:04:04Z",
+      "repoPushedAt": "2026-08-14T00:49:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -623,7 +623,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-13T23:05:45Z",
+      "repoPushedAt": "2026-08-14T00:01:36Z",
       "license": "MIT",
       "archived": false
     }
