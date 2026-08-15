@@ -1,26 +1,40 @@
-# Turns a "Submit a mod" issue (the form in ISSUE_TEMPLATE/mod-submission.yml)
-# into a registry pull request, so creators never have to touch git.
+# Front desk for "Submit a mod" issues (the form in
+# ISSUE_TEMPLATE/mod-submission.yml).
 #
-# Security posture: the issue body is untrusted input. Everything from it goes
-# through the same validateEntry() the registry CI uses (strict patterns on
-# id/repo/folder, length caps on everything), the file path is derived from the
-# validated id only, and the JSON is written by Node - no user string is ever
-# interpolated into a shell command. The PR still needs a human review+merge;
-# this only saves the typing.
-name: Mod submission to PR
+# The issue itself IS the submission now: the registry index builder lists
+# every open, well-formed submission issue in the mod manager as an
+# UNREVIEWED mod (players get a warning before installing one). A maintainer
+# reviews the source, adds registry/mods/<id>.json and closes the issue -
+# that flips the listing to the reviewed badge. Closing without adding the
+# file just delists it. No pull request bot anymore.
+#
+# This workflow only does the fast feedback: validate the form the moment it
+# is opened or edited, comment problems back, and kick the registry refresh
+# so the listing appears (or updates, or disappears on close) within minutes
+# instead of waiting for the hourly cron.
+#
+# Security posture: the issue body is untrusted input. It is parsed and
+# validated by the same Node code the registry CI uses (strict patterns on
+# id/repo/folder, length caps on everything), and no user string is ever
+# interpolated into a shell command.
+#
+# Detection is by the form's headings, not the label: template labels are
+# silently dropped when the label doesn't exist in the repo, and real
+# submissions have arrived label-less.
+name: Mod submission check
 
 on:
   issues:
-    types: [opened, edited]
+    types: [opened, edited, closed, reopened]
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
   issues: write
+  # gh workflow run registry-refresh.yml
+  actions: write
 
 jobs:
-  convert:
-    if: contains(github.event.issue.labels.*.name, 'mod-submission')
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,93 +49,59 @@ jobs:
           ISSUE_USER: ${{ github.event.issue.user.login }}
         run: |
           node <<'EOF'
-          const { appendFileSync, writeFileSync, mkdirSync, existsSync } = require('node:fs');
+          const { appendFileSync, writeFileSync } = require('node:fs');
 
           async function main() {
-            const { validateEntry } = await import(`${process.cwd()}/tools/registry/lib.mjs`);
+            const { parseSubmissionIssue, validateEntry, loadEntries } =
+              await import(`${process.cwd()}/tools/registry/lib.mjs`);
 
-            // Issue forms render as "### <label>\n\n<value>" blocks. Capture
-            // up to the next heading (not the next '#') so values containing
-            // a hash survive.
-            const body = process.env.ISSUE_BODY || '';
-            const fields = {};
-            for (const match of body.matchAll(/###\s+([^\n]+)\n+([\s\S]*?)(?=\n###\s|$)/g)) {
-              const value = match[2].trim();
-              fields[match[1].trim().toLowerCase()] = value === '_No response_' ? '' : value;
-            }
-
-            const name = fields['mod name'] || '';
-            const id = (fields['registry id'] || name)
-              .toLowerCase().trim()
-              .replace(/[^a-z0-9]+/g, '-')
-              .replace(/^-+|-+$/g, '')
-              .slice(0, 40);
-            const tags = (fields.tags || '')
-              .split(',').map((t) => t.trim().toLowerCase()).filter(Boolean).slice(0, 5);
-
-            const entry = {
-              id,
-              name,
+            const entry = parseSubmissionIssue(process.env.ISSUE_BODY, {
               author: process.env.ISSUE_USER,
-              summary: fields['one-line summary'] || '',
-              repo: fields['github repository'] || '',
-              asset: fields['release asset'] || '',
-              folder: fields['install folder'] || '',
-              ...(tags.length ? { tags } : {}),
-              ...(fields['entry type (bare-dll releases only)']
-                ? { manifest: { entry: fields['entry type (bare-dll releases only)'] } }
-                : {}),
-              pending: true,
-              submittedBy: process.env.ISSUE_USER,
-              addedAt: new Date().toISOString().slice(0, 10),
-            };
-
-            const problems = validateEntry(entry, `${entry.id}.json`);
-
-            // An id that already exists belongs to someone's live mod - a
-            // "new mod" submission must never be able to repoint its download.
-            if (!problems.length && existsSync(`registry/mods/${entry.id}.json`)) {
-              problems.push(`the id "${entry.id}" is already taken by an existing registry entry. `
-                + 'If this is your own mod and you want to change its entry, open a pull request '
-                + `editing registry/mods/${entry.id}.json instead. Otherwise pick a different id.`);
-            }
-
-            if (problems.length) {
-              writeFileSync('/tmp/problems.md', problems.map((p) => `- ${p}`).join('\n'));
-              appendFileSync(process.env.GITHUB_OUTPUT, 'valid=false\n');
+              createdAt: new Date().toISOString(),
+            });
+            if (!entry) {
+              // Not the submission form - some unrelated issue. Do nothing.
+              appendFileSync(process.env.GITHUB_OUTPUT, 'submission=false\n');
               return;
             }
 
-            mkdirSync('registry/mods', { recursive: true });
-            writeFileSync(`registry/mods/${entry.id}.json`, `${JSON.stringify(entry, null, 2)}\n`);
-            appendFileSync(process.env.GITHUB_OUTPUT, `valid=true\nmod_id=${entry.id}\n`);
-            writeFileSync('/tmp/modname.txt', entry.name);
+            const problems = validateEntry(entry, `${entry.id}.json`);
+
+            // Same collision rules the index builder enforces: an id that
+            // already exists belongs to someone's live mod - a submission must
+            // never be able to repoint its download - and two mods can't share
+            // an install folder.
+            const existing = await loadEntries();
+            if (!problems.length) {
+              if (existing.some(({ entry: reg }) => reg.id === entry.id)) {
+                problems.push(`the id "${entry.id}" is already taken by an existing registry entry. `
+                  + 'If this is your own mod and you want to change its entry, open a pull request '
+                  + `editing registry/mods/${entry.id}.json instead. Otherwise pick a different id.`);
+              } else if (existing.some(({ entry: reg }) => String(reg.folder).toLowerCase() === entry.folder.toLowerCase())) {
+                problems.push(`the install folder "${entry.folder}" is already taken by another mod - pick a different one.`);
+              }
+            }
+
+            appendFileSync(process.env.GITHUB_OUTPUT, 'submission=true\n');
+            if (problems.length) {
+              writeFileSync('/tmp/problems.md', problems.map((p) => `- ${p}`).join('\n'));
+              appendFileSync(process.env.GITHUB_OUTPUT, 'valid=false\n');
+            } else {
+              appendFileSync(process.env.GITHUB_OUTPUT, 'valid=true\n');
+            }
           }
           main().catch((err) => { console.error(err); process.exit(1); });
           EOF
 
-      - name: Cross-entry validation (bot PRs get no CI of their own)
-        id: crossval
-        if: steps.parse.outputs.valid == 'true'
-        run: |
-          # PRs opened with GITHUB_TOKEN do not trigger pull_request workflows,
-          # so the full registry validation runs here instead, before the PR
-          # exists - duplicate folders, dangling dependencies, all of it.
-          if node tools/registry/validate.mjs > /tmp/validate.log 2>&1; then
-            echo "valid=true" >> "$GITHUB_OUTPUT"
-          else
-            # Strip ANSI colour codes for the issue comment.
-            sed 's/\x1b\[[0-9;]*m//g' /tmp/validate.log > /tmp/problems.md
-            echo "valid=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Reply with validation problems
-        if: steps.parse.outputs.valid == 'false' || steps.crossval.outputs.valid == 'false'
+        if: >-
+          steps.parse.outputs.submission == 'true' && steps.parse.outputs.valid == 'false'
+          && (github.event.action == 'opened' || github.event.action == 'edited')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           {
-            echo "Thanks for the submission! A few things need fixing before I can open the registry PR:"
+            echo "Thanks for the submission! A few things need fixing before it can be listed:"
             echo
             cat /tmp/problems.md
             echo
@@ -129,63 +109,41 @@ jobs:
           } > /tmp/comment.md
           gh issue comment "${{ github.event.issue.number }}" --body-file /tmp/comment.md
 
-      - name: Open the registry PR
-        if: steps.parse.outputs.valid == 'true' && steps.crossval.outputs.valid == 'true'
+      - name: Acknowledge a valid submission (once)
+        if: >-
+          steps.parse.outputs.submission == 'true' && steps.parse.outputs.valid == 'true'
+          && (github.event.action == 'opened' || github.event.action == 'edited')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          MOD_ID: ${{ steps.parse.outputs.mod_id }}
-          ISSUE_NUMBER: ${{ github.event.issue.number }}
-          ISSUE_USER: ${{ github.event.issue.user.login }}
         run: |
-          branch="registry/${MOD_ID}"
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout -B "$branch"
-          git add "registry/mods/${MOD_ID}.json"
-          if git diff --cached --quiet; then
-            echo "no changes (identical entry already exists)"
+          # Only ack once per issue - edits after a good ack stay silent.
+          acked="$(gh api "repos/${GITHUB_REPOSITORY}/issues/${{ github.event.issue.number }}/comments" \
+            --jq '[.[] | select(.body | contains("<!-- mod-submission-ack -->"))] | length')"
+          if [ "$acked" != "0" ]; then
+            echo "already acknowledged"
             exit 0
           fi
-          git commit -m "registry: add ${MOD_ID} (#${ISSUE_NUMBER})"
-          git push -f origin "$branch"
-
-          modname="$(cat /tmp/modname.txt)"
           {
-            echo "Adds **${modname}** to the mod registry, submitted by @${ISSUE_USER} in #${ISSUE_NUMBER}."
+            echo "Thanks - your submission is valid! Here's what happens next:"
             echo
-            echo "Full registry validation already ran inside the submission workflow (bot-opened PRs don't trigger CI on their own)."
+            echo "- Your mod appears in the mod manager within the hour, marked **unreviewed**."
+            echo "  Players are warned that nobody has checked the code yet and pointed at your source."
+            echo "- A maintainer will read your source. If it passes, your mod gets the **reviewed**"
+            echo "  badge and this issue is closed - that's the good ending, not a rejection."
+            echo "- No release published yet? The entry shows as \"coming soon\" and switches to"
+            echo "  installable automatically once you publish one with the asset attached."
             echo
-            echo "Review checklist:"
-            echo "- [ ] the linked repository contains the mod's real source"
-            echo "- [ ] the release asset is what the source builds"
-            echo "- [ ] nothing sketchy in the code (network calls, file access outside the game)"
+            echo "Editing this issue updates the listing on the next refresh."
             echo
-            echo "Closes #${ISSUE_NUMBER}."
-          } > /tmp/pr.md
-
-          # "Allow GitHub Actions to create and approve pull requests" may be
-          # off (it is by default) - the branch is pushed either way, so fall
-          # back to a one-click compare link for a maintainer.
-          existing="$(gh pr list --head "$branch" --state open --json number --jq '.[0].number' || true)"
-          if [ -n "$existing" ]; then
-            gh pr edit "$existing" --body-file /tmp/pr.md
-            url="$(gh pr view "$existing" --json url --jq .url)"
-            opened=1
-          elif url="$(gh pr create --title "Registry: add ${modname}" --body-file /tmp/pr.md --head "$branch" 2>/tmp/pr-err.txt)"; then
-            opened=1
-          else
-            echo "gh pr create failed:"; cat /tmp/pr-err.txt
-            url="https://github.com/${GITHUB_REPOSITORY}/compare/main...${branch}?quick_pull=1"
-            opened=0
-          fi
-
-          {
-            if [ "$opened" -eq 1 ]; then
-              echo "All good - I opened ${url} for review. Once a maintainer merges it, your mod appears in the manager (make sure a GitHub release with the asset exists so it switches from \"coming soon\" to installable)."
-            else
-              echo "Your submission is valid and I pushed it to the \`${branch}\` branch, but this repository doesn't let workflows open pull requests. A maintainer can open it in one click: ${url}"
-              echo
-              echo "(Maintainer note: enable *Settings → Actions → General → Allow GitHub Actions to create and approve pull requests* to make this fully automatic.)"
-            fi
+            echo "<!-- mod-submission-ack -->"
           } > /tmp/comment.md
-          gh issue comment "$ISSUE_NUMBER" --body-file /tmp/comment.md
+          gh issue comment "${{ github.event.issue.number }}" --body-file /tmp/comment.md
+
+      - name: Refresh the registry index now
+        if: steps.parse.outputs.submission == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # The hourly cron would get there eventually; this makes the listing
+          # follow the issue (open → listed, closed → delisted) within minutes.
+          gh workflow run registry-refresh.yml --ref main || true

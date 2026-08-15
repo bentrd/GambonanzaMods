@@ -139,6 +139,7 @@
     padding: 0 6px; font-size: 10px; letter-spacing: .8px; text-transform: uppercase;
   }
   .tag.gold { background: #8a6a1c; color: #ffe9a3; }
+  .tag.red { background: #8a3a28; color: #ffd9cc; }
 
   .steps { counter-reset: step; }
   .step { display: flex; gap: 14px; padding: 10px 0; align-items: flex-start; }
@@ -258,9 +259,12 @@
         "Restore original game files" puts it back byte for byte. Worst case, Steam's
         <i>Verify integrity of game files</i> re-downloads a clean copy. Mods are
         downloaded only from their authors' public GitHub repositories and verified
-        against a checksum recorded when the mod was reviewed - if a download doesn't
-        match, it's refused. All of this is open source, so you don't have to take our
-        word for any of it.
+        against a recorded checksum - if a download doesn't match, it's refused. Mods
+        wearing the <b>reviewed</b> badge had their source code read by a maintainer
+        before being listed; <b>unreviewed</b> ones are fresh community submissions
+        still waiting for that review, and the manager warns you before installing
+        one - read their source first. All of this is open source, so you don't have
+        to take our word for any of it.
       </div>
     </details>
     <details>
@@ -466,12 +470,19 @@
 
         var tags = document.createElement('div');
         tags.className = 'tags';
-        if (m.official) {
-          var t0 = document.createElement('span');
+        // reviewed === false marks submissions still awaiting review; the
+        // index stamps everything that went through review with true.
+        var t0 = document.createElement('span');
+        if (m.reviewed === false) {
+          t0.className = 'tag red';
+          t0.textContent = 'unreviewed';
+          t0.title = 'Awaiting review - read the source before installing';
+        } else {
           t0.className = 'tag gold';
-          t0.textContent = 'official';
-          tags.appendChild(t0);
+          t0.textContent = 'reviewed';
+          t0.title = 'The source code was reviewed before this mod was listed';
         }
+        tags.appendChild(t0);
         (m.tags || []).forEach(function (tg) {
           var t = document.createElement('span');
           t.className = 'tag';

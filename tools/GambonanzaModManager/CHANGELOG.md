@@ -4,6 +4,16 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.1.0
+
+- Community submissions show up in Browse the moment they're submitted,
+  marked **unreviewed** - straight from their submission issue, before a
+  maintainer has read the code. Installing (or updating) one warns you that
+  nobody has checked it and points you at the source.
+- The gold badge is now **reviewed** and replaces "official": it means a
+  human read the mod's source before it was listed, which is true of every
+  registry mod - bundled or community-made.
+
 ## 1.0.6
 
 - New knight. The app icon, the header logo and the website all wear the
