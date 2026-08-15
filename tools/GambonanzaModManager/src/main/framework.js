@@ -56,8 +56,11 @@ async function listReleases({ token } = {}) {
         sha256: typeof a.digest === 'string' && a.digest.startsWith('sha256:') ? a.digest.slice(7) : null,
       })),
     };
-    if (rel.tag_name.startsWith(config.MANAGER_TAG_PREFIX)) manager.push(record);
-    else framework.push(record);
+    // Both streams matched positively - a tag that is neither (a standalone mod
+    // release, say) belongs to no stream and is dropped rather than defaulting
+    // into the framework bucket.
+    if (config.isManagerTag(rel.tag_name)) manager.push(record);
+    else if (config.isFrameworkTag(rel.tag_name)) framework.push(record);
   }
   return { ok: true, framework, manager };
 }
