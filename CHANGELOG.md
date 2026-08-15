@@ -5,6 +5,17 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## Unreleased
+
+- The mod manager now shows each bundled mod's own version instead of the
+  framework's. Better Collection reads 1.0.0 because it is new; GambitApi
+  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with
+  the framework claimed whatever framework release it last rode in on, so a
+  brand new mod introduced itself as "1.3.2". Nothing about the mods
+  themselves changed in this release - only the number on the card.
+- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops
+  warning that your game differs from what the framework was tested against.
+
 ## 1.3.2
 
 - New mod - **Better Collection**: the collection screen runs smoothly now.

@@ -10,12 +10,22 @@
 #   2. Launch the game, open the console (F10), run `mods` and `list gambits`.
 #   3. If everything works, update the two values below and note what changed.
 
-steamBuildId=24613134
-assemblySha256=66236d55273077ab6a478bd57f045f4842d7035c46c74e6e15800971f882d311
+steamBuildId=24648699
+assemblySha256=32d0aa4e12f58e65d58f1d5600da269ae2a65a4a2fa69d98610ca060081f3f91
 unityVersion=6000.4.3f1
-verifiedOn=2026-08-08
+verifiedOn=2026-08-15
 
-# What this build (game v1.4.0) changed that the framework cares about:
+# Build 24648699 (verified 2026-08-15): no per-type diff was possible - the
+# previous build's Assembly-CSharp.dll was already gone from refs/ by the time
+# the update was noticed, so there is nothing to diff against. Verified the
+# empirical way instead: full ./build.sh, launched, all 7 mods loaded via
+# ModHost, console and GambitApi working, collection and run-info screens
+# inspected. If something does break, this un-diffed update is the first
+# suspect. To diff a future update, copy refs/Assembly-CSharp.dll aside BEFORE
+# re-running build.sh - it overwrites refs/ from the installed game.
+#
+# What the PREVIOUS build (24613134, game v1.4.0) changed that the framework
+# cares about:
 #   - New Graveyard buy-back system: State.GRAVEYARD (appended at the enum END,
 #     so compiled mods keep working), GraveyardManager/Canvas/Button/Infos,
 #     PieceManager.AddPieceToGraveyard, BaseData.Graveyard/GraveyardPieceBought.
