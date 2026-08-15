@@ -63,3 +63,9 @@ desktop.ini
 *.tmp
 nuget.lock.json
 project.lock.json
+
+# iCloud Drive conflict duplicates. This repo commonly lives on a synced
+# Desktop, and iCloud races build.sh's rm -rf + cp when staging Mods/,
+# leaving "Foo 2.dll" next to "Foo.dll". release-framework.sh runs a bare
+# `git add prebuilt/`, so without this they can ride along into a release.
+* 2.*
