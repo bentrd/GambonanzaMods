@@ -1,7 +1,7 @@
 {
   "id": "SpikesGambit",
   "name": "Spikes' Gambit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "TGM",
   "entry": "Gambonanza.SpikesGambit.SpikesGambitMod",
   "enabled": true,

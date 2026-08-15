@@ -1,7 +1,7 @@
 {
     "id": "GambitApi",
     "name": "Gambit Creation API",
-    "version": "1.0.0",
+    "version": "1.4.0",
     "author": "Ben",
     "entry": "Gambonanza.GambitApi.GambitApiMod",
     "enabled": true,
