@@ -21,7 +21,7 @@
 import { writeFile, readFile } from 'node:fs/promises';
 import {
   INDEX_PATH, HOME_REPO, loadEntries, validateEntry,
-  resolveLatestRelease, githubFetch, sha256, versionFromTag,
+  resolveLatestRelease, githubFetch, sha256, versionFromTag, manifestVersionFromZip,
 } from './lib.mjs';
 
 const args = new Set(process.argv.slice(2));
@@ -79,16 +79,35 @@ for (const { fileName, entry } of entries) {
         && cached.tag === release.tag
         && cached.asset?.name === release.asset.name
         && cached.asset?.size === release.asset.size
-        && cached.asset?.sha256;
+        && cached.asset?.sha256
+        // Entries written before manifestVersion existed get re-inspected once,
+        // so the migration happens on the next refresh rather than never.
+        && cached.manifestVersion !== undefined;
 
       let hash = reusable ? cached.asset.sha256 : null;
+      // Carried in the index so the cached path keeps the mod's own version
+      // instead of silently falling back to the tag on the next run.
+      let manifestVersion = reusable ? cached.manifestVersion ?? null : null;
       if (!hash) {
         if (release.asset.size > MAX_ASSET_BYTES) {
           throw new Error(`asset is ${(release.asset.size / 1e6).toFixed(1)} MB, over the ${MAX_ASSET_BYTES / 1e6} MB ceiling`);
         }
-        hash = await hashAsset(release.asset.url);
+        ({ sha256: hash, manifestVersion } = await inspectAsset(release.asset.url));
       }
       release.asset.sha256 = hash;
+      // Always recorded, null included: its absence is what marks a pre-migration
+      // entry, so writing it unconditionally stops bare-.dll mods (which have no
+      // manifest to read) from being re-downloaded on every single refresh.
+      release.manifestVersion = manifestVersion ?? null;
+      // Bundled mods ship as assets on the *framework's* release, so their tag
+      // says nothing about the mod - BetterCollection 1.0.0 read as "1.3.2" the
+      // day it launched. Their own manifest is the honest number.
+      //
+      // Third-party mods are the opposite: they cut a release per version, so
+      // their tag is authoritative and their mod.json is often a stale 1.0.0
+      // nobody bumps. Preferring the manifest there would flatten every mod in
+      // the registry to 1.0.0, which is why this is limited to official ones.
+      if (manifestVersion && record.official) release.version = manifestVersion;
       record.latest = release;
       console.log(`✓ ${entry.id} → ${release.tag} ${release.asset.name} (${hash.slice(0, 12)}…)${reusable ? ' [cached]' : ''}`);
     } else if (entry.pending) {
@@ -194,7 +213,8 @@ async function resolveHomeReleases() {
   }
 }
 
-async function hashAsset(url) {
+/** Hash and read the mod's declared version from one download, not two. */
+async function inspectAsset(url) {
   const res = await fetch(url, {
     headers: { 'user-agent': 'gambonanza-registry', accept: 'application/octet-stream' },
     redirect: 'follow',
@@ -202,7 +222,7 @@ async function hashAsset(url) {
   if (!res.ok) throw new Error(`download failed with HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
   if (buf.length > MAX_ASSET_BYTES) throw new Error('asset exceeded the size ceiling mid-download');
-  return sha256(buf);
+  return { sha256: sha256(buf), manifestVersion: manifestVersionFromZip(buf) };
 }
 
 /** Copy repo metadata forward from the previous index (offline path). */

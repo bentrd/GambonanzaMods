@@ -8,6 +8,7 @@ import { createHash } from 'node:crypto';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { inflateRawSync } from 'node:zlib';
 
 export const REPO_ROOT = path.resolve(fileURLToPath(new URL('../../', import.meta.url)));
 export const REGISTRY_DIR = path.join(REPO_ROOT, 'registry');
@@ -210,6 +211,70 @@ export function compareVersions(a, b) {
 
 export function sha256(buffer) {
   return createHash('sha256').update(buffer).digest('hex');
+}
+
+/**
+ * The "version" declared in the mod.json inside a mod zip, or null.
+ *
+ * A mod's own version is the honest thing to show players: bundled sample mods
+ * all ship as assets on the framework release, so deriving it from the tag made
+ * every one of them read as the framework's version instead of their own.
+ *
+ * Hand-rolled rather than pulling in a zip dependency - this file runs in CI on
+ * a bare `node` with no `npm install`, and mod.json is a few hundred bytes.
+ * Anything unexpected returns null so the caller falls back to the tag; a
+ * malformed archive must never take the whole registry down.
+ */
+export function manifestVersionFromZip(buffer) {
+  try {
+    // End of Central Directory: scan back from the end, past any trailing comment.
+    const maxComment = 0xffff;
+    let eocd = -1;
+    for (let i = buffer.length - 22; i >= 0 && i >= buffer.length - 22 - maxComment; i--) {
+      if (buffer.readUInt32LE(i) === 0x06054b50) { eocd = i; break; }
+    }
+    if (eocd < 0) return null;
+
+    const entryCount = buffer.readUInt16LE(eocd + 10);
+    let pos = buffer.readUInt32LE(eocd + 16); // central directory offset
+
+    // Prefer the shallowest mod.json: "Mod/mod.json" is the real manifest,
+    // anything deeper would be a bundled asset that happens to share the name.
+    let best = null;
+    for (let i = 0; i < entryCount; i++) {
+      if (pos + 46 > buffer.length || buffer.readUInt32LE(pos) !== 0x02014b50) break;
+      const nameLen = buffer.readUInt16LE(pos + 28);
+      const extraLen = buffer.readUInt16LE(pos + 30);
+      const commentLen = buffer.readUInt16LE(pos + 32);
+      const name = buffer.toString('utf8', pos + 46, pos + 46 + nameLen);
+      if (path.posix.basename(name) === 'mod.json') {
+        const depth = name.split('/').length;
+        if (!best || depth < best.depth) {
+          best = {
+            depth,
+            method: buffer.readUInt16LE(pos + 10),
+            // Central-directory sizes are authoritative; the local header may
+            // carry zeros when a data descriptor was used.
+            compressedSize: buffer.readUInt32LE(pos + 20),
+            localOffset: buffer.readUInt32LE(pos + 42),
+          };
+        }
+      }
+      pos += 46 + nameLen + extraLen + commentLen;
+    }
+    if (!best) return null;
+
+    const lo = best.localOffset;
+    if (buffer.readUInt32LE(lo) !== 0x04034b50) return null;
+    const dataStart = lo + 30 + buffer.readUInt16LE(lo + 26) + buffer.readUInt16LE(lo + 28);
+    const raw = buffer.subarray(dataStart, dataStart + best.compressedSize);
+    const json = best.method === 0 ? raw : inflateRawSync(raw);
+
+    const version = JSON.parse(json.toString('utf8'))?.version;
+    return typeof version === 'string' && version.trim() ? version.trim() : null;
+  } catch {
+    return null;
+  }
 }
 
 /**
