@@ -39,6 +39,24 @@ module.exports = {
   /** Release tags that publish this app. Framework releases use plain v*. */
   MANAGER_TAG_PREFIX: 'manager-v',
 
+  /**
+   * The home repo publishes more than two kinds of release: the framework
+   * (`v1.2.3`), this app (`manager-v1.2.3`), and the occasional standalone mod
+   * whose source we do not want in the tree (`mod-impatient-v1.0.0`).
+   *
+   * Both streams are therefore matched POSITIVELY. Treating "not a manager
+   * release" as a framework release is what let the first mod release land in
+   * the framework lane, where it would have been served to every player as a
+   * framework update carrying none of the framework assets.
+   */
+  isManagerTag(tag) {
+    return String(tag || '').startsWith('manager-v');
+  },
+
+  isFrameworkTag(tag) {
+    return /^v\d/.test(String(tag || ''));
+  },
+
   /** Asset name pattern for the per-platform framework bundle. */
   frameworkAssetName(rid) {
     return `gambonanza-framework-${rid}.zip`;

@@ -153,8 +153,14 @@ async function resolveHomeReleases() {
         sha256: typeof a.digest === 'string' && a.digest.startsWith('sha256:') ? a.digest.slice(7) : null,
       })),
     });
-    const framework = rels.find((r) => !r.draft && !r.prerelease && !r.tag_name.startsWith('manager-v'));
-    const manager = rels.find((r) => !r.draft && !r.prerelease && r.tag_name.startsWith('manager-v'));
+    // Match both streams POSITIVELY. This repo also carries the occasional
+    // standalone mod release (`mod-<name>-v1.0.0`), and treating "not a manager
+    // release" as a framework release published the first of those into the
+    // index as a phantom framework build - which is what every player's update
+    // banner reads, with none of the framework assets attached.
+    const stable = (r) => !r.draft && !r.prerelease;
+    const framework = rels.find((r) => stable(r) && /^v\d/.test(r.tag_name));
+    const manager = rels.find((r) => stable(r) && r.tag_name.startsWith('manager-v'));
     console.log(`✓ releases → framework ${framework?.tag_name ?? 'none'}, manager ${manager?.tag_name ?? 'none'}`);
     return { framework: framework ? shape(framework) : null, manager: manager ? shape(manager) : null };
   } catch (err) {
