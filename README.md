@@ -73,6 +73,9 @@ GambonanzaMods/
 ├── tools/registry/  Registry validation + index builder (CI + local).
 ├── tools/package-framework.sh  Packages framework release bundles.
 ├── docs/            UI_API.md, ASSET_MODDING.md, MOD_PUBLISHING.md, RELEASING.md.
+├── diagnostics/     Throwaway measuring tools, not shipped to players.
+│                    CollectionProfiler A/B-sweeps the collection screen and
+│                    writes a frame-time report.
 ├── build.sh         Does everything end-to-end (the build-it-yourself path).
 ├── GAME_BUILD       The Gambonanza build this checkout was verified against.
 ├── prebuilt/        Committed framework DLLs used by release CI (which cannot

@@ -5,6 +5,24 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## Unreleased
+
+- New mod - **Better Collection**: the collection screen runs smoothly now.
+  Every card, button and arrow on that screen was being drawn over itself up
+  to 1250 times to fake a thick outline - the two page arrows alone were
+  rebuilt as 7,500 shapes each, every time anything on the screen moved - and
+  that is what turned browsing your gambits into a slideshow. They are drawn
+  twice now, which looks the same and costs a fraction as much. The run-info
+  screen you open mid-run is built from the same pieces, so it got the same
+  treatment. If you liked the chunkier outlines, `collection outlines 4` in
+  the console (F10) puts them back exactly as they were.
+- Better Collection also adds a **search bar to the collection**. Open it and
+  just start typing - the grid filters as you go, with a suggestion list
+  underneath (arrow keys to move through it, Tab or Enter to accept) and a
+  match count on the right. It looks in gambit names and descriptions, so
+  "trap" finds the Trap gambit first and then everything else that mentions
+  traps, and loose typing like "gldidl" still finds Golden Idol.
+
 ## 1.3.1
 
 - Custom gambits no longer show up chained and nameless in the collection. A

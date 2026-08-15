@@ -1,0 +1,11 @@
+{
+  "id": "CollectionProfiler",
+  "name": "Collection Profiler (diagnostics)",
+  "version": "0.1.0",
+  "author": "Ben",
+  "entry": "Gambonanza.CollectionProfiler.CollectionProfilerMod",
+  "enabled": true,
+  "gameVersion": ">=1.0",
+  "description": "Diagnostics only. A/B-sweeps the collection screen to measure which cause costs the most FPS. Reverts everything it touches.",
+  "dependencies": []
+}

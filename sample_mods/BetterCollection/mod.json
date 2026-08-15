@@ -1,0 +1,11 @@
+{
+  "id": "BetterCollection",
+  "name": "Better Collection",
+  "version": "1.0.0",
+  "author": "Ben",
+  "entry": "Gambonanza.BetterCollection.BetterCollectionMod",
+  "enabled": true,
+  "gameVersion": ">=1.0",
+  "description": "Makes the gambit collection screen smooth by collapsing its stacked UI outline/shadow effects, which multiply vertex counts up to 1250x. Keeps the look.",
+  "dependencies": []
+}

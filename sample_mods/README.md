@@ -11,6 +11,7 @@ sample_mods/
 ├── SpikesGambit/             Custom gambit by TGM: trap tiles capture enemies.
 ├── EnemyThreatOverlay/       Keybind-driven enemy threat display overlay.
 ├── MightyKasparovEveryStage/ Debug/sample boss-stage modifier.
+├── BetterCollection/         Pure performance mod - smooths the collection screen.
 ├── build.sh          Builds every mod and stages it into the repo's Mods/ folder.
 └── README.md         You are here.
 ```
@@ -174,6 +175,30 @@ modders can see how to:
   spawn on the destination tile.
 - Optionally load `Spike.png` from the mod folder, with a generated fallback
   sprite if no PNG is shipped.
+
+### BetterCollection - a pure performance mod
+
+[`BetterCollection/`](BetterCollection/)
+
+Makes the gambit collection screen smooth. It changes no game logic at all - it
+only rewrites how the existing UI is drawn, which makes it a good example of:
+
+- Fixing a performance problem without Harmony: the whole mod is `enabled = false`
+  on some components plus one field write, applied once.
+- Doing nothing per frame. The work happens when the canvas is first found (while
+  it is still inactive, so there is no visible pop); `Update` is one bool check.
+- Being genuinely reversible, which is what `IModLifecycle` toggling requires -
+  every component it touches is recorded with its original state first.
+- Shipping a `config.json` plus a console command (`collection outlines <0-4>`)
+  so the look/speed tradeoff can be dialled in live.
+
+The problem it fixes: `UnityEngine.UI.Outline.ModifyMesh` appends four copies of
+the *entire accumulated* vertex stream (x5), and `Shadow` appends one (x2). Stack
+them on one graphic and they multiply. Vanilla's collection screen puts four
+Outlines plus a Shadow on the page arrows - **x1250**, so a 6-vertex quad rebuilds
+as 7,500 vertices - and 382 such components sit under a single 430-renderer canvas.
+Keeping one outline per colour drops the screen's image geometry ~7x and looks
+near-identical.
 
 ---
 
