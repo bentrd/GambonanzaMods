@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-15T07:46:59.531Z",
-  "count": 13,
+  "generatedAt": "2026-08-15T08:30:21.111Z",
+  "count": 14,
   "releases": {
     "framework": {
       "tag": "v1.3.0",
@@ -205,6 +205,45 @@
       "archived": false
     },
     {
+      "id": "domino-effect",
+      "name": "Domino Effect's Gambit",
+      "author": "Agent15",
+      "summary": "When an enemy piece is trapped, trap every enemy piece adjacent to it.",
+      "description": "Trapping an enemy piece chains outward: every untrapped adjacent black piece gets trapped too, and each of those re-fires the trigger, so a well-placed trap can cascade across a cluster. Hooks both the hunter-tile and piece trap events. Epic rarity, priced at 8. Needs the Gambit Creation API, which installs automatically.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "DominoEffectsGambit.zip",
+      "folder": "DominoEffectsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-15",
+      "official": false,
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "DominoEffectsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/DominoEffectsGambit.zip",
+          "size": 5039,
+          "sha256": "ebbd3f8c539df0e4b25fe493ad52cab5928d0dab20aae0aafca35b6a5a097e01"
+        }
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-14T00:49:19Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "enemy-threat-overlay",
       "name": "Enemy Threat Overlay",
       "author": "nikaakaa",
@@ -237,7 +276,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T07:00:56Z",
+      "repoPushedAt": "2026-08-15T08:30:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -313,7 +352,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T07:00:56Z",
+      "repoPushedAt": "2026-08-15T08:30:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -469,7 +508,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T07:00:56Z",
+      "repoPushedAt": "2026-08-15T08:30:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -545,7 +584,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T07:00:56Z",
+      "repoPushedAt": "2026-08-15T08:30:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -623,7 +662,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T07:00:56Z",
+      "repoPushedAt": "2026-08-15T08:30:03Z",
       "license": "MIT",
       "archived": false
     }
