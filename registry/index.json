@@ -1,87 +1,87 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-15T10:32:40.071Z",
+  "generatedAt": "2026-08-15T10:41:58.856Z",
   "count": 15,
   "releases": {
     "framework": {
-      "tag": "v1.3.2",
-      "version": "1.3.2",
-      "publishedAt": "2026-08-15T10:15:52Z",
-      "notes": "\n- New mod - **Better Collection**: the collection screen runs smoothly now.\n  Every card, button and arrow on that screen was being drawn over itself up\n  to 1250 times to fake a thick outline - the two page arrows alone were\n  rebuilt as 7,500 shapes each, every time anything on the screen moved - and\n  that is what turned browsing your gambits into a slideshow. They are drawn\n  twice now, which looks the same and costs a fraction as much. The run-info\n  screen you open mid-run is built from the same pieces, so it got the same\n  treatment. If you liked the chunkier outlines, `collection outlines 4` in\n  the console (F10) puts them back exactly as they were.\n- Better Collection also adds a **search bar to the collection**. Open it and\n  just start typing - the grid filters as you go, with a suggestion list\n  underneath (arrow keys to move through it, Tab or Enter to accept) and a\n  match count on the right. It looks in gambit names and descriptions, so\n  \"trap\" finds the Trap gambit first and then everything else that mentions\n  traps, and loose typing like \"gldidl\" still finds Golden Idol.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.2",
+      "tag": "v1.3.3",
+      "version": "1.3.3",
+      "publishedAt": "2026-08-15T10:41:43Z",
+      "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/BetterCollection.zip",
-          "size": 14274,
-          "sha256": "bc85fab6460672168bf250e347053f4038f59f7c05e3e5edd7e1d62976196b9d"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/BetterCollection.zip",
+          "size": 14246,
+          "sha256": "08b3a0697b96d7cbed96b17bade6948dd6d2b671b63fe53a6380dcb2404f1ad9"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/EnemyThreatOverlay.zip",
-          "size": 7653,
-          "sha256": "b6d53baca1c1d9edf92ea49e570a2a064958ecd1e87b73dac5c1118aaa518679"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/EnemyThreatOverlay.zip",
+          "size": 7614,
+          "sha256": "a244c249e701526f5237ff5aba13bbaab91be1909acbbb10f17d2127f9ae165d"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/GambitApi.zip",
-          "size": 19484,
-          "sha256": "5c31092215c1ba9df39cd41c8d36a7081c3ae31888e9c9d7dd8d51ef342fdb87"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/GambitApi.zip",
+          "size": 19464,
+          "sha256": "92b5c9120a9909b5f5509b4423e28e06aae9531979c8bc83efd561b4ef721178"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/gambonanza-framework-linux-arm64.zip",
-          "size": 28390221,
-          "sha256": "15e33622539dec3f81ccef440e3d9bd37b9fc1022da381fd0cafb9a1282e95b5"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-linux-arm64.zip",
+          "size": 28389865,
+          "sha256": "b6c5ab7bddddbad46dc123bb910933513332cdbd5e4bf79ae60859e43d5e318e"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/gambonanza-framework-linux-x64.zip",
-          "size": 29617259,
-          "sha256": "4592f629dc5c3ae726437b8a1156c70c2d42908ac197e73405dbd2cd99c7aebc"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-linux-x64.zip",
+          "size": 29617334,
+          "sha256": "4e6a0b78005a6d4b4c0e0787f9ffde506087b14405fa21f6b112ca8c25288d6a"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/gambonanza-framework-osx-arm64.zip",
-          "size": 28619242,
-          "sha256": "5de998f8818c10f12dbdbb205e722b80ec2cf9b7f56ac5bb49498196013d891d"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-osx-arm64.zip",
+          "size": 28619238,
+          "sha256": "848007651dfc3bcbb63655110ad0c6ad2a612899d39df76c829e77e67a443b3f"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/gambonanza-framework-osx-x64.zip",
-          "size": 29966675,
-          "sha256": "a720c10d309d711a5bec1a99068f2d0cfdb4d1e949ea99e05ecc826833f4c03f"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-osx-x64.zip",
+          "size": 29966644,
+          "sha256": "249f5238b971e89df451b2322626c297b138a4447df72feaf7b9a4a89416aaaf"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/gambonanza-framework-win-arm64.zip",
-          "size": 28857735,
-          "sha256": "db872c8839d79d9631d1935c926788ebc04f7f8407c9b39c171b83cb60ae998e"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-win-arm64.zip",
+          "size": 28857495,
+          "sha256": "3b93de68269a472b6e07cbd5ebe3f3ff4047f4cb617d31b7f5475653946e2510"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/gambonanza-framework-win-x64.zip",
-          "size": 29945011,
-          "sha256": "318b1a1362703a894e8052cd2e1f9157892d931f80874d45f0bc12739cd8c072"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-win-x64.zip",
+          "size": 29944907,
+          "sha256": "839d4a1126f7f3e0c1f392ccef16d7ace7ad3c88044a9fa2dadb00f9dbc5555a"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/KamikazeGambit.zip",
-          "size": 8807,
-          "sha256": "5a5a0996800aa650f94df25ece8656010dfd30cfcb80bcc86b07eefb28d2de8b"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/KamikazeGambit.zip",
+          "size": 8779,
+          "sha256": "2138eafe484a382a4111e0ac93198c6d23f7f49d2786e0abd8a58b7e268aa685"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/MightyKasparovEveryStage.zip",
-          "size": 4389,
-          "sha256": "626b3d04b11e355c4938cbffd140395f07b4953e1a7cc44f557222412fedd57b"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/MightyKasparovEveryStage.zip",
+          "size": 4361,
+          "sha256": "1a31a0148c719282eae41b61b4788e32f3b596e46295e85494ca743156415fa5"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/SpikesGambit.zip",
-          "size": 6529,
-          "sha256": "f661805f865b1b11d75d11a1d78665332bc54aad244a9de6869b2edd9778bf46"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/SpikesGambit.zip",
+          "size": 6497,
+          "sha256": "b8923ed912ffdaf6bb232b47be48a9d953557a633505f3ba1b1b89c48dd75247"
         }
       ]
     },
@@ -152,21 +152,21 @@
       "addedAt": "2026-08-15",
       "official": true,
       "latest": {
-        "tag": "v1.3.2",
+        "tag": "v1.3.3",
         "version": "1.0.0",
-        "publishedAt": "2026-08-15T10:15:52Z",
-        "notes": "\n- New mod - **Better Collection**: the collection screen runs smoothly now.\n  Every card, button and arrow on that screen was being drawn over itself up\n  to 1250 times to fake a thick outline - the two page arrows alone were\n  rebuilt as 7,500 shapes each, every time anything on the screen moved - and\n  that is what turned browsing your gambits into a slideshow. They are drawn\n  twice now, which looks the same and costs a fraction as much. The run-info\n  screen you open mid-run is built from the same pieces, so it got the same\n  treatment. If you liked the chunkier outlines, `collection outlines 4` in\n  the console (F10) puts them back exactly as they were.\n- Better Collection also adds a **search bar to the collection**. Open it and\n  just start typing - the grid filters as you go, with a suggestion list\n  underneath (arrow keys to move through it, Tab or Enter to accept) and a\n  match count on the right. It looks in gambit names and descriptions, so\n  \"trap\" finds the Trap gambit first and then everything else that mentions\n  traps, and loose typing like \"gldidl\" still finds Golden Idol.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.2",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/BetterCollection.zip",
-          "size": 14274,
-          "sha256": "bc85fab6460672168bf250e347053f4038f59f7c05e3e5edd7e1d62976196b9d"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/BetterCollection.zip",
+          "size": 14246,
+          "sha256": "08b3a0697b96d7cbed96b17bade6948dd6d2b671b63fe53a6380dcb2404f1ad9"
         },
         "manifestVersion": "1.0.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:32:19Z",
+      "repoPushedAt": "2026-08-15T10:40:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -310,21 +310,21 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.3.2",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-15T10:15:52Z",
-        "notes": "\n- New mod - **Better Collection**: the collection screen runs smoothly now.\n  Every card, button and arrow on that screen was being drawn over itself up\n  to 1250 times to fake a thick outline - the two page arrows alone were\n  rebuilt as 7,500 shapes each, every time anything on the screen moved - and\n  that is what turned browsing your gambits into a slideshow. They are drawn\n  twice now, which looks the same and costs a fraction as much. The run-info\n  screen you open mid-run is built from the same pieces, so it got the same\n  treatment. If you liked the chunkier outlines, `collection outlines 4` in\n  the console (F10) puts them back exactly as they were.\n- Better Collection also adds a **search bar to the collection**. Open it and\n  just start typing - the grid filters as you go, with a suggestion list\n  underneath (arrow keys to move through it, Tab or Enter to accept) and a\n  match count on the right. It looks in gambit names and descriptions, so\n  \"trap\" finds the Trap gambit first and then everything else that mentions\n  traps, and loose typing like \"gldidl\" still finds Golden Idol.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.2",
+        "tag": "v1.3.3",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/EnemyThreatOverlay.zip",
-          "size": 7653,
-          "sha256": "b6d53baca1c1d9edf92ea49e570a2a064958ecd1e87b73dac5c1118aaa518679"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/EnemyThreatOverlay.zip",
+          "size": 7614,
+          "sha256": "a244c249e701526f5237ff5aba13bbaab91be1909acbbb10f17d2127f9ae165d"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.2.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:32:19Z",
+      "repoPushedAt": "2026-08-15T10:40:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -388,21 +388,21 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.3.2",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-15T10:15:52Z",
-        "notes": "\n- New mod - **Better Collection**: the collection screen runs smoothly now.\n  Every card, button and arrow on that screen was being drawn over itself up\n  to 1250 times to fake a thick outline - the two page arrows alone were\n  rebuilt as 7,500 shapes each, every time anything on the screen moved - and\n  that is what turned browsing your gambits into a slideshow. They are drawn\n  twice now, which looks the same and costs a fraction as much. The run-info\n  screen you open mid-run is built from the same pieces, so it got the same\n  treatment. If you liked the chunkier outlines, `collection outlines 4` in\n  the console (F10) puts them back exactly as they were.\n- Better Collection also adds a **search bar to the collection**. Open it and\n  just start typing - the grid filters as you go, with a suggestion list\n  underneath (arrow keys to move through it, Tab or Enter to accept) and a\n  match count on the right. It looks in gambit names and descriptions, so\n  \"trap\" finds the Trap gambit first and then everything else that mentions\n  traps, and loose typing like \"gldidl\" still finds Golden Idol.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.2",
+        "tag": "v1.3.3",
+        "version": "1.4.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/GambitApi.zip",
-          "size": 19484,
-          "sha256": "5c31092215c1ba9df39cd41c8d36a7081c3ae31888e9c9d7dd8d51ef342fdb87"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/GambitApi.zip",
+          "size": 19464,
+          "sha256": "92b5c9120a9909b5f5509b4423e28e06aae9531979c8bc83efd561b4ef721178"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.4.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:32:19Z",
+      "repoPushedAt": "2026-08-15T10:40:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -548,21 +548,21 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.3.2",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-15T10:15:52Z",
-        "notes": "\n- New mod - **Better Collection**: the collection screen runs smoothly now.\n  Every card, button and arrow on that screen was being drawn over itself up\n  to 1250 times to fake a thick outline - the two page arrows alone were\n  rebuilt as 7,500 shapes each, every time anything on the screen moved - and\n  that is what turned browsing your gambits into a slideshow. They are drawn\n  twice now, which looks the same and costs a fraction as much. The run-info\n  screen you open mid-run is built from the same pieces, so it got the same\n  treatment. If you liked the chunkier outlines, `collection outlines 4` in\n  the console (F10) puts them back exactly as they were.\n- Better Collection also adds a **search bar to the collection**. Open it and\n  just start typing - the grid filters as you go, with a suggestion list\n  underneath (arrow keys to move through it, Tab or Enter to accept) and a\n  match count on the right. It looks in gambit names and descriptions, so\n  \"trap\" finds the Trap gambit first and then everything else that mentions\n  traps, and loose typing like \"gldidl\" still finds Golden Idol.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.2",
+        "tag": "v1.3.3",
+        "version": "1.3.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/KamikazeGambit.zip",
-          "size": 8807,
-          "sha256": "5a5a0996800aa650f94df25ece8656010dfd30cfcb80bcc86b07eefb28d2de8b"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/KamikazeGambit.zip",
+          "size": 8779,
+          "sha256": "2138eafe484a382a4111e0ac93198c6d23f7f49d2786e0abd8a58b7e268aa685"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.3.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:32:19Z",
+      "repoPushedAt": "2026-08-15T10:40:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -626,21 +626,21 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.3.2",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-15T10:15:52Z",
-        "notes": "\n- New mod - **Better Collection**: the collection screen runs smoothly now.\n  Every card, button and arrow on that screen was being drawn over itself up\n  to 1250 times to fake a thick outline - the two page arrows alone were\n  rebuilt as 7,500 shapes each, every time anything on the screen moved - and\n  that is what turned browsing your gambits into a slideshow. They are drawn\n  twice now, which looks the same and costs a fraction as much. The run-info\n  screen you open mid-run is built from the same pieces, so it got the same\n  treatment. If you liked the chunkier outlines, `collection outlines 4` in\n  the console (F10) puts them back exactly as they were.\n- Better Collection also adds a **search bar to the collection**. Open it and\n  just start typing - the grid filters as you go, with a suggestion list\n  underneath (arrow keys to move through it, Tab or Enter to accept) and a\n  match count on the right. It looks in gambit names and descriptions, so\n  \"trap\" finds the Trap gambit first and then everything else that mentions\n  traps, and loose typing like \"gldidl\" still finds Golden Idol.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.2",
+        "tag": "v1.3.3",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/MightyKasparovEveryStage.zip",
-          "size": 4389,
-          "sha256": "626b3d04b11e355c4938cbffd140395f07b4953e1a7cc44f557222412fedd57b"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/MightyKasparovEveryStage.zip",
+          "size": 4361,
+          "sha256": "1a31a0148c719282eae41b61b4788e32f3b596e46295e85494ca743156415fa5"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.1.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:32:19Z",
+      "repoPushedAt": "2026-08-15T10:40:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -706,21 +706,21 @@
       "addedAt": "2026-08-12",
       "official": true,
       "latest": {
-        "tag": "v1.3.2",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-15T10:15:52Z",
-        "notes": "\n- New mod - **Better Collection**: the collection screen runs smoothly now.\n  Every card, button and arrow on that screen was being drawn over itself up\n  to 1250 times to fake a thick outline - the two page arrows alone were\n  rebuilt as 7,500 shapes each, every time anything on the screen moved - and\n  that is what turned browsing your gambits into a slideshow. They are drawn\n  twice now, which looks the same and costs a fraction as much. The run-info\n  screen you open mid-run is built from the same pieces, so it got the same\n  treatment. If you liked the chunkier outlines, `collection outlines 4` in\n  the console (F10) puts them back exactly as they were.\n- Better Collection also adds a **search bar to the collection**. Open it and\n  just start typing - the grid filters as you go, with a suggestion list\n  underneath (arrow keys to move through it, Tab or Enter to accept) and a\n  match count on the right. It looks in gambit names and descriptions, so\n  \"trap\" finds the Trap gambit first and then everything else that mentions\n  traps, and loose typing like \"gldidl\" still finds Golden Idol.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.2",
+        "tag": "v1.3.3",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/SpikesGambit.zip",
-          "size": 6529,
-          "sha256": "f661805f865b1b11d75d11a1d78665332bc54aad244a9de6869b2edd9778bf46"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/SpikesGambit.zip",
+          "size": 6497,
+          "sha256": "b8923ed912ffdaf6bb232b47be48a9d953557a633505f3ba1b1b89c48dd75247"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.1.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:32:19Z",
+      "repoPushedAt": "2026-08-15T10:40:28Z",
       "license": "MIT",
       "archived": false
     }
