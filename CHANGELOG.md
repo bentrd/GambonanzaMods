@@ -5,7 +5,7 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
-## Unreleased
+## 1.3.2
 
 - New mod - **Better Collection**: the collection screen runs smoothly now.
   Every card, button and arrow on that screen was being drawn over itself up
