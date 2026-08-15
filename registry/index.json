@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-15T10:16:10.874Z",
-  "count": 14,
+  "generatedAt": "2026-08-15T10:18:27.010Z",
+  "count": 15,
   "releases": {
     "framework": {
       "tag": "v1.3.2",
@@ -132,6 +132,43 @@
     }
   },
   "mods": [
+    {
+      "id": "better-collection",
+      "name": "Better Collection",
+      "author": "Ben",
+      "summary": "Makes the collection screen smooth, and adds a search bar to filter your gambits.",
+      "description": "The collection screen was drawing every card, button and arrow over itself up to 1250 times to fake a thick outline - the page arrows alone rebuilt as 7,500 shapes each, every time anything moved. This draws them twice instead: same look, a fraction of the cost. The run-info screen you open mid-run is built from the same pieces and gets the same treatment.\n\nIt also adds a search bar to the collection. Open it and just start typing - the grid filters as you go, with a suggestion list underneath (arrow keys to move, Tab or Enter to accept) and a match count on the right. It searches names and descriptions, so 'trap' finds the Trap gambit first and then everything that mentions traps.\n\nPrefer the chunkier outlines? Type 'collection outlines 4' in the console (F10) to put them back.",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "BetterCollection.zip",
+      "folder": "BetterCollection",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/BetterCollection",
+      "tags": [
+        "quality-of-life",
+        "ui"
+      ],
+      "frameworkVersion": ">=1.3.2",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-15",
+      "official": true,
+      "latest": {
+        "tag": "v1.3.2",
+        "version": "1.3.2",
+        "publishedAt": "2026-08-15T10:15:52Z",
+        "notes": "\n- New mod - **Better Collection**: the collection screen runs smoothly now.\n  Every card, button and arrow on that screen was being drawn over itself up\n  to 1250 times to fake a thick outline - the two page arrows alone were\n  rebuilt as 7,500 shapes each, every time anything on the screen moved - and\n  that is what turned browsing your gambits into a slideshow. They are drawn\n  twice now, which looks the same and costs a fraction as much. The run-info\n  screen you open mid-run is built from the same pieces, so it got the same\n  treatment. If you liked the chunkier outlines, `collection outlines 4` in\n  the console (F10) puts them back exactly as they were.\n- Better Collection also adds a **search bar to the collection**. Open it and\n  just start typing - the grid filters as you go, with a suggestion list\n  underneath (arrow keys to move through it, Tab or Enter to accept) and a\n  match count on the right. It looks in gambit names and descriptions, so\n  \"trap\" finds the Trap gambit first and then everything else that mentions\n  traps, and loose typing like \"gldidl\" still finds Golden Idol.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.2",
+        "asset": {
+          "name": "BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.2/BetterCollection.zip",
+          "size": 14274,
+          "sha256": "bc85fab6460672168bf250e347053f4038f59f7c05e3e5edd7e1d62976196b9d"
+        }
+      },
+      "stars": 3,
+      "repoPushedAt": "2026-08-15T10:16:11Z",
+      "license": "MIT",
+      "archived": false
+    },
     {
       "id": "bougie",
       "name": "Bougie's Gambit",
@@ -282,7 +319,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:14:43Z",
+      "repoPushedAt": "2026-08-15T10:16:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -358,7 +395,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:14:43Z",
+      "repoPushedAt": "2026-08-15T10:16:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -514,7 +551,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:14:43Z",
+      "repoPushedAt": "2026-08-15T10:16:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -590,7 +627,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:14:43Z",
+      "repoPushedAt": "2026-08-15T10:16:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -668,7 +705,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T10:14:43Z",
+      "repoPushedAt": "2026-08-15T10:16:11Z",
       "license": "MIT",
       "archived": false
     }
