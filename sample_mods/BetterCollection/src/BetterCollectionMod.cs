@@ -41,9 +41,7 @@ namespace Gambonanza.BetterCollection
                 UnityEngine.Object.DontDestroyOnLoad(go);
                 go.hideFlags = HideFlags.HideAndDontSave;
                 _runner = go.AddComponent<BetterCollectionRunner>();
-                // The console-open predicate stops typed characters landing in both the
-                // console and the search box at once.
-                _runner.Bind(_config, Log, () => _context?.Console?.IsOpen ?? false);
+                _runner.Bind(_config, Log);
             }
             catch (Exception ex)
             {

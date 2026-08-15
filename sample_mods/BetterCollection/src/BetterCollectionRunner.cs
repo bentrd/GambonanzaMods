@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Blukulele.CHE;
-using Gambonanza.BetterCollection.Search;
 using UnityEngine;
 
 namespace Gambonanza.BetterCollection
@@ -20,8 +19,6 @@ namespace Gambonanza.BetterCollection
         private readonly List<GameObject> _roots = new List<GameObject>();
         private BetterCollectionConfig _config;
         private Action<string> _log;
-        private Func<bool> _isConsoleOpen;
-        private CollectionSearch _search;
         private bool _bound;
         private bool _wasOpen;
         private float _nextBindAttempt;
@@ -32,11 +29,10 @@ namespace Gambonanza.BetterCollection
         public int VertsBefore => _collapser.VertsBefore;
         public int VertsAfter => _collapser.VertsAfter;
 
-        public void Bind(BetterCollectionConfig config, Action<string> log, Func<bool> isConsoleOpen)
+        public void Bind(BetterCollectionConfig config, Action<string> log)
         {
             _config = config;
             _log = log;
-            _isConsoleOpen = isConsoleOpen;
         }
 
         private void Update()
@@ -64,12 +60,10 @@ namespace Gambonanza.BetterCollection
 
         private void TryBind()
         {
-            GameObject collectionRoot = null;
             foreach (var c in Resources.FindObjectsOfTypeAll<CollectionCanvas>())
             {
                 if (c == null || !c.gameObject.scene.IsValid()) continue;
                 if (!_roots.Contains(c.gameObject)) _roots.Add(c.gameObject);
-                if (collectionRoot == null) collectionRoot = c.gameObject;
             }
 
             if (_config != null && _config.alsoRunInfoScreen)
@@ -89,33 +83,9 @@ namespace Gambonanza.BetterCollection
 
             _bound = true;
             ApplyAll();
-            SetUpSearch(collectionRoot);
             _log?.Invoke($"collapsed {ChainsCollapsed} stacked effect chains " +
                          $"({EffectsDisabled} components off) across {_roots.Count} screen(s); " +
                          $"image vertices {VertsBefore} -> {VertsAfter}.");
-        }
-
-        /// <summary>
-        /// Search lives only on the collection screen, not the run-info one: run-info
-        /// is a read-only summary of the current run, and typing there would fight the
-        /// game's own navigation.
-        /// </summary>
-        private void SetUpSearch(GameObject collectionRoot)
-        {
-            if (_config == null || !_config.enableSearch || collectionRoot == null) return;
-            try
-            {
-                var slide = collectionRoot.GetComponentInChildren<GambitCollectionSlide>(true);
-                if (slide == null) { _log?.Invoke("search: no GambitCollectionSlide found."); return; }
-
-                // Hosted on the slide so it dies with the screen if the scene reloads.
-                _search = slide.gameObject.AddComponent<CollectionSearch>();
-                _search.Bind(slide, _isConsoleOpen, _log);
-            }
-            catch (Exception ex)
-            {
-                _log?.Invoke("search setup failed: " + ex.Message);
-            }
         }
 
         private void ApplyAll()
@@ -155,17 +125,6 @@ namespace Gambonanza.BetterCollection
 
         public void TearDown()
         {
-            try
-            {
-                if (_search != null)
-                {
-                    _search.TearDown();     // puts the unfiltered gambit list back
-                    Destroy(_search);
-                    _search = null;
-                }
-            }
-            catch (Exception ex) { _log?.Invoke("search teardown failed: " + ex.Message); }
-
             try { _collapser.Revert(); }
             catch (Exception ex) { _log?.Invoke("revert failed: " + ex.Message); }
         }
