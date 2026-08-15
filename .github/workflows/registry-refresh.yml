@@ -1,6 +1,8 @@
 # Keeps registry/index.json fresh: re-resolves every mod's newest GitHub
 # release (recording the asset checksum players' installs are verified
-# against) on a schedule, after registry changes, and on demand.
+# against) AND re-lists open "Submit a mod" issues as unreviewed entries,
+# on a schedule, after registry changes, and on demand (the mod-submission
+# workflow kicks it whenever a submission issue opens, changes, or closes).
 # Commits only when something actually changed.
 name: Refresh registry index
 

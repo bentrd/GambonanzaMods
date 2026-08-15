@@ -323,7 +323,15 @@ function renderBrowse() {
 
 function renderModCard(mod) {
   const badges = [];
-  if (mod.official) badges.push(el('span', { class: 'tag gold', title: 'Maintained in the GambonanzaMods repository' }, 'official'));
+  // reviewed === false comes from the index for issue-sourced submissions
+  // nobody has vetted yet; registry entries carry reviewed: true. Older
+  // cached indexes predate the field entirely - and everything in them went
+  // through review - so only an explicit false counts as unreviewed.
+  if (mod.reviewed === false) {
+    badges.push(el('span', { class: 'tag red', title: 'Community submission awaiting review - nobody has checked this code yet. Read the source before installing.' }, 'unreviewed'));
+  } else {
+    badges.push(el('span', { class: 'tag gold', title: 'The source code was reviewed before this mod was listed' }, 'reviewed'));
+  }
   if (mod.installed) badges.push(el('span', { class: 'tag green' }, 'installed'));
   if (mod.updateAvailable) badges.push(el('span', { class: 'tag blue' }, 'update'));
   if (mod.pending) badges.push(el('span', { class: 'tag', title: 'The author has not published a release yet' }, 'coming soon'));
@@ -563,6 +571,17 @@ async function patchGame(tag = null) {
 }
 
 async function installMod(mod) {
+  // Unreviewed submissions install fine, but never silently: the whole trust
+  // model for them is "you read the source", so say exactly that first.
+  // Updates prompt too - a new release of an unreviewed mod is new unread code.
+  if (mod.reviewed === false) {
+    const yes = await confirmModal({
+      title: `${mod.name} is unreviewed`,
+      body: 'This community submission has not been reviewed yet - nobody has checked what its code does. Read the source on GitHub (the Source button) and only continue if you trust it.',
+      confirmLabel: mod.installed ? 'Update anyway' : 'Install anyway',
+    });
+    if (!yes) return;
+  }
   const operationId = `mod-${++opCounter}`;
   modal.open({
     title: mod.installed ? `Updating ${mod.name}` : `Installing ${mod.name}`,

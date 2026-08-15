@@ -1,6 +1,8 @@
 # Mod submission form. The Publish tab of the mod manager pre-fills this for
-# creators who don't want to sign in; a workflow turns valid submissions into
-# registry pull requests automatically.
+# creators who don't want to sign in. The open issue IS the submission: the
+# registry index lists it in the manager as "unreviewed" within the hour, and
+# a maintainer's review turns it into a registry entry (reviewed badge) and
+# closes the issue.
 name: Submit a mod to the registry
 description: Add your mod to the Gambonanza Mod Manager. Your mod stays in your repository - this just links to it.
 title: '[Mod] '
@@ -9,8 +11,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for making a mod! Fill this in and a bot opens the registry pull
-        request for you. Requirements:
+        Thanks for making a mod! Fill this in and your mod shows up in the mod
+        manager within the hour, marked **unreviewed** until a maintainer has
+        read your source and stamped it **reviewed**. Requirements:
         - your mod's **source code** is in a **public GitHub repository**
         - a **GitHub release** of that repo has your mod attached, either as a
           `.zip` containing `mod.json` + your DLL, or as a bare `.dll`

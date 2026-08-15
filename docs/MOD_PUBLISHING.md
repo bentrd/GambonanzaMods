@@ -66,19 +66,22 @@ zip, publish. That's the whole "upload".
 
 ## Step 4 - submit to the registry
 
-Two ways, both end in a pull request adding one small JSON file:
+Two ways:
 
-- **From the mod manager** (nicest): Publish tab → Sign in with GitHub →
-  pick your repo and release asset → Submit. The manager forks, commits and
-  opens the PR for you.
-- **From a browser**: Publish tab → "Open submission on GitHub" (or use the
-  [issue form](https://github.com/bentrd/GambonanzaMods/issues/new?template=mod-submission.yml)
-  directly). A bot converts a valid form into the same PR.
+- **From a browser** (fastest): Publish tab → "Open submission on GitHub" (or
+  use the [issue form](https://github.com/bentrd/GambonanzaMods/issues/new?template=mod-submission.yml)
+  directly). A valid submission issue is listed in everyone's manager within
+  the hour, marked **unreviewed** - players get warned that nobody has read
+  the code yet and are pointed at your source.
+- **From the mod manager**: Publish tab → Sign in with GitHub → pick your
+  repo and release asset → Submit. The manager forks, commits and opens a
+  registry pull request for you; your mod is listed once it's merged.
 
-A maintainer reviews the PR - mostly a sanity read of your source and a check
-that the release asset matches it - and merges. Within a few hours the
-registry index refreshes, records your asset's SHA-256, and your mod appears
-in everyone's manager.
+Either way, a maintainer then reviews your source - mostly a sanity read and
+a check that the release asset matches it. A passing review adds the entry to
+the registry, closes the submission issue, and swaps the listing to the
+**reviewed** badge; the next index refresh records your asset's SHA-256 that
+players' installs are verified against.
 
 ## Updates
 
@@ -135,8 +138,3 @@ but no secret. One-time setup:
 
 Until that's configured, the Publish tab simply hides the sign-in button and
 uses the pre-filled issue path, which needs nothing.
-
-For the issue-form path to be fully automatic, also enable
-**Settings → Actions → General → Allow GitHub Actions to create and approve
-pull requests** - otherwise the submission bot pushes the branch and posts a
-one-click compare link for a maintainer instead of opening the PR itself.

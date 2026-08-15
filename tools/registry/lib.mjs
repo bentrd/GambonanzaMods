@@ -214,6 +214,59 @@ export function sha256(buffer) {
 }
 
 /**
+ * Parse a "Submit a mod" issue-form body (ISSUE_TEMPLATE/mod-submission.yml)
+ * into a registry-shaped entry. Returns null when the body isn't that form.
+ *
+ * Detection is by the form's headings, NOT by the issue label: labels from a
+ * template are silently dropped when they don't exist in the repo (real
+ * submissions have arrived label-less), so the body is the reliable signal.
+ *
+ * The body is untrusted input: values are extracted, never executed, and the
+ * result means nothing until it passes validateEntry().
+ */
+export function parseSubmissionIssue(body, { author = '', createdAt = '' } = {}) {
+  // Issue forms render as "### <label>\n\n<value>" blocks. Capture up to the
+  // next heading (not the next '#') so values containing a hash survive.
+  const fields = {};
+  for (const match of String(body || '').matchAll(/###\s+([^\n]+)\n+([\s\S]*?)(?=\n###\s|$)/g)) {
+    const value = match[2].trim();
+    fields[match[1].trim().toLowerCase()] = value === '_No response_' ? '' : value;
+  }
+  if (!fields['mod name'] || !fields['github repository']) return null;
+
+  const name = fields['mod name'];
+  const id = (fields['registry id'] || name)
+    .toLowerCase().trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40);
+  const tags = (fields.tags || '')
+    .split(',').map((t) => t.trim().toLowerCase()).filter(Boolean).slice(0, 5);
+  // People paste clone URLs; neither the https prefix nor a trailing ".git"
+  // is ever part of the owner/name the API wants.
+  const repo = fields['github repository']
+    .replace(/^https?:\/\/github\.com\//i, '')
+    .replace(/\/+$/, '')
+    .replace(/\.git$/i, '');
+
+  return {
+    id,
+    name,
+    author,
+    summary: fields['one-line summary'] || '',
+    repo,
+    asset: fields['release asset'] || '',
+    folder: fields['install folder'] || '',
+    ...(tags.length ? { tags } : {}),
+    ...(fields['entry type (bare-dll releases only)']
+      ? { manifest: { entry: fields['entry type (bare-dll releases only)'] } }
+      : {}),
+    submittedBy: author,
+    ...(createdAt ? { addedAt: String(createdAt).slice(0, 10) } : {}),
+  };
+}
+
+/**
  * The "version" declared in the mod.json inside a mod zip, or null.
  *
  * A mod's own version is the honest thing to show players: bundled sample mods
