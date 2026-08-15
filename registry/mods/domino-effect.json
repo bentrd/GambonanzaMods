@@ -1,0 +1,21 @@
+{
+  "id": "domino-effect",
+  "name": "Domino Effect's Gambit",
+  "author": "Agent15",
+  "summary": "When an enemy piece is trapped, trap every enemy piece adjacent to it.",
+  "description": "Trapping an enemy piece chains outward: every untrapped adjacent black piece gets trapped too, and each of those re-fires the trigger, so a well-placed trap can cascade across a cluster. Hooks both the hunter-tile and piece trap events. Epic rarity, priced at 8. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "DominoEffectsGambit.zip",
+  "folder": "DominoEffectsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-15"
+}
