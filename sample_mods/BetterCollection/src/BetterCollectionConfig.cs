@@ -42,9 +42,6 @@ namespace Gambonanza.BetterCollection
         /// </summary>
         public bool alsoRunInfoScreen = true;
 
-        /// <summary>Type-to-filter search bar on the collection screen.</summary>
-        public bool enableSearch = true;
-
         public static BetterCollectionConfig Load(string modDirectory, Action<string> log)
         {
             var cfg = new BetterCollectionConfig();

@@ -5,6 +5,13 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## Unreleased
+
+- Better Collection: the gambit search bar added in 1.3.2 has been removed. It
+  did not look like it belonged on that screen, and a box that looks wrong is
+  worse than no box. Everything that made the collection run smoothly is
+  untouched - only the search went.
+
 ## 1.3.3
 
 - The mod manager now shows each bundled mod's own version instead of the
