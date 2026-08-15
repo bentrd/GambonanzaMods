@@ -5,7 +5,7 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
-## Unreleased
+## 1.3.1
 
 - Custom gambits no longer show up chained and nameless in the collection. A
   gambit mod asking for a category the game doesn't recognise used to leave
