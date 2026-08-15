@@ -9,34 +9,37 @@ import { writeFileSync, mkdirSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const OUT_DIR = path.join(path.dirname(fileURLToPath(import.meta.url)), '..', 'build');
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const OUT_DIR = path.join(HERE, '..', 'build');
+// The GitHub Pages favicon is the same artwork - write it here so the two
+// can't drift apart.
+const SITE_FAVICON = path.join(HERE, '..', '..', '..', 'site', 'favicon.png');
 
 // 16x16 sprite, scaled up with hard pixels. Palette indices:
-// . transparent  # ink outline  W wine bg  C cream piece  Y yellow accent  D wine-deep shade
+// . transparent  # ink outline  C cream piece  B wine ear  D wine-deep shade
 const SPRITE = [
-  '................',
-  '......####......',
-  '.....#CCCC#.....',
-  '....#CCCCCC#....',
-  '...#CCYCCCCC#...',
+  '.....#..........',
+  '....#C####......',
+  '....#CCCCC##....',
   '...#CCCCCCCC#...',
-  '..#CCCCCCCCCC#..',
-  '..#CCC#CCCCCC#..',
-  '...##.#CCCCC#...',
-  '......#CCCC#....',
-  '.....#CCCCCC#...',
-  '....#CCCCCCCC#..',
-  '...#CCCCCCCCCC#.',
-  '...############.',
-  '..#DDDDDDDDDDDD#',
-  '..##############',
+  '..#CCCCCCCC##...',
+  '..#CC#CCCCCCC#..',
+  '.#CCCCCCCCCC#...',
+  '.#CCCC#CCCCC#...',
+  '.#CBC##CCCCCC#..',
+  '..#C#.#CCCC##...',
+  '...#.#CCCCC#....',
+  '....#CCCCCC#....',
+  '...#CCCCCCCC#...',
+  '...##########...',
+  '..#DDDDDDDDDD#..',
+  '..############..',
 ];
 
 const COLORS = {
   '#': [26, 14, 18, 255],     // ink
-  W: [126, 46, 62, 255],      // wine
   C: [244, 229, 194, 255],    // cream
-  Y: [244, 197, 48, 255],     // yellow
+  B: [126, 46, 62, 255],      // wine (ear)
   D: [90, 34, 48, 255],       // wine-dark
   '.': [0, 0, 0, 0],
 };
@@ -149,5 +152,7 @@ const png = Buffer.concat([
 ]);
 
 mkdirSync(OUT_DIR, { recursive: true });
-writeFileSync(path.join(OUT_DIR, 'icon.png'), png);
-console.log(`wrote ${path.join(OUT_DIR, 'icon.png')} (${png.length} bytes, ${SIZE}x${SIZE})`);
+for (const out of [path.join(OUT_DIR, 'icon.png'), SITE_FAVICON]) {
+  writeFileSync(out, png);
+  console.log(`wrote ${out} (${png.length} bytes, ${SIZE}x${SIZE})`);
+}

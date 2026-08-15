@@ -4,6 +4,12 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.0.6
+
+- New knight. The app icon, the header logo and the website all wear the
+  redrawn brand knight - same wine-and-cream palette, sharper profile, and
+  an ear it was sorely missing.
+
 ## 1.0.5
 
 - "Check again" actually checks again: update checks now force a registry

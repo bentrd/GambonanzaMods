@@ -8,28 +8,28 @@
 
 // Same sprite as tools/make-icon.mjs - keep the two in sync.
 export const KNIGHT_SPRITE = [
-  '................',
-  '......####......',
-  '.....#CCCC#.....',
-  '....#CCCCCC#....',
-  '...#CCYCCCCC#...',
+  '.....#..........',
+  '....#C####......',
+  '....#CCCCC##....',
   '...#CCCCCCCC#...',
-  '..#CCCCCCCCCC#..',
-  '..#CCC#CCCCCC#..',
-  '...##.#CCCCC#...',
-  '......#CCCC#....',
-  '.....#CCCCCC#...',
-  '....#CCCCCCCC#..',
-  '...#CCCCCCCCCC#.',
-  '...############.',
-  '..#DDDDDDDDDDDD#',
-  '..##############',
+  '..#CCCCCCCC##...',
+  '..#CC#CCCCCCC#..',
+  '.#CCCCCCCCCC#...',
+  '.#CCCC#CCCCC#...',
+  '.#CBC##CCCCCC#..',
+  '..#C#.#CCCC##...',
+  '...#.#CCCCC#....',
+  '....#CCCCCC#....',
+  '...#CCCCCCCC#...',
+  '...##########...',
+  '..#DDDDDDDDDD#..',
+  '..############..',
 ];
 
 const KNIGHT_COLORS = {
   '#': '#1a0e12', // ink outline
   C: '#f4e5c2',   // cream piece
-  Y: '#f4c530',   // yellow eye
+  B: '#7e2e3e',   // wine ear
   D: '#5a2230',   // base shadow
 };
 
