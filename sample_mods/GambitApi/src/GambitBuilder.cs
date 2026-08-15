@@ -40,22 +40,29 @@ namespace Gambonanza.GambitApi
         }
 
         /// <summary>
-        /// Set the shop/loot rarity.
+        /// Set the shop/loot rarity. Must be COMMON, RARE, EPIC or LEGENDARY - anything
+        /// else (Rarity.STRAIN) is rejected with a log line and replaced with COMMON,
+        /// because the game cannot sort it and throws for the whole library if it tries.
         /// </summary>
         public GambitBuilder WithRarity(Rarity rarity)
         {
-            _def.Rarity = rarity;
+            _def.Rarity = GambitValidation.SanitizeRarity(rarity, Who());
             return this;
         }
 
         /// <summary>
-        /// Set the gambit focus categories (affects shop weighting).
+        /// Set the gambit focus categories (affects shop weighting). Gambit_Focus.NONE is a
+        /// sentinel, not a category: it is rejected with a log line and replaced with
+        /// UTILITY, because the game cannot sort it and throws for the whole library if it tries.
         /// </summary>
         public GambitBuilder WithFocus(params Gambit_Focus[] focus)
         {
-            _def.Focus = focus ?? new[] { Gambit_Focus.UTILITY };
+            _def.Focus = GambitValidation.SanitizeFocus(focus, Who());
             return this;
         }
+
+        private string Who() =>
+            string.IsNullOrWhiteSpace(_def.Id) ? "gambit builder" : $"gambit '{_def.Id}'";
 
         /// <summary>
         /// Set the shop price.

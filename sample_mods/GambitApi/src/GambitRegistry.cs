@@ -115,8 +115,11 @@ namespace Gambonanza.GambitApi
             soGambit.GambitDescription = $"{def.Id}_description";
             soGambit.GambitVisual = def.Visual;
             soGambit.PriceCost = def.PriceCost;
-            soGambit.Rarity = def.Rarity;
-            soGambit.Focus = def.Focus ?? new[] { Gambit_Focus.UTILITY };
+            // Validated here as well as in GambitBuilder: GambitDefinition's fields are public,
+            // so a mod can hand Register() a definition it assembled by hand and never touch
+            // the builder's guards.
+            soGambit.Rarity = GambitValidation.SanitizeRarity(def.Rarity, $"gambit '{def.Id}'");
+            soGambit.Focus = GambitValidation.SanitizeFocus(def.Focus, $"gambit '{def.Id}'");
             soGambit.UnlockInfos = def.UnlockInfo;
             soGambit.GambitToUnlockToHaveAHint = def.GambitToUnlockToHaveAHint;
 
@@ -155,8 +158,25 @@ namespace Gambonanza.GambitApi
             library.GambitsInfo.Add(soGambit);
             library.Gambits.Add(prefab);
 
-            // 4. Reinitialize sorted lists
-            ReinitializeLibrary(library);
+            // 4. Reinitialize sorted lists.
+            //
+            // Vanilla Initialize() walks the ENTIRE library and throws
+            // ArgumentOutOfRangeException on any Rarity/Gambit_Focus value its switch
+            // doesn't cover. Step 3 has already published this entry, so a throw here used
+            // to strand it in GambitsInfo permanently: steps 5-7 never ran, leaving a
+            // nameless, never-unlocked card that the collection still painted - a chained
+            // "Locked" tile - while every mod registering AFTER it hit the same throw as
+            // Initialize() walked past the bad entry. GambitValidation should stop the known
+            // offenders upstream; this rolls back whatever a future game patch invents.
+            try
+            {
+                ReinitializeLibrary(library);
+            }
+            catch (Exception ex)
+            {
+                RollBackFailedRegistration(library, soGambit, prefab, def.Id, ex);
+                throw;
+            }
 
             // 5. Inject localization
             InjectLocalization(def);
@@ -169,6 +189,41 @@ namespace Gambonanza.GambitApi
             InvalidateCollectionCache();
 
             Debug.Log($"[GambitApi] Registered '{def.Id}' at index {index}.");
+        }
+
+        /// <summary>
+        /// Undoes step 3 of <see cref="DoRegister"/> after Initialize() rejected the library:
+        /// pulls the entry back out of both lists, destroys the objects created for it, drops
+        /// its cached localization strings, and rebuilds the sorted lists - which the aborted
+        /// Initialize() left half-filled, since ReinitializeLibrary clears them all before
+        /// repopulating.
+        /// </summary>
+        private static void RollBackFailedRegistration(
+            GambitLibrary library, SO_Gambit soGambit, GambitBehaviour prefab, string id, Exception cause)
+        {
+            Debug.LogError(
+                $"[GambitApi] '{id}' was rejected by GambitLibrary.Initialize() - rolling it back so it " +
+                $"can't leave a locked ghost card or break the mods that register after it. " +
+                $"Cause: {cause.GetBaseException().Message}");
+
+            try
+            {
+                library.GambitsInfo.Remove(soGambit);
+                library.Gambits.Remove(prefab);
+                _localizationEntries.Remove(id);
+
+                if (prefab != null) UnityEngine.Object.Destroy(prefab.gameObject);
+                if (soGambit != null) UnityEngine.Object.Destroy(soGambit);
+
+                // Rebuild from the cleaned list - with the offender gone this should succeed.
+                ReinitializeLibrary(library);
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError(
+                    $"[GambitApi] Rollback of '{id}' failed. Something else in the library is also " +
+                    $"unsortable, so gambit lists stay inconsistent until the game restarts: {ex}");
+            }
         }
 
         private static void InjectLocalization(GambitDefinition def)

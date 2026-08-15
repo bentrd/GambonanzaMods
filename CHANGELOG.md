@@ -5,6 +5,19 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## Unreleased
+
+- Custom gambits no longer show up chained and nameless in the collection. A
+  gambit mod asking for a category the game doesn't recognise used to leave
+  itself half-added to the library: it appeared as a permanently "Locked"
+  card that nothing could unlock, your collection count went up by one for a
+  gambit you could never get, and - worst of it - every gambit mod that
+  loaded after it silently stopped working as well. GambitApi now corrects
+  the bad category, and if the game still refuses the gambit it takes it back
+  out cleanly, so one bad card can no longer take the others down with it.
+  Gambit mods that had gone quiet should come back on their own after this
+  update.
+
 ## 1.3.0
 
 - Disabled mods are now COMPLETELY inert: the framework previously ran every
