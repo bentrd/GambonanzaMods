@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-15T08:30:21.111Z",
+  "generatedAt": "2026-08-15T08:36:04.670Z",
   "count": 14,
   "releases": {
     "framework": {
@@ -80,47 +80,47 @@
       ]
     },
     "manager": {
-      "tag": "manager-v1.0.5",
-      "version": "1.0.5",
-      "publishedAt": "2026-08-12T17:46:31Z",
-      "notes": "\n- \"Check again\" actually checks again: update checks now force a registry\n  revalidation instead of answering from the 30-minute cache, so a fresh\n  framework release shows up the moment you ask (an unchanged index costs\n  one 304 round-trip).\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.0.5",
+      "tag": "manager-v1.0.6",
+      "version": "1.0.6",
+      "publishedAt": "2026-08-15T08:34:08Z",
+      "notes": "\n- New knight. The app icon, the header logo and the website all wear the\n  redrawn brand knight - same wine-and-cream palette, sharper profile, and\n  an ear it was sorely missing.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.0.6",
       "assets": [
         {
-          "name": "Gambonanza.Mod.Manager-1.0.5-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.5/Gambonanza.Mod.Manager-1.0.5-arm64-mac.zip",
-          "size": 119578986,
-          "sha256": "ca61d2a9c3e345389b26d0b0e91f4ce02f061fc57fbb5225261693f8629899c2"
+          "name": "Gambonanza.Mod.Manager-1.0.6-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.6/Gambonanza.Mod.Manager-1.0.6-arm64-mac.zip",
+          "size": 119585015,
+          "sha256": "4e8890c7497e5132cf6de042bcaf963592a139ee21f248fe28d93ef00a4fab53"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.0.5-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.5/Gambonanza.Mod.Manager-1.0.5-arm64.dmg",
-          "size": 119483698,
-          "sha256": "251313f889617c2f55e7eada81f682bbefb4dbf2b3955d5a6f2e0c2bec2854fa"
+          "name": "Gambonanza.Mod.Manager-1.0.6-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.6/Gambonanza.Mod.Manager-1.0.6-arm64.dmg",
+          "size": 119492068,
+          "sha256": "18617b4664cab006b86218092420249bd0df73628e43eead504b7cc6b2c9349b"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.0.5-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.5/Gambonanza.Mod.Manager-1.0.5-mac.zip",
-          "size": 121705529,
-          "sha256": "851b424ceb13668fcf11664c4a12bf4801ae629ed7709278443954b754677d30"
+          "name": "Gambonanza.Mod.Manager-1.0.6-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.6/Gambonanza.Mod.Manager-1.0.6-mac.zip",
+          "size": 121711558,
+          "sha256": "9780739f20166a62d61ad0259e3f9cf2c68415664ddef8c1fa0cf696e0265725"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.0.5.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.5/Gambonanza.Mod.Manager-1.0.5.AppImage",
-          "size": 127823301,
-          "sha256": "7547235c9e5c94991937250492847205961483ec837f5462864e903e08184365"
+          "name": "Gambonanza.Mod.Manager-1.0.6.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.6/Gambonanza.Mod.Manager-1.0.6.AppImage",
+          "size": 127827418,
+          "sha256": "95c0658e97c223e27b588c93edff8880bba20795bc800a1dba45b43c9f53aaba"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.0.5.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.5/Gambonanza.Mod.Manager-1.0.5.dmg",
-          "size": 121555611,
-          "sha256": "d41ab53052ad1c4f4da49b6af6dc733da52f82ad3bbd96ab3e08555b44b0332d"
+          "name": "Gambonanza.Mod.Manager-1.0.6.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.6/Gambonanza.Mod.Manager-1.0.6.dmg",
+          "size": 121571180,
+          "sha256": "98994abf116b103755c2634c7efaf394099b82930d07954c4b1017e301155e7e"
         },
         {
-          "name": "Gambonanza.Mod.Manager.Setup.1.0.5.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.5/Gambonanza.Mod.Manager.Setup.1.0.5.exe",
-          "size": 99706230,
-          "sha256": "3c68142ff1b6f4528fd17a7e10584d62883b117071bd3c08e39a62c17b1ab784"
+          "name": "Gambonanza.Mod.Manager.Setup.1.0.6.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.0.6/Gambonanza.Mod.Manager.Setup.1.0.6.exe",
+          "size": 99715359,
+          "sha256": "4edef0e2a6c9413d6b745354f90b0dd81df2cade0b39957b343d08fb01f8213f"
         }
       ]
     }
@@ -276,7 +276,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T08:30:03Z",
+      "repoPushedAt": "2026-08-15T08:34:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -352,7 +352,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T08:30:03Z",
+      "repoPushedAt": "2026-08-15T08:34:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -508,7 +508,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T08:30:03Z",
+      "repoPushedAt": "2026-08-15T08:34:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -584,7 +584,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T08:30:03Z",
+      "repoPushedAt": "2026-08-15T08:34:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -662,7 +662,7 @@
         }
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-15T08:30:03Z",
+      "repoPushedAt": "2026-08-15T08:34:28Z",
       "license": "MIT",
       "archived": false
     }
