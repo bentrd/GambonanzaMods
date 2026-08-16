@@ -1,0 +1,22 @@
+{
+  "id": "fall-guy-gambit",
+  "name": "Fall Guy",
+  "author": "Ben",
+  "summary": "Once per game, a piece about to fall is saved to the nearest free square, or the stash. If both are full, it dies lol.",
+  "description": "An Epic gambit for 8 coins. When the crumble takes a tile out from under one of your pieces, the first such piece each game does not die: it hops to the nearest intact empty square. If the whole board is out of squares it is dropped into your stash instead, ready to be placed again. If the stash is full too - well, the card told you.\n\nThe charge is only spent when a piece is actually saved; a death leaves the gambit armed for the next fall. The buy-back graveyard is kept honest: a saved piece's booking is rolled back so a rescue is never also a free graveyard copy.",
+  "repo": "ben-gambo/mods",
+  "asset": "FallGuyGambit.zip",
+  "folder": "FallGuyGambit",
+  "homepage": "https://github.com/ben-gambo/mods/tree/main/FallGuyGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.3.3",
+  "gameVersion": ">=1.0",
+  "submittedBy": "ben-gambo",
+  "addedAt": "2026-08-16"
+}
