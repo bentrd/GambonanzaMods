@@ -72,7 +72,8 @@ GambonanzaMods/
 │                    game, swap the PNGs, apply. Needs none of the above.
 ├── tools/registry/  Registry validation + index builder (CI + local).
 ├── tools/package-framework.sh  Packages framework release bundles.
-├── docs/            UI_API.md, ASSET_MODDING.md, MOD_PUBLISHING.md, RELEASING.md.
+├── docs/            UI_API.md, ASSET_MODDING.md, MOD_PUBLISHING.md, RELEASING.md,
+│                    STANDALONE_MOD_RELEASES.md.
 ├── diagnostics/     Throwaway measuring tools, not shipped to players.
 │                    CollectionProfiler A/B-sweeps the collection screen and
 │                    writes a frame-time report.

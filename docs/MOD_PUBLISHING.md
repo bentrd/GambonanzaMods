@@ -17,6 +17,11 @@ it into the game's `Mods/` folder. That means:
 - **auditable by anyone** - the repo *is* the source; a mod without public
   source doesn't get in
 
+> **Maintainers:** a mod written inside this repository that shouldn't live in
+> `sample_mods/` is published differently - built artefact and source attached
+> to a release here, with nothing added to the tree. See
+> [STANDALONE_MOD_RELEASES.md](STANDALONE_MOD_RELEASES.md).
+
 ## Step 1 - make the mod
 
 Clone [GambonanzaMods](https://github.com/bentrd/GambonanzaMods), run

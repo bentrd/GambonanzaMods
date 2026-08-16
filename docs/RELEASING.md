@@ -76,19 +76,10 @@ Builds are unsigned. Consequences, and the way out:
 
 ## Standalone mod release
 
-For a mod that should be downloadable from this repo without its source living
-in the tree. Build it, zip the drop-in folder and the source separately, then:
-
-```bash
-gh release create mod-impatient-v1.0.0 \
-  ImpatientGambit.zip ImpatientGambit-source.zip \
-  --title "Impatient Gambit 1.0.0" --notes-file notes.md
-```
-
-The `mod-` prefix keeps it out of both automated streams and matches no
-workflow trigger, so nothing is built or published on your behalf. Attach the
-source archive as well - a binary in this repo without its source is exactly
-what `docs/MOD_PUBLISHING.md` tells contributors not to do.
+For a mod written here that should be downloadable from this repo without its
+source living in the tree - built artefact and full source, both attached to
+one release. Needs no framework release. The whole flow, and why it works this
+way, is in [STANDALONE_MOD_RELEASES.md](STANDALONE_MOD_RELEASES.md).
 
 ## Registry
 
