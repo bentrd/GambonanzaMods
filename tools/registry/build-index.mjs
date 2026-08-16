@@ -22,6 +22,7 @@ import { writeFile, readFile } from 'node:fs/promises';
 import {
   INDEX_PATH, HOME_REPO, loadEntries, validateEntry, parseSubmissionIssue,
   resolveLatestRelease, githubFetch, sha256, versionFromTag, manifestVersionFromZip,
+  manifestAuthorFromZip,
 } from './lib.mjs';
 
 const args = new Set(process.argv.slice(2));
@@ -180,24 +181,38 @@ async function resolveReleaseInto(record, { cachedRecord, quietWhenMissing = fal
         && cached.asset?.size === release.asset.size
         && cached.asset?.sha256
         // Entries written before manifestVersion existed get re-inspected once,
-        // so the migration happens on the next refresh rather than never.
-        && cached.manifestVersion !== undefined;
+        // so the migration happens on the next refresh rather than never. The
+        // same applies to manifestAuthor: without this the cached path would
+        // hold every existing entry's author at null forever, which is exactly
+        // the entry we added the field for.
+        && cached.manifestVersion !== undefined
+        && cached.manifestAuthor !== undefined;
 
       let hash = reusable ? cached.asset.sha256 : null;
       // Carried in the index so the cached path keeps the mod's own version
       // instead of silently falling back to the tag on the next run.
       let manifestVersion = reusable ? cached.manifestVersion ?? null : null;
+      let manifestAuthor = reusable ? cached.manifestAuthor ?? null : null;
       if (!hash) {
         if (release.asset.size > MAX_ASSET_BYTES) {
           throw new Error(`asset is ${(release.asset.size / 1e6).toFixed(1)} MB, over the ${MAX_ASSET_BYTES / 1e6} MB ceiling`);
         }
-        ({ sha256: hash, manifestVersion } = await inspectAsset(release.asset.url));
+        ({ sha256: hash, manifestVersion, manifestAuthor } = await inspectAsset(release.asset.url));
       }
       release.asset.sha256 = hash;
       // Always recorded, null included: its absence is what marks a pre-migration
       // entry, so writing it unconditionally stops bare-.dll mods (which have no
       // manifest to read) from being re-downloaded on every single refresh.
       release.manifestVersion = manifestVersion ?? null;
+      release.manifestAuthor = manifestAuthor ?? null;
+
+      // An unreviewed listing has no curated author - parseSubmissionIssue can
+      // only use the GitHub login of whoever filed the issue, which is an
+      // account name rather than a byline. Prefer what the mod credits itself
+      // as, so "Ben" doesn't show up as "ben-gambo" next to the same person's
+      // reviewed entries. Reviewed entries keep the author their registry file
+      // states: that one was written by a maintainer, not by the archive.
+      if (manifestAuthor && record.reviewed === false) record.author = manifestAuthor;
       // Bundled mods ship as assets on the *framework's* release, so their tag
       // says nothing about the mod - BetterCollection 1.0.0 read as "1.3.2" the
       // day it launched. Their own manifest is the honest number.
@@ -325,7 +340,11 @@ async function inspectAsset(url) {
   if (!res.ok) throw new Error(`download failed with HTTP ${res.status}`);
   const buf = Buffer.from(await res.arrayBuffer());
   if (buf.length > MAX_ASSET_BYTES) throw new Error('asset exceeded the size ceiling mid-download');
-  return { sha256: sha256(buf), manifestVersion: manifestVersionFromZip(buf) };
+  return {
+    sha256: sha256(buf),
+    manifestVersion: manifestVersionFromZip(buf),
+    manifestAuthor: manifestAuthorFromZip(buf),
+  };
 }
 
 /** Copy repo metadata forward from the previous index (offline path). */

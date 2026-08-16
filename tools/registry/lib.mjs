@@ -267,18 +267,19 @@ export function parseSubmissionIssue(body, { author = '', createdAt = '' } = {})
 }
 
 /**
- * The "version" declared in the mod.json inside a mod zip, or null.
+ * The parsed mod.json from inside a mod zip, or null.
  *
- * A mod's own version is the honest thing to show players: bundled sample mods
- * all ship as assets on the framework release, so deriving it from the tag made
- * every one of them read as the framework's version instead of their own.
+ * A mod's own manifest is the honest source for what it calls itself: bundled
+ * sample mods all ship as assets on the framework release, so deriving the
+ * version from the tag made every one of them read as the framework's version
+ * instead of their own.
  *
  * Hand-rolled rather than pulling in a zip dependency - this file runs in CI on
  * a bare `node` with no `npm install`, and mod.json is a few hundred bytes.
- * Anything unexpected returns null so the caller falls back to the tag; a
- * malformed archive must never take the whole registry down.
+ * Anything unexpected returns null so the caller falls back; a malformed
+ * archive must never take the whole registry down.
  */
-export function manifestVersionFromZip(buffer) {
+export function manifestFromZip(buffer) {
   try {
     // End of Central Directory: scan back from the end, past any trailing comment.
     const maxComment = 0xffff;
@@ -323,11 +324,37 @@ export function manifestVersionFromZip(buffer) {
     const raw = buffer.subarray(dataStart, dataStart + best.compressedSize);
     const json = best.method === 0 ? raw : inflateRawSync(raw);
 
-    const version = JSON.parse(json.toString('utf8'))?.version;
-    return typeof version === 'string' && version.trim() ? version.trim() : null;
+    return JSON.parse(json.toString('utf8')) ?? null;
   } catch {
     return null;
   }
+}
+
+/** The "version" declared in the mod.json inside a mod zip, or null. */
+export function manifestVersionFromZip(buffer) {
+  return trimmedString(manifestFromZip(buffer)?.version);
+}
+
+/**
+ * The "author" declared in the mod.json inside a mod zip, or null.
+ *
+ * Worth having because the only other source for an unreviewed submission is
+ * the GitHub login of whoever opened the issue, which is an account name, not
+ * a byline - "ben-gambo" where every reviewed entry by the same person says
+ * "Ben". The mod's own manifest is what the game itself credits, so it is the
+ * honest answer.
+ *
+ * This is untrusted zip content, so it gets the same length cap validateEntry
+ * puts on the field; anything else is dropped rather than trusted.
+ */
+export function manifestAuthorFromZip(buffer) {
+  return trimmedString(manifestFromZip(buffer)?.author, 48);
+}
+
+function trimmedString(value, max = Infinity) {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  return trimmed && trimmed.length <= max ? trimmed : null;
 }
 
 /**

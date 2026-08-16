@@ -30,9 +30,9 @@ downloads/
 *~
 
 # AI assistants
-# Local AI-assistant state stays out - but repo skills are shared tooling.
-.claude/*
-!.claude/skills/
+# All of it stays local, skills included: they are personal tooling, not
+# something contributors to this repo should be shipped.
+.claude/
 CLAUDE.md
 AGENTS.md
 .cursor/
