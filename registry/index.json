@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-16T19:37:38.885Z",
-  "count": 17,
+  "generatedAt": "2026-08-16T20:22:48.203Z",
+  "count": 18,
   "releases": {
     "framework": {
       "tag": "v1.3.3",
@@ -133,6 +133,44 @@
   },
   "mods": [
     {
+      "id": "point-a-mngr",
+      "name": "\"Point A\" Manager",
+      "author": "FRO_PWR",
+      "summary": "A manager class to recall the tile a piece moved from",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "PointAMngr.zip",
+      "folder": "PointAMngr",
+      "tags": [
+        "quality-of-life",
+        "library"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-16",
+      "official": false,
+      "reviewed": false,
+      "issue": 19,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/19",
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-16T20:16:23Z",
+        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
+        "asset": {
+          "name": "PointAMngr.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/PointAMngr.zip",
+          "size": 3708,
+          "sha256": "adb7bf5ccb4b520bf501c6a3c4fd2bb305974a25107ba520d2e99ac63ec78e3b"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "better-collection",
       "name": "Better Collection",
       "author": "Ben",
@@ -168,7 +206,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T18:49:36Z",
+      "repoPushedAt": "2026-08-16T19:37:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -210,7 +248,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -252,7 +290,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -294,7 +332,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -334,7 +372,7 @@
         "manifestAuthor": "nikaakaa"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T18:49:36Z",
+      "repoPushedAt": "2026-08-16T19:37:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -419,7 +457,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -459,7 +497,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T18:49:36Z",
+      "repoPushedAt": "2026-08-16T19:37:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -501,7 +539,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -586,7 +624,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -628,7 +666,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -670,7 +708,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T18:49:36Z",
+      "repoPushedAt": "2026-08-16T19:37:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -712,7 +750,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -752,7 +790,7 @@
         "manifestAuthor": "Minty"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T18:49:36Z",
+      "repoPushedAt": "2026-08-16T19:37:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -779,22 +817,22 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.1.0",
-        "version": "1.1.0",
-        "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-16T20:16:23Z",
+        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
         "asset": {
           "name": "RecursionsGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/RecursionsGambit.zip",
-          "size": 5027,
-          "sha256": "d1e44819e2d46122135010b8058e974669c18b7435f5050037a24b0d0f19e6b2"
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/RecursionsGambit.zip",
+          "size": 5243,
+          "sha256": "9da214ad8fde63a96c06cef4a28c7fe83eb148c7af8e2ca0737ff8e5dfd6b56c"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T02:29:12Z",
+      "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -836,7 +874,7 @@
         "manifestAuthor": "TGM"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T18:49:36Z",
+      "repoPushedAt": "2026-08-16T19:37:39Z",
       "license": "MIT",
       "archived": false
     }
