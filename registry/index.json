@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-16T11:53:53.017Z",
+  "generatedAt": "2026-08-16T12:08:38.498Z",
   "count": 17,
   "releases": {
     "framework": {
@@ -168,7 +168,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:53:12Z",
+      "repoPushedAt": "2026-08-16T11:53:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -334,7 +334,7 @@
         "manifestAuthor": "nikaakaa"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:53:12Z",
+      "repoPushedAt": "2026-08-16T11:53:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -357,22 +357,22 @@
       "issue": 18,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/18",
       "latest": {
-        "tag": "FallGuyGambit-v1.0.1",
-        "version": "1.0.1",
-        "publishedAt": "2026-08-16T11:52:37Z",
-        "notes": "Adds Fall Guy's Gambit: once per game, a piece about to fall is saved to the nearest free square, or the stash. If both are full, it dies lol.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`FallGuyGambit/`](../../tree/FallGuyGambit-v1.0.1/FallGuyGambit)\n",
-        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/FallGuyGambit-v1.0.1",
+        "tag": "FallGuyGambit-v1.0.2",
+        "version": "1.0.2",
+        "publishedAt": "2026-08-16T12:08:11Z",
+        "notes": "Adds Fall Guy's Gambit: once per game, a piece about to fall is saved to the nearest free square, or the stash. If both are full, it dies lol.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`FallGuyGambit/`](../../tree/FallGuyGambit-v1.0.2/FallGuyGambit)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/FallGuyGambit-v1.0.2",
         "asset": {
           "name": "FallGuyGambit.zip",
-          "url": "https://github.com/ben-gambo/mods/releases/download/FallGuyGambit-v1.0.1/FallGuyGambit.zip",
-          "size": 7888,
-          "sha256": "9a7700fc10e2cdf522061437a21902e4e97ac02dd9e101adc1c47593297a9d90"
+          "url": "https://github.com/ben-gambo/mods/releases/download/FallGuyGambit-v1.0.2/FallGuyGambit.zip",
+          "size": 7723,
+          "sha256": "ce70d946626da4790a8fc0ee5bab04df394f296dc179ca66e98eca9adc97054f"
         },
-        "manifestVersion": "1.0.1",
+        "manifestVersion": "1.0.2",
         "manifestAuthor": "Ben"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T11:52:37Z",
+      "repoPushedAt": "2026-08-16T12:08:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -454,7 +454,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:53:12Z",
+      "repoPushedAt": "2026-08-16T11:53:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -539,7 +539,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 0,
-      "repoPushedAt": "2026-08-16T11:52:37Z",
+      "repoPushedAt": "2026-08-16T12:08:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -665,7 +665,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:53:12Z",
+      "repoPushedAt": "2026-08-16T11:53:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -747,7 +747,7 @@
         "manifestAuthor": "Minty"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:53:12Z",
+      "repoPushedAt": "2026-08-16T11:53:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -831,7 +831,7 @@
         "manifestAuthor": "TGM"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:53:12Z",
+      "repoPushedAt": "2026-08-16T11:53:54Z",
       "license": "MIT",
       "archived": false
     }
