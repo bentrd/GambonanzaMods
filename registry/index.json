@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-16T11:53:11.229Z",
+  "generatedAt": "2026-08-16T11:53:53.017Z",
   "count": 17,
   "releases": {
     "framework": {
@@ -168,7 +168,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:38:06Z",
+      "repoPushedAt": "2026-08-16T11:53:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -334,7 +334,7 @@
         "manifestAuthor": "nikaakaa"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:38:06Z",
+      "repoPushedAt": "2026-08-16T11:53:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -454,7 +454,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:38:06Z",
+      "repoPushedAt": "2026-08-16T11:53:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -665,7 +665,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:38:06Z",
+      "repoPushedAt": "2026-08-16T11:53:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -747,7 +747,7 @@
         "manifestAuthor": "Minty"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:38:06Z",
+      "repoPushedAt": "2026-08-16T11:53:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -831,7 +831,7 @@
         "manifestAuthor": "TGM"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T11:38:06Z",
+      "repoPushedAt": "2026-08-16T11:53:12Z",
       "license": "MIT",
       "archived": false
     }
