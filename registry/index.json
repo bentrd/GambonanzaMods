@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-16T13:04:17.651Z",
+  "generatedAt": "2026-08-16T13:04:58.111Z",
   "count": 17,
   "releases": {
     "framework": {
@@ -168,7 +168,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T12:49:01Z",
+      "repoPushedAt": "2026-08-16T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -334,7 +334,7 @@
         "manifestAuthor": "nikaakaa"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T12:49:01Z",
+      "repoPushedAt": "2026-08-16T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -342,8 +342,8 @@
       "id": "fall-guy-gambit",
       "name": "Fall Guy",
       "author": "Ben",
-      "summary": "Once per game, a piece about to fall is saved to the nearest free square, or the stash. If both are full, it dies lol.",
-      "description": "An Epic gambit for 8 coins. When the crumble takes a tile out from under one of your pieces, the first such piece each game does not die: it hops to the nearest intact empty square. If the whole board is out of squares it is dropped into your stash instead, ready to be placed again. If the stash is full too - well, the card told you.\n\nThe charge is only spent when a piece is actually saved; a death leaves the gambit armed for the next fall. The buy-back graveyard is kept honest: a saved piece's booking is rolled back so a rescue is never also a free graveyard copy.",
+      "summary": "Pieces about to fall are saved to the nearest free square, or the stash.",
+      "description": "An Epic gambit for 8 coins. When the crumble takes a tile out from under one of your pieces, the piece does not die: it hops to the nearest intact empty square. If the whole board is out of squares it is dropped into your stash instead, ready to be placed again. Only when the stash is full too does the fall play out as vanilla wrote it.\n\nEvery fall is covered - there is no per-game limit. The buy-back graveyard is kept honest: a saved piece's booking is rolled back so a rescue is never also a free graveyard copy.",
       "repo": "ben-gambo/mods",
       "asset": "FallGuyGambit.zip",
       "folder": "FallGuyGambit",
@@ -459,7 +459,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T12:49:01Z",
+      "repoPushedAt": "2026-08-16T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -670,7 +670,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T12:49:01Z",
+      "repoPushedAt": "2026-08-16T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -752,7 +752,7 @@
         "manifestAuthor": "Minty"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T12:49:01Z",
+      "repoPushedAt": "2026-08-16T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -836,7 +836,7 @@
         "manifestAuthor": "TGM"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T12:49:01Z",
+      "repoPushedAt": "2026-08-16T13:04:37Z",
       "license": "MIT",
       "archived": false
     }
