@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-16T09:45:46.128Z",
+  "generatedAt": "2026-08-16T10:43:33.382Z",
   "count": 15,
   "releases": {
     "framework": {
@@ -136,8 +136,8 @@
       "id": "better-collection",
       "name": "Better Collection",
       "author": "Ben",
-      "summary": "Makes the collection screen smooth, and adds a search bar to filter your gambits.",
-      "description": "The collection screen was drawing every card, button and arrow over itself up to 1250 times to fake a thick outline - the page arrows alone rebuilt as 7,500 shapes each, every time anything moved. This draws them twice instead: same look, a fraction of the cost. The run-info screen you open mid-run is built from the same pieces and gets the same treatment.\n\nIt also adds a search bar to the collection. Open it and just start typing - the grid filters as you go, with a suggestion list underneath (arrow keys to move, Tab or Enter to accept) and a match count on the right. It searches names and descriptions, so 'trap' finds the Trap gambit first and then everything that mentions traps.\n\nPrefer the chunkier outlines? Type 'collection outlines 4' in the console (F10) to put them back.",
+      "summary": "Makes the gambit collection screen run smoothly.",
+      "description": "The collection screen was drawing every card, button and arrow over itself up to 1250 times to fake a thick outline - the page arrows alone rebuilt as 7,500 shapes each, every time anything moved. This draws them twice instead: same look, a fraction of the cost. The run-info screen you open mid-run is built from the same pieces and gets the same treatment.\n\nPrefer the chunkier outlines? Type 'collection outlines 4' in the console (F10) to put them back.",
       "repo": "bentrd/GambonanzaMods",
       "asset": "BetterCollection.zip",
       "folder": "BetterCollection",
@@ -167,7 +167,7 @@
         "manifestVersion": "1.0.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T08:49:53Z",
+      "repoPushedAt": "2026-08-16T10:25:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -329,7 +329,7 @@
         "manifestVersion": "1.2.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T08:49:53Z",
+      "repoPushedAt": "2026-08-16T10:25:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -409,7 +409,7 @@
         "manifestVersion": "1.4.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T08:49:53Z",
+      "repoPushedAt": "2026-08-16T10:25:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -573,7 +573,7 @@
         "manifestVersion": "1.3.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T08:49:53Z",
+      "repoPushedAt": "2026-08-16T10:25:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -653,7 +653,7 @@
         "manifestVersion": "1.1.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T08:49:53Z",
+      "repoPushedAt": "2026-08-16T10:25:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -735,7 +735,7 @@
         "manifestVersion": "1.1.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T08:49:53Z",
+      "repoPushedAt": "2026-08-16T10:25:20Z",
       "license": "MIT",
       "archived": false
     }
