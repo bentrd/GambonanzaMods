@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-16T10:43:33.382Z",
-  "count": 15,
+  "generatedAt": "2026-08-16T11:01:41.615Z",
+  "count": 16,
   "releases": {
     "framework": {
       "tag": "v1.3.3",
@@ -167,7 +167,7 @@
         "manifestVersion": "1.0.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:25:20Z",
+      "repoPushedAt": "2026-08-16T10:43:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -329,7 +329,7 @@
         "manifestVersion": "1.2.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:25:20Z",
+      "repoPushedAt": "2026-08-16T10:43:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -409,7 +409,7 @@
         "manifestVersion": "1.4.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:25:20Z",
+      "repoPushedAt": "2026-08-16T10:43:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -451,6 +451,43 @@
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "impatient-gambit",
+      "name": "Impatient Gambit",
+      "author": "ben-gambo",
+      "summary": "Skip every stage straight to its boss, and earn 4x gold.",
+      "repo": "ben-gambo/mods",
+      "asset": "ImpatientGambit.zip",
+      "folder": "ImpatientGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "ben-gambo",
+      "addedAt": "2026-08-16",
+      "official": false,
+      "reviewed": false,
+      "issue": 17,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/17",
+      "latest": {
+        "tag": "ImpatientGambit-v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-16T10:38:03Z",
+        "notes": "Adds the Impatient Gambit: fight only bosses, and earn 4x gold.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`ImpatientGambit/`](../../tree/ImpatientGambit-v1.0.0/ImpatientGambit)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/ImpatientGambit-v1.0.0",
+        "asset": {
+          "name": "ImpatientGambit.zip",
+          "url": "https://github.com/ben-gambo/mods/releases/download/ImpatientGambit-v1.0.0/ImpatientGambit.zip",
+          "size": 9780,
+          "sha256": "7113d3d8e46d4485aa38d36ddfc19dad18c93e5e1695c3351755fe2f7895f292"
+        },
+        "manifestVersion": "1.0.0"
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-16T10:38:02Z",
       "license": "MIT",
       "archived": false
     },
@@ -573,7 +610,7 @@
         "manifestVersion": "1.3.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:25:20Z",
+      "repoPushedAt": "2026-08-16T10:43:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -653,7 +690,7 @@
         "manifestVersion": "1.1.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:25:20Z",
+      "repoPushedAt": "2026-08-16T10:43:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -735,7 +772,7 @@
         "manifestVersion": "1.1.0"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:25:20Z",
+      "repoPushedAt": "2026-08-16T10:43:34Z",
       "license": "MIT",
       "archived": false
     }
