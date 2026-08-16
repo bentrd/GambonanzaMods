@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-16T11:01:41.615Z",
+  "generatedAt": "2026-08-16T11:19:49.880Z",
   "count": 16,
   "releases": {
     "framework": {
@@ -164,10 +164,11 @@
           "size": 14246,
           "sha256": "08b3a0697b96d7cbed96b17bade6948dd6d2b671b63fe53a6380dcb2404f1ad9"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:43:34Z",
+      "repoPushedAt": "2026-08-16T11:19:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -205,7 +206,8 @@
           "size": 4690,
           "sha256": "20553737686bbf43b0c51dc592c956777240f51f947e548802d35dcdb1553e12"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -246,7 +248,8 @@
           "size": 5340,
           "sha256": "1c071a3f7ac1b38b0eec46698d7e537b0276aaa71edb10230b3753a84b658028"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -287,7 +290,8 @@
           "size": 5039,
           "sha256": "ebbd3f8c539df0e4b25fe493ad52cab5928d0dab20aae0aafca35b6a5a097e01"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -326,10 +330,11 @@
           "size": 7614,
           "sha256": "a244c249e701526f5237ff5aba13bbaab91be1909acbbb10f17d2127f9ae165d"
         },
-        "manifestVersion": "1.2.0"
+        "manifestVersion": "1.2.0",
+        "manifestAuthor": "nikaakaa"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:43:34Z",
+      "repoPushedAt": "2026-08-16T11:19:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -367,7 +372,8 @@
           "size": 4267,
           "sha256": "ccf0a0a02860069b94000a5c0a431792d4ce3a27511dbdeb0769e67ca9695b09"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -406,10 +412,11 @@
           "size": 19464,
           "sha256": "92b5c9120a9909b5f5509b4423e28e06aae9531979c8bc83efd561b4ef721178"
         },
-        "manifestVersion": "1.4.0"
+        "manifestVersion": "1.4.0",
+        "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:43:34Z",
+      "repoPushedAt": "2026-08-16T11:19:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -447,7 +454,8 @@
           "size": 5701,
           "sha256": "47c50f67baf53e8f6ab73f206399e5da30a171ae304f42bb3063cc0079729bbe"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -457,7 +465,7 @@
     {
       "id": "impatient-gambit",
       "name": "Impatient Gambit",
-      "author": "ben-gambo",
+      "author": "Ben",
       "summary": "Skip every stage straight to its boss, and earn 4x gold.",
       "repo": "ben-gambo/mods",
       "asset": "ImpatientGambit.zip",
@@ -484,7 +492,8 @@
           "size": 9780,
           "sha256": "7113d3d8e46d4485aa38d36ddfc19dad18c93e5e1695c3351755fe2f7895f292"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T10:38:02Z",
@@ -525,7 +534,8 @@
           "size": 4838,
           "sha256": "101ec1489dfc9b0af7fd245ffe94d70db04e73ac64cd660b42684b41aab00c14"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -566,7 +576,8 @@
           "size": 5487,
           "sha256": "5870d4a903f053d38ffa2a13fcb777aa35dcea1aebfd53291e7de2fc204956f9"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -607,10 +618,11 @@
           "size": 8779,
           "sha256": "2138eafe484a382a4111e0ac93198c6d23f7f49d2786e0abd8a58b7e268aa685"
         },
-        "manifestVersion": "1.3.0"
+        "manifestVersion": "1.3.0",
+        "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:43:34Z",
+      "repoPushedAt": "2026-08-16T11:19:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -648,7 +660,8 @@
           "size": 5528,
           "sha256": "bd1b4e303c6e0ad85e1549b910262c75ef36ed013409be002f5ef530ad941801"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -687,10 +700,11 @@
           "size": 4361,
           "sha256": "1a31a0148c719282eae41b61b4788e32f3b596e46295e85494ca743156415fa5"
         },
-        "manifestVersion": "1.1.0"
+        "manifestVersion": "1.1.0",
+        "manifestAuthor": "Minty"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:43:34Z",
+      "repoPushedAt": "2026-08-16T11:19:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -728,7 +742,8 @@
           "size": 5027,
           "sha256": "d1e44819e2d46122135010b8058e974669c18b7435f5050037a24b0d0f19e6b2"
         },
-        "manifestVersion": "1.0.0"
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
       },
       "stars": 0,
       "repoPushedAt": "2026-08-16T02:29:12Z",
@@ -769,10 +784,11 @@
           "size": 6497,
           "sha256": "b8923ed912ffdaf6bb232b47be48a9d953557a633505f3ba1b1b89c48dd75247"
         },
-        "manifestVersion": "1.1.0"
+        "manifestVersion": "1.1.0",
+        "manifestAuthor": "TGM"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T10:43:34Z",
+      "repoPushedAt": "2026-08-16T11:19:30Z",
       "license": "MIT",
       "archived": false
     }
