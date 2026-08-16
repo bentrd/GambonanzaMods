@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-16T20:22:48.203Z",
-  "count": 18,
+  "generatedAt": "2026-08-16T20:25:56.654Z",
+  "count": 19,
   "releases": {
     "framework": {
       "tag": "v1.3.3",
@@ -206,7 +206,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T19:37:39Z",
+      "repoPushedAt": "2026-08-16T20:22:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -372,7 +372,7 @@
         "manifestAuthor": "nikaakaa"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T19:37:39Z",
+      "repoPushedAt": "2026-08-16T20:22:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -497,7 +497,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T19:37:39Z",
+      "repoPushedAt": "2026-08-16T20:22:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -708,7 +708,7 @@
         "manifestAuthor": "Ben"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T19:37:39Z",
+      "repoPushedAt": "2026-08-16T20:22:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -790,7 +790,7 @@
         "manifestAuthor": "Minty"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T19:37:39Z",
+      "repoPushedAt": "2026-08-16T20:22:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -827,6 +827,44 @@
           "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/RecursionsGambit.zip",
           "size": 5243,
           "sha256": "9da214ad8fde63a96c06cef4a28c7fe83eb148c7af8e2ca0737ff8e5dfd6b56c"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "stars": 0,
+      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "sniper",
+      "name": "Sniper's Gambit",
+      "author": "FRO_PWR",
+      "summary": "Capturing with a Bishop from 3 or more spaces away skips the enemy's turn.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "SnipersGambit.zip",
+      "folder": "SnipersGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-16",
+      "official": false,
+      "reviewed": false,
+      "issue": 20,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/20",
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-16T20:16:23Z",
+        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
+        "asset": {
+          "name": "SnipersGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/SnipersGambit.zip",
+          "size": 5110,
+          "sha256": "47a6ad857c27b1a08a6d5fb8781232ceced1cd2ae954d1b625cf1d5281ecfe6b"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
@@ -874,7 +912,7 @@
         "manifestAuthor": "TGM"
       },
       "stars": 3,
-      "repoPushedAt": "2026-08-16T19:37:39Z",
+      "repoPushedAt": "2026-08-16T20:22:49Z",
       "license": "MIT",
       "archived": false
     }
