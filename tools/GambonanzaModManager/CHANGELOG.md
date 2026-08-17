@@ -4,6 +4,15 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.2.0
+
+- Every mod card now shows how many times the mod has been downloaded, plus
+  a popularity icon: a flame for the registry's most-downloaded fifth, a
+  star for the top half, a sprout for everything still growing. The counts
+  are GitHub's own per-release-asset download counters, recorded into the
+  registry index by CI every hour - no analytics service, no tracking, and
+  nothing new phoning home.
+
 ## 1.1.0
 
 - Community submissions show up in Browse the moment they're submitted,

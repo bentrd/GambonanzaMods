@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://bentrd.github.io/GambonanzaMods/registry/modpack-schema.json",
+  "title": "Gambonanza modpack registry entry",
+  "description": "One file per modpack under registry/modpacks/<id>.json. A modpack is pure metadata: a curated list of registry mod ids. It has no repository, no release asset and no binary of its own - installing a pack simply installs each member mod through the exact same verified path as installing it alone. Packs may only reference reviewed registry mods (files in registry/mods/), never unreviewed issue submissions.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "author", "summary", "mods"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$",
+      "description": "Unique, permanent, lowercase id. Must match the file name."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 48,
+      "description": "Display name shown in the mod manager."
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 48,
+      "description": "Who curated the pack. Usually the GitHub username."
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 140,
+      "description": "One line, shown on the pack card. What is this pack FOR?"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Optional longer text. Plain text or light markdown."
+    },
+    "mods": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 24,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$"
+      },
+      "description": "Registry ids of the member mods, in suggested install order. Dependencies (like gambit-api) are pulled in automatically and do not need to be listed."
+    },
+    "tags": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "enum": ["gameplay", "gambits", "quality-of-life", "ui", "visual", "audio", "cheats", "library", "tools"]
+      },
+      "description": "Same vocabulary as mod tags."
+    },
+    "homepage": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^https://",
+      "description": "Optional link with more about the pack."
+    },
+    "submittedBy": {
+      "type": "string",
+      "maxLength": 48,
+      "description": "GitHub login of whoever submitted the pack."
+    },
+    "addedAt": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "Date the pack entered the registry, YYYY-MM-DD."
+    }
+  }
+}

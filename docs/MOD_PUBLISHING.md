@@ -123,6 +123,15 @@ usual entry is just:
 
 Validate locally with `node tools/registry/validate.mjs`.
 
+## Download counts
+
+Every mod card shows a lifetime download count and a popularity icon (hot /
+popular / growing, relative to the rest of the registry). The numbers come
+straight from GitHub's per-asset download counters - the registry refresh
+records them into the index every hour. There is no analytics service and no
+tracking anywhere: if you can see your release's download count on your own
+repo's Releases page, that's the exact number the manager shows.
+
 ## For the maintainer: enabling in-app sign-in
 
 "Sign in with GitHub" uses the OAuth **device flow**, which needs a client id

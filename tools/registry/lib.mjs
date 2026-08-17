@@ -13,6 +13,7 @@ import { inflateRawSync } from 'node:zlib';
 export const REPO_ROOT = path.resolve(fileURLToPath(new URL('../../', import.meta.url)));
 export const REGISTRY_DIR = path.join(REPO_ROOT, 'registry');
 export const MODS_DIR = path.join(REGISTRY_DIR, 'mods');
+export const MODPACKS_DIR = path.join(REGISTRY_DIR, 'modpacks');
 export const INDEX_PATH = path.join(REGISTRY_DIR, 'index.json');
 
 /** The registry's own repo. Used for the "official mods" badge. */
@@ -143,9 +144,87 @@ function isStringArray(v) {
   return Array.isArray(v) && v.every((x) => typeof x === 'string');
 }
 
+const KNOWN_MODPACK_FIELDS = new Set([
+  'id', 'name', 'author', 'summary', 'description', 'mods', 'tags',
+  'homepage', 'submittedBy', 'addedAt',
+]);
+
+/**
+ * Validate one modpack entry (registry/modpacks/<id>.json). A modpack is
+ * pure metadata: a name and a list of registry mod ids. It has no repo, no
+ * asset and no binary of its own - installing one just installs its members,
+ * so the pack itself never needs a checksum or a review pass beyond "are
+ * these ids real". `knownModIds` are the ids of the REVIEWED registry files;
+ * packs may only reference those, never unreviewed issue submissions.
+ */
+export function validateModpackEntry(entry, fileName, knownModIds = null) {
+  const errors = [];
+  const fail = (msg) => errors.push(msg);
+
+  if (typeof entry !== 'object' || entry === null || Array.isArray(entry)) {
+    return ['file must contain a single JSON object'];
+  }
+
+  for (const key of Object.keys(entry)) {
+    if (!KNOWN_MODPACK_FIELDS.has(key)) fail(`unknown field "${key}" (typo? see registry/modpack-schema.json)`);
+  }
+
+  const str = (field, { required = false, min = 1, max = 4000, re = null, reHint = '' } = {}) => {
+    const v = entry[field];
+    if (v === undefined || v === null || v === '') {
+      if (required) fail(`"${field}" is required`);
+      return null;
+    }
+    if (typeof v !== 'string') { fail(`"${field}" must be a string`); return null; }
+    if (v.length < min) fail(`"${field}" is too short (min ${min} characters)`);
+    if (v.length > max) fail(`"${field}" is too long (max ${max} characters)`);
+    if (re && !re.test(v)) fail(`"${field}" is malformed${reHint ? ` - ${reHint}` : ''}`);
+    return v;
+  };
+
+  const id = str('id', { required: true, re: ID_RE, reHint: 'use lowercase letters, digits and dashes, e.g. "my-first-pack"' });
+  str('name', { required: true, min: 2, max: 48 });
+  str('author', { required: true, max: 48 });
+  str('summary', { required: true, min: 8, max: 140 });
+  str('description', { max: 4000 });
+  str('homepage', { max: 200, re: /^https:\/\//, reHint: 'must start with https://' });
+  str('submittedBy', { max: 48 });
+  str('addedAt', { re: DATE_RE, reHint: 'expected YYYY-MM-DD' });
+
+  if (id && fileName && `${id}.json` !== fileName) {
+    fail(`file name must match the id: expected ${id}.json, got ${fileName}`);
+  }
+
+  if (!isStringArray(entry.mods)) {
+    fail('"mods" must be an array of registry mod ids');
+  } else {
+    if (entry.mods.length < 2) fail('a modpack needs at least 2 mods (a single mod is just... a mod)');
+    if (entry.mods.length > 24) fail('"mods" allows at most 24 entries');
+    const seen = new Set();
+    for (const modId of entry.mods) {
+      if (!ID_RE.test(modId)) fail(`mod id "${modId}" is malformed`);
+      else if (seen.has(modId)) fail(`mod id "${modId}" is listed twice`);
+      else if (knownModIds && !knownModIds.has(modId)) fail(`mod "${modId}" is not in the registry (packs can only include reviewed mods)`);
+      seen.add(modId);
+    }
+  }
+
+  if (entry.tags !== undefined) {
+    if (!isStringArray(entry.tags)) fail('"tags" must be an array of strings');
+    else {
+      if (entry.tags.length > 5) fail('"tags" allows at most 5 entries');
+      for (const t of entry.tags) {
+        if (!KNOWN_TAGS.includes(t)) fail(`unknown tag "${t}" (pick from: ${KNOWN_TAGS.join(', ')})`);
+      }
+    }
+  }
+
+  return errors;
+}
+
 /** Read every registry/mods/*.json, sorted by id. Throws on malformed JSON. */
 export async function loadEntries(dir = MODS_DIR) {
-  const names = (await readdir(dir)).filter((n) => n.endsWith('.json')).sort();
+  const names = (await readdir(dir).catch(() => [])).filter((n) => n.endsWith('.json')).sort();
   const out = [];
   for (const fileName of names) {
     const raw = await readFile(path.join(dir, fileName), 'utf8');
@@ -153,7 +232,7 @@ export async function loadEntries(dir = MODS_DIR) {
     try {
       entry = JSON.parse(raw);
     } catch (err) {
-      throw new Error(`registry/mods/${fileName}: not valid JSON - ${err.message}`);
+      throw new Error(`${path.relative(REPO_ROOT, path.join(dir, fileName))}: not valid JSON - ${err.message}`);
     }
     out.push({ fileName, entry });
   }
@@ -375,6 +454,14 @@ export function githubFetch(pathOrUrl, { token = process.env.GITHUB_TOKEN, accep
 /**
  * Find the newest release of `repo` that carries an asset matching the entry's
  * glob. Returns null when the repo has no such release yet.
+ *
+ * The returned release also carries `downloads`: the mod's LIFETIME download
+ * total, summed over every matching asset in every release we can see (not
+ * just the newest). GitHub counts asset downloads for free - that is the
+ * entire "analytics stack" behind the download numbers in the mod manager;
+ * no third-party service, no tracking, refreshed whenever CI rebuilds the
+ * index. The total is best-effort: it only sees the releases on this page
+ * (per_page=30), and deleted releases take their counts with them.
  */
 export async function resolveLatestRelease(entry, { token } = {}) {
   const assetRe = globToRegExp(entry.asset);
@@ -385,10 +472,21 @@ export async function resolveLatestRelease(entry, { token } = {}) {
   if (!res.ok) throw new Error(`GitHub returned ${res.status} for ${entry.repo} releases`);
   const releases = await res.json();
 
-  for (const rel of releases) {
-    if (rel.draft) continue;
-    if (rel.prerelease && !entry.prerelease) continue;
-    if (tagRe && !tagRe.test(rel.tag_name)) continue;
+  const eligible = releases.filter((rel) => {
+    if (rel.draft) return false;
+    if (rel.prerelease && !entry.prerelease) return false;
+    if (tagRe && !tagRe.test(rel.tag_name)) return false;
+    return true;
+  });
+
+  let downloads = 0;
+  for (const rel of eligible) {
+    for (const a of rel.assets || []) {
+      if (assetRe.test(a.name)) downloads += Number(a.download_count) || 0;
+    }
+  }
+
+  for (const rel of eligible) {
     const asset = (rel.assets || []).find((a) => assetRe.test(a.name));
     if (!asset) continue;
     return {
@@ -397,6 +495,7 @@ export async function resolveLatestRelease(entry, { token } = {}) {
       publishedAt: rel.published_at,
       notes: rel.body || '',
       releaseUrl: rel.html_url,
+      downloads,
       asset: {
         name: asset.name,
         url: asset.browser_download_url,

@@ -139,3 +139,4 @@ test('resolveInstallPlan: survives a dependency cycle', () => {
   const plan = mods.resolveInstallPlan(a, [a, b], []);
   assert.deepEqual(plan.map((p) => p.id).sort(), ['a', 'b']);
 });
+

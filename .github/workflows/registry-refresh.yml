@@ -17,6 +17,7 @@ on:
     branches: [main]
     paths:
       - 'registry/mods/**'
+      - 'registry/modpacks/**'
       - 'tools/registry/**'
 
 permissions:

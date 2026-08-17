@@ -140,6 +140,16 @@
   }
   .tag.gold { background: #8a6a1c; color: #ffe9a3; }
   .tag.red { background: #8a3a28; color: #ffd9cc; }
+  .mod-card .stats { margin-top: 8px; display: flex; gap: 12px; align-items: center; }
+  .mod-card .stat {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-family: var(--font-display); font-size: 11.5px; color: rgba(90,34,48,.72);
+  }
+  .mod-card .stat svg { display: block; }
+  .mod-card .stat.pop { text-transform: uppercase; letter-spacing: .5px; font-size: 10px; }
+  .mod-card .stat.pop.hot { color: #c23b18; }
+  .mod-card .stat.pop.popular { color: #8a6a1c; }
+  .mod-card .stat.pop.growing { color: #4c7a3d; }
 
   .steps { counter-reset: step; }
   .step { display: flex; gap: 14px; padding: 10px 0; align-items: flex-start; }
@@ -455,6 +465,36 @@
       grid.textContent = '';
       var mods = index.mods || [];
       if (!mods.length) throw new Error('empty');
+
+      // Download counts come from GitHub's per-asset counters, recorded into
+      // the index by CI. Popularity is relative: top fifth = hot, top half =
+      // popular, with absolute floors so a tiny registry isn't all flames.
+      var counts = [];
+      for (var c = 0; c < mods.length; c++) {
+        if (mods[c].latest) counts.push(mods[c].downloads || 0);
+      }
+      counts.sort(function (a, b) { return a - b; });
+      var tierAt = function (p) {
+        return counts.length ? counts[Math.min(counts.length - 1, Math.floor(p * counts.length))] : 0;
+      };
+      var hotAt = Math.max(tierAt(0.8), 25);
+      var popAt = Math.max(tierAt(0.5), 5);
+      var fmtCount = function (n) {
+        n = Number(n) || 0;
+        if (n >= 1e6) return (n / 1e6).toFixed(n < 1e7 ? 1 : 0) + 'M';
+        if (n >= 1000) return (n / 1000).toFixed(n < 1e4 ? 1 : 0) + 'k';
+        return String(n);
+      };
+      var pixIcon = function (d) {
+        return '<svg class="pix" width="12" height="12" viewBox="0 0 12 12" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><path d="' + d + '"/></svg>';
+      };
+      var DL_ICON = pixIcon('M5 1h2v1H5zM5 2h2v1H5zM5 3h2v1H5zM3 4h6v1H3zM4 5h4v1H4zM5 6h2v1H5zM1 8h10v2H1z');
+      var POP_ICONS = {
+        hot: pixIcon('M7 0h1v1H7zM6 1h2v1H6zM5 2h2v1H5zM4 3h3v1H4zM3 4h5v1H3zM3 5h6v1H3zM2 6h8v1H2zM2 7h8v1H2zM3 8h7v1H3zM4 9h5v1H4zM5 10h3v1H5z'),
+        popular: pixIcon('M5 1h2v1H5zM5 2h2v1H5zM4 3h4v1H4zM1 4h10v1H1zM2 5h8v1H2zM3 6h6v1H3zM2 7h8v1H2zM2 8h3v1H2zM7 8h3v1H7zM1 9h2v1H1zM9 9h2v1H9z'),
+        growing: pixIcon('M8 1h3v1H8zM7 2h4v1H7zM8 3h2v1H8zM1 3h3v1H1zM1 4h4v1H1zM2 5h2v1H2zM5 4h2v7H5z'),
+      };
+
       for (var i = 0; i < mods.length; i++) {
         var m = mods[i];
         var card = document.createElement('div');
@@ -490,6 +530,20 @@
           tags.appendChild(t);
         });
 
+        var dl = m.downloads || 0;
+        var tier = dl >= hotAt ? 'hot' : dl >= popAt ? 'popular' : 'growing';
+        var stats = document.createElement('div');
+        stats.className = 'stats';
+        var dlStat = document.createElement('span');
+        dlStat.className = 'stat';
+        dlStat.title = 'Downloaded ' + dl.toLocaleString() + ' times across all versions';
+        dlStat.innerHTML = DL_ICON + ' ' + fmtCount(dl);
+        var popStat = document.createElement('span');
+        popStat.className = 'stat pop ' + tier;
+        popStat.innerHTML = POP_ICONS[tier] + ' ' + tier;
+        stats.appendChild(dlStat);
+        stats.appendChild(popStat);
+
         var link = document.createElement('a');
         link.href = m.homepage || ('https://github.com/' + m.repo);
         link.style.textDecoration = 'none';
@@ -497,6 +551,7 @@
         link.appendChild(h);
         link.appendChild(by);
         link.appendChild(p);
+        link.appendChild(stats);
         link.appendChild(tags);
         card.appendChild(link);
         grid.appendChild(card);

@@ -46,6 +46,62 @@ const el = (tag, attrs = {}, ...children) => {
 };
 
 // ---------------------------------------------------------------------------
+// Icons + download counts
+// ---------------------------------------------------------------------------
+
+// Hand-drawn pixel icons matching the rest of the chrome (crispEdges, 12x12).
+// Trusted literals only - fed to el()'s `html` attribute, never user data.
+const pix = (d) => `<svg class="pix" width="13" height="13" viewBox="0 0 12 12" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><path d="${d}"/></svg>`;
+const ICONS = {
+  download: pix('M5 1h2v1H5zM5 2h2v1H5zM5 3h2v1H5zM3 4h6v1H3zM4 5h4v1H4zM5 6h2v1H5zM1 8h10v2H1z'),
+  flame: pix('M7 0h1v1H7zM6 1h2v1H6zM5 2h2v1H5zM4 3h3v1H4zM3 4h5v1H3zM3 5h6v1H3zM2 6h8v1H2zM2 7h8v1H2zM3 8h7v1H3zM4 9h5v1H4zM5 10h3v1H5z'),
+  star: pix('M5 1h2v1H5zM5 2h2v1H5zM4 3h4v1H4zM1 4h10v1H1zM2 5h8v1H2zM3 6h6v1H3zM2 7h8v1H2zM2 8h3v1H2zM7 8h3v1H7zM1 9h2v1H1zM9 9h2v1H9z'),
+  sprout: pix('M8 1h3v1H8zM7 2h4v1H7zM8 3h2v1H8zM1 3h3v1H1zM1 4h4v1H1zM2 5h2v1H2zM5 4h2v7H5z'),
+};
+
+/** 1234 -> "1.2k". Counts, not bytes - nobody needs the exact number. */
+function fmtCount(n) {
+  n = Number(n) || 0;
+  if (n >= 1e6) return `${(n / 1e6).toFixed(n < 1e7 ? 1 : 0)}M`;
+  if (n >= 1000) return `${(n / 1000).toFixed(n < 1e4 ? 1 : 0)}k`;
+  return String(n);
+}
+
+/**
+ * Popularity is relative to the rest of the registry, not an absolute number:
+ * "hot" = top fifth of mods by lifetime downloads, "popular" = top half.
+ * Absolute floors stop a brand-new registry (where 3 downloads is technically
+ * the top fifth) from handing out flames like participation trophies.
+ */
+function popularityTiers(mods) {
+  const counts = mods.filter((m) => m.latest).map((m) => m.downloads || 0).sort((a, b) => a - b);
+  if (!counts.length) return null;
+  const at = (p) => counts[Math.min(counts.length - 1, Math.floor(p * counts.length))];
+  return { hot: Math.max(at(0.8), 25), popular: Math.max(at(0.5), 5) };
+}
+
+function popularityOf(mod, tiers) {
+  const dl = mod.downloads || 0;
+  if (tiers && dl >= tiers.hot) {
+    return { cls: 'hot', icon: 'flame', label: 'hot', title: 'Hot - among the most downloaded mods in the registry' };
+  }
+  if (tiers && dl >= tiers.popular) {
+    return { cls: 'popular', icon: 'star', label: 'popular', title: 'Popular - downloaded more than most mods' };
+  }
+  return { cls: 'growing', icon: 'sprout', label: 'growing', title: 'Growing - every mod starts somewhere' };
+}
+
+/** The "⬇ 1.2k" + popularity pair shown on mod cards. */
+function statsRow(mod, tiers) {
+  const pop = popularityOf(mod, tiers);
+  return el('div', { class: 'stats' },
+    el('span', { class: 'stat', title: `Downloaded ${(mod.downloads || 0).toLocaleString()} times across all versions (counted by GitHub)` },
+      el('span', { class: 'micon', html: ICONS.download }), fmtCount(mod.downloads || 0)),
+    el('span', { class: `stat pop ${pop.cls}`, title: pop.title },
+      el('span', { class: 'micon', html: ICONS[pop.icon] }), pop.label));
+}
+
+// ---------------------------------------------------------------------------
 // Toasts + modal
 // ---------------------------------------------------------------------------
 
@@ -318,10 +374,13 @@ function renderBrowse() {
   });
 
   $('browseEmpty').hidden = visible.length > 0;
-  $('modGrid').replaceChildren(...visible.map(renderModCard));
+  // Tiers come from the WHOLE registry, not the filtered view - searching for
+  // "junk" must not crown the one result "hot" for being alone.
+  const tiers = popularityTiers(registryMods);
+  $('modGrid').replaceChildren(...visible.map((m) => renderModCard(m, tiers)));
 }
 
-function renderModCard(mod) {
+function renderModCard(mod, tiers) {
   const badges = [];
   // reviewed === false comes from the index for issue-sourced submissions
   // nobody has vetted yet; registry entries carry reviewed: true. Older
@@ -367,6 +426,7 @@ function renderModCard(mod) {
         el('div', { class: 'by' }, `by ${mod.author}`)),
       el('div', { class: 'badges' }, badges)),
     el('div', { class: 'sum' }, mod.summary || ''),
+    statsRow(mod, tiers),
     deps,
     foot);
 }
@@ -679,9 +739,13 @@ async function dismissUpdate(kind, version) {
 // Publish
 // ---------------------------------------------------------------------------
 
-function renderPublish() {
+/**
+ * The GitHub sign-in status box, shared by the Publish tab and the modpack
+ * publish form - it is the same account and the same device flow; only the
+ * "what you are submitting" word changes.
+ */
+function authBox(what) {
   const p = state.publish;
-  const auth = $('publishAuth');
   const signInAvailable = state.data?.publish?.signInAvailable;
   const settings = state.data?.settings;
   if (settings?.githubSignedIn && !p.signedIn) {
@@ -689,31 +753,33 @@ function renderPublish() {
     p.login = settings.githubLogin || '';
   }
 
-  auth.replaceChildren();
-
   if (p.signedIn) {
-    auth.append(el('div', { class: 'inset-row', style: 'display:flex; align-items:center; gap:10px' },
+    return el('div', { class: 'inset-row', style: 'display:flex; align-items:center; gap:10px' },
       el('span', {}, `Signed in as `), el('b', {}, p.login || 'GitHub user'),
       el('span', { style: 'flex:1' }),
-      el('button', { class: 'btn btn-cream small', onclick: signOut }, 'Sign out')));
-  } else if (p.device) {
-    auth.append(el('div', { class: 'inset-row', style: 'text-align:center' },
+      el('button', { class: 'btn btn-cream small', onclick: signOut }, 'Sign out'));
+  }
+  if (p.device) {
+    return el('div', { class: 'inset-row', style: 'text-align:center' },
       el('p', { style: 'margin:0 0 8px' }, 'Enter this code on GitHub to sign in:'),
       el('div', { class: 'device-code' }, p.device.userCode),
       el('p', { class: 'tiny muted', style: 'margin:10px 0 0' },
         'A browser tab has opened at github.com/login/device. Waiting for you to approve…'),
-    ));
-  } else if (signInAvailable) {
-    auth.append(el('div', { class: 'inset-row', style: 'display:flex; align-items:center; gap:10px' },
-      el('div', { style: 'flex:1' },
-        el('div', {}, 'Sign in with GitHub to submit your mod without leaving the app.'),
-        el('div', { class: 'tiny muted' }, 'Uses GitHub’s device code - no password ever touches this app.')),
-      el('button', { class: 'btn btn-green small', onclick: signIn }, 'Sign in with GitHub')));
-  } else {
-    auth.append(el('div', { class: 'inset-row' },
-      'Fill in the form and hit "Open submission on GitHub" - it pre-fills an issue for you, no sign-in needed.'));
+    );
   }
+  if (signInAvailable) {
+    return el('div', { class: 'inset-row', style: 'display:flex; align-items:center; gap:10px' },
+      el('div', { style: 'flex:1' },
+        el('div', {}, `Sign in with GitHub to submit your ${what} without leaving the app.`),
+        el('div', { class: 'tiny muted' }, 'Uses GitHub’s device code - no password ever touches this app.')),
+      el('button', { class: 'btn btn-green small', onclick: signIn }, 'Sign in with GitHub'));
+  }
+  return el('div', { class: 'inset-row' },
+    'Fill in the form and hit "Open submission on GitHub" - it pre-fills an issue for you, no sign-in needed.');
+}
 
+function renderPublish() {
+  $('publishAuth').replaceChildren(authBox('mod'));
   renderPublishForm();
 }
 

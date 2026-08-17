@@ -1,11 +1,135 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T15:44:37.917Z",
+  "generatedAt": "2026-08-17T15:47:12.204Z",
   "count": 19,
   "releases": {
-    "framework": null,
-    "manager": null
+    "framework": {
+      "tag": "v1.3.3",
+      "version": "1.3.3",
+      "publishedAt": "2026-08-15T10:41:43Z",
+      "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+      "assets": [
+        {
+          "name": "BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/BetterCollection.zip",
+          "size": 14246,
+          "sha256": "08b3a0697b96d7cbed96b17bade6948dd6d2b671b63fe53a6380dcb2404f1ad9"
+        },
+        {
+          "name": "EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/EnemyThreatOverlay.zip",
+          "size": 7614,
+          "sha256": "a244c249e701526f5237ff5aba13bbaab91be1909acbbb10f17d2127f9ae165d"
+        },
+        {
+          "name": "GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/GambitApi.zip",
+          "size": 19464,
+          "sha256": "92b5c9120a9909b5f5509b4423e28e06aae9531979c8bc83efd561b4ef721178"
+        },
+        {
+          "name": "gambonanza-framework-linux-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-linux-arm64.zip",
+          "size": 28389865,
+          "sha256": "b6c5ab7bddddbad46dc123bb910933513332cdbd5e4bf79ae60859e43d5e318e"
+        },
+        {
+          "name": "gambonanza-framework-linux-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-linux-x64.zip",
+          "size": 29617334,
+          "sha256": "4e6a0b78005a6d4b4c0e0787f9ffde506087b14405fa21f6b112ca8c25288d6a"
+        },
+        {
+          "name": "gambonanza-framework-osx-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-osx-arm64.zip",
+          "size": 28619238,
+          "sha256": "848007651dfc3bcbb63655110ad0c6ad2a612899d39df76c829e77e67a443b3f"
+        },
+        {
+          "name": "gambonanza-framework-osx-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-osx-x64.zip",
+          "size": 29966644,
+          "sha256": "249f5238b971e89df451b2322626c297b138a4447df72feaf7b9a4a89416aaaf"
+        },
+        {
+          "name": "gambonanza-framework-win-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-win-arm64.zip",
+          "size": 28857495,
+          "sha256": "3b93de68269a472b6e07cbd5ebe3f3ff4047f4cb617d31b7f5475653946e2510"
+        },
+        {
+          "name": "gambonanza-framework-win-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-win-x64.zip",
+          "size": 29944907,
+          "sha256": "839d4a1126f7f3e0c1f392ccef16d7ace7ad3c88044a9fa2dadb00f9dbc5555a"
+        },
+        {
+          "name": "KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/KamikazeGambit.zip",
+          "size": 8779,
+          "sha256": "2138eafe484a382a4111e0ac93198c6d23f7f49d2786e0abd8a58b7e268aa685"
+        },
+        {
+          "name": "MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/MightyKasparovEveryStage.zip",
+          "size": 4361,
+          "sha256": "1a31a0148c719282eae41b61b4788e32f3b596e46295e85494ca743156415fa5"
+        },
+        {
+          "name": "SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/SpikesGambit.zip",
+          "size": 6497,
+          "sha256": "b8923ed912ffdaf6bb232b47be48a9d953557a633505f3ba1b1b89c48dd75247"
+        }
+      ]
+    },
+    "manager": {
+      "tag": "manager-v1.1.0",
+      "version": "1.1.0",
+      "publishedAt": "2026-08-15T11:11:09Z",
+      "notes": "\n- Community submissions show up in Browse the moment they're submitted,\n  marked **unreviewed** - straight from their submission issue, before a\n  maintainer has read the code. Installing (or updating) one warns you that\n  nobody has checked it and points you at the source.\n- The gold badge is now **reviewed** and replaces \"official\": it means a\n  human read the mod's source before it was listed, which is true of every\n  registry mod - bundled or community-made.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.1.0",
+      "assets": [
+        {
+          "name": "Gambonanza.Mod.Manager-1.1.0-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0-arm64-mac.zip",
+          "size": 119586235,
+          "sha256": "6774fc38e01378dcdc9c824c69fb8d9c92201e6b489f268ea81d8c35a0bd97d5"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.1.0-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0-arm64.dmg",
+          "size": 119492745,
+          "sha256": "08fa30c7af1db43b348a2f3a37805a74068e37601fad1aaf2042f2889635a8ca"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.1.0-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0-mac.zip",
+          "size": 121712778,
+          "sha256": "0fcd39d70d0c4339bc630f2cd83323b849a711930d93dfbeb17937b976cf2045"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.1.0.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0.AppImage",
+          "size": 127827373,
+          "sha256": "b186ea16c8f9db02a5656b56a0af8289d1e22b237d67f2135c5353042f7c8743"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.1.0.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0.dmg",
+          "size": 121580247,
+          "sha256": "de36752b26bb05f7efabd69b7bb426b79b653f86e9541cbc4b458e8b2562c728"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager.Setup.1.1.0.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager.Setup.1.1.0.exe",
+          "size": 99716227,
+          "sha256": "7c61c761fc5f036173b5061eebb829f60aad1afd2b8494e936a142c23c60abc7"
+        }
+      ]
+    }
   },
   "mods": [
     {
@@ -27,6 +151,7 @@
       "issue": 19,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/19",
       "latest": null,
+      "downloads": 0,
       "pending": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
@@ -53,11 +178,24 @@
       "addedAt": "2026-08-15",
       "official": true,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of bentrd/GambonanzaMods has an asset matching \"BetterCollection.zip\".",
+      "latest": {
+        "tag": "v1.3.3",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "asset": {
+          "name": "BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/BetterCollection.zip",
+          "size": 14246,
+          "sha256": "08b3a0697b96d7cbed96b17bade6948dd6d2b671b63fe53a6380dcb2404f1ad9"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
+      },
+      "downloads": 0,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T14:48:31Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -83,9 +221,22 @@
       "addedAt": "2026-08-13",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"BougiesGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "BougiesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/BougiesGambit.zip",
+          "size": 4690,
+          "sha256": "20553737686bbf43b0c51dc592c956777240f51f947e548802d35dcdb1553e12"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -113,9 +264,22 @@
       "addedAt": "2026-08-13",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"CrybabysGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "CrybabysGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/CrybabysGambit.zip",
+          "size": 5340,
+          "sha256": "1c071a3f7ac1b38b0eec46698d7e537b0276aaa71edb10230b3753a84b658028"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -143,9 +307,22 @@
       "addedAt": "2026-08-15",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"DominoEffectsGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "DominoEffectsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/DominoEffectsGambit.zip",
+          "size": 5039,
+          "sha256": "ebbd3f8c539df0e4b25fe493ad52cab5928d0dab20aae0aafca35b6a5a097e01"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -171,11 +348,24 @@
       "addedAt": "2026-08-12",
       "official": true,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of bentrd/GambonanzaMods has an asset matching \"EnemyThreatOverlay.zip\".",
+      "latest": {
+        "tag": "v1.3.3",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "asset": {
+          "name": "EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/EnemyThreatOverlay.zip",
+          "size": 7614,
+          "sha256": "a244c249e701526f5237ff5aba13bbaab91be1909acbbb10f17d2127f9ae165d"
+        },
+        "manifestVersion": "1.2.0",
+        "manifestAuthor": "nikaakaa"
+      },
+      "downloads": 0,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T14:48:31Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -202,9 +392,22 @@
       "addedAt": "2026-08-16",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of ben-gambo/mods has an asset matching \"FallGuyGambit.zip\".",
+      "latest": {
+        "tag": "FallGuyGambit-v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-16T13:03:58Z",
+        "notes": "Adds Fall Guy's Gambit: pieces about to fall are saved to the nearest free square, or the stash.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`FallGuyGambit/`](../../tree/FallGuyGambit-v1.1.0/FallGuyGambit)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/FallGuyGambit-v1.1.0",
+        "asset": {
+          "name": "FallGuyGambit.zip",
+          "url": "https://github.com/ben-gambo/mods/releases/download/FallGuyGambit-v1.1.0/FallGuyGambit.zip",
+          "size": 7670,
+          "sha256": "8b0b5b733ab7682b0e113b264d05824bc5855a97b67ce4d7b0eea8b662a72090"
+        },
+        "manifestVersion": "1.1.0",
+        "manifestAuthor": "Ben"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T13:08:15Z",
       "license": "MIT",
@@ -232,9 +435,22 @@
       "addedAt": "2026-08-13",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"FishingNetsGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "FishingNetsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/FishingNetsGambit.zip",
+          "size": 4267,
+          "sha256": "ccf0a0a02860069b94000a5c0a431792d4ce3a27511dbdeb0769e67ca9695b09"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -260,11 +476,24 @@
       "addedAt": "2026-08-12",
       "official": true,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of bentrd/GambonanzaMods has an asset matching \"GambitApi.zip\".",
+      "latest": {
+        "tag": "v1.3.3",
+        "version": "1.4.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "asset": {
+          "name": "GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/GambitApi.zip",
+          "size": 19464,
+          "sha256": "92b5c9120a9909b5f5509b4423e28e06aae9531979c8bc83efd561b4ef721178"
+        },
+        "manifestVersion": "1.4.0",
+        "manifestAuthor": "Ben"
+      },
+      "downloads": 0,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T14:48:31Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -290,9 +519,22 @@
       "addedAt": "2026-08-12",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"GrandMasCookiesGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "GrandMasCookiesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/GrandMasCookiesGambit.zip",
+          "size": 5701,
+          "sha256": "47c50f67baf53e8f6ab73f206399e5da30a171ae304f42bb3063cc0079729bbe"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -336,6 +578,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T13:08:15Z",
       "license": "MIT",
@@ -363,9 +606,22 @@
       "addedAt": "2026-08-13",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"JumperCablesGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "JumperCablesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/JumperCablesGambit.zip",
+          "size": 4838,
+          "sha256": "101ec1489dfc9b0af7fd245ffe94d70db04e73ac64cd660b42684b41aab00c14"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -393,9 +649,22 @@
       "addedAt": "2026-08-13",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"JunksGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "JunksGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/JunksGambit.zip",
+          "size": 5487,
+          "sha256": "5870d4a903f053d38ffa2a13fcb777aa35dcea1aebfd53291e7de2fc204956f9"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -423,11 +692,24 @@
       "addedAt": "2026-08-12",
       "official": true,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of bentrd/GambonanzaMods has an asset matching \"KamikazeGambit.zip\".",
+      "latest": {
+        "tag": "v1.3.3",
+        "version": "1.3.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "asset": {
+          "name": "KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/KamikazeGambit.zip",
+          "size": 8779,
+          "sha256": "2138eafe484a382a4111e0ac93198c6d23f7f49d2786e0abd8a58b7e268aa685"
+        },
+        "manifestVersion": "1.3.0",
+        "manifestAuthor": "Ben"
+      },
+      "downloads": 0,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T14:48:31Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -468,6 +750,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -493,11 +776,24 @@
       "addedAt": "2026-08-12",
       "official": true,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of bentrd/GambonanzaMods has an asset matching \"MightyKasparovEveryStage.zip\".",
+      "latest": {
+        "tag": "v1.3.3",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "asset": {
+          "name": "MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/MightyKasparovEveryStage.zip",
+          "size": 4361,
+          "sha256": "1a31a0148c719282eae41b61b4788e32f3b596e46295e85494ca743156415fa5"
+        },
+        "manifestVersion": "1.1.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T14:48:31Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -523,9 +819,22 @@
       "addedAt": "2026-08-13",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"RecursionsGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "RecursionsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/RecursionsGambit.zip",
+          "size": 5027,
+          "sha256": "d1e44819e2d46122135010b8058e974669c18b7435f5050037a24b0d0f19e6b2"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -550,6 +859,7 @@
       "issue": 20,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/20",
       "latest": null,
+      "downloads": 0,
       "pending": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
@@ -578,13 +888,27 @@
       "addedAt": "2026-08-12",
       "official": true,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of bentrd/GambonanzaMods has an asset matching \"SpikesGambit.zip\".",
+      "latest": {
+        "tag": "v1.3.3",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-15T10:41:43Z",
+        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "asset": {
+          "name": "SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/SpikesGambit.zip",
+          "size": 6497,
+          "sha256": "b8923ed912ffdaf6bb232b47be48a9d953557a633505f3ba1b1b89c48dd75247"
+        },
+        "manifestVersion": "1.1.0",
+        "manifestAuthor": "TGM"
+      },
+      "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T14:48:31Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     }
-  ]
+  ],
+  "modpacks": []
 }

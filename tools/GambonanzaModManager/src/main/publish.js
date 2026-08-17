@@ -111,10 +111,13 @@ async function listReleaseAssets(token, repo) {
 
 /**
  * The whole submission: fork GambonanzaMods (no-op when it exists), branch,
- * commit registry/mods/<id>.json, open the PR. Returns the PR URL.
+ * commit one JSON file, open the PR. Returns the PR URL. Shared by mod and
+ * modpack submissions - the only differences are the file path and the words.
  */
-async function submitEntry(token, entry, { onStep = () => {} } = {}) {
-  const [homeOwner, homeName] = HOME_REPO.split('/');
+async function submitRegistryFile(token, {
+  branch, filePath, json, commitMessage, prTitle, prBody,
+}, { onStep = () => {} } = {}) {
+  const homeName = HOME_REPO.split('/')[1];
   const login = await whoAmI(token);
 
   onStep('Forking the registry');
@@ -128,7 +131,6 @@ async function submitEntry(token, entry, { onStep = () => {} } = {}) {
   const baseRef = await api(token, 'GET', `/repos/${HOME_REPO}/git/ref/heads/${base}`);
   const baseSha = baseRef.object.sha;
 
-  const branch = `registry/${entry.id}`;
   onStep('Creating a branch on your fork');
   // Push the base commit into the fork first so the branch can point at it
   // even when the fork is stale.
@@ -142,32 +144,20 @@ async function submitEntry(token, entry, { onStep = () => {} } = {}) {
     await api(token, 'PATCH', `/repos/${forkFullName}/git/refs/heads/${branch}`, { sha: baseSha, force: true });
   });
 
-  onStep('Adding your mod file');
-  const filePath = `registry/mods/${entry.id}.json`;
-  const content = Buffer.from(`${JSON.stringify(entry, null, 2)}\n`).toString('base64');
+  onStep('Adding your file');
+  const content = Buffer.from(`${JSON.stringify(json, null, 2)}\n`).toString('base64');
   const existing = await api(token, 'GET', `/repos/${forkFullName}/contents/${filePath}?ref=${branch}`).catch(() => null);
   await api(token, 'PUT', `/repos/${forkFullName}/contents/${filePath}`, {
-    message: `registry: add ${entry.name}`,
+    message: commitMessage,
     content,
     branch,
     ...(existing?.sha ? { sha: existing.sha } : {}),
   });
 
   onStep('Opening the pull request');
-  const title = `Registry: add ${entry.name}`;
-  const body = [
-    `Adds **${entry.name}** by ${entry.author} to the mod registry.`,
-    '',
-    `- Repository: https://github.com/${entry.repo}`,
-    `- Release asset: \`${entry.asset}\``,
-    `- Install folder: \`${entry.folder}\``,
-    '',
-    '_Submitted from the Gambonanza Mod Manager._',
-  ].join('\n');
-
   const pr = await api(token, 'POST', `/repos/${HOME_REPO}/pulls`, {
-    title,
-    body,
+    title: prTitle,
+    body: prBody,
     head: `${login}:${branch}`,
     base,
     maintainer_can_modify: true,
@@ -181,6 +171,26 @@ async function submitEntry(token, entry, { onStep = () => {} } = {}) {
 
   log.info('publish', `opened registry PR ${pr.html_url}`);
   return { url: pr.html_url, number: pr.number };
+}
+
+/** Submit one mod entry as registry/mods/<id>.json. */
+function submitEntry(token, entry, opts = {}) {
+  return submitRegistryFile(token, {
+    branch: `registry/${entry.id}`,
+    filePath: `registry/mods/${entry.id}.json`,
+    json: entry,
+    commitMessage: `registry: add ${entry.name}`,
+    prTitle: `Registry: add ${entry.name}`,
+    prBody: [
+      `Adds **${entry.name}** by ${entry.author} to the mod registry.`,
+      '',
+      `- Repository: https://github.com/${entry.repo}`,
+      `- Release asset: \`${entry.asset}\``,
+      `- Install folder: \`${entry.folder}\``,
+      '',
+      '_Submitted from the Gambonanza Mod Manager._',
+    ].join('\n'),
+  }, opts);
 }
 
 async function waitForRepo(token, fullName) {

@@ -20,9 +20,9 @@
 
 import { writeFile, readFile } from 'node:fs/promises';
 import {
-  INDEX_PATH, HOME_REPO, loadEntries, validateEntry, parseSubmissionIssue,
-  resolveLatestRelease, githubFetch, sha256, versionFromTag, manifestVersionFromZip,
-  manifestAuthorFromZip,
+  INDEX_PATH, HOME_REPO, MODPACKS_DIR, loadEntries, validateEntry, validateModpackEntry,
+  parseSubmissionIssue, resolveLatestRelease, githubFetch, sha256, versionFromTag,
+  manifestVersionFromZip, manifestAuthorFromZip,
 } from './lib.mjs';
 
 const args = new Set(process.argv.slice(2));
@@ -70,6 +70,7 @@ for (const { fileName, entry } of entries) {
 
   if (offline) {
     record.latest = cachedRecord?.latest ?? null;
+    record.downloads = cachedRecord?.downloads ?? 0;
     if (!record.latest) record.pending = true;
     mods.push(withRepoMeta(record, cachedRecord));
     console.log(`· ${entry.id} → ${record.latest ? `${record.latest.tag} (kept)` : 'no release yet'}`);
@@ -87,12 +88,20 @@ for (const { fileName, entry } of entries) {
 // without adding the file simply delists the submission.
 mods.push(...await collectSubmissionMods(entries));
 
+// Modpacks: curated bundles of registry mods. Pure metadata - the pack has no
+// binary, no repo and no checksum of its own; installing one installs its
+// members, each verified exactly as if installed alone. Packs may only
+// reference reviewed registry files (never issue submissions), so a pack can
+// never smuggle unvetted code past the reviewed badge.
+const modpacks = await buildModpacks(entries, mods);
+
 if (errors) {
   console.error(`\n${errors} entries failed validation - run tools/registry/validate.mjs for details.`);
   process.exit(1);
 }
 
 mods.sort((a, b) => a.name.localeCompare(b.name));
+modpacks.sort((a, b) => a.name.localeCompare(b.name));
 
 // Latest framework + manager releases ride inside the index so the app's
 // update checks read Pages (no rate limit) instead of the GitHub API
@@ -113,6 +122,7 @@ const index = {
   count: mods.length,
   releases,
   mods,
+  modpacks,
 };
 
 const serialized = `${JSON.stringify(index, null, 2)}\n`;
@@ -128,9 +138,56 @@ if (checkOnly) {
 }
 
 await writeFile(INDEX_PATH, serialized);
-console.log(`\nWrote ${INDEX_PATH} (${mods.length} mods, ${mods.filter((m) => m.latest).length} installable).`);
+console.log(`\nWrote ${INDEX_PATH} (${mods.length} mods, ${mods.filter((m) => m.latest).length} installable, ${modpacks.length} modpack(s)).`);
 
 // ---------------------------------------------------------------------------
+
+/**
+ * Load, validate and resolve registry/modpacks/*.json. Validation failures
+ * count into the global `errors` (these are curated files - a broken one
+ * should fail CI, same as a broken mod entry). A member id that vanished from
+ * the registry only drops that member with a warning: deleting a mod must
+ * not take every pack that mentioned it down with it. Packs left with fewer
+ * than 2 live members are delisted until fixed.
+ */
+async function buildModpacks(fileEntries, resolvedMods) {
+  const reviewedIds = new Set(fileEntries.map(({ entry }) => entry.id));
+  const byId = new Map(resolvedMods.map((m) => [m.id, m]));
+  const packs = [];
+
+  for (const { fileName, entry } of await loadEntries(MODPACKS_DIR)) {
+    const problems = validateModpackEntry(entry, fileName, reviewedIds);
+    if (problems.length) {
+      errors++;
+      console.error(`✗ modpacks/${fileName}: ${problems[0]}`);
+      continue;
+    }
+    if (packs.some((p) => p.id === entry.id)) {
+      errors++;
+      console.error(`✗ modpacks/${fileName}: duplicate modpack id "${entry.id}"`);
+      continue;
+    }
+
+    const members = entry.mods.filter((id) => {
+      if (byId.has(id)) return true;
+      console.warn(`! modpack ${entry.id}: mod "${id}" is gone from the registry - dropped from the pack`);
+      return false;
+    });
+    if (members.length < 2) {
+      console.warn(`! modpack ${entry.id}: fewer than 2 of its mods still exist - delisted`);
+      continue;
+    }
+
+    // Aggregate lifetime downloads of the members - the pack's own popularity
+    // signal. Approximate by design (members are also installed solo).
+    const downloads = members.reduce((sum, id) => sum + (byId.get(id)?.downloads || 0), 0);
+    const installable = members.every((id) => !!byId.get(id)?.latest?.asset?.sha256);
+
+    packs.push({ ...entry, mods: members, downloads, installable });
+    console.log(`✓ pack ${entry.id} → ${members.length} mods, ${downloads} downloads`);
+  }
+  return packs;
+}
 
 /** Newest stable framework (v*) and manager (manager-v*) releases. */
 async function resolveHomeReleases() {
@@ -156,6 +213,13 @@ async function resolveHomeReleases() {
     });
     const framework = rels.find((r) => !r.draft && !r.prerelease && !r.tag_name.startsWith('manager-v'));
     const manager = rels.find((r) => !r.draft && !r.prerelease && r.tag_name.startsWith('manager-v'));
+    if (!framework && !manager && (previous?.releases?.framework || previous?.releases?.manager)) {
+      // Same guard as the per-mod path: a release list that suddenly reads
+      // empty is a degraded GitHub answering 200, not a maintainer deleting
+      // every release ever shipped.
+      console.warn(`! ${HOME_REPO} release list came back empty - keeping previous`);
+      return null;
+    }
     console.log(`✓ releases → framework ${framework?.tag_name ?? 'none'}, manager ${manager?.tag_name ?? 'none'}`);
     return { framework: framework ? shape(framework) : null, manager: manager ? shape(manager) : null };
   } catch (err) {
@@ -171,9 +235,17 @@ async function resolveHomeReleases() {
  * error - right for entries flagged pending and for fresh submissions.
  */
 async function resolveReleaseInto(record, { cachedRecord, quietWhenMissing = false } = {}) {
+  // Lifetime download total, straight from GitHub's per-asset counters (free,
+  // no analytics service anywhere). Resolution failures below keep the last
+  // known number rather than zeroing a mod's history over a network blip.
+  record.downloads = cachedRecord?.downloads ?? 0;
   try {
     const release = await resolveLatestRelease(record, { token });
     if (release) {
+      record.downloads = release.downloads ?? record.downloads;
+      // The total is mod-lifetime, not a property of the newest release -
+      // keep `latest` describing only the thing the manager downloads.
+      delete release.downloads;
       const cached = cachedRecord?.latest;
       const reusable = cached
         && cached.tag === release.tag
@@ -224,6 +296,17 @@ async function resolveReleaseInto(record, { cachedRecord, quietWhenMissing = fal
       if (manifestVersion && record.official) release.version = manifestVersion;
       record.latest = release;
       console.log(`✓ ${record.id} → ${release.tag} ${release.asset.name} (${hash.slice(0, 12)}…)${reusable ? ' [cached]' : ''}`);
+    } else if (cachedRecord?.latest) {
+      // We HAD a release and now the listing says there is none. Deleting
+      // every release is vanishingly rare; GitHub degrading into "200 with an
+      // empty array" mid-incident is not (observed 2026-08-17, it emptied the
+      // whole index). Same philosophy as the catch below: never yank a
+      // working mod over one bad answer. If the releases are genuinely gone,
+      // installs fail their checksum download and the entry should be removed
+      // from the registry by hand.
+      record.latest = cachedRecord.latest;
+      record.stale = true;
+      console.warn(`! ${record.id} → release list came back empty (kept last known release ${cachedRecord.latest.tag})`);
     } else if (quietWhenMissing) {
       record.pending = true;
       console.log(`· ${record.id} → no release yet (pending)`);

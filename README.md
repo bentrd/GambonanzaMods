@@ -14,7 +14,9 @@ UI, the patcher, sample mods that double as documentation - and the desktop
 
 **[Download the Gambonanza Mod Manager](https://bentrd.github.io/GambonanzaMods/)** -
 a desktop app for macOS, Windows and Linux that finds your game, patches it
-(with a backup), and installs mods from the community registry with one click.
+(with a backup), and installs mods from the community registry with one
+click. Every listing shows its GitHub download count and a popularity badge,
+with no analytics service anywhere.
 It also tells you when the game/framework/mods update and fixes everything
 with one more click. No terminal, no .NET, no git.
 

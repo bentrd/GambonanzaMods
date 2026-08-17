@@ -355,6 +355,20 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 .mod-card .ver { font-family: var(--font-mono); font-size: 13px; color: rgba(90, 34, 48, 0.65); }
 .mod-card .foot .grow { flex: 1; }
 
+/* download count + popularity, on mod and pack cards */
+.stats { display: flex; align-items: center; gap: 12px; }
+.stat {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-mono); font-size: 12.5px;
+  color: rgba(90, 34, 48, 0.72);
+}
+.stat .micon { display: inline-flex; }
+.stat .micon svg { display: block; }
+.stat.pop { text-transform: uppercase; letter-spacing: 0.5px; font-size: 11px; }
+.stat.pop.hot { color: #c23b18; }
+.stat.pop.popular { color: #8a6a1c; }
+.stat.pop.growing { color: #4c7a3d; }
+
 .empty-note { text-align: center; padding: 42px 16px; color: rgba(244, 229, 194, 0.6); }
 .card-window .empty-note { color: rgba(90, 34, 48, 0.55); }
 

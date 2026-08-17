@@ -7,7 +7,10 @@
 //
 // Exit code 0 = good to merge.
 
-import { loadEntries, validateEntry, resolveLatestRelease, HOME_REPO } from './lib.mjs';
+import {
+  loadEntries, validateEntry, validateModpackEntry, resolveLatestRelease,
+  HOME_REPO, MODPACKS_DIR,
+} from './lib.mjs';
 
 const args = new Set(process.argv.slice(2));
 const checkReleases = args.has('--check-releases');
@@ -87,9 +90,28 @@ for (const { fileName, entry } of entries) {
   }
 }
 
+// Modpacks: same treatment, minus the release checks (a pack has no release
+// of its own - its members' releases were just checked above).
+const packs = await loadEntries(MODPACKS_DIR);
+const seenPackIds = new Map();
+for (const { fileName, entry } of packs) {
+  const problems = validateModpackEntry(entry, fileName, ids);
+  if (entry.id) {
+    if (seenPackIds.has(entry.id)) problems.push(`duplicate id, already used by ${seenPackIds.get(entry.id)}`);
+    else seenPackIds.set(entry.id, fileName);
+  }
+  if (problems.length) {
+    failures += problems.length;
+    console.log(`${RED}✗ registry/modpacks/${fileName}${RESET}`);
+    for (const p of problems) console.log(`    ${p}`);
+  } else {
+    console.log(`${GREEN}✓${RESET} modpacks/${fileName} (${entry.mods.length} mods)`);
+  }
+}
+
 console.log('');
 if (failures) {
-  console.log(`${RED}${failures} problem(s) found in ${entries.length} entries.${RESET}`);
+  console.log(`${RED}${failures} problem(s) found in ${entries.length + packs.length} entries.${RESET}`);
   process.exit(1);
 }
-console.log(`${GREEN}All ${entries.length} registry entries look good.${RESET}${warnings ? ` (${warnings} note(s))` : ''}`);
+console.log(`${GREEN}All ${entries.length} registry entries${packs.length ? ` and ${packs.length} modpack(s)` : ''} look good.${RESET}${warnings ? ` (${warnings} note(s))` : ''}`);

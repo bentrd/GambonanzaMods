@@ -35,6 +35,7 @@ jobs:
           cp -r site/* _site/
           cp registry/index.json _site/registry/index.json
           cp registry/schema.json _site/registry/schema.json
+          cp registry/modpack-schema.json _site/registry/modpack-schema.json
 
       # enablement lets the workflow turn Pages on (source: GitHub Actions)
       # by itself on first run, instead of failing until someone visits
