@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T13:56:44.898Z",
+  "generatedAt": "2026-08-17T14:48:30.158Z",
   "count": 19,
   "releases": {
     "framework": null,
@@ -57,7 +57,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"BetterCollection.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:10:07Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -175,7 +175,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"EnemyThreatOverlay.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:10:07Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -264,7 +264,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"GambitApi.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:10:07Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -415,7 +415,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"KamikazeGambit.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:10:07Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -473,7 +473,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"MightyKasparovEveryStage.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:10:07Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"SpikesGambit.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:10:07Z",
+      "repoPushedAt": "2026-08-17T13:56:46Z",
       "license": "MIT",
       "archived": false
     }
