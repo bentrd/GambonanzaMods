@@ -7,6 +7,12 @@ changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
 ## Unreleased
 
+- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the
+  shop) no longer get visually stuck where they were picked. A gambit that
+  fires its own visual effect the moment you acquire it - Impatient Gambit
+  does - was cancelling the little animation that flies the card into your
+  stock, leaving the icon stranded and the stock slot looking empty. The card
+  now snaps into its slot if that happens.
 - Better Collection: the gambit search bar added in 1.3.2 has been removed. It
   did not look like it belonged on that screen, and a box that looks wrong is
   worse than no box. Everything that made the collection run smoothly is

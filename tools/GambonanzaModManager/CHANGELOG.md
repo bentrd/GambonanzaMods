@@ -4,6 +4,15 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.3.1
+
+- Installing or updating a mod now also updates its dependencies when they
+  are behind the registry. Until now a library another mod relied on (the
+  Gambit Creation API, say) stayed at whatever version you first installed,
+  and an old library quietly breaks the mods built against a newer one -
+  gambits showing up with no name or description, for example. Manually
+  installed mods without a registry receipt are still left untouched.
+
 ## 1.3.0
 
 - New **Modpacks** tab. Browse curated bundles of registry mods and install
