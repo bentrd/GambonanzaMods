@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T16:29:11.623Z",
+  "generatedAt": "2026-08-17T16:32:54.151Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -91,7 +91,44 @@
       "publishedAt": "2026-08-17T16:29:06Z",
       "notes": "\n- New **Modpacks** tab. Browse curated bundles of registry mods and install\n  a whole pack in one click - already-installed mods are left alone,\n  dependencies come along automatically, and every member is checksum\n  verified exactly as if installed by itself. Publish your own pack from the\n  same tab: sign in with GitHub and the manager opens the registry pull\n  request, or grab the pre-filled submission issue without signing in.\n  Packs can only contain reviewed registry mods - never unreviewed\n  submissions.\n- Mod cards grew an **add to modpack** dropdown: build a pack draft while\n  you browse, then finish and submit it from the Modpacks tab.\n\n",
       "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.3.0",
-      "assets": []
+      "assets": [
+        {
+          "name": "Gambonanza.Mod.Manager-1.3.0-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0-arm64-mac.zip",
+          "size": 119593687,
+          "sha256": "5bcea036bb98d10759d206a9cc10d29ac9fd02edfd30f7876aa74b284508bf9d"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.3.0-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0-arm64.dmg",
+          "size": 119521940,
+          "sha256": "f611bc2220efe43b149626e3ab261b8f674c7cd7f18e82fb3a0fa51bc738595d"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.3.0-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0-mac.zip",
+          "size": 121720230,
+          "sha256": "fa105b672fc13e78a9cae1ae972613e9d1f690bdea5535a212240e38c1125546"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.3.0.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0.AppImage",
+          "size": 127835607,
+          "sha256": "a20f2fa291ee53548da1f4d54df7da8d63cb7d9300e74364af43d0d9b1e1967b"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.3.0.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0.dmg",
+          "size": 121571469,
+          "sha256": "c1131b2ff28ffa66cbc53c5059546408f18b5c43f409e9ea819068230fc3e212"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager.Setup.1.3.0.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager.Setup.1.3.0.exe",
+          "size": 99722071,
+          "sha256": "248fa1f91f3ad6091db60524ae7bb859f56332333afd3474b178ef8bcbc5fbd9"
+        }
+      ]
     }
   },
   "mods": [
@@ -128,7 +165,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -171,7 +208,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:28:57Z",
+      "repoPushedAt": "2026-08-17T16:29:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -341,7 +378,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:28:57Z",
+      "repoPushedAt": "2026-08-17T16:29:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -383,7 +420,7 @@
         "manifestVersion": "1.1.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-08-16T13:08:15Z",
       "license": "MIT",
@@ -469,7 +506,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:28:57Z",
+      "repoPushedAt": "2026-08-17T16:29:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -685,7 +722,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:28:57Z",
+      "repoPushedAt": "2026-08-17T16:29:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -769,7 +806,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:28:57Z",
+      "repoPushedAt": "2026-08-17T16:29:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -810,7 +847,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -849,7 +886,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -894,7 +931,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:28:57Z",
+      "repoPushedAt": "2026-08-17T16:29:12Z",
       "license": "MIT",
       "archived": false
     }
@@ -920,7 +957,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 61,
+      "downloads": 62,
       "installable": true
     },
     {
