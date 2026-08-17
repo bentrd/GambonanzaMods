@@ -5,7 +5,7 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
-## Unreleased
+## 1.3.4
 
 - GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the
   shop) no longer get visually stuck where they were picked. A gambit that
