@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T19:45:35.825Z",
+  "generatedAt": "2026-08-17T20:46:01.421Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -134,9 +134,10 @@
   "mods": [
     {
       "id": "point-a-mngr",
-      "name": "\"Point A\" Manager",
-      "author": "FRO_PWR",
-      "summary": "A manager class to recall the tile a piece moved from",
+      "name": "'Point A' Manager",
+      "author": "Agent15",
+      "summary": "Library that remembers the tile each piece moved from, for other mods to build on.",
+      "description": "Not much to see on its own - install it because another mod asked for it. The game only remembers where a piece landed; this library tracks where it came from (for both player and enemy moves) and offers a helper to compute the distance and direction of the last move. Powers gambits like Recursion's and Sniper's.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "PointAMngr.zip",
       "folder": "PointAMngr",
@@ -144,12 +145,12 @@
         "quality-of-life",
         "library"
       ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
       "submittedBy": "Agent15",
-      "addedAt": "2026-08-16",
+      "addedAt": "2026-08-17",
       "official": false,
-      "reviewed": false,
-      "issue": 19,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/19",
+      "reviewed": true,
       "latest": {
         "tag": "v1.2.0",
         "version": "1.2.0",
@@ -167,7 +168,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -208,7 +209,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T19:01:44Z",
+      "repoPushedAt": "2026-08-17T20:45:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -251,7 +252,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -294,7 +295,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -337,7 +338,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -378,7 +379,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T19:01:44Z",
+      "repoPushedAt": "2026-08-17T20:45:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -465,7 +466,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -506,7 +507,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T19:01:44Z",
+      "repoPushedAt": "2026-08-17T20:45:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -549,7 +550,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -636,7 +637,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -679,7 +680,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -722,7 +723,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T19:01:44Z",
+      "repoPushedAt": "2026-08-17T20:45:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -765,7 +766,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -806,7 +807,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T19:01:44Z",
+      "repoPushedAt": "2026-08-17T20:45:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -849,15 +850,16 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
     {
       "id": "sniper",
       "name": "Sniper's Gambit",
-      "author": "FRO_PWR",
+      "author": "Agent15",
       "summary": "Capturing with a Bishop from 3 or more spaces away skips the enemy's turn.",
+      "description": "An epic gambit for long-range players: capture with a Bishop from 3 or more spaces away (measured along either axis) and the enemy's next turn is skipped. Needs the Gambit Creation API and the 'Point A' Manager library, both of which install automatically.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "SnipersGambit.zip",
       "folder": "SnipersGambit",
@@ -865,12 +867,16 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api",
+        "point-a-mngr"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
       "submittedBy": "Agent15",
-      "addedAt": "2026-08-16",
+      "addedAt": "2026-08-17",
       "official": false,
-      "reviewed": false,
-      "issue": 20,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/20",
+      "reviewed": true,
       "latest": {
         "tag": "v1.2.0",
         "version": "1.2.0",
@@ -888,7 +894,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-16T20:16:23Z",
+      "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -931,7 +937,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T19:01:44Z",
+      "repoPushedAt": "2026-08-17T20:45:43Z",
       "license": "MIT",
       "archived": false
     }
