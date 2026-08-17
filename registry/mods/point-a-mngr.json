@@ -1,0 +1,18 @@
+{
+  "id": "point-a-mngr",
+  "name": "'Point A' Manager",
+  "author": "Agent15",
+  "summary": "Library that remembers the tile each piece moved from, for other mods to build on.",
+  "description": "Not much to see on its own - install it because another mod asked for it. The game only remembers where a piece landed; this library tracks where it came from (for both player and enemy moves) and offers a helper to compute the distance and direction of the last move. Powers gambits like Recursion's and Sniper's.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "PointAMngr.zip",
+  "folder": "PointAMngr",
+  "tags": [
+    "quality-of-life",
+    "library"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-17"
+}

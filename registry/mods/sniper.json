@@ -1,0 +1,22 @@
+{
+  "id": "sniper",
+  "name": "Sniper's Gambit",
+  "author": "Agent15",
+  "summary": "Capturing with a Bishop from 3 or more spaces away skips the enemy's turn.",
+  "description": "An epic gambit for long-range players: capture with a Bishop from 3 or more spaces away (measured along either axis) and the enemy's next turn is skipped. Needs the Gambit Creation API and the 'Point A' Manager library, both of which install automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "SnipersGambit.zip",
+  "folder": "SnipersGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "point-a-mngr"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-17"
+}
