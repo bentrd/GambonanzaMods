@@ -333,8 +333,8 @@ function findDependents(folder, registryMods, installed) {
  */
 function resolveInstallPlan(mod, registryMods, installed) {
   const byId = new Map(registryMods.map((m) => [m.id, m]));
-  const installedIds = new Set(installed.filter((m) => m.registryId).map((m) => m.registryId));
-  const installedFolders = new Set(installed.map((m) => m.folder.toLowerCase()));
+  const installedById = new Map(installed.filter((m) => m.registryId).map((m) => [m.registryId, m]));
+  const installedByFolder = new Map(installed.map((m) => [m.folder.toLowerCase(), m]));
 
   const plan = [];
   const visiting = new Set();
@@ -344,7 +344,15 @@ function resolveInstallPlan(mod, registryMods, installed) {
     for (const depId of entry.dependencies || []) {
       const dep = byId.get(depId);
       if (!dep) continue;
-      if (installedIds.has(depId) || installedFolders.has(dep.folder.toLowerCase())) continue;
+      const local = installedById.get(depId) || installedByFolder.get(dep.folder.toLowerCase()) || null;
+      if (local) {
+        // An installed dependency still gets refreshed when it's behind the
+        // registry: a stale library (an old gambit-api, say) quietly breaks the
+        // mods that depend on it, which players report against the mod, not the
+        // library. Without a comparable tag pair, leave it alone.
+        const behind = !!(dep.latest?.tag && local.installedTag && dep.latest.tag !== local.installedTag);
+        if (!behind || !dep.latest?.asset?.sha256) continue;
+      }
       visit(dep);
     }
     if (!plan.includes(entry)) plan.push(entry);

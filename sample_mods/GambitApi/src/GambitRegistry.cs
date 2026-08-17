@@ -473,6 +473,11 @@ namespace Gambonanza.GambitApi
             if (newBase is SimpleGambit simple && def.TriggerAction != null)
                 simple.OnTriggerAction = def.TriggerAction;
 
+            // Heals the stranded-icon case where a mod triggers its visual effect
+            // during its own spawn animation and kills the fly-to-slot tween.
+            if (clone.GetComponent<GambitPlacementGuard>() == null)
+                clone.gameObject.AddComponent<GambitPlacementGuard>();
+
             clone.Info = soGambit;
 
             // Override the cloned template's in-game sprite with the modded visual.

@@ -112,6 +112,28 @@ test('resolveInstallPlan: dependencies come first, installed ones skipped', () =
   assert.deepEqual(plan.map((p) => p.id), ['kamikaze']);
 });
 
+test('resolveInstallPlan: outdated installed dependency is refreshed first', () => {
+  const registry = [
+    { id: 'kamikaze', folder: 'Kamikaze', dependencies: ['gambit-api'] },
+    { id: 'gambit-api', folder: 'GambitApi', dependencies: [], latest: { tag: 'v1.3.3', asset: { sha256: 'x' } } },
+  ];
+
+  // Behind the registry -> the dependency is reinstalled ahead of the mod.
+  let plan = mods.resolveInstallPlan(registry[0], registry,
+    [{ folder: 'GambitApi', registryId: 'gambit-api', installedTag: 'v1.1.0' }]);
+  assert.deepEqual(plan.map((p) => p.id), ['gambit-api', 'kamikaze']);
+
+  // Current -> skipped as before.
+  plan = mods.resolveInstallPlan(registry[0], registry,
+    [{ folder: 'GambitApi', registryId: 'gambit-api', installedTag: 'v1.3.3' }]);
+  assert.deepEqual(plan.map((p) => p.id), ['kamikaze']);
+
+  // No receipt tag to compare (manual install) -> leave it alone.
+  plan = mods.resolveInstallPlan(registry[0], registry,
+    [{ folder: 'GambitApi', registryId: 'gambit-api' }]);
+  assert.deepEqual(plan.map((p) => p.id), ['kamikaze']);
+});
+
 test('findDependents: catches manifest and registry dependencies, by folder or id', () => {
   const registry = [
     { id: 'gambit-api', folder: 'GambitApi', dependencies: [] },
