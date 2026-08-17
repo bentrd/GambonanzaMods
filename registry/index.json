@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T15:47:12.204Z",
+  "generatedAt": "2026-08-17T15:49:15.729Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -194,8 +194,9 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T15:48:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -236,7 +237,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 11,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -280,6 +281,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -323,6 +325,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -364,8 +367,9 @@
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T15:48:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -408,6 +412,7 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T13:08:15Z",
       "license": "MIT",
@@ -451,6 +456,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 10,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -492,8 +498,9 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T15:48:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -535,6 +542,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -579,6 +587,7 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T13:08:15Z",
       "license": "MIT",
@@ -622,6 +631,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 10,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -665,6 +675,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -708,8 +719,9 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T15:48:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -751,6 +763,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -792,8 +805,9 @@
         "manifestAuthor": "Minty"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T15:48:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -835,6 +849,7 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 0,
+      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -904,8 +919,9 @@
         "manifestAuthor": "TGM"
       },
       "downloads": 10,
+      "stale": true,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T15:48:13Z",
       "license": "MIT",
       "archived": false
     }
