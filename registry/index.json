@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T20:46:01.421Z",
+  "generatedAt": "2026-08-17T20:46:46.570Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:45:43Z",
+      "repoPushedAt": "2026-08-17T20:46:17Z",
       "license": "MIT",
       "archived": false
     },
@@ -379,7 +379,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:45:43Z",
+      "repoPushedAt": "2026-08-17T20:46:17Z",
       "license": "MIT",
       "archived": false
     },
@@ -507,7 +507,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:45:43Z",
+      "repoPushedAt": "2026-08-17T20:46:17Z",
       "license": "MIT",
       "archived": false
     },
@@ -723,7 +723,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:45:43Z",
+      "repoPushedAt": "2026-08-17T20:46:17Z",
       "license": "MIT",
       "archived": false
     },
@@ -807,7 +807,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:45:43Z",
+      "repoPushedAt": "2026-08-17T20:46:17Z",
       "license": "MIT",
       "archived": false
     },
@@ -825,7 +825,8 @@
         "gambits"
       ],
       "dependencies": [
-        "gambit-api"
+        "gambit-api",
+        "point-a-mngr"
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
@@ -937,7 +938,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:45:43Z",
+      "repoPushedAt": "2026-08-17T20:46:17Z",
       "license": "MIT",
       "archived": false
     }
