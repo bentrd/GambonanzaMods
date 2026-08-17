@@ -1,132 +1,126 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T20:47:27.842Z",
+  "generatedAt": "2026-08-17T21:12:45.324Z",
   "count": 19,
   "releases": {
     "framework": {
-      "tag": "v1.3.3",
-      "version": "1.3.3",
-      "publishedAt": "2026-08-15T10:41:43Z",
-      "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+      "tag": "v1.3.4",
+      "version": "1.3.4",
+      "publishedAt": "2026-08-17T21:12:22Z",
+      "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/BetterCollection.zip",
-          "size": 14246,
-          "sha256": "08b3a0697b96d7cbed96b17bade6948dd6d2b671b63fe53a6380dcb2404f1ad9"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/BetterCollection.zip",
+          "size": 7892,
+          "sha256": "ce37af072d92a5e8acd3ced50252622b5517c9d5051048e918006943d3bfb727"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/EnemyThreatOverlay.zip",
-          "size": 7614,
-          "sha256": "a244c249e701526f5237ff5aba13bbaab91be1909acbbb10f17d2127f9ae165d"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/EnemyThreatOverlay.zip",
+          "size": 7617,
+          "sha256": "3ccd143b8dfa2016af127dfcaecf305abf3ce93dda6bb720d137177f8d95d815"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/GambitApi.zip",
-          "size": 19464,
-          "sha256": "92b5c9120a9909b5f5509b4423e28e06aae9531979c8bc83efd561b4ef721178"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/GambitApi.zip",
+          "size": 19922,
+          "sha256": "fcc17f9452a87915a28546ab0ca252827c1cae09a1941f0d91d2199d90fa03c1"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-linux-arm64.zip",
-          "size": 28389865,
-          "sha256": "b6c5ab7bddddbad46dc123bb910933513332cdbd5e4bf79ae60859e43d5e318e"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-linux-arm64.zip",
+          "size": 28389696,
+          "sha256": "4a54fae1c4dfb09044202435205e8e2154a32d125e766839eb767ac804115432"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-linux-x64.zip",
-          "size": 29617334,
-          "sha256": "4e6a0b78005a6d4b4c0e0787f9ffde506087b14405fa21f6b112ca8c25288d6a"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-linux-x64.zip",
+          "size": 29617082,
+          "sha256": "f0865c819076219c54319f45ce3c51d505a6874d2a3ff99faa266de9fc79f789"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-osx-arm64.zip",
-          "size": 28619238,
-          "sha256": "848007651dfc3bcbb63655110ad0c6ad2a612899d39df76c829e77e67a443b3f"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-osx-arm64.zip",
+          "size": 28619266,
+          "sha256": "e194b65444f935ebfee15fa2ed96f5638e52067a29f7808f8b496b862f99f6eb"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-osx-x64.zip",
-          "size": 29966644,
-          "sha256": "249f5238b971e89df451b2322626c297b138a4447df72feaf7b9a4a89416aaaf"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-osx-x64.zip",
+          "size": 29966236,
+          "sha256": "457ad8c0c14e38941073beb69cec5a603b501847aa9bdd4ea95aed6c8ca5b0c8"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-win-arm64.zip",
-          "size": 28857495,
-          "sha256": "3b93de68269a472b6e07cbd5ebe3f3ff4047f4cb617d31b7f5475653946e2510"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-win-arm64.zip",
+          "size": 28857679,
+          "sha256": "32cb5a0a52e791e693364c8ae111378919be626993f84877b2636a7d29119b6c"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/gambonanza-framework-win-x64.zip",
-          "size": 29944907,
-          "sha256": "839d4a1126f7f3e0c1f392ccef16d7ace7ad3c88044a9fa2dadb00f9dbc5555a"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-win-x64.zip",
+          "size": 29945938,
+          "sha256": "8ddb39a6744227e057278e978794e42f21a668257b5ef254f010393b0b2964da"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/KamikazeGambit.zip",
           "size": 8779,
-          "sha256": "2138eafe484a382a4111e0ac93198c6d23f7f49d2786e0abd8a58b7e268aa685"
+          "sha256": "5537a6230143df7227607dd210d935159847eb3285fa0c2e0f19aaa80bb0d3b7"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/MightyKasparovEveryStage.zip",
-          "size": 4361,
-          "sha256": "1a31a0148c719282eae41b61b4788e32f3b596e46295e85494ca743156415fa5"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/MightyKasparovEveryStage.zip",
+          "size": 4359,
+          "sha256": "b1a1778ee8d2768ee3554ae861938aa2f67947dfb31029f7c19a3dbeb2473efa"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/SpikesGambit.zip",
-          "size": 6497,
-          "sha256": "b8923ed912ffdaf6bb232b47be48a9d953557a633505f3ba1b1b89c48dd75247"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/SpikesGambit.zip",
+          "size": 6495,
+          "sha256": "8ca134faa8bf4cf3a5d6ed1aaca5667609e46a1ce118420bcf063015b53adf7a"
         }
       ]
     },
     "manager": {
-      "tag": "manager-v1.3.0",
-      "version": "1.3.0",
-      "publishedAt": "2026-08-17T16:29:06Z",
-      "notes": "\n- New **Modpacks** tab. Browse curated bundles of registry mods and install\n  a whole pack in one click - already-installed mods are left alone,\n  dependencies come along automatically, and every member is checksum\n  verified exactly as if installed by itself. Publish your own pack from the\n  same tab: sign in with GitHub and the manager opens the registry pull\n  request, or grab the pre-filled submission issue without signing in.\n  Packs can only contain reviewed registry mods - never unreviewed\n  submissions.\n- Mod cards grew an **add to modpack** dropdown: build a pack draft while\n  you browse, then finish and submit it from the Modpacks tab.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.3.0",
+      "tag": "manager-v1.3.1",
+      "version": "1.3.1",
+      "publishedAt": "2026-08-17T21:11:13Z",
+      "notes": "\n- Installing or updating a mod now also updates its dependencies when they\n  are behind the registry. Until now a library another mod relied on (the\n  Gambit Creation API, say) stayed at whatever version you first installed,\n  and an old library quietly breaks the mods built against a newer one -\n  gambits showing up with no name or description, for example. Manually\n  installed mods without a registry receipt are still left untouched.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.3.1",
       "assets": [
         {
-          "name": "Gambonanza.Mod.Manager-1.3.0-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0-arm64-mac.zip",
-          "size": 119593687,
-          "sha256": "5bcea036bb98d10759d206a9cc10d29ac9fd02edfd30f7876aa74b284508bf9d"
+          "name": "Gambonanza.Mod.Manager-1.3.1-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1-arm64-mac.zip",
+          "size": 119594127,
+          "sha256": "d5e089b1a70a292413dffc198d1d75b99bad41991f313231ce16258d126c1bab"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.3.0-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0-arm64.dmg",
-          "size": 119521940,
-          "sha256": "f611bc2220efe43b149626e3ab261b8f674c7cd7f18e82fb3a0fa51bc738595d"
+          "name": "Gambonanza.Mod.Manager-1.3.1-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1-arm64.dmg",
+          "size": 119521912,
+          "sha256": "355ad95b44a62917f6c1e7a220ba11c5370686f607f4546c87a940ff0ef04ebc"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.3.0-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0-mac.zip",
-          "size": 121720230,
-          "sha256": "fa105b672fc13e78a9cae1ae972613e9d1f690bdea5535a212240e38c1125546"
+          "name": "Gambonanza.Mod.Manager-1.3.1-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1-mac.zip",
+          "size": 121720670,
+          "sha256": "c4e845cfdded443c0faba08b84de5afa8f7750ed61acb514e2702d173af0468e"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.3.0.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0.AppImage",
-          "size": 127835607,
-          "sha256": "a20f2fa291ee53548da1f4d54df7da8d63cb7d9300e74364af43d0d9b1e1967b"
+          "name": "Gambonanza.Mod.Manager-1.3.1.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1.AppImage",
+          "size": 127835610,
+          "sha256": "c14392f89dacb4e25653ec872198cbd42290799e7ecf56070d477cb5690b0481"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.3.0.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager-1.3.0.dmg",
-          "size": 121571469,
-          "sha256": "c1131b2ff28ffa66cbc53c5059546408f18b5c43f409e9ea819068230fc3e212"
-        },
-        {
-          "name": "Gambonanza.Mod.Manager.Setup.1.3.0.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.0/Gambonanza.Mod.Manager.Setup.1.3.0.exe",
-          "size": 99722071,
-          "sha256": "248fa1f91f3ad6091db60524ae7bb859f56332333afd3474b178ef8bcbc5fbd9"
+          "name": "Gambonanza.Mod.Manager-1.3.1.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1.dmg",
+          "size": 121572629,
+          "sha256": "047adfc80130788ebb0a6e78898bba2540e36cc0bf41c17939d860811e8a18f2"
         }
       ]
     }
@@ -166,7 +160,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
@@ -193,23 +187,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.3",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-15T10:41:43Z",
-        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "tag": "v1.3.4",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-17T21:12:22Z",
+        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/BetterCollection.zip",
-          "size": 14246,
-          "sha256": "08b3a0697b96d7cbed96b17bade6948dd6d2b671b63fe53a6380dcb2404f1ad9"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/BetterCollection.zip",
+          "size": 7892,
+          "sha256": "ce37af072d92a5e8acd3ced50252622b5517c9d5051048e918006943d3bfb727"
         },
-        "manifestVersion": "1.0.0",
+        "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:46:48Z",
+      "repoPushedAt": "2026-08-17T21:11:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -363,23 +357,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.3",
+        "tag": "v1.3.4",
         "version": "1.2.0",
-        "publishedAt": "2026-08-15T10:41:43Z",
-        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "publishedAt": "2026-08-17T21:12:22Z",
+        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/EnemyThreatOverlay.zip",
-          "size": 7614,
-          "sha256": "a244c249e701526f5237ff5aba13bbaab91be1909acbbb10f17d2127f9ae165d"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/EnemyThreatOverlay.zip",
+          "size": 7617,
+          "sha256": "3ccd143b8dfa2016af127dfcaecf305abf3ce93dda6bb720d137177f8d95d815"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:46:48Z",
+      "repoPushedAt": "2026-08-17T21:11:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -491,23 +485,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.3",
-        "version": "1.4.0",
-        "publishedAt": "2026-08-15T10:41:43Z",
-        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "tag": "v1.3.4",
+        "version": "1.4.1",
+        "publishedAt": "2026-08-17T21:12:22Z",
+        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/GambitApi.zip",
-          "size": 19464,
-          "sha256": "92b5c9120a9909b5f5509b4423e28e06aae9531979c8bc83efd561b4ef721178"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/GambitApi.zip",
+          "size": 19922,
+          "sha256": "fcc17f9452a87915a28546ab0ca252827c1cae09a1941f0d91d2199d90fa03c1"
         },
-        "manifestVersion": "1.4.0",
+        "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 14,
+      "downloads": 15,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:46:48Z",
+      "repoPushedAt": "2026-08-17T21:11:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -707,23 +701,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.3",
+        "tag": "v1.3.4",
         "version": "1.3.0",
-        "publishedAt": "2026-08-15T10:41:43Z",
-        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "publishedAt": "2026-08-17T21:12:22Z",
+        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/KamikazeGambit.zip",
           "size": 8779,
-          "sha256": "2138eafe484a382a4111e0ac93198c6d23f7f49d2786e0abd8a58b7e268aa685"
+          "sha256": "5537a6230143df7227607dd210d935159847eb3285fa0c2e0f19aaa80bb0d3b7"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 14,
+      "downloads": 15,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:46:48Z",
+      "repoPushedAt": "2026-08-17T21:11:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -791,23 +785,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.3",
+        "tag": "v1.3.4",
         "version": "1.1.0",
-        "publishedAt": "2026-08-15T10:41:43Z",
-        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "publishedAt": "2026-08-17T21:12:22Z",
+        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/MightyKasparovEveryStage.zip",
-          "size": 4361,
-          "sha256": "1a31a0148c719282eae41b61b4788e32f3b596e46295e85494ca743156415fa5"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/MightyKasparovEveryStage.zip",
+          "size": 4359,
+          "sha256": "b1a1778ee8d2768ee3554ae861938aa2f67947dfb31029f7c19a3dbeb2473efa"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:46:48Z",
+      "repoPushedAt": "2026-08-17T21:11:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -849,7 +843,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
@@ -893,7 +887,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
@@ -922,23 +916,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.3",
+        "tag": "v1.3.4",
         "version": "1.1.0",
-        "publishedAt": "2026-08-15T10:41:43Z",
-        "notes": "\n- The mod manager now shows each bundled mod's own version instead of the\n  framework's. Better Collection reads 1.0.0 because it is new; GambitApi\n  reads 1.4.0, Kamikaze 1.3.0, and so on. Until now every mod that ships with\n  the framework claimed whatever framework release it last rode in on, so a\n  brand new mod introduced itself as \"1.3.2\". Nothing about the mods\n  themselves changed in this release - only the number on the card.\n- Recorded Gambonanza build 24648699 as the supported one, so `build.sh` stops\n  warning that your game differs from what the framework was tested against.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.3",
+        "publishedAt": "2026-08-17T21:12:22Z",
+        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.3/SpikesGambit.zip",
-          "size": 6497,
-          "sha256": "b8923ed912ffdaf6bb232b47be48a9d953557a633505f3ba1b1b89c48dd75247"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/SpikesGambit.zip",
+          "size": 6495,
+          "sha256": "8ca134faa8bf4cf3a5d6ed1aaca5667609e46a1ce118420bcf063015b53adf7a"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T20:46:48Z",
+      "repoPushedAt": "2026-08-17T21:11:09Z",
       "license": "MIT",
       "archived": false
     }
@@ -964,7 +958,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 62,
+      "downloads": 64,
       "installable": true
     },
     {
