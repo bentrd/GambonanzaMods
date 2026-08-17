@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T16:28:32.360Z",
+  "generatedAt": "2026-08-17T16:29:11.623Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -86,49 +86,12 @@
       ]
     },
     "manager": {
-      "tag": "manager-v1.2.0",
-      "version": "1.2.0",
-      "publishedAt": "2026-08-17T16:19:23Z",
-      "notes": "\n- Every mod card now shows how many times the mod has been downloaded, plus\n  a popularity icon: a flame for the registry's most-downloaded fifth, a\n  star for the top half, a sprout for everything still growing. The counts\n  are GitHub's own per-release-asset download counters, recorded into the\n  registry index by CI every hour - no analytics service, no tracking, and\n  nothing new phoning home.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.2.0",
-      "assets": [
-        {
-          "name": "Gambonanza.Mod.Manager-1.2.0-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0-arm64-mac.zip",
-          "size": 119589083,
-          "sha256": "5a21f05df95cb881a03c94bc4360ceaf559edc6c363b97175b3c1c1ed463b8e8"
-        },
-        {
-          "name": "Gambonanza.Mod.Manager-1.2.0-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0-arm64.dmg",
-          "size": 119491650,
-          "sha256": "42c4aef36d4b5cb8ebb9d943eba2c01e94ec64ca5916c9595261a2f0523485ef"
-        },
-        {
-          "name": "Gambonanza.Mod.Manager-1.2.0-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0-mac.zip",
-          "size": 121715626,
-          "sha256": "91cf36959a3d9a674c3ed1c97504538d86ea9754b198bb9ee14c80f48248c6e2"
-        },
-        {
-          "name": "Gambonanza.Mod.Manager-1.2.0.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0.AppImage",
-          "size": 127831493,
-          "sha256": "68a89169001bad8e37bd1be7052062d6685bb45f314b59f2c60e17cff43e4907"
-        },
-        {
-          "name": "Gambonanza.Mod.Manager-1.2.0.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0.dmg",
-          "size": 121582118,
-          "sha256": "4f9d059f6d59b34028fa9439a861d445edf7c2683ec0e3b6df46570da9b6a798"
-        },
-        {
-          "name": "Gambonanza.Mod.Manager.Setup.1.2.0.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager.Setup.1.2.0.exe",
-          "size": 99718419,
-          "sha256": "56a57723e5d022b5b591a597aa119d8f61a26d6399851f2936821dc0826b9fe1"
-        }
-      ]
+      "tag": "manager-v1.3.0",
+      "version": "1.3.0",
+      "publishedAt": "2026-08-17T16:29:06Z",
+      "notes": "\n- New **Modpacks** tab. Browse curated bundles of registry mods and install\n  a whole pack in one click - already-installed mods are left alone,\n  dependencies come along automatically, and every member is checksum\n  verified exactly as if installed by itself. Publish your own pack from the\n  same tab: sign in with GitHub and the manager opens the registry pull\n  request, or grab the pre-filled submission issue without signing in.\n  Packs can only contain reviewed registry mods - never unreviewed\n  submissions.\n- Mod cards grew an **add to modpack** dropdown: build a pack draft while\n  you browse, then finish and submit it from the Modpacks tab.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.3.0",
+      "assets": []
     }
   },
   "mods": [
@@ -208,7 +171,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:21:24Z",
+      "repoPushedAt": "2026-08-17T16:28:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -378,7 +341,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:21:24Z",
+      "repoPushedAt": "2026-08-17T16:28:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -506,7 +469,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:21:24Z",
+      "repoPushedAt": "2026-08-17T16:28:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -722,7 +685,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:21:24Z",
+      "repoPushedAt": "2026-08-17T16:28:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -806,7 +769,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:21:24Z",
+      "repoPushedAt": "2026-08-17T16:28:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -931,7 +894,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:21:24Z",
+      "repoPushedAt": "2026-08-17T16:28:57Z",
       "license": "MIT",
       "archived": false
     }
