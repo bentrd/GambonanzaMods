@@ -353,6 +353,28 @@ function resolveInstallPlan(mod, registryMods, installed) {
   return plan;
 }
 
+/**
+ * Install order for a whole modpack: every member that is missing or behind,
+ * plus any not-yet-installed dependencies, dependencies first, deduplicated
+ * across members. Members that are installed and current are skipped - a pack
+ * install never re-downloads what the user already has.
+ */
+function resolveModpackPlan(pack, registryMods, installed) {
+  const rows = mergeState(registryMods, installed).filter((r) => r.kind === 'registry');
+  const rowById = new Map(rows.map((r) => [r.id, r]));
+
+  const plan = [];
+  for (const id of pack?.mods || []) {
+    const row = rowById.get(id);
+    if (!row || !row.installable) continue;
+    if (row.installed && !row.updateAvailable) continue;
+    for (const entry of resolveInstallPlan(row, registryMods, installed)) {
+      if (!plan.some((p) => p.id === entry.id)) plan.push(entry);
+    }
+  }
+  return plan;
+}
+
 module.exports = {
   RECEIPT,
   listInstalled,
@@ -361,5 +383,6 @@ module.exports = {
   setEnabled,
   mergeState,
   resolveInstallPlan,
+  resolveModpackPlan,
   findDependents,
 };

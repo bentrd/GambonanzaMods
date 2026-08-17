@@ -26,6 +26,13 @@ const state = {
     submitting: false,
     device: null,
   },
+  packPublish: {
+    entry: { mods: [] },
+    submitting: false,
+  },
+  ui: {
+    packMenuFor: null,   // mod id whose "add to modpack" dropdown is open
+  },
 };
 
 const $ = (id) => document.getElementById(id);
@@ -57,6 +64,7 @@ const ICONS = {
   flame: pix('M7 0h1v1H7zM6 1h2v1H6zM5 2h2v1H5zM4 3h3v1H4zM3 4h5v1H3zM3 5h6v1H3zM2 6h8v1H2zM2 7h8v1H2zM3 8h7v1H3zM4 9h5v1H4zM5 10h3v1H5z'),
   star: pix('M5 1h2v1H5zM5 2h2v1H5zM4 3h4v1H4zM1 4h10v1H1zM2 5h8v1H2zM3 6h6v1H3zM2 7h8v1H2zM2 8h3v1H2zM7 8h3v1H7zM1 9h2v1H1zM9 9h2v1H9z'),
   sprout: pix('M8 1h3v1H8zM7 2h4v1H7zM8 3h2v1H8zM1 3h3v1H1zM1 4h4v1H1zM2 5h2v1H2zM5 4h2v7H5z'),
+  pack: pix('M4 1h4v4H4zM1 6h4v4H1zM7 6h4v4H7z'),
 };
 
 /** 1234 -> "1.2k". Counts, not bytes - nobody needs the exact number. */
@@ -188,6 +196,7 @@ function renderAll() {
   renderTopbar();
   renderHome();
   renderBrowse();
+  renderModpacks();
   renderInstalled();
   renderUpdates();
   renderPublish();
@@ -399,6 +408,34 @@ function renderModCard(mod, tiers) {
   const version = mod.latest?.version ? `v${mod.latest.version}` : '';
   foot.append(el('span', { class: 'ver' }, version), el('span', { class: 'grow' }));
 
+  // "Add to modpack": a dropdown feeding the pack draft in the Modpacks tab.
+  // Only reviewed mods get the button - packs can never hold unreviewed ones.
+  if (mod.reviewed !== false) {
+    const draft = state.packPublish.entry.mods || [];
+    const inDraft = draft.includes(mod.id);
+    const open = state.ui.packMenuFor === mod.id;
+    foot.append(el('span', { class: `dropdown${open ? ' open' : ''}` },
+      el('button', {
+        class: `btn btn-cream small${inDraft ? ' in-draft' : ''}`,
+        title: inDraft ? 'In your modpack draft' : 'Add to a modpack',
+        onclick: (ev) => {
+          ev.stopPropagation();
+          state.ui.packMenuFor = open ? null : mod.id;
+          renderBrowse();
+        },
+      }, el('span', { class: 'micon', html: ICONS.pack }), ' ▾'),
+      el('div', { class: 'menu' },
+        el('div', { class: 'mhead' }, draft.length
+          ? `Your modpack draft · ${draft.length} mod${draft.length === 1 ? '' : 's'}`
+          : 'Your modpack draft is empty'),
+        el('button', { class: 'mi', onclick: (ev) => { ev.stopPropagation(); togglePackDraft(mod); } },
+          inDraft ? '✓ In the draft - remove' : '+ Add to the draft'),
+        el('button', {
+          class: 'mi',
+          onclick: (ev) => { ev.stopPropagation(); state.ui.packMenuFor = null; show('modpacks'); renderBrowse(); },
+        }, 'Finish the pack →'))));
+  }
+
   foot.append(el('button', {
     class: 'btn btn-cream small',
     title: 'Open the mod’s source code on GitHub',
@@ -429,6 +466,202 @@ function renderModCard(mod, tiers) {
     statsRow(mod, tiers),
     deps,
     foot);
+}
+
+// ---------------------------------------------------------------------------
+// Modpacks
+// ---------------------------------------------------------------------------
+
+/** Add/remove a mod in the pack draft the Modpacks tab's form submits. */
+function togglePackDraft(mod) {
+  const e = state.packPublish.entry;
+  const mods = e.mods || [];
+  if (mods.includes(mod.id)) {
+    e.mods = mods.filter((x) => x !== mod.id);
+    toast(`${mod.name} removed from your modpack draft.`);
+  } else if (mods.length >= 24) {
+    toast('A modpack holds at most 24 mods.', 'err');
+    return;
+  } else {
+    e.mods = [...mods, mod.id];
+    toast(`${mod.name} added to your modpack draft (${e.mods.length} mod${e.mods.length === 1 ? '' : 's'}).`, 'ok');
+  }
+  renderBrowse();     // the card's button + open menu flip state in place
+  renderModpacks();   // the publish form's picker chips stay in sync
+}
+
+function renderModpacks() {
+  const packs = state.data?.registry?.modpacks || [];
+  $('packCount').hidden = packs.length === 0;
+  $('packCount').textContent = String(packs.length);
+  $('packsEmpty').hidden = packs.length > 0;
+  $('packGrid').replaceChildren(...packs.map(renderPackCard));
+
+  $('packPublishAuth').replaceChildren(authBox('modpack'));
+  renderPackPublishForm();
+}
+
+function renderPackCard(pack) {
+  const registryById = new Map((state.data?.registry?.mods || [])
+    .filter((m) => m.kind === 'registry').map((m) => [m.id, m]));
+  const members = (pack.mods || []).map((id) => registryById.get(id)).filter(Boolean);
+  const missing = members.filter((m) => !m.installed && m.installable);
+  const updates = members.filter((m) => m.installed && m.updateAvailable);
+  const installedCount = members.filter((m) => m.installed).length;
+
+  const badges = [];
+  if (members.length && installedCount === members.length && !updates.length) {
+    badges.push(el('span', { class: 'tag green' }, 'installed'));
+  } else if (installedCount > 0) {
+    badges.push(el('span', { class: 'tag' }, `${installedCount}/${members.length} installed`));
+  }
+  if (updates.length) badges.push(el('span', { class: 'tag blue' }, 'update'));
+
+  // Every member is listed by name so "install the lot" is never a mystery
+  // meat button - you can see exactly what the click brings in.
+  const memberChips = el('div', { class: 'pack-mods' }, ...members.map((m) =>
+    el('span', { class: `pack-mod${m.installed ? ' in' : ''}`, title: m.summary || '' },
+      m.installed ? '✓ ' : '', m.name)));
+
+  const foot = el('div', { class: 'foot' },
+    el('span', { class: 'stat', title: `The mods in this pack were downloaded ${(pack.downloads || 0).toLocaleString()} times combined` },
+      el('span', { class: 'micon', html: ICONS.download }), fmtCount(pack.downloads || 0)),
+    el('span', { class: 'tiny muted' }, `${members.length} mods`),
+    el('span', { class: 'grow' }));
+
+  if (!members.length || !pack.installable) {
+    foot.append(el('button', { class: 'btn btn-cream small', disabled: true }, 'Not installable yet'));
+  } else if (!missing.length && !updates.length) {
+    foot.append(el('button', { class: 'btn btn-cream small', disabled: true }, 'All installed ✓'));
+  } else {
+    const n = missing.length + updates.length;
+    foot.append(el('button', { class: 'btn btn-green small', onclick: () => installModpack(pack, { missing, updates }) },
+      missing.length ? `Install pack (${n})` : `Update (${n})`));
+  }
+
+  return el('div', { class: 'mod-card pack-card' },
+    el('div', { class: 'head' },
+      el('div', {},
+        el('h3', {}, pack.name),
+        el('div', { class: 'by' }, `by ${pack.author}`)),
+      el('div', { class: 'badges' }, badges)),
+    el('div', { class: 'sum' }, pack.summary || ''),
+    memberChips,
+    foot);
+}
+
+async function installModpack(pack, { missing, updates }) {
+  const lines = [
+    missing.length ? `Installs ${missing.map((m) => m.name).join(', ')}.` : '',
+    updates.length ? `Updates ${updates.map((m) => m.name).join(', ')}.` : '',
+    'Mods they depend on come along automatically. Anything you already have is left alone.',
+  ].filter(Boolean).join(' ');
+  const yes = await confirmModal({
+    title: `Install ${pack.name}?`,
+    body: lines,
+    confirmLabel: 'Install',
+    confirmKind: 'btn-green',
+  });
+  if (!yes) return;
+
+  const operationId = `pack-${++opCounter}`;
+  modal.open({
+    title: `Installing ${pack.name}`,
+    body: 'Getting started…',
+    progress: true,
+    buttons: [{ label: 'Cancel', kind: 'btn-cream', onClick: () => api.cancelOperation({ operationId }) }],
+  });
+  try {
+    const result = await call(api.installModpack, { id: pack.id, operationId });
+    modal.close();
+    toast(`${pack.name}: ${result.installed.length} mod${result.installed.length === 1 ? '' : 's'} installed.`, 'ok');
+  } catch (err) {
+    modal.close();
+    toast(err.message, 'err');
+  }
+  await refresh();
+}
+
+function renderPackPublishForm() {
+  const p = state.packPublish;
+  const box = $('packPublishForm');
+  const e = p.entry;
+
+  const field = (label, key, { placeholder = '', help = '', full = false, textarea = false } = {}) => {
+    const input = el(textarea ? 'textarea' : 'input', {
+      class: 'game-input',
+      placeholder,
+      value: textarea ? undefined : (e[key] || ''),
+      oninput: (ev) => { e[key] = ev.target.value; },
+    });
+    if (textarea) input.value = e[key] || '';
+    return el('div', { class: `field${full ? ' full' : ''}` },
+      el('label', {}, label), input,
+      help ? el('div', { class: 'help' }, help) : null);
+  };
+
+  // Only reviewed registry mods can go in a pack - the whole point of the
+  // reviewed badge would evaporate if a pack could smuggle in an unreviewed
+  // submission. The picker simply doesn't offer them.
+  const eligible = (state.data?.registry?.mods || [])
+    .filter((m) => m.kind === 'registry' && m.reviewed !== false)
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const picked = e.mods || [];
+
+  box.replaceChildren(
+    el('div', { class: 'form-grid', style: 'margin-top:14px' },
+      field('Pack name', 'name', { placeholder: 'My Perfect Loadout' }),
+      field('Registry id', 'id', { placeholder: 'my-perfect-loadout', help: 'lowercase-with-dashes, permanent' }),
+      field('Author', 'author', { placeholder: 'you' }),
+      field('One-line summary', 'summary', { placeholder: 'What is this pack FOR?' }),
+      el('div', { class: 'field full' },
+        el('label', {}, `Mods in the pack (${picked.length} picked, at least 2)`),
+        el('div', { class: 'chip-row' }, ...eligible.map((m) =>
+          el('button', {
+            class: `chip${picked.includes(m.id) ? ' on' : ''}`,
+            title: m.summary || '',
+            onclick: (ev) => {
+              ev.preventDefault();
+              e.mods = picked.includes(m.id) ? picked.filter((x) => x !== m.id) : [...picked, m.id].slice(0, 24);
+              renderPackPublishForm();
+            },
+          }, m.name))),
+        el('div', { class: 'help' }, 'Dependencies (like the Gambit API) install automatically - no need to pick them.')),
+      field('Longer description', 'description', { full: true, textarea: true, placeholder: 'Why these mods together? (optional)' }),
+    ),
+    el('div', { style: 'display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap' },
+      state.publish.signedIn
+        ? el('button', { class: 'btn btn-green', disabled: p.submitting, onclick: submitPackEntry },
+            p.submitting ? 'Submitting…' : 'Submit to the registry')
+        : null,
+      el('button', { class: 'btn btn-cream', onclick: openPackIssueSubmission }, 'Open submission on GitHub'),
+    ),
+  );
+}
+
+async function submitPackEntry() {
+  const p = state.packPublish;
+  p.submitting = true;
+  renderPackPublishForm();
+  try {
+    const result = await call(api.publishSubmitModpack, { entry: p.entry });
+    toast('Modpack submitted! The maintainers will review it soon.', 'ok');
+    api.openExternal(result.url);
+  } catch (err) {
+    toast(err.message, 'err');
+  } finally {
+    p.submitting = false;
+    renderPackPublishForm();
+  }
+}
+
+async function openPackIssueSubmission() {
+  try {
+    const url = await call(api.publishModpackIssueUrl, { entry: state.packPublish.entry });
+    api.openExternal(url);
+  } catch (err) {
+    toast(err.message, 'err');
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -860,7 +1093,10 @@ async function signIn() {
     const flow = await call(api.publishBegin);
     state.publish.device = flow;
     api.openExternal(flow.verificationUri);
+    // Both tabs show the auth box; repaint both so the device code appears
+    // wherever the user actually clicked "Sign in".
     renderPublish();
+    renderModpacks();
   } catch (err) {
     toast(err.message, 'err');
   }
@@ -1024,6 +1260,7 @@ api.on('publish:signedIn', ({ login }) => {
   state.publish.device = null;
   toast(`Signed in as ${login}.`, 'ok');
   renderPublish();
+  renderModpacks();
   loadRepos();
 });
 
@@ -1031,11 +1268,19 @@ api.on('publish:signInFailed', ({ error }) => {
   state.publish.device = null;
   toast(`Sign-in failed: ${error}`, 'err');
   renderPublish();
+  renderModpacks();
 });
 
 for (const btn of document.querySelectorAll('.nav-btn')) {
   btn.addEventListener('click', () => show(btn.dataset.view));
 }
+// Click anywhere outside an open "add to modpack" dropdown closes it.
+document.addEventListener('click', (ev) => {
+  if (state.ui.packMenuFor && !ev.target.closest('.dropdown')) {
+    state.ui.packMenuFor = null;
+    renderBrowse();
+  }
+});
 $('playBtn').addEventListener('click', launchGame);
 $('modSearch').addEventListener('input', (e) => { state.search = e.target.value; renderBrowse(); });
 $('refreshRegistry').addEventListener('click', async () => {

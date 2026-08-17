@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T16:21:23.427Z",
+  "generatedAt": "2026-08-17T16:28:32.360Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -208,7 +208,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:19:15Z",
+      "repoPushedAt": "2026-08-17T16:21:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -378,7 +378,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:19:15Z",
+      "repoPushedAt": "2026-08-17T16:21:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -506,7 +506,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:19:15Z",
+      "repoPushedAt": "2026-08-17T16:21:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -722,7 +722,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:19:15Z",
+      "repoPushedAt": "2026-08-17T16:21:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -806,7 +806,7 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:19:15Z",
+      "repoPushedAt": "2026-08-17T16:21:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -931,10 +931,53 @@
       },
       "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T16:19:15Z",
+      "repoPushedAt": "2026-08-17T16:21:24Z",
       "license": "MIT",
       "archived": false
     }
   ],
-  "modpacks": []
+  "modpacks": [
+    {
+      "id": "gambit-variety-pack",
+      "name": "Gambit Variety Pack",
+      "author": "Ben",
+      "summary": "Six community gambits in one click - a bit of rescue, a bit of chaos, a bit of greed.",
+      "description": "A starter spread of custom gambits that play nicely together: Fall Guy rescues pieces from crumbling tiles, Kamikaze trades your piece for its killer, Spikes turns TRAP tiles lethal, GrandMa's Cookies hands you a free piece at the start, Lobbyist makes selling kings profitable, and Fishing Net freezes the enemy's turn when you trap someone.\n\nThe Gambit Creation API library installs automatically - it's the plumbing all of these are built on.",
+      "mods": [
+        "fall-guy-gambit",
+        "kamikaze-gambit",
+        "spikes-gambit",
+        "grandma-cookies",
+        "lobbyist",
+        "fishing-net"
+      ],
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-17",
+      "downloads": 61,
+      "installable": true
+    },
+    {
+      "id": "quality-of-life-pack",
+      "name": "Quality of Life Pack",
+      "author": "Ben",
+      "summary": "The no-gameplay-changes bundle: smoother collection screen and enemy threat preview.",
+      "description": "Everything here leaves the game's balance alone. Better Collection makes the gambit collection screen run smoothly even with hundreds of cards, and Enemy Threat Overlay lets you hold Space to light up every square the enemy can reach before you commit to a move.",
+      "mods": [
+        "better-collection",
+        "enemy-threat-overlay"
+      ],
+      "tags": [
+        "quality-of-life",
+        "ui"
+      ],
+      "submittedBy": "bentrd",
+      "addedAt": "2026-08-17",
+      "downloads": 20,
+      "installable": true
+    }
+  ]
 }

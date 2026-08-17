@@ -31,6 +31,7 @@ contextBridge.exposeInMainWorld('gambonanza', {
   installMod: invoke('mods:install'),
   uninstallMod: invoke('mods:uninstall'),
   setModEnabled: invoke('mods:setEnabled'),
+  installModpack: invoke('modpacks:install'),
   cancelOperation: invoke('operation:cancel'),
 
   setSettings: invoke('settings:set'),
@@ -44,6 +45,8 @@ contextBridge.exposeInMainWorld('gambonanza', {
   publishListReleases: invoke('publish:releases'),
   publishSubmit: invoke('publish:submit'),
   publishIssueUrl: invoke('publish:issueUrl'),
+  publishSubmitModpack: invoke('publish:submitModpack'),
+  publishModpackIssueUrl: invoke('publish:modpackIssueUrl'),
 
   /** Subscribe to an event stream; returns an unsubscribe function. */
   on(channel, handler) {

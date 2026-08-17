@@ -4,6 +4,19 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.3.0
+
+- New **Modpacks** tab. Browse curated bundles of registry mods and install
+  a whole pack in one click - already-installed mods are left alone,
+  dependencies come along automatically, and every member is checksum
+  verified exactly as if installed by itself. Publish your own pack from the
+  same tab: sign in with GitHub and the manager opens the registry pull
+  request, or grab the pre-filled submission issue without signing in.
+  Packs can only contain reviewed registry mods - never unreviewed
+  submissions.
+- Mod cards grew an **add to modpack** dropdown: build a pack draft while
+  you browse, then finish and submit it from the Modpacks tab.
+
 ## 1.2.0
 
 - Every mod card now shows how many times the mod has been downloaded, plus

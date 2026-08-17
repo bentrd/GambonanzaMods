@@ -1,0 +1,14 @@
+{
+  "id": "quality-of-life-pack",
+  "name": "Quality of Life Pack",
+  "author": "Ben",
+  "summary": "The no-gameplay-changes bundle: smoother collection screen and enemy threat preview.",
+  "description": "Everything here leaves the game's balance alone. Better Collection makes the gambit collection screen run smoothly even with hundreds of cards, and Enemy Threat Overlay lets you hold Space to light up every square the enemy can reach before you commit to a move.",
+  "mods": [
+    "better-collection",
+    "enemy-threat-overlay"
+  ],
+  "tags": ["quality-of-life", "ui"],
+  "submittedBy": "bentrd",
+  "addedAt": "2026-08-17"
+}

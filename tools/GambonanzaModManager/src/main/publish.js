@@ -193,6 +193,26 @@ function submitEntry(token, entry, opts = {}) {
   }, opts);
 }
 
+/** Submit one modpack entry as registry/modpacks/<id>.json. */
+function submitModpack(token, entry, opts = {}) {
+  return submitRegistryFile(token, {
+    branch: `registry/modpack-${entry.id}`,
+    filePath: `registry/modpacks/${entry.id}.json`,
+    json: entry,
+    commitMessage: `registry: add modpack ${entry.name}`,
+    prTitle: `Registry: add modpack ${entry.name}`,
+    prBody: [
+      `Adds the **${entry.name}** modpack by ${entry.author} to the registry.`,
+      '',
+      `Mods in the pack:`,
+      ...entry.mods.map((id) => `- \`${id}\``),
+      '',
+      '_A modpack is metadata only - it bundles mods that are already in the registry._',
+      '_Submitted from the Gambonanza Mod Manager._',
+    ].join('\n'),
+  }, opts);
+}
+
 async function waitForRepo(token, fullName) {
   for (let i = 0; i < 10; i++) {
     const res = await net.getJson(`https://api.github.com/repos/${fullName}`, { token });
@@ -213,6 +233,19 @@ function submissionIssueUrl(entry) {
     folder: entry.folder || '',
     summary: entry.summary || '',
     tags: (entry.tags || []).join(', '),
+  });
+  return `https://github.com/${HOME_REPO}/issues/new?${params.toString()}`;
+}
+
+/** Pre-filled new-issue URL for a modpack, for the no-sign-in path. */
+function modpackIssueUrl(entry) {
+  const params = new URLSearchParams({
+    template: 'modpack-submission.yml',
+    title: `[Modpack] ${entry.name || ''}`,
+    'pack-name': entry.name || '',
+    mods: (entry.mods || []).join(', '),
+    summary: entry.summary || '',
+    description: entry.description || '',
   });
   return `https://github.com/${HOME_REPO}/issues/new?${params.toString()}`;
 }
@@ -263,6 +296,8 @@ module.exports = {
   listRepos,
   listReleaseAssets,
   submitEntry,
+  submitModpack,
   submissionIssueUrl,
+  modpackIssueUrl,
   OAUTH_SCOPE,
 };

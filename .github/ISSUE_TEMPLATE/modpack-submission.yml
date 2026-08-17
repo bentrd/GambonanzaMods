@@ -1,0 +1,63 @@
+# Modpack submission form. The Modpacks tab of the mod manager pre-fills this
+# for curators who don't want to sign in. Unlike mod submissions, an open
+# modpack issue is NOT auto-listed: a pack is pure metadata over already-listed
+# mods, so a maintainer just checks the ids and commits the file to
+# registry/modpacks/ (which is what makes it appear in the manager).
+name: Submit a modpack to the registry
+description: Bundle registry mods into a one-click pack. Packs contain no code - just a curated list of mods already in the registry.
+title: '[Modpack] '
+labels: [modpack-submission]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A modpack is a curated bundle: a name, a blurb, and the registry ids of
+        the mods in it. Installing the pack installs its members through the
+        exact same verified path as installing them one by one. Rules:
+        - at least **2 mods**, at most 24
+        - every mod must already be **in the registry** (reviewed - not an
+          open submission)
+        - dependencies (like `gambit-api`) come along automatically, no need
+          to list them
+  - type: input
+    id: pack-name
+    attributes:
+      label: Pack name
+      description: Shown in the manager. 2-48 characters.
+      placeholder: My Perfect Loadout
+    validations:
+      required: true
+  - type: input
+    id: pack-id
+    attributes:
+      label: Registry id
+      description: lowercase-with-dashes, permanent. Leave blank to derive it from the name.
+      placeholder: my-perfect-loadout
+  - type: input
+    id: mods
+    attributes:
+      label: Mods in the pack
+      description: Comma-separated registry ids, in suggested install order.
+      placeholder: kamikaze-gambit, spikes-gambit, better-collection
+    validations:
+      required: true
+  - type: input
+    id: summary
+    attributes:
+      label: One-line summary
+      description: Shown on the pack card. 8-140 characters - what is this pack FOR?
+      placeholder: Everything you need for a chaos-gambit run.
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Longer description
+      description: Optional. Why these mods together?
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: Every mod listed above is already in the registry (visible in the manager's Browse tab without an "unreviewed" badge).
+          required: true

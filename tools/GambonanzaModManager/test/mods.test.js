@@ -140,3 +140,36 @@ test('resolveInstallPlan: survives a dependency cycle', () => {
   assert.deepEqual(plan.map((p) => p.id).sort(), ['a', 'b']);
 });
 
+test('resolveModpackPlan: installs missing members with deps, skips current ones', () => {
+  const registry = [
+    { id: 'gambit-api', name: 'API', folder: 'GambitApi', dependencies: [], latest: { tag: 'v1.0.0', version: '1.0.0', asset: { sha256: 'x' } } },
+    { id: 'kamikaze', name: 'Kamikaze', folder: 'Kamikaze', dependencies: ['gambit-api'], latest: { tag: 'v1.0.0', version: '1.0.0', asset: { sha256: 'x' } } },
+    { id: 'spikes', name: 'Spikes', folder: 'Spikes', dependencies: ['gambit-api'], latest: { tag: 'v1.0.0', version: '1.0.0', asset: { sha256: 'x' } } },
+    { id: 'overlay', name: 'Overlay', folder: 'Overlay', dependencies: [], latest: { tag: 'v2.0.0', version: '2.0.0', asset: { sha256: 'x' } } },
+  ];
+  const pack = { id: 'pack', mods: ['kamikaze', 'spikes', 'overlay'] };
+
+  // Nothing installed: everything comes, the shared dep exactly once, first.
+  let plan = mods.resolveModpackPlan(pack, registry, []);
+  assert.deepEqual(plan.map((p) => p.id), ['gambit-api', 'kamikaze', 'spikes', 'overlay']);
+
+  // Overlay current, kamikaze behind: only the update and the missing member
+  // (whose dep is already on disk) are planned.
+  const installed = [
+    { folder: 'GambitApi', registryId: 'gambit-api', installedTag: 'v1.0.0' },
+    { folder: 'Kamikaze', registryId: 'kamikaze', installedTag: 'v0.9.0' },
+    { folder: 'Overlay', registryId: 'overlay', installedTag: 'v2.0.0' },
+  ];
+  plan = mods.resolveModpackPlan(pack, registry, installed);
+  assert.deepEqual(plan.map((p) => p.id), ['kamikaze', 'spikes']);
+});
+
+test('resolveModpackPlan: ignores unknown and uninstallable members', () => {
+  const registry = [
+    { id: 'real', name: 'Real', folder: 'Real', dependencies: [], latest: { tag: 'v1.0.0', version: '1.0.0', asset: { sha256: 'x' } } },
+    { id: 'pending', name: 'Pending', folder: 'Pending', dependencies: [], latest: null },
+  ];
+  const pack = { id: 'pack', mods: ['real', 'pending', 'vanished'] };
+  const plan = mods.resolveModpackPlan(pack, registry, []);
+  assert.deepEqual(plan.map((p) => p.id), ['real']);
+});

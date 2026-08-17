@@ -369,6 +369,46 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 .stat.pop.popular { color: #8a6a1c; }
 .stat.pop.growing { color: #4c7a3d; }
 
+/* modpack cards */
+.pack-grid {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+}
+.pack-mods { display: flex; flex-wrap: wrap; gap: 5px; }
+.pack-mod {
+  font-size: 11.5px; padding: 3px 8px;
+  border: 2px solid var(--ink); border-radius: 6px;
+  background: var(--cream-soft); color: rgba(90, 34, 48, 0.8);
+}
+.pack-mod.in { background: var(--green-dark); color: #e2f4d2; }
+
+/* "add to modpack" dropdown on browse cards. The menu is anchored to the
+   CARD (nearest positioned ancestor), spanning its width just under the
+   foot - a button-anchored panel clips at the content pane's edges. */
+.mod-card { position: relative; }
+.dropdown { display: inline-flex; }
+.dropdown .menu {
+  display: none;
+  position: absolute; left: 8px; right: 8px; top: calc(100% - 4px); z-index: 6;
+  text-align: left;
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 2px solid var(--ink); border-radius: 8px;
+  box-shadow: 0 4px 0 0 var(--ink);
+  padding: 6px;
+}
+.dropdown.open .menu { display: block; }
+.dropdown .mhead {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.7px;
+  color: rgba(90, 34, 48, 0.55); padding: 4px 9px 3px;
+}
+.dropdown .mi {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-radius: 6px;
+  padding: 7px 9px; font: inherit; color: inherit;
+}
+.dropdown .mi:hover { background: var(--cream-soft); }
+.dropdown .btn.in-draft { color: var(--green-dark); }
+
 .empty-note { text-align: center; padding: 42px 16px; color: rgba(244, 229, 194, 0.6); }
 .card-window .empty-note { color: rgba(90, 34, 48, 0.55); }
 
