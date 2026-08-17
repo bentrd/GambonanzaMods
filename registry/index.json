@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T21:13:42.063Z",
+  "generatedAt": "2026-08-17T21:44:12.815Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -207,9 +207,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T21:12:46Z",
+      "repoPushedAt": "2026-08-17T21:13:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -377,9 +377,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T21:12:46Z",
+      "repoPushedAt": "2026-08-17T21:13:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -505,9 +505,9 @@
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 15,
+      "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T21:12:46Z",
+      "repoPushedAt": "2026-08-17T21:13:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -721,9 +721,9 @@
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 15,
+      "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T21:12:46Z",
+      "repoPushedAt": "2026-08-17T21:13:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -805,9 +805,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T21:12:46Z",
+      "repoPushedAt": "2026-08-17T21:13:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -936,9 +936,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
-      "downloads": 11,
+      "downloads": 12,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T21:12:46Z",
+      "repoPushedAt": "2026-08-17T21:13:43Z",
       "license": "MIT",
       "archived": false
     }
@@ -964,7 +964,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 64,
+      "downloads": 66,
       "installable": true
     },
     {
@@ -983,7 +983,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 20,
+      "downloads": 22,
       "installable": true
     }
   ]
