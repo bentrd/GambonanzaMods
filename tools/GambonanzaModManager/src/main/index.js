@@ -125,6 +125,9 @@ async function fullState({ forceRegistry = false } = {}) {
       stale: !!reg.stale,
       generatedAt: reg.index.generatedAt || null,
       mods: modsApi.mergeState(reg.index.mods || [], installed),
+      // Older cached indexes predate modpacks entirely - an empty list just
+      // renders the tab's "nothing here yet" note.
+      modpacks: reg.index.modpacks || [],
     },
     installed,
     publish: { signInAvailable: publish.signInAvailable() },
@@ -380,6 +383,39 @@ function registerIpc() {
     }
   });
 
+  handle('modpacks:install', async ({ id, operationId }) => {
+    const info = await currentGameInfo();
+    if (!info?.valid) throw new Error('set up your game folder first');
+    if (!info.patched) throw new Error('patch the game first - mods need the framework to load');
+
+    const reg = await registry.getIndex({});
+    const pack = (reg.index.modpacks || []).find((p) => p.id === id);
+    if (!pack) throw new Error('that modpack is no longer in the registry');
+
+    const registryMods = reg.index.mods || [];
+    const installed = await modsApi.listInstalled(info.modsDir);
+    const plan = modsApi.resolveModpackPlan(pack, registryMods, installed);
+    if (!plan.length) return { installed: [] };
+
+    const controller = beginOperation(operationId);
+    const report = progressReporter(operationId);
+    try {
+      const results = [];
+      for (let i = 0; i < plan.length; i++) {
+        report({ step: 'pack', message: `${pack.name}: mod ${i + 1} of ${plan.length}`, percent: null });
+        results.push(await modsApi.install({
+          mod: plan[i],
+          modsDir: info.modsDir,
+          onProgress: report,
+          signal: controller.signal,
+        }));
+      }
+      return { installed: results };
+    } finally {
+      endOperation(operationId);
+    }
+  });
+
   handle('mods:uninstall', async ({ folder }) => {
     const info = await currentGameInfo();
     if (!info?.valid) throw new Error('no game folder is configured');
@@ -468,6 +504,17 @@ function registerIpc() {
   });
 
   handle('publish:issueUrl', ({ entry }) => publish.submissionIssueUrl(sanitizeEntry(entry, { partial: true })));
+
+  handle('publish:submitModpack', async ({ entry }) => {
+    const token = store.get('githubToken');
+    if (!token) throw new Error('sign in with GitHub first');
+    const clean = sanitizeModpackEntry(entry);
+    return publish.submitModpack(token, clean, {
+      onStep: (message) => send('progress', { operationId: 'publish', step: 'publish', message, percent: null }),
+    });
+  });
+
+  handle('publish:modpackIssueUrl', ({ entry }) => publish.modpackIssueUrl(sanitizeModpackEntry(entry, { partial: true })));
 }
 
 /** The renderer builds the entry object; re-validate everything here. */
@@ -499,6 +546,38 @@ function sanitizeEntry(raw, { partial = false } = {}) {
     }
     if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(entry.repo)) {
       throw new Error('the repository must look like owner/name');
+    }
+    entry.submittedBy = store.get('githubLogin') || undefined;
+    entry.addedAt = new Date().toISOString().slice(0, 10);
+  }
+  return entry;
+}
+
+/** Same job as sanitizeEntry, for the much smaller modpack shape. */
+function sanitizeModpackEntry(raw, { partial = false } = {}) {
+  const entry = {};
+  const take = (key, max = 200) => {
+    const v = raw?.[key];
+    if (typeof v === 'string' && v.trim()) entry[key] = v.trim().slice(0, max);
+  };
+  take('id', 40);
+  take('name', 48);
+  take('author', 48);
+  take('summary', 140);
+  take('description', 4000);
+  if (Array.isArray(raw?.mods)) {
+    entry.mods = [...new Set(raw.mods.filter((m) => typeof m === 'string' && m.trim()).map((m) => m.trim()))].slice(0, 24);
+  }
+  if (Array.isArray(raw?.tags)) entry.tags = raw.tags.filter((t) => typeof t === 'string').slice(0, 5);
+  if (!partial) {
+    for (const field of ['id', 'name', 'author', 'summary']) {
+      if (!entry[field]) throw new Error(`the "${field}" field is required`);
+    }
+    if (!/^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$/.test(entry.id)) {
+      throw new Error('the id must be lowercase letters, digits and dashes, like "my-first-pack"');
+    }
+    if (!entry.mods || entry.mods.length < 2) {
+      throw new Error('pick at least 2 mods - a pack of one is just a mod');
     }
     entry.submittedBy = store.get('githubLogin') || undefined;
     entry.addedAt = new Date().toISOString().slice(0, 10);

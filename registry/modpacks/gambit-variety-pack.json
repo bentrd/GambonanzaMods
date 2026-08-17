@@ -1,0 +1,18 @@
+{
+  "id": "gambit-variety-pack",
+  "name": "Gambit Variety Pack",
+  "author": "Ben",
+  "summary": "Six community gambits in one click - a bit of rescue, a bit of chaos, a bit of greed.",
+  "description": "A starter spread of custom gambits that play nicely together: Fall Guy rescues pieces from crumbling tiles, Kamikaze trades your piece for its killer, Spikes turns TRAP tiles lethal, GrandMa's Cookies hands you a free piece at the start, Lobbyist makes selling kings profitable, and Fishing Net freezes the enemy's turn when you trap someone.\n\nThe Gambit Creation API library installs automatically - it's the plumbing all of these are built on.",
+  "mods": [
+    "fall-guy-gambit",
+    "kamikaze-gambit",
+    "spikes-gambit",
+    "grandma-cookies",
+    "lobbyist",
+    "fishing-net"
+  ],
+  "tags": ["gameplay", "gambits"],
+  "submittedBy": "bentrd",
+  "addedAt": "2026-08-17"
+}

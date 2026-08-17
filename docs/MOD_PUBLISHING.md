@@ -132,6 +132,28 @@ records them into the index every hour. There is no analytics service and no
 tracking anywhere: if you can see your release's download count on your own
 repo's Releases page, that's the exact number the manager shows.
 
+## Modpacks
+
+A modpack is a curated bundle: a name, a blurb, and the registry ids of 2-24
+mods. Packs contain **no code** - installing one installs its members through
+the exact same checksum-verified path as installing them one by one, and
+dependencies come along automatically. Packs may only reference **reviewed**
+registry mods, never open submissions.
+
+Publishing works from the manager's **Modpacks** tab:
+
+- **Signed in with GitHub**: pick the mods, name the pack, Submit - the
+  manager opens a registry pull request adding
+  `registry/modpacks/<id>.json` for you.
+- **Without sign-in**: "Open submission on GitHub" pre-fills a
+  [modpack issue](https://github.com/bentrd/GambonanzaMods/issues/new?template=modpack-submission.yml);
+  a maintainer checks the ids and commits the file.
+
+Because a pack is pure metadata over already-reviewed mods, the review is
+just "are these ids real" - there is no unreviewed-listing stage like mods
+have. See [`registry/modpack-schema.json`](../registry/modpack-schema.json)
+for the format.
+
 ## For the maintainer: enabling in-app sign-in
 
 "Sign in with GitHub" uses the OAuth **device flow**, which needs a client id
