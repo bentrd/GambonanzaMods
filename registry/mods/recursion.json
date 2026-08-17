@@ -12,7 +12,8 @@
     "gambits"
   ],
   "dependencies": [
-    "gambit-api"
+    "gambit-api",
+    "point-a-mngr"
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
