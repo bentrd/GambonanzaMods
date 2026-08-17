@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T15:49:15.729Z",
+  "generatedAt": "2026-08-17T16:21:23.427Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -86,47 +86,47 @@
       ]
     },
     "manager": {
-      "tag": "manager-v1.1.0",
-      "version": "1.1.0",
-      "publishedAt": "2026-08-15T11:11:09Z",
-      "notes": "\n- Community submissions show up in Browse the moment they're submitted,\n  marked **unreviewed** - straight from their submission issue, before a\n  maintainer has read the code. Installing (or updating) one warns you that\n  nobody has checked it and points you at the source.\n- The gold badge is now **reviewed** and replaces \"official\": it means a\n  human read the mod's source before it was listed, which is true of every\n  registry mod - bundled or community-made.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.1.0",
+      "tag": "manager-v1.2.0",
+      "version": "1.2.0",
+      "publishedAt": "2026-08-17T16:19:23Z",
+      "notes": "\n- Every mod card now shows how many times the mod has been downloaded, plus\n  a popularity icon: a flame for the registry's most-downloaded fifth, a\n  star for the top half, a sprout for everything still growing. The counts\n  are GitHub's own per-release-asset download counters, recorded into the\n  registry index by CI every hour - no analytics service, no tracking, and\n  nothing new phoning home.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.2.0",
       "assets": [
         {
-          "name": "Gambonanza.Mod.Manager-1.1.0-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0-arm64-mac.zip",
-          "size": 119586235,
-          "sha256": "6774fc38e01378dcdc9c824c69fb8d9c92201e6b489f268ea81d8c35a0bd97d5"
+          "name": "Gambonanza.Mod.Manager-1.2.0-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0-arm64-mac.zip",
+          "size": 119589083,
+          "sha256": "5a21f05df95cb881a03c94bc4360ceaf559edc6c363b97175b3c1c1ed463b8e8"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.1.0-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0-arm64.dmg",
-          "size": 119492745,
-          "sha256": "08fa30c7af1db43b348a2f3a37805a74068e37601fad1aaf2042f2889635a8ca"
+          "name": "Gambonanza.Mod.Manager-1.2.0-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0-arm64.dmg",
+          "size": 119491650,
+          "sha256": "42c4aef36d4b5cb8ebb9d943eba2c01e94ec64ca5916c9595261a2f0523485ef"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.1.0-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0-mac.zip",
-          "size": 121712778,
-          "sha256": "0fcd39d70d0c4339bc630f2cd83323b849a711930d93dfbeb17937b976cf2045"
+          "name": "Gambonanza.Mod.Manager-1.2.0-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0-mac.zip",
+          "size": 121715626,
+          "sha256": "91cf36959a3d9a674c3ed1c97504538d86ea9754b198bb9ee14c80f48248c6e2"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.1.0.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0.AppImage",
-          "size": 127827373,
-          "sha256": "b186ea16c8f9db02a5656b56a0af8289d1e22b237d67f2135c5353042f7c8743"
+          "name": "Gambonanza.Mod.Manager-1.2.0.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0.AppImage",
+          "size": 127831493,
+          "sha256": "68a89169001bad8e37bd1be7052062d6685bb45f314b59f2c60e17cff43e4907"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.1.0.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager-1.1.0.dmg",
-          "size": 121580247,
-          "sha256": "de36752b26bb05f7efabd69b7bb426b79b653f86e9541cbc4b458e8b2562c728"
+          "name": "Gambonanza.Mod.Manager-1.2.0.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager-1.2.0.dmg",
+          "size": 121582118,
+          "sha256": "4f9d059f6d59b34028fa9439a861d445edf7c2683ec0e3b6df46570da9b6a798"
         },
         {
-          "name": "Gambonanza.Mod.Manager.Setup.1.1.0.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.1.0/Gambonanza.Mod.Manager.Setup.1.1.0.exe",
-          "size": 99716227,
-          "sha256": "7c61c761fc5f036173b5061eebb829f60aad1afd2b8494e936a142c23c60abc7"
+          "name": "Gambonanza.Mod.Manager.Setup.1.2.0.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.2.0/Gambonanza.Mod.Manager.Setup.1.2.0.exe",
+          "size": 99718419,
+          "sha256": "56a57723e5d022b5b591a597aa119d8f61a26d6399851f2936821dc0826b9fe1"
         }
       ]
     }
@@ -135,7 +135,7 @@
     {
       "id": "point-a-mngr",
       "name": "\"Point A\" Manager",
-      "author": "Agent15",
+      "author": "FRO_PWR",
       "summary": "A manager class to recall the tile a piece moved from",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "PointAMngr.zip",
@@ -150,9 +150,22 @@
       "reviewed": false,
       "issue": 19,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/19",
-      "latest": null,
-      "downloads": 0,
-      "pending": true,
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-16T20:16:23Z",
+        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
+        "asset": {
+          "name": "PointAMngr.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/PointAMngr.zip",
+          "size": 3708,
+          "sha256": "adb7bf5ccb4b520bf501c6a3c4fd2bb305974a25107ba520d2e99ac63ec78e3b"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -193,10 +206,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T15:48:13Z",
+      "repoPushedAt": "2026-08-17T16:19:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -280,8 +292,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 11,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -324,8 +335,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -366,10 +376,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T15:48:13Z",
+      "repoPushedAt": "2026-08-17T16:19:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -397,22 +406,21 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "FallGuyGambit-v1.1.0",
-        "version": "1.1.0",
-        "publishedAt": "2026-08-16T13:03:58Z",
-        "notes": "Adds Fall Guy's Gambit: pieces about to fall are saved to the nearest free square, or the stash.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`FallGuyGambit/`](../../tree/FallGuyGambit-v1.1.0/FallGuyGambit)\n",
-        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/FallGuyGambit-v1.1.0",
+        "tag": "FallGuyGambit-v1.1.1",
+        "version": "1.1.1",
+        "publishedAt": "2026-08-16T13:08:16Z",
+        "notes": "Adds Fall Guy's Gambit: pieces about to fall are saved to the nearest free square, or the stash.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`FallGuyGambit/`](../../tree/FallGuyGambit-v1.1.1/FallGuyGambit)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/FallGuyGambit-v1.1.1",
         "asset": {
           "name": "FallGuyGambit.zip",
-          "url": "https://github.com/ben-gambo/mods/releases/download/FallGuyGambit-v1.1.0/FallGuyGambit.zip",
-          "size": 7670,
-          "sha256": "8b0b5b733ab7682b0e113b264d05824bc5855a97b67ce4d7b0eea8b662a72090"
+          "url": "https://github.com/ben-gambo/mods/releases/download/FallGuyGambit-v1.1.1/FallGuyGambit.zip",
+          "size": 7679,
+          "sha256": "bf9b884ecc58c1396e1380cd7a32f449dfa4c1a93dbcd605be5579a54f4e79a5"
         },
-        "manifestVersion": "1.1.0",
+        "manifestVersion": "1.1.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 9,
       "stars": 0,
       "repoPushedAt": "2026-08-16T13:08:15Z",
       "license": "MIT",
@@ -456,7 +464,6 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 10,
-      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -497,10 +504,9 @@
         "manifestVersion": "1.4.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T15:48:13Z",
+      "repoPushedAt": "2026-08-17T16:19:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -541,8 +547,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -586,8 +591,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-08-16T13:08:15Z",
       "license": "MIT",
@@ -631,7 +635,6 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 10,
-      "stale": true,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -674,8 +677,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -718,10 +720,9 @@
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T15:48:13Z",
+      "repoPushedAt": "2026-08-17T16:19:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -762,8 +763,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 11,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -804,10 +804,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 10,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T15:48:13Z",
+      "repoPushedAt": "2026-08-17T16:19:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -834,22 +833,21 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.1.0",
-        "version": "1.1.0",
-        "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-16T20:16:23Z",
+        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
         "asset": {
           "name": "RecursionsGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/RecursionsGambit.zip",
-          "size": 5027,
-          "sha256": "d1e44819e2d46122135010b8058e974669c18b7435f5050037a24b0d0f19e6b2"
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/RecursionsGambit.zip",
+          "size": 5243,
+          "sha256": "9da214ad8fde63a96c06cef4a28c7fe83eb148c7af8e2ca0737ff8e5dfd6b56c"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
-      "stale": true,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -858,7 +856,7 @@
     {
       "id": "sniper",
       "name": "Sniper's Gambit",
-      "author": "Agent15",
+      "author": "FRO_PWR",
       "summary": "Capturing with a Bishop from 3 or more spaces away skips the enemy's turn.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "SnipersGambit.zip",
@@ -873,9 +871,22 @@
       "reviewed": false,
       "issue": 20,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/20",
-      "latest": null,
-      "downloads": 0,
-      "pending": true,
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-16T20:16:23Z",
+        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
+        "asset": {
+          "name": "SnipersGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/SnipersGambit.zip",
+          "size": 5110,
+          "sha256": "47a6ad857c27b1a08a6d5fb8781232ceced1cd2ae954d1b625cf1d5281ecfe6b"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -919,9 +930,8 @@
         "manifestAuthor": "TGM"
       },
       "downloads": 10,
-      "stale": true,
       "stars": 3,
-      "repoPushedAt": "2026-08-17T15:48:13Z",
+      "repoPushedAt": "2026-08-17T16:19:15Z",
       "license": "MIT",
       "archived": false
     }
