@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-17T14:48:30.158Z",
+  "generatedAt": "2026-08-17T15:44:37.917Z",
   "count": 19,
   "releases": {
     "framework": null,
@@ -57,7 +57,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"BetterCollection.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T14:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -175,7 +175,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"EnemyThreatOverlay.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T14:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -264,7 +264,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"GambitApi.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T14:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -321,9 +321,21 @@
       "addedAt": "2026-08-16",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of ben-gambo/mods has an asset matching \"ImpatientGambit.zip\".",
+      "latest": {
+        "tag": "ImpatientGambit-v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-16T10:38:03Z",
+        "notes": "Adds the Impatient Gambit: fight only bosses, and earn 4x gold.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`ImpatientGambit/`](../../tree/ImpatientGambit-v1.0.0/ImpatientGambit)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/ImpatientGambit-v1.0.0",
+        "asset": {
+          "name": "ImpatientGambit.zip",
+          "url": "https://github.com/ben-gambo/mods/releases/download/ImpatientGambit-v1.0.0/ImpatientGambit.zip",
+          "size": 9780,
+          "sha256": "7113d3d8e46d4485aa38d36ddfc19dad18c93e5e1695c3351755fe2f7895f292"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
+      },
       "stars": 0,
       "repoPushedAt": "2026-08-16T13:08:15Z",
       "license": "MIT",
@@ -415,7 +427,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"KamikazeGambit.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T14:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -441,9 +453,21 @@
       "addedAt": "2026-08-13",
       "official": false,
       "reviewed": true,
-      "latest": null,
-      "pending": true,
-      "error": "No release of Agent15/Gambit_PWR_PACK has an asset matching \"LobbyistsGambit.zip\".",
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "LobbyistsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/LobbyistsGambit.zip",
+          "size": 5528,
+          "sha256": "bd1b4e303c6e0ad85e1549b910262c75ef36ed013409be002f5ef530ad941801"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
       "stars": 0,
       "repoPushedAt": "2026-08-16T20:16:23Z",
       "license": "MIT",
@@ -473,7 +497,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"MightyKasparovEveryStage.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T14:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +582,7 @@
       "pending": true,
       "error": "No release of bentrd/GambonanzaMods has an asset matching \"SpikesGambit.zip\".",
       "stars": 3,
-      "repoPushedAt": "2026-08-17T13:56:46Z",
+      "repoPushedAt": "2026-08-17T14:48:31Z",
       "license": "MIT",
       "archived": false
     }
