@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "bougie",
+      "name": "Bougie's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "Every time you spend money, earn <color=*>$1</color>.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/BougiesGambit/Bougie.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-13"
 }

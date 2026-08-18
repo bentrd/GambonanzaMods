@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.1.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "spikes",
+      "name": "Spikes' Gambit",
+      "rarity": "rare",
+      "price": 7,
+      "description": "Enemy pieces that step on <color=◊>TRAP</color> tiles are captured instead of trapped.",
+      "sprite": "https://raw.githubusercontent.com/bentrd/GambonanzaMods/main/sample_mods/SpikesGambit/Spike.png"
+    }
+  ],
   "submittedBy": "bentrd",
   "addedAt": "2026-08-12"
 }

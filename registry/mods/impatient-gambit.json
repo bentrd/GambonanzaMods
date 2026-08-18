@@ -17,6 +17,16 @@
   ],
   "frameworkVersion": ">=1.3.3",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "impatient",
+      "name": "Impatient Gambit",
+      "rarity": "legendary",
+      "price": 10,
+      "description": "Only fight <b>BOSSES</b> from now on.<br>All <color=*>gold</color> earned is <color=*>x4</color>.",
+      "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/ImpatientGambit/impatient.png"
+    }
+  ],
   "submittedBy": "ben-gambo",
   "addedAt": "2026-08-16"
 }

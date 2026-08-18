@@ -127,6 +127,50 @@
       "type": "boolean",
       "description": "Set while the repo has no matching release yet. The manager shows the mod as 'not published yet' and CI does not fail on the missing asset. Remove it once you cut a release."
     },
+    "gambits": {
+      "type": "array",
+      "maxItems": 24,
+      "description": "Gambits this mod adds to the game, so the manager can show them as in-game-style cards. Mirror the values the mod passes to GambitBuilder; the description keeps the game's TextMeshPro markup (<color=X>, <br>, <i>, <sprite=N>) verbatim.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "sprite"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "The gambit's in-game id (GambitBuilder.Create(id)); used by console commands like 'give gambit <id>'."
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 48,
+            "description": "The in-game display name (WithName)."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 300,
+            "description": "The in-game description with its game markup, verbatim (WithDescription)."
+          },
+          "rarity": {
+            "type": "string",
+            "enum": ["common", "rare", "epic", "legendary", "strain"],
+            "description": "The game's Rarity enum value, lowercased (WithRarity)."
+          },
+          "price": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 99,
+            "description": "Shop price (WithPrice)."
+          },
+          "sprite": {
+            "type": "string",
+            "pattern": "^https://raw\\.githubusercontent\\.com/",
+            "maxLength": 300,
+            "description": "The gambit's sprite PNG on raw.githubusercontent.com (the only image host the manager's CSP allows). Point it at the same PNG the mod ships."
+          }
+        }
+      }
+    },
     "submittedBy": {
       "type": "string",
       "maxLength": 48,

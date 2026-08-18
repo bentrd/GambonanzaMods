@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "grandmascookies",
+      "name": "GrandMa's Cookies' Gambit",
+      "rarity": "rare",
+      "price": 7,
+      "description": "At the start of a game, grants one random piece",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/GrandMasCookiesGambit/GrandMasCookies.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-12"
 }

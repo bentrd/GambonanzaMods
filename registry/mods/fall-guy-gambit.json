@@ -17,6 +17,16 @@
   ],
   "frameworkVersion": ">=1.3.3",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "fallguy",
+      "name": "Fall Guy's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "Pieces about to <color=§>FALL</color> are saved to the nearest free square, or the stash.",
+      "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/FallGuyGambit/fallguy.png"
+    }
+  ],
   "submittedBy": "ben-gambo",
   "addedAt": "2026-08-16"
 }

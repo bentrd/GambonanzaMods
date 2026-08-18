@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "crybaby",
+      "name": "Crybaby's Gambit",
+      "rarity": "rare",
+      "price": 7,
+      "description": "When any of your pieces is <wave><sprite=11> THREATENED</wave>, it is also <wave><color=∫>COUNTED AS</color></wave> a capture.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/CrybabysGambit/Crybaby.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-13"
 }

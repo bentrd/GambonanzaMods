@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "junk",
+      "name": "Junk's Gambit",
+      "rarity": "common",
+      "price": 1,
+      "description": "<i>Does nothing. Its card text re-rolls to a random made-up rule every time it appears.</i>",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/JunksGambit/Junk.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-13"
 }

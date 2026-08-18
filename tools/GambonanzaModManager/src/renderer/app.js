@@ -112,6 +112,124 @@ function statsRow(mod, tiers) {
 }
 
 // ---------------------------------------------------------------------------
+// Gambit cards - the in-game presentation, rebuilt in DOM/CSS
+// ---------------------------------------------------------------------------
+// Colors, layout and motion all come from the game itself (decompiled UI code
+// + serialized Library colors), so a gambit here looks like it does in the
+// collection screen: rounded wine tile, god-ray halo tinted by rarity, the
+// sprite wiggling on hover, and the same name/rarity/description tooltip.
+
+/** The game's Library rarity colors: capsule bg (main) + outline (secondary). */
+const RARITY_COLORS = {
+  common: { main: '#448446', secondary: '#E3FFE4' },
+  rare: { main: '#445482', secondary: '#D4DCF3' },
+  epic: { main: '#84444A', secondary: '#ECCCCE' },
+  legendary: { main: '#FF9B00', secondary: '#FFE7C2' },
+  strain: { main: '#7900AB', secondary: '#9B69B0' },
+};
+
+/**
+ * The game's description markup uses single-character color aliases inside
+ * <color=X> tags (LocalizationManager.RewriteDescription). This is that
+ * table, hex values extracted from the game's serialized Library singleton.
+ */
+const GAMBIT_ALIAS_COLORS = {
+  '&': '#AB723C', '|': '#A840FF', '∏': '#D15D00', '°': '#0079FF',
+  '£': '#C00000', '^': '#36BC54', '*': '#FFA800', '§': '#C29077',
+  '_': '#FF1200', '¨': '#B7B7B7', '€': '#D6BA94', '~': '#B75C5E',
+  '}': '#FFF740', '@': '#DE00FF', 'Ø': '#1DFF00', '‡': '#448446',
+  '∑': '#445482', 'π': '#84444A', '≈': '#FF9B00', 'µ': '#00FFDB',
+  'æ': '#648FFF', 'ƒ': '#E35AFF', '◊': '#448547', '∞': '#FFC700',
+  'ß': '#6C8383', '©': '#FF6600', '√': '#00B0FF', '∆': '#0DBE00',
+  '∂': '#FF2400', '∫': '#F9A0FF', '≠': '#AAAAAA',
+};
+
+/** <sprite=N> piece glyphs from the game's tile font asset, as unicode. */
+const GAMBIT_SPRITE_GLYPHS = { 5: '♟', 6: '♜', 7: '♞', 8: '♝', 9: '♚', 10: '♛', 11: '!' };
+
+/**
+ * Render the game's TextMeshPro-ish markup into safe DOM: <color=X>, <br>,
+ * <i>, <b> and <sprite=N> are honoured; animation tags (<wave>, <bounce>)
+ * and anything unknown are stripped. Never touches innerHTML - registry data
+ * becomes text nodes and styled spans only.
+ */
+function renderGambitMarkup(text) {
+  const root = el('span', {});
+  let cur = root;
+  const stack = [];
+  const re = /<([^<>]{1,40})>/g;
+  let last = 0;
+  let m;
+  const pushText = (s) => { if (s) cur.append(document.createTextNode(s)); };
+  while ((m = re.exec(String(text)))) {
+    pushText(String(text).slice(last, m.index));
+    last = re.lastIndex;
+    const tag = m[1];
+    if (tag === 'br') { cur.append(el('br')); continue; }
+    if (tag === 'i' || tag === 'b') {
+      const node = el(tag);
+      cur.append(node); stack.push(cur); cur = node;
+      continue;
+    }
+    if (tag === '/i' || tag === '/b' || tag === '/color') { cur = stack.pop() || root; continue; }
+    const color = /^color=(.+)$/.exec(tag);
+    if (color) {
+      const value = GAMBIT_ALIAS_COLORS[color[1]]
+        || (/^#[0-9a-fA-F]{3,8}$/.test(color[1]) ? color[1] : null);
+      const node = el('span', value ? { style: `color:${value}` } : {});
+      cur.append(node); stack.push(cur); cur = node;
+      continue;
+    }
+    const glyph = /^sprite=(\d+)$/.exec(tag);
+    if (glyph) {
+      const g = GAMBIT_SPRITE_GLYPHS[glyph[1]];
+      if (g) cur.append(el('span', { class: 'gglyph' }, g));
+      continue;
+    }
+    // <wave>, <bounce>, </wave>, </bounce>, anything else: stripped.
+  }
+  pushText(String(text).slice(last));
+  return root;
+}
+
+/**
+ * One gambit as an in-game collection tile + hover tooltip.
+ * `index` staggers the pop-in and desyncs the idle bob so a shelf of cards
+ * doesn't move in lockstep. `from` credits the mod on the tooltip.
+ * `size: 'mini'` is the row/card chip variant.
+ */
+function gambitCard(g, { size = '', index = 0, from = null } = {}) {
+  const rar = RARITY_COLORS[g.rarity] || RARITY_COLORS.common;
+  const rarityLabel = (g.rarity || 'common').replace(/^./, (c) => c.toUpperCase());
+
+  const tip = el('div', { class: 'gtip' },
+    el('div', { class: 'gtip-name' }, g.name),
+    el('div', { class: 'gtip-rarity', style: `background:${rar.main}; border-color:${rar.secondary}` }, rarityLabel),
+    g.description ? el('div', { class: 'gtip-desc' }, renderGambitMarkup(g.description)) : null,
+    from ? el('div', { class: 'gtip-from' }, `from ${from}`) : null);
+
+  return el('div', {
+    class: `gcard${size ? ` ${size}` : ''}`,
+    style: `--rmain:${rar.main}; --pop:${(index * 0.06).toFixed(2)}s; --bob:${((index % 5) * 0.45).toFixed(2)}s`,
+  },
+    el('div', { class: 'gclip' },
+      el('div', { class: 'ghalo' }),
+      el('div', { class: 'gbob' },
+        // No loading="lazy": the pop-in animation starts at scale(0), which
+        // the lazy-load intersection check reads as zero area - the image
+        // then never loads. Sprites are a few KB each; eager is fine.
+        el('img', {
+          class: 'gspr',
+          src: g.sprite,
+          alt: g.name,
+          draggable: 'false',
+          onerror: (ev) => ev.target.closest('.gcard')?.classList.add('noimg'),
+        }))),
+    g.price != null && !size ? el('div', { class: 'gprice' }, `$${g.price}`) : null,
+    tip);
+}
+
+// ---------------------------------------------------------------------------
 // Toasts + modal
 // ---------------------------------------------------------------------------
 
@@ -666,6 +784,9 @@ function renderModCard(mod, tiers) {
         el('div', { class: 'by' }, `by ${mod.author}`)),
       el('div', { class: 'badges' }, badges)),
     el('div', { class: 'sum' }, mod.summary || ''),
+    (mod.gambits || []).length
+      ? el('div', { class: 'gambit-minis' }, ...mod.gambits.map((g, i) => gambitCard(g, { size: 'mini', index: i })))
+      : null,
     statsRow(mod, tiers),
     deps,
     foot);
@@ -807,6 +928,22 @@ function renderPackCard(pack) {
 }
 
 /**
+ * The gambit shelf at the top of a pack page: every gambit the pack's mods
+ * add, as in-game tiles. THIS is what the pack actually puts in your runs,
+ * shown the way the game itself would show it.
+ */
+function packGambitShelf(members) {
+  const gambits = members.flatMap((m) => (m.gambits || []).map((g) => ({ g, from: m.name })));
+  if (!gambits.length) return null;
+  return el('div', { class: 'gambit-shelf-wrap' },
+    el('div', { class: 'section-band' }, `The gambits inside · ${gambits.length}`),
+    el('div', { class: 'gambit-shelf' },
+      ...gambits.map(({ g, from }, i) => gambitCard(g, { index: i, from }))),
+    el('div', { class: 'tiny muted', style: 'margin-top:4px' },
+      'Hover a card - these are the real in-game sprites, straight from each mod.'));
+}
+
+/**
  * The pack detail page: everything the chip wall couldn't say. Each member
  * is a full row - what it does, its version, its own install state and
  * buttons - plus the two pack-level actions: install into the selected
@@ -837,6 +974,9 @@ function renderPackDetail(pack) {
     }
 
     return el('div', { class: 'mod-row pack-member' },
+      (m.gambits || []).length
+        ? el('div', { class: 'gambit-minis' }, ...m.gambits.map((g, i) => gambitCard(g, { size: 'mini', index: i })))
+        : null,
       el('div', { class: 'info' },
         el('div', { class: 'nm' },
           m.name, ' ',
@@ -870,6 +1010,7 @@ function renderPackDetail(pack) {
       ? el('div', { class: 'tiny muted', style: 'margin-bottom:10px' },
           `Instance${wrappingInstances.length === 1 ? '' : 's'} made from this pack: ${wrappingInstances.map((i) => i.name).join(', ')}`)
       : null,
+    packGambitShelf(members),
     el('div', { class: 'pack-actions' },
       packActionButton(pack, ms, { size: '' }),
       pack.installable && members.length

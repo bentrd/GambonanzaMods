@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "fishing-net",
+      "name": "Fishing Net's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "When an enemy piece is <color=◊>TRAPPED</color>, skip the enemy's turn.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/FishingNetsGambit/FishingNet.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-13"
 }

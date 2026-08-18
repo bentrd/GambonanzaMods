@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "lobbyist",
+      "name": "Lobbyist's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "Selling a <sprite=9> <color=£>KING</color> captures a random enemy piece.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/LobbyistsGambit/Lobbyist.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-13"
 }

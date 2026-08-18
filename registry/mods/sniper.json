@@ -17,6 +17,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "sniper",
+      "name": "Sniper's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "Capturing with a <sprite=8> <color=∏>BISHOP</color> from 3 or more spaces away skips the enemy's turn.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SnipersGambit/Sniper.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-17"
 }

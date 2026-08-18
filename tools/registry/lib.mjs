@@ -34,8 +34,21 @@ const KNOWN_FIELDS = new Set([
   'id', 'name', 'author', 'summary', 'description', 'repo', 'asset', 'folder',
   'tagPattern', 'prerelease', 'manifest', 'tags', 'homepage', 'icon',
   'gameVersion', 'frameworkVersion', 'dependencies', 'pending', 'submittedBy',
-  'addedAt',
+  'addedAt', 'gambits',
 ]);
+
+/** The game's Rarity enum, lowercased - the manager maps these to colors. */
+const KNOWN_RARITIES = ['common', 'rare', 'epic', 'legendary', 'strain'];
+
+/** Per-gambit fields a "gambits" array item may carry. */
+const KNOWN_GAMBIT_FIELDS = new Set(['id', 'name', 'description', 'rarity', 'price', 'sprite']);
+
+/**
+ * Sprites must live on raw.githubusercontent.com specifically - it is the
+ * only ICON_RE host the manager's renderer CSP allows for <img>, so anything
+ * else would validate here and then silently fail to load in the app.
+ */
+const SPRITE_RE = /^https:\/\/raw\.githubusercontent\.com\//;
 
 /**
  * Validate one registry entry. Returns an array of human-readable problems;
@@ -134,6 +147,48 @@ export function validateEntry(entry, fileName) {
   for (const boolField of ['prerelease', 'pending']) {
     if (entry[boolField] !== undefined && typeof entry[boolField] !== 'boolean') {
       fail(`"${boolField}" must be true or false`);
+    }
+  }
+
+  if (entry.gambits !== undefined) {
+    if (!Array.isArray(entry.gambits)) fail('"gambits" must be an array');
+    else {
+      if (entry.gambits.length > 24) fail('"gambits" allows at most 24 entries');
+      entry.gambits.forEach((g, i) => {
+        const where = `gambits[${i}]`;
+        if (typeof g !== 'object' || g === null || Array.isArray(g)) {
+          fail(`${where} must be an object`);
+          return;
+        }
+        for (const key of Object.keys(g)) {
+          if (!KNOWN_GAMBIT_FIELDS.has(key)) fail(`${where}: unknown field "${key}"`);
+        }
+        const gstr = (field, { required = false, max = 300, re = null, reHint = '' } = {}) => {
+          const v = g[field];
+          if (v === undefined || v === null || v === '') {
+            if (required) fail(`${where}: "${field}" is required`);
+            return;
+          }
+          if (typeof v !== 'string') { fail(`${where}: "${field}" must be a string`); return; }
+          if (v.length > max) fail(`${where}: "${field}" is too long (max ${max} characters)`);
+          if (re && !re.test(v)) fail(`${where}: "${field}" is malformed${reHint ? ` - ${reHint}` : ''}`);
+        };
+        gstr('id', { max: 40 });
+        gstr('name', { required: true, max: 48 });
+        gstr('description', { max: 300 });
+        gstr('sprite', {
+          required: true,
+          max: 300,
+          re: SPRITE_RE,
+          reHint: 'gambit sprites must be raw.githubusercontent.com URLs (the app\'s CSP only allows images from there)',
+        });
+        if (g.rarity !== undefined && !KNOWN_RARITIES.includes(g.rarity)) {
+          fail(`${where}: unknown rarity "${g.rarity}" (pick from: ${KNOWN_RARITIES.join(', ')})`);
+        }
+        if (g.price !== undefined && (!Number.isInteger(g.price) || g.price < 0 || g.price > 99)) {
+          fail(`${where}: "price" must be a whole number between 0 and 99`);
+        }
+      });
     }
   }
 

@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.1.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "kamikaze",
+      "name": "Kamikaze's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "<color=©>LANDING</color> on an enemy piece destroys both pieces.<br><i>(Once per game)</i>",
+      "sprite": "https://raw.githubusercontent.com/bentrd/GambonanzaMods/main/sample_mods/KamikazeGambit/kamikaze.png"
+    }
+  ],
   "submittedBy": "bentrd",
   "addedAt": "2026-08-12"
 }

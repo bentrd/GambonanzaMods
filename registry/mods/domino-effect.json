@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "domino-effect",
+      "name": "Domino Effect's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "When an enemy piece is <color=◊>TRAPPED</color>, <color=◊>TRAP</color> every enemy piece <bounce><color=≠>ADJACENT</color></bounce> to it.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/DominoEffectsGambit/DominoEffect.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-15"
 }

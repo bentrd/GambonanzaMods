@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-18T08:05:57.832Z",
+  "generatedAt": "2026-08-18T08:30:42.394Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -207,9 +207,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:03:20Z",
+      "repoPushedAt": "2026-08-18T08:11:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -231,6 +231,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "bougie",
+          "name": "Bougie's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "Every time you spend money, earn <color=*>$1</color>.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/BougiesGambit/Bougie.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-13",
       "official": false,
@@ -274,6 +284,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "crybaby",
+          "name": "Crybaby's Gambit",
+          "rarity": "rare",
+          "price": 7,
+          "description": "When any of your pieces is <wave><sprite=11> THREATENED</wave>, it is also <wave><color=∫>COUNTED AS</color></wave> a capture.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/CrybabysGambit/Crybaby.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-13",
       "official": false,
@@ -317,6 +337,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "domino-effect",
+          "name": "Domino Effect's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "When an enemy piece is <color=◊>TRAPPED</color>, <color=◊>TRAP</color> every enemy piece <bounce><color=≠>ADJACENT</color></bounce> to it.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/DominoEffectsGambit/DominoEffect.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-15",
       "official": false,
@@ -377,9 +407,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:03:20Z",
+      "repoPushedAt": "2026-08-18T08:11:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -402,6 +432,16 @@
       ],
       "frameworkVersion": ">=1.3.3",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "fallguy",
+          "name": "Fall Guy's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "Pieces about to <color=§>FALL</color> are saved to the nearest free square, or the stash.",
+          "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/FallGuyGambit/fallguy.png"
+        }
+      ],
       "submittedBy": "ben-gambo",
       "addedAt": "2026-08-16",
       "official": false,
@@ -445,6 +485,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "fishing-net",
+          "name": "Fishing Net's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "When an enemy piece is <color=◊>TRAPPED</color>, skip the enemy's turn.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/FishingNetsGambit/FishingNet.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-13",
       "official": false,
@@ -507,7 +557,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:03:20Z",
+      "repoPushedAt": "2026-08-18T08:11:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -529,6 +579,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "grandmascookies",
+          "name": "GrandMa's Cookies' Gambit",
+          "rarity": "rare",
+          "price": 7,
+          "description": "At the start of a game, grants one random piece",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/GrandMasCookiesGambit/GrandMasCookies.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-12",
       "official": false,
@@ -573,6 +633,16 @@
       ],
       "frameworkVersion": ">=1.3.3",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "impatient",
+          "name": "Impatient Gambit",
+          "rarity": "legendary",
+          "price": 10,
+          "description": "Only fight <b>BOSSES</b> from now on.<br>All <color=*>gold</color> earned is <color=*>x4</color>.",
+          "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/ImpatientGambit/impatient.png"
+        }
+      ],
       "submittedBy": "ben-gambo",
       "addedAt": "2026-08-16",
       "official": false,
@@ -616,6 +686,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "jumper-cable",
+          "name": "Jumper Cables' Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "After every move,<br><color=Ø> 1/5 chance</color> to trigger one of your gambits unconditionally",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/JumperCablesGambit/JumperCables.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-13",
       "official": false,
@@ -659,6 +739,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "junk",
+          "name": "Junk's Gambit",
+          "rarity": "common",
+          "price": 1,
+          "description": "<i>Does nothing. Its card text re-rolls to a random made-up rule every time it appears.</i>",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/JunksGambit/Junk.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-13",
       "official": false,
@@ -702,6 +792,16 @@
       ],
       "frameworkVersion": ">=1.1.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "kamikaze",
+          "name": "Kamikaze's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "<color=©>LANDING</color> on an enemy piece destroys both pieces.<br><i>(Once per game)</i>",
+          "sprite": "https://raw.githubusercontent.com/bentrd/GambonanzaMods/main/sample_mods/KamikazeGambit/kamikaze.png"
+        }
+      ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-12",
       "official": true,
@@ -723,7 +823,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:03:20Z",
+      "repoPushedAt": "2026-08-18T08:11:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -745,6 +845,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "lobbyist",
+          "name": "Lobbyist's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "Selling a <sprite=9> <color=£>KING</color> captures a random enemy piece.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/LobbyistsGambit/Lobbyist.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-13",
       "official": false,
@@ -807,7 +917,7 @@
       },
       "downloads": 12,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:03:20Z",
+      "repoPushedAt": "2026-08-18T08:11:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -830,6 +940,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "recursion",
+          "name": "Recursion's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "Moving the same piece, the same distance, in the same direction as your last move skips the enemy's turn.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/RecursionsGambit/Recursion.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-13",
       "official": false,
@@ -874,6 +994,16 @@
       ],
       "frameworkVersion": ">=1.2.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "sniper",
+          "name": "Sniper's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "Capturing with a <sprite=8> <color=∏>BISHOP</color> from 3 or more spaces away skips the enemy's turn.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SnipersGambit/Sniper.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-17",
       "official": false,
@@ -917,6 +1047,16 @@
       ],
       "frameworkVersion": ">=1.1.0",
       "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "spikes",
+          "name": "Spikes' Gambit",
+          "rarity": "rare",
+          "price": 7,
+          "description": "Enemy pieces that step on <color=◊>TRAP</color> tiles are captured instead of trapped.",
+          "sprite": "https://raw.githubusercontent.com/bentrd/GambonanzaMods/main/sample_mods/SpikesGambit/Spike.png"
+        }
+      ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-12",
       "official": true,
@@ -938,7 +1078,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:03:20Z",
+      "repoPushedAt": "2026-08-18T08:11:24Z",
       "license": "MIT",
       "archived": false
     }
@@ -983,7 +1123,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 25,
+      "downloads": 27,
       "installable": true
     }
   ]

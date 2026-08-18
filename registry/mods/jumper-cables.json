@@ -16,6 +16,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "jumper-cable",
+      "name": "Jumper Cables' Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "After every move,<br><color=Ø> 1/5 chance</color> to trigger one of your gambits unconditionally",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/JumperCablesGambit/JumperCables.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-13"
 }

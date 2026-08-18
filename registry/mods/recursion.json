@@ -17,6 +17,16 @@
   ],
   "frameworkVersion": ">=1.2.0",
   "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "recursion",
+      "name": "Recursion's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "Moving the same piece, the same distance, in the same direction as your last move skips the enemy's turn.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/RecursionsGambit/Recursion.png"
+    }
+  ],
   "submittedBy": "Agent15",
   "addedAt": "2026-08-13"
 }

@@ -4,6 +4,21 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.5.0
+
+- **See the actual gambits.** Mods that add gambits now show them the way
+  the game does: the real sprite on a collection-style tile with a
+  rarity-tinted halo and shop price tag, a hover card with the gambit's
+  name, rarity capsule and description (in the game's own rarity colors and
+  text markup, keyword colors included), and the game's hover wiggle. On
+  a modpack's page a "gambits inside" shelf shows everything the pack puts
+  in your runs; Browse cards and pack member rows carry mini tiles. The
+  data comes from a new optional `gambits` field on registry entries, and
+  sprites load straight from each mod's own repository.
+- Instances tab badge counts instances, the prompt dialog got breathing
+  room, and modpacks no longer show a meaningless summed download count
+  (per-mod counts remain).
+
 ## 1.4.0
 
 - **Instances**: named mod loadouts, like profiles in a Minecraft launcher.
