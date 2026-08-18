@@ -15,9 +15,17 @@ without a matching `package.json` version - keep both honest.
   in your runs; Browse cards and pack member rows carry mini tiles. The
   data comes from a new optional `gambits` field on registry entries, and
   sprites load straight from each mod's own repository.
+- **Nicer notifications.** Toasts stopped piling up: repeats merge into a
+  little bump, at most three show at once, each drains a timer bar, click
+  dismisses, and exits collapse smoothly instead of popping.
+- Gambit tiles are quiet by design - no background fill and light chrome,
+  so every rarity's ray halo actually reads (epic's used to vanish into
+  the old wine tile). Tooltips are opaque, always layer above neighboring
+  cards, and nudge themselves inside the window instead of clipping at
+  its edge.
 - Instances tab badge counts instances, the prompt dialog got breathing
-  room, and modpacks no longer show a meaningless summed download count
-  (per-mod counts remain).
+  room, pack-page buttons share a height, and modpacks no longer show a
+  meaningless summed download count (per-mod counts remain).
 
 ## 1.4.0
 
