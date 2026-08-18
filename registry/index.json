@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-18T22:44:47.180Z",
-  "count": 19,
+  "generatedAt": "2026-08-18T23:29:12.666Z",
+  "count": 20,
   "releases": {
     "framework": {
       "tag": "v1.3.4",
@@ -209,7 +209,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T21:42:11Z",
+      "repoPushedAt": "2026-08-18T22:44:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -409,7 +409,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T21:42:11Z",
+      "repoPushedAt": "2026-08-18T22:44:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -557,7 +557,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T21:42:11Z",
+      "repoPushedAt": "2026-08-18T22:44:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -823,7 +823,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T21:42:11Z",
+      "repoPushedAt": "2026-08-18T22:44:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -917,7 +917,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T21:42:11Z",
+      "repoPushedAt": "2026-08-18T22:44:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -970,6 +970,45 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 9,
+      "stars": 0,
+      "repoPushedAt": "2026-08-17T20:35:48Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "schrodinger",
+      "name": "Shcrodinger's Gambit",
+      "author": "FRO_PWR",
+      "summary": "If any of your pieces is threatened, it becomes default.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "SchrodingersGambit.zip",
+      "folder": "SchrodingersGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-18",
+      "official": false,
+      "reviewed": false,
+      "issue": 24,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/24",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Schrodinger's Gambit: Every time one of your phantom pieces is threatened, it becomes default.",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "SchrodingersGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/SchrodingersGambit.zip",
+          "size": 4954,
+          "sha256": "c0a05dfe068538c819bd210c5cfaefdcf09f7f333a7fcf8da304742dff94f23e"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
@@ -1078,7 +1117,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T21:42:11Z",
+      "repoPushedAt": "2026-08-18T22:44:48Z",
       "license": "MIT",
       "archived": false
     }
