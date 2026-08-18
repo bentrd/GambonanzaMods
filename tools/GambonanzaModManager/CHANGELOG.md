@@ -4,6 +4,24 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.4.0
+
+- **Instances**: named mod loadouts, like profiles in a Minecraft launcher.
+  Pick the instance to play from the new selector next to the Play button -
+  switching swaps its mods into the game on the spot, so launching from
+  Steam directly always loads what the manager shows. Installs go into the
+  selected instance; every instance keeps its own copies. Create, rename
+  and delete instances from the renamed **Instances** tab (previously "My
+  mods"), which now also shows the selected instance's mod list.
+- **Modpacks got a real detail page.** Pack cards are a teaser (summary,
+  install state, first few mods) and clicking one opens the full view:
+  every member as a proper row with its description, version, download
+  stats, install state and source link, plus the pack's long description.
+  The old everything-as-chips wall is gone.
+- **New instance from a pack**: one button on the pack page creates a fresh
+  instance, switches to it and installs the pack into it. The instance
+  remembers which pack it came from.
+
 ## 1.3.1
 
 - Installing or updating a mod now also updates its dependencies when they

@@ -25,6 +25,9 @@ module.exports = {
   /** Scratch space for in-flight downloads. Cleared on startup. */
   tempDir: () => path.join(root, 'tmp'),
 
+  /** Instance records + parked Mods folders of non-active instances. */
+  instancesDir: () => path.join(root, 'instances'),
+
   /** manager.log lives here. */
   logsDir: () => path.join(root, 'logs'),
 
