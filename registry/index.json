@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-18T08:56:37.314Z",
+  "generatedAt": "2026-08-18T09:10:49.116Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -86,47 +86,47 @@
       ]
     },
     "manager": {
-      "tag": "manager-v1.4.0",
-      "version": "1.4.0",
-      "publishedAt": "2026-08-18T08:03:37Z",
-      "notes": "\n- **Instances**: named mod loadouts, like profiles in a Minecraft launcher.\n  Pick the instance to play from the new selector next to the Play button -\n  switching swaps its mods into the game on the spot, so launching from\n  Steam directly always loads what the manager shows. Installs go into the\n  selected instance; every instance keeps its own copies. Create, rename\n  and delete instances from the renamed **Instances** tab (previously \"My\n  mods\"), which now also shows the selected instance's mod list.\n- **Modpacks got a real detail page.** Pack cards are a teaser (summary,\n  install state, first few mods) and clicking one opens the full view:\n  every member as a proper row with its description, version, download\n  stats, install state and source link, plus the pack's long description.\n  The old everything-as-chips wall is gone.\n- **New instance from a pack**: one button on the pack page creates a fresh\n  instance, switches to it and installs the pack into it. The instance\n  remembers which pack it came from.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.4.0",
+      "tag": "manager-v1.5.0",
+      "version": "1.5.0",
+      "publishedAt": "2026-08-18T09:08:32Z",
+      "notes": "\n- **See the actual gambits.** Mods that add gambits now show them the way\n  the game does: the real sprite on a collection-style tile with a\n  rarity-tinted halo and shop price tag, a hover card with the gambit's\n  name, rarity capsule and description (in the game's own rarity colors and\n  text markup, keyword colors included), and the game's hover wiggle. On\n  a modpack's page a \"gambits inside\" shelf shows everything the pack puts\n  in your runs; Browse cards and pack member rows carry mini tiles. The\n  data comes from a new optional `gambits` field on registry entries, and\n  sprites load straight from each mod's own repository.\n- **Nicer notifications.** Toasts stopped piling up: repeats merge into a\n  little bump, at most three show at once, each drains a timer bar, click\n  dismisses, and exits collapse smoothly instead of popping.\n- Gambit tiles are quiet by design - no background fill and light chrome,\n  so every rarity's ray halo actually reads (epic's used to vanish into\n  the old wine tile). Tooltips are opaque, always layer above neighboring\n  cards, and nudge themselves inside the window instead of clipping at\n  its edge.\n- Instances tab badge counts instances, the prompt dialog got breathing\n  room, pack-page buttons share a height, and modpacks no longer show a\n  meaningless summed download count (per-mod counts remain).\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.5.0",
       "assets": [
         {
-          "name": "Gambonanza.Mod.Manager-1.4.0-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0-arm64-mac.zip",
-          "size": 119601478,
-          "sha256": "373d0e36f431d4dc7616df5508e4583cbfc60e8b1952bbaab34868aaa8cfa940"
+          "name": "Gambonanza.Mod.Manager-1.5.0-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.5.0/Gambonanza.Mod.Manager-1.5.0-arm64-mac.zip",
+          "size": 119608713,
+          "sha256": "21ad2213866c6761412f0881c5fb654168cde076ba001e9238513c892d76528e"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.4.0-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0-arm64.dmg",
-          "size": 119520100,
-          "sha256": "782fd530f819ebeacc54b9f1e5d2790ae788b6250e809779be5656eb35c9f575"
+          "name": "Gambonanza.Mod.Manager-1.5.0-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.5.0/Gambonanza.Mod.Manager-1.5.0-arm64.dmg",
+          "size": 119513545,
+          "sha256": "6f43f00c9575cae9d8a13c30ad55f3767796a123a4e45e48243c672961dcc073"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.4.0-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0-mac.zip",
-          "size": 121728021,
-          "sha256": "e14edeedf225a41dd181123640c54716233e52e1a3c0522a52536c47c191f82c"
+          "name": "Gambonanza.Mod.Manager-1.5.0-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.5.0/Gambonanza.Mod.Manager-1.5.0-mac.zip",
+          "size": 121735256,
+          "sha256": "de5352b237c931f25bfe4e4b7d26f3a7e1ab25bf32648f8aa210b1376d8c627f"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.4.0.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0.AppImage",
-          "size": 127843777,
-          "sha256": "29d46af54d8a507306a66a6022a9a5ce3137344b0104c35cda892bcf6d8c2190"
+          "name": "Gambonanza.Mod.Manager-1.5.0.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.5.0/Gambonanza.Mod.Manager-1.5.0.AppImage",
+          "size": 127847940,
+          "sha256": "820aee43d9f41ca226f0d510487b22dff3d915071497d1523671b1e1391dcc6b"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.4.0.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0.dmg",
-          "size": 121578821,
-          "sha256": "7796d1ec8ddbf7b26c87c3a8d3e96be0173234cdec607bbda18fb9f7d9b2cca8"
+          "name": "Gambonanza.Mod.Manager-1.5.0.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.5.0/Gambonanza.Mod.Manager-1.5.0.dmg",
+          "size": 121585332,
+          "sha256": "8c5bf8c314d0a7c5866fddce5fbf595a0cade05a7eb8e41d07d3542708344be8"
         },
         {
-          "name": "Gambonanza.Mod.Manager.Setup.1.4.0.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager.Setup.1.4.0.exe",
-          "size": 99728188,
-          "sha256": "83717ca13b126f9f73965c8e90a461c8a95d9ff93c2f045bd8d9af9197e3b573"
+          "name": "Gambonanza.Mod.Manager.Setup.1.5.0.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.5.0/Gambonanza.Mod.Manager.Setup.1.5.0.exe",
+          "size": 99734031,
+          "sha256": "998f34d6ee3e326cb29975860ec3002b3667d654b33317573fe14d538a782fa7"
         }
       ]
     }
@@ -209,7 +209,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:39:48Z",
+      "repoPushedAt": "2026-08-18T09:08:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -409,7 +409,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:39:48Z",
+      "repoPushedAt": "2026-08-18T09:08:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -557,7 +557,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:39:48Z",
+      "repoPushedAt": "2026-08-18T09:08:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -823,7 +823,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:39:48Z",
+      "repoPushedAt": "2026-08-18T09:08:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -917,7 +917,7 @@
       },
       "downloads": 12,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:39:48Z",
+      "repoPushedAt": "2026-08-18T09:08:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1078,7 +1078,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T08:39:48Z",
+      "repoPushedAt": "2026-08-18T09:08:24Z",
       "license": "MIT",
       "archived": false
     }
