@@ -250,10 +250,66 @@ function gambitCard(g, { size = '', index = 0, from = null } = {}) {
 // Toasts + modal
 // ---------------------------------------------------------------------------
 
+/**
+ * Toasts, without the pile-up: firing the same message again bumps the
+ * existing toast and restarts its clock instead of stacking a twin; at most
+ * three live at once (oldest glides out early); each shows a draining life
+ * bar and can be clicked away. Exits collapse their height so the rest of
+ * the stack settles smoothly instead of jumping.
+ */
+const MAX_TOASTS = 3;
+
 function toast(message, kind = '') {
-  const t = el('div', { class: `toast ${kind}` }, message);
-  $('toasts').append(t);
-  setTimeout(() => t.remove(), kind === 'err' ? 7000 : 4200);
+  const box = $('toasts');
+
+  for (const existing of box.children) {
+    if (existing.dataset.message === message && !existing.dataset.leaving) {
+      existing.classList.remove('bump');
+      void existing.offsetWidth; // restart the bump animation
+      existing.classList.add('bump');
+      startToastClock(existing);
+      return;
+    }
+  }
+
+  const t = el('div', {
+    class: `toast ${kind}`,
+    'data-message': message,
+    title: 'Click to dismiss',
+    onclick: () => dismissToast(t),
+  },
+    message,
+    el('div', { class: 'toast-life' }));
+  box.append(t);
+
+  const alive = [...box.children].filter((x) => !x.dataset.leaving);
+  for (const old of alive.slice(0, Math.max(0, alive.length - MAX_TOASTS))) dismissToast(old);
+
+  startToastClock(t);
+}
+
+function startToastClock(t) {
+  clearTimeout(t.toastTimer);
+  const life = t.classList.contains('err') ? 7000 : 4200;
+  const bar = t.querySelector('.toast-life');
+  if (bar) {
+    bar.style.animation = 'none';
+    void bar.offsetWidth;
+    bar.style.animation = `toast-life ${life}ms linear forwards`;
+  }
+  t.toastTimer = setTimeout(() => dismissToast(t), life);
+}
+
+function dismissToast(t) {
+  if (t.dataset.leaving) return;
+  t.dataset.leaving = '1';
+  clearTimeout(t.toastTimer);
+  // Pin the current height so the transition has a number to collapse from.
+  t.style.height = `${t.offsetHeight}px`;
+  requestAnimationFrame(() => t.classList.add('out'));
+  const drop = () => t.remove();
+  t.addEventListener('transitionend', drop, { once: true });
+  setTimeout(drop, 500); // in case the transition never fires (hidden tab)
 }
 
 const modal = {
