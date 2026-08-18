@@ -784,9 +784,9 @@ function renderPackCard(pack) {
   const previewNames = members.slice(0, 3).map((m) => m.name).join(', ');
   const more = members.length > 3 ? ` +${members.length - 3} more` : '';
 
+  // No download stat on packs: summing the members' lifetime counts would
+  // just re-count downloads that predate the pack - a meaningless number.
   const foot = el('div', { class: 'foot' },
-    el('span', { class: 'stat', title: `The mods in this pack were downloaded ${(pack.downloads || 0).toLocaleString()} times combined` },
-      el('span', { class: 'micon', html: ICONS.download }), fmtCount(pack.downloads || 0)),
     el('span', { class: 'grow' }),
     el('button', { class: 'btn btn-cream small', onclick: (ev) => { ev.stopPropagation(); openPackDetail(pack.id); } }, 'View pack'),
     packActionButton(pack, ms));
@@ -858,10 +858,7 @@ function renderPackDetail(pack) {
   box.replaceChildren(el('div', { class: 'card-window' },
     el('span', { class: 'window-title' }, 'Modpack'),
     el('div', { class: 'pack-detail-top' },
-      el('button', { class: 'btn btn-cream small', onclick: closePackDetail }, '← All modpacks'),
-      el('span', { class: 'grow' }),
-      el('span', { class: 'stat', title: `The mods in this pack were downloaded ${(pack.downloads || 0).toLocaleString()} times combined` },
-        el('span', { class: 'micon', html: ICONS.download }), fmtCount(pack.downloads || 0))),
+      el('button', { class: 'btn btn-cream small', onclick: closePackDetail }, '← All modpacks')),
     el('div', { class: 'pack-detail-head' },
       el('h2', {}, pack.name),
       el('div', { class: 'badges' }, packBadges(ms)),
@@ -1043,8 +1040,11 @@ function renderInstalled() {
   const installed = state.data?.installed || [];
   const inst = activeInstance();
   $('installedTitle').textContent = inst ? `Mods in "${inst.name}"` : 'My mods';
-  $('installedCount').hidden = installed.length === 0;
-  $('installedCount').textContent = String(installed.length);
+  // The nav badge counts INSTANCES - the tab is named after them, and the
+  // selected instance's mod count already lives in the header selector.
+  const instCount = instanceList().length;
+  $('installedCount').hidden = instCount === 0;
+  $('installedCount').textContent = String(instCount);
   $('installedEmpty').hidden = installed.length > 0;
   $('installedFootnote').hidden = installed.length === 0;
 

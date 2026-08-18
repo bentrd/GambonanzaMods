@@ -587,6 +587,8 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 }
 .modal h3 { margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px; font-size: 17px; }
 .modal p { margin: 0 0 14px; font-size: 13.5px; line-height: 1.45; }
+/* the prompt input (New instance / Rename) needs air above the buttons */
+.modal .game-input { margin-bottom: 18px; }
 .modal .row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
 .progress-track {
