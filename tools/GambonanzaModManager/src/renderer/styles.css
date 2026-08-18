@@ -538,15 +538,8 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 .gtip-desc .gglyph { font-size: 14px; }
 .gtip-from { font-size: 10px; color: rgba(242, 228, 174, 0.5); text-transform: uppercase; letter-spacing: 0.8px; }
 
-/* Mini chips sit near their container's left edge, so a tooltip centered
-   under a 46px chip pokes past the content pane and gets clipped. Anchor
-   mini tooltips to the chip's left instead of centering. */
-.gcard.mini .gtip {
-  left: -10px;
-  transform: scale(0) rotate(10deg);
-  transform-origin: top left;
-}
-.gcard.mini:hover .gtip { transform: scale(1) rotate(0deg); }
+/* Tooltips stay centered under their tile; a measure-on-hover in
+   gambitCard() shifts `left` when the pane edge would clip them. */
 
 @keyframes gpop { from { transform: scale(0); } to { transform: scale(1); } }
 @keyframes gbob { 0%, 100% { transform: translateY(1px); } 50% { transform: translateY(-2px); } }

@@ -211,6 +211,23 @@ function gambitCard(g, { size = '', index = 0, from = null } = {}) {
   return el('div', {
     class: `gcard${size ? ` ${size}` : ''}`,
     style: `--rmain:${rar.main}; --pop:${(index * 0.06).toFixed(2)}s; --bob:${((index % 5) * 0.45).toFixed(2)}s`,
+    // The tooltip centers under the tile, but a tile near the pane's edge
+    // would push it past the scroller and get it clipped - shift it back
+    // inside just before it shows. Measured per hover: layout shifts with
+    // window size and scroll position.
+    onmouseenter: (ev) => {
+      const cardEl = ev.currentTarget;
+      const tipEl = cardEl.querySelector('.gtip');
+      const pane = document.querySelector('main.content');
+      if (!tipEl || !pane) return;
+      const half = (tipEl.offsetWidth || 252) / 2 + 8;
+      const center = cardEl.getBoundingClientRect().left + cardEl.offsetWidth / 2;
+      const bounds = pane.getBoundingClientRect();
+      let shift = 0;
+      if (center - half < bounds.left) shift = bounds.left - (center - half);
+      else if (center + half > bounds.right) shift = bounds.right - (center + half);
+      tipEl.style.left = `calc(50% + ${Math.round(shift)}px)`;
+    },
   },
     el('div', { class: 'gclip' },
       el('div', { class: 'ghalo' }),
