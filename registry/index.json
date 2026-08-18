@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-18T07:57:03.777Z",
+  "generatedAt": "2026-08-18T08:05:57.832Z",
   "count": 19,
   "releases": {
     "framework": {
@@ -86,47 +86,47 @@
       ]
     },
     "manager": {
-      "tag": "manager-v1.3.1",
-      "version": "1.3.1",
-      "publishedAt": "2026-08-17T21:11:13Z",
-      "notes": "\n- Installing or updating a mod now also updates its dependencies when they\n  are behind the registry. Until now a library another mod relied on (the\n  Gambit Creation API, say) stayed at whatever version you first installed,\n  and an old library quietly breaks the mods built against a newer one -\n  gambits showing up with no name or description, for example. Manually\n  installed mods without a registry receipt are still left untouched.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.3.1",
+      "tag": "manager-v1.4.0",
+      "version": "1.4.0",
+      "publishedAt": "2026-08-18T08:03:37Z",
+      "notes": "\n- **Instances**: named mod loadouts, like profiles in a Minecraft launcher.\n  Pick the instance to play from the new selector next to the Play button -\n  switching swaps its mods into the game on the spot, so launching from\n  Steam directly always loads what the manager shows. Installs go into the\n  selected instance; every instance keeps its own copies. Create, rename\n  and delete instances from the renamed **Instances** tab (previously \"My\n  mods\"), which now also shows the selected instance's mod list.\n- **Modpacks got a real detail page.** Pack cards are a teaser (summary,\n  install state, first few mods) and clicking one opens the full view:\n  every member as a proper row with its description, version, download\n  stats, install state and source link, plus the pack's long description.\n  The old everything-as-chips wall is gone.\n- **New instance from a pack**: one button on the pack page creates a fresh\n  instance, switches to it and installs the pack into it. The instance\n  remembers which pack it came from.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.4.0",
       "assets": [
         {
-          "name": "Gambonanza.Mod.Manager-1.3.1-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1-arm64-mac.zip",
-          "size": 119594127,
-          "sha256": "d5e089b1a70a292413dffc198d1d75b99bad41991f313231ce16258d126c1bab"
+          "name": "Gambonanza.Mod.Manager-1.4.0-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0-arm64-mac.zip",
+          "size": 119601478,
+          "sha256": "373d0e36f431d4dc7616df5508e4583cbfc60e8b1952bbaab34868aaa8cfa940"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.3.1-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1-arm64.dmg",
-          "size": 119521912,
-          "sha256": "355ad95b44a62917f6c1e7a220ba11c5370686f607f4546c87a940ff0ef04ebc"
+          "name": "Gambonanza.Mod.Manager-1.4.0-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0-arm64.dmg",
+          "size": 119520100,
+          "sha256": "782fd530f819ebeacc54b9f1e5d2790ae788b6250e809779be5656eb35c9f575"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.3.1-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1-mac.zip",
-          "size": 121720670,
-          "sha256": "c4e845cfdded443c0faba08b84de5afa8f7750ed61acb514e2702d173af0468e"
+          "name": "Gambonanza.Mod.Manager-1.4.0-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0-mac.zip",
+          "size": 121728021,
+          "sha256": "e14edeedf225a41dd181123640c54716233e52e1a3c0522a52536c47c191f82c"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.3.1.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1.AppImage",
-          "size": 127835610,
-          "sha256": "c14392f89dacb4e25653ec872198cbd42290799e7ecf56070d477cb5690b0481"
+          "name": "Gambonanza.Mod.Manager-1.4.0.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0.AppImage",
+          "size": 127843777,
+          "sha256": "29d46af54d8a507306a66a6022a9a5ce3137344b0104c35cda892bcf6d8c2190"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.3.1.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager-1.3.1.dmg",
-          "size": 121572629,
-          "sha256": "047adfc80130788ebb0a6e78898bba2540e36cc0bf41c17939d860811e8a18f2"
+          "name": "Gambonanza.Mod.Manager-1.4.0.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager-1.4.0.dmg",
+          "size": 121578821,
+          "sha256": "7796d1ec8ddbf7b26c87c3a8d3e96be0173234cdec607bbda18fb9f7d9b2cca8"
         },
         {
-          "name": "Gambonanza.Mod.Manager.Setup.1.3.1.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.3.1/Gambonanza.Mod.Manager.Setup.1.3.1.exe",
-          "size": 99722417,
-          "sha256": "76da2f89b8ee54e07582fc5372d26d838e098711318aa6c69f4ca8d01dfca7d3"
+          "name": "Gambonanza.Mod.Manager.Setup.1.4.0.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.4.0/Gambonanza.Mod.Manager.Setup.1.4.0.exe",
+          "size": 99728188,
+          "sha256": "83717ca13b126f9f73965c8e90a461c8a95d9ff93c2f045bd8d9af9197e3b573"
         }
       ]
     }
@@ -209,7 +209,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T07:08:15Z",
+      "repoPushedAt": "2026-08-18T08:03:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -379,7 +379,7 @@
       },
       "downloads": 12,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T07:08:15Z",
+      "repoPushedAt": "2026-08-18T08:03:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -507,7 +507,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T07:08:15Z",
+      "repoPushedAt": "2026-08-18T08:03:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -723,7 +723,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T07:08:15Z",
+      "repoPushedAt": "2026-08-18T08:03:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -807,7 +807,7 @@
       },
       "downloads": 12,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T07:08:15Z",
+      "repoPushedAt": "2026-08-18T08:03:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -938,7 +938,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T07:08:15Z",
+      "repoPushedAt": "2026-08-18T08:03:20Z",
       "license": "MIT",
       "archived": false
     }
