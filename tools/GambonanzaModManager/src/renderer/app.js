@@ -1018,7 +1018,7 @@ function renderPackDetail(pack) {
             class: 'btn btn-wine',
             title: 'A fresh instance with exactly this pack in it',
             onclick: () => newInstanceFromPack(pack),
-          }, '＋ New instance from this pack')
+          }, '+ New instance from this pack')
         : null),
     el('div', { class: 'section-band', style: 'margin:18px 0 12px' }, "What's inside"),
     ...rows,
