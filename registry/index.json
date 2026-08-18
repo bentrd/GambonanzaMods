@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-18T23:29:12.666Z",
+  "generatedAt": "2026-08-18T23:40:47.143Z",
   "count": 20,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T22:44:48Z",
+      "repoPushedAt": "2026-08-18T23:29:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -409,7 +409,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T22:44:48Z",
+      "repoPushedAt": "2026-08-18T23:29:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -557,7 +557,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T22:44:48Z",
+      "repoPushedAt": "2026-08-18T23:29:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -823,7 +823,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T22:44:48Z",
+      "repoPushedAt": "2026-08-18T23:29:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -917,7 +917,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T22:44:48Z",
+      "repoPushedAt": "2026-08-18T23:29:13Z",
       "license": "MIT",
       "archived": false
     },
@@ -1008,7 +1008,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-08-17T20:35:48Z",
       "license": "MIT",
@@ -1117,7 +1117,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-18T22:44:48Z",
+      "repoPushedAt": "2026-08-18T23:29:13Z",
       "license": "MIT",
       "archived": false
     }
