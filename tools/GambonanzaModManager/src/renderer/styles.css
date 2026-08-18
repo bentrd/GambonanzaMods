@@ -105,6 +105,25 @@ header.topbar {
 .game-pill.ok .dot { background: var(--green); }
 .game-pill.warn .dot { background: var(--yellow); }
 
+/* header instance selector - "play WHAT?" answered right next to Play */
+.inst-dd { position: relative; display: inline-flex; }
+.inst-btn { min-height: 44px; gap: 8px; max-width: 240px; }
+.inst-btn .inst-btn-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.inst-btn .caret { font-size: 11px; }
+/* .inst-dd.dropdown out-specifies the base .dropdown .menu rule, which is
+   declared later in this file and would otherwise win the left/right fight */
+.inst-dd.dropdown .menu {
+  left: auto; right: 0; top: calc(100% + 8px);
+  width: 300px; max-height: 60vh; overflow-y: auto;
+}
+.inst-dd .msep { border-top: 2px dashed rgba(90, 34, 48, 0.2); margin: 5px 6px; }
+/* same later-rule fight as the menu: .dropdown .mi sets display:block */
+.inst-dd.dropdown .mi.inst-mi { display: flex; align-items: center; gap: 8px; }
+.inst-mi .inst-check { width: 14px; flex-shrink: 0; color: var(--green-dark); }
+.inst-mi .inst-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.inst-mi .inst-count { font-size: 10.5px; color: rgba(90, 34, 48, 0.55); flex-shrink: 0; }
+.inst-mi.current .inst-name { color: var(--green-dark); }
+
 .body { display: flex; flex: 1; min-height: 0; padding: 4px 18px 18px; gap: 16px; }
 
 /* ---------------------------------------------------------------- nav */
@@ -374,13 +393,32 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   display: grid; gap: 14px;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
 }
-.pack-mods { display: flex; flex-wrap: wrap; gap: 5px; }
-.pack-mod {
-  font-size: 11.5px; padding: 3px 8px;
-  border: 2px solid var(--ink); border-radius: 6px;
-  background: var(--cream-soft); color: rgba(90, 34, 48, 0.8);
+.pack-card { cursor: pointer; }
+.pack-card:hover { background: #fff8e7; }
+
+/* modpack detail page */
+.pack-detail-top { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.pack-detail-top .grow { flex: 1; }
+.pack-detail-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pack-detail-head h2 {
+  margin: 0; font-family: var(--font-mono); font-size: 30px; line-height: 1.05;
+  color: var(--wine); text-transform: uppercase;
 }
-.pack-mod.in { background: var(--green-dark); color: #e2f4d2; }
+.pack-detail-head .by { width: 100%; font-size: 11.5px; color: rgba(90, 34, 48, 0.6); text-transform: uppercase; letter-spacing: 0.7px; }
+.pack-desc { margin: 10px 0 14px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; max-width: 720px; }
+.pack-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+/* member rows on the detail page */
+.mod-row.pack-member { align-items: flex-start; }
+.pack-member .info { display: flex; flex-direction: column; gap: 3px; }
+.pack-member .nm .ver { font-family: var(--font-mono); font-size: 12.5px; color: rgba(90, 34, 48, 0.6); }
+.pack-member .psum { font-size: 12.5px; line-height: 1.4; }
+.pack-member .side {
+  display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
+  flex-shrink: 0;
+}
+.pack-member .side .badges { display: flex; gap: 4px; }
+.pack-member .row-btns { display: flex; gap: 6px; }
 
 /* "add to modpack" dropdown on browse cards. The menu is anchored to the
    CARD (nearest positioned ancestor), spanning its width just under the
@@ -411,6 +449,44 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 
 .empty-note { text-align: center; padding: 42px 16px; color: rgba(244, 229, 194, 0.6); }
 .card-window .empty-note { color: rgba(90, 34, 48, 0.55); }
+
+/* ---------------------------------------------------------------- instances */
+
+.inst-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+.inst-card {
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 3px solid var(--ink); border-radius: 10px;
+  box-shadow: 0 4px 0 0 var(--ink);
+  padding: 12px 14px;
+  display: flex; flex-direction: column; gap: 8px;
+  cursor: pointer;
+  transition: transform 60ms ease-out;
+}
+.inst-card:hover { background: #fff8e7; }
+.inst-card:active { transform: translateY(2px); }
+.inst-card.active {
+  background: #eef6e2;
+  border-color: var(--green-dark);
+  box-shadow: 0 4px 0 0 var(--green-dark);
+  cursor: default;
+}
+.inst-card.active:active { transform: none; }
+.inst-card .head { display: flex; align-items: flex-start; gap: 8px; }
+.inst-card h3 { margin: 0; font-size: 16px; line-height: 1.15; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.inst-card .meta { font-size: 11.5px; color: rgba(90, 34, 48, 0.6); flex: 1; }
+.inst-card .foot { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+.inst-card.new {
+  align-items: center; justify-content: center; flex-direction: row; gap: 8px;
+  background: transparent; color: rgba(90, 34, 48, 0.65);
+  border-style: dashed; box-shadow: none;
+  font: inherit; text-transform: uppercase; letter-spacing: 0.8px; font-size: 13px;
+  min-height: 96px;
+}
+.inst-card.new:hover { background: rgba(184, 142, 92, 0.14); color: var(--wine-dark); }
+.inst-card.new .plus { font-family: var(--font-mono); font-size: 22px; }
 
 /* ---------------------------------------------------------------- installed */
 

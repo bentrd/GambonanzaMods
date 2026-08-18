@@ -13,6 +13,7 @@ const { Store } = require('./store');
 const game = require('./game');
 const registry = require('./registry');
 const modsApi = require('./mods');
+const instances = require('./instances');
 const framework = require('./framework');
 const publish = require('./publish');
 const updater = require('./updater');
@@ -111,6 +112,7 @@ async function fullState({ forceRegistry = false } = {}) {
   const gameInfo = await currentGameInfo();
   const reg = await registry.getIndex({ force: forceRegistry });
   const installed = gameInfo?.valid ? await modsApi.listInstalled(gameInfo.modsDir) : [];
+  const inst = await instances.summary({ modsDir: gameInfo?.valid ? gameInfo.modsDir : null });
   return {
     app: {
       version: app.getVersion(),
@@ -130,6 +132,7 @@ async function fullState({ forceRegistry = false } = {}) {
       modpacks: reg.index.modpacks || [],
     },
     installed,
+    instances: inst,
     publish: { signInAvailable: publish.signInAvailable() },
   };
 }
@@ -272,8 +275,19 @@ function registerIpc() {
 
   handle('game:launch', async () => {
     openExternalSafe(`steam://rungameid/${config.STEAM_APP_ID}`);
+    instances.touchPlayed().catch(() => { /* bookkeeping only */ });
     if (store.get('quitOnPlay')) setTimeout(() => app.quit(), 1500);
     return true;
+  });
+
+  // ---- Instances ---------------------------------------------------------
+
+  handle('instances:create', ({ name, modpackId } = {}) => instances.create({ name, modpackId }));
+  handle('instances:rename', ({ id, name } = {}) => instances.rename({ id, name }));
+  handle('instances:delete', ({ id } = {}) => instances.remove({ id }));
+  handle('instances:select', async ({ id } = {}) => {
+    const info = await currentGameInfo();
+    return instances.select({ id, modsDir: info?.valid ? info.modsDir : null });
   });
 
   handle('game:openFolder', async (which) => {

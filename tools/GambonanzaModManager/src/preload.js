@@ -34,6 +34,11 @@ contextBridge.exposeInMainWorld('gambonanza', {
   installModpack: invoke('modpacks:install'),
   cancelOperation: invoke('operation:cancel'),
 
+  createInstance: invoke('instances:create'),
+  renameInstance: invoke('instances:rename'),
+  deleteInstance: invoke('instances:delete'),
+  selectInstance: invoke('instances:select'),
+
   setSettings: invoke('settings:set'),
   getLogHistory: invoke('log:history'),
   openLogFile: invoke('log:openFile'),

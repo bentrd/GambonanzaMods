@@ -16,6 +16,7 @@ const state = {
   view: 'home',
   search: '',
   tag: '',
+  packDetail: null,    // modpack id whose detail page is open, or null
   busy: new Map(),     // operationId -> {label}
   publish: {
     signedIn: false,
@@ -32,6 +33,7 @@ const state = {
   },
   ui: {
     packMenuFor: null,   // mod id whose "add to modpack" dropdown is open
+    instMenuOpen: false, // header instance-selector dropdown
   },
 };
 
@@ -123,6 +125,7 @@ const modal = {
   open({ title, body, progress = false, buttons = [] }) {
     $('modalTitle').textContent = title;
     $('modalBody').textContent = body || '';
+    $('modalInput').hidden = true;
     $('modalProgress').hidden = !progress;
     $('modalProgressFill').classList.add('indeterminate');
     $('modalProgressFill').style.width = '0%';
@@ -156,6 +159,30 @@ function confirmModal({ title, body, confirmLabel, confirmKind = 'btn-red' }) {
         { label: confirmLabel, kind: confirmKind, onClick: () => { modal.close(); resolve(true); } },
       ],
     });
+  });
+}
+
+/** confirmModal with a text input; resolves the trimmed value, or null. */
+function promptModal({ title, body, placeholder = '', initial = '', confirmLabel = 'OK' }) {
+  return new Promise((resolve) => {
+    const input = $('modalInput');
+    const done = (value) => { input.hidden = true; input.onkeydown = null; modal.close(); resolve(value); };
+    modal.open({
+      title,
+      body,
+      buttons: [
+        { label: 'Cancel', kind: 'btn-cream', onClick: () => done(null) },
+        { label: confirmLabel, kind: 'btn-green', onClick: () => done(input.value.trim() || null) },
+      ],
+    });
+    input.hidden = false;
+    input.value = initial;
+    input.placeholder = placeholder;
+    input.onkeydown = (ev) => {
+      if (ev.key === 'Enter') done(input.value.trim() || null);
+      if (ev.key === 'Escape') done(null);
+    };
+    setTimeout(() => { input.focus(); input.select(); }, 0);
   });
 }
 
@@ -227,6 +254,181 @@ function renderTopbar() {
     pill.classList.add('warn');
     text.textContent = 'Game found - not patched yet';
   }
+  renderInstanceSelector();
+}
+
+// ---------------------------------------------------------------------------
+// Instances
+// ---------------------------------------------------------------------------
+
+function instanceList() {
+  return state.data?.instances?.instances || [];
+}
+
+function activeInstance() {
+  const list = instanceList();
+  return list.find((i) => i.active) || list[0] || null;
+}
+
+/**
+ * The header dropdown between the game pill and Play: which instance the
+ * game loads. Sits in the topbar because it answers the question Play asks -
+ * "play WHAT?" - exactly like a Minecraft launcher's profile picker.
+ */
+function renderInstanceSelector() {
+  const box = $('instSelect');
+  const list = instanceList();
+  const current = activeInstance();
+  if (!current) { box.replaceChildren(); return; }
+  const open = state.ui.instMenuOpen;
+
+  const rows = list.map((i) => el('button', {
+    class: `mi inst-mi${i.active ? ' current' : ''}`,
+    onclick: (ev) => {
+      ev.stopPropagation();
+      state.ui.instMenuOpen = false;
+      if (i.active) renderInstanceSelector();
+      else selectInstance(i.id);
+    },
+  },
+    el('span', { class: 'inst-check' }, i.active ? '✓' : ''),
+    el('span', { class: 'inst-name' }, i.name),
+    el('span', { class: 'inst-count' }, `${i.modCount} mod${i.modCount === 1 ? '' : 's'}`)));
+
+  box.replaceChildren(el('span', { class: `dropdown inst-dd${open ? ' open' : ''}` },
+    el('button', {
+      class: 'btn btn-wine inst-btn',
+      title: 'The instance the game will load - click to switch',
+      onclick: (ev) => {
+        ev.stopPropagation();
+        state.ui.instMenuOpen = !open;
+        renderInstanceSelector();
+      },
+    },
+      el('span', { class: 'micon', html: ICONS.pack }),
+      el('span', { class: 'inst-btn-name' }, current.name),
+      el('span', { class: 'caret' }, '▾')),
+    el('div', { class: 'menu' },
+      el('div', { class: 'mhead' }, 'Instance to play'),
+      rows,
+      el('div', { class: 'msep' }),
+      el('button', {
+        class: 'mi',
+        onclick: (ev) => { ev.stopPropagation(); state.ui.instMenuOpen = false; renderInstanceSelector(); createInstanceFlow(); },
+      }, '＋ New instance…'),
+      el('button', {
+        class: 'mi',
+        onclick: (ev) => { ev.stopPropagation(); state.ui.instMenuOpen = false; renderInstanceSelector(); show('installed'); },
+      }, 'Manage instances →'))));
+}
+
+async function selectInstance(id) {
+  const inst = instanceList().find((i) => i.id === id);
+  // No cancel button on purpose: a half-done folder swap is the one state we
+  // never want a user to create on purpose. Swaps are near-instant anyway.
+  modal.open({ title: 'Switching instance', body: `Loading "${inst?.name || '…'}"…`, progress: true });
+  try {
+    await call(api.selectInstance, { id });
+    modal.close();
+    toast(`Now on "${inst?.name || 'instance'}" - its mods load next launch.`, 'ok');
+  } catch (err) {
+    modal.close();
+    toast(err.message, 'err');
+  }
+  await refresh();
+}
+
+/** Create (and select) a new instance. Returns the record, or null. */
+async function createInstanceFlow({ name = '', modpackId = null } = {}) {
+  const chosen = await promptModal({
+    title: 'New instance',
+    body: 'An instance is its own set of mods - switch between them any time from the bar up top.',
+    placeholder: 'e.g. Vanilla+, Gambit chaos…',
+    initial: name,
+    confirmLabel: 'Create',
+  });
+  if (!chosen) return null;
+  try {
+    const rec = await call(api.createInstance, { name: chosen, modpackId });
+    await call(api.selectInstance, { id: rec.id });
+    toast(`Instance "${rec.name}" created and selected - install something into it!`, 'ok');
+    await refresh();
+    return rec;
+  } catch (err) {
+    toast(err.message, 'err');
+    return null;
+  }
+}
+
+async function renameInstanceFlow(inst) {
+  const name = await promptModal({
+    title: 'Rename instance',
+    body: '',
+    placeholder: 'New name',
+    initial: inst.name,
+    confirmLabel: 'Rename',
+  });
+  if (!name || name === inst.name) return;
+  try {
+    await call(api.renameInstance, { id: inst.id, name });
+  } catch (err) {
+    toast(err.message, 'err');
+  }
+  await refresh();
+}
+
+async function deleteInstanceFlow(inst) {
+  const yes = await confirmModal({
+    title: `Delete "${inst.name}"?`,
+    body: inst.modCount
+      ? `Its ${inst.modCount} mod${inst.modCount === 1 ? '' : 's'} are deleted with it. Other instances keep their own copies of everything.`
+      : 'The instance is empty - nothing else is touched.',
+    confirmLabel: 'Delete',
+  });
+  if (!yes) return;
+  try {
+    await call(api.deleteInstance, { id: inst.id });
+    toast(`Instance "${inst.name}" deleted.`, 'ok');
+  } catch (err) {
+    toast(err.message, 'err');
+  }
+  await refresh();
+}
+
+/** The instance cards on the Instances view. */
+function renderInstanceCards() {
+  const grid = $('instGrid');
+  const packsById = new Map((state.data?.registry?.modpacks || []).map((p) => [p.id, p]));
+
+  const cards = instanceList().map((i) => {
+    const pack = i.modpackId ? packsById.get(i.modpackId) : null;
+    const bits = [`${i.modCount} mod${i.modCount === 1 ? '' : 's'}`];
+    if (pack) bits.push(`from ${pack.name}`);
+    if (i.lastPlayedAt) bits.push(`played ${new Date(i.lastPlayedAt).toLocaleDateString()}`);
+    return el('div', {
+      class: `inst-card${i.active ? ' active' : ''}`,
+      title: i.active ? 'The selected instance - the game loads these mods' : 'Click to switch to this instance',
+      onclick: () => { if (!i.active) selectInstance(i.id); },
+    },
+      el('div', { class: 'head' },
+        el('h3', {}, i.name),
+        i.active ? el('span', { class: 'tag green' }, 'selected') : null),
+      el('div', { class: 'meta' }, bits.join(' · ')),
+      el('div', { class: 'foot' },
+        pack ? el('button', {
+          class: 'btn btn-cream small',
+          title: 'Open the modpack this instance was made from',
+          onclick: (ev) => { ev.stopPropagation(); openPackDetail(pack.id); },
+        }, 'Pack') : null,
+        el('button', { class: 'btn btn-cream small', onclick: (ev) => { ev.stopPropagation(); renameInstanceFlow(i); } }, 'Rename'),
+        i.active
+          ? el('button', { class: 'btn btn-green small', onclick: (ev) => { ev.stopPropagation(); launchGame(); } }, '▶ Play')
+          : el('button', { class: 'btn btn-red small', onclick: (ev) => { ev.stopPropagation(); deleteInstanceFlow(i); } }, 'Delete')));
+  });
+
+  cards.push(el('button', { class: 'inst-card new', onclick: () => createInstanceFlow() },
+    el('span', { class: 'plus' }, '＋'), 'New instance'));
+  grid.replaceChildren(...cards);
 }
 
 // ---------------------------------------------------------------------------
@@ -275,8 +477,9 @@ function renderHome() {
     );
   } else if (game.state === 'patched') {
     status.textContent = 'Ready to play';
+    const inst = activeInstance();
     hint.textContent = modCount
-      ? `${modCount} mod${modCount === 1 ? '' : 's'} will load on the next launch.`
+      ? `${modCount} mod${modCount === 1 ? '' : 's'} from "${inst?.name || 'your instance'}" will load on the next launch.`
       : 'The game is patched - grab something from Browse mods, or just play.';
     actions.append(
       el('button', { class: 'btn btn-green play-hero', onclick: launchGame }, '▶ Play'),
@@ -490,25 +693,21 @@ function togglePackDraft(mod) {
   renderModpacks();   // the publish form's picker chips stay in sync
 }
 
-function renderModpacks() {
-  const packs = state.data?.registry?.modpacks || [];
-  $('packCount').hidden = packs.length === 0;
-  $('packCount').textContent = String(packs.length);
-  $('packsEmpty').hidden = packs.length > 0;
-  $('packGrid').replaceChildren(...packs.map(renderPackCard));
-
-  $('packPublishAuth').replaceChildren(authBox('modpack'));
-  renderPackPublishForm();
-}
-
-function renderPackCard(pack) {
+/** Registry rows for a pack's members + what installing would actually do. */
+function packMemberState(pack) {
   const registryById = new Map((state.data?.registry?.mods || [])
     .filter((m) => m.kind === 'registry').map((m) => [m.id, m]));
   const members = (pack.mods || []).map((id) => registryById.get(id)).filter(Boolean);
-  const missing = members.filter((m) => !m.installed && m.installable);
-  const updates = members.filter((m) => m.installed && m.updateAvailable);
-  const installedCount = members.filter((m) => m.installed).length;
+  return {
+    members,
+    missing: members.filter((m) => !m.installed && m.installable),
+    updates: members.filter((m) => m.installed && m.updateAvailable),
+    installedCount: members.filter((m) => m.installed).length,
+    vanished: (pack.mods || []).filter((id) => !registryById.has(id)),
+  };
+}
 
+function packBadges({ members, missing, updates, installedCount }) {
   const badges = [];
   if (members.length && installedCount === members.length && !updates.length) {
     badges.push(el('span', { class: 'tag green' }, 'installed'));
@@ -516,42 +715,208 @@ function renderPackCard(pack) {
     badges.push(el('span', { class: 'tag' }, `${installedCount}/${members.length} installed`));
   }
   if (updates.length) badges.push(el('span', { class: 'tag blue' }, 'update'));
+  return badges;
+}
 
-  // Every member is listed by name so "install the lot" is never a mystery
-  // meat button - you can see exactly what the click brings in.
-  const memberChips = el('div', { class: 'pack-mods' }, ...members.map((m) =>
-    el('span', { class: `pack-mod${m.installed ? ' in' : ''}`, title: m.summary || '' },
-      m.installed ? '✓ ' : '', m.name)));
+/** The pack's install/update/installed button, shared by card and detail. */
+function packActionButton(pack, ms, { size = 'small' } = {}) {
+  const { members, missing, updates } = ms;
+  const inst = activeInstance();
+  if (!members.length || !pack.installable) {
+    return el('button', { class: `btn btn-cream ${size}`, disabled: true }, 'Not installable yet');
+  }
+  if (!missing.length && !updates.length) {
+    return el('button', { class: `btn btn-cream ${size}`, disabled: true }, 'All installed ✓');
+  }
+  const n = missing.length + updates.length;
+  const label = missing.length
+    ? (size === 'small' ? `Install pack (${n})` : `Install into "${inst?.name || 'instance'}" (${n})`)
+    : `Update (${n})`;
+  return el('button', {
+    class: `btn btn-green ${size}`,
+    title: inst ? `Installs into the selected instance: ${inst.name}` : '',
+    onclick: (ev) => { ev.stopPropagation(); installModpack(pack, ms); },
+  }, label);
+}
+
+function renderModpacks() {
+  const packs = state.data?.registry?.modpacks || [];
+  $('packCount').hidden = packs.length === 0;
+  $('packCount').textContent = String(packs.length);
+
+  // Detail page open? It replaces the browsing surface entirely.
+  const detailPack = state.packDetail ? packs.find((p) => p.id === state.packDetail) : null;
+  if (state.packDetail && !detailPack) state.packDetail = null; // pack vanished from the registry
+  $('packBrowse').hidden = !!detailPack;
+  $('packDetail').hidden = !detailPack;
+  if (detailPack) {
+    renderPackDetail(detailPack);
+    return;
+  }
+
+  $('packsEmpty').hidden = packs.length > 0;
+  $('packGrid').replaceChildren(...packs.map(renderPackCard));
+
+  $('packPublishAuth').replaceChildren(authBox('modpack'));
+  renderPackPublishForm();
+}
+
+function openPackDetail(id) {
+  state.packDetail = id;
+  if (state.view !== 'modpacks') show('modpacks');
+  renderModpacks();
+}
+
+function closePackDetail() {
+  state.packDetail = null;
+  renderModpacks();
+}
+
+/**
+ * The browsing card: a teaser, not the whole manifest. Name, what it's for,
+ * how much is installed - the full mod list lives one click away on the
+ * detail page, where each mod gets a real row instead of a cramped chip.
+ */
+function renderPackCard(pack) {
+  const ms = packMemberState(pack);
+  const { members } = ms;
+
+  const previewNames = members.slice(0, 3).map((m) => m.name).join(', ');
+  const more = members.length > 3 ? ` +${members.length - 3} more` : '';
 
   const foot = el('div', { class: 'foot' },
     el('span', { class: 'stat', title: `The mods in this pack were downloaded ${(pack.downloads || 0).toLocaleString()} times combined` },
       el('span', { class: 'micon', html: ICONS.download }), fmtCount(pack.downloads || 0)),
-    el('span', { class: 'tiny muted' }, `${members.length} mods`),
-    el('span', { class: 'grow' }));
+    el('span', { class: 'grow' }),
+    el('button', { class: 'btn btn-cream small', onclick: (ev) => { ev.stopPropagation(); openPackDetail(pack.id); } }, 'View pack'),
+    packActionButton(pack, ms));
 
-  if (!members.length || !pack.installable) {
-    foot.append(el('button', { class: 'btn btn-cream small', disabled: true }, 'Not installable yet'));
-  } else if (!missing.length && !updates.length) {
-    foot.append(el('button', { class: 'btn btn-cream small', disabled: true }, 'All installed ✓'));
-  } else {
-    const n = missing.length + updates.length;
-    foot.append(el('button', { class: 'btn btn-green small', onclick: () => installModpack(pack, { missing, updates }) },
-      missing.length ? `Install pack (${n})` : `Update (${n})`));
-  }
-
-  return el('div', { class: 'mod-card pack-card' },
+  return el('div', {
+    class: 'mod-card pack-card',
+    title: 'See everything inside this pack',
+    onclick: () => openPackDetail(pack.id),
+  },
     el('div', { class: 'head' },
       el('div', {},
         el('h3', {}, pack.name),
-        el('div', { class: 'by' }, `by ${pack.author}`)),
-      el('div', { class: 'badges' }, badges)),
+        el('div', { class: 'by' }, `by ${pack.author} · ${members.length} mods`)),
+      el('div', { class: 'badges' }, packBadges(ms))),
     el('div', { class: 'sum' }, pack.summary || ''),
-    memberChips,
+    members.length ? el('div', { class: 'tiny muted' }, `Includes ${previewNames}${more}`) : null,
     foot);
 }
 
+/**
+ * The pack detail page: everything the chip wall couldn't say. Each member
+ * is a full row - what it does, its version, its own install state and
+ * buttons - plus the two pack-level actions: install into the selected
+ * instance, or spin up a fresh instance around the pack.
+ */
+function renderPackDetail(pack) {
+  const box = $('packDetail');
+  const ms = packMemberState(pack);
+  const { members, vanished } = ms;
+  const registryMods = (state.data?.registry?.mods || []).filter((m) => m.kind === 'registry');
+  const tiers = popularityTiers(registryMods);
+  const wrappingInstances = instanceList().filter((i) => i.modpackId === pack.id);
+
+  const rows = members.map((m) => {
+    const badges = [];
+    if (m.installed) badges.push(el('span', { class: 'tag green' }, 'installed'));
+    if (m.updateAvailable) badges.push(el('span', { class: 'tag blue' }, 'update'));
+
+    let action;
+    if (m.installed && m.updateAvailable) {
+      action = el('button', { class: 'btn btn-green small', onclick: () => installMod(m) }, 'Update');
+    } else if (m.installed) {
+      action = el('button', { class: 'btn btn-red small', onclick: () => uninstallMod(m.folder, m.name) }, 'Remove');
+    } else if (m.installable) {
+      action = el('button', { class: 'btn btn-green small', onclick: () => installMod(m) }, 'Install');
+    } else {
+      action = el('button', { class: 'btn btn-cream small', disabled: true }, 'No release yet');
+    }
+
+    return el('div', { class: 'mod-row pack-member' },
+      el('div', { class: 'info' },
+        el('div', { class: 'nm' },
+          m.name, ' ',
+          m.latest?.version ? el('span', { class: 'ver' }, `v${m.latest.version}`) : null),
+        el('div', { class: 'meta' }, `by ${m.author}`),
+        el('div', { class: 'psum' }, m.summary || ''),
+        statsRow(m, tiers)),
+      el('div', { class: 'side' },
+        el('div', { class: 'badges' }, badges),
+        el('div', { class: 'row-btns' },
+          el('button', {
+            class: 'btn btn-cream small',
+            title: 'Open the mod’s source code on GitHub',
+            onclick: () => api.openExternal(m.homepage || `https://github.com/${m.repo}`),
+          }, 'Source'),
+          action)));
+  });
+
+  box.replaceChildren(el('div', { class: 'card-window' },
+    el('span', { class: 'window-title' }, 'Modpack'),
+    el('div', { class: 'pack-detail-top' },
+      el('button', { class: 'btn btn-cream small', onclick: closePackDetail }, '← All modpacks'),
+      el('span', { class: 'grow' }),
+      el('span', { class: 'stat', title: `The mods in this pack were downloaded ${(pack.downloads || 0).toLocaleString()} times combined` },
+        el('span', { class: 'micon', html: ICONS.download }), fmtCount(pack.downloads || 0))),
+    el('div', { class: 'pack-detail-head' },
+      el('h2', {}, pack.name),
+      el('div', { class: 'badges' }, packBadges(ms)),
+      el('div', { class: 'by' }, `by ${pack.author} · ${members.length} mods`)),
+    (pack.description || pack.summary)
+      ? el('p', { class: 'pack-desc' }, pack.description || pack.summary)
+      : null,
+    wrappingInstances.length
+      ? el('div', { class: 'tiny muted', style: 'margin-bottom:10px' },
+          `Instance${wrappingInstances.length === 1 ? '' : 's'} made from this pack: ${wrappingInstances.map((i) => i.name).join(', ')}`)
+      : null,
+    el('div', { class: 'pack-actions' },
+      packActionButton(pack, ms, { size: '' }),
+      pack.installable && members.length
+        ? el('button', {
+            class: 'btn btn-wine',
+            title: 'A fresh instance with exactly this pack in it',
+            onclick: () => newInstanceFromPack(pack),
+          }, '＋ New instance from this pack')
+        : null),
+    el('div', { class: 'section-band', style: 'margin:18px 0 12px' }, "What's inside"),
+    ...rows,
+    vanished.length
+      ? el('div', { class: 'inset-row tiny', style: 'margin-top:6px' },
+          `${vanished.length} mod${vanished.length === 1 ? ' is' : 's are'} no longer in the registry and will be skipped: ${vanished.join(', ')}`)
+      : null));
+}
+
+/** Create a fresh instance wrapping `pack`, select it, install the pack. */
+async function newInstanceFromPack(pack) {
+  const name = await promptModal({
+    title: 'New instance from pack',
+    body: `Creates a fresh instance, switches to it, and installs ${pack.name} into it. Your other instances are untouched.`,
+    placeholder: 'Instance name',
+    initial: pack.name,
+    confirmLabel: 'Create & install',
+  });
+  if (!name) return;
+  try {
+    const rec = await call(api.createInstance, { name, modpackId: pack.id });
+    await call(api.selectInstance, { id: rec.id });
+  } catch (err) {
+    toast(err.message, 'err');
+    return;
+  }
+  await refresh();
+  // The instance is brand new, so the plan is simply "everything in the pack"
+  // - no need to re-confirm what the user just asked for by name.
+  await installModpackNow(pack);
+}
+
 async function installModpack(pack, { missing, updates }) {
+  const inst = activeInstance();
   const lines = [
+    inst ? `Into your "${inst.name}" instance.` : '',
     missing.length ? `Installs ${missing.map((m) => m.name).join(', ')}.` : '',
     updates.length ? `Updates ${updates.map((m) => m.name).join(', ')}.` : '',
     'Mods they depend on come along automatically. Anything you already have is left alone.',
@@ -563,7 +928,11 @@ async function installModpack(pack, { missing, updates }) {
     confirmKind: 'btn-green',
   });
   if (!yes) return;
+  await installModpackNow(pack);
+}
 
+/** The actual pack install: progress modal + IPC + refresh. */
+async function installModpackNow(pack) {
   const operationId = `pack-${++opCounter}`;
   modal.open({
     title: `Installing ${pack.name}`,
@@ -669,7 +1038,11 @@ async function openPackIssueSubmission() {
 // ---------------------------------------------------------------------------
 
 function renderInstalled() {
+  renderInstanceCards();
+
   const installed = state.data?.installed || [];
+  const inst = activeInstance();
+  $('installedTitle').textContent = inst ? `Mods in "${inst.name}"` : 'My mods';
   $('installedCount').hidden = installed.length === 0;
   $('installedCount').textContent = String(installed.length);
   $('installedEmpty').hidden = installed.length > 0;
@@ -1274,11 +1647,15 @@ api.on('publish:signInFailed', ({ error }) => {
 for (const btn of document.querySelectorAll('.nav-btn')) {
   btn.addEventListener('click', () => show(btn.dataset.view));
 }
-// Click anywhere outside an open "add to modpack" dropdown closes it.
+// Click anywhere outside an open dropdown closes it.
 document.addEventListener('click', (ev) => {
   if (state.ui.packMenuFor && !ev.target.closest('.dropdown')) {
     state.ui.packMenuFor = null;
     renderBrowse();
+  }
+  if (state.ui.instMenuOpen && !ev.target.closest('.inst-dd')) {
+    state.ui.instMenuOpen = false;
+    renderInstanceSelector();
   }
 });
 $('playBtn').addEventListener('click', launchGame);
