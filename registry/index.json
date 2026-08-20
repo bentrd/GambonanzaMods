@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-19T23:41:09.430Z",
-  "count": 20,
+  "generatedAt": "2026-08-20T00:55:24.947Z",
+  "count": 21,
   "releases": {
     "framework": {
       "tag": "v1.3.4",
@@ -168,7 +168,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -209,7 +209,7 @@
       },
       "downloads": 15,
       "stars": 3,
-      "repoPushedAt": "2026-08-19T22:45:29Z",
+      "repoPushedAt": "2026-08-19T23:41:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -262,7 +262,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -315,7 +315,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -368,7 +368,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -409,7 +409,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-19T22:45:29Z",
+      "repoPushedAt": "2026-08-19T23:41:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -516,7 +516,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -557,7 +557,7 @@
       },
       "downloads": 19,
       "stars": 3,
-      "repoPushedAt": "2026-08-19T22:45:29Z",
+      "repoPushedAt": "2026-08-19T23:41:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -610,7 +610,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -717,7 +717,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -770,7 +770,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -823,7 +823,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-19T22:45:29Z",
+      "repoPushedAt": "2026-08-19T23:41:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -876,7 +876,46 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "matryoshka",
+      "name": "Matryoshka's Gambit",
+      "author": "FRO_PWR",
+      "summary": "If any of your pieces is captured, earn a piece of the next highest value",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "MatryoshkasGambit.zip",
+      "folder": "MatryoshkasGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-20",
+      "official": false,
+      "reviewed": false,
+      "issue": 26,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/26",
+      "latest": {
+        "tag": "v1.0.1",
+        "version": "1.0.1",
+        "publishedAt": "2026-08-20T00:49:40Z",
+        "notes": "Matryoshka's Gambit: If any of your pieces is captured, earn a piece of the next highest value.",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.1",
+        "asset": {
+          "name": "MatryoshkasGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.1/MatryoshkasGambit.zip",
+          "size": 5522,
+          "sha256": "77bc0197eb65eeb6effde5ff0e64ce9a81da9d907c9d02b2735856646bdff044"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -917,7 +956,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-19T22:45:29Z",
+      "repoPushedAt": "2026-08-19T23:41:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -971,7 +1010,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -1010,7 +1049,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -1064,7 +1103,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-08-19T21:55:48Z",
+      "repoPushedAt": "2026-08-20T00:49:39Z",
       "license": "MIT",
       "archived": false
     },
@@ -1117,7 +1156,7 @@
       },
       "downloads": 13,
       "stars": 3,
-      "repoPushedAt": "2026-08-19T22:45:29Z",
+      "repoPushedAt": "2026-08-19T23:41:10Z",
       "license": "MIT",
       "archived": false
     }
