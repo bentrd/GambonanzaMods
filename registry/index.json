@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-21T22:45:13.015Z",
-  "count": 21,
+  "generatedAt": "2026-08-21T23:13:01.039Z",
+  "count": 22,
   "releases": {
     "framework": {
       "tag": "v1.3.4",
@@ -168,7 +168,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -209,7 +209,7 @@
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T21:43:01Z",
+      "repoPushedAt": "2026-08-21T22:45:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -262,7 +262,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -315,7 +315,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -368,7 +368,33 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "en-passant",
+      "name": "En Passant's Gambit",
+      "author": "Agent15",
+      "summary": "You can capture the last enemy piece to move by moving a piece over its original tile.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "EnPassantsGambit.zip",
+      "folder": "EnPassantsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-21",
+      "official": false,
+      "reviewed": false,
+      "issue": 27,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/27",
+      "latest": null,
+      "downloads": 0,
+      "pending": true,
+      "stars": 0,
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -409,7 +435,7 @@
       },
       "downloads": 15,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T21:43:01Z",
+      "repoPushedAt": "2026-08-21T22:45:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -516,7 +542,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -557,7 +583,7 @@
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T21:43:01Z",
+      "repoPushedAt": "2026-08-21T22:45:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -610,7 +636,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -717,7 +743,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -770,7 +796,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -823,7 +849,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T21:43:01Z",
+      "repoPushedAt": "2026-08-21T22:45:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -876,7 +902,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -915,7 +941,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -956,7 +982,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T21:43:01Z",
+      "repoPushedAt": "2026-08-21T22:45:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1010,7 +1036,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1049,7 +1075,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1103,7 +1129,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-08-20T00:49:39Z",
+      "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1156,7 +1182,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T21:43:01Z",
+      "repoPushedAt": "2026-08-21T22:45:14Z",
       "license": "MIT",
       "archived": false
     }
