@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T22:44:46.684Z",
+  "generatedAt": "2026-08-22T22:49:19.440Z",
   "count": 24,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:42:05Z",
+      "repoPushedAt": "2026-08-22T22:48:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -285,6 +285,16 @@
       "gameVersion": ">=1.0",
       "submittedBy": "Agent15",
       "addedAt": "2026-08-23",
+      "gambits": [
+        {
+          "id": "bounty-hunter",
+          "name": "Bounty Hunter's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "Capturing a <sprite=5> <color=&>PAWN</color> earns <color=*>$5</color>.<br><i>(Changes after every trigger)</i>",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/BountyHuntersGambit/BountyHunter.png"
+        }
+      ],
       "official": false,
       "reviewed": true,
       "latest": {
@@ -543,7 +553,7 @@
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:42:05Z",
+      "repoPushedAt": "2026-08-22T22:48:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -691,7 +701,7 @@
       },
       "downloads": 24,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:42:05Z",
+      "repoPushedAt": "2026-08-22T22:48:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -957,7 +967,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:42:05Z",
+      "repoPushedAt": "2026-08-22T22:48:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1104,7 +1114,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:42:05Z",
+      "repoPushedAt": "2026-08-22T22:48:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1318,7 +1328,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:42:05Z",
+      "repoPushedAt": "2026-08-22T22:48:37Z",
       "license": "MIT",
       "archived": false
     }
