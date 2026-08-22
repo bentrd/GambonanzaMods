@@ -8,15 +8,13 @@
 #   3. Builds the framework (ModSdk, ModHost, GameUI, Patcher).
 #   4. Patches Assembly-CSharp.dll and installs the framework DLLs into
 #      Managed/. Idempotent - always patches from the .orig backup.
-#   5. Builds every sample mod under sample_mods/ and stages a clean
-#      drop-in folder for each into <repo>/Mods/<ModName>/.
-#   6. Copies the staged sample mod folders into the live game's Mods/.
+#
+# It installs the framework only. Mods and modpacks come from the Mod Manager.
 #
 # Cross-platform: works on macOS, Linux, and Windows under Git Bash / WSL.
 #
 # Usage:
-#     ./build.sh                       # full install
-#     ./build.sh --skip-samples        # framework only, leaves Mods/ empty
+#     ./build.sh                       # install the framework
 #     ./build.sh "/path/to/Gambonanza" # explicit install path
 #     GAMBONANZA_DIR="/path" ./build.sh
 #
@@ -28,11 +26,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REFS_DIR="$SCRIPT_DIR/refs"
 FRAMEWORK_VERSION="$(cat "$SCRIPT_DIR/VERSION" 2>/dev/null || printf '1.0.0')"
 
-SKIP_SAMPLES=0
 GAME_ARG=""
 for arg in "$@"; do
     case "$arg" in
-        --skip-samples) SKIP_SAMPLES=1 ;;
+        --skip-samples) ;;   # accepted and ignored: samples are no longer built here
         -h|--help)
             sed -n '2,/^set -/p' "$0" | sed 's/^# \?//;/^set -/d'
             exit 0
@@ -314,94 +311,18 @@ fi
 mkdir -p "$MODS_DIR"
 
 # ----------------------------------------------------------------------------
-# 5. Build & install sample mods
+# Done
 # ----------------------------------------------------------------------------
+#
+# Mods are no longer built or installed from here. Sample mod sources live in
+# sample_mods/ as reference material; the Mod Manager installs real mods and
+# modpacks from the registry, which is where players get them.
+#
+# To build a sample by hand:
+#     ./sample_mods/build.sh --install
 
-if [ "$SKIP_SAMPLES" -eq 1 ]; then
-    echo
-    echo "Done. Framework installed; sample mods skipped (--skip-samples)."
-    echo "Drop your own mod folders into $MODS_DIR/ and launch from Steam."
-    exit 0
-fi
-
-DIST_DIR="$SCRIPT_DIR/Mods"
-SAMPLES_DIR="$SCRIPT_DIR/sample_mods"
-mkdir -p "$DIST_DIR"
-
-echo "==> Discovering sample mods in: $SAMPLES_DIR"
-echo "==> Sample mod install target: $MODS_DIR"
-
-find_project_file() {
-    local src="$1"
-    local csproj
-    csproj="$(command find "$src" -maxdepth 1 -name '*.csproj' -print | sort | head -n 1)"
-    if [ -n "$csproj" ]; then printf '%s\n' "$csproj"; fi
-    return 0
-}
-
-assembly_name_for() {
-    local src="$1"
-    local csproj asm
-    csproj="$(find_project_file "$src")"
-    [ -n "$csproj" ] || return 1
-    asm="$(sed -n 's:.*<AssemblyName>\(.*\)</AssemblyName>.*:\1:p' "$csproj" | head -n 1)"
-    if [ -n "$asm" ]; then printf '%s\n' "$asm"; else basename "${csproj%.csproj}"; fi
-}
-
-copy_extra_assets() {
-    local src="$1"
-    local out="$2"
-    command find "$src" -maxdepth 1 -type f \
-        ! -name 'mod.json' \
-        ! -name '*.csproj' \
-        ! -name '*.cs' \
-        -print0 | while IFS= read -r -d '' asset; do
-            cp "$asset" "$out/"
-        done
-}
-
-found=0
-for src in "$SAMPLES_DIR"/*; do
-    [ -d "$src" ] || continue
-    [ -f "$src/mod.json" ] || continue
-    csproj="$(find_project_file "$src")"
-    if [ -z "$csproj" ]; then
-        echo "  skip $(basename "$src"): no .csproj at top level"
-        continue
-    fi
-
-    found=1
-    mod="$(basename "$src")"
-    asm="$(assembly_name_for "$src")"
-    out="$DIST_DIR/$mod"
-    live="$MODS_DIR/$mod"
-
-    echo "==> Building sample: $mod"
-    dotnet build "$csproj" -c Release --nologo -v minimal
-
-    dll="$src/bin/Release/$asm.dll"
-    if [ ! -f "$dll" ]; then
-        dll="$(command find "$src/bin/Release" -name "$asm.dll" -print | head -n 1)"
-    fi
-    [ -f "$dll" ] || { echo "missing build output for $mod (expected $asm.dll under $src/bin/Release)" >&2; exit 1; }
-
-    rm -rf "$out" "$live"
-    mkdir -p "$out" "$live"
-    cp "$dll" "$out/"
-    cp "$src/mod.json" "$out/"
-    copy_extra_assets "$src" "$out"
-    cp -R "$out/." "$live/"
-    echo "  staged    -> $out"
-    echo "  installed -> $live"
-done
-
-[ "$found" -eq 1 ] || { echo "No sample mods found under $SAMPLES_DIR" >&2; exit 1; }
-
-installed_count="$(command find "$MODS_DIR" -mindepth 2 -maxdepth 2 -name mod.json -print | wc -l | tr -d ' ')"
 echo
-echo "Installed sample mod manifests found: $installed_count"
-command find "$MODS_DIR" -mindepth 2 -maxdepth 2 -name mod.json -print | sort | sed 's/^/  - /'
-echo
-echo "All done. Sample mods installed in $MODS_DIR/."
-echo "Launch the game from Steam - press F10, F1, or backtick to open"
-echo "the in-game console. Type 'help' to list commands."
+echo "Done. Framework installed."
+echo "Install mods and modpacks with the Gambonanza Mod Manager, or drop a mod"
+echo "folder into $MODS_DIR/ yourself."
+exit 0
