@@ -157,11 +157,13 @@ REQUIRED_REFS=(
     UnityEngine.JSONSerializeModule.dll
     UnityEngine.ParticleSystemModule.dll
     UnityEngine.Physics2DModule.dll
+    UnityEngine.PhysicsModule.dll
     UnityEngine.SpriteMaskModule.dll
     UnityEngine.TextCoreTextEngineModule.dll
     UnityEngine.TextRenderingModule.dll
     UnityEngine.UI.dll
     UnityEngine.UIModule.dll
+    com.rlabrecque.steamworks.net.dll
 )
 
 echo "==> Hydrating refs/ from $MANAGED_DIR"
