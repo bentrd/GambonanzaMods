@@ -334,11 +334,20 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 .toolbar { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
 /* the refresh button lines up with the search input beside it */
 .toolbar .btn { min-height: 40px; }
-.toolbar .search { flex: 1; min-width: 220px; position: relative; }
+/* display:flex, not the default block: an <input> is inline-level, so a block
+   wrapper is as tall as a LINE box - 54px around a 36px field - and anything
+   centred against the wrapper (like the icon below) sits a baseline's worth
+   too low. Flex makes the wrapper hug the field exactly. */
+.toolbar .search { flex: 1; min-width: 220px; position: relative; display: flex; }
 .toolbar .search input { padding-left: 34px; }
+/* A drawn magnifier rather than the "⌕" character: the pixel fonts have no
+   glyph for it, so it fell back to whatever the system had and sat on that
+   font's baseline - low and left of where it belonged. An image centred in a
+   full-height box lands in the same place whatever the font does. */
 .toolbar .search::before {
-  content: "⌕"; position: absolute; left: 10px; top: 50%; transform: translateY(-52%);
-  font-size: 19px; color: var(--wine); font-family: var(--font-mono);
+  content: ""; position: absolute; left: 9px; top: 0; bottom: 0; width: 17px;
+  background-repeat: no-repeat; background-position: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' shape-rendering='crispEdges' fill='%237e2e3e'%3E%3Cpath d='M3 1h4v1H3zM2 2h1v1H2zM7 2h1v1H7zM1 3h1v3H1zM8 3h1v3H8zM2 6h1v1H2zM7 6h1v1H7zM3 7h4v1H3zM8 7h1v1H8zM9 8h1v1H9zM10 9h1v2h-1z'/%3E%3C/svg%3E");
 }
 .chip-row { display: flex; gap: 6px; flex-wrap: wrap; }
 .chip {
@@ -625,6 +634,9 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   cursor: default;
 }
 .inst-card.active:active { transform: none; }
+/* Texture packs need two states at once: which one the game is wearing (active,
+   green) and which one the panel below is showing (sel, a quiet outline). */
+.inst-card.sel { border-color: var(--wine); box-shadow: 0 4px 0 0 var(--wine); }
 .inst-card .head { display: flex; align-items: flex-start; gap: 8px; }
 .inst-card h3 { margin: 0; font-size: 16px; line-height: 1.15; flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .inst-card .meta { font-size: 11.5px; color: rgba(90, 34, 48, 0.6); flex: 1; }
@@ -638,6 +650,236 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 }
 .inst-card.new:hover { background: rgba(184, 142, 92, 0.14); color: var(--wine-dark); }
 .inst-card.new .plus { font-family: var(--font-mono); font-size: 22px; }
+
+/* ----------------------------------------------------------- texture packs */
+
+/* The contents panel is deliberately wordless: one square per override, an
+   icon saying whether it is art or text, and everything else on hover. A pack
+   with forty edits should read as a shelf, not a spreadsheet. */
+.tp-panel-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+.tp-panel-head .grow { flex: 1; }
+.tp-panel-head .pname { font-size: 15px; }
+.tp-panel-head .pmeta { font-size: 11.5px; color: rgba(90, 34, 48, 0.6); }
+.tp-panel-head .pmeta.warn { color: #8a5a12; }
+
+.tp-tiles { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-start; }
+/* The card-window clips nothing, but the content pane scrolls - a tip anchored
+   to a tile near the left or right edge would run under it. The first and last
+   few tiles in a row anchor their tip to their own edge instead of centring. */
+.tp-tile:nth-child(-n+2) .tp-tip { left: 0; transform: translateX(0) scale(0.9); transform-origin: bottom left; }
+.tp-tile:nth-child(-n+2):hover .tp-tip { transform: translateX(0) scale(1); }
+
+.tp-tile {
+  position: relative;
+  width: 58px; height: 58px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 3px solid var(--ink); border-radius: 9px;
+  box-shadow: 0 3px 0 0 var(--ink);
+  padding: 0; font: inherit; cursor: pointer;
+  transition: transform 60ms ease-out;
+}
+.tp-tile:hover { background: #fff8e7; z-index: 20; }
+.tp-tile:active { transform: translateY(2px); }
+.tp-tile .art {
+  max-width: 42px; max-height: 42px;
+  image-rendering: pixelated;
+  filter: drop-shadow(2px 2px 0 rgba(26, 14, 18, 0.25));
+}
+/* The pixel glyph is the fallback, and the whole story for text overrides. */
+.tp-tile .glyph { display: inline-flex; color: var(--wine); }
+.tp-tile .glyph svg { width: 30px; height: 30px; }
+.tp-tile.text .glyph { color: var(--wine-dark); }
+.tp-tile.add {
+  border-style: dashed; box-shadow: none;
+  background: transparent; color: rgba(90, 34, 48, 0.6);
+}
+.tp-tile.add:hover { background: rgba(184, 142, 92, 0.14); color: var(--wine-dark); }
+.tp-tile.add .plus { font-family: var(--font-mono); font-size: 26px; line-height: 1; }
+
+/* Hover card. Same idea as the gambit tooltips: opaque, above its neighbours,
+   and never the thing that makes the row jump. */
+.tp-tile .tp-tip {
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) scale(0.9); transform-origin: bottom center;
+  opacity: 0; pointer-events: none;
+  width: 236px; z-index: 40;
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 3px solid var(--ink); border-radius: 9px;
+  box-shadow: 0 4px 0 0 var(--ink);
+  padding: 9px 11px; text-align: left;
+  transition: opacity 0.14s ease-out, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.tp-tile:hover .tp-tip { opacity: 1; transform: translateX(-50%) scale(1); }
+.tp-tip .t { font-size: 13.5px; line-height: 1.2; overflow-wrap: anywhere; }
+.tp-tip .d { font-size: 11px; color: rgba(90, 34, 48, 0.65); margin-top: 3px; overflow-wrap: anywhere; }
+.tp-tip .was { font-size: 11px; margin-top: 5px; opacity: 0.75; text-decoration: line-through; overflow-wrap: anywhere; }
+.tp-tip .now { font-size: 12px; margin-top: 2px; overflow-wrap: anywhere; }
+.tp-tile.add .tp-tip { text-align: center; }
+
+/* The add-tile's Image / Text menu. Anchored to the tile, not the button row,
+   so it opens where the click was. */
+.tp-add-wrap { position: relative; display: inline-flex; }
+.tp-add-wrap .menu {
+  display: none;
+  position: absolute; left: 0; top: calc(100% + 4px); z-index: 30;
+  min-width: 172px; text-align: left;
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 2px solid var(--ink); border-radius: 8px;
+  box-shadow: 0 4px 0 0 var(--ink);
+  padding: 6px;
+}
+.tp-add-wrap.open .menu { display: block; }
+.tp-add-wrap .mi { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-radius: 6px; padding: 7px 9px; font: inherit; color: inherit; }
+.tp-add-wrap .mi:hover { background: var(--cream-soft); }
+.tp-add-wrap .mi .micon { display: inline-flex; color: var(--wine); }
+
+/* ------------------------------------------------------- asset browser */
+
+/* One dialog, four bands: title, a full-width search + filter header, the
+   two-column body that takes whatever height is left, and the buttons. The
+   body is the only thing that scrolls, so the filters and the buttons are
+   always where you left them. */
+.modal.wide {
+  width: min(1040px, calc(100vw - 36px));
+  height: min(760px, calc(100vh - 36px));
+  padding: 20px 20px 16px;
+  display: flex; flex-direction: column; gap: 12px;
+  text-align: left;
+}
+.modal.wide h3 { text-align: center; margin: 0; }
+/* min-width:0 all the way down. Without it a flex item is never allowed to be
+   narrower than its content, and one long row pushed the whole body wider than
+   the dialog - which is how the text browser's right-hand pane, language
+   picker and all, ended up off the edge of the screen. */
+.modal.wide #modalCustom { flex: 1; min-height: 0; min-width: 0; display: flex; }
+.modal.wide .row { justify-content: flex-end; margin: 0; }
+
+.ab { display: flex; flex-direction: column; gap: 12px; flex: 1; min-height: 0; min-width: 0; width: 100%; }
+
+.ab-head { display: flex; flex-direction: column; gap: 8px; flex: 0 0 auto; min-width: 0; }
+.ab-head .toolbar { margin-bottom: 0; }
+/* The filters get the dialog's full width, so thirteen categories wrap into two
+   rows instead of being clipped by a scroll box half a chip tall. */
+.ab-head .chip-row { gap: 5px; }
+.ab-head .chip { font-size: 10.5px; padding: 3px 9px; min-height: 26px; letter-spacing: 0.6px; }
+
+.ab-body { display: flex; gap: 14px; flex: 1; min-height: 0; min-width: 0; }
+.ab-left { flex: 1 1 58%; min-width: 0; min-height: 0; display: flex; flex-direction: column; }
+.ab-right {
+  flex: 0 1 340px; min-width: 250px; min-height: 0;
+  display: flex; flex-direction: column; gap: 9px;
+  overflow-y: auto; padding-right: 2px;
+}
+
+/* Both panes fill the body rather than standing at a fixed height that is
+   wrong on every window but the one it was written on. */
+.ab-grid {
+  display: grid; gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(74px, 1fr));
+  grid-auto-rows: 74px;
+  flex: 1; min-height: 0; overflow-y: auto; align-content: start;
+  padding: 6px; background: rgba(184, 142, 92, 0.16); border-radius: 8px;
+}
+.ab-cell {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--cream-light); border: 2px solid var(--ink); border-radius: 7px;
+  padding: 4px; cursor: pointer; overflow: hidden;
+}
+.ab-cell:hover { background: #fff8e7; }
+.ab-cell.on { border-color: var(--green-dark); box-shadow: 0 0 0 2px var(--green-dark) inset; }
+.ab-cell img { max-width: 100%; max-height: 100%; image-rendering: pixelated; }
+.ab-cell .ph { font-size: 10px; color: rgba(90, 34, 48, 0.45); text-align: center; overflow-wrap: anywhere; }
+.ab-cell.more { border-style: dashed; cursor: default; background: none; }
+/* Marks an asset this pack already replaces, so the grid shows your work. */
+.ab-cell.edited { border-color: var(--wine); }
+
+.ab-rows {
+  flex: 1; min-height: 0; min-width: 0; overflow-y: auto;
+  background: rgba(184, 142, 92, 0.16); border-radius: 8px; padding: 4px;
+}
+.ab-row {
+  display: flex; align-items: baseline; gap: 8px; width: 100%; text-align: left;
+  background: none; border: 0; border-radius: 6px; padding: 6px 8px; font: inherit; color: inherit; cursor: pointer;
+}
+.ab-row:hover { background: var(--cream-soft); }
+.ab-row.on { background: #eef6e2; box-shadow: inset 3px 0 0 0 var(--green-dark); }
+.ab-row .k { font-family: var(--font-mono); font-size: 13px; color: rgba(90, 34, 48, 0.7); flex: 0 0 34%; min-width: 0; overflow-wrap: anywhere; }
+.ab-row .v { flex: 1; min-width: 0; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ab-row .edited { color: var(--green-dark); flex: 0 0 auto; }
+.ab-row .edited.unsaved { color: #b8791a; }
+.ab-sec { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.8px; color: rgba(90, 34, 48, 0.5); padding: 9px 8px 3px; }
+
+/* ---- the right-hand pane ---- */
+
+.ab-preview {
+  display: flex; align-items: center; justify-content: center;
+  padding: 8px; flex: 0 0 auto;
+  background:
+    linear-gradient(45deg, rgba(90, 34, 48, 0.10) 25%, transparent 25%, transparent 75%, rgba(90, 34, 48, 0.10) 75%),
+    linear-gradient(45deg, rgba(90, 34, 48, 0.10) 25%, transparent 25%, transparent 75%, rgba(90, 34, 48, 0.10) 75%);
+  background-size: 14px 14px; background-position: 0 0, 7px 7px;
+  border: 2px solid var(--ink); border-radius: 8px;
+}
+.ab-preview img { max-width: 100%; max-height: 150px; image-rendering: pixelated; }
+.ab-preview .ph { font-size: 11px; color: rgba(90, 34, 48, 0.55); text-align: center; }
+.ab-pair { display: flex; gap: 8px; flex: 0 0 auto; }
+.ab-pair > div { flex: 1; min-width: 0; }
+/* The previews give up height on a short window so the drop zone and the
+   buttons under them stay in view without scrolling. */
+.ab-pair .ab-preview { height: clamp(84px, 16vh, 132px); }
+.ab-pair .ab-preview img { max-height: 100%; }
+.cap { font-size: 10px; text-transform: uppercase; letter-spacing: 0.7px; color: rgba(90, 34, 48, 0.55); margin-bottom: 3px; }
+
+/* Nothing picked yet: a quiet note, not a large empty checkerboard. */
+.ab-blank {
+  display: flex; align-items: center; justify-content: center;
+  flex: 1; min-height: 120px; padding: 16px;
+  background: rgba(184, 142, 92, 0.16);
+  border: 2px dashed rgba(90, 34, 48, 0.3); border-radius: 8px;
+}
+.ab-blank .ph { font-size: 12px; color: rgba(90, 34, 48, 0.55); text-align: center; line-height: 1.5; }
+
+.ab-facts { font-size: 11.5px; color: rgba(90, 34, 48, 0.7); line-height: 1.45; overflow-wrap: anywhere; flex: 0 0 auto; }
+.ab-facts b { color: var(--wine-dark); font-size: 13.5px; }
+.ab-note {
+  background: #f9edcc; color: #6b4d0c;
+  border: 2px solid var(--ink); border-radius: 7px;
+  padding: 7px 10px; font-size: 11.5px; line-height: 1.4; flex: 0 0 auto;
+}
+.ab-actions { display: flex; gap: 8px; flex-wrap: wrap; flex: 0 0 auto; }
+
+.ab-drop {
+  border: 3px dashed rgba(90, 34, 48, 0.4); border-radius: 9px;
+  padding: 10px; text-align: center; font-size: 12px; line-height: 1.35;
+  color: rgba(90, 34, 48, 0.7); cursor: pointer;
+  background: none; width: 100%; font-family: inherit; flex: 0 0 auto;
+}
+.ab-drop:hover, .ab-drop.over { background: rgba(184, 142, 92, 0.2); color: var(--wine-dark); border-color: var(--wine); }
+.ab-drop b { display: block; font-size: 13.5px; color: var(--wine-dark); }
+
+.ab-orig {
+  background: rgba(184, 142, 92, 0.18); border-radius: 7px;
+  padding: 8px 10px; font-size: 13px; line-height: 1.45;
+  max-height: 110px; overflow-y: auto; overflow-wrap: anywhere; user-select: text; flex: 0 0 auto;
+}
+/* TextMeshPro tags are part of the string the game parses, so they are shown
+   as chips rather than hidden - deleting one silently changes the rendering. */
+.tmp-tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 11.5px;
+  background: var(--wine); color: var(--cream); border-radius: 4px;
+  padding: 0 4px; margin: 0 1px; vertical-align: 1px;
+}
+.ab-lang { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
+.ab-lang .tiny { flex: 0 0 auto; color: rgba(90, 34, 48, 0.6); }
+.ab-lang select { flex: 1; min-width: 0; }
+.ab-right textarea.game-input { flex: 0 0 auto; min-height: 84px; }
+
+/* No narrow-window stacking rule here on purpose: the window itself has a
+   940px minimum (see BrowserWindow in main/index.js), and at 940 the split is
+   a 504px grid beside a 340px pane, which both measure fine. A media query
+   below that would be code that can never run. */
 
 /* ---------------------------------------------------------------- installed */
 
@@ -728,6 +970,8 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   display: none; align-items: center; justify-content: center;
 }
 .modal-backdrop.open { display: flex; }
+/* A tall dialog on a short window must scroll rather than run off the screen. */
+.modal-backdrop { overflow-y: auto; padding: 16px 0; }
 .modal {
   background: var(--cream); color: var(--wine-dark);
   border: 3px solid var(--ink); border-radius: 12px;
@@ -738,8 +982,11 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 }
 .modal h3 { margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px; font-size: 17px; }
 .modal p { margin: 0 0 14px; font-size: 13.5px; line-height: 1.45; }
-/* the prompt input (New instance / Rename) needs air above the buttons */
-.modal .game-input { margin-bottom: 18px; }
+/* Air above the buttons for the prompt dialog's one field. Scoped to that
+   field by id, not to every .game-input inside a modal: the wider version put
+   an 18px bottom margin on the asset browser's search box, its textarea and
+   its language picker too, which is what pushed the search icon off centre. */
+.modal #modalInput { margin-bottom: 18px; }
 .modal .row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 
 .progress-track {

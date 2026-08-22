@@ -1,3 +1,12 @@
+> **Superseded.** Re-skinning now lives in the mod manager's **Texture packs**
+> tab: the same gallery, no Python, no rewriting of your game's asset files,
+> and packs you can share as a zip or publish to the registry. See
+> [docs/TEXTURE_PACKS.md](../../docs/TEXTURE_PACKS.md).
+>
+> This tool still works and is kept for reference. Use it only if you want the
+> old offline behaviour - it patches `resources.assets` in place, needs the game
+> closed, and a Steam update wipes its work.
+
 # GambonanzaAssets
 
 Re-skin Gambonanza without writing any code.

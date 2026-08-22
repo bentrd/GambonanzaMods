@@ -213,6 +213,27 @@ function submitModpack(token, entry, opts = {}) {
   }, opts);
 }
 
+/** Submit one texture pack entry as registry/texturepacks/<id>.json. */
+function submitTexturePack(token, entry, opts = {}) {
+  return submitRegistryFile(token, {
+    branch: `registry/texturepack-${entry.id}`,
+    filePath: `registry/texturepacks/${entry.id}.json`,
+    json: entry,
+    commitMessage: `registry: add texture pack ${entry.name}`,
+    prTitle: `Registry: add texture pack ${entry.name}`,
+    prBody: [
+      `Adds the **${entry.name}** texture pack by ${entry.author} to the registry.`,
+      '',
+      `- Repository: https://github.com/${entry.repo}`,
+      `- Release asset: \`${entry.asset}\``,
+      '',
+      '_A texture pack contains art and localised strings only - no code. The framework',
+      'applies it at runtime; nothing in the game install is rewritten._',
+      '_Submitted from the Gambonanza Mod Manager._',
+    ].join('\n'),
+  }, opts);
+}
+
 async function waitForRepo(token, fullName) {
   for (let i = 0; i < 10; i++) {
     const res = await net.getJson(`https://api.github.com/repos/${fullName}`, { token });
@@ -246,6 +267,25 @@ function modpackIssueUrl(entry) {
     mods: (entry.mods || []).join(', '),
     summary: entry.summary || '',
     description: entry.description || '',
+  });
+  return `https://github.com/${HOME_REPO}/issues/new?${params.toString()}`;
+}
+
+/** Pre-filled new-issue URL for a texture pack, for the no-sign-in path. */
+function texturePackIssueUrl(entry) {
+  const params = new URLSearchParams({
+    title: `[Texture pack] ${entry.name || ''}`,
+    body: [
+      `**Name:** ${entry.name || ''}`,
+      `**Author:** ${entry.author || ''}`,
+      `**Repository:** ${entry.repo || ''}`,
+      `**Release asset:** ${entry.asset || ''}`,
+      `**Summary:** ${entry.summary || ''}`,
+      '',
+      entry.description || '',
+      '',
+      '_Submitted from the Gambonanza Mod Manager._',
+    ].join('\n'),
   });
   return `https://github.com/${HOME_REPO}/issues/new?${params.toString()}`;
 }
@@ -290,6 +330,8 @@ function sleep(ms, signal) {
 }
 
 module.exports = {
+  submitTexturePack,
+  texturePackIssueUrl,
   signInAvailable,
   beginDeviceFlow,
   pollDeviceFlow,

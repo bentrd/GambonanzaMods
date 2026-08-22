@@ -8,8 +8,8 @@
 // Exit code 0 = good to merge.
 
 import {
-  loadEntries, validateEntry, validateModpackEntry, resolveLatestRelease,
-  HOME_REPO, MODPACKS_DIR,
+  loadEntries, validateEntry, validateModpackEntry, validateTexturePackEntry,
+  resolveLatestRelease, HOME_REPO, MODPACKS_DIR, TEXTUREPACKS_DIR,
 } from './lib.mjs';
 
 const args = new Set(process.argv.slice(2));
@@ -109,9 +109,51 @@ for (const { fileName, entry } of packs) {
   }
 }
 
+// Texture packs: art and wording rather than code, but they DO have a release
+// asset of their own, so they get the same treatment as a mod.
+const skins = await loadEntries(TEXTUREPACKS_DIR);
+const seenSkinIds = new Map();
+for (const { fileName, entry } of skins) {
+  const problems = validateTexturePackEntry(entry, fileName);
+  if (entry.id) {
+    if (seenSkinIds.has(entry.id)) problems.push(`duplicate id, already used by ${seenSkinIds.get(entry.id)}`);
+    else seenSkinIds.set(entry.id, fileName);
+  }
+  if (problems.length) {
+    failures += problems.length;
+    console.log(`${RED}✗ registry/texturepacks/${fileName}${RESET}`);
+    for (const p of problems) console.log(`    ${p}`);
+    continue;
+  }
+  if (!checkReleases) {
+    console.log(`${GREEN}✓${RESET} texturepacks/${fileName}`);
+    continue;
+  }
+  try {
+    const release = await resolveLatestRelease(entry);
+    if (release) {
+      console.log(`${GREEN}✓${RESET} texturepacks/${fileName} → ${entry.repo} ${release.tag} (${release.asset.name})`);
+    } else if (entry.pending) {
+      warnings++;
+      console.log(`${YELLOW}·${RESET} texturepacks/${fileName} → no release yet (marked "pending", that's fine)`);
+    } else {
+      failures++;
+      console.log(`${RED}✗ registry/texturepacks/${fileName}${RESET}`);
+      console.log(`    no release of ${entry.repo} has an asset matching "${entry.asset}".`);
+      console.log('    Export the pack from the mod manager, attach the zip to a GitHub release, or set "pending": true.');
+    }
+  } catch (err) {
+    failures++;
+    console.log(`${RED}✗ registry/texturepacks/${fileName}${RESET}`);
+    console.log(`    ${err.message}`);
+  }
+}
+
+const total = entries.length + packs.length + skins.length;
+
 console.log('');
 if (failures) {
-  console.log(`${RED}${failures} problem(s) found in ${entries.length + packs.length} entries.${RESET}`);
+  console.log(`${RED}${failures} problem(s) found in ${total} entries.${RESET}`);
   process.exit(1);
 }
-console.log(`${GREEN}All ${entries.length} registry entries${packs.length ? ` and ${packs.length} modpack(s)` : ''} look good.${RESET}${warnings ? ` (${warnings} note(s))` : ''}`);
+console.log(`${GREEN}All ${entries.length} registry entries${packs.length ? `, ${packs.length} modpack(s)` : ''}${skins.length ? `, ${skins.length} texture pack(s)` : ''} look good.${RESET}${warnings ? ` (${warnings} note(s))` : ''}`);

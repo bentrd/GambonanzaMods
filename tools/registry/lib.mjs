@@ -14,6 +14,7 @@ export const REPO_ROOT = path.resolve(fileURLToPath(new URL('../../', import.met
 export const REGISTRY_DIR = path.join(REPO_ROOT, 'registry');
 export const MODS_DIR = path.join(REGISTRY_DIR, 'mods');
 export const MODPACKS_DIR = path.join(REGISTRY_DIR, 'modpacks');
+export const TEXTUREPACKS_DIR = path.join(REGISTRY_DIR, 'texturepacks');
 export const INDEX_PATH = path.join(REGISTRY_DIR, 'index.json');
 
 /** The registry's own repo. Used for the "official mods" badge. */
@@ -270,6 +271,82 @@ export function validateModpackEntry(entry, fileName, knownModIds = null) {
       if (entry.tags.length > 5) fail('"tags" allows at most 5 entries');
       for (const t of entry.tags) {
         if (!KNOWN_TAGS.includes(t)) fail(`unknown tag "${t}" (pick from: ${KNOWN_TAGS.join(', ')})`);
+      }
+    }
+  }
+
+  return errors;
+}
+
+const KNOWN_TEXTUREPACK_FIELDS = new Set([
+  'id', 'name', 'author', 'summary', 'description', 'repo', 'asset',
+  'tagPattern', 'prerelease', 'homepage', 'preview', 'tags', 'gameVersion',
+  'pending', 'submittedBy', 'addedAt',
+]);
+
+/** Tags that make sense for something that only changes how the game looks. */
+const TEXTUREPACK_TAGS = ['visual', 'ui', 'audio', 'gameplay', 'quality-of-life', 'tools'];
+
+/**
+ * Validate one texture pack entry (registry/texturepacks/<id>.json).
+ *
+ * Shaped like a mod entry rather than a modpack one, because a texture pack
+ * IS a download: a zip of PNGs on the author's own release, pinned to their
+ * repo and checksummed at review time, exactly like a mod's DLL. The
+ * difference that matters is what's inside - art and strings, never code -
+ * which is why it gets its own list instead of a tag on the mod registry.
+ */
+export function validateTexturePackEntry(entry, fileName) {
+  const errors = [];
+  const fail = (msg) => errors.push(msg);
+
+  if (typeof entry !== 'object' || entry === null || Array.isArray(entry)) {
+    return ['file must contain a single JSON object'];
+  }
+
+  for (const key of Object.keys(entry)) {
+    if (!KNOWN_TEXTUREPACK_FIELDS.has(key)) fail(`unknown field "${key}" (typo? see registry/texturepack-schema.json)`);
+  }
+
+  const str = (field, { required = false, min = 1, max = 4000, re = null, reHint = '' } = {}) => {
+    const v = entry[field];
+    if (v === undefined || v === null || v === '') {
+      if (required) fail(`"${field}" is required`);
+      return null;
+    }
+    if (typeof v !== 'string') { fail(`"${field}" must be a string`); return null; }
+    if (v.length < min) fail(`"${field}" is too short (min ${min} characters)`);
+    if (v.length > max) fail(`"${field}" is too long (max ${max} characters)`);
+    if (re && !re.test(v)) fail(`"${field}" is malformed${reHint ? ` - ${reHint}` : ''}`);
+    return v;
+  };
+
+  const id = str('id', { required: true, re: ID_RE, reHint: 'use lowercase letters, digits and dashes, e.g. "midnight-chess"' });
+  str('name', { required: true, min: 2, max: 48 });
+  str('author', { required: true, max: 48 });
+  str('summary', { required: true, min: 8, max: 140 });
+  str('description', { max: 4000 });
+  str('repo', { required: true, max: 100, re: REPO_RE, reHint: 'expected owner/name' });
+  str('asset', { required: true, max: 120 });
+  str('tagPattern', { max: 60 });
+  str('homepage', { max: 200, re: /^https:\/\//, reHint: 'must start with https://' });
+  str('preview', { max: 300, re: SPRITE_RE, reHint: 'must be a raw.githubusercontent.com URL - the only image host the manager allows' });
+  str('gameVersion', { max: 40 });
+  str('submittedBy', { max: 48 });
+  str('addedAt', { re: DATE_RE, reHint: 'expected YYYY-MM-DD' });
+
+  if (id && fileName && `${id}.json` !== fileName) {
+    fail(`file name must match the id: expected ${id}.json, got ${fileName}`);
+  }
+  if (entry.prerelease !== undefined && typeof entry.prerelease !== 'boolean') fail('"prerelease" must be true or false');
+  if (entry.pending !== undefined && typeof entry.pending !== 'boolean') fail('"pending" must be true or false');
+
+  if (entry.tags !== undefined) {
+    if (!isStringArray(entry.tags)) fail('"tags" must be an array of strings');
+    else {
+      if (entry.tags.length > 5) fail('"tags" allows at most 5 entries');
+      for (const t of entry.tags) {
+        if (!TEXTUREPACK_TAGS.includes(t)) fail(`unknown tag "${t}" (pick from: ${TEXTUREPACK_TAGS.join(', ')})`);
       }
     }
   }

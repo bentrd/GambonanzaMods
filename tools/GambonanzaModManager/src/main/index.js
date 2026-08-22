@@ -17,6 +17,8 @@ const instances = require('./instances');
 const framework = require('./framework');
 const publish = require('./publish');
 const updater = require('./updater');
+const texturePacks = require('./texturepacks');
+const assetCatalog = require('./assetcatalog');
 const { compareTags } = require('./versions');
 
 // Main process: owns the window, the settings store and every privileged
@@ -113,6 +115,10 @@ async function fullState({ forceRegistry = false } = {}) {
   const reg = await registry.getIndex({ force: forceRegistry });
   const installed = gameInfo?.valid ? await modsApi.listInstalled(gameInfo.modsDir) : [];
   const inst = await instances.summary({ modsDir: gameInfo?.valid ? gameInfo.modsDir : null });
+  const packs = await texturePacks.summary().catch((err) => {
+    log.warn('texturepacks', `could not list packs: ${err.message}`);
+    return { activeId: null, packs: [] };
+  });
   return {
     app: {
       version: app.getVersion(),
@@ -128,11 +134,13 @@ async function fullState({ forceRegistry = false } = {}) {
       generatedAt: reg.index.generatedAt || null,
       mods: modsApi.mergeState(reg.index.mods || [], installed),
       // Older cached indexes predate modpacks entirely - an empty list just
-      // renders the tab's "nothing here yet" note.
+      // renders the tab's "nothing here yet" note. Same for texture packs.
       modpacks: reg.index.modpacks || [],
+      texturepacks: reg.index.texturepacks || [],
     },
     installed,
     instances: inst,
+    texturePacks: packs,
     publish: { signInAvailable: publish.signInAvailable() },
   };
 }
@@ -264,12 +272,18 @@ function registerIpc() {
     const info = await game.inspect(normalized);
     if (!info.valid) throw new Error(info.reason);
     store.set('gamePath', info.gameDir);
+    // A pack chosen before the game folder existed was bookkeeping only; now
+    // there is somewhere to put it.
+    await flushTexturePacks(info);
     return info;
   });
 
   handle('game:detect', async () => {
     const info = await game.autoDetect();
-    if (info) store.set('gamePath', info.gameDir);
+    if (info) {
+      store.set('gamePath', info.gameDir);
+      await flushTexturePacks(info);
+    }
     return info;
   });
 
@@ -288,6 +302,155 @@ function registerIpc() {
   handle('instances:select', async ({ id } = {}) => {
     const info = await currentGameInfo();
     return instances.select({ id, modsDir: info?.valid ? info.modsDir : null });
+  });
+
+  // ---- Texture packs -----------------------------------------------------
+  //
+  // Every edit re-applies the selected pack straight away: there is no Apply
+  // button and no way to be looking at a pack the game is not wearing. The
+  // game reads the folder at launch, so "takes effect next launch" is the
+  // only latency there is.
+
+  /** Push the selected pack into a game folder that just became usable. */
+  const flushTexturePacks = async (info) => {
+    if (!info?.valid) return;
+    await texturePacks.reapply({ modsDir: info.modsDir })
+      .catch((err) => log.warn('texturepacks', `could not apply the selected pack: ${err.message}`));
+  };
+
+  const modsDirOrNull = async () => {
+    const info = await currentGameInfo();
+    return info?.valid ? info.modsDir : null;
+  };
+
+  const afterPackEdit = async (id) => {
+    const modsDir = await modsDirOrNull();
+    const state = await texturePacks.summary();
+    if (modsDir && state.activeId === id) await texturePacks.syncToGame({ id, modsDir });
+    return texturePacks.detail(id);
+  };
+
+  handle('texturepacks:detail', ({ id }) => texturePacks.detail(id));
+  handle('texturepacks:create', ({ name } = {}) => texturePacks.create({ name }));
+  handle('texturepacks:rename', ({ id, name } = {}) => texturePacks.rename({ id, name }));
+  handle('texturepacks:describe', (payload = {}) => texturePacks.describe(payload));
+  handle('texturepacks:delete', async ({ id } = {}) => texturePacks.remove({ id, modsDir: await modsDirOrNull() }));
+  handle('texturepacks:select', async ({ id = null } = {}) => texturePacks.setActive({ id, modsDir: await modsDirOrNull() }));
+
+  handle('texturepacks:catalog', ({ force } = {}) => assetCatalog.browseCatalog({ force: !!force }));
+  handle('texturepacks:texts', ({ force } = {}) => assetCatalog.browseTexts({ force: !!force }));
+  handle('texturepacks:previews', ({ ids } = {}) => assetCatalog.imageDataUrls(ids));
+
+  /** The user's own art for one override, for the tile hover preview. */
+  handle('texturepacks:packPreview', async ({ id, assetId } = {}) => {
+    const pack = await texturePacks.detail(id);
+    const record = pack.images.find((i) => i.assetId === assetId);
+    if (!record) return null;
+    const file = path.join(paths.texturePacksDir(), texturePacks.safePackId(id), record.file);
+    return `data:image/png;base64,${(await fsp.readFile(file)).toString('base64')}`;
+  });
+
+  handle('texturepacks:pickImage', async ({ id, assetId } = {}) => {
+    const result = await dialog.showOpenDialog(win, {
+      title: 'Choose your replacement image',
+      message: 'Pick a PNG to use instead of this asset',
+      filters: [{ name: 'Images', extensions: ['png'] }],
+      properties: ['openFile'],
+    });
+    if (result.canceled || !result.filePaths[0]) return null;
+    const bytes = await fsp.readFile(result.filePaths[0]);
+    const outcome = await texturePacks.setImage({ id, assetId, bytes });
+    return { ...outcome, pack: await afterPackEdit(id), from: path.basename(result.filePaths[0]) };
+  });
+
+  /** Drag-and-drop hands the bytes straight over; no file dialog involved. */
+  handle('texturepacks:setImage', async ({ id, assetId, bytes } = {}) => {
+    const buffer = Buffer.from(bytes || []);
+    if (!buffer.length) throw new Error('that file was empty');
+    const outcome = await texturePacks.setImage({ id, assetId, bytes: buffer });
+    return { ...outcome, pack: await afterPackEdit(id) };
+  });
+
+  handle('texturepacks:removeImage', async ({ id, assetId } = {}) => {
+    await texturePacks.removeImage({ id, assetId });
+    return afterPackEdit(id);
+  });
+
+  handle('texturepacks:setText', async ({ id, section, key, lang, value, original } = {}) => {
+    const outcome = await texturePacks.setText({ id, section, key, lang, value, original });
+    return { ...outcome, pack: await afterPackEdit(id) };
+  });
+
+  handle('texturepacks:removeText', async ({ id, section, key, lang } = {}) => {
+    await texturePacks.removeText({ id, section, key, lang });
+    return afterPackEdit(id);
+  });
+
+  handle('texturepacks:downloadOriginal', async ({ assetId, name } = {}) => {
+    const suggested = `${String(name || assetId).replace(/[^A-Za-z0-9._-]/g, '_')}.png`;
+    const result = await dialog.showSaveDialog(win, {
+      title: 'Save the original image',
+      defaultPath: suggested,
+      filters: [{ name: 'PNG image', extensions: ['png'] }],
+    });
+    if (result.canceled || !result.filePath) return null;
+    await fsp.writeFile(result.filePath, await assetCatalog.imageBytes(assetId));
+    return { path: result.filePath };
+  });
+
+  handle('texturepacks:export', async ({ id } = {}) => {
+    const pack = await texturePacks.detail(id);
+    const result = await dialog.showSaveDialog(win, {
+      title: 'Export texture pack',
+      defaultPath: `${String(pack.name).replace(/[^A-Za-z0-9._-]/g, '_') || 'texture-pack'}.zip`,
+      filters: [{ name: 'Zip archive', extensions: ['zip'] }],
+    });
+    if (result.canceled || !result.filePath) return null;
+    return texturePacks.exportPack({ id, destPath: result.filePath });
+  });
+
+  handle('texturepacks:import', async () => {
+    const result = await dialog.showOpenDialog(win, {
+      title: 'Import a texture pack',
+      message: 'Pick a texture pack zip someone shared with you',
+      filters: [{ name: 'Zip archive', extensions: ['zip'] }],
+      properties: ['openFile'],
+    });
+    if (result.canceled || !result.filePaths[0]) return null;
+    return texturePacks.importPack({ zipPath: result.filePaths[0] });
+  });
+
+  handle('texturepacks:install', async ({ id, operationId } = {}) => {
+    const reg = await registry.getIndex({});
+    const entry = (reg.index.texturepacks || []).find((p) => p.id === id);
+    if (!entry) throw new Error('that texture pack is no longer in the registry');
+    const controller = beginOperation(operationId);
+    try {
+      return await texturePacks.installFromRegistry({
+        entry,
+        onProgress: progressReporter(operationId),
+        signal: controller.signal,
+      });
+    } finally {
+      endOperation(operationId);
+    }
+  });
+
+  handle('texturepacks:publish', async ({ entry } = {}) => {
+    const token = store.get('githubToken');
+    if (!token) throw new Error('sign in with GitHub first');
+    return publish.submitTexturePack(token, sanitizeTexturePackEntry(entry), {
+      onStep: (message) => send('progress', { operationId: 'publish', step: 'publish', message, percent: null }),
+    });
+  });
+
+  handle('texturepacks:publishIssueUrl', ({ entry } = {}) => publish.texturePackIssueUrl(sanitizeTexturePackEntry(entry, { partial: true })));
+
+  handle('texturepacks:openFolder', async ({ id } = {}) => {
+    const dir = path.join(paths.texturePacksDir(), texturePacks.safePackId(id));
+    await fsp.mkdir(dir, { recursive: true }).catch(() => {});
+    await shell.openPath(dir);
+    return true;
   });
 
   handle('game:openFolder', async (which) => {
@@ -316,6 +479,8 @@ function registerIpc() {
         signal: controller.signal,
       });
       store.set('dismissedFrameworkVersion', '');
+      // Patching creates the Mods folder the pack sits next to.
+      await flushTexturePacks(await currentGameInfo());
       return result;
     } finally {
       endOperation(operationId);
@@ -599,6 +764,41 @@ function sanitizeModpackEntry(raw, { partial = false } = {}) {
   return entry;
 }
 
+/** Same job again, for the texture pack shape. */
+function sanitizeTexturePackEntry(raw, { partial = false } = {}) {
+  const entry = {};
+  const take = (key, max = 200) => {
+    const v = raw?.[key];
+    if (typeof v === 'string' && v.trim()) entry[key] = v.trim().slice(0, max);
+  };
+  take('id', 40);
+  take('name', 48);
+  take('author', 48);
+  take('summary', 140);
+  take('description', 4000);
+  take('repo', 100);
+  take('asset', 120);
+  take('tagPattern', 60);
+  take('homepage', 200);
+  take('preview', 300);
+  take('gameVersion', 40);
+  if (Array.isArray(raw?.tags)) entry.tags = raw.tags.filter((t) => typeof t === 'string').slice(0, 5);
+  if (!partial) {
+    for (const field of ['id', 'name', 'author', 'summary', 'repo', 'asset']) {
+      if (!entry[field]) throw new Error(`the "${field}" field is required`);
+    }
+    if (!/^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$/.test(entry.id)) {
+      throw new Error('the id must be lowercase letters, digits and dashes, like "midnight-chess"');
+    }
+    if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(entry.repo)) {
+      throw new Error('the repository must look like owner/name');
+    }
+    entry.submittedBy = store.get('githubLogin') || undefined;
+    entry.addedAt = new Date().toISOString().slice(0, 10);
+  }
+  return entry;
+}
+
 // ---------------------------------------------------------------------------
 // App lifecycle
 // ---------------------------------------------------------------------------
@@ -623,6 +823,14 @@ if (!gotLock) {
 
     registerIpc();
     createWindow();
+
+    // Self-heal the applied texture pack: a game reinstall, a moved install or
+    // a Steam "verify integrity" can take the folder with it, and the tab would
+    // otherwise keep claiming a pack is on when the game has nothing to load.
+    (async () => {
+      const info = await currentGameInfo();
+      if (info?.valid) await texturePacks.reapply({ modsDir: info.modsDir });
+    })().catch((err) => log.warn('texturepacks', `startup re-apply failed: ${err.message}`));
 
     if (store.get('autoCheckUpdates')) {
       // Give the window a moment to paint before hitting the network.

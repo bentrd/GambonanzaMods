@@ -44,6 +44,12 @@ namespace Gambonanza.ModHost
                 }
 
                 LogLine($"loaded {_registry.Count} mod(s).");
+
+                // Texture packs are data, not mods: a sibling folder of PNGs and
+                // string overrides applied at runtime. Loading them after the mods
+                // means a mod that ships its own art wins, which is the right way
+                // round - a re-skin should never break a mod's UI.
+                TexturePacks.Load(_modsDirectory, _console);
             }
             catch (Exception ex)
             {

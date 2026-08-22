@@ -28,6 +28,9 @@ module.exports = {
   /** Instance records + parked Mods folders of non-active instances. */
   instancesDir: () => path.join(root, 'instances'),
 
+  /** The texture-pack library: one folder per pack, plus which one is active. */
+  texturePacksDir: () => path.join(root, 'texturepacks'),
+
   /** manager.log lives here. */
   logsDir: () => path.join(root, 'logs'),
 

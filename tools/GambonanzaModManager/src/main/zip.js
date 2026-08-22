@@ -120,4 +120,41 @@ function findModRoot(dir, depth = 0) {
   return null;
 }
 
-module.exports = { extract, findModRoot, sanitizeEntryName, isInside };
+/**
+ * Zip a folder up. The one thing this app *writes* an archive for is
+ * exporting a texture pack, so it stays deliberately plain: every file under
+ * `dir`, nested inside a single top-level folder named `root` (which is what
+ * people expect when they double-click a zip), no symlinks followed.
+ *
+ * Returns the byte size of the archive written.
+ */
+async function create(dir, destPath, { root = '' } = {}) {
+  const archive = new AdmZip();
+  let total = 0;
+
+  const walk = async (current, prefix) => {
+    const entries = await fsp.readdir(current, { withFileTypes: true });
+    for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
+      if (entry.name.startsWith('.')) continue;
+      const full = path.join(current, entry.name);
+      const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) {
+        await walk(full, rel);
+      } else if (entry.isFile()) {
+        const data = await fsp.readFile(full);
+        total += data.length;
+        if (total > MAX_TOTAL_BYTES) throw new Error('this pack is too large to export');
+        archive.addFile(rel, data);
+      }
+    }
+  };
+
+  await walk(dir, root ? sanitizeEntryName(root) || '' : '');
+  await fsp.mkdir(path.dirname(destPath), { recursive: true });
+  await fsp.writeFile(destPath, archive.toBuffer());
+  const { size } = await fsp.stat(destPath);
+  log.info('zip', `wrote ${path.basename(destPath)}`, { bytes: size });
+  return size;
+}
+
+module.exports = { extract, create, findModRoot, sanitizeEntryName, isInside };

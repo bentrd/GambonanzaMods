@@ -20,7 +20,8 @@
 
 import { writeFile, readFile } from 'node:fs/promises';
 import {
-  INDEX_PATH, HOME_REPO, MODPACKS_DIR, loadEntries, validateEntry, validateModpackEntry,
+  INDEX_PATH, HOME_REPO, MODPACKS_DIR, TEXTUREPACKS_DIR, loadEntries, validateEntry,
+  validateModpackEntry, validateTexturePackEntry,
   parseSubmissionIssue, resolveLatestRelease, githubFetch, sha256, versionFromTag,
   manifestVersionFromZip, manifestAuthorFromZip,
 } from './lib.mjs';
@@ -35,6 +36,9 @@ const token = process.env.GITHUB_TOKEN;
 
 /** Refuse to hash anything absurd - mods are a few hundred KB at most. */
 const MAX_ASSET_BYTES = 64 * 1024 * 1024;
+
+/** Texture packs are art: one 2048x2048 sheet alone can be several MB. */
+const MAX_TEXTUREPACK_BYTES = 160 * 1024 * 1024;
 
 const previous = await readJson(INDEX_PATH);
 const previousById = new Map((previous?.mods || []).map((m) => [m.id, m]));
@@ -95,6 +99,12 @@ mods.push(...await collectSubmissionMods(entries));
 // never smuggle unvetted code past the reviewed badge.
 const modpacks = await buildModpacks(entries, mods);
 
+// Texture packs: art and wording, no code. They resolve like mods (their own
+// repo, their own release asset, hashed here so the manager can verify every
+// byte) but install into the manager's own library rather than the game's
+// Mods/ folder, and the framework applies them at runtime.
+const texturepacks = await buildTexturePacks();
+
 if (errors) {
   console.error(`\n${errors} entries failed validation - run tools/registry/validate.mjs for details.`);
   process.exit(1);
@@ -102,6 +112,7 @@ if (errors) {
 
 mods.sort((a, b) => a.name.localeCompare(b.name));
 modpacks.sort((a, b) => a.name.localeCompare(b.name));
+texturepacks.sort((a, b) => a.name.localeCompare(b.name));
 
 // Latest framework + manager releases ride inside the index so the app's
 // update checks read Pages (no rate limit) instead of the GitHub API
@@ -123,6 +134,7 @@ const index = {
   releases,
   mods,
   modpacks,
+  texturepacks,
 };
 
 const serialized = `${JSON.stringify(index, null, 2)}\n`;
@@ -138,9 +150,99 @@ if (checkOnly) {
 }
 
 await writeFile(INDEX_PATH, serialized);
-console.log(`\nWrote ${INDEX_PATH} (${mods.length} mods, ${mods.filter((m) => m.latest).length} installable, ${modpacks.length} modpack(s)).`);
+console.log(`\nWrote ${INDEX_PATH} (${mods.length} mods, ${mods.filter((m) => m.latest).length} installable, ${modpacks.length} modpack(s), ${texturepacks.length} texture pack(s)).`);
 
 // ---------------------------------------------------------------------------
+
+/**
+ * Load, validate and resolve registry/texturepacks/*.json.
+ *
+ * Same release resolution as a mod - newest matching tag, matching asset,
+ * SHA-256 recorded at review time - with a bigger size ceiling, because a
+ * pack that reskins a 2048x2048 sheet is legitimately several MB.
+ */
+async function buildTexturePacks() {
+  const previousById = new Map((previous?.texturepacks || []).map((p) => [p.id, p]));
+  const out = [];
+  const seen = new Set();
+
+  for (const { fileName, entry } of await loadEntries(TEXTUREPACKS_DIR)) {
+    const problems = validateTexturePackEntry(entry, fileName);
+    if (problems.length) {
+      errors++;
+      console.error(`✗ texturepacks/${fileName}: ${problems[0]}`);
+      continue;
+    }
+    if (seen.has(entry.id)) {
+      errors++;
+      console.error(`✗ texturepacks/${fileName}: duplicate texture pack id "${entry.id}"`);
+      continue;
+    }
+    seen.add(entry.id);
+
+    const cachedRecord = previousById.get(entry.id);
+    const record = {
+      ...entry,
+      official: entry.repo === HOME_REPO,
+      reviewed: true,
+      latest: null,
+    };
+    delete record.pending;
+
+    if (offline) {
+      record.latest = cachedRecord?.latest ?? null;
+      record.downloads = cachedRecord?.downloads ?? 0;
+      if (!record.latest) record.pending = true;
+      out.push(record);
+      console.log(`· texturepack ${entry.id} → ${record.latest ? `${record.latest.tag} (kept)` : 'no release yet'}`);
+      continue;
+    }
+
+    record.downloads = cachedRecord?.downloads ?? 0;
+    try {
+      const release = await resolveLatestRelease(record, { token });
+      if (release) {
+        record.downloads = release.downloads ?? record.downloads;
+        delete release.downloads;
+        const cached = cachedRecord?.latest;
+        const reusable = cached
+          && cached.tag === release.tag
+          && cached.asset?.name === release.asset.name
+          && cached.asset?.size === release.asset.size
+          && cached.asset?.sha256;
+        if (reusable) {
+          release.asset.sha256 = cached.asset.sha256;
+        } else {
+          if (release.asset.size > MAX_TEXTUREPACK_BYTES) {
+            throw new Error(`asset is ${(release.asset.size / 1e6).toFixed(1)} MB, over the ${MAX_TEXTUREPACK_BYTES / 1e6} MB ceiling`);
+          }
+          const buffer = await downloadAsset(release.asset.url);
+          release.asset.sha256 = sha256(buffer);
+        }
+        record.latest = release;
+        console.log(`· texturepack ${entry.id} → ${release.tag} (${release.asset.name})`);
+      } else if (cachedRecord?.latest) {
+        // Same guard the mod path carries: GitHub degrading into "200 with an
+        // empty array" mid-incident emptied the whole index once already
+        // (2026-08-17). Never delist a working pack over one bad answer.
+        record.latest = cachedRecord.latest;
+        record.stale = true;
+        console.warn(`! texturepack ${entry.id}: release list came back empty (kept last known release ${cachedRecord.latest.tag})`);
+      } else {
+        record.pending = true;
+        if (!entry.pending) console.warn(`! texturepack ${entry.id}: no release asset matching "${entry.asset}" yet`);
+      }
+    } catch (err) {
+      record.latest = cachedRecord?.latest ?? null;
+      if (!record.latest) record.pending = true;
+      console.warn(`! texturepack ${entry.id}: ${err.message}${record.latest ? ' (kept the last known release)' : ''}`);
+    }
+
+    out.push(record);
+  }
+
+  return out;
+}
 
 /**
  * Load, validate and resolve registry/modpacks/*.json. Validation failures
@@ -412,6 +514,18 @@ async function collectSubmissionMods(fileEntries) {
   }
   if (out.length) console.log(`${out.length} unreviewed submission(s) listed from open issues.`);
   return out;
+}
+
+/** Fetch a release asset into memory, with its own size ceiling. */
+async function downloadAsset(url, maxBytes = MAX_TEXTUREPACK_BYTES) {
+  const res = await fetch(url, {
+    headers: { 'user-agent': 'gambonanza-registry', accept: 'application/octet-stream' },
+    redirect: 'follow',
+  });
+  if (!res.ok) throw new Error(`download failed with HTTP ${res.status}`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (buf.length > maxBytes) throw new Error('asset exceeded the size ceiling mid-download');
+  return buf;
 }
 
 /** Hash and read the mod's declared version from one download, not two. */

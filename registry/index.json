@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T08:50:50.128Z",
+  "generatedAt": "2026-08-22T09:08:31.428Z",
   "count": 22,
   "releases": {
     "framework": {
@@ -1243,5 +1243,6 @@
       "downloads": 31,
       "installable": true
     }
-  ]
+  ],
+  "texturepacks": []
 }

@@ -31,13 +31,34 @@ const state = {
     entry: { mods: [] },
     submitting: false,
   },
+  tpPublish: {
+    entry: {},
+    submitting: false,
+    prefilledFor: null,
+  },
   ui: {
     packMenuFor: null,   // mod id whose "add to modpack" dropdown is open
     instMenuOpen: false, // header instance-selector dropdown
+    tpAddMenuOpen: false, // the texture-pack "+" tile's Image/Text menu
+  },
+  tp: {
+    selectedId: null,    // texture pack the bottom panel is showing
+    detail: null,        // its full manifest
+    catalog: null,       // the game's sprites + textures (fetched once)
+    texts: null,         // the game's localised strings (fetched once)
+    previews: new Map(), // assetId -> data URL, or null when the site has none
+    pending: new Set(),
+    browser: null,       // open asset-browser modal state
   },
 };
 
 const $ = (id) => document.getElementById(id);
+/**
+ * replaceChildren() stringifies anything that is not a Node, so a `cond ? x :
+ * null` hole renders the word "null" on screen. el() already filters those out
+ * of its own children; this does the same for a container being repainted.
+ */
+const fill = (node, ...children) => node.replaceChildren(...children.flat().filter((c) => c != null && c !== false));
 const el = (tag, attrs = {}, ...children) => {
   const node = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
@@ -313,10 +334,26 @@ function dismissToast(t) {
 }
 
 const modal = {
-  open({ title, body, progress = false, buttons = [] }) {
+  /** Set while a dismissable dialog is open, so Escape knows what to undo. */
+  escape: null,
+
+  /**
+   * `content` takes real nodes, for the dialogs that are more than a sentence
+   * and two buttons (the asset browser). `wide` widens the frame for them.
+   */
+  open({ title, body, progress = false, buttons = [], content = null, wide = false }) {
     $('modalTitle').textContent = title;
     $('modalBody').textContent = body || '';
+    $('modalBody').hidden = !body;
     $('modalInput').hidden = true;
+    const custom = $('modalCustom');
+    custom.hidden = !content;
+    custom.replaceChildren(...(content ? [content].flat().filter(Boolean) : []));
+    document.querySelector('.modal').classList.toggle('wide', !!wide);
+    // Only a button that says so is the way out. Inferring it from position
+    // would make Escape press "Delete" on a confirmation dialog, which is the
+    // exact opposite of what Escape means.
+    this.escape = buttons.find((b) => b.dismiss)?.onClick || null;
     $('modalProgress').hidden = !progress;
     $('modalProgressFill').classList.add('indeterminate');
     $('modalProgressFill').style.width = '0%';
@@ -324,19 +361,31 @@ const modal = {
     row.replaceChildren(...buttons.map(({ label, kind = 'btn-cream', onClick }) =>
       el('button', { class: `btn ${kind}`, onclick: onClick }, label)));
     $('modalBackdrop').classList.add('open');
+    // Tab must not walk out of a modal into the app behind the backdrop.
+    document.querySelector('.app').setAttribute('inert', '');
+    setTimeout(() => {
+      const first = document.querySelector('.modal input:not([hidden]), .modal textarea, .modal button');
+      first?.focus();
+    }, 0);
   },
   progress({ message, percent }) {
     if (message) $('modalBody').textContent = message;
-    const fill = $('modalProgressFill');
+    const bar = $('modalProgressFill');
     if (percent == null) {
-      fill.classList.add('indeterminate');
+      bar.classList.add('indeterminate');
     } else {
-      fill.classList.remove('indeterminate');
-      fill.style.width = `${percent}%`;
+      bar.classList.remove('indeterminate');
+      bar.style.width = `${percent}%`;
     }
   },
   close() {
+    this.escape = null;
+    document.querySelector('.app').removeAttribute('inert');
     $('modalBackdrop').classList.remove('open');
+    $('modalCustom').replaceChildren();
+    $('modalCustom').hidden = true;
+    $('modalBody').hidden = false;
+    document.querySelector('.modal').classList.remove('wide');
   },
 };
 
@@ -346,7 +395,7 @@ function confirmModal({ title, body, confirmLabel, confirmKind = 'btn-red' }) {
       title,
       body,
       buttons: [
-        { label: 'Cancel', kind: 'btn-cream', onClick: () => { modal.close(); resolve(false); } },
+        { label: 'Cancel', kind: 'btn-cream', dismiss: true, onClick: () => { modal.close(); resolve(false); } },
         { label: confirmLabel, kind: confirmKind, onClick: () => { modal.close(); resolve(true); } },
       ],
     });
@@ -362,7 +411,7 @@ function promptModal({ title, body, placeholder = '', initial = '', confirmLabel
       title,
       body,
       buttons: [
-        { label: 'Cancel', kind: 'btn-cream', onClick: () => done(null) },
+        { label: 'Cancel', kind: 'btn-cream', dismiss: true, onClick: () => done(null) },
         { label: confirmLabel, kind: 'btn-green', onClick: () => done(input.value.trim() || null) },
       ],
     });
@@ -415,6 +464,7 @@ function renderAll() {
   renderHome();
   renderBrowse();
   renderModpacks();
+  renderTexturePacks();
   renderInstalled();
   renderUpdates();
   renderPublish();
@@ -1245,6 +1295,1128 @@ async function openPackIssueSubmission() {
 }
 
 // ---------------------------------------------------------------------------
+// Texture packs
+// ---------------------------------------------------------------------------
+
+// A pack re-skins the game: replacement art for any sprite or sheet, and
+// replacement wording for any of the 1229 strings the game ships. The tab is
+// laid out like Instances on purpose - a shelf of packs on top, the contents
+// of the one you're looking at underneath - because they answer the same kind
+// of question ("which set of things is the game using?").
+//
+// The contents panel is deliberately mute: one square per override with an
+// icon for art or text, and every detail on hover. Someone with forty edits
+// should see a shelf, not a table.
+
+const TP_ICONS = {
+  image: pix('M1 2h10v1H1zM1 3h1v6H1zM10 3h1v6h-1zM1 9h10v1H1zM8 4h1v1H8zM5 5h1v1H5zM4 6h3v1H4zM3 7h5v1H3zM2 8h8v1H2z'),
+  text: pix('M2 2h2v1H2zM1 3h1v7H1zM4 3h1v7H4zM2 6h2v1H2zM8 4h2v1H8zM7 5h1v1H7zM10 5h1v5h-1zM8 7h2v1H8zM7 8h1v1H7zM8 9h2v1H8z'),
+};
+
+/** The game's own language codes - the ones its trad_<code> tables use. */
+const GAME_LANGS = {
+  en: 'English', fr: 'Français', ge: 'Deutsch', sp: 'Español', pt_br: 'Português (BR)',
+  ru: 'Русский', pl: 'Polski', tr: 'Türkçe', jp: '日本語', ko: '한국어', zh: '简体中文',
+};
+
+function fmtBytes(n) {
+  if (!n) return '0 KB';
+  if (n >= 1e6) return `${(n / 1e6).toFixed(1)} MB`;
+  return `${Math.max(1, Math.round(n / 1000))} KB`;
+}
+
+function packList() {
+  return state.data?.texturePacks?.packs || [];
+}
+
+function activePackId() {
+  return state.data?.texturePacks?.activeId || null;
+}
+
+/** Which pack the bottom panel is describing. Follows the worn one by default. */
+function selectedPack() {
+  const list = packList();
+  if (!list.length) return null;
+  return list.find((p) => p.id === state.tp.selectedId)
+    || list.find((p) => p.id === activePackId())
+    || list[0];
+}
+
+function renderTexturePacks() {
+  const badge = $('packsCount');
+  const list = packList();
+  badge.hidden = !list.length;
+  badge.textContent = String(list.length);
+  renderPackCards();
+  renderPackPanel();
+  renderRegistryPacks();
+  renderPackPublish();
+}
+
+function renderPackCards() {
+  const grid = $('tpGrid');
+  if (!grid) return;
+  const chosen = selectedPack();
+
+  const cards = packList().map((p) => {
+    const bits = [];
+    if (p.imageCount) bits.push(`${p.imageCount} image${p.imageCount === 1 ? '' : 's'}`);
+    if (p.textCount) bits.push(`${p.textCount} text${p.textCount === 1 ? '' : 's'}`);
+    if (!bits.length) bits.push('empty');
+    bits.push(fmtBytes(p.bytes));
+
+    return el('div', {
+      class: `inst-card${p.active ? ' active' : ''}${chosen && chosen.id === p.id && !p.active ? ' sel' : ''}`,
+      title: p.active ? 'The game is wearing this pack' : 'Click to open this pack',
+      onclick: () => { state.tp.selectedId = p.id; state.tp.detail = null; renderTexturePacks(); loadPackDetail(p.id); },
+    },
+      el('div', { class: 'head' },
+        el('h3', {}, p.name),
+        p.active ? el('span', { class: 'tag green' }, 'worn') : null),
+      el('div', { class: 'meta' }, bits.join(' · ')),
+      el('div', { class: 'foot' },
+        p.active
+          ? el('button', { class: 'btn btn-cream small', title: 'Go back to the game’s own art', onclick: (ev) => { ev.stopPropagation(); wearPack(null); } }, 'Turn off')
+          : el('button', { class: 'btn btn-green small', title: 'Make the game use this pack', onclick: (ev) => { ev.stopPropagation(); wearPack(p.id); } }, 'Wear'),
+        el('button', { class: 'btn btn-cream small', onclick: (ev) => { ev.stopPropagation(); renamePackFlow(p); } }, 'Rename'),
+        el('button', { class: 'btn btn-cream small', title: 'Save this pack as a zip you can send to anyone', onclick: (ev) => { ev.stopPropagation(); exportPackFlow(p); } }, 'Share'),
+        el('button', { class: 'btn btn-red small', onclick: (ev) => { ev.stopPropagation(); deletePackFlow(p); } }, 'Delete')));
+  });
+
+  cards.push(el('button', { class: 'inst-card new', onclick: () => createPackFlow() },
+    el('span', { class: 'plus' }, '＋'), 'New texture pack'));
+  grid.replaceChildren(...cards);
+}
+
+function renderPackPanel() {
+  const title = $('tpPanelTitle');
+  const head = $('tpPanelHead');
+  const tiles = $('tpTiles');
+  const foot = $('tpFootnote');
+  if (!tiles) return;
+
+  const chosen = selectedPack();
+  if (!chosen) {
+    title.textContent = 'Contents';
+    head.replaceChildren();
+    tiles.replaceChildren(el('div', { class: 'empty-note' },
+      'No texture packs yet. Make one above, or import one someone sent you.'));
+    foot.hidden = true;
+    return;
+  }
+
+  title.textContent = chosen.name;
+  const detail = state.tp.detail && state.tp.detail.id === chosen.id ? state.tp.detail : null;
+
+  const game = state.data?.game;
+  const ready = game?.valid && game.state === 'patched';
+  let status;
+  if (!chosen.active) status = 'Not worn. Press Wear on its card to put it on.';
+  else if (!game?.valid) status = 'Worn, but no game folder is set up yet - open Set up first.';
+  else if (!ready) status = 'Worn, but the game is not patched - texture packs need the framework (Set up).';
+  else status = 'Worn - the game loads this the next time it starts.';
+
+  head.replaceChildren(
+    el('div', { class: 'grow' },
+      el('div', { class: 'pname' }, chosen.name),
+      el('div', { class: `pmeta${chosen.active && !ready ? ' warn' : ''}` }, status)),
+    el('button', {
+      class: 'btn btn-cream small',
+      title: 'Look inside this pack. images/ holds your artwork - to change it, drop a new PNG in through ＋ rather than editing in place.',
+      onclick: () => api.openPackFolder({ id: chosen.id }),
+    }, 'Open folder'));
+
+  if (!detail) {
+    tiles.replaceChildren(el('div', { class: 'empty-note' }, el('span', { class: 'spin' }), ' Loading…'));
+    foot.hidden = true;
+    loadPackDetail(chosen.id);
+    return;
+  }
+
+  const squares = [];
+  for (const image of detail.images) squares.push(imageTile(chosen, image));
+  for (const text of detail.texts) squares.push(textTile(chosen, text));
+  squares.push(addTile(chosen));
+  tiles.replaceChildren(...squares);
+
+  foot.hidden = false;
+  if (!detail.images.length && !detail.texts.length) {
+    foot.textContent = 'Nothing in this pack yet. Press ＋ to replace a picture or reword some text.';
+  } else if (!chosen.active) {
+    foot.textContent = 'Changes are saved as you make them, but this pack is not worn - press Wear on its card to put it on the game.';
+  } else if (!ready) {
+    foot.textContent = 'Changes are saved, but the game is not set up for mods yet - open Set up to patch it.';
+  } else {
+    foot.textContent = 'Every change is saved and applied straight away - there is no Apply button. Restart the game to see it.';
+  }
+
+  // Tiles show the user's own art, fetched one pack at a time. Skipping what is
+  // already in flight matters: without it a repaint that lands mid-fetch asks
+  // for the same keys, loadPackPreviews skips them all without ever awaiting,
+  // and its tail repaint calls straight back into here until the stack blows.
+  const missing = detail.images.filter((i) => {
+    const key = `pack:${chosen.id}:${i.assetId}`;
+    return !state.tp.previews.has(key) && !state.tp.pending.has(key);
+  });
+  if (missing.length) loadPackPreviews(chosen.id, missing.map((i) => i.assetId));
+}
+
+function imageTile(pack, image) {
+  const key = `pack:${pack.id}:${image.assetId}`;
+  const art = state.tp.previews.get(key);
+  return el('button', {
+    class: 'tp-tile image',
+    onclick: () => openImageBrowser(pack, image.assetId),
+  },
+    art
+      ? el('img', { class: 'art', src: art, alt: '' })
+      : el('span', { class: 'glyph', html: TP_ICONS.image }),
+    el('span', { class: 'tp-tip' },
+      el('div', { class: 't' }, image.label || image.name),
+      el('div', { class: 'd' },
+        `${image.width}×${image.height} · ${image.category}`,
+        image.kind === 'sprite' ? ` · on ${image.atlasName}` : ' · whole sheet',
+        image.compressed ? ' · compressed sheet' : '')));
+}
+
+function textTile(pack, text) {
+  const shown = text.values.find((v) => v.lang === '*') || text.values[0];
+  return el('button', {
+    class: 'tp-tile text',
+    onclick: () => openTextBrowser(pack, `${text.section}/${text.key}`),
+  },
+    el('span', { class: 'glyph', html: TP_ICONS.text }),
+    el('span', { class: 'tp-tip' },
+      el('div', { class: 't' }, `${text.section} / ${text.key}`),
+      text.original ? el('div', { class: 'was' }, text.original) : null,
+      el('div', { class: 'now' }, shown ? shown.value : ''),
+      el('div', { class: 'd' }, text.values.map((v) => (v.lang === '*' ? 'every language' : GAME_LANGS[v.lang] || v.lang)).join(', '))));
+}
+
+/** The ＋ square: a two-item menu, because art and text are different dialogs. */
+function addTile(pack) {
+  const open = state.ui.tpAddMenuOpen;
+  return el('span', { class: `tp-add-wrap${open ? ' open' : ''}` },
+    el('button', {
+      class: 'tp-tile add',
+      title: 'Add something to this pack',
+      onclick: (ev) => { ev.stopPropagation(); state.ui.tpAddMenuOpen = !open; renderPackPanel(); },
+    },
+      el('span', { class: 'plus' }, '＋'),
+      open ? null : el('span', { class: 'tp-tip' },
+        el('div', { class: 't' }, 'Add an override'),
+        el('div', { class: 'd' }, 'A picture, or a line of text'))),
+    el('span', { class: 'menu' },
+      el('button', {
+        class: 'mi',
+        onclick: (ev) => { ev.stopPropagation(); state.ui.tpAddMenuOpen = false; renderPackPanel(); openImageBrowser(pack); },
+      }, el('span', { class: 'micon', html: TP_ICONS.image }), 'Image'),
+      el('button', {
+        class: 'mi',
+        onclick: (ev) => { ev.stopPropagation(); state.ui.tpAddMenuOpen = false; renderPackPanel(); openTextBrowser(pack); },
+      }, el('span', { class: 'micon', html: TP_ICONS.text }), 'Text')));
+}
+
+// ---- pack actions ---------------------------------------------------------
+
+async function loadPackDetail(id) {
+  // renderAll() repaints the panel on every state refresh; without this a slow
+  // fetch would be started once per repaint.
+  if (state.tp.loading === id) return;
+  state.tp.loading = id;
+  try {
+    const detail = await call(api.packDetail, { id });
+    // Two clicks in quick succession: only the pack still on screen wins.
+    if (selectedPack()?.id !== id) return;
+    state.tp.detail = detail;
+    renderPackPanel();
+  } catch (err) {
+    toast(err.message, 'err');
+  } finally {
+    if (state.tp.loading === id) state.tp.loading = null;
+  }
+}
+
+async function loadPackPreviews(packId, assetIds) {
+  let fetched = 0;
+  for (const assetId of assetIds) {
+    const key = `pack:${packId}:${assetId}`;
+    if (state.tp.pending.has(key)) continue;
+    state.tp.pending.add(key);
+    try {
+      state.tp.previews.set(key, await call(api.packPreview, { id: packId, assetId }));
+      fetched++;
+    } catch {
+      state.tp.previews.set(key, null);
+      fetched++;
+    } finally {
+      state.tp.pending.delete(key);
+    }
+  }
+  // Only repaint when something actually changed - a repaint that found nothing
+  // to do would otherwise ask for the same keys again on the next frame.
+  if (fetched) renderPackPanel();
+}
+
+async function createPackFlow() {
+  const name = await promptModal({
+    title: 'New texture pack',
+    body: 'A texture pack is your own art and wording layered over the game. You can wear one at a time, and share it as a zip.',
+    placeholder: 'e.g. Midnight chess, Cursed pieces…',
+    confirmLabel: 'Create',
+  });
+  if (!name) return;
+  try {
+    const rec = await call(api.createPack, { name });
+    state.tp.selectedId = rec.id;
+    state.tp.detail = null;
+    toast(`"${rec.name}" created - add some art to it.`, 'ok');
+    await refresh();
+    loadPackDetail(rec.id);
+  } catch (err) {
+    toast(err.message, 'err');
+  }
+}
+
+async function renamePackFlow(pack) {
+  const name = await promptModal({
+    title: 'Rename texture pack', body: '', placeholder: 'New name', initial: pack.name, confirmLabel: 'Rename',
+  });
+  if (!name || name === pack.name) return;
+  try { await call(api.renamePack, { id: pack.id, name }); } catch (err) { toast(err.message, 'err'); }
+  await refresh();
+}
+
+async function deletePackFlow(pack) {
+  const count = pack.imageCount + pack.textCount;
+  const yes = await confirmModal({
+    title: `Delete "${pack.name}"?`,
+    body: count
+      ? `Its ${count} override${count === 1 ? '' : 's'} go with it. Export it first if you want to keep a copy.`
+      : 'The pack is empty - nothing else is touched.',
+    confirmLabel: 'Delete',
+  });
+  if (!yes) return;
+  try {
+    await call(api.deletePack, { id: pack.id });
+    if (state.tp.selectedId === pack.id) { state.tp.selectedId = null; state.tp.detail = null; }
+    toast(`"${pack.name}" deleted.`, 'ok');
+  } catch (err) {
+    toast(err.message, 'err');
+  }
+  await refresh();
+}
+
+async function wearPack(id) {
+  try {
+    await call(api.selectPack, { id });
+    const game = state.data?.game;
+    if (!id) toast('Texture pack off - the game’s own art is back.', 'ok');
+    else if (!game?.valid) toast('Pack selected. Set up your game folder and it will be applied.', 'ok');
+    else if (game.state !== 'patched') toast('Pack selected - patch the game and it will be applied.', 'ok');
+    else toast('Pack applied - restart the game to see it.', 'ok');
+  } catch (err) {
+    toast(err.message, 'err');
+  }
+  await refresh();
+}
+
+async function exportPackFlow(pack) {
+  try {
+    const result = await call(api.exportPack, { id: pack.id });
+    if (result) toast(`Exported ${fmtBytes(result.bytes)} - send that zip to anyone with the manager.`, 'ok');
+  } catch (err) {
+    toast(err.message, 'err');
+  }
+}
+
+async function importPackFlow() {
+  try {
+    const result = await call(api.importPack, {});
+    if (!result) return;
+    state.tp.selectedId = result.id;
+    state.tp.detail = null;
+    const skipped = result.skipped ? ` ${result.skipped} override${result.skipped === 1 ? '' : 's'} didn't match this version of the game and were dropped.` : '';
+    toast(`Imported "${result.name}" - ${result.images} image(s), ${result.texts} text(s).${skipped}`, 'ok');
+    await refresh();
+    loadPackDetail(result.id);
+  } catch (err) {
+    toast(err.message, 'err');
+  }
+}
+
+
+// ---- community packs ------------------------------------------------------
+
+function registryPacks() {
+  return state.data?.registry?.texturepacks || [];
+}
+
+function renderRegistryPacks() {
+  const grid = $('tpRegistryGrid');
+  const empty = $('tpRegistryEmpty');
+  if (!grid) return;
+
+  const list = registryPacks().filter((p) => p.latest);
+  empty.hidden = list.length > 0;
+  // Already in the library? Then say whether it is current, rather than
+  // quietly making a second copy of the same pack.
+  const have = new Map(packList().filter((p) => p.registryId).map((p) => [p.registryId, p]));
+
+  grid.replaceChildren(...list.map((p) => {
+    const mine = have.get(p.id);
+    const installed = !!mine;
+    const behind = installed && p.latest?.version && mine.version
+      && compareVersionStrings(p.latest.version, mine.version) > 0;
+    const bits = [p.author ? `by ${p.author}` : null, p.latest?.version ? `v${p.latest.version}` : null,
+      p.latest?.asset?.size ? fmtBytes(p.latest.asset.size) : null].filter(Boolean);
+    return el('div', { class: `inst-card${installed ? ' active' : ''}` },
+      el('div', { class: 'head' },
+        el('h3', {}, p.name),
+        behind ? el('span', { class: 'tag blue' }, `v${p.latest.version}`) : null,
+        installed && !behind ? el('span', { class: 'tag green' }, 'in library') : null,
+        p.official ? el('span', { class: 'tag gold' }, 'official') : null),
+      el('div', { class: 'meta' }, bits.join(' · ')),
+      el('div', { class: 'meta', style: 'flex:1' }, p.summary || ''),
+      el('div', { class: 'foot' },
+        el('button', {
+          class: 'btn btn-cream small',
+          title: 'Open the pack’s repository',
+          onclick: () => api.openExternal(`https://github.com/${p.repo}`),
+        }, 'Source'),
+        el('button', {
+          class: !installed || behind ? 'btn btn-green small' : 'btn btn-cream small',
+          title: installed
+            ? 'Downloads a fresh copy alongside the one you already have - your edits to that copy are untouched'
+            : 'Add it to your library',
+          onclick: () => installRegistryPack(p, mine),
+        }, behind ? `Update to v${p.latest.version}` : (installed ? 'Get a fresh copy' : 'Install'))));
+  }));
+}
+
+/** Numeric-segment version compare; good enough for "is there a newer one". */
+function compareVersionStrings(a, b) {
+  const parse = (v) => String(v || '').split(/[.-]/).map((x) => parseInt(x, 10)).map((x) => (Number.isFinite(x) ? x : 0));
+  const left = parse(a);
+  const right = parse(b);
+  for (let i = 0; i < Math.max(left.length, right.length); i++) {
+    const diff = (left[i] || 0) - (right[i] || 0);
+    if (diff) return diff > 0 ? 1 : -1;
+  }
+  return 0;
+}
+
+async function installRegistryPack(entry, existing = null) {
+  if (existing) {
+    const yes = await confirmModal({
+      title: `Download ${entry.name} again?`,
+      body: `You already have "${existing.name}" from this pack. This adds a second copy - the one you have, and any edits you made to it, is left alone.`,
+      confirmLabel: 'Download',
+      confirmKind: 'btn-green',
+    });
+    if (!yes) return;
+  }
+  const operationId = `tp-install-${entry.id}-${Date.now()}`;
+  modal.open({
+    title: `Installing ${entry.name}`,
+    body: 'Starting…',
+    progress: true,
+    buttons: [{ label: 'Cancel', kind: 'btn-cream', onClick: () => api.cancelOperation({ operationId }) }],
+  });
+  try {
+    const result = await call(api.installRegistryPack, { id: entry.id, operationId });
+    modal.close();
+    state.tp.selectedId = result.id;
+    state.tp.detail = null;
+    const skipped = result.skipped
+      ? ` ${result.skipped} override${result.skipped === 1 ? '' : 's'} didn't match this version of the game and were dropped.`
+      : '';
+    toast(`"${result.name}" is in your library - press Wear to put it on.${skipped}`, 'ok');
+    await refresh();
+    loadPackDetail(result.id);
+  } catch (err) {
+    modal.close();
+    toast(err.message, 'err');
+  }
+}
+
+// ---- sharing your own -----------------------------------------------------
+
+function renderPackPublish() {
+  const auth = $('tpPublishAuth');
+  if (!auth) return;
+  auth.replaceChildren(authBox('texture pack'));
+  renderPackPublishFields();
+}
+
+function renderPackPublishFields() {
+  const p = state.tpPublish;
+  const box = $('tpPublishForm');
+  const e = p.entry;
+
+  const field = (label, key, { placeholder = '', help = '', full = false, textarea = false } = {}) => {
+    const input = el(textarea ? 'textarea' : 'input', {
+      class: 'game-input',
+      placeholder,
+      oninput: (ev) => { e[key] = ev.target.value; },
+    });
+    input.value = e[key] || '';
+    return el('div', { class: `field${full ? ' full' : ''}` },
+      el('label', {}, label), input,
+      help ? el('div', { class: 'help' }, help) : null);
+  };
+
+  // Prefill from whichever pack is open, so the form is mostly filled in
+  // before anyone types: the name and author are already known.
+  const chosen = selectedPack();
+  if (chosen && p.prefilledFor !== chosen.id) {
+    const suggest = (key, value) => {
+      // Replace a value only while it is still the last pack's suggestion -
+      // anything typed by hand survives switching packs.
+      if (!e[key] || e[key] === p.suggested?.[key]) e[key] = value;
+    };
+    const suggestion = {
+      name: chosen.name,
+      author: chosen.author || '',
+      id: chosen.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40),
+      summary: chosen.summary || '',
+      description: chosen.description || '',
+    };
+    for (const [key, value] of Object.entries(suggestion)) suggest(key, value);
+    p.suggested = suggestion;
+    p.prefilledFor = chosen.id;
+  }
+
+  fill(box,
+    chosen ? el('div', { class: 'inset-row tiny', style: 'margin-bottom:4px' },
+      'Filled in from ', el('b', {}, chosen.name), ' - the pack open above. Pick another pack to switch.') : null,
+    el('div', { class: 'form-grid', style: 'margin-top:14px' },
+      field('Pack name', 'name', { placeholder: 'Midnight Chess' }),
+      field('Registry id', 'id', { placeholder: 'midnight-chess', help: 'lowercase-with-dashes, permanent' }),
+      field('Author', 'author', { placeholder: 'you' }),
+      field('One-line summary', 'summary', { placeholder: 'What does it re-skin?' }),
+      field('Your repository', 'repo', { placeholder: 'you/my-texture-packs', help: 'owner/name - downloads are pinned to it' }),
+      field('Release asset', 'asset', { placeholder: 'midnight-chess-*.zip', help: 'the zip you exported, attached to a release' }),
+      field('Longer description', 'description', { full: true, textarea: true, placeholder: 'What it changes, and what it looks like. (optional)' })),
+    el('div', { style: 'display:flex; gap:10px; justify-content:center; margin-top:18px; flex-wrap:wrap' },
+      state.publish.signedIn
+        ? el('button', { class: 'btn btn-green', disabled: p.submitting, onclick: submitPackToRegistry },
+          p.submitting ? 'Submitting…' : 'Submit to the registry')
+        : null,
+      el('button', { class: 'btn btn-cream', onclick: openPackIssue }, 'Open submission on GitHub')));
+}
+
+async function submitPackToRegistry() {
+  const p = state.tpPublish;
+  p.submitting = true;
+  renderPackPublishFields();
+  try {
+    const result = await call(api.publishPack, { entry: p.entry });
+    toast('Submitted! Your pull request is open on GitHub.', 'ok');
+    api.openExternal(result.url);
+  } catch (err) {
+    toast(err.message, 'err');
+  } finally {
+    p.submitting = false;
+    renderPackPublishFields();
+  }
+}
+
+async function openPackIssue() {
+  try {
+    api.openExternal(await call(api.packIssueUrl, { entry: state.tpPublish.entry }));
+  } catch (err) {
+    toast(err.message, 'err');
+  }
+}
+
+// ---------------------------------------------------------------------------
+// The asset browser
+// ---------------------------------------------------------------------------
+
+// The gambonanzaassets gallery, rebuilt inside the manager: every sprite and
+// texture in the game on the left, the one you picked on the right, with its
+// original next to your replacement. The catalogue metadata and the previews
+// both come through the main process, so the sandboxed UI still never talks to
+// the network itself.
+
+/**
+ * TextMeshPro markup is part of the string the game parses - <color=...>,
+ * <sprite=9>, <wave>. Showing it as chips makes it obvious that it is
+ * structure rather than words, so a replacement keeps it.
+ */
+function tmpMarkup(text) {
+  const nodes = [];
+  const tag = /<\/?[^<>]{1,48}>/g;
+  let last = 0;
+  let match = tag.exec(text);
+  while (match) {
+    if (match.index > last) nodes.push(text.slice(last, match.index));
+    nodes.push(el('span', { class: 'tmp-tag' }, match[0]));
+    last = match.index + match[0].length;
+    match = tag.exec(text);
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes.length ? nodes : [text];
+}
+
+async function ensureCatalog() {
+  if (state.tp.catalog) return state.tp.catalog;
+  state.tp.catalog = await call(api.assetCatalog, {});
+  return state.tp.catalog;
+}
+
+async function ensureTexts() {
+  if (state.tp.texts) return state.tp.texts;
+  state.tp.texts = await call(api.assetTexts, {});
+  return state.tp.texts;
+}
+
+/** Fetch previews for a batch of ids, then repaint whatever asked for them. */
+async function ensurePreviews(ids, repaint) {
+  const missing = ids.filter((id) => !state.tp.previews.has(id) && !state.tp.pending.has(id));
+  if (!missing.length) return;
+  missing.forEach((id) => state.tp.pending.add(id));
+  try {
+    const map = await call(api.assetPreviews, { ids: missing });
+    for (const id of missing) state.tp.previews.set(id, map[id] ?? null);
+  } catch {
+    missing.forEach((id) => state.tp.previews.set(id, null));
+  } finally {
+    missing.forEach((id) => state.tp.pending.delete(id));
+  }
+  repaint?.();
+}
+
+/** The panel shown when the catalogue could not be fetched. */
+function browserError(err, retry) {
+  return el('div', { class: 'ab-blank', style: 'flex-direction:column; gap:10px; text-align:center; padding:24px' },
+    el('div', { class: 'ph' },
+      'Could not load the game\u2019s asset list.', el('br'),
+      el('span', { class: 'tiny muted' }, err.message)),
+    el('button', { class: 'btn btn-cream small', onclick: retry }, '\u21bb Try again'));
+}
+
+function browserFrame({ title, head, left, right, onClose }) {
+  // Search and filters span the dialog; the two panes share what is left.
+  const root = el('div', { class: 'ab' },
+    el('div', { class: 'ab-head' }, head),
+    el('div', { class: 'ab-body' }, left, right));
+  modal.open({
+    title,
+    wide: true,
+    content: root,
+    buttons: [{ label: 'Done', kind: 'btn-cream', dismiss: true, onClick: () => { onClose?.(); modal.close(); } }],
+  });
+  return root;
+}
+
+// ---- images ---------------------------------------------------------------
+
+async function openImageBrowser(pack, preselect = null) {
+  const grid = el('div', { class: 'ab-grid' });
+  const detail = el('div', { class: 'ab-right' });
+  const search = el('input', {
+    class: 'game-input', type: 'search', placeholder: 'Search the game’s art…',
+    oninput: (ev) => { session.search = ev.target.value; paintGrid(); },
+  });
+  const chips = el('div', { class: 'chip-row' });
+  const head = [
+    el('div', { class: 'toolbar' }, el('div', { class: 'search', style: 'flex:1' }, search)),
+    chips,
+  ];
+  const left = el('div', { class: 'ab-left' }, grid);
+
+  state.tp.browser = { mode: 'image', packId: pack.id, search: '', category: '', selected: preselect };
+  // Closing the dialog nulls state.tp.browser, and opening the other one
+  // replaces it. Every continuation below compares against this object, so a
+  // slow save that lands after either can bail instead of painting into
+  // detached DOM (or throwing on a null it still expects to be there).
+  const session = state.tp.browser;
+  const live = () => state.tp.browser === session;
+
+  browserFrame({
+    title: 'Replace a picture',
+    head,
+    left,
+    right: detail,
+    onClose: () => { state.tp.browser = null; },
+  });
+  grid.replaceChildren(el('div', { class: 'ab-cell' }, el('span', { class: 'ph' }, 'Loading…')));
+
+  let catalog;
+  try {
+    catalog = await ensureCatalog();
+  } catch (err) {
+    // A 74px thumbnail cell is no place for "check your internet connection".
+    fill(left, browserError(err, async () => {
+      state.tp.catalog = null;
+      modal.close();
+      state.tp.browser = null;
+      openImageBrowser(pack, preselect);
+    }));
+    fill(detail, el('div', { class: 'ab-blank' }, el('span', { class: 'ph' }, 'Nothing to show until the catalogue loads.')));
+    return;
+  }
+  if (!live()) return; // closed while we were fetching
+
+  const observer = new IntersectionObserver((entries) => {
+    const wanted = entries.filter((e) => e.isIntersecting).map((e) => e.target.dataset.assetId).filter(Boolean);
+    if (wanted.length) ensurePreviews(wanted, paintGrid);
+  }, { root: grid, rootMargin: '160px' });
+
+  function matches(entry) {
+    const { search: q, category } = session;
+    if (category && entry.category !== category) return false;
+    if (!q) return true;
+    const needle = q.toLowerCase();
+    return entry.label.toLowerCase().includes(needle)
+      || entry.name.toLowerCase().includes(needle)
+      || (entry.atlas || '').toLowerCase().includes(needle);
+  }
+
+  function paintChips() {
+    if (!live()) return;
+    const { category } = session;
+    chips.replaceChildren(
+      el('button', {
+        class: `chip${category ? '' : ' on'}`,
+        onclick: () => { session.category = ''; paintChips(); paintGrid(); },
+      }, `Everything (${catalog.counts.total})`),
+      ...catalog.categories.map((c) => el('button', {
+        class: `chip${category === c.name ? ' on' : ''}`,
+        onclick: () => { session.category = c.name; paintChips(); paintGrid(); },
+      }, `${c.name} (${c.count})`)));
+  }
+
+  const GRID_CAP = 400;
+
+  function paintGrid() {
+    if (!live()) return;
+    observer.disconnect();
+    const all = catalog.entries.filter(matches);
+    const shown = all.slice(0, GRID_CAP);
+    if (!shown.length) {
+      grid.replaceChildren(el('div', { class: 'ab-cell' }, el('span', { class: 'ph' }, 'Nothing matches')));
+      return;
+    }
+    const edited = new Set((state.tp.detail?.images || []).map((i) => i.assetId));
+    grid.replaceChildren(...shown.map((entry) => {
+      const preview = state.tp.previews.get(entry.id);
+      const cell = el('button', {
+        class: `ab-cell${session.selected === entry.id ? ' on' : ''}${edited.has(entry.id) ? ' edited' : ''}`,
+        'data-asset-id': entry.id,
+        title: `${entry.label} · ${entry.width}×${entry.height}${entry.kind === 'texture' ? ' · whole sheet' : ''}`,
+        onclick: () => { session.selected = entry.id; session.confirmRemove = null; paintGrid(); paintDetail(); },
+      }, preview
+        ? el('img', { src: preview, alt: '' })
+        : el('span', { class: 'ph' }, preview === null && state.tp.previews.has(entry.id) ? entry.label : '…'));
+      observer.observe(cell);
+      return cell;
+    }));
+    // Say so rather than quietly stopping at 400 while the chip claims 682.
+    if (all.length > shown.length) {
+      grid.append(el('div', { class: 'ab-cell more' },
+        el('span', { class: 'ph' }, `+${all.length - shown.length} more`, el('br'), 'search or pick a category')));
+    }
+  }
+
+  function paintDetail() {
+    if (!live()) return;
+    const id = session.selected;
+    if (!id) {
+      fill(detail, el('div', { class: 'ab-blank' },
+        el('span', { class: 'ph' }, 'Pick a picture on the left.', el('br'),
+          'You’ll get its original to paint over, and somewhere to drop yours back in.')));
+      return;
+    }
+    const entry = catalog.entries.find((e) => e.id === id);
+    if (!entry) return;
+    ensurePreviews([id], paintDetail);
+    const original = state.tp.previews.get(id);
+    // `null` means we asked and the site had nothing; `undefined` means we
+    // haven't asked yet. Only the first is a dead end.
+    const unavailable = state.tp.previews.get(id) === null && state.tp.previews.has(id);
+    const mine = state.tp.previews.get(`pack:${pack.id}:${id}`);
+    const existing = (state.tp.detail?.images || []).find((i) => i.assetId === id);
+    if (existing && mine === undefined) loadPackPreviews(pack.id, [id]);
+
+    fill(detail,
+      el('div', { class: 'ab-pair' },
+        el('div', {},
+          el('div', { class: 'cap' }, 'In the game'),
+          el('div', { class: 'ab-preview' }, original
+            ? el('img', { src: original, alt: '' })
+            : el('span', { class: 'ph' }, original === null ? 'no preview published yet' : 'loading…'))),
+        el('div', {},
+          el('div', { class: 'cap' }, 'Your version'),
+          el('div', { class: 'ab-preview' }, mine
+            ? el('img', { src: mine, alt: '' })
+            : el('span', { class: 'ph' }, 'nothing yet')))),
+
+      el('div', { class: 'ab-facts' },
+        el('b', {}, entry.label), el('br'),
+        `${entry.width}×${entry.height} · ${entry.format || 'unknown format'}`,
+        entry.kind === 'sprite' ? ` · one sprite on ${entry.atlas}` : ` · a whole sheet${entry.spriteCount ? ` (${entry.spriteCount} sprites on it)` : ''}`,
+        el('br'), el('span', { class: 'muted' }, entry.name)),
+
+      // Order by what someone came here to do: drop art in, then the buttons
+      // beside it, and only then the notes. On a short window it is the
+      // reading matter that scrolls out of sight, never the controls.
+      unavailable
+        ? el('div', { class: 'ab-note' },
+          'The game’s own copy of this one isn’t published yet, so it can’t be re-composited. '
+          + 'It usually means the art site is a game update behind; try again after the next catalogue refresh.')
+        : el('button', {
+          class: 'ab-drop',
+          onclick: () => pickImage(entry),
+          ondragover: (ev) => { ev.preventDefault(); ev.currentTarget.classList.add('over'); },
+          ondragleave: (ev) => ev.currentTarget.classList.remove('over'),
+          ondrop: (ev) => { ev.preventDefault(); ev.currentTarget.classList.remove('over'); dropImage(ev, entry); },
+        },
+          el('b', {}, existing ? 'Replace your image' : 'Drop a PNG here'),
+          `or click to choose one · ${entry.width}×${entry.height} fits exactly`),
+
+      el('div', { class: 'ab-actions' },
+        el('button', {
+          class: 'btn btn-cream small',
+          disabled: unavailable,
+          title: unavailable ? 'Not published for this game build yet' : 'Save the game’s own version, to paint over',
+          onclick: () => saveOriginal(entry),
+        }, '⬇ Save the original'),
+        existing ? el('button', {
+          class: `btn small ${session.confirmRemove === entry.id ? 'btn-red' : 'btn-cream'}`,
+          title: 'Deletes your image for this asset from the pack',
+          onclick: () => {
+            // Two-step in place rather than a confirm dialog: this app has one
+            // modal backdrop, and opening a second would replace the browser.
+            if (session.confirmRemove !== entry.id) {
+              session.confirmRemove = entry.id;
+              paintDetail();
+              return;
+            }
+            session.confirmRemove = null;
+            dropOverride(entry);
+          },
+        }, session.confirmRemove === entry.id ? 'Delete my image?' : 'Remove from pack') : null),
+
+      entry.compressed ? el('div', { class: 'ab-note' },
+        'This sheet is block-compressed. Replacing anything on it re-encodes the whole sheet, so colours elsewhere on it can shift very slightly.') : null,
+
+      entry.kind === 'texture' && entry.spriteCount ? el('div', { class: 'ab-note' },
+        `Replacing this sheet replaces all ${entry.spriteCount} sprites on it at once. To change just one, search for it by name instead.`) : null);
+  }
+
+  async function applyBytes(entry, bytes, from) {
+    try {
+      const result = await call(api.setPackImage, { id: pack.id, assetId: entry.id, bytes });
+      state.tp.detail = result.pack;
+      state.tp.previews.delete(`pack:${pack.id}:${entry.id}`);
+      await loadPackPreviews(pack.id, [entry.id]);
+      paintGrid();
+      paintDetail();
+      await refresh();
+      toast(result.resized
+        ? `${from || 'Image'} was ${result.given.width}×${result.given.height} - scaled to ${entry.width}×${entry.height}.`
+        : `${entry.label} replaced.`, 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
+  }
+
+  async function pickImage(entry) {
+    try {
+      const result = await call(api.pickPackImage, { id: pack.id, assetId: entry.id });
+      if (!result) return;
+      state.tp.detail = result.pack;
+      state.tp.previews.delete(`pack:${pack.id}:${entry.id}`);
+      await loadPackPreviews(pack.id, [entry.id]);
+      paintGrid();
+      paintDetail();
+      await refresh();
+      toast(result.resized
+        ? `${result.from} was ${result.given.width}×${result.given.height} - scaled to ${entry.width}×${entry.height}.`
+        : `${entry.label} replaced.`, 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
+  }
+
+  async function dropImage(ev, entry) {
+    const file = ev.dataTransfer?.files?.[0];
+    if (!file) return;
+    if (!/\.png$/i.test(file.name)) { toast('Texture packs take PNG files.', 'err'); return; }
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    await applyBytes(entry, bytes, file.name);
+  }
+
+  async function saveOriginal(entry) {
+    try {
+      const result = await call(api.downloadOriginal, { assetId: entry.id, name: entry.name });
+      if (result) toast('Saved. Paint over it and drop it back in.', 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
+  }
+
+  async function dropOverride(entry) {
+    try {
+      state.tp.detail = await call(api.removePackImage, { id: pack.id, assetId: entry.id });
+      state.tp.previews.delete(`pack:${pack.id}:${entry.id}`);
+      paintGrid();
+      paintDetail();
+      await refresh();
+      toast(`${entry.label} is back to the game’s own art.`, 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
+  }
+
+  paintChips();
+  paintGrid();
+  paintDetail();
+  setTimeout(() => search.focus(), 0);
+}
+
+// ---- texts ----------------------------------------------------------------
+
+async function openTextBrowser(pack, preselect = null) {
+  const rows = el('div', { class: 'ab-rows' });
+  const detail = el('div', { class: 'ab-right' });
+  const search = el('input', {
+    class: 'game-input', type: 'search', placeholder: 'Search every string, in every language…',
+    oninput: (ev) => { session.search = ev.target.value; paintRows(); },
+  });
+  const head = [el('div', { class: 'toolbar' }, el('div', { class: 'search', style: 'flex:1' }, search))];
+  const left = el('div', { class: 'ab-left' }, rows);
+
+  state.tp.browser = { mode: 'text', packId: pack.id, search: '', selected: preselect, lang: '*', drafts: {} };
+  const session = state.tp.browser;
+  const live = () => state.tp.browser === session;
+
+  browserFrame({
+    title: 'Reword some text',
+    head,
+    left,
+    right: detail,
+    onClose: () => { state.tp.browser = null; },
+  });
+  rows.replaceChildren(el('div', { class: 'ab-sec' }, 'Loading…'));
+
+  let texts;
+  try {
+    texts = await ensureTexts();
+    if (!texts.sections.length) throw new Error('the text catalogue came back empty');
+  } catch (err) {
+    fill(rows, browserError(err, async () => {
+      state.tp.texts = null;
+      modal.close();
+      state.tp.browser = null;
+      openTextBrowser(pack, preselect);
+    }));
+    fill(detail, el('div', { class: 'ab-blank' }, el('span', { class: 'ph' }, 'Nothing to show until the strings load.')));
+    return;
+  }
+  if (!live()) return;
+
+  /** English first - it is the column people recognise while searching. */
+  const baseIndex = Math.max(0, texts.languages.indexOf('en'));
+
+  const ROW_CAP = 500;
+
+  function overrideFor(section, key) {
+    return (state.tp.detail?.texts || []).find((t) => t.section === section && t.key === key) || null;
+  }
+
+  function paintRows() {
+    if (!live()) return;
+    const q = session.search.trim().toLowerCase();
+    const chunks = [];
+    let shown = 0;
+    let total = 0;
+    let capped = false;
+    for (const section of texts.sections) {
+      const hits = section.entries.filter((entry) => !q
+        || entry.key.toLowerCase().includes(q)
+        || section.name.toLowerCase().includes(q)
+        || entry.values.some((v) => (v || '').toLowerCase().includes(q)));
+      total += hits.length;
+      if (!hits.length) continue;
+      // Count first, THEN decide: a header with no rows under it looks broken.
+      if (shown >= ROW_CAP) { capped = true; continue; }
+      chunks.push(el('div', { class: 'ab-sec' }, `${section.name} · ${hits.length}`));
+      for (const entry of hits) {
+        if (shown++ >= ROW_CAP) { capped = true; break; }
+        const id = `${section.name}/${entry.key}`;
+        const mine = overrideFor(section.name, entry.key);
+        chunks.push(el('button', {
+          class: `ab-row${session.selected === id ? ' on' : ''}`,
+          onclick: () => selectRow(id),
+        },
+          el('span', { class: 'k' }, entry.key),
+          el('span', { class: 'v' }, entry.values[baseIndex] || entry.values[0] || ''),
+          Object.keys(session.drafts).some((k) => k.startsWith(`${id}::`))
+            ? el('span', { class: 'edited unsaved', title: 'unsaved wording' }, '●')
+            : (mine ? el('span', { class: 'edited' }, '✎') : null)));
+      }
+    }
+    if (capped) {
+      chunks.push(el('div', { class: 'ab-sec' },
+        `showing the first ${ROW_CAP} of ${total} - type to narrow it down`));
+    }
+    fill(rows, chunks.length ? chunks : [el('div', { class: 'ab-sec' }, 'Nothing matches')]);
+  }
+
+  /**
+   * Drafts are kept per string and per language rather than in one slot, so
+   * clicking another row - or flipping the language picker to check a
+   * translation - never throws away what someone typed. (A confirm dialog was
+   * the other option, but this app has a single modal backdrop: opening one
+   * from inside the browser would replace the browser.)
+   */
+  const draftKey = (id, lang) => `${id}::${lang}`;
+  const getDraft = (id, lang) => session.drafts[draftKey(id, lang)];
+  const setDraft = (id, lang, value) => { session.drafts[draftKey(id, lang)] = value; };
+  const clearDraft = (id, lang) => { delete session.drafts[draftKey(id, lang)]; };
+
+  function selectRow(id) {
+    if (!live() || session.selected === id) return;
+    session.selected = id;
+    session.confirmRemove = null;
+    paintRows();
+    paintDetail();
+  }
+
+  function find(id) {
+    if (!id) return null;
+    const cut = id.indexOf('/');
+    const sectionName = id.slice(0, cut);
+    const key = id.slice(cut + 1);
+    const section = texts.sections.find((s) => s.name === sectionName);
+    const entry = section?.entries.find((e) => e.key === key);
+    return entry ? { sectionName, key, entry } : null;
+  }
+
+  function paintDetail() {
+    if (!live()) return;
+    const found = find(session.selected);
+    if (!found) {
+      fill(detail, el('div', { class: 'ab-blank' },
+        el('span', { class: 'ph' }, 'Pick a line on the left.', el('br'),
+          'You’ll see what the game says and can type what it should say instead.')));
+      return;
+    }
+    const { sectionName, key, entry } = found;
+    const mine = overrideFor(sectionName, key);
+    const lang = session.lang;
+    const langIndex = lang === '*' ? baseIndex : Math.max(0, texts.languages.indexOf(lang));
+    const original = entry.values[langIndex] || '';
+    const current = mine?.values.find((v) => v.lang === lang);
+    const id = `${sectionName}/${key}`;
+    const saved = current?.value ?? original;
+    const draft = getDraft(id, lang) ?? saved;
+    const dirty = draft !== saved;
+
+    const box = el('textarea', {
+      class: 'game-input', rows: 4,
+      oninput: (ev) => {
+        setDraft(id, lang, ev.target.value);
+        // Only the Save button's look changes, so typing never repaints the box
+        // out from under the cursor.
+        const button = detail.querySelector('.js-save-text');
+        if (button) button.classList.toggle('btn-green', ev.target.value !== saved);
+      },
+    });
+    box.value = draft;
+
+    const picker = el('select', {
+      class: 'game-input',
+      onchange: (ev) => { session.lang = ev.target.value; paintDetail(); },
+    },
+      el('option', { value: '*' }, 'Every language'),
+      ...texts.languages.map((code) => el('option', { value: code }, GAME_LANGS[code] || code)));
+    picker.value = lang;
+
+    fill(detail,
+      el('div', { class: 'ab-facts' }, el('b', {}, `${sectionName} / ${key}`)),
+      el('div', { class: 'cap' }, 'What the game says'),
+      el('div', { class: 'ab-orig' }, ...tmpMarkup(original || '(empty)')),
+      el('div', { class: 'ab-lang' },
+        el('span', { class: 'tiny' }, 'Apply to'),
+        picker),
+      el('div', { class: 'cap' }, 'What it should say'),
+      box,
+      /^\s*$/.test(draft) ? null : markupNote(draft),
+      el('div', { class: 'ab-actions' },
+        // `draft` is what is in the box right now; pass it explicitly so Save
+        // can never fall back past the override the box is showing.
+        el('button', {
+          class: `btn small js-save-text ${dirty || !mine ? 'btn-green' : 'btn-cream'}`,
+          onclick: () => save(sectionName, key, original, box.value),
+        }, 'Save override'),
+        mine ? el('button', {
+          class: `btn small ${session.confirmRemove === `${sectionName}/${key}` ? 'btn-red' : 'btn-cream'}`,
+          title: mine.values.length > 1 ? 'Removes this override in every language it has' : '',
+          onclick: () => {
+            const rowId = `${sectionName}/${key}`;
+            if (session.confirmRemove !== rowId) { session.confirmRemove = rowId; paintDetail(); return; }
+            session.confirmRemove = null;
+            drop(sectionName, key);
+          },
+        }, session.confirmRemove === `${sectionName}/${key}`
+          ? (mine.values.length > 1 ? `Remove all ${mine.values.length} languages?` : 'Remove it?')
+          : 'Remove from pack') : null),
+      mine ? el('div', { class: 'ab-facts' },
+        'In this pack for: ',
+        mine.values.map((v) => (v.lang === '*' ? 'every language' : GAME_LANGS[v.lang] || v.lang)).join(', ')) : null);
+  }
+
+  /** The game turns a handful of characters into colour codes before drawing. */
+  function markupNote(text) {
+    const sentinels = ['&', '|', '∏', '°', '£', '^', '*', '§', '_', '¨', '€', '~', '}', '@', 'Ø', '‡', '∑', 'π', '≈', 'µ', 'æ', 'ƒ', '◊', '∞', '√', '∆', '∂', '©', '∫', '≠'];
+    const found = sentinels.filter((c) => text.includes(c));
+    if (!found.length) return null;
+    return el('div', { class: 'ab-note' },
+      `The game reads ${found.join(' ')} as colour markup and swaps ${found.length === 1 ? 'it' : 'them'} for a colour code before drawing. `
+      + 'That is how the game colours words - keep it if you meant it.');
+  }
+
+  async function save(sectionName, key, original, typed) {
+    const value = typed ?? original;
+    try {
+      const result = await call(api.setPackText, {
+        id: pack.id, section: sectionName, key, lang: session.lang, value, original,
+      });
+      state.tp.detail = result.pack;
+      if (live()) clearDraft(`${sectionName}/${key}`, session.lang);
+      paintRows();
+      paintDetail();
+      await refresh();
+      toast('Text override saved.', 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
+  }
+
+  async function drop(sectionName, key) {
+    try {
+      state.tp.detail = await call(api.removePackText, { id: pack.id, section: sectionName, key });
+      if (live()) clearDraft(`${sectionName}/${key}`, session.lang);
+      paintRows();
+      paintDetail();
+      await refresh();
+      toast('Back to the game’s own wording.', 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
+  }
+
+  paintRows();
+  paintDetail();
+  setTimeout(() => search.focus(), 0);
+}
+
+// ---------------------------------------------------------------------------
 // Installed
 // ---------------------------------------------------------------------------
 
@@ -1848,6 +3020,7 @@ api.on('publish:signedIn', ({ login }) => {
   toast(`Signed in as ${login}.`, 'ok');
   renderPublish();
   renderModpacks();
+  renderTexturePacks();
   loadRepos();
 });
 
@@ -1856,6 +3029,7 @@ api.on('publish:signInFailed', ({ error }) => {
   toast(`Sign-in failed: ${error}`, 'err');
   renderPublish();
   renderModpacks();
+  renderTexturePacks();
 });
 
 for (const btn of document.querySelectorAll('.nav-btn')) {
@@ -1871,6 +3045,22 @@ document.addEventListener('click', (ev) => {
     state.ui.instMenuOpen = false;
     renderInstanceSelector();
   }
+  if (state.ui.tpAddMenuOpen && !ev.target.closest('.tp-add-wrap')) {
+    state.ui.tpAddMenuOpen = false;
+    renderPackPanel();
+  }
+});
+$('tpImportBtn').addEventListener('click', importPackFlow);
+document.addEventListener('keydown', (ev) => {
+  // promptModal wires its own Escape on the input; this covers the rest,
+  // including the asset browser, whose only other exit is a small Done button.
+  if (ev.key !== 'Escape') return;
+  if (!$('modalBackdrop').classList.contains('open')) return;
+  if (!$('modalInput').hidden) return;
+  const out = modal.escape;
+  if (!out) return;
+  ev.preventDefault();
+  out();
 });
 $('playBtn').addEventListener('click', launchGame);
 $('modSearch').addEventListener('input', (e) => { state.search = e.target.value; renderBrowse(); });

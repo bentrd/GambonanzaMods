@@ -4,6 +4,26 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.6.0
+
+- **Texture packs.** A new tab, and a whole second thing you can make: your
+  own art and your own wording, layered over the game. Every sprite and
+  texture the game ships is in there - all 200 gambit icons, both piece sets,
+  every boss, the tiles, the title art - searchable and categorised, each with
+  its original PNG a click away. Paint over one, drop it back in, and the
+  pack updates immediately; there is no Apply button. The same tab does text:
+  all 1229 of the game's strings in all 11 languages, with the game's own
+  markup shown as chips so you keep it intact.
+  Packs work like instances - a shelf of them, one worn at a time, switchable
+  in a click - and like modpacks for sharing: export one as a zip to hand to a
+  friend, or publish it to the registry and let anyone install it. Downloads
+  are pinned to the author's repository and checked against the checksum
+  recorded at review time, exactly as mods are.
+  This replaces the offline `tools/GambonanzaAssets` patcher, which needed
+  Python, rewrote your game's asset files, and lost everything to a Steam
+  update. Nothing is rewritten now: the framework applies the pack while the
+  game runs. Needs framework 1.5.0.
+
 ## 1.5.0
 
 - **See the actual gambits.** Mods that add gambits now show them the way
