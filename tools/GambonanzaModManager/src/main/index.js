@@ -111,18 +111,25 @@ async function currentGameInfo() {
 }
 
 /**
- * Put a texture pack on (or take one off) without letting a missing pack
- * break the thing that asked. A modpack can name a pack the user has since
- * deleted from the library; that means "no pack", not "refuse to switch".
+ * Put a stack of texture packs on (or take them all off) without letting one
+ * missing pack break the thing that asked. A modpack can name a pack the user
+ * has since deleted from the library; that means "wear the rest", not "refuse
+ * to switch", so the dead ids are dropped and forgotten and the survivors go
+ * on in the same order.
  */
-async function wearTexturePack(texturePackId, modsDir) {
+async function wearTexturePacks(ids, modsDir) {
+  const wanted = (ids || []).filter(Boolean);
   try {
-    return await texturePacks.setActive({ id: texturePackId || null, modsDir });
+    return await texturePacks.setActive({ ids: wanted, modsDir });
   } catch (err) {
-    log.warn('texturepacks', `could not wear ${texturePackId}: ${err.message}`);
-    if (texturePackId) await modpacks.forgetTexturePack(texturePackId).catch(() => {});
-    return texturePacks.setActive({ id: null, modsDir }).catch(() => null);
+    log.warn('texturepacks', `could not wear ${wanted.join(', ')}: ${err.message}`);
   }
+  const library = await texturePacks.summary().catch(() => ({ packs: [] }));
+  const alive = wanted.filter((id) => library.packs.some((p) => p.id === id));
+  for (const gone of wanted.filter((id) => !alive.includes(id))) {
+    await modpacks.forgetTexturePack(gone).catch(() => {});
+  }
+  return texturePacks.setActive({ ids: alive, modsDir }).catch(() => null);
 }
 
 /**
@@ -132,33 +139,44 @@ async function wearTexturePack(texturePackId, modsDir) {
  * mods are the part people came for, so a pack whose art will not download
  * is a note in the result, not an exception.
  */
-async function installPackSkin(pack, { report, signal, modsDir }) {
-  if (!pack.texturepack) return null;
-  try {
-    const reg = await registry.getIndex({});
-    const entry = (reg.index.texturepacks || []).find((t) => t.id === pack.texturepack);
-    if (!entry) throw new Error('it is no longer in the registry');
+async function installPackSkins(pack, { report, signal, modsDir }) {
+  const wanted = pack.texturepacks || [];
+  if (!wanted.length) return null;
 
-    const library = await texturePacks.summary();
-    const have = library.packs.find((t) => t.registryId === entry.id
-      && (!entry.latest?.version || t.version === entry.latest.version));
+  const reg = await registry.getIndex({});
+  const worn = [];
+  const names = [];
+  const failed = [];
 
-    let target = have;
-    if (!target) {
-      report({ step: 'skin', message: `Getting the ${entry.name} texture pack…`, percent: null });
-      target = await texturePacks.installFromRegistry({
-        entry,
-        onProgress: report,
-        signal,
-      });
+  // Order is precedence, so a pack that fails to download is skipped in place
+  // rather than shifting the ones behind it.
+  for (const id of wanted) {
+    try {
+      const entry = (reg.index.texturepacks || []).find((t) => t.id === id);
+      if (!entry) throw new Error(`${id} is no longer in the registry`);
+
+      const library = await texturePacks.summary();
+      const have = library.packs.find((t) => t.registryId === entry.id
+        && (!entry.latest?.version || t.version === entry.latest.version));
+
+      let target = have;
+      if (!target) {
+        report({ step: 'skin', message: `Getting the ${entry.name} texture pack…`, percent: null });
+        target = await texturePacks.installFromRegistry({ entry, onProgress: report, signal });
+      }
+      worn.push(target.id);
+      names.push(entry.name);
+    } catch (err) {
+      log.warn('modpacks', `could not install texture pack ${id}: ${err.message}`);
+      failed.push(err.message);
     }
-    await wearTexturePack(target.id, modsDir);
-    await modpacks.setTexturePack({ texturePackId: target.id });
-    return { id: target.id, name: entry.name, reused: !!have };
-  } catch (err) {
-    log.warn('modpacks', `could not install the pack's texture pack: ${err.message}`);
-    return { error: err.message };
   }
+
+  if (worn.length) {
+    await wearTexturePacks(worn, modsDir);
+    await modpacks.setTexturePacks({ texturePackIds: worn });
+  }
+  return { ids: worn, names, error: failed.length ? failed.join('; ') : undefined };
 }
 
 /** Undo the "switch to a fresh modpack" half of a pack install that failed. */
@@ -166,7 +184,7 @@ async function rollbackNewModpack(id, previousId, modsDir) {
   try {
     if (previousId && previousId !== id) {
       const back = await modpacks.select({ id: previousId, modsDir });
-      await wearTexturePack(back.texturePackId, modsDir);
+      await wearTexturePacks(back.texturePackIds, modsDir);
     }
     await modpacks.remove({ id });
   } catch (err) {
@@ -181,7 +199,7 @@ async function fullState({ forceRegistry = false } = {}) {
   const packs = await modpacks.summary({ modsDir: gameInfo?.valid ? gameInfo.modsDir : null });
   const skins = await texturePacks.summary().catch((err) => {
     log.warn('texturepacks', `could not list texture packs: ${err.message}`);
-    return { activeId: null, packs: [] };
+    return { activeIds: [], packs: [] };
   });
   return {
     app: {
@@ -361,11 +379,11 @@ function registerIpc() {
   // ---- Modpacks ----------------------------------------------------------
   //
   // A modpack owns both halves of a setup: the mods in its Mods/ folder and
-  // the texture pack it wears. Selecting one therefore always moves both -
+  // the texture packs it wears. Selecting one therefore always moves both -
   // never the mods alone, or the tab would show a setup the game isn't in.
 
-  handle('modpacks:create', ({ name, author, summary, description, texturePackId, registryId } = {}) =>
-    modpacks.create({ name, author, summary, description, texturePackId, registryId }));
+  handle('modpacks:create', ({ name, author, summary, description, texturePackIds, registryId } = {}) =>
+    modpacks.create({ name, author, summary, description, texturePackIds, registryId }));
   handle('modpacks:rename', ({ id, name } = {}) => modpacks.rename({ id, name }));
   handle('modpacks:describe', (payload = {}) => modpacks.describe(payload));
   handle('modpacks:delete', ({ id } = {}) => modpacks.remove({ id }));
@@ -373,7 +391,7 @@ function registerIpc() {
     const info = await currentGameInfo();
     const modsDir = info?.valid ? info.modsDir : null;
     const result = await modpacks.select({ id, modsDir });
-    await wearTexturePack(result.texturePackId, modsDir);
+    await wearTexturePacks(result.texturePackIds, modsDir);
     return result;
   });
 
@@ -399,7 +417,7 @@ function registerIpc() {
   const afterPackEdit = async (id) => {
     const modsDir = await modsDirOrNull();
     const state = await texturePacks.summary();
-    if (modsDir && state.activeId === id) await texturePacks.syncToGame({ id, modsDir });
+    if (modsDir && state.activeIds.includes(id)) await texturePacks.syncToGame({ ids: state.activeIds, modsDir });
     return texturePacks.detail(id);
   };
 
@@ -413,13 +431,18 @@ function registerIpc() {
     await modpacks.forgetTexturePack(id);
     return result;
   });
-  handle('texturepacks:select', async ({ id = null } = {}) => {
-    // Wearing a pack is a property of the setup you are in, not a global
+  /**
+   * The whole worn stack at once, highest precedence first. One primitive for
+   * wearing, taking off and reordering: the renderer sends the list it wants,
+   * which is simpler to reason about than three verbs that must agree.
+   */
+  handle('texturepacks:setWorn', async ({ ids = [] } = {}) => {
+    // Wearing packs is a property of the setup you are in, not a global
     // switch: switch modpacks and back, and you get your own look back.
-    // Recorded only once the pack is actually on, so a rejected id cannot
-    // leave the setup pointing at art the game never loaded.
-    const result = await texturePacks.setActive({ id, modsDir: await modsDirOrNull() });
-    await modpacks.setTexturePack({ texturePackId: id });
+    // Recorded only once they are actually on, so a rejected id cannot leave
+    // the setup pointing at art the game never loaded.
+    const result = await texturePacks.setActive({ ids, modsDir: await modsDirOrNull() });
+    await modpacks.setTexturePacks({ texturePackIds: result.activeIds });
     return result;
   });
 
@@ -682,7 +705,7 @@ function registerIpc() {
         });
         report({ step: 'pack', message: `Switching to "${target.name}"`, percent: null });
         await modpacks.select({ id: target.id, modsDir: info.modsDir });
-        await wearTexturePack(null, info.modsDir);
+        await wearTexturePacks([], info.modsDir);
       }
 
       // Read the destination AFTER the swap - "what is already here" is a
@@ -700,8 +723,8 @@ function registerIpc() {
         }));
       }
 
-      const skin = await installPackSkin(pack, { report, signal: controller.signal, modsDir: info.modsDir });
-      return { installed: results, modpackId: target?.id || null, texturePack: skin };
+      const skins = await installPackSkins(pack, { report, signal: controller.signal, modsDir: info.modsDir });
+      return { installed: results, modpackId: target?.id || null, texturePacks: skins };
     } catch (err) {
       // Cancelling a download must not leave the player sitting in an empty
       // modpack they never asked for: put them back where they were and take
@@ -865,9 +888,12 @@ function sanitizeModpackEntry(raw, { partial = false } = {}) {
   take('author', 48);
   take('summary', 140);
   take('description', 4000);
-  take('texturepack', 40);
   if (Array.isArray(raw?.mods)) {
     entry.mods = [...new Set(raw.mods.filter((m) => typeof m === 'string' && m.trim()).map((m) => m.trim()))].slice(0, 24);
+  }
+  if (Array.isArray(raw?.texturepacks)) {
+    // Order is precedence, so dedupe must keep the FIRST occurrence.
+    entry.texturepacks = [...new Set(raw.texturepacks.filter((t) => typeof t === 'string' && t.trim()).map((t) => t.trim()))].slice(0, 8);
   }
   if (Array.isArray(raw?.tags)) entry.tags = raw.tags.filter((t) => typeof t === 'string').slice(0, 5);
   if (!partial) {
@@ -879,7 +905,7 @@ function sanitizeModpackEntry(raw, { partial = false } = {}) {
     }
     // A setup is worth sharing as soon as it changes something. One mod, or
     // no mods and a texture pack, are both real answers to "what is my game".
-    if (!entry.mods?.length && !entry.texturepack) {
+    if (!entry.mods?.length && !entry.texturepacks?.length) {
       throw new Error('a modpack needs at least one mod or a texture pack in it');
     }
     entry.submittedBy = store.get('githubLogin') || undefined;
@@ -952,8 +978,8 @@ if (!gotLock) {
     // happens before the window can ask for state - otherwise the first paint
     // could show "no texture pack" for a setup that is wearing one.
     await (async () => {
-      const skin = await texturePacks.summary().catch(() => null);
-      await modpacks.adoptTexturePack(skin?.activeId || null);
+      const skins = await texturePacks.summary().catch(() => null);
+      await modpacks.adoptTexturePacks(skins?.activeIds || []);
     })().catch((err) => log.warn('modpacks', `could not adopt the worn texture pack: ${err.message}`));
 
     registerIpc();

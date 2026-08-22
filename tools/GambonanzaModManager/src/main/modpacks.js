@@ -67,6 +67,20 @@ function cleanText(value, max) {
   return String(value || '').trim().slice(0, max);
 }
 
+/** At most a handful of packs make sense in one stack, and it bounds the merge. */
+const MAX_WORN = 8;
+
+function cleanWorn(ids) {
+  return [...new Set((ids || []).filter((id) => typeof id === 'string' && id))].slice(0, MAX_WORN);
+}
+
+/** The worn stack of a record, reading the pre-1.7.1 single-pack field too. */
+function wornList(rec) {
+  if (Array.isArray(rec.texturePackIds)) return cleanWorn(rec.texturePackIds);
+  if (rec.texturePackId !== undefined) return rec.texturePackId ? [rec.texturePackId] : [];
+  return undefined; // never asked - see adoptTexturePacks()
+}
+
 /** Normalise one record, filling in fields older files never had. */
 function normalize(rec) {
   return {
@@ -75,10 +89,11 @@ function normalize(rec) {
     author: cleanText(rec.author, 48),
     summary: cleanText(rec.summary, 140),
     description: cleanText(rec.description, 4000),
-    // Which texture pack this setup wears. `undefined` means "never asked" -
-    // adoptTexturePack() fills it in once, for records migrated from
-    // instances.json, so nobody's worn pack silently turns off.
-    texturePackId: rec.texturePackId === undefined ? undefined : (rec.texturePackId || null),
+    // The texture packs this setup wears, highest precedence first.
+    // `undefined` means "never asked" - adoptTexturePacks() fills it in once,
+    // for records that predate the field, so nobody's art silently turns off.
+    // A pre-1.7.1 record carries the singular `texturePackId` instead.
+    texturePackIds: wornList(rec),
     // The registry modpack this was installed from, when it was.
     registryId: rec.registryId || rec.modpackId || null,
     createdAt: rec.createdAt || new Date().toISOString(),
@@ -121,7 +136,7 @@ async function load() {
   // Mods/ folder right now. It is active, so adoption needs no file moves.
   const fresh = {
     activeId: 'default',
-    modpacks: [normalize({ id: 'default', name: 'Default', texturePackId: null })],
+    modpacks: [normalize({ id: 'default', name: 'Default', texturePackIds: [] })],
   };
   await save(fresh);
   return fresh;
@@ -238,7 +253,7 @@ async function summary({ modsDir = null } = {}) {
     const mods = dir ? await listMods(dir) : [];
     list.push({
       ...rec,
-      texturePackId: rec.texturePackId || null,
+      texturePackIds: rec.texturePackIds || [],
       active,
       mods,
       modCount: mods.length,
@@ -254,7 +269,7 @@ async function active() {
 }
 
 async function create({
-  name, author = '', summary: text = '', description = '', texturePackId = null, registryId = null,
+  name, author = '', summary: text = '', description = '', texturePackIds = [], registryId = null,
 } = {}) {
   const data = await load();
   const rec = normalize({
@@ -263,7 +278,7 @@ async function create({
     author,
     summary: text,
     description,
-    texturePackId,
+    texturePackIds,
     registryId: registryId ? String(registryId).slice(0, 40) : null,
     createdAt: new Date().toISOString(),
   });
@@ -336,15 +351,15 @@ async function select({ id, modsDir = null }) {
     await save(data);
   }
   log.info('modpacks', `selected "${rec.name}" (${id})`);
-  return { activeId: id, texturePackId: rec.texturePackId || null, name: rec.name };
+  return { activeId: id, texturePackIds: rec.texturePackIds || [], name: rec.name };
 }
 
-/** Record which texture pack the active modpack wears. */
-async function setTexturePack({ id = null, texturePackId = null } = {}) {
+/** Record which texture packs a modpack wears, highest precedence first. */
+async function setTexturePacks({ id = null, texturePackIds = [] } = {}) {
   const data = await load();
   const rec = data.modpacks.find((p) => p.id === (id || data.activeId));
   if (!rec) return null;
-  rec.texturePackId = texturePackId || null;
+  rec.texturePackIds = cleanWorn(texturePackIds);
   await save(data);
   return rec;
 }
@@ -355,28 +370,29 @@ async function forgetTexturePack(texturePackId) {
   const data = await load();
   let touched = false;
   for (const rec of data.modpacks) {
-    if (rec.texturePackId === texturePackId) { rec.texturePackId = null; touched = true; }
+    const kept = (rec.texturePackIds || []).filter((x) => x !== texturePackId);
+    if (kept.length !== (rec.texturePackIds || []).length) { rec.texturePackIds = kept; touched = true; }
   }
   if (touched) await save(data);
 }
 
 /**
  * One-time reconcile for setups that predate modpacks owning texture packs:
- * the pack the game is currently wearing belongs to whichever setup is active.
- * Records that already answered the question (the key exists, even as null)
- * are left alone, so this is safe to call on every startup.
+ * whatever the game is currently wearing belongs to whichever setup is active.
+ * Records that already answered the question (the key exists, even empty) are
+ * left alone, so this is safe to call on every startup.
  */
-async function adoptTexturePack(texturePackId) {
+async function adoptTexturePacks(texturePackIds) {
   const data = await load();
   let touched = false;
   for (const rec of data.modpacks) {
-    if (rec.texturePackId !== undefined) continue;
-    rec.texturePackId = rec.id === data.activeId ? (texturePackId || null) : null;
+    if (rec.texturePackIds !== undefined) continue;
+    rec.texturePackIds = rec.id === data.activeId ? cleanWorn(texturePackIds) : [];
     touched = true;
   }
   if (touched) {
     await save(data);
-    log.info('modpacks', `adopted the worn texture pack into "${data.activeId}"`);
+    log.info('modpacks', `adopted the worn texture packs into "${data.activeId}"`);
   }
 }
 
@@ -401,8 +417,8 @@ module.exports = {
   describe,
   remove,
   select,
-  setTexturePack,
+  setTexturePacks,
   forgetTexturePack,
-  adoptTexturePack,
+  adoptTexturePacks,
   touchPlayed,
 };

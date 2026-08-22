@@ -172,33 +172,42 @@ test('select rejects unknown modpacks', async () => {
 
 // ---- texture packs travel with the modpack --------------------------------
 
-test('select reports the texture pack the modpack wears', async () => {
-  const rec = await modpacks.create({ name: 'Pretty', texturePackId: 'tp-abc123' });
+test('select reports the texture packs the modpack wears, in order', async () => {
+  const rec = await modpacks.create({ name: 'Pretty', texturePackIds: ['tp-abc123', 'tp-def456'] });
   const result = await modpacks.select({ id: rec.id, modsDir });
-  assert.equal(result.texturePackId, 'tp-abc123');
+  assert.deepEqual(result.texturePackIds, ['tp-abc123', 'tp-def456']);
 
-  await modpacks.setTexturePack({ texturePackId: 'tp-999999' });
-  assert.equal((await modpacks.active()).texturePackId, 'tp-999999');
+  await modpacks.setTexturePacks({ texturePackIds: ['tp-999999'] });
+  assert.deepEqual((await modpacks.active()).texturePackIds, ['tp-999999']);
 });
 
-test('setTexturePack targets the active modpack by default', async () => {
+test('the worn stack keeps its order and drops duplicates', async () => {
+  const rec = await modpacks.create({ name: 'Stacked' });
+  await modpacks.setTexturePacks({ id: rec.id, texturePackIds: ['tp-c', 'tp-a', 'tp-c', 'tp-b'] });
+  const found = (await modpacks.load()).modpacks.find((p) => p.id === rec.id);
+  assert.deepEqual(found.texturePackIds, ['tp-c', 'tp-a', 'tp-b']);
+});
+
+test('setTexturePacks targets the active modpack by default', async () => {
   const rec = await modpacks.create({ name: 'Other' });
-  await modpacks.setTexturePack({ texturePackId: 'tp-onactive' });
+  await modpacks.setTexturePacks({ texturePackIds: ['tp-onactive'] });
   const data = await modpacks.load();
-  assert.equal(data.modpacks.find((p) => p.id === 'default').texturePackId, 'tp-onactive');
-  assert.equal(data.modpacks.find((p) => p.id === rec.id).texturePackId, null);
+  assert.deepEqual(data.modpacks.find((p) => p.id === 'default').texturePackIds, ['tp-onactive']);
+  assert.deepEqual(data.modpacks.find((p) => p.id === rec.id).texturePackIds, []);
 });
 
-test('forgetTexturePack clears a deleted pack from every modpack', async () => {
-  await modpacks.create({ name: 'A', texturePackId: 'tp-doomed' });
-  await modpacks.create({ name: 'B', texturePackId: 'tp-doomed' });
-  await modpacks.create({ name: 'C', texturePackId: 'tp-safe' });
+test('forgetTexturePack clears a deleted pack out of every stack, keeping the rest', async () => {
+  const a = await modpacks.create({ name: 'A', texturePackIds: ['tp-doomed', 'tp-safe'] });
+  const b = await modpacks.create({ name: 'B', texturePackIds: ['tp-doomed'] });
+  const c = await modpacks.create({ name: 'C', texturePackIds: ['tp-safe', 'tp-other'] });
   await modpacks.forgetTexturePack('tp-doomed');
-  const worn = (await modpacks.load()).modpacks.map((p) => p.texturePackId);
-  assert.deepEqual(worn.filter(Boolean), ['tp-safe']);
+  const byId = new Map((await modpacks.load()).modpacks.map((p) => [p.id, p]));
+  assert.deepEqual(byId.get(a.id).texturePackIds, ['tp-safe']);
+  assert.deepEqual(byId.get(b.id).texturePackIds, []);
+  assert.deepEqual(byId.get(c.id).texturePackIds, ['tp-safe', 'tp-other']);
 });
 
-test('adoptTexturePack credits the worn pack to the active modpack, once', async () => {
+test('adoptTexturePacks credits the worn stack to the active modpack, once', async () => {
   // A record migrated from instances.json has no opinion about texture packs.
   fs.mkdirSync(paths.modpacksDir(), { recursive: true });
   fs.writeFileSync(path.join(paths.modpacksDir(), 'modpacks.json'), JSON.stringify({
@@ -206,16 +215,33 @@ test('adoptTexturePack credits the worn pack to the active modpack, once', async
     modpacks: [{ id: 'default', name: 'Default' }, { id: 'p-other', name: 'Other' }],
   }));
 
-  await modpacks.adoptTexturePack('tp-worn');
+  await modpacks.adoptTexturePacks(['tp-worn', 'tp-under']);
   let data = await modpacks.load();
-  assert.equal(data.modpacks.find((p) => p.id === 'default').texturePackId, 'tp-worn');
-  assert.equal(data.modpacks.find((p) => p.id === 'p-other').texturePackId, null);
+  assert.deepEqual(data.modpacks.find((p) => p.id === 'default').texturePackIds, ['tp-worn', 'tp-under']);
+  assert.deepEqual(data.modpacks.find((p) => p.id === 'p-other').texturePackIds, []);
 
   // Second launch: the question has been answered, so nothing moves.
-  await modpacks.setTexturePack({ texturePackId: null });
-  await modpacks.adoptTexturePack('tp-something-else');
+  await modpacks.setTexturePacks({ texturePackIds: [] });
+  await modpacks.adoptTexturePacks(['tp-something-else']);
   data = await modpacks.load();
-  assert.equal(data.modpacks.find((p) => p.id === 'default').texturePackId, null);
+  assert.deepEqual(data.modpacks.find((p) => p.id === 'default').texturePackIds, []);
+});
+
+test('a pre-1.7.1 record with a single texturePackId reads as a one-pack stack', async () => {
+  fs.mkdirSync(paths.modpacksDir(), { recursive: true });
+  fs.writeFileSync(path.join(paths.modpacksDir(), 'modpacks.json'), JSON.stringify({
+    activeId: 'default',
+    modpacks: [
+      { id: 'default', name: 'Default', texturePackId: 'tp-worn' },
+      { id: 'p-bare', name: 'Bare', texturePackId: null },
+    ],
+  }));
+  const data = await modpacks.load();
+  assert.deepEqual(data.modpacks.find((p) => p.id === 'default').texturePackIds, ['tp-worn']);
+  assert.deepEqual(data.modpacks.find((p) => p.id === 'p-bare').texturePackIds, []);
+  // Already answered, so adoption leaves them alone.
+  await modpacks.adoptTexturePacks(['tp-else']);
+  assert.deepEqual((await modpacks.active()).texturePackIds, ['tp-worn']);
 });
 
 // ---- migration ------------------------------------------------------------

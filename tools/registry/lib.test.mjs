@@ -27,7 +27,7 @@ const packForm = (over = {}) => form({
   'Pack name': 'My Perfect Loadout',
   'Registry id': '',
   'Mods in the pack': 'kamikaze-gambit, spikes-gambit',
-  'Texture pack': 'midnight-chess',
+  'Texture packs': 'midnight-chess',
   'One-line summary': 'Everything you need for a chaos-gambit run.',
   'Longer description': '',
   ...over,
@@ -41,7 +41,7 @@ test('a modpack form parses into a registry entry', () => {
     author: 'ben-gambo',
     summary: 'Everything you need for a chaos-gambit run.',
     mods: ['kamikaze-gambit', 'spikes-gambit'],
-    texturepack: 'midnight-chess',
+    texturepacks: ['midnight-chess'],
     submittedBy: 'ben-gambo',
     addedAt: '2026-08-22',
   });
@@ -75,9 +75,25 @@ test('a texture pack on its own is a valid modpack', () => {
   assert.equal(validateModpackEntry(entry, `${entry.id}.json`, MODS, SKINS).length, 0);
 });
 
+test('the texture-pack list keeps its order and rejects repeats', () => {
+  // Order IS the setting: the first pack listed wins where two collide, so a
+  // parser that sorted or deduped from the back would change what people see.
+  const entry = parsePack({ 'Texture packs': 'midnight-chess, hud-tweaks' });
+  assert.deepEqual(entry.texturepacks, ['midnight-chess', 'hud-tweaks']);
+
+  const skins = new Set(['midnight-chess', 'hud-tweaks']);
+  assert.deepEqual(validateModpackEntry(entry, `${entry.id}.json`, MODS, skins), []);
+
+  const twice = parsePack({ 'Texture packs': 'midnight-chess, midnight-chess' });
+  assert.match(validateModpackEntry(twice, `${twice.id}.json`, MODS, skins).join(' '), /listed twice/);
+
+  const tooMany = { id: 'x-y', name: 'Xy', author: 'a', summary: 'eight chars', texturepacks: Array.from({ length: 9 }, (_, i) => `tp-${i}`) };
+  assert.match(validateModpackEntry(tooMany, 'x-y.json', MODS, null).join(' '), /at most 8 entries/);
+});
+
 test('a modpack with nothing in it is refused', () => {
-  const entry = parsePack({ 'Mods in the pack': '', 'Texture pack': '' });
-  assert.equal(entry.texturepack, undefined);
+  const entry = parsePack({ 'Mods in the pack': '', 'Texture packs': '' });
+  assert.equal(entry.texturepacks, undefined);
   const problems = validateModpackEntry(entry, `${entry.id}.json`, MODS, SKINS);
   assert.match(problems.join(' '), /at least one mod, or a texture pack/);
 });
@@ -86,7 +102,7 @@ test('members must already be listed - a pack cannot invent one', () => {
   const entry = parsePack({ 'Mods in the pack': 'kamikaze-gambit, not-a-real-mod' });
   assert.match(validateModpackEntry(entry, `${entry.id}.json`, MODS, SKINS).join(' '), /"not-a-real-mod" is not in the registry/);
 
-  const skin = parsePack({ 'Texture pack': 'not-a-real-skin' });
+  const skin = parsePack({ 'Texture packs': 'not-a-real-skin' });
   assert.match(validateModpackEntry(skin, `${skin.id}.json`, MODS, SKINS).join(' '), /texture pack "not-a-real-skin" is not in the registry/);
 });
 
@@ -110,9 +126,9 @@ test('the file name must match the id', () => {
 
 test('unknown fields are refused, so a typo is never silently ignored', () => {
   const problems = validateModpackEntry({
-    id: 'x-y', name: 'Xy', author: 'a', summary: 'eight chars', mods: ['kamikaze-gambit'], texturepacks: 'oops',
+    id: 'x-y', name: 'Xy', author: 'a', summary: 'eight chars', mods: ['kamikaze-gambit'], texturepack: 'oops',
   }, 'x-y.json', MODS, SKINS);
-  assert.match(problems.join(' '), /unknown field "texturepacks"/);
+  assert.match(problems.join(' '), /unknown field "texturepack"/);
 });
 
 test('caps hold: 24 mods and the length limits', () => {

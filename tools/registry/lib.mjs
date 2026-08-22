@@ -201,14 +201,14 @@ function isStringArray(v) {
 }
 
 const KNOWN_MODPACK_FIELDS = new Set([
-  'id', 'name', 'author', 'summary', 'description', 'mods', 'texturepack',
+  'id', 'name', 'author', 'summary', 'description', 'mods', 'texturepacks',
   'tags', 'homepage', 'submittedBy', 'addedAt',
 ]);
 
 /**
  * Validate one modpack entry (registry/modpacks/<id>.json). A modpack is
- * pure metadata: a name, a list of registry mod ids and optionally a registry
- * texture-pack id. It has no repo, no asset and no binary of its own -
+ * pure metadata: a name, a list of registry mod ids and a list of registry
+ * texture-pack ids in precedence order. It has no repo, no asset and no binary of its own -
  * installing one just installs its members, so the pack itself never needs a
  * checksum or a review pass beyond "are these ids real".
  *
@@ -258,16 +258,26 @@ export function validateModpackEntry(entry, fileName, knownModIds = null, knownS
     fail(`file name must match the id: expected ${id}.json, got ${fileName}`);
   }
 
-  const skin = str('texturepack', { max: 40, re: ID_RE, reHint: 'expected a registry texture-pack id' });
-  if (skin && knownSkinIds && !knownSkinIds.has(skin)) {
-    fail(`texture pack "${skin}" is not in the registry`);
+  let skins = [];
+  if (entry.texturepacks !== undefined && !isStringArray(entry.texturepacks)) {
+    fail('"texturepacks" must be an array of registry texture-pack ids');
+  } else {
+    skins = entry.texturepacks || [];
+    if (skins.length > 8) fail('"texturepacks" allows at most 8 entries');
+    const seenSkins = new Set();
+    for (const skinId of skins) {
+      if (!ID_RE.test(skinId)) fail(`texture pack id "${skinId}" is malformed`);
+      else if (seenSkins.has(skinId)) fail(`texture pack "${skinId}" is listed twice`);
+      else if (knownSkinIds && !knownSkinIds.has(skinId)) fail(`texture pack "${skinId}" is not in the registry`);
+      seenSkins.add(skinId);
+    }
   }
 
   if (entry.mods !== undefined && !isStringArray(entry.mods)) {
     fail('"mods" must be an array of registry mod ids');
   } else {
     const mods = entry.mods || [];
-    if (!mods.length && !skin) fail('a modpack needs at least one mod, or a texture pack');
+    if (!mods.length && !skins.length) fail('a modpack needs at least one mod, or a texture pack');
     if (mods.length > 24) fail('"mods" allows at most 24 entries');
     const seen = new Set();
     for (const modId of mods) {
@@ -513,7 +523,10 @@ export function parseModpackSubmissionIssue(body, { author = '', createdAt = '' 
     .slice(0, 40);
   const mods = (fields['mods in the pack'] || '')
     .split(',').map((m) => m.trim().toLowerCase()).filter(Boolean).slice(0, 24);
-  const skin = (fields['texture pack'] || '').trim().toLowerCase();
+  // Comma-separated and ORDERED: the first one listed wins where two packs
+  // change the same thing, which is part of what the setup is.
+  const skins = (fields['texture packs'] || '')
+    .split(',').map((t) => t.trim().toLowerCase()).filter(Boolean).slice(0, 8);
 
   return {
     id,
@@ -521,7 +534,7 @@ export function parseModpackSubmissionIssue(body, { author = '', createdAt = '' 
     author,
     summary: fields['one-line summary'] || '',
     mods,
-    ...(skin ? { texturepack: skin } : {}),
+    ...(skins.length ? { texturepacks: skins } : {}),
     ...(fields['longer description'] ? { description: fields['longer description'] } : {}),
     submittedBy: author,
     ...(createdAt ? { addedAt: String(createdAt).slice(0, 10) } : {}),

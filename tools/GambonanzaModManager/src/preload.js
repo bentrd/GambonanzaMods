@@ -45,7 +45,7 @@ contextBridge.exposeInMainWorld('gambonanza', {
   renamePack: invoke('texturepacks:rename'),
   describePack: invoke('texturepacks:describe'),
   deletePack: invoke('texturepacks:delete'),
-  selectPack: invoke('texturepacks:select'),
+  setWornPacks: invoke('texturepacks:setWorn'),
   assetCatalog: invoke('texturepacks:catalog'),
   assetTexts: invoke('texturepacks:texts'),
   assetPreviews: invoke('texturepacks:previews'),

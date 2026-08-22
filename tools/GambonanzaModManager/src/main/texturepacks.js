@@ -17,10 +17,11 @@ const catalog = require('./assetcatalog');
 //
 // On disk:
 //
-//   <userData>/texturepacks/state.json          which pack is applied
+//   <userData>/texturepacks/state.json          which packs are worn, in order
 //   <userData>/texturepacks/<id>/texturepack.json
 //   <userData>/texturepacks/<id>/images/<assetId>.png    what the user drew
 //   <userData>/texturepacks/<id>/atlases/<atlasId>.png   what the game loads
+//   <userData>/texturepacks/.merged/                     the stack, flattened
 //
 // The two image folders are the whole trick. The game does not draw sprites
 // from individual files - it draws them from big sheets, 210 gambit icons on
@@ -33,6 +34,14 @@ const catalog = require('./assetcatalog');
 // Doing it here rather than in-game is what keeps the runtime side trivial:
 // the framework never has to read pixels back off the GPU, work out a sprite
 // rectangle, or reason about colour space. It calls LoadImage and is done.
+//
+// Several packs can be worn at once, first in the list winning. That is the
+// reason .merged/ exists, and it is not a nicety: a pack's atlases/ are WHOLE
+// sheets, so handing the game two packs that both touch SPR_Gambits would let
+// the second sheet paint over the first one's icon and silently lose it.
+// Layering has to happen at the level of individual overrides - resolve one
+// winner per asset across the stack, then composite those onto the pristine
+// sheet exactly once. See buildMerged().
 
 const MANIFEST = 'texturepack.json';
 const FORMAT_VERSION = 1;
@@ -132,8 +141,14 @@ async function saveManifest(manifest) {
 // Listing
 // ---------------------------------------------------------------------------
 
+/**
+ * `{ activeIds: [...] }`, highest precedence first. Reads the pre-1.7 single
+ * `activeId` as a one-element stack, so upgrading keeps whatever was worn.
+ */
 async function readState() {
-  return (await readJson(stateFile())) || { activeId: null };
+  const raw = (await readJson(stateFile())) || {};
+  if (Array.isArray(raw.activeIds)) return { activeIds: raw.activeIds.filter(Boolean) };
+  return { activeIds: raw.activeId ? [raw.activeId] : [] };
 }
 
 async function writeState(state) {
@@ -164,7 +179,7 @@ async function summary() {
   try {
     entries = await fsp.readdir(root, { withFileTypes: true });
   } catch {
-    return { activeId: null, packs: [] };
+    return { activeIds: [], packs: [] };
   }
 
   const packs = [];
@@ -186,14 +201,18 @@ async function summary() {
       imageCount: manifest.images?.length || 0,
       textCount: manifest.texts?.length || 0,
       bytes: await dirBytes(path.join(root, entry.name)),
-      active: manifest.id === state.activeId,
     });
   }
   packs.sort((a, b) => String(a.name).localeCompare(String(b.name)));
 
-  // A pack deleted behind the app's back should not leave a phantom selection.
-  const activeId = packs.some((p) => p.id === state.activeId) ? state.activeId : null;
-  return { activeId, packs };
+  // A pack deleted behind the app's back should not leave a phantom in the
+  // stack. `order` is what the UI numbers the cards with.
+  const activeIds = state.activeIds.filter((id) => packs.some((p) => p.id === id));
+  for (const pack of packs) {
+    pack.order = activeIds.indexOf(pack.id);
+    pack.active = pack.order >= 0;
+  }
+  return { activeIds, packs };
 }
 
 /** The selected pack's full contents, for the panel under the cards. */
@@ -202,7 +221,8 @@ async function detail(id) {
   const state = await readState();
   return {
     ...manifest,
-    active: manifest.id === state.activeId,
+    active: state.activeIds.includes(manifest.id),
+    order: state.activeIds.indexOf(manifest.id),
     // Derived payload is an implementation detail; the UI shows sources.
     textures: undefined,
     textureCount: manifest.textures.length,
@@ -248,10 +268,11 @@ async function describe({ id, author, summary: text, description, version }) {
 async function remove({ id, modsDir = null }) {
   const state = await readState();
   const manifest = await readManifest(id);
-  if (state.activeId === id) {
-    // Deleting what the game is wearing has to undress it first, or the game
-    // keeps loading art whose source is gone.
-    await setActive({ id: null, modsDir });
+  if (state.activeIds.includes(id)) {
+    // Deleting something the game is wearing has to take it off first, or the
+    // game keeps loading art whose source is gone. The rest of the stack
+    // stays on, and re-flattens without it.
+    await setActive({ ids: state.activeIds.filter((x) => x !== id), modsDir });
   }
   await fsp.rm(packDir(id), { recursive: true, force: true });
   log.info('texturepacks', `deleted "${manifest.name}" (${id})`);
@@ -263,34 +284,44 @@ async function remove({ id, modsDir = null }) {
 // ---------------------------------------------------------------------------
 
 /**
- * Make `id` the pack the game loads (or none). The applied copy lives inside
- * the game folder, so launching from Steam directly still gets it - the same
- * property that makes modpack switching work.
+ * Set the worn stack - highest precedence first, empty for none. The applied
+ * copy lives inside the game folder, so launching from Steam directly still
+ * gets it: the same property that makes modpack switching work.
  */
-async function setActive({ id = null, modsDir = null }) {
-  const state = await readState();
-  if (id) await readManifest(id); // fail before we touch the game folder
-  state.activeId = id;
-  await writeState(state);
-  if (modsDir) await syncToGame({ id, modsDir });
-  log.info('texturepacks', id ? `applied ${id}` : 'turned texture packs off');
-  return { activeId: id };
+async function setActive({ ids = [], modsDir = null }) {
+  const wanted = [...new Set((Array.isArray(ids) ? ids : [ids]).filter(Boolean))];
+  // Fail before touching the game folder, and name the pack that is wrong
+  // rather than leaving the caller to guess which of five it was.
+  for (const id of wanted) await readManifest(id);
+
+  await writeState({ activeIds: wanted });
+  if (modsDir) await syncToGame({ ids: wanted, modsDir });
+  log.info('texturepacks', wanted.length ? `wearing ${wanted.join(' > ')}` : 'turned texture packs off');
+  return { activeIds: wanted };
 }
 
-/** Copy the active pack's runtime payload into the game, or clear it. */
-async function syncToGame({ id, modsDir }) {
+/**
+ * Put the worn stack into the game folder, or clear it.
+ *
+ * One pack is a straight copy of art it already composited. Two or more have
+ * to be flattened first - see buildMerged() for why a copy of both would lose
+ * edits rather than layer them.
+ */
+async function syncToGame({ ids = [], modsDir }) {
+  const stack = (Array.isArray(ids) ? ids : [ids]).filter(Boolean);
   const target = gamePackDir(modsDir);
   await fsp.rm(target, { recursive: true, force: true });
-  if (!id) return { applied: null };
+  if (!stack.length) return { applied: [] };
 
-  const manifest = await readManifest(id);
+  const { dir, manifest } = stack.length === 1
+    ? { dir: packDir(stack[0]), manifest: await readManifest(stack[0]) }
+    : await buildMerged(stack);
+
   await fsp.mkdir(path.join(target, 'atlases'), { recursive: true });
-
   for (const texture of manifest.textures) {
-    const from = path.join(packDir(id), texture.file);
     const to = path.join(target, texture.file);
     await fsp.mkdir(path.dirname(to), { recursive: true });
-    await fsp.copyFile(from, to);
+    await fsp.copyFile(path.join(dir, texture.file), to);
   }
 
   // The framework reads only what it needs; editor metadata stays home.
@@ -305,14 +336,14 @@ async function syncToGame({ id, modsDir }) {
     texts: manifest.texts.map((t) => ({ section: t.section, key: t.key, values: t.values })),
   });
 
-  return { applied: manifest.id, textures: manifest.textures.length, texts: manifest.texts.length };
+  return { applied: stack, textures: manifest.textures.length, texts: manifest.texts.length };
 }
 
-/** Re-copy whatever is selected. Called after every edit and on startup. */
+/** Re-copy whatever is worn. Called after every edit and on startup. */
 async function reapply({ modsDir }) {
-  if (!modsDir) return { applied: null };
+  if (!modsDir) return { applied: [] };
   const state = await readState();
-  return syncToGame({ id: state.activeId, modsDir });
+  return syncToGame({ ids: state.activeIds, modsDir });
 }
 
 // ---------------------------------------------------------------------------
@@ -456,6 +487,147 @@ async function composeTarget(manifest, targetId, pending = {}) {
     file: outFile.split(path.sep).join('/'),
   };
   manifest.textures = manifest.textures.filter((t) => t.targetId !== targetId).concat(record);
+}
+
+// ---------------------------------------------------------------------------
+// Flattening a stack of packs
+// ---------------------------------------------------------------------------
+
+/** Where the flattened stack is built. Dot-prefixed so summary() skips it. */
+function mergedDir() {
+  return path.join(paths.texturePacksDir(), '.merged');
+}
+
+/**
+ * Resolve a worn stack down to one winner per asset and per text key.
+ *
+ * Highest precedence first, so the FIRST pack to claim something keeps it.
+ * This is the whole point of merging at the override level: two packs that
+ * each replace one icon on SPR_Gambits contribute one icon each, where
+ * layering their finished sheets would have thrown the earlier one away.
+ */
+async function resolveStack(ids) {
+  const images = new Map();   // assetId -> { record, dir }
+  const texts = new Map();    // section/key/lang -> { section, key, value }
+  const packs = [];
+
+  for (const id of ids) {
+    const manifest = await readManifest(id);
+    packs.push(manifest);
+    for (const record of manifest.images) {
+      if (!images.has(record.assetId)) images.set(record.assetId, { record, dir: packDir(id) });
+    }
+    for (const text of manifest.texts) {
+      for (const value of text.values || []) {
+        const key = `${text.section}\u0000${text.key}\u0000${value.lang}`;
+        if (!texts.has(key)) {
+          texts.set(key, { section: text.section, key: text.key, original: text.original || '', value });
+        }
+      }
+    }
+  }
+
+  // Back into the manifest shape the framework reads: one entry per
+  // section/key holding every language that survived the merge.
+  const byKey = new Map();
+  for (const { section, key, original, value } of texts.values()) {
+    const id = `${section}\u0000${key}`;
+    if (!byKey.has(id)) byKey.set(id, { section, key, original, values: [] });
+    byKey.get(id).values.push(value);
+  }
+
+  return { images, texts: [...byKey.values()], packs };
+}
+
+/**
+ * Composite one sheet from a resolved stack. Same rules as composeTarget -
+ * always from pristine, bottom-left rectangles - except the art for each
+ * override is read from whichever pack won it.
+ */
+async function composeMergedTarget(images, targetId, outDir) {
+  catalog.safeId(targetId);
+  const layers = [...images.values()].filter(({ record }) => targetOf(record) === targetId);
+  const wholeSheet = layers.find(({ record }) => record.kind === 'texture');
+  const sprites = layers.filter(({ record }) => record.kind === 'sprite');
+  if (!wholeSheet && !sprites.length) return null;
+
+  const target = await catalog.findEntry(targetId);
+  const base = wholeSheet
+    ? png.decode(await fsp.readFile(path.join(wholeSheet.dir, wholeSheet.record.file)))
+    : png.decode(await catalog.imageBytes(targetId));
+
+  if (base.width !== target.width || base.height !== target.height) {
+    throw new Error(`${target.name} is ${target.width}x${target.height} but the image is ${base.width}x${base.height}`);
+  }
+
+  const sheet = png.clone(base);
+  for (const { record, dir } of sprites) {
+    const art = png.decode(await fsp.readFile(path.join(dir, record.file)));
+    const [x, y, w, h] = record.rect;
+    png.paste(sheet, art, x, sheet.height - y - h);
+  }
+
+  const file = path.posix.join('atlases', `${targetId}.png`);
+  const outPath = path.join(outDir, 'atlases', `${targetId}.png`);
+  await fsp.mkdir(path.dirname(outPath), { recursive: true });
+  await fsp.writeFile(outPath, png.encode(sheet));
+
+  return {
+    targetId,
+    name: target.name,
+    label: target.label,
+    width: target.width,
+    height: target.height,
+    format: target.format || null,
+    file,
+  };
+}
+
+/**
+ * Flatten a worn stack into .merged/ and describe the result like a manifest,
+ * so syncToGame can copy it exactly as it copies a single pack.
+ *
+ * Cached on a signature of "which packs, in what order, last edited when":
+ * compositing re-decodes a pristine 2048x2048 sheet per atlas, and re-doing
+ * that on every startup and every unrelated edit would be felt.
+ */
+async function buildMerged(ids) {
+  const { images, texts, packs } = await resolveStack(ids);
+  const signature = packs.map((m) => `${m.id}@${m.updatedAt || ''}`).join('|');
+  const dir = mergedDir();
+  const stampFile = path.join(dir, 'build.json');
+
+  const manifest = {
+    formatVersion: FORMAT_VERSION,
+    id: 'merged',
+    name: packs.length === 2
+      ? `${packs[0].name} + ${packs[1].name}`
+      : `${packs[0].name} + ${packs.length - 1} more`,
+    author: [...new Set(packs.map((m) => m.author).filter(Boolean))].join(', '),
+    version: FORMAT_VERSION.toString(),
+    // Any pack built against a different game build is the pack's problem to
+    // report; the stack claims the newest one anybody built against.
+    gameBuild: packs.map((m) => m.gameBuild).filter(Boolean).sort().pop() || null,
+    texts,
+    textures: [],
+  };
+
+  const cached = await readJson(stampFile);
+  if (cached?.signature === signature && Array.isArray(cached.textures)) {
+    manifest.textures = cached.textures;
+    return { dir, manifest };
+  }
+
+  await fsp.rm(dir, { recursive: true, force: true });
+  await fsp.mkdir(path.join(dir, 'atlases'), { recursive: true });
+  for (const targetId of [...new Set([...images.values()].map(({ record }) => targetOf(record)))]) {
+    const record = await composeMergedTarget(images, targetId, dir);
+    if (record) manifest.textures.push(record);
+  }
+
+  await writeJson(stampFile, { signature, textures: manifest.textures });
+  log.info('texturepacks', `flattened ${ids.length} packs into ${manifest.textures.length} sheet(s)`);
+  return { dir, manifest };
 }
 
 /** Rebuild every sheet. Used after an import, and by the repair path. */

@@ -39,7 +39,7 @@ test('the bridge covers the texture pack surface', () => {
   // Named explicitly so deleting one is a decision, not an accident.
   for (const channel of [
     'texturepacks:detail', 'texturepacks:create', 'texturepacks:rename', 'texturepacks:describe',
-    'texturepacks:delete', 'texturepacks:select', 'texturepacks:catalog', 'texturepacks:texts',
+    'texturepacks:delete', 'texturepacks:setWorn', 'texturepacks:catalog', 'texturepacks:texts',
     'texturepacks:previews', 'texturepacks:packPreview', 'texturepacks:pickImage', 'texturepacks:setImage',
     'texturepacks:removeImage', 'texturepacks:setText', 'texturepacks:removeText',
     'texturepacks:downloadOriginal', 'texturepacks:export', 'texturepacks:import',

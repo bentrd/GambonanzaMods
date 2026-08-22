@@ -4,6 +4,24 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.7.1
+
+- **Wear several texture packs at once**, in an order you control. Worn packs
+  move to the front of the shelf with a "worn 1st / 2nd" badge and a pair of
+  ▲▼ arrows; where two of them change the same sprite or the same line, the
+  higher one wins. Everything else stays where it was - one pack behaves
+  exactly as before, and whatever you were wearing stays on.
+- Under the hood this had to merge properly rather than layer. A pack's art is
+  stored as WHOLE game sheets - 210 gambit icons on one 512x512 texture - so
+  handing the game two packs that both touch that sheet would have let the
+  second one paint over the first one's icon and silently lose it. The manager
+  now resolves one winner per sprite and per string across the stack, then
+  composites those onto the pristine sheet once. The game still receives a
+  single pack and needs no update.
+- A modpack remembers the whole stack, not one pack, so switching modpacks
+  still switches the entire look. Shared modpacks carry the stack and its
+  order, because the same two packs in the other order are a different setup.
+
 ## 1.7.0
 
 - **Instances and modpacks are one thing now.** They were always the same idea

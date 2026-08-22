@@ -115,7 +115,7 @@ for (const { fileName, entry } of packs) {
     for (const p of problems) console.log(`    ${p}`);
   } else {
     const bits = [`${(entry.mods || []).length} mods`];
-    if (entry.texturepack) bits.push(`the ${entry.texturepack} texture pack`);
+    if (entry.texturepacks?.length) bits.push(`${entry.texturepacks.length} texture pack(s)`);
     console.log(`${GREEN}✓${RESET} modpacks/${fileName} (${bits.join(' + ')})`);
   }
 }

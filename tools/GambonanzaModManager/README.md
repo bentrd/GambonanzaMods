@@ -62,7 +62,7 @@ src/
 
 ## Modpacks
 
-A modpack is a whole setup - the mods it loads and the texture pack it wears -
+A modpack is a whole setup - the mods it loads and the texture packs it wears -
 and exactly one is active. The trick that keeps everything else oblivious: the
 active modpack's mods simply **are** the game's `Mods/` folder. Inactive ones
 park theirs under the manager's own data directory, and switching is a handful
@@ -72,8 +72,14 @@ That is what makes installs need no special casing (writing to `Mods/` writes
 to the active modpack), and what makes launching straight from Steam load the
 right thing - there is no "the launcher forgot to sync" failure mode.
 
+Several texture packs can be worn at once, first in the list winning. They are
+flattened into one payload here rather than handed to the game as a list,
+because a pack's sheets are WHOLE sheets: two packs that each replace one icon
+on the same atlas have to be merged override-by-override, or the second sheet
+paints over the first one's icon. See `buildMerged()` in `texturepacks.js`.
+
 Publishing one is metadata only: the registry stores the ids of the mods and
-the texture pack, never a binary. Installing someone else's modpack builds it
+the texture packs, never a binary. Installing someone else's modpack builds it
 as a new local modpack and switches to it, downloading each part from its own
 author's release and checking it against the checksum the registry recorded.
 

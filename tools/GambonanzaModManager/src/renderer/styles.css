@@ -759,6 +759,25 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   color: rgba(90, 34, 48, 0.55); padding: 4px 9px 3px;
 }
 .mp-skin .msep { border-top: 2px dashed rgba(90, 34, 48, 0.2); margin: 5px 6px; }
+.mp-skin .setup-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mp-skin .setup-count { font-size: 10.5px; color: rgba(90, 34, 48, 0.55); flex-shrink: 0; }
+.mp-skin .setup-check { width: 14px; flex-shrink: 0; color: var(--green-dark); }
+.mp-skin .mnote { font-size: 10.5px; color: rgba(90, 34, 48, 0.55); padding: 2px 9px 5px; }
+
+/* ▲▼ on a worn card, next to the badge that names its place in the stack -
+   the position and the control that changes it belong together, and the
+   button row was already full at four. */
+.stack-arrows { display: inline-flex; flex-direction: column; flex-shrink: 0; }
+.stack-arrow {
+  display: block; line-height: 1; font-size: 9px; padding: 2px 5px;
+  background: var(--cream); color: var(--wine-dark);
+  border: 2px solid var(--ink);
+  cursor: pointer; font-family: inherit;
+}
+.stack-arrow:first-child { border-bottom-width: 1px; border-radius: 4px 4px 0 0; }
+.stack-arrow:last-child { border-top-width: 1px; border-radius: 0 0 4px 4px; }
+.stack-arrow:hover:not(:disabled) { background: var(--yellow); }
+.stack-arrow:disabled { opacity: 0.3; cursor: default; }
 .mp-skin .btn { gap: 7px; }
 .mp-skin .btn .micon { display: inline-flex; }
 .mp-skin .btn .caret { font-size: 11px; }

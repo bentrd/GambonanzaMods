@@ -135,14 +135,15 @@ repo's Releases page, that's the exact number the manager shows.
 ## Modpacks
 
 A modpack is somebody's whole setup: a name, a blurb, the registry ids of up
-to 24 mods, and optionally the registry id of a texture pack. Packs contain
+to 24 mods, and the registry ids of up to 8 texture packs in precedence order
+(the first one listed wins where two of them change the same thing). Packs contain
 **no code** - installing one installs each member through the exact same
 checksum-verified path as installing it alone, and dependencies come along
 automatically.
 
 Sharing yours takes one click from the manager's **My modpacks** tab. There is
 no list to curate: the form ships what you actually have installed, in the
-versions you have, plus the texture pack you are wearing.
+versions you have, plus the texture packs you are wearing, in precedence order.
 
 - **Signed in with GitHub**: "Share it" opens a registry pull request adding
   `registry/modpacks/<id>.json` for you.

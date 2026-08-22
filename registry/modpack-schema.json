@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://bentrd.github.io/GambonanzaMods/registry/modpack-schema.json",
   "title": "Gambonanza modpack registry entry",
-  "description": "One file per modpack under registry/modpacks/<id>.json. A modpack is somebody's whole setup: the registry mods they play with, plus the registry texture pack they wear. It has no repository, no release asset and no binary of its own - installing a pack installs each member through the exact same verified path as installing it alone. Members may be unreviewed submissions; the manager shows a warning icon on any pack that contains one, and names them before installing.",
+  "description": "One file per modpack under registry/modpacks/<id>.json. A modpack is somebody's whole setup: the registry mods they play with, plus the registry texture packs they wear, in precedence order. It has no repository, no release asset and no binary of its own - installing a pack installs each member through the exact same verified path as installing it alone. Members may be unreviewed submissions; the manager shows a warning icon on any pack that contains one, and names them before installing.",
   "type": "object",
   "additionalProperties": false,
   "required": ["id", "name", "author", "summary"],
@@ -44,12 +44,18 @@
         "type": "string",
         "pattern": "^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$"
       },
-      "description": "Registry ids of the member mods, in suggested install order. Dependencies (like gambit-api) are pulled in automatically and do not need to be listed. May be empty when the pack is a texture pack and nothing else - but a pack needs at least one of mods or texturepack."
+      "description": "Registry ids of the member mods, in suggested install order. Dependencies (like gambit-api) are pulled in automatically and do not need to be listed. May be empty when the pack is texture packs and nothing else - but a pack needs at least one of mods or texturepacks."
     },
-    "texturepack": {
-      "type": "string",
-      "pattern": "^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$",
-      "description": "Optional registry texture-pack id the setup wears. Installing the modpack downloads and applies it alongside the mods."
+    "texturepacks": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$"
+      },
+      "description": "Registry texture-pack ids the setup wears, HIGHEST PRECEDENCE FIRST. Several can be on at once; where two change the same sprite or string, the earlier one in this list wins. Installing the modpack downloads and applies them all, in this order, alongside the mods."
     },
     "tags": {
       "type": "array",

@@ -248,7 +248,7 @@ test('applying a pack writes only the runtime payload into the game folder', asy
   await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(4, 4, [255, 0, 0, 255])) });
   await packs.setText({ id, section: 'utils', key: 'launch', value: 'GO!' });
 
-  await packs.setActive({ id, modsDir });
+  await packs.setActive({ ids: [id], modsDir });
 
   const dir = packs.gamePackDir(modsDir);
   assert.ok(fs.existsSync(path.join(dir, 'texturepack.json')));
@@ -265,17 +265,26 @@ test('applying a pack writes only the runtime payload into the game folder', asy
 test('turning packs off clears the game folder', async () => {
   const { id } = await packs.create({ name: 'Pack' });
   await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(4, 4, [255, 0, 0, 255])) });
-  await packs.setActive({ id, modsDir });
-  await packs.setActive({ id: null, modsDir });
+  await packs.setActive({ ids: [id], modsDir });
+  await packs.setActive({ ids: [], modsDir });
 
   assert.equal(fs.existsSync(packs.gamePackDir(modsDir)), false);
-  assert.equal((await packs.summary()).activeId, null);
+  assert.deepEqual((await packs.summary()).activeIds, []);
+});
+
+test('a pre-1.7.1 state file reads as a one-pack stack', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  fs.writeFileSync(path.join(paths.texturePacksDir(), 'state.json'), JSON.stringify({ activeId: id }));
+  const sum = await packs.summary();
+  assert.deepEqual(sum.activeIds, [id]);
+  assert.equal(sum.packs[0].active, true);
+  assert.equal(sum.packs[0].order, 0);
 });
 
 test('deleting the applied pack undresses the game first', async () => {
   const { id } = await packs.create({ name: 'Pack' });
   await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(4, 4, [255, 0, 0, 255])) });
-  await packs.setActive({ id, modsDir });
+  await packs.setActive({ ids: [id], modsDir });
 
   await packs.remove({ id, modsDir });
 
@@ -285,9 +294,145 @@ test('deleting the applied pack undresses the game first', async () => {
 
 test('summary reports a selection that no longer exists as nothing selected', async () => {
   const { id } = await packs.create({ name: 'Pack' });
-  await packs.setActive({ id, modsDir: null });
+  await packs.setActive({ ids: [id], modsDir: null });
   fs.rmSync(path.join(paths.texturePacksDir(), id), { recursive: true, force: true });
-  assert.equal((await packs.summary()).activeId, null);
+  assert.deepEqual((await packs.summary()).activeIds, []);
+});
+
+// ---------------------------------------------------------------------------
+// Wearing several packs at once
+// ---------------------------------------------------------------------------
+
+/** The sheet the game would actually load, decoded. */
+function appliedSheet(name = 'sheet') {
+  const file = path.join(packs.gamePackDir(modsDir), 'atlases', `${name}.png`);
+  return png.decode(fs.readFileSync(file));
+}
+
+function appliedManifest() {
+  return JSON.parse(fs.readFileSync(path.join(packs.gamePackDir(modsDir), 'texturepack.json'), 'utf8'));
+}
+
+const RED = [255, 0, 0, 255];
+const BLUE = [0, 0, 255, 255];
+const GREEN = [0, 255, 0, 255];
+
+test('two packs editing DIFFERENT sprites on one sheet both survive', async () => {
+  // The whole reason the stack is flattened override-by-override: each pack's
+  // own atlases/sheet.png is a FULL sheet, so copying both in would have let
+  // the second one paint over the first one's sprite.
+  const a = (await packs.create({ name: 'Lefty' })).id;
+  const b = (await packs.create({ name: 'Righty' })).id;
+  await packs.setImage({ id: a, assetId: 'left', bytes: png.encode(solid(4, 4, RED)) });
+  await packs.setImage({ id: b, assetId: 'right', bytes: png.encode(solid(4, 4, BLUE)) });
+
+  await packs.setActive({ ids: [a, b], modsDir });
+
+  const sheet = appliedSheet();
+  // left  rect [2, 0, 4, 4]  -> top y = 16 - 0 - 4 = 12
+  // right rect [10, 12, 4, 4] -> top y = 16 - 12 - 4 = 0
+  assert.deepEqual(pixel(sheet, 3, 13), RED, "the first pack's sprite is still there");
+  assert.deepEqual(pixel(sheet, 11, 1), BLUE, "the second pack's sprite is there too");
+  assert.equal(appliedManifest().textures.length, 1, 'one merged sheet, not two');
+});
+
+test('two packs editing the SAME sprite: the higher one wins, and reordering flips it', async () => {
+  const a = (await packs.create({ name: 'Top' })).id;
+  const b = (await packs.create({ name: 'Bottom' })).id;
+  await packs.setImage({ id: a, assetId: 'left', bytes: png.encode(solid(4, 4, RED)) });
+  await packs.setImage({ id: b, assetId: 'left', bytes: png.encode(solid(4, 4, BLUE)) });
+
+  await packs.setActive({ ids: [a, b], modsDir });
+  assert.deepEqual(pixel(appliedSheet(), 3, 13), RED);
+
+  await packs.setActive({ ids: [b, a], modsDir });
+  assert.deepEqual(pixel(appliedSheet(), 3, 13), BLUE, 'the stack was rebuilt, not reused');
+});
+
+test('a whole-sheet replacement is the base the sprites above it land on', async () => {
+  const top = (await packs.create({ name: 'Sprite' })).id;
+  const bottom = (await packs.create({ name: 'Wallpaper' })).id;
+  await packs.setImage({ id: top, assetId: 'left', bytes: png.encode(solid(4, 4, RED)) });
+  await packs.setImage({ id: bottom, assetId: 'sheet', bytes: png.encode(solid(16, 16, GREEN)) });
+
+  await packs.setActive({ ids: [top, bottom], modsDir });
+
+  const sheet = appliedSheet();
+  assert.deepEqual(pixel(sheet, 0, 0), GREEN, 'the replaced sheet shows through');
+  assert.deepEqual(pixel(sheet, 3, 13), RED, 'the sprite above it still wins its own rectangle');
+});
+
+test('text overrides resolve per language, highest pack first', async () => {
+  const a = (await packs.create({ name: 'Top' })).id;
+  const b = (await packs.create({ name: 'Bottom' })).id;
+  await packs.setText({ id: a, section: 'utils', key: 'launch', lang: 'en', value: 'FROM TOP' });
+  await packs.setText({ id: b, section: 'utils', key: 'launch', lang: 'en', value: 'FROM BOTTOM' });
+  await packs.setText({ id: b, section: 'utils', key: 'launch', lang: 'fr', value: 'DU BAS' });
+
+  await packs.setActive({ ids: [a, b], modsDir });
+
+  const texts = appliedManifest().texts;
+  assert.equal(texts.length, 1);
+  const byLang = Object.fromEntries(texts[0].values.map((v) => [v.lang, v.value]));
+  assert.equal(byLang.en, 'FROM TOP', 'the higher pack wins the language they share');
+  assert.equal(byLang.fr, 'DU BAS', 'a language only the lower pack sets still comes through');
+});
+
+test('taking one pack off re-flattens without it', async () => {
+  const a = (await packs.create({ name: 'Lefty' })).id;
+  const b = (await packs.create({ name: 'Righty' })).id;
+  await packs.setImage({ id: a, assetId: 'left', bytes: png.encode(solid(4, 4, RED)) });
+  await packs.setImage({ id: b, assetId: 'right', bytes: png.encode(solid(4, 4, BLUE)) });
+
+  await packs.setActive({ ids: [a, b], modsDir });
+  await packs.setActive({ ids: [b], modsDir });
+
+  const sheet = appliedSheet();
+  assert.deepEqual(pixel(sheet, 11, 1), BLUE);
+  assert.notDeepEqual(pixel(sheet, 3, 13), RED, "the removed pack's sprite is gone");
+});
+
+test('deleting one worn pack leaves the rest of the stack on', async () => {
+  const a = (await packs.create({ name: 'Doomed' })).id;
+  const b = (await packs.create({ name: 'Survivor' })).id;
+  await packs.setImage({ id: a, assetId: 'left', bytes: png.encode(solid(4, 4, RED)) });
+  await packs.setImage({ id: b, assetId: 'right', bytes: png.encode(solid(4, 4, BLUE)) });
+  await packs.setActive({ ids: [a, b], modsDir });
+
+  await packs.remove({ id: a, modsDir });
+
+  assert.deepEqual((await packs.summary()).activeIds, [b]);
+  assert.deepEqual(pixel(appliedSheet(), 11, 1), BLUE);
+});
+
+test('editing a worn pack re-flattens the stack it is part of', async () => {
+  const a = (await packs.create({ name: 'Top' })).id;
+  const b = (await packs.create({ name: 'Bottom' })).id;
+  await packs.setImage({ id: b, assetId: 'left', bytes: png.encode(solid(4, 4, BLUE)) });
+  await packs.setActive({ ids: [a, b], modsDir });
+  assert.deepEqual(pixel(appliedSheet(), 3, 13), BLUE);
+
+  // The cached build must not be reused when a member pack changed underneath.
+  await packs.setImage({ id: a, assetId: 'left', bytes: png.encode(solid(4, 4, RED)) });
+  await packs.reapply({ modsDir });
+  assert.deepEqual(pixel(appliedSheet(), 3, 13), RED);
+});
+
+test('the flattened build never shows up as a pack of its own', async () => {
+  const a = (await packs.create({ name: 'One' })).id;
+  const b = (await packs.create({ name: 'Two' })).id;
+  await packs.setImage({ id: a, assetId: 'left', bytes: png.encode(solid(4, 4, RED)) });
+  await packs.setImage({ id: b, assetId: 'right', bytes: png.encode(solid(4, 4, BLUE)) });
+  await packs.setActive({ ids: [a, b], modsDir });
+
+  assert.deepEqual((await packs.summary()).packs.map((p) => p.name).sort(), ['One', 'Two']);
+});
+
+test('setActive refuses a stack naming a pack that does not exist', async () => {
+  const { id } = await packs.create({ name: 'Real' });
+  await assert.rejects(() => packs.setActive({ ids: [id, 'tp-nope'], modsDir }), /no longer exists|not a valid pack id/);
+  // And nothing was applied - the stack is all-or-nothing.
+  assert.deepEqual((await packs.summary()).activeIds, []);
 });
 
 // ---------------------------------------------------------------------------

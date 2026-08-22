@@ -207,7 +207,9 @@ function submitModpack(token, entry, opts = {}) {
       '',
       mods.length ? 'Mods in the pack:' : 'No mods - this pack is a look, not a loadout.',
       ...mods.map((id) => `- \`${id}\``),
-      ...(entry.texturepack ? ['', `Texture pack: \`${entry.texturepack}\``] : []),
+      ...(entry.texturepacks?.length
+        ? ['', 'Texture packs, highest precedence first:', ...entry.texturepacks.map((id) => `- \`${id}\``)]
+        : []),
       '',
       '_A modpack is metadata only - it points at mods and a texture pack that are',
       'already in the registry, each downloaded and checksum-verified on its own._',
@@ -274,7 +276,7 @@ function modpackIssueUrl(entry) {
     'pack-name': entry.name || '',
     'pack-id': entry.id || '',
     mods: (entry.mods || []).join(', '),
-    texturepack: entry.texturepack || '',
+    texturepacks: (entry.texturepacks || []).join(', '),
     summary: entry.summary || '',
     description: entry.description || '',
   });

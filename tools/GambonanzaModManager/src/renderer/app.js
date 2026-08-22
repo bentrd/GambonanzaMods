@@ -737,7 +737,7 @@ function renderModCard(mod, tiers) {
 // ---------------------------------------------------------------------------
 // Modpacks
 // ---------------------------------------------------------------------------
-// A modpack is a whole setup: the mods it loads AND the texture pack it wears.
+// A modpack is a whole setup: the mods it loads AND the texture packs it wears.
 // One is active at a time, its mods live in the game's Mods/ folder, and
 // installing anything lands in it - so "the active modpack" and "my game right
 // now" are the same sentence.
@@ -861,7 +861,7 @@ async function selectModpack(id) {
 async function createModpackFlow({ name = '' } = {}) {
   const chosen = await promptModal({
     title: 'New modpack',
-    body: 'A modpack is its own set of mods and its own texture pack - switch between them any time from the bar up top.',
+    body: 'A modpack is its own set of mods and its own texture packs - switch between them any time from the bar up top.',
     placeholder: 'e.g. Vanilla+, Gambit chaos…',
     initial: name,
     confirmLabel: 'Create',
@@ -942,10 +942,11 @@ function renderModpackCards() {
   const entryFor = registryEntryFinder();
 
   const cards = mpList().map((mp) => {
-    const skin = mp.texturePackId ? skins.get(mp.texturePackId) : null;
+    const worn = (mp.texturePackIds || []).map((id) => skins.get(id)).filter(Boolean);
     const unreviewed = mp.mods.filter((m) => entryFor(m)?.reviewed === false);
     const bits = [`${mp.modCount} mod${mp.modCount === 1 ? '' : 's'}`];
-    if (skin) bits.push(skin.name);
+    if (worn.length === 1) bits.push(worn[0].name);
+    else if (worn.length) bits.push(`${worn.length} texture packs`);
     if (mp.lastPlayedAt) bits.push(`played ${new Date(mp.lastPlayedAt).toLocaleDateString()}`);
 
     return el('div', {
@@ -990,7 +991,7 @@ function unreviewedMark(names) {
 }
 
 /**
- * The contents of the selected setup: the texture pack it wears in the head,
+ * The contents of the selected setup: the texture packs it wears in the head,
  * then one small tile per mod. Deliberately mute - someone with twenty mods
  * should see a shelf, not a table - with every detail on hover and the
  * actions one click in.
@@ -1017,7 +1018,7 @@ function renderModpackPanel() {
 
   title.textContent = mp.name;
   const skins = new Map(tpList().map((p) => [p.id, p]));
-  const skin = mp.texturePackId ? skins.get(mp.texturePackId) : null;
+  const worn = (mp.texturePackIds || []).map((id) => skins.get(id)).filter(Boolean);
 
   // fill(), not replaceChildren(): a `cond ? x : null` hole would otherwise
   // print the word "null" into the panel head.
@@ -1027,8 +1028,8 @@ function renderModpackPanel() {
       el('div', { class: 'pmeta' }, mp.active
         ? 'The active modpack - installs land here and the game loads it.'
         : 'Not active. Switch to it to add, remove or turn mods on and off.')),
-    mp.active ? skinPicker(mp) : (skin
-      ? el('span', { class: 'tiny muted' }, `wears ${skin.name}`)
+    mp.active ? skinPicker(mp) : (worn.length
+      ? el('span', { class: 'tiny muted' }, `wears ${worn.map((p) => p.name).join(' over ')}`)
       : null),
     mp.active
       ? null
@@ -1150,31 +1151,54 @@ function mpAddTile() {
       }, el('span', { class: 'micon', html: TP_ICONS.image }), 'Texture packs →')));
 }
 
-/** The active setup's texture pack, as a one-line picker in the panel head. */
+/**
+ * The active setup's texture packs, as a checklist in the panel head. Several
+ * can be on at once; the order lives on the Texture packs tab, where the cards
+ * you are reordering are the ones you can see.
+ */
 function skinPicker(mp) {
   const open = state.ui.mpSkinMenu;
   const packs = tpList();
-  const worn = mp.texturePackId ? packs.find((p) => p.id === mp.texturePackId) : null;
+  const stack = mp.texturePackIds || [];
+  const worn = stack.map((id) => packs.find((p) => p.id === id)).filter(Boolean);
 
-  const row = (id, label) => el('button', {
-    class: `mi${(id || null) === (mp.texturePackId || null) ? ' current' : ''}`,
-    onclick: (ev) => { ev.stopPropagation(); state.ui.mpSkinMenu = false; wearTp(id); },
-  }, el('span', { class: 'setup-check' }, (id || null) === (mp.texturePackId || null) ? '✓' : ''), label);
+  const label = worn.length === 0 ? 'No texture pack'
+    : (worn.length === 1 ? worn[0].name : `${worn.length} texture packs`);
+
+  const row = (p) => {
+    const at = stack.indexOf(p.id);
+    return el('button', {
+      class: `mi${at >= 0 ? ' current' : ''}`,
+      title: at >= 0 ? `Worn ${ordinal(at)} - click to take it off` : 'Click to put it on',
+      onclick: (ev) => { ev.stopPropagation(); toggleTp(p.id); },
+    },
+      el('span', { class: 'setup-check' }, at >= 0 ? '✓' : ''),
+      el('span', { class: 'setup-name' }, p.name),
+      at >= 0 && stack.length > 1 ? el('span', { class: 'setup-count' }, ordinal(at)) : null);
+  };
 
   return el('span', { class: `dropdown mp-skin${open ? ' open' : ''}` },
     el('button', {
       class: 'btn btn-cream small',
-      title: 'The texture pack this modpack wears - switch modpacks and the look switches with them',
+      title: 'The texture packs this modpack wears - switch modpacks and the look switches with them',
       onclick: (ev) => { ev.stopPropagation(); state.ui.mpSkinMenu = !open; renderModpackPanel(); },
     },
       el('span', { class: 'micon', html: TP_ICONS.image }),
-      worn ? worn.name : 'No texture pack',
+      label,
       el('span', { class: 'caret' }, '▾')),
     el('div', { class: 'menu' },
-      el('div', { class: 'mhead' }, 'Texture pack'),
-      row(null, 'None - the game’s own art'),
-      ...packs.map((p) => row(p.id, p.name)),
+      el('div', { class: 'mhead' }, packs.length ? 'Texture packs · tick as many as you like' : 'Texture packs'),
+      ...packs.map(row),
+      worn.length
+        ? el('button', {
+            class: 'mi',
+            onclick: (ev) => { ev.stopPropagation(); state.ui.mpSkinMenu = false; wearTp([]); },
+          }, el('span', { class: 'setup-check' }), 'Take them all off')
+        : null,
       el('div', { class: 'msep' }),
+      worn.length > 1
+        ? el('div', { class: 'mnote' }, `Wearing ${worn.map((p) => p.name).join(' over ')}. Reorder on the Texture packs tab.`)
+        : null,
       el('button', {
         class: 'mi',
         onclick: (ev) => { ev.stopPropagation(); state.ui.mpSkinMenu = false; show('textures'); },
@@ -1198,8 +1222,8 @@ function packMemberState(pack) {
     updates: members.filter((m) => m.installed && m.updateAvailable),
     installedCount: members.filter((m) => m.installed).length,
     unreviewed: members.filter((m) => m.reviewed === false),
-    skin: pack.texturepack ? (skins.find((t) => t.id === pack.texturepack) || null) : null,
-    skinMissing: !!pack.texturepack && !skins.some((t) => t.id === pack.texturepack),
+    skins: (pack.texturepacks || []).map((id) => skins.find((t) => t.id === id)).filter(Boolean),
+    skinsMissing: (pack.texturepacks || []).filter((id) => !skins.some((t) => t.id === id)),
     vanished: (pack.mods || []).filter((id) => !registryById.has(id)),
     mine: mpList().find((p) => p.registryId === pack.id) || null,
   };
@@ -1221,8 +1245,8 @@ function packBadges(ms) {
 
 /** The pack's "get it" button, shared by the card and the detail page. */
 function packActionButton(pack, ms, { size = 'small' } = {}) {
-  const { members, skin } = ms;
-  if (!members.length && !skin) {
+  const { members, skins } = ms;
+  if (!members.length && !skins.length) {
     return el('button', { class: `btn btn-cream ${size}`, disabled: true }, 'Nothing to install yet');
   }
   if (!pack.installable) {
@@ -1248,12 +1272,13 @@ function renderCommunityPacks() {
  */
 function renderCommunityCard(pack) {
   const ms = packMemberState(pack);
-  const { members, skin } = ms;
+  const { members, skins } = ms;
 
   const previewNames = members.slice(0, 3).map((m) => m.name).join(', ');
   const more = members.length > 3 ? ` +${members.length - 3} more` : '';
   const what = [`${members.length} mod${members.length === 1 ? '' : 's'}`];
-  if (skin) what.push(`the ${skin.name} texture pack`);
+  if (skins.length === 1) what.push(`the ${skins[0].name} texture pack`);
+  else if (skins.length) what.push(`${skins.length} texture packs`);
 
   return el('div', {
     class: 'mod-card pack-card',
@@ -1310,7 +1335,7 @@ function packGambitShelf(members) {
 function renderPackDetail(pack) {
   const box = $('packDetail');
   const ms = packMemberState(pack);
-  const { members, vanished, skin, unreviewed } = ms;
+  const { members, vanished, skins, unreviewed } = ms;
   const registryMods = (state.data?.registry?.mods || []).filter((m) => m.kind === 'registry');
   const tiers = popularityTiers(registryMods);
 
@@ -1360,7 +1385,7 @@ function renderPackDetail(pack) {
     el('div', { class: 'pack-detail-head' },
       el('h2', {}, pack.name),
       el('div', { class: 'badges' }, packBadges(ms)),
-      el('div', { class: 'by' }, `by ${pack.author} · ${members.length} mods${skin ? ` · the ${skin.name} texture pack` : ''}`)),
+      el('div', { class: 'by' }, `by ${pack.author} · ${members.length} mods${skins.length ? ` · ${skins.length} texture pack${skins.length === 1 ? '' : 's'}` : ''}`)),
     (pack.description || pack.summary)
       ? el('p', { class: 'pack-desc' }, pack.description || pack.summary)
       : null,
@@ -1369,14 +1394,14 @@ function renderPackDetail(pack) {
           el('span', { class: 'micon', html: ICONS.warn }),
           ` ${unreviewed.length} of these mods ${unreviewed.length === 1 ? 'has' : 'have'} not been reviewed by anyone: ${unreviewed.map((m) => m.name).join(', ')}. Installing this modpack runs their code. Read the source first if you don't know the author.`)
       : null,
-    ms.skinMissing
+    ms.skinsMissing.length
       ? el('div', { class: 'inset-row tiny', style: 'margin-top:6px' },
-          'Its texture pack is no longer in the registry, so only the mods will install.')
+          `${ms.skinsMissing.length} of its texture packs ${ms.skinsMissing.length === 1 ? 'is' : 'are'} no longer in the registry and will be skipped: ${ms.skinsMissing.join(', ')}.`)
       : null,
     packGambitShelf(members),
     el('div', { class: 'pack-actions' },
       packActionButton(pack, ms, { size: '' }),
-      pack.installable && (members.length || skin)
+      pack.installable && (members.length || skins.length)
         ? el('button', {
             class: 'btn btn-wine',
             title: `Add its mods to "${activeModpack()?.name || 'the active modpack'}" instead of making a new one`,
@@ -1385,19 +1410,20 @@ function renderPackDetail(pack) {
         : null),
     el('div', { class: 'section-band', style: 'margin:18px 0 12px' }, "What's inside"),
     ...rows,
-    skin
-      ? el('div', { class: 'mod-row pack-member' },
-          el('div', { class: 'info' },
-            el('div', { class: 'nm' }, skin.name, ' ', el('span', { class: 'ver' }, 'texture pack')),
-            el('div', { class: 'meta' }, `by ${skin.author || 'unknown'}`),
-            el('div', { class: 'psum' }, skin.summary || 'Art and wording only - a texture pack cannot contain code.')),
-          el('div', { class: 'side' },
-            el('div', { class: 'row-btns' },
-              el('button', {
-                class: 'btn btn-cream small',
-                onclick: () => api.openExternal(`https://github.com/${skin.repo}`),
-              }, 'Source'))))
-      : null,
+    // Listed in precedence order, because that is part of what is being
+    // shared: the same two packs stacked the other way look different.
+    ...skins.map((t, i) => el('div', { class: 'mod-row pack-member' },
+      el('div', { class: 'info' },
+        el('div', { class: 'nm' }, t.name, ' ',
+          el('span', { class: 'ver' }, skins.length > 1 ? `texture pack · worn ${ordinal(i)}` : 'texture pack')),
+        el('div', { class: 'meta' }, `by ${t.author || 'unknown'}`),
+        el('div', { class: 'psum' }, t.summary || 'Art and wording only - a texture pack cannot contain code.')),
+      el('div', { class: 'side' },
+        el('div', { class: 'row-btns' },
+          el('button', {
+            class: 'btn btn-cream small',
+            onclick: () => api.openExternal(`https://github.com/${t.repo}`),
+          }, 'Source'))))),
     vanished.length
       ? el('div', { class: 'inset-row tiny', style: 'margin-top:6px' },
           `${vanished.length} mod${vanished.length === 1 ? ' is' : 's are'} no longer in the registry and will be skipped: ${vanished.join(', ')}`)
@@ -1405,13 +1431,13 @@ function renderPackDetail(pack) {
 }
 
 async function installModpack(pack, ms, { into = 'new' } = {}) {
-  const { missing, updates, skin, unreviewed } = ms;
+  const { missing, updates, skins, unreviewed } = ms;
   const target = into === 'new' ? `a new modpack called "${pack.name}"` : `your "${activeModpack()?.name || 'active'}" modpack`;
   const lines = [
     `Everything goes into ${target}.`,
     missing.length ? `Installs ${missing.map((m) => m.name).join(', ')}.` : '',
     updates.length ? `Updates ${updates.map((m) => m.name).join(', ')}.` : '',
-    skin ? `Puts on the ${skin.name} texture pack.` : '',
+    skins.length ? `Puts on ${skins.map((t) => t.name).join(' over ')}.` : '',
     'Mods they depend on come along automatically. Anything you already have is left alone.',
   ].filter(Boolean).join(' ');
   const yes = await confirmModal({
@@ -1440,10 +1466,10 @@ async function installModpackNow(pack, { into = 'new' } = {}) {
     modal.close();
     if (result.modpackId) state.mp.selectedId = result.modpackId;
     const n = result.installed.length;
-    const skin = result.texturePack?.error
-      ? ` Its texture pack could not be installed: ${result.texturePack.error}`
-      : (result.texturePack ? ` The ${result.texturePack.name} texture pack is on.` : '');
-    toast(`${pack.name}: ${n} mod${n === 1 ? '' : 's'} installed.${skin}`, result.texturePack?.error ? 'warn' : 'ok');
+    const tp = result.texturePacks;
+    const on = tp?.names?.length ? ` ${tp.names.join(' over ')} ${tp.names.length === 1 ? 'is' : 'are'} on.` : '';
+    const failed = tp?.error ? ` Some texture packs could not be installed: ${tp.error}` : '';
+    toast(`${pack.name}: ${n} mod${n === 1 ? '' : 's'} installed.${on}${failed}`, tp?.error ? 'warn' : 'ok');
     closePackDetail();
   } catch (err) {
     modal.close();
@@ -1520,12 +1546,13 @@ function renderSharePackForm() {
     if (entry) shareable.push(entry);
     else notShareable.push(m.name);
   }
-  const skin = mp.texturePackId ? tpList().find((t) => t.id === mp.texturePackId) : null;
-  const skinRegistryId = skin?.registryId || null;
+  const worn = (mp.texturePackIds || []).map((id) => tpList().find((t) => t.id === id)).filter(Boolean);
+  const shareableSkins = worn.filter((t) => t.registryId);
+  const privateSkins = worn.filter((t) => !t.registryId);
   const unreviewed = shareable.filter((m) => m.reviewed === false);
 
   e.mods = shareable.map((m) => m.id);
-  e.texturepack = skinRegistryId || '';
+  e.texturepacks = shareableSkins.map((t) => t.registryId);
 
   fill(box,
     el('div', { class: 'inset-row tiny', style: 'margin-bottom:4px' },
@@ -1536,10 +1563,15 @@ function renderSharePackForm() {
       field('Author', 'author', { placeholder: 'you' }),
       field('One-line summary', 'summary', { placeholder: 'What is this modpack FOR?' }),
       el('div', { class: 'field full' },
-        el('label', {}, `What gets shared (${shareable.length} mod${shareable.length === 1 ? '' : 's'}${skinRegistryId ? ' + a texture pack' : ''})`),
+        el('label', {}, `What gets shared (${shareable.length} mod${shareable.length === 1 ? '' : 's'}${shareableSkins.length ? ` + ${shareableSkins.length} texture pack${shareableSkins.length === 1 ? '' : 's'}` : ''})`),
         el('div', { class: 'chip-row' },
           ...shareable.map((m) => el('span', { class: `chip on${m.reviewed === false ? ' warn' : ''}`, title: m.summary || '' }, m.name)),
-          skinRegistryId ? el('span', { class: 'chip on', title: 'The texture pack this modpack wears' }, `🎨 ${skin.name}`) : null),
+          ...shareableSkins.map((t, i) => el('span', {
+            class: 'chip on',
+            title: shareableSkins.length > 1
+              ? `Texture pack, worn ${ordinal(i)} - the order goes with the modpack`
+              : 'The texture pack this modpack wears',
+          }, `🎨 ${t.name}`))),
         el('div', { class: 'help' },
           'This is what you have installed - there is no list to curate. Dependencies (like the Gambit API) install automatically.')),
       field('Longer description', 'description', { full: true, textarea: true, placeholder: 'Why these mods together? (optional)' })),
@@ -1547,9 +1579,9 @@ function renderSharePackForm() {
       ? el('div', { class: 'inset-row tiny', style: 'margin-top:10px' },
           `Left out, because nobody else could download them: ${notShareable.join(', ')}. Publish them to the registry first and they will be included.`)
       : null,
-    skin && !skinRegistryId
+    privateSkins.length
       ? el('div', { class: 'inset-row tiny', style: 'margin-top:6px' },
-          `Your "${skin.name}" texture pack is only on this computer. Publish it from the Texture packs tab and it will ship with this modpack.`)
+          `${privateSkins.map((t) => `"${t.name}"`).join(' and ')} ${privateSkins.length === 1 ? 'is' : 'are'} only on this computer. Publish ${privateSkins.length === 1 ? 'it' : 'them'} from the Texture packs tab and ${privateSkins.length === 1 ? 'it' : 'they'} will ship with this modpack.`)
       : null,
     unreviewed.length
       ? el('div', { class: 'inset-row tiny warn-row', style: 'margin-top:6px' },
@@ -1636,8 +1668,16 @@ function tpList() {
   return state.data?.texturePacks?.packs || [];
 }
 
-function activeTpId() {
-  return state.data?.texturePacks?.activeId || null;
+/** The worn stack, highest precedence first. */
+function activeTpIds() {
+  return state.data?.texturePacks?.activeIds || [];
+}
+
+/** 0, 1, 2 -> "1st", "2nd", "3rd" - the badge on a worn card. */
+function ordinal(n) {
+  const i = n + 1;
+  const suffix = (i % 100 >= 11 && i % 100 <= 13) ? 'th' : ({ 1: 'st', 2: 'nd', 3: 'rd' }[i % 10] || 'th');
+  return `${i}${suffix}`;
 }
 
 /** Which pack the bottom panel is describing. Follows the worn one by default. */
@@ -1645,7 +1685,7 @@ function selectedTp() {
   const list = tpList();
   if (!list.length) return null;
   return list.find((p) => p.id === state.tp.selectedId)
-    || list.find((p) => p.id === activeTpId())
+    || list.find((p) => p.active)
     || list[0];
 }
 
@@ -1660,12 +1700,24 @@ function renderTexturePacks() {
   renderTpPublish();
 }
 
+/**
+ * The shelf. Worn packs come first, in the order they are worn, so the ▲▼
+ * buttons move a card somewhere you can see - a grid sorted by name while the
+ * arrows changed an invisible list would be a puzzle, not a control.
+ */
 function renderTpCards() {
   const grid = $('tpGrid');
   if (!grid) return;
   const chosen = selectedTp();
+  const worn = activeTpIds();
 
-  const cards = tpList().map((p) => {
+  const ordered = [...tpList()].sort((a, b) => {
+    if (a.active !== b.active) return a.active ? -1 : 1;
+    if (a.active) return a.order - b.order;
+    return String(a.name).localeCompare(String(b.name));
+  });
+
+  const cards = ordered.map((p) => {
     const bits = [];
     if (p.imageCount) bits.push(`${p.imageCount} image${p.imageCount === 1 ? '' : 's'}`);
     if (p.textCount) bits.push(`${p.textCount} text${p.textCount === 1 ? '' : 's'}`);
@@ -1674,17 +1726,39 @@ function renderTpCards() {
 
     return el('div', {
       class: `shelf-card${p.active ? ' active' : ''}${chosen && chosen.id === p.id && !p.active ? ' sel' : ''}`,
-      title: p.active ? 'The game is wearing this pack' : 'Click to open this pack',
+      title: p.active ? `Worn, ${ordinal(p.order)} in the stack` : 'Click to open this pack',
       onclick: () => { state.tp.selectedId = p.id; state.tp.detail = null; renderTexturePacks(); loadTpDetail(p.id); },
     },
       el('div', { class: 'head' },
         el('h3', {}, p.name),
-        p.active ? el('span', { class: 'tag green' }, 'worn') : null),
+        p.active && worn.length > 1
+          ? el('span', { class: 'stack-arrows' },
+              el('button', {
+                class: 'stack-arrow',
+                disabled: p.order === 0,
+                title: 'Let this pack win over the one above it',
+                onclick: (ev) => { ev.stopPropagation(); moveTp(p.id, -1); },
+              }, '▲'),
+              el('button', {
+                class: 'stack-arrow',
+                disabled: p.order === worn.length - 1,
+                title: 'Let the pack below it win instead',
+                onclick: (ev) => { ev.stopPropagation(); moveTp(p.id, 1); },
+              }, '▼'))
+          : null,
+        p.active
+          ? el('span', {
+              class: 'tag green',
+              title: worn.length > 1
+                ? `${ordinal(p.order)} of ${worn.length} - the higher a pack sits, the more it wins`
+                : 'The game is wearing this pack',
+            }, worn.length > 1 ? `worn ${ordinal(p.order)}` : 'worn')
+          : null),
       el('div', { class: 'meta' }, bits.join(' · ')),
       el('div', { class: 'foot' },
         p.active
-          ? el('button', { class: 'btn btn-cream small', title: 'Go back to the game’s own art', onclick: (ev) => { ev.stopPropagation(); wearTp(null); } }, 'Turn off')
-          : el('button', { class: 'btn btn-green small', title: 'Make the game use this pack', onclick: (ev) => { ev.stopPropagation(); wearTp(p.id); } }, 'Wear'),
+          ? el('button', { class: 'btn btn-cream small', title: 'Take this pack off - the others stay on', onclick: (ev) => { ev.stopPropagation(); toggleTp(p.id); } }, 'Take off')
+          : el('button', { class: 'btn btn-green small', title: 'Add this pack to what the game is wearing', onclick: (ev) => { ev.stopPropagation(); toggleTp(p.id); } }, 'Wear'),
         el('button', { class: 'btn btn-cream small', onclick: (ev) => { ev.stopPropagation(); renameTpFlow(p); } }, 'Rename'),
         el('button', { class: 'btn btn-cream small', title: 'Save this pack as a zip you can send to anyone', onclick: (ev) => { ev.stopPropagation(); exportTpFlow(p); } }, 'Share'),
         el('button', { class: 'btn btn-red small', onclick: (ev) => { ev.stopPropagation(); deleteTpFlow(p); } }, 'Delete')));
@@ -1717,11 +1791,13 @@ function renderTpPanel() {
 
   const game = state.data?.game;
   const ready = game?.valid && game.state === 'patched';
+  const worn = activeTpIds();
+  const place = worn.length > 1 ? ` ${ordinal(chosen.order)} of ${worn.length} in the stack.` : '';
   let status;
   if (!chosen.active) status = 'Not worn. Press Wear on its card to put it on.';
-  else if (!game?.valid) status = 'Worn, but no game folder is set up yet - open Set up first.';
-  else if (!ready) status = 'Worn, but the game is not patched - texture packs need the framework (Set up).';
-  else status = 'Worn - the game loads this the next time it starts.';
+  else if (!game?.valid) status = `Worn, but no game folder is set up yet - open Set up first.${place}`;
+  else if (!ready) status = `Worn, but the game is not patched - texture packs need the framework (Set up).${place}`;
+  else status = `Worn - the game loads this the next time it starts.${place}`;
 
   head.replaceChildren(
     el('div', { class: 'grow' },
@@ -1749,6 +1825,8 @@ function renderTpPanel() {
   foot.hidden = false;
   if (!detail.images.length && !detail.texts.length) {
     foot.textContent = 'Nothing in this pack yet. Press ＋ to replace a picture or reword some text.';
+  } else if (chosen.active && worn.length > 1 && chosen.order > 0) {
+    foot.textContent = `Every change is saved and applied straight away. ${worn.length} packs are on: where another one higher up the stack changes the same thing, that one wins.`;
   } else if (!chosen.active) {
     foot.textContent = 'Changes are saved as you make them, but this pack is not worn - press Wear on its card to put it on the game.';
   } else if (!ready) {
@@ -1914,18 +1992,45 @@ async function deleteTpFlow(pack) {
   await refresh();
 }
 
-async function wearTp(id) {
+/**
+ * Set the whole worn stack. One call for wearing, taking off and reordering,
+ * matching the single IPC primitive - three verbs that had to agree about the
+ * order would be three chances to disagree.
+ */
+async function wearTp(ids) {
+  const previous = activeTpIds();
   try {
-    await call(api.selectPack, { id });
+    const result = await call(api.setWornPacks, { ids });
+    const worn = result.activeIds;
     const game = state.data?.game;
-    if (!id) toast('Texture pack off - the game’s own art is back.', 'ok');
-    else if (!game?.valid) toast('Pack selected. Set up your game folder and it will be applied.', 'ok');
-    else if (game.state !== 'patched') toast('Pack selected - patch the game and it will be applied.', 'ok');
-    else toast('Pack applied - restart the game to see it.', 'ok');
+    const many = worn.length > 1 ? ` ${worn.length} packs on, top of the stack wins.` : '';
+    if (!worn.length) toast('Texture packs off - the game’s own art is back.', 'ok');
+    else if (!game?.valid) toast(`Saved.${many} Set up your game folder and it will be applied.`, 'ok');
+    else if (game.state !== 'patched') toast(`Saved.${many} Patch the game and it will be applied.`, 'ok');
+    else if (worn.length === previous.length) toast(`Order changed.${many} Restart the game to see it.`, 'ok');
+    else toast(`Applied.${many} Restart the game to see it.`, 'ok');
   } catch (err) {
     toast(err.message, 'err');
   }
   await refresh();
+}
+
+/** Add a pack to the top of the stack, or take it off. */
+function toggleTp(id) {
+  const worn = activeTpIds();
+  // New packs go on top: you just chose it, so you almost certainly want to
+  // see it win. Demoting it afterwards is one arrow away.
+  return wearTp(worn.includes(id) ? worn.filter((x) => x !== id) : [id, ...worn]);
+}
+
+/** Move a worn pack one place up (-1) or down (+1) the precedence order. */
+function moveTp(id, delta) {
+  const worn = [...activeTpIds()];
+  const from = worn.indexOf(id);
+  const to = from + delta;
+  if (from < 0 || to < 0 || to >= worn.length) return Promise.resolve();
+  worn.splice(to, 0, ...worn.splice(from, 1));
+  return wearTp(worn);
 }
 
 async function exportTpFlow(pack) {

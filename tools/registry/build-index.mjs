@@ -275,11 +275,14 @@ async function buildModpacks(fileEntries, resolvedMods, resolvedSkins) {
       console.warn(`! modpack ${entry.id}: mod "${id}" is gone from the registry - dropped from the pack`);
       return false;
     });
-    const skin = entry.texturepack && skinById.has(entry.texturepack) ? entry.texturepack : null;
-    if (entry.texturepack && !skin) {
-      console.warn(`! modpack ${entry.id}: texture pack "${entry.texturepack}" is gone from the registry - dropped`);
-    }
-    if (!members.length && !skin) {
+    // Order is precedence and must survive the filter: dropping a dead pack
+    // from the middle must not shuffle the ones around it.
+    const skins = (entry.texturepacks || []).filter((id) => {
+      if (skinById.has(id)) return true;
+      console.warn(`! modpack ${entry.id}: texture pack "${id}" is gone from the registry - dropped from the pack`);
+      return false;
+    });
+    if (!members.length && !skins.length) {
       console.warn(`! modpack ${entry.id}: nothing in it still exists - delisted`);
       return null;
     }
@@ -291,14 +294,14 @@ async function buildModpacks(fileEntries, resolvedMods, resolvedSkins) {
     // checksum-checked right now. A member still waiting for its first
     // release makes the whole setup un-gettable, so say so up front.
     const installable = members.every((id) => !!byId.get(id)?.latest?.asset?.sha256)
-      && (!skin || !!skinById.get(skin)?.latest?.asset?.sha256);
+      && skins.every((id) => !!skinById.get(id)?.latest?.asset?.sha256);
     // The one field the pack's warning icon hangs on. Computed here as well as
     // in the manager so the site and any other reader gets it for free.
     const unreviewed = members.filter((id) => byId.get(id)?.reviewed === false);
 
     const record = { ...entry, mods: members, downloads, installable, unreviewed, ...extra };
-    if (skin) record.texturepack = skin;
-    else delete record.texturepack;
+    if (skins.length) record.texturepacks = skins;
+    else delete record.texturepacks;
     return record;
   };
 
@@ -317,7 +320,7 @@ async function buildModpacks(fileEntries, resolvedMods, resolvedSkins) {
     const record = resolve(entry, { reviewed: true });
     if (!record) continue;
     packs.push(record);
-    console.log(`✓ pack ${entry.id} → ${record.mods.length} mods${record.texturepack ? ' + a texture pack' : ''}, ${record.downloads} downloads`);
+    console.log(`✓ pack ${entry.id} → ${record.mods.length} mods${record.texturepacks ? ` + ${record.texturepacks.length} texture pack(s)` : ''}, ${record.downloads} downloads`);
   }
 
   packs.push(...await collectSubmissionModpacks(packs, resolve, knownModIds, knownSkinIds));

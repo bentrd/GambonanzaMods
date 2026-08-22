@@ -16,9 +16,9 @@ body:
       value: |
         A modpack is a setup other people can install in one click: a name, a
         blurb, the registry ids of the mods in it, and optionally the registry
-        id of a texture pack. Rules:
+        ids of the texture packs it wears. Rules:
         - at least **one mod, or a texture pack** (both is the usual case)
-        - at most 24 mods
+        - at most 24 mods and 8 texture packs
         - everything must already be **listed in the registry** - open the mod
           manager and check that each one shows up under Browse mods
         - dependencies (like `gambit-api`) come along automatically, no need
@@ -48,11 +48,14 @@ body:
       description: Comma-separated registry ids, in suggested install order.
       placeholder: kamikaze-gambit, spikes-gambit, better-collection
   - type: input
-    id: texturepack
+    id: texturepacks
     attributes:
-      label: Texture pack
-      description: Optional. The registry id of the texture pack this setup wears - it installs and gets worn along with the mods.
-      placeholder: midnight-chess
+      label: Texture packs
+      description: >-
+        Optional. Registry ids of the texture packs this setup wears, comma-separated,
+        HIGHEST PRECEDENCE FIRST - where two packs change the same sprite or line, the
+        first one listed wins. They install and get worn along with the mods.
+      placeholder: my-hud-tweaks, midnight-chess
   - type: input
     id: summary
     attributes:
