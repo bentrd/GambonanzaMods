@@ -4,6 +4,33 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.7.2
+
+- **Every mod, modpack and texture pack now has its own page** - in the app
+  and on the website. In the app, click any card for the whole story:
+  description, the gambits at full size, release notes, downloads, license,
+  provenance. On the web, the same page lives at
+  `bentrd.github.io/GambonanzaMods/mod/<id>/` with an **Open in Mod Manager**
+  button that jumps straight to it in the app.
+- **Deep links.** The app registers the `gmm://` scheme: `gmm://mod/<id>`,
+  `gmm://modpack/<id>` and `gmm://texturepack/<id>` open the matching page,
+  whether the app is already running or not. Links carry a registry id and
+  nothing else - never a URL or a file - so a malicious link can name a page
+  but can't smuggle anything onto your machine, and nothing installs without
+  the same confirmation as always. A **Copy link** button on every page hands
+  you the website URL, which is the one to paste in Discord (Discord doesn't
+  linkify `gmm://`, and friends without the app land on a download button
+  instead of nothing).
+- **The Play button no longer does nothing on Linux.** It hands the launch to
+  Steam as before, but if the desktop has no handler for `steam://` - common on
+  Linux, and the case with a Flatpak Steam - the manager starts the game's own
+  executable instead and says so. When Steam refuses the handoff outright, that
+  now shows up as an error on the button rather than silence.
+- Fixed a bogus "could not fetch ... redirect with no destination" warning in
+  the activity log. The registry index is fetched with the cached tag attached,
+  and the "nothing changed since last time" reply was being mistaken for a
+  broken redirect - so every cached refresh logged a failure it had not had.
+
 ## 1.7.1
 
 - **Wear several texture packs at once**, in an order you control. Worn packs

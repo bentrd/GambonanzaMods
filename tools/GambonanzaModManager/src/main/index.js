@@ -2,6 +2,7 @@
 
 const path = require('node:path');
 const fsp = require('node:fs/promises');
+const { execFile, spawn } = require('node:child_process');
 const {
   app, BrowserWindow, ipcMain, dialog, shell, Notification,
 } = require('electron');
@@ -19,6 +20,7 @@ const publish = require('./publish');
 const updater = require('./updater');
 const texturePacks = require('./texturepacks');
 const assetCatalog = require('./assetcatalog');
+const deeplink = require('./deeplink');
 const { compareTags } = require('./versions');
 
 // Main process: owns the window, the settings store and every privileged
@@ -79,17 +81,122 @@ function createWindow() {
   });
 }
 
-function openExternalSafe(url) {
+/**
+ * Hand an allowlisted URL to the desktop. Throws when the URL is refused or
+ * when the OS declines to open it - `shell.openExternal` rejects, and dropping
+ * that promise is how a dead steam:// handler used to look like nothing
+ * happening at all (issue #25).
+ */
+async function openExternal(url) {
+  let parsed;
   try {
-    const parsed = new URL(url);
-    if (parsed.protocol === 'https:' || (parsed.protocol === 'steam:' && /^rungameid\/\d+$/.test(`${parsed.hostname}${parsed.pathname}`.replace(/^\/+|\/+$/g, '')))) {
-      shell.openExternal(url);
-    } else {
-      log.warn('shell', `blocked external open of ${url}`);
-    }
+    parsed = new URL(url);
   } catch {
-    log.warn('shell', `blocked malformed external URL ${url}`);
+    throw new Error(`blocked malformed external URL ${url}`);
   }
+  const isSteamRun = parsed.protocol === 'steam:'
+    && /^rungameid\/\d+$/.test(`${parsed.hostname}${parsed.pathname}`.replace(/^\/+|\/+$/g, ''));
+  if (parsed.protocol !== 'https:' && !isSteamRun) {
+    throw new Error(`blocked external open of ${url}`);
+  }
+  await shell.openExternal(url);
+}
+
+/** Fire-and-forget version for links: never rejects, just logs. */
+function openExternalSafe(url) {
+  return openExternal(url).catch((err) => {
+    log.warn('shell', err.message);
+  });
+}
+
+/**
+ * True if this desktop knows what to do with a steam:// URL. Windows and macOS
+ * register the scheme when Steam installs; Linux desktops often do not - and a
+ * Flatpak Steam registers it only inside the sandbox - so the handoff silently
+ * goes nowhere and the Play button appears dead.
+ */
+async function steamSchemeHandled() {
+  if (process.platform !== 'linux') return true;
+  return new Promise((resolve) => {
+    execFile('xdg-mime', ['query', 'default', 'x-scheme-handler/steam'], { timeout: 3000 }, (err, stdout) => {
+      resolve(!err && String(stdout).trim().length > 0);
+    });
+  });
+}
+
+/**
+ * Start the game. Steam is the preferred route - it is what gives the player
+ * the overlay, playtime and cloud saves - but when the handoff is unavailable
+ * or fails, run the game's own executable rather than doing nothing. Returns
+ * which route worked.
+ */
+async function startGame() {
+  const steamUrl = `steam://rungameid/${config.STEAM_APP_ID}`;
+  if (await steamSchemeHandled()) {
+    try {
+      await openExternal(steamUrl);
+      log.info('game', 'asked Steam to start the game');
+      return 'steam';
+    } catch (err) {
+      log.warn('game', `Steam could not start the game (${err.message}) - trying its executable directly`);
+    }
+  } else {
+    log.warn('game', 'this desktop has no handler for steam:// - starting the game directly');
+  }
+
+  const info = await currentGameInfo();
+  const exe = info?.valid ? game.findExecutable(info.gameDir) : null;
+  if (!exe) {
+    throw new Error('could not hand the launch to Steam, and no Gambonanza executable was found to start directly - start the game from Steam instead');
+  }
+
+  if (process.platform === 'darwin') {
+    const failure = await shell.openPath(exe);
+    if (failure) throw new Error(`could not start ${exe}: ${failure}`);
+  } else {
+    await new Promise((resolve, reject) => {
+      const child = spawn(exe, [], { cwd: path.dirname(exe), detached: true, stdio: 'ignore' });
+      child.once('error', reject);
+      child.once('spawn', () => { child.unref(); resolve(); });
+    });
+  }
+  log.info('game', `started ${exe} directly`);
+  return 'executable';
+}
+
+// ---------------------------------------------------------------------------
+// gmm:// deep links (see deeplink.js for what a link may say)
+// ---------------------------------------------------------------------------
+// The OS hands links over three different doors - macOS open-url, a fresh
+// process's argv, a second instance's argv - and any of them can knock before
+// the window exists or has finished loading. So there is one holding slot:
+// the renderer collects it with deeplink:consume at boot, and anything that
+// arrives once the page is up is pushed over the event stream instead.
+
+/** A route that arrived before the renderer could take it. Last one wins. */
+let pendingDeepLink = null;
+
+function handleDeepLinkUrl(raw) {
+  const route = deeplink.parse(raw);
+  if (!route) {
+    if (raw) log.warn('deeplink', `ignored malformed link: ${String(raw).slice(0, 120)}`);
+    return;
+  }
+  log.info('deeplink', `${route.type}/${route.id}`);
+  if (win && !win.isDestroyed()) {
+    if (win.isMinimized()) win.restore();
+    win.focus();
+  }
+  if (win && !win.isDestroyed() && !win.webContents.isLoading()) {
+    send('deeplink', route);
+  } else {
+    pendingDeepLink = route;
+  }
+}
+
+/** The gmm:// link in a fresh launch's argv, if any (Windows and Linux). */
+function deepLinkInArgv(argv) {
+  return (argv || []).find((a) => typeof a === 'string' && a.startsWith('gmm://')) || null;
 }
 
 // ---------------------------------------------------------------------------
@@ -370,10 +477,10 @@ function registerIpc() {
   });
 
   handle('game:launch', async () => {
-    openExternalSafe(`steam://rungameid/${config.STEAM_APP_ID}`);
+    const via = await startGame();
     modpacks.touchPlayed().catch(() => { /* bookkeeping only */ });
     if (store.get('quitOnPlay')) setTimeout(() => app.quit(), 1500);
-    return true;
+    return { via };
   });
 
   // ---- Modpacks ----------------------------------------------------------
@@ -766,6 +873,15 @@ function registerIpc() {
     return true;
   });
 
+  // The renderer's boot asks whether a deep link launched (or re-launched)
+  // the app before it was listening. Handing it over clears it - a route is
+  // a navigation, not a setting, and must not replay on the next boot.
+  handle('deeplink:consume', () => {
+    const route = pendingDeepLink;
+    pendingDeepLink = null;
+    return route;
+  });
+
   handle('settings:set', (values) => {
     store.patch(values || {});
     scheduleUpdateChecks();
@@ -957,11 +1073,33 @@ const gotLock = app.requestSingleInstanceLock();
 if (!gotLock) {
   app.quit();
 } else {
-  app.on('second-instance', () => {
+  // Claim gmm:// with the OS. Packaged builds carry the claim in their
+  // installer metadata (electron-builder.yml "protocols"); this call covers
+  // dev runs on Windows/Linux, where the handler must point at the electron
+  // binary plus this project's path or the link would launch a bare shell.
+  if (process.defaultApp) {
+    if (process.argv.length >= 2) {
+      app.setAsDefaultProtocolClient('gmm', process.execPath, [path.resolve(process.argv[1])]);
+    }
+  } else {
+    app.setAsDefaultProtocolClient('gmm');
+  }
+
+  // macOS delivers links here - including the one that launched the app,
+  // which is why this listener exists before whenReady.
+  app.on('open-url', (event, url) => {
+    event.preventDefault();
+    handleDeepLinkUrl(url);
+  });
+
+  app.on('second-instance', (_event, argv) => {
     if (win) {
       if (win.isMinimized()) win.restore();
       win.focus();
     }
+    // Windows/Linux: clicking a link with the app already running starts a
+    // second copy just to deliver the URL in its argv.
+    handleDeepLinkUrl(deepLinkInArgv(argv));
   });
 
   app.whenReady().then(async () => {
@@ -983,6 +1121,9 @@ if (!gotLock) {
     })().catch((err) => log.warn('modpacks', `could not adopt the worn texture pack: ${err.message}`));
 
     registerIpc();
+    // A link that cold-started the app on Windows/Linux is in our own argv;
+    // stash it before the window exists so the renderer's boot finds it.
+    handleDeepLinkUrl(deepLinkInArgv(process.argv));
     createWindow();
 
     // Self-heal the applied texture pack: a game reinstall, a moved install or

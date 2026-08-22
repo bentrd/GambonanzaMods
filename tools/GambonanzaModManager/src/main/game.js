@@ -119,6 +119,26 @@ function findManagedDir(gameDir, exists = defaultExists) {
 }
 
 /**
+ * The game's own launcher, for when the steam:// handoff is not available.
+ * Unity names this differently per platform, and on Linux the suffix depends
+ * on the architecture the build targeted.
+ */
+function findExecutable(gameDir, { platform = process.platform, exists = defaultExists } = {}) {
+  if (!gameDir) return null;
+  const dir = path.resolve(gameDir);
+  const names = platform === 'win32'
+    ? ['Gambonanza.exe']
+    : platform === 'darwin'
+      ? ['Gambonanza.app']
+      : ['Gambonanza.x86_64', 'Gambonanza.x86', 'Gambonanza'];
+  for (const name of names) {
+    const full = path.join(dir, name);
+    if (exists(full)) return full;
+  }
+  return null;
+}
+
+/**
  * Where the game looks for mods. Mirrors build.sh: next to the executable on
  * Windows/Linux, next to the .app bundle on macOS.
  */
@@ -315,6 +335,7 @@ module.exports = {
   parseLibraryFolders,
   gameCandidates,
   findManagedDir,
+  findExecutable,
   deriveModsDir,
   hasPatchMarker,
   sha256File,

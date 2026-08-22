@@ -53,6 +53,7 @@ src/
 │   ├── net.js           allowlisted HTTPS + checksum-verified downloads
 │   ├── zip.js           traversal-safe extraction, and pack export
 │   ├── publish.js       GitHub device-flow sign-in + registry PR submission
+│   ├── deeplink.js      gmm://<type>/<id> parsing (strict: registry ids only)
 │   ├── store.js         settings (atomic JSON file)
 │   ├── log.js           manager.log + the in-app activity feed
 │   └── versions.js      version comparison (pure, tested)

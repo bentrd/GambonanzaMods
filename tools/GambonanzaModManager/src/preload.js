@@ -3,12 +3,12 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 // The complete privilege boundary between the sandboxed UI and the main
-// process. Everything is invoke/response plus three event streams; the
+// process. Everything is invoke/response plus a few event streams; the
 // renderer cannot name an arbitrary channel.
 
 const invoke = (channel) => (payload) => ipcRenderer.invoke(channel, payload);
 
-const EVENT_CHANNELS = new Set(['progress', 'updates', 'publish:signedIn', 'publish:signInFailed']);
+const EVENT_CHANNELS = new Set(['progress', 'updates', 'publish:signedIn', 'publish:signInFailed', 'deeplink']);
 
 contextBridge.exposeInMainWorld('gambonanza', {
   getState: invoke('state:get'),
@@ -62,6 +62,8 @@ contextBridge.exposeInMainWorld('gambonanza', {
   installRegistryPack: invoke('texturepacks:install'),
   publishPack: invoke('texturepacks:publish'),
   packIssueUrl: invoke('texturepacks:publishIssueUrl'),
+
+  consumeDeepLink: invoke('deeplink:consume'),
 
   setSettings: invoke('settings:set'),
   getLogHistory: invoke('log:history'),

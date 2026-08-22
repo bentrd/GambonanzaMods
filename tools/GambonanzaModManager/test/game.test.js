@@ -177,3 +177,35 @@ test('inspect: invalid folder gives a reason, not a throw', async () => {
   assert.equal(info.valid, false);
   assert.match(info.reason, /does not look like a Gambonanza install/);
 });
+
+test('findExecutable: finds the game per platform', () => {
+  const exists = (list) => (p) => list.includes(p);
+
+  const linuxDir = '/home/me/.local/share/Steam/steamapps/common/Gambonanza';
+  assert.equal(
+    game.findExecutable(linuxDir, { platform: 'linux', exists: exists([path.join(linuxDir, 'Gambonanza.x86_64')]) }),
+    path.join(linuxDir, 'Gambonanza.x86_64'),
+  );
+  // Older/32-bit builds drop the suffix; the fallbacks cover both.
+  assert.equal(
+    game.findExecutable(linuxDir, { platform: 'linux', exists: exists([path.join(linuxDir, 'Gambonanza')]) }),
+    path.join(linuxDir, 'Gambonanza'),
+  );
+
+  const winDir = path.join('C:', 'Steam', 'steamapps', 'common', 'Gambonanza');
+  assert.equal(
+    game.findExecutable(winDir, { platform: 'win32', exists: exists([path.join(path.resolve(winDir), 'Gambonanza.exe')]) }),
+    path.join(path.resolve(winDir), 'Gambonanza.exe'),
+  );
+
+  const macDir = '/Applications/Gambonanza';
+  assert.equal(
+    game.findExecutable(macDir, { platform: 'darwin', exists: exists([path.join(macDir, 'Gambonanza.app')]) }),
+    path.join(macDir, 'Gambonanza.app'),
+  );
+});
+
+test('findExecutable: nothing there gives null', () => {
+  assert.equal(game.findExecutable('/nope', { platform: 'linux', exists: () => false }), null);
+  assert.equal(game.findExecutable(null, { platform: 'linux', exists: () => true }), null);
+});

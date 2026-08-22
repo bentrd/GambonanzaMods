@@ -17,6 +17,8 @@ const state = {
   search: '',
   tag: '',
   packDetail: null,    // modpack id whose detail page is open, or null
+  modDetail: null,     // registry mod id whose detail page is open, or null
+  tpRegistryDetail: null, // community texture pack id whose page is open, or null
   busy: new Map(),     // operationId -> {label}
   publish: {
     signedIn: false,
@@ -436,6 +438,38 @@ function promptModal({ title, body, placeholder = '', initial = '', confirmLabel
 }
 
 // ---------------------------------------------------------------------------
+// Share links
+// ---------------------------------------------------------------------------
+// Every registry entry has a page on the website at /<type>/<id>/, and that
+// page has an "Open in Mod Manager" button pointing back here (gmm://<type>/
+// <id>). The site URL is the one to hand around - Discord and friends only
+// linkify https://, and people without the app land on something useful.
+
+const SITE_ROOT = 'https://bentrd.github.io/GambonanzaMods';
+
+function shareLink(type, id) {
+  return `${SITE_ROOT}/${type}/${id}/`;
+}
+
+/** "Copy link" for a detail page - clipboard first, show-it modal as fallback. */
+function shareButton(type, id) {
+  return el('button', {
+    class: 'btn btn-cream small',
+    title: 'Copy this page\u2019s link - it opens on the web, with an "Open in Mod Manager" button',
+    onclick: async (ev) => {
+      ev.stopPropagation();
+      const url = shareLink(type, id);
+      try {
+        await navigator.clipboard.writeText(url);
+        toast('Link copied - paste it to a friend.', 'ok');
+      } catch {
+        promptModal({ title: 'Share this page', body: 'Copy the link from here:', initial: url, confirmLabel: 'Done' });
+      }
+    },
+  }, 'Copy link');
+}
+
+// ---------------------------------------------------------------------------
 // State + navigation
 // ---------------------------------------------------------------------------
 
@@ -647,6 +681,16 @@ function renderBrowse() {
   $('browseCount').hidden = registryMods.length === 0;
   $('browseCount').textContent = String(registryMods.length);
 
+  // Detail page open? It replaces the browsing surface entirely.
+  const detailMod = state.modDetail ? registryMods.find((m) => m.id === state.modDetail) : null;
+  if (state.modDetail && !detailMod) state.modDetail = null; // mod vanished from the registry
+  $('modBrowse').hidden = !!detailMod;
+  $('modDetail').hidden = !detailMod;
+  if (detailMod) {
+    renderModDetail(detailMod, popularityTiers(registryMods));
+    return;
+  }
+
   // tag chips
   const chips = $('tagChips');
   const usedTags = TAGS.filter((t) => registryMods.some((m) => (m.tags || []).includes(t)));
@@ -693,33 +737,39 @@ function renderModCard(mod, tiers) {
   const version = mod.latest?.version ? `v${mod.latest.version}` : '';
   foot.append(el('span', { class: 'ver' }, version), el('span', { class: 'grow' }));
 
+  // The card is a link to the mod's page, so every button on it has to stop
+  // the click from also navigating there.
   foot.append(el('button', {
     class: 'btn btn-cream small',
     title: 'Open the mod’s source code on GitHub',
-    onclick: () => api.openExternal(mod.homepage || `https://github.com/${mod.repo}`),
+    onclick: (ev) => { ev.stopPropagation(); api.openExternal(mod.homepage || `https://github.com/${mod.repo}`); },
   }, 'Source'));
 
   if (mod.installed && mod.updateAvailable) {
-    foot.append(el('button', { class: 'btn btn-green small', onclick: () => installMod(mod) }, 'Update'));
+    foot.append(el('button', { class: 'btn btn-green small', onclick: (ev) => { ev.stopPropagation(); installMod(mod); } }, 'Update'));
   } else if (mod.installed) {
-    foot.append(el('button', { class: 'btn btn-red small', onclick: () => uninstallMod(mod.folder, mod.name) }, 'Remove'));
+    foot.append(el('button', { class: 'btn btn-red small', onclick: (ev) => { ev.stopPropagation(); uninstallMod(mod.folder, mod.name); } }, 'Remove'));
   } else if (mod.installable) {
     // Say where it lands. Installs always go into the active modpack, and the
     // header picker is the only other place that fact is visible.
     foot.append(el('button', {
       class: 'btn btn-green small',
       title: `Installs into "${activeModpack()?.name || 'your modpack'}"`,
-      onclick: () => installMod(mod),
+      onclick: (ev) => { ev.stopPropagation(); installMod(mod); },
     }, 'Install'));
   } else {
-    foot.append(el('button', { class: 'btn btn-cream small', disabled: true }, 'No release yet'));
+    foot.append(el('button', { class: 'btn btn-cream small', disabled: true, onclick: (ev) => ev.stopPropagation() }, 'No release yet'));
   }
 
   const deps = (mod.dependencies || []).length
     ? el('div', { class: 'tiny muted' }, `needs: ${mod.dependencies.join(', ')}`)
     : null;
 
-  return el('div', { class: 'mod-card' },
+  return el('div', {
+    class: 'mod-card clickable',
+    title: 'Everything about this mod',
+    onclick: () => openModDetail(mod.id),
+  },
     el('div', { class: 'head' },
       el('div', {},
         el('h3', {}, mod.name),
@@ -732,6 +782,130 @@ function renderModCard(mod, tiers) {
     statsRow(mod, tiers),
     deps,
     foot);
+}
+
+// ---------------------------------------------------------------------------
+// Mod detail page
+// ---------------------------------------------------------------------------
+// One mod, full width: the card is the teaser, this is the whole story -
+// description, gambits at real size, release notes, provenance. It is also
+// where gmm://mod/<id> links land, so it has to stand on its own.
+
+function openModDetail(id) {
+  state.modDetail = id;
+  if (state.view !== 'browse') show('browse');
+  document.querySelector('main.content')?.scrollTo(0, 0);
+  renderBrowse();
+}
+
+function closeModDetail() {
+  state.modDetail = null;
+  renderBrowse();
+}
+
+/** "12 May 2026" from an ISO date, or '' - release dates are approximate anyway. */
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+/** One labelled cell of the Details grid; null-safe so empties just vanish. */
+function factCell(label, value, title = null) {
+  if (!value) return null;
+  return el('div', { class: 'fact', title },
+    el('div', { class: 'fact-label' }, label),
+    el('div', { class: 'fact-value' }, value));
+}
+
+function renderModDetail(mod, tiers) {
+  const box = $('modDetail');
+
+  const badges = [];
+  if (mod.reviewed === false) {
+    badges.push(el('span', { class: 'tag red', title: 'Community submission awaiting review - nobody has checked this code yet. Read the source before installing.' }, 'unreviewed'));
+  } else {
+    badges.push(el('span', { class: 'tag gold', title: 'The source code was reviewed before this mod was listed' }, 'reviewed'));
+  }
+  if (mod.installed) badges.push(el('span', { class: 'tag green' }, 'installed'));
+  if (mod.updateAvailable) badges.push(el('span', { class: 'tag blue' }, 'update'));
+  if (mod.pending) badges.push(el('span', { class: 'tag', title: 'The author has not published a release yet' }, 'coming soon'));
+  for (const t of mod.tags || []) badges.push(el('span', { class: 'tag' }, t.replace(/-/g, ' ')));
+
+  let action;
+  if (mod.installed && mod.updateAvailable) {
+    action = el('button', { class: 'btn btn-green', onclick: () => installMod(mod) }, `Update to v${mod.latest?.version || 'latest'}`);
+  } else if (mod.installed) {
+    action = el('button', { class: 'btn btn-red', onclick: () => uninstallMod(mod.folder, mod.name) }, 'Remove');
+  } else if (mod.installable) {
+    action = el('button', {
+      class: 'btn btn-green',
+      title: `Installs into "${activeModpack()?.name || 'your modpack'}"`,
+      onclick: () => installMod(mod),
+    }, 'Install');
+  } else {
+    action = el('button', { class: 'btn btn-cream', disabled: true }, 'No release yet');
+  }
+
+  const gambits = mod.gambits || [];
+  const notes = (mod.latest?.notes || '').trim();
+
+  fill(box, el('div', { class: 'card-window' },
+    el('span', { class: 'window-title' }, 'Mod'),
+    el('div', { class: 'pack-detail-top' },
+      el('button', { class: 'btn btn-cream small', onclick: closeModDetail }, '← All mods'),
+      el('span', { class: 'grow' }),
+      shareButton('mod', mod.id)),
+    el('div', { class: 'pack-detail-head' },
+      el('h2', {}, mod.name),
+      el('div', { class: 'badges' }, badges),
+      el('div', { class: 'by' }, `by ${mod.author}${mod.latest?.version ? ` · v${mod.latest.version}` : ''}`)),
+    statsRow(mod, tiers),
+    (mod.description || mod.summary)
+      ? el('p', { class: 'pack-desc' }, mod.description || mod.summary)
+      : null,
+    mod.reviewed === false
+      ? el('div', { class: 'inset-row tiny warn-row' },
+          el('span', { class: 'micon', html: ICONS.warn }),
+          ' Nobody has reviewed this code yet. Installing it runs the author\u2019s code in your game - read the source first if you don\u2019t know them.')
+      : null,
+    gambits.length
+      ? el('div', { class: 'gambit-shelf-wrap' },
+          el('div', { class: 'section-band' }, `The gambits inside · ${gambits.length}`),
+          el('div', { class: 'gambit-shelf' },
+            ...gambits.map((g, i) => gambitCard(g, { index: i }))),
+          el('div', { class: 'tiny muted', style: 'margin-top:4px' },
+            'Hover a card - these are the real in-game sprites, straight from the mod.'))
+      : null,
+    (mod.dependencies || []).length
+      ? el('div', { class: 'inset-row tiny', style: 'margin-top:10px' },
+          `Needs ${mod.dependencies.join(', ')} - installed automatically with it.`)
+      : null,
+    el('div', { class: 'pack-actions', style: 'margin-top:14px' },
+      action,
+      el('button', {
+        class: 'btn btn-cream',
+        title: 'Open the mod\u2019s source code on GitHub',
+        onclick: () => api.openExternal(mod.homepage || `https://github.com/${mod.repo}`),
+      }, 'Source')),
+    notes
+      ? el('div', {},
+          el('div', { class: 'section-band', style: 'margin:18px 0 10px' },
+            `What\u2019s new in v${mod.latest?.version || '?'}${mod.latest?.publishedAt ? ` · ${fmtDate(mod.latest.publishedAt)}` : ''}`),
+          el('div', { class: 'detail-notes' }, notes))
+      : null,
+    el('div', { class: 'section-band', style: 'margin:18px 0 10px' }, 'Details'),
+    el('div', { class: 'fact-grid' },
+      factCell('Version', mod.latest?.version ? `v${mod.latest.version}` : null,
+        mod.latest?.publishedAt ? `released ${fmtDate(mod.latest.publishedAt)}` : null),
+      factCell('Downloads', (mod.downloads || 0).toLocaleString(), 'Across all versions, counted by GitHub'),
+      factCell('Stars', mod.stars ? mod.stars.toLocaleString() : null, 'GitHub stars on the repository'),
+      factCell('License', mod.license),
+      factCell('Game version', mod.gameVersion),
+      factCell('Framework', mod.frameworkVersion),
+      factCell('Repository', mod.repo),
+      factCell('Listed', mod.addedAt ? `${fmtDate(mod.addedAt)}${mod.submittedBy ? ` by ${mod.submittedBy}` : ''}` : null))));
 }
 
 // ---------------------------------------------------------------------------
@@ -1303,6 +1477,7 @@ function renderCommunityCard(pack) {
 function openPackDetail(id) {
   state.packDetail = id;
   if (state.view !== 'modpacks') show('modpacks');
+  document.querySelector('main.content')?.scrollTo(0, 0);
   renderModpacks();
 }
 
@@ -1381,7 +1556,9 @@ function renderPackDetail(pack) {
   box.replaceChildren(el('div', { class: 'card-window' },
     el('span', { class: 'window-title' }, 'Modpack'),
     el('div', { class: 'pack-detail-top' },
-      el('button', { class: 'btn btn-cream small', onclick: closePackDetail }, '← All modpacks')),
+      el('button', { class: 'btn btn-cream small', onclick: closePackDetail }, '← All modpacks'),
+      el('span', { class: 'grow' }),
+      shareButton('modpack', pack.id)),
     el('div', { class: 'pack-detail-head' },
       el('h2', {}, pack.name),
       el('div', { class: 'badges' }, packBadges(ms)),
@@ -1694,6 +1871,17 @@ function renderTexturePacks() {
   const list = tpList();
   badge.hidden = !list.length;
   badge.textContent = String(list.length);
+
+  // Community-pack detail page open? It replaces the whole tab surface.
+  const detailPack = state.tpRegistryDetail ? registryTps().find((t) => t.id === state.tpRegistryDetail) : null;
+  if (state.tpRegistryDetail && !detailPack) state.tpRegistryDetail = null; // gone from the registry
+  $('tpBrowse').hidden = !!detailPack;
+  $('tpRegistryDetail').hidden = !detailPack;
+  if (detailPack) {
+    renderTpRegistryDetail(detailPack);
+    return;
+  }
+
   renderTpCards();
   renderTpPanel();
   renderRegistryTps();
@@ -2082,7 +2270,11 @@ function renderRegistryTps() {
       && compareVersionStrings(p.latest.version, mine.version) > 0;
     const bits = [p.author ? `by ${p.author}` : null, p.latest?.version ? `v${p.latest.version}` : null,
       p.latest?.asset?.size ? fmtBytes(p.latest.asset.size) : null].filter(Boolean);
-    return el('div', { class: `shelf-card${installed ? ' active' : ''}` },
+    return el('div', {
+      class: `shelf-card clickable${installed ? ' active' : ''}`,
+      title: 'Everything about this pack',
+      onclick: () => openTpRegistryDetail(p.id),
+    },
       el('div', { class: 'head' },
         el('h3', {}, p.name),
         behind ? el('span', { class: 'tag blue' }, `v${p.latest.version}`) : null,
@@ -2094,14 +2286,14 @@ function renderRegistryTps() {
         el('button', {
           class: 'btn btn-cream small',
           title: 'Open the pack’s repository',
-          onclick: () => api.openExternal(`https://github.com/${p.repo}`),
+          onclick: (ev) => { ev.stopPropagation(); api.openExternal(`https://github.com/${p.repo}`); },
         }, 'Source'),
         el('button', {
           class: !installed || behind ? 'btn btn-green small' : 'btn btn-cream small',
           title: installed
             ? 'Downloads a fresh copy alongside the one you already have - your edits to that copy are untouched'
             : 'Add it to your library',
-          onclick: () => installRegistryTp(p, mine),
+          onclick: (ev) => { ev.stopPropagation(); installRegistryTp(p, mine); },
         }, behind ? `Update to v${p.latest.version}` : (installed ? 'Get a fresh copy' : 'Install'))));
   }));
 }
@@ -2116,6 +2308,87 @@ function compareVersionStrings(a, b) {
     if (diff) return diff > 0 ? 1 : -1;
   }
   return 0;
+}
+
+// ---------------------------------------------------------------------------
+// Community texture pack detail page - where gmm://texturepack/<id> lands
+// ---------------------------------------------------------------------------
+
+function openTpRegistryDetail(id) {
+  state.tpRegistryDetail = id;
+  if (state.view !== 'textures') show('textures');
+  document.querySelector('main.content')?.scrollTo(0, 0);
+  renderTexturePacks();
+}
+
+function closeTpRegistryDetail() {
+  state.tpRegistryDetail = null;
+  renderTexturePacks();
+}
+
+function renderTpRegistryDetail(entry) {
+  const box = $('tpRegistryDetail');
+  const mine = tpList().find((t) => t.registryId === entry.id) || null;
+  const behind = !!(mine && entry.latest?.version && mine.version
+    && compareVersionStrings(entry.latest.version, mine.version) > 0);
+
+  const badges = [];
+  if (entry.reviewed === false) {
+    badges.push(el('span', { class: 'tag red', title: 'Community submission awaiting review. A texture pack is art and wording only - it can never contain code - but nobody has looked at this one yet.' }, 'unreviewed'));
+  }
+  if (entry.official) badges.push(el('span', { class: 'tag gold' }, 'official'));
+  if (mine && !behind) badges.push(el('span', { class: 'tag green' }, 'in library'));
+  if (behind) badges.push(el('span', { class: 'tag blue' }, `v${entry.latest.version} out`));
+  for (const t of entry.tags || []) badges.push(el('span', { class: 'tag' }, t.replace(/-/g, ' ')));
+
+  let action;
+  if (!entry.latest?.asset?.sha256) {
+    action = el('button', { class: 'btn btn-cream', disabled: true }, 'No release yet');
+  } else {
+    action = el('button', {
+      class: !mine || behind ? 'btn btn-green' : 'btn btn-cream',
+      title: mine
+        ? 'Downloads a fresh copy alongside the one you already have - your edits to that copy are untouched'
+        : 'Add it to your library, then press Wear to put it on',
+      onclick: () => installRegistryTp(entry, mine),
+    }, behind ? `Update to v${entry.latest.version}` : (mine ? 'Get a fresh copy' : 'Install'));
+  }
+
+  fill(box, el('div', { class: 'card-window' },
+    el('span', { class: 'window-title' }, 'Texture pack'),
+    el('div', { class: 'pack-detail-top' },
+      el('button', { class: 'btn btn-cream small', onclick: closeTpRegistryDetail }, '← All texture packs'),
+      el('span', { class: 'grow' }),
+      shareButton('texturepack', entry.id)),
+    el('div', { class: 'pack-detail-head' },
+      el('h2', {}, entry.name),
+      el('div', { class: 'badges' }, badges),
+      el('div', { class: 'by' }, `by ${entry.author || 'unknown'}${entry.latest?.version ? ` · v${entry.latest.version}` : ''}`)),
+    entry.preview
+      ? el('div', { class: 'detail-preview' },
+          el('img', { src: entry.preview, alt: `${entry.name} in the game`, loading: 'lazy' }))
+      : null,
+    (entry.description || entry.summary)
+      ? el('p', { class: 'pack-desc' }, entry.description || entry.summary)
+      : null,
+    el('div', { class: 'inset-row tiny', style: 'margin-top:6px' },
+      'Art and wording only - a texture pack cannot contain code. It is downloaded from the author\u2019s own release, checked against the checksum recorded at review, and applied while the game runs; your install is never rewritten.'),
+    el('div', { class: 'pack-actions', style: 'margin-top:14px' },
+      action,
+      el('button', {
+        class: 'btn btn-cream',
+        title: 'Open the pack\u2019s repository on GitHub',
+        onclick: () => api.openExternal(entry.homepage || `https://github.com/${entry.repo}`),
+      }, 'Source')),
+    el('div', { class: 'section-band', style: 'margin:18px 0 10px' }, 'Details'),
+    el('div', { class: 'fact-grid' },
+      factCell('Version', entry.latest?.version ? `v${entry.latest.version}` : null,
+        entry.latest?.publishedAt ? `released ${fmtDate(entry.latest.publishedAt)}` : null),
+      factCell('Size', entry.latest?.asset?.size ? fmtBytes(entry.latest.asset.size) : null),
+      factCell('Downloads', entry.downloads ? entry.downloads.toLocaleString() : null, 'Across all versions, counted by GitHub'),
+      factCell('Game version', entry.gameVersion),
+      factCell('Repository', entry.repo),
+      factCell('Listed', entry.addedAt ? `${fmtDate(entry.addedAt)}${entry.submittedBy ? ` by ${entry.submittedBy}` : ''}` : null))));
 }
 
 async function installRegistryTp(entry, existing = null) {
@@ -2957,7 +3230,10 @@ async function pickGameFolder() {
 
 async function launchGame() {
   try {
-    await call(api.launchGame);
+    const result = await call(api.launchGame);
+    // Say so when Steam could not take the launch: the game still starts, but
+    // without the overlay or playtime, and that is worth knowing.
+    if (result?.via === 'executable') toast('Steam could not start the game - launched it directly', 'ok');
   } catch (err) {
     toast(err.message, 'err');
   }
@@ -3376,6 +3652,45 @@ api.on('updates', (u) => {
   renderHomeBanners();
 });
 
+// ---------------------------------------------------------------------------
+// Deep links - gmm://<type>/<id>, forwarded by the main process
+// ---------------------------------------------------------------------------
+
+/** A route that arrived before the first state fetch finished. */
+let pendingRoute = null;
+
+/**
+ * Land on the page a link names. The registry cache can be older than the
+ * link (someone shares a mod listed an hour ago), so a miss buys one forced
+ * refresh before giving up - and giving up is a toast, never a blank page.
+ */
+async function applyRoute(route) {
+  if (!route || !route.type || !route.id) return;
+  if (!state.data) { pendingRoute = route; return; }
+  const lists = {
+    mod: () => (state.data?.registry?.mods || []).filter((m) => m.kind === 'registry'),
+    modpack: registryModpacks,
+    texturepack: registryTps,
+  };
+  const lookup = lists[route.type];
+  if (!lookup) return;
+  const spoken = route.type === 'texturepack' ? 'texture pack' : route.type;
+  let entry = lookup().find((e) => e.id === route.id);
+  if (!entry) {
+    await refresh({ forceRegistry: true });
+    entry = lookup().find((e) => e.id === route.id);
+  }
+  if (!entry) {
+    toast(`That link points at a ${spoken} called "${route.id}", but the registry has no such thing - it may have been renamed or removed.`, 'err');
+    return;
+  }
+  if (route.type === 'mod') openModDetail(entry.id);
+  else if (route.type === 'modpack') openPackDetail(entry.id);
+  else openTpRegistryDetail(entry.id);
+}
+
+api.on('deeplink', (route) => { applyRoute(route); });
+
 api.on('publish:signedIn', ({ login }) => {
   state.publish.signedIn = true;
   state.publish.login = login;
@@ -3396,7 +3711,16 @@ api.on('publish:signInFailed', ({ error }) => {
 });
 
 for (const btn of document.querySelectorAll('.nav-btn')) {
-  btn.addEventListener('click', () => show(btn.dataset.view));
+  btn.addEventListener('click', () => {
+    const view = btn.dataset.view;
+    // Clicking the tab you are already on backs out of its detail page.
+    if (view === state.view) {
+      if (view === 'browse' && state.modDetail) closeModDetail();
+      if (view === 'modpacks' && state.packDetail) closePackDetail();
+      if (view === 'textures' && state.tpRegistryDetail) closeTpRegistryDetail();
+    }
+    show(view);
+  });
 }
 // Click anywhere outside an open dropdown closes it.
 document.addEventListener('click', (ev) => {
@@ -3448,6 +3772,13 @@ function shortPath(p) {
   // restore wherever the user was.
   if (game?.valid && game.state === 'patched' && last && last !== 'home') show(last);
   else show('home');
+  // A gmm:// link may be the whole reason the app is open: anything that
+  // knocked before this page could listen is waiting in the main process,
+  // and anything that raced the refresh above is in pendingRoute.
+  const launchRoute = await call(api.consumeDeepLink).catch(() => null);
+  const route = launchRoute || pendingRoute;
+  pendingRoute = null;
+  if (route) await applyRoute(route);
   await checkUpdatesQuiet();
   if (state.publish.signedIn || state.data?.settings?.githubSignedIn) loadRepos();
 })();

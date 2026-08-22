@@ -80,6 +80,13 @@ function headers({ token, accept = 'application/json' } = {}) {
 }
 
 /**
+ * The 3xx range is not all redirects: 304 answers a conditional request and
+ * 305/306 are dead. Only these carry a Location worth following - treating the
+ * whole range as a redirect turned every cached 304 into a bogus failure.
+ */
+const REDIRECT_STATUSES = new Set([301, 302, 303, 307, 308]);
+
+/**
  * Follow redirects by hand so every hop gets checked against the allowlist.
  * `fetch`'s automatic redirect handling would happily follow GitHub off to
  * anywhere it pointed us.
@@ -88,7 +95,7 @@ async function fetchChecked(url, options = {}, { requireRepo = null, maxHops = 6
   let current = assertAllowedUrl(url, { requireRepo }).toString();
   for (let hop = 0; hop < maxHops; hop++) {
     const res = await fetch(current, { ...options, redirect: 'manual' });
-    if (res.status >= 300 && res.status < 400) {
+    if (REDIRECT_STATUSES.has(res.status)) {
       const location = res.headers.get('location');
       if (!location) throw new NetworkError(`redirect with no destination from ${current}`, { status: res.status, url: current });
       // Redirect targets are only checked against the host allowlist: GitHub

@@ -60,16 +60,19 @@
 
       <!-- ============================= BROWSE =========================== -->
       <section class="view" id="view-browse">
-        <div class="card-window">
-          <span class="window-title">Mod shop</span>
-          <div class="toolbar">
-            <div class="search"><input class="game-input" id="modSearch" type="search" placeholder="Search mods…"></div>
-            <div class="chip-row" id="tagChips"></div>
-            <button class="btn btn-cream small" id="refreshRegistry" title="Reload the mod list">↻ Refresh</button>
+        <div id="modBrowse">
+          <div class="card-window">
+            <span class="window-title">Mod shop</span>
+            <div class="toolbar">
+              <div class="search"><input class="game-input" id="modSearch" type="search" placeholder="Search mods…"></div>
+              <div class="chip-row" id="tagChips"></div>
+              <button class="btn btn-cream small" id="refreshRegistry" title="Reload the mod list">↻ Refresh</button>
+            </div>
+            <div class="mod-grid" id="modGrid"></div>
+            <div class="empty-note" id="browseEmpty" hidden>No mods match that search.</div>
           </div>
-          <div class="mod-grid" id="modGrid"></div>
-          <div class="empty-note" id="browseEmpty" hidden>No mods match that search.</div>
         </div>
+        <div id="modDetail" hidden></div>
       </section>
 
       <!-- ============================= MODPACKS ========================= -->
@@ -123,6 +126,7 @@
 
       <!-- ============================= TEXTURE PACKS ==================== -->
       <section class="view" id="view-textures">
+        <div id="tpBrowse">
         <div class="card-window">
           <span class="window-title">Texture packs</span>
           <p class="tiny" style="margin-top:0">
@@ -172,6 +176,8 @@
           <div id="tpPublishAuth"></div>
           <div id="tpPublishForm"></div>
         </div>
+        </div>
+        <div id="tpRegistryDetail" hidden></div>
       </section>
 
       <!-- ============================= UPDATES ========================== -->
