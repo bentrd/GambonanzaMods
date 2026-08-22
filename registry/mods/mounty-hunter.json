@@ -1,0 +1,18 @@
+{
+  "id": "mounty-hunter",
+  "name": "Bounty Hunter's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Capturing a randomly chosen piece type earns $5; the target changes after every trigger.",
+  "description": "Picks a random piece type as its bounty target. Capture that type and you earn $5 plus a money-spawn effect, then a new random target is chosen. The card's own description updates live to show the current target.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "BountyHuntersGambit.zip",
+  "folder": "BountyHuntersGambit",
+  "dependencies": ["gambit-api"],
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "gameVersion": ">=1.0",
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-23"
+}
