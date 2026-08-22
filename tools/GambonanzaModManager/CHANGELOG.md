@@ -4,6 +4,74 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.7.1
+
+- **Wear several texture packs at once**, in an order you control. Worn packs
+  move to the front of the shelf with a "worn 1st / 2nd" badge and a pair of
+  ▲▼ arrows; where two of them change the same sprite or the same line, the
+  higher one wins. Everything else stays where it was - one pack behaves
+  exactly as before, and whatever you were wearing stays on.
+- Under the hood this had to merge properly rather than layer. A pack's art is
+  stored as WHOLE game sheets - 210 gambit icons on one 512x512 texture - so
+  handing the game two packs that both touch that sheet would have let the
+  second one paint over the first one's icon and silently lose it. The manager
+  now resolves one winner per sprite and per string across the stack, then
+  composites those onto the pristine sheet once. The game still receives a
+  single pack and needs no update.
+- A modpack remembers the whole stack, not one pack, so switching modpacks
+  still switches the entire look. Shared modpacks carry the stack and its
+  order, because the same two packs in the other order are a different setup.
+
+## 1.7.0
+
+- **Instances and modpacks are one thing now.** They were always the same idea
+  seen from two ends - a named set of mods you switch between, and a named set
+  of mods you install - so the Instances tab is gone and **My modpacks** does
+  both. Your instances become modpacks on first launch, keeping their names,
+  their mods and which one you were on; nothing to move, nothing to redo.
+- **A modpack is your whole setup, texture pack included.** Each one remembers
+  the pack it wears, so switching modpacks switches the look with the mods.
+  Wear a texture pack and it belongs to the setup you are in, not to the app.
+- **The contents panel.** The mods in a modpack are small squares now, laid out
+  like the texture-pack tab: a mod's own first gambit sprite as its icon where
+  it has one, everything else on hover, and a click for turn off / update /
+  source / remove. Disabled mods stay visible, dimmed - "why isn't this
+  loading" has an answer on screen.
+- **Share your setup in one click.** The Share button on a modpack publishes
+  what you actually have - the mods, in the versions you have, plus the
+  texture pack you are wearing - and it is listed as soon as the submission is
+  open, with no wait for a review. There is no list to curate any more: the old
+  "add to modpack draft" dropdown in Browse is gone, because the thing worth
+  sharing is the setup you already play.
+- **Modpacks may contain unreviewed mods**, and say so. Any pack with one gets
+  a small warning triangle wherever it appears, and installing it names them
+  first. Previously packs could only hold reviewed mods, which quietly meant
+  half of anyone's real setup could not be shared at all.
+- **Installing someone's modpack builds it as its own modpack** and switches to
+  it, so trying a stranger's loadout never disturbs yours. Its texture pack
+  comes down with it. "Add to *my* modpack" is still one button away on the
+  pack page.
+
+## 1.6.0
+
+- **Texture packs.** A new tab, and a whole second thing you can make: your
+  own art and your own wording, layered over the game. Every sprite and
+  texture the game ships is in there - all 200 gambit icons, both piece sets,
+  every boss, the tiles, the title art - searchable and categorised, each with
+  its original PNG a click away. Paint over one, drop it back in, and the
+  pack updates immediately; there is no Apply button. The same tab does text:
+  all 1229 of the game's strings in all 11 languages, with the game's own
+  markup shown as chips so you keep it intact.
+  Packs work like modpacks - a shelf of them, one worn at a time, switchable
+  in a click - and share the same way: export one as a zip to hand to a
+  friend, or publish it to the registry and let anyone install it. Downloads
+  are pinned to the author's repository and checked against the checksum
+  recorded at review time, exactly as mods are.
+  This replaces the offline `tools/GambonanzaAssets` patcher, which needed
+  Python, rewrote your game's asset files, and lost everything to a Steam
+  update. Nothing is rewritten now: the framework applies the pack while the
+  game runs. Needs framework 1.5.0.
+
 ## 1.5.0
 
 - **See the actual gambits.** Mods that add gambits now show them the way

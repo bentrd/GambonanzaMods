@@ -18,6 +18,7 @@ on:
     paths:
       - 'registry/mods/**'
       - 'registry/modpacks/**'
+      - 'registry/texturepacks/**'
       - 'tools/registry/**'
 
 permissions:

@@ -100,6 +100,7 @@ namespace Gambonanza.ModHost
             RegisterCommand("keybind", "set keybind: keybind <mod> <name> then press a key/combo", BeginKeybindCapture, CompleteKeybindCommand);
             RegisterCommand("keybind unset", "unset keybind: keybind unset <mod> <name>", UnsetKeybind, CompleteKeybindCommandUnset);
             ModCheats.Register(this);
+            TexturePacks.RegisterCommands(this);
             PrintInfo("console ready. Press ` or F10 to toggle. Type 'help' for commands.");
         }
 

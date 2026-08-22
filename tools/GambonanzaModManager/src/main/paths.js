@@ -25,8 +25,14 @@ module.exports = {
   /** Scratch space for in-flight downloads. Cleared on startup. */
   tempDir: () => path.join(root, 'tmp'),
 
-  /** Instance records + parked Mods folders of non-active instances. */
-  instancesDir: () => path.join(root, 'instances'),
+  /** Modpack records + parked Mods folders of the non-active modpacks. */
+  modpacksDir: () => path.join(root, 'modpacks'),
+
+  /** Where modpacks lived when they were called instances. Migration only. */
+  legacyInstancesDir: () => path.join(root, 'instances'),
+
+  /** The texture-pack library: one folder per pack, plus which one is active. */
+  texturePacksDir: () => path.join(root, 'texturepacks'),
 
   /** manager.log lives here. */
   logsDir: () => path.join(root, 'logs'),

@@ -5,6 +5,22 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## 1.5.0
+
+- **Texture packs.** The framework can now re-skin the game: replacement art
+  for any sprite or sheet, and replacement wording for any of the game's
+  1229 lines of text, in any of its 11 languages. You build one in the mod
+  manager's new **Texture packs** tab; the framework applies it while the game
+  runs. Nothing in your install is rewritten, which is the whole point - a
+  Steam update can't wipe it, turning it off is instant, and there is no
+  backup to restore. Packs are zips you can hand to anyone, and they can be
+  published to the registry like modpacks.
+  The console (F10) grew `texturepack` to show what the active pack replaced,
+  `texturepack list` for every override in it, and `texturepack reapply` to
+  put it back on without restarting.
+- Mods still win over texture packs: a mod that ships its own art is loaded
+  first, so a re-skin can never break a mod's UI.
+
 ## 1.4.0
 
 - **Steam achievements now pause automatically while any mod is enabled.**

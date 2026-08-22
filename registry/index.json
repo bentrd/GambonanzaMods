@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T09:46:03.618Z",
+  "generatedAt": "2026-08-22T10:35:27.974Z",
   "count": 22,
   "releases": {
     "framework": {
@@ -1222,7 +1222,9 @@
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
       "downloads": 78,
-      "installable": true
+      "installable": true,
+      "unreviewed": [],
+      "reviewed": true
     },
     {
       "id": "quality-of-life-pack",
@@ -1241,7 +1243,10 @@
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
       "downloads": 33,
-      "installable": true
+      "installable": true,
+      "unreviewed": [],
+      "reviewed": true
     }
-  ]
+  ],
+  "texturepacks": []
 }

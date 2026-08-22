@@ -14,6 +14,7 @@ export const REPO_ROOT = path.resolve(fileURLToPath(new URL('../../', import.met
 export const REGISTRY_DIR = path.join(REPO_ROOT, 'registry');
 export const MODS_DIR = path.join(REGISTRY_DIR, 'mods');
 export const MODPACKS_DIR = path.join(REGISTRY_DIR, 'modpacks');
+export const TEXTUREPACKS_DIR = path.join(REGISTRY_DIR, 'texturepacks');
 export const INDEX_PATH = path.join(REGISTRY_DIR, 'index.json');
 
 /** The registry's own repo. Used for the "official mods" badge. */
@@ -200,19 +201,26 @@ function isStringArray(v) {
 }
 
 const KNOWN_MODPACK_FIELDS = new Set([
-  'id', 'name', 'author', 'summary', 'description', 'mods', 'tags',
-  'homepage', 'submittedBy', 'addedAt',
+  'id', 'name', 'author', 'summary', 'description', 'mods', 'texturepacks',
+  'tags', 'homepage', 'submittedBy', 'addedAt',
 ]);
 
 /**
  * Validate one modpack entry (registry/modpacks/<id>.json). A modpack is
- * pure metadata: a name and a list of registry mod ids. It has no repo, no
- * asset and no binary of its own - installing one just installs its members,
- * so the pack itself never needs a checksum or a review pass beyond "are
- * these ids real". `knownModIds` are the ids of the REVIEWED registry files;
- * packs may only reference those, never unreviewed issue submissions.
+ * pure metadata: a name, a list of registry mod ids and a list of registry
+ * texture-pack ids in precedence order. It has no repo, no asset and no binary of its own -
+ * installing one just installs its members, so the pack itself never needs a
+ * checksum or a review pass beyond "are these ids real".
+ *
+ * `knownModIds` are every listed mod id, reviewed files AND unreviewed issue
+ * submissions. A pack is allowed to contain an unreviewed mod: it is somebody
+ * describing what they actually play, and hiding that would only push people
+ * to publish half a setup. The unreviewed member keeps its own badge, the
+ * pack inherits a warning icon from it, and the manager names the unreviewed
+ * mods before it installs anything. What a pack still cannot do is invent a
+ * member: an id nobody listed is dropped.
  */
-export function validateModpackEntry(entry, fileName, knownModIds = null) {
+export function validateModpackEntry(entry, fileName, knownModIds = null, knownSkinIds = null) {
   const errors = [];
   const fail = (msg) => errors.push(msg);
 
@@ -250,16 +258,32 @@ export function validateModpackEntry(entry, fileName, knownModIds = null) {
     fail(`file name must match the id: expected ${id}.json, got ${fileName}`);
   }
 
-  if (!isStringArray(entry.mods)) {
+  let skins = [];
+  if (entry.texturepacks !== undefined && !isStringArray(entry.texturepacks)) {
+    fail('"texturepacks" must be an array of registry texture-pack ids');
+  } else {
+    skins = entry.texturepacks || [];
+    if (skins.length > 8) fail('"texturepacks" allows at most 8 entries');
+    const seenSkins = new Set();
+    for (const skinId of skins) {
+      if (!ID_RE.test(skinId)) fail(`texture pack id "${skinId}" is malformed`);
+      else if (seenSkins.has(skinId)) fail(`texture pack "${skinId}" is listed twice`);
+      else if (knownSkinIds && !knownSkinIds.has(skinId)) fail(`texture pack "${skinId}" is not in the registry`);
+      seenSkins.add(skinId);
+    }
+  }
+
+  if (entry.mods !== undefined && !isStringArray(entry.mods)) {
     fail('"mods" must be an array of registry mod ids');
   } else {
-    if (entry.mods.length < 2) fail('a modpack needs at least 2 mods (a single mod is just... a mod)');
-    if (entry.mods.length > 24) fail('"mods" allows at most 24 entries');
+    const mods = entry.mods || [];
+    if (!mods.length && !skins.length) fail('a modpack needs at least one mod, or a texture pack');
+    if (mods.length > 24) fail('"mods" allows at most 24 entries');
     const seen = new Set();
-    for (const modId of entry.mods) {
+    for (const modId of mods) {
       if (!ID_RE.test(modId)) fail(`mod id "${modId}" is malformed`);
       else if (seen.has(modId)) fail(`mod id "${modId}" is listed twice`);
-      else if (knownModIds && !knownModIds.has(modId)) fail(`mod "${modId}" is not in the registry (packs can only include reviewed mods)`);
+      else if (knownModIds && !knownModIds.has(modId)) fail(`mod "${modId}" is not in the registry`);
       seen.add(modId);
     }
   }
@@ -270,6 +294,82 @@ export function validateModpackEntry(entry, fileName, knownModIds = null) {
       if (entry.tags.length > 5) fail('"tags" allows at most 5 entries');
       for (const t of entry.tags) {
         if (!KNOWN_TAGS.includes(t)) fail(`unknown tag "${t}" (pick from: ${KNOWN_TAGS.join(', ')})`);
+      }
+    }
+  }
+
+  return errors;
+}
+
+const KNOWN_TEXTUREPACK_FIELDS = new Set([
+  'id', 'name', 'author', 'summary', 'description', 'repo', 'asset',
+  'tagPattern', 'prerelease', 'homepage', 'preview', 'tags', 'gameVersion',
+  'pending', 'submittedBy', 'addedAt',
+]);
+
+/** Tags that make sense for something that only changes how the game looks. */
+const TEXTUREPACK_TAGS = ['visual', 'ui', 'audio', 'gameplay', 'quality-of-life', 'tools'];
+
+/**
+ * Validate one texture pack entry (registry/texturepacks/<id>.json).
+ *
+ * Shaped like a mod entry rather than a modpack one, because a texture pack
+ * IS a download: a zip of PNGs on the author's own release, pinned to their
+ * repo and checksummed at review time, exactly like a mod's DLL. The
+ * difference that matters is what's inside - art and strings, never code -
+ * which is why it gets its own list instead of a tag on the mod registry.
+ */
+export function validateTexturePackEntry(entry, fileName) {
+  const errors = [];
+  const fail = (msg) => errors.push(msg);
+
+  if (typeof entry !== 'object' || entry === null || Array.isArray(entry)) {
+    return ['file must contain a single JSON object'];
+  }
+
+  for (const key of Object.keys(entry)) {
+    if (!KNOWN_TEXTUREPACK_FIELDS.has(key)) fail(`unknown field "${key}" (typo? see registry/texturepack-schema.json)`);
+  }
+
+  const str = (field, { required = false, min = 1, max = 4000, re = null, reHint = '' } = {}) => {
+    const v = entry[field];
+    if (v === undefined || v === null || v === '') {
+      if (required) fail(`"${field}" is required`);
+      return null;
+    }
+    if (typeof v !== 'string') { fail(`"${field}" must be a string`); return null; }
+    if (v.length < min) fail(`"${field}" is too short (min ${min} characters)`);
+    if (v.length > max) fail(`"${field}" is too long (max ${max} characters)`);
+    if (re && !re.test(v)) fail(`"${field}" is malformed${reHint ? ` - ${reHint}` : ''}`);
+    return v;
+  };
+
+  const id = str('id', { required: true, re: ID_RE, reHint: 'use lowercase letters, digits and dashes, e.g. "midnight-chess"' });
+  str('name', { required: true, min: 2, max: 48 });
+  str('author', { required: true, max: 48 });
+  str('summary', { required: true, min: 8, max: 140 });
+  str('description', { max: 4000 });
+  str('repo', { required: true, max: 100, re: REPO_RE, reHint: 'expected owner/name' });
+  str('asset', { required: true, max: 120 });
+  str('tagPattern', { max: 60 });
+  str('homepage', { max: 200, re: /^https:\/\//, reHint: 'must start with https://' });
+  str('preview', { max: 300, re: SPRITE_RE, reHint: 'must be a raw.githubusercontent.com URL - the only image host the manager allows' });
+  str('gameVersion', { max: 40 });
+  str('submittedBy', { max: 48 });
+  str('addedAt', { re: DATE_RE, reHint: 'expected YYYY-MM-DD' });
+
+  if (id && fileName && `${id}.json` !== fileName) {
+    fail(`file name must match the id: expected ${id}.json, got ${fileName}`);
+  }
+  if (entry.prerelease !== undefined && typeof entry.prerelease !== 'boolean') fail('"prerelease" must be true or false');
+  if (entry.pending !== undefined && typeof entry.pending !== 'boolean') fail('"pending" must be true or false');
+
+  if (entry.tags !== undefined) {
+    if (!isStringArray(entry.tags)) fail('"tags" must be an array of strings');
+    else {
+      if (entry.tags.length > 5) fail('"tags" allows at most 5 entries');
+      for (const t of entry.tags) {
+        if (!TEXTUREPACK_TAGS.includes(t)) fail(`unknown tag "${t}" (pick from: ${TEXTUREPACK_TAGS.join(', ')})`);
       }
     }
   }
@@ -395,6 +495,47 @@ export function parseSubmissionIssue(body, { author = '', createdAt = '' } = {})
     ...(fields['entry type (bare-dll releases only)']
       ? { manifest: { entry: fields['entry type (bare-dll releases only)'] } }
       : {}),
+    submittedBy: author,
+    ...(createdAt ? { addedAt: String(createdAt).slice(0, 10) } : {}),
+  };
+}
+
+/**
+ * The same trick for a modpack submission issue. Unlike a mod submission this
+ * is not a "please review me" queue: a modpack holds no code of its own, and
+ * everything it points at was already reviewed (or already badged unreviewed)
+ * on its own terms. So an open modpack issue is simply LISTED, which is what
+ * makes "share my setup" one click rather than a wait.
+ */
+export function parseModpackSubmissionIssue(body, { author = '', createdAt = '' } = {}) {
+  const fields = {};
+  for (const match of String(body || '').matchAll(/###\s+([^\n]+)\n+([\s\S]*?)(?=\n###\s|$)/g)) {
+    const value = match[2].trim();
+    fields[match[1].trim().toLowerCase()] = value === '_No response_' ? '' : value;
+  }
+  if (!fields['pack name']) return null;
+
+  const name = fields['pack name'];
+  const id = (fields['registry id'] || name)
+    .toLowerCase().trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40);
+  const mods = (fields['mods in the pack'] || '')
+    .split(',').map((m) => m.trim().toLowerCase()).filter(Boolean).slice(0, 24);
+  // Comma-separated and ORDERED: the first one listed wins where two packs
+  // change the same thing, which is part of what the setup is.
+  const skins = (fields['texture packs'] || '')
+    .split(',').map((t) => t.trim().toLowerCase()).filter(Boolean).slice(0, 8);
+
+  return {
+    id,
+    name,
+    author,
+    summary: fields['one-line summary'] || '',
+    mods,
+    ...(skins.length ? { texturepacks: skins } : {}),
+    ...(fields['longer description'] ? { description: fields['longer description'] } : {}),
     submittedBy: author,
     ...(createdAt ? { addedAt: String(createdAt).slice(0, 10) } : {}),
   };

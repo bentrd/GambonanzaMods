@@ -134,25 +134,43 @@ repo's Releases page, that's the exact number the manager shows.
 
 ## Modpacks
 
-A modpack is a curated bundle: a name, a blurb, and the registry ids of 2-24
-mods. Packs contain **no code** - installing one installs its members through
-the exact same checksum-verified path as installing them one by one, and
-dependencies come along automatically. Packs may only reference **reviewed**
-registry mods, never open submissions.
+A modpack is somebody's whole setup: a name, a blurb, the registry ids of up
+to 24 mods, and the registry ids of up to 8 texture packs in precedence order
+(the first one listed wins where two of them change the same thing). Packs contain
+**no code** - installing one installs each member through the exact same
+checksum-verified path as installing it alone, and dependencies come along
+automatically.
 
-Publishing works from the manager's **Modpacks** tab:
+Sharing yours takes one click from the manager's **My modpacks** tab. There is
+no list to curate: the form ships what you actually have installed, in the
+versions you have, plus the texture packs you are wearing, in precedence order.
 
-- **Signed in with GitHub**: pick the mods, name the pack, Submit - the
-  manager opens a registry pull request adding
+- **Signed in with GitHub**: "Share it" opens a registry pull request adding
   `registry/modpacks/<id>.json` for you.
-- **Without sign-in**: "Open submission on GitHub" pre-fills a
-  [modpack issue](https://github.com/bentrd/GambonanzaMods/issues/new?template=modpack-submission.yml);
-  a maintainer checks the ids and commits the file.
+- **Without sign-in**: "Share it on GitHub" pre-fills a
+  [modpack issue](https://github.com/bentrd/GambonanzaMods/issues/new?template=modpack-submission.yml).
 
-Because a pack is pure metadata over already-reviewed mods, the review is
-just "are these ids real" - there is no unreviewed-listing stage like mods
-have. See [`registry/modpack-schema.json`](../registry/modpack-schema.json)
-for the format.
+Either way the pack is **listed on the next index refresh** - it does not wait
+for a review. That is safe precisely because a pack is metadata: it can only
+point at things already in the registry, and nothing about being in a pack
+changes what gets downloaded or how it is verified. A maintainer committing
+the file to `registry/modpacks/` later is what turns the listing from
+"shared by someone" into "curated"; the issue listing steps aside once the id
+is taken.
+
+Two things that get **left out** of what you share, with a note in the form
+saying so: mods you installed by hand rather than from the registry, and a
+texture pack that only exists on your disk. Publish those first and they come
+along next time.
+
+A pack **may** contain unreviewed mods - people share what they really play,
+and hiding that would only push them to share half a setup. Such a pack gets a
+small warning icon everywhere it appears, and the manager names the unreviewed
+mods in the confirmation before installing anything. The mods keep their own
+`unreviewed` badges either way.
+
+See [`registry/modpack-schema.json`](../registry/modpack-schema.json) for the
+format.
 
 ## For the maintainer: enabling in-app sign-in
 

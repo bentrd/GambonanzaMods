@@ -1,24 +1,32 @@
 # Modpack submission form. The Modpacks tab of the mod manager pre-fills this
-# for curators who don't want to sign in. Unlike mod submissions, an open
-# modpack issue is NOT auto-listed: a pack is pure metadata over already-listed
-# mods, so a maintainer just checks the ids and commits the file to
-# registry/modpacks/ (which is what makes it appear in the manager).
-name: Submit a modpack to the registry
-description: Bundle registry mods into a one-click pack. Packs contain no code - just a curated list of mods already in the registry.
+# from whatever setup you have open, for people who don't want to sign in.
+#
+# Unlike a mod submission, an open modpack issue IS listed automatically on the
+# next index refresh. A modpack holds no code: everything in it was already in
+# the registry, and each part is still downloaded from its own author's release
+# and checked against its own checksum. Committing the file to
+# registry/modpacks/ and closing the issue is how a pack graduates to curated.
+name: Share a modpack
+description: Share your whole setup - the mods you play with and the texture pack you wear. Modpacks contain no code, just a list of things already in the registry.
 title: '[Modpack] '
 labels: [modpack-submission]
 body:
   - type: markdown
     attributes:
       value: |
-        A modpack is a curated bundle: a name, a blurb, and the registry ids of
-        the mods in it. Installing the pack installs its members through the
-        exact same verified path as installing them one by one. Rules:
-        - at least **2 mods**, at most 24
-        - every mod must already be **in the registry** (reviewed - not an
-          open submission)
+        A modpack is a setup other people can install in one click: a name, a
+        blurb, the registry ids of the mods in it, and optionally the registry
+        ids of the texture packs it wears. Rules:
+        - at least **one mod, or a texture pack** (both is the usual case)
+        - at most 24 mods and 8 texture packs
+        - everything must already be **listed in the registry** - open the mod
+          manager and check that each one shows up under Browse mods
         - dependencies (like `gambit-api`) come along automatically, no need
           to list them
+
+        Mods that are still **unreviewed** are allowed. Your modpack will
+        simply carry a warning icon naming them, so people know what they are
+        installing before they install it.
   - type: input
     id: pack-name
     attributes:
@@ -39,8 +47,15 @@ body:
       label: Mods in the pack
       description: Comma-separated registry ids, in suggested install order.
       placeholder: kamikaze-gambit, spikes-gambit, better-collection
-    validations:
-      required: true
+  - type: input
+    id: texturepacks
+    attributes:
+      label: Texture packs
+      description: >-
+        Optional. Registry ids of the texture packs this setup wears, comma-separated,
+        HIGHEST PRECEDENCE FIRST - where two packs change the same sprite or line, the
+        first one listed wins. They install and get worn along with the mods.
+      placeholder: my-hud-tweaks, midnight-chess
   - type: input
     id: summary
     attributes:
@@ -59,5 +74,5 @@ body:
     attributes:
       label: Checklist
       options:
-        - label: Every mod listed above is already in the registry (visible in the manager's Browse tab without an "unreviewed" badge).
+        - label: Every mod and texture pack listed above is already visible in the manager (reviewed or not).
           required: true
