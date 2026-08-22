@@ -72,13 +72,17 @@ or null on hard failure (logged to `[GameUI]`).
 public static Button CreateButton(Transform parent, string label, Action onClick);
 ```
 
-Clones a CanvasMenu home-row button cell into `parent`. The clone has a fresh
-`UnityEngine.UI.Button` with default ColorTint colors:
+Clones a CanvasMenu home-row button cell into `parent`, **keeping the game's own
+feel**: the template preserves the cell's `EventTrigger`, `RotationButton`
+(hover: scale to 1.1 over 0.2s + the `UI_MouseOver` sound) and `ShadowButton`
+(the press shadow). Persistent listeners pointing outside the clone — the
+original menu action — are silenced, so the clone never opens Settings and
+never dead-clicks.
 
-- normal     = white
-- highlight  = warm peach
-- pressed    = dark amber
-- selected   = light peach
+The returned `Button` carries only `onClick` and has `transition = None`:
+vanilla menu buttons hover by scaling, so no ColorTint is applied on top.
+(Before framework 1.5.1 the template was fully stripped and a warm-peach
+ColorTint faked the hover — injected buttons visibly didn't match the menu.)
 
 Falls back to a programmatic cream button if `CanvasMenu` isn't in the scene yet.
 

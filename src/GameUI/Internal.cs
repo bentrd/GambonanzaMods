@@ -25,6 +25,58 @@ namespace Gambonanza.GameUI
         /// namespace, Selectable subclasses, EventTriggers, and custom MonoBehaviours
         /// whose type name hints at button/feedback/rewired wiring. Returns the count.
         /// </summary>
+        /// <summary>
+        /// For cloned buttons that should KEEP their native hover/press: removes only the
+        /// selection plumbing (Selectable, Rewired, gamepad select feedback), leaving
+        /// EventTrigger + the game's hover/press MonoBehaviours in place.
+        /// </summary>
+        public static int SelectionPlumbing(GameObject root)
+        {
+            if (root == null) return 0;
+            int n = 0;
+            foreach (var s in root.GetComponentsInChildren<Selectable>(true).ToArray())
+            { if (s != null) { UnityEngine.Object.DestroyImmediate(s); n++; } }
+            foreach (var mb in root.GetComponentsInChildren<MonoBehaviour>(true).ToArray())
+            {
+                if (mb == null) continue;
+                var typeName = mb.GetType().Name;
+                if (typeName.Contains("Rewired") || typeName == "SelectFeedback")
+                { UnityEngine.Object.DestroyImmediate(mb); n++; }
+            }
+            return n;
+        }
+
+        /// <summary>
+        /// Silences EventTrigger persistent listeners whose target lives outside `root` -
+        /// i.e. the original menu action on a cloned button - while keeping listeners that
+        /// drive the clone's own hover/press components. Without this, a cloned Settings
+        /// button still opens Settings; with the old full strip, it did nothing at all.
+        /// </summary>
+        public static int MuteExternalListeners(GameObject root)
+        {
+            if (root == null) return 0;
+            int n = 0;
+            foreach (var trigger in root.GetComponentsInChildren<EventTrigger>(true))
+            {
+                if (trigger.triggers == null) continue;
+                foreach (var entry in trigger.triggers)
+                {
+                    if (entry == null || entry.callback == null) continue;
+                    for (int i = 0; i < entry.callback.GetPersistentEventCount(); i++)
+                    {
+                        var target = entry.callback.GetPersistentTarget(i) as Component;
+                        bool inside = target != null && target.transform.IsChildOf(root.transform);
+                        if (!inside)
+                        {
+                            entry.callback.SetPersistentListenerState(i, UnityEngine.Events.UnityEventCallState.Off);
+                            n++;
+                        }
+                    }
+                }
+            }
+            return n;
+        }
+
         public static int Interactives(GameObject root)
         {
             if (root == null) return 0;

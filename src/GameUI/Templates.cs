@@ -63,14 +63,22 @@ namespace Gambonanza.GameUI
             clone.name = "__GameUI_ButtonTemplate";
             clone.SetActive(false);
 
-            int stripped = Strip.Interactives(clone);
+            // Keep the components that make a menu button feel like a menu button:
+            // EventTrigger entries drive RotationButton (hover: scale 1.1 over 0.2s plus the
+            // UI_MouseOver sound) and ShadowButton (the press). Stripping them - the old
+            // behaviour - produced buttons with no hover and left callers to fake one with a
+            // ColorTint, which is why injected buttons used to flash orange. Strip only the
+            // selection plumbing that fights mod-driven buttons, then silence the persistent
+            // listeners that point OUTSIDE the clone (the original menu action).
+            int stripped = Strip.SelectionPlumbing(clone);
+            int muted = Strip.MuteExternalListeners(clone);
             // Do NOT reset Image colors - the cloned cell has the designer's
             // cream tint baked in. A white tint would wash it out (the cell
             // sprite is white pixels tinted cream by Image.color).
 
             _buttonTemplate  = clone;
             _buttonLabelPath = labelPath;
-            Log.Line($"captured button template (stripped {stripped} comps).");
+            Log.Line($"captured button template (stripped {stripped}, muted {muted} external listener(s)).");
         }
 
         // ---- Modal template ------------------------------------------------

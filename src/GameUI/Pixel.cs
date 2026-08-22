@@ -61,7 +61,10 @@ namespace Gambonanza.GameUI
             var btn = clone.GetComponent<Button>() ?? clone.AddComponent<Button>();
             btn.interactable = true;
             if (img != null) btn.targetGraphic = img;
-            ButtonStyle.ApplyDefaultColors(btn);
+            // No ColorTint: every vanilla menu button hovers by scaling (RotationButton,
+            // preserved in the template) - a tint on top reads as foreign. The Button here
+            // only carries onClick; it coexists with the template's EventTrigger.
+            btn.transition = Selectable.Transition.None;
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() => Safe.Invoke(onClick));
             return btn;
