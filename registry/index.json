@@ -1,87 +1,87 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T10:37:17.440Z",
+  "generatedAt": "2026-08-22T10:38:23.381Z",
   "count": 22,
   "releases": {
     "framework": {
-      "tag": "v1.4.0",
-      "version": "1.4.0",
-      "publishedAt": "2026-08-22T09:08:47Z",
-      "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
+      "tag": "v1.5.0",
+      "version": "1.5.0",
+      "publishedAt": "2026-08-22T10:37:58Z",
+      "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
       "assets": [
         {
-          "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/BetterCollection.zip",
-          "size": 7894,
-          "sha256": "6a8aa86ae550d44015391db8791b09cc2e910dc0468560429eaeebaebff10641"
-        },
-        {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "d4fbeba67225a2dc8965b0ff154f8f02d8f4c1f97085dd8c0a1d6e11db72775d"
-        },
-        {
-          "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/GambitApi.zip",
-          "size": 19924,
-          "sha256": "b85a5bb92c9ab1d42c1061e447b7c129b81f02f1e637502928c0e4ee1e8404d9"
-        },
-        {
-          "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-linux-arm64.zip",
-          "size": 28389073,
-          "sha256": "2580a1fa24e52a2623d8597fbd17349b6d7cf7cc55fb2af646e84f23ddbe57f3"
-        },
-        {
-          "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-linux-x64.zip",
-          "size": 29631021,
-          "sha256": "ac0d563639ad81e6f75b4c4a109b6b5260c4199b2d2ce17a11c8193b16accf78"
-        },
-        {
-          "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-osx-arm64.zip",
-          "size": 28614373,
-          "sha256": "8c7c00a86c2e83ac2f31d82c21b6494f620ad520686957a9e1392054d786d9fc"
-        },
-        {
-          "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-osx-x64.zip",
-          "size": 29976748,
-          "sha256": "8444ae95a8462c6675551d0b1f9bab67d45a0c4b727480b82a7a021c806b59dd"
-        },
-        {
-          "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-win-arm64.zip",
-          "size": 28863187,
-          "sha256": "8097a99b15678456c5359bf90ac43bdb71cabfb8fc3282c195bca88ff0d23dd3"
-        },
-        {
-          "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-win-x64.zip",
-          "size": 29933491,
-          "sha256": "9eb23eddbb99737506dbd3b91869507ce0da19136f7d3828b27564e7f0ae2f6f"
-        },
-        {
-          "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/KamikazeGambit.zip",
-          "size": 8780,
-          "sha256": "bc4ec6d0d4fb12cde9e0417a7daf1ea74581db82482fd339dd9048f6179b0b53"
+          "sha256": "cafc4447cceeb32155e2f8a7bd0f117a6e9f4d906990c475b1121f26a316358b"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/MightyKasparovEveryStage.zip",
-          "size": 4360,
-          "sha256": "3712fc349b9d1459d3df3a9534678296d9d3eb54fc5153d0d7457aac21978144"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/MightyKasparovEveryStage.zip",
+          "size": 4356,
+          "sha256": "89c359955d61115a15f07a2f4c4731811c8dbe444426b057b26c9720c352af40"
+        },
+        {
+          "name": "GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/GambitApi.zip",
+          "size": 19924,
+          "sha256": "e26e1d43b0a80a7fb1c5e4df3b422d172b08bbf40499eb738fbd50aaf27cf854"
+        },
+        {
+          "name": "KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/KamikazeGambit.zip",
+          "size": 8775,
+          "sha256": "8bc27eca52172027e67a572678e697bd95a1b2e26cd7245c2ebda3dfeda9624b"
+        },
+        {
+          "name": "BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/BetterCollection.zip",
+          "size": 7897,
+          "sha256": "6b1e84698604f21c8aa33a1a9ce88a8d50f76526fac707789dde25361f32a9bf"
+        },
+        {
+          "name": "gambonanza-framework-linux-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-linux-arm64.zip",
+          "size": 28397596,
+          "sha256": "a52a4a932ab5ccf186b288a3a6c5f242b2709bd29c8177ee0c7e7a0322915b1b"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/SpikesGambit.zip",
-          "size": 6495,
-          "sha256": "ea629f879b373402e9b9683b3a6920e72a7851f5efb9e08885c09492194d8b89"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/SpikesGambit.zip",
+          "size": 6498,
+          "sha256": "9417d725ce772849018a64404a3564d29f2029371880c1c68c500ec78fd8affe"
+        },
+        {
+          "name": "gambonanza-framework-linux-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-linux-x64.zip",
+          "size": 29639402,
+          "sha256": "f35c7709696ee901209aafa68d6e566a018da5dbe75ff709dc86274b96e1aba6"
+        },
+        {
+          "name": "gambonanza-framework-osx-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-osx-arm64.zip",
+          "size": 28622750,
+          "sha256": "7a873ef7e96512eb8d540ac296ffa5ad97f193b0d1638b249f34a4565b239270"
+        },
+        {
+          "name": "gambonanza-framework-osx-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-osx-x64.zip",
+          "size": 29985218,
+          "sha256": "ace01277d5809984e750279040a303cb5605e51ec5ee9e17b18e3c63750e3db2"
+        },
+        {
+          "name": "gambonanza-framework-win-arm64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-win-arm64.zip",
+          "size": 28871714,
+          "sha256": "7ac59472ebf9a5f938b113f0e4c20924d6d7bf63a29cf7f8778fb267b0872be2"
+        },
+        {
+          "name": "gambonanza-framework-win-x64.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-win-x64.zip",
+          "size": 29941813,
+          "sha256": "943bae07ec2c8dd921f70cb2f86b17bdf2e3575074d1fbbb6b1e60b6f697cd36"
         }
       ]
     },
@@ -91,7 +91,14 @@
       "publishedAt": "2026-08-22T10:37:09Z",
       "notes": "\n- **Wear several texture packs at once**, in an order you control. Worn packs\n  move to the front of the shelf with a \"worn 1st / 2nd\" badge and a pair of\n  ▲▼ arrows; where two of them change the same sprite or the same line, the\n  higher one wins. Everything else stays where it was - one pack behaves\n  exactly as before, and whatever you were wearing stays on.\n- Under the hood this had to merge properly rather than layer. A pack's art is\n  stored as WHOLE game sheets - 210 gambit icons on one 512x512 texture - so\n  handing the game two packs that both touch that sheet would have let the\n  second one paint over the first one's icon and silently lose it. The manager\n  now resolves one winner per sprite and per string across the stack, then\n  composites those onto the pristine sheet once. The game still receives a\n  single pack and needs no update.\n- A modpack remembers the whole stack, not one pack, so switching modpacks\n  still switches the entire look. Shared modpacks carry the stack and its\n  order, because the same two packs in the other order are a different setup.\n\n",
       "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.7.1",
-      "assets": []
+      "assets": [
+        {
+          "name": "Gambonanza.Mod.Manager-1.7.1.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1.AppImage",
+          "size": 127901181,
+          "sha256": "49ecd733afc53058b8ec0451622576a54ef912a4121293df7b8cb473da8050e0"
+        }
+      ]
     }
   },
   "mods": [
@@ -156,23 +163,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.4.0",
+        "tag": "v1.5.0",
         "version": "1.1.0",
-        "publishedAt": "2026-08-22T09:08:47Z",
-        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
+        "publishedAt": "2026-08-22T10:37:58Z",
+        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/BetterCollection.zip",
-          "size": 7894,
-          "sha256": "6a8aa86ae550d44015391db8791b09cc2e910dc0468560429eaeebaebff10641"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/BetterCollection.zip",
+          "size": 7897,
+          "sha256": "6b1e84698604f21c8aa33a1a9ce88a8d50f76526fac707789dde25361f32a9bf"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 19,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:36:58Z",
+      "repoPushedAt": "2026-08-22T10:37:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -395,23 +402,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.4.0",
+        "tag": "v1.5.0",
         "version": "1.2.0",
-        "publishedAt": "2026-08-22T09:08:47Z",
-        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
+        "publishedAt": "2026-08-22T10:37:58Z",
+        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "d4fbeba67225a2dc8965b0ff154f8f02d8f4c1f97085dd8c0a1d6e11db72775d"
+          "sha256": "cafc4447cceeb32155e2f8a7bd0f117a6e9f4d906990c475b1121f26a316358b"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:36:58Z",
+      "repoPushedAt": "2026-08-22T10:37:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -543,23 +550,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.4.0",
+        "tag": "v1.5.0",
         "version": "1.4.1",
-        "publishedAt": "2026-08-22T09:08:47Z",
-        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
+        "publishedAt": "2026-08-22T10:37:58Z",
+        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/GambitApi.zip",
           "size": 19924,
-          "sha256": "b85a5bb92c9ab1d42c1061e447b7c129b81f02f1e637502928c0e4ee1e8404d9"
+          "sha256": "e26e1d43b0a80a7fb1c5e4df3b422d172b08bbf40499eb738fbd50aaf27cf854"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:36:58Z",
+      "repoPushedAt": "2026-08-22T10:37:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -809,23 +816,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.4.0",
+        "tag": "v1.5.0",
         "version": "1.3.0",
-        "publishedAt": "2026-08-22T09:08:47Z",
-        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
+        "publishedAt": "2026-08-22T10:37:58Z",
+        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/KamikazeGambit.zip",
-          "size": 8780,
-          "sha256": "bc4ec6d0d4fb12cde9e0417a7daf1ea74581db82482fd339dd9048f6179b0b53"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/KamikazeGambit.zip",
+          "size": 8775,
+          "sha256": "8bc27eca52172027e67a572678e697bd95a1b2e26cd7245c2ebda3dfeda9624b"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:36:58Z",
+      "repoPushedAt": "2026-08-22T10:37:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -942,23 +949,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.4.0",
+        "tag": "v1.5.0",
         "version": "1.1.0",
-        "publishedAt": "2026-08-22T09:08:47Z",
-        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
+        "publishedAt": "2026-08-22T10:37:58Z",
+        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/MightyKasparovEveryStage.zip",
-          "size": 4360,
-          "sha256": "3712fc349b9d1459d3df3a9534678296d9d3eb54fc5153d0d7457aac21978144"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/MightyKasparovEveryStage.zip",
+          "size": 4356,
+          "sha256": "89c359955d61115a15f07a2f4c4731811c8dbe444426b057b26c9720c352af40"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:36:58Z",
+      "repoPushedAt": "2026-08-22T10:37:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -1142,23 +1149,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.4.0",
+        "tag": "v1.5.0",
         "version": "1.1.0",
-        "publishedAt": "2026-08-22T09:08:47Z",
-        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
+        "publishedAt": "2026-08-22T10:37:58Z",
+        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/SpikesGambit.zip",
-          "size": 6495,
-          "sha256": "ea629f879b373402e9b9683b3a6920e72a7851f5efb9e08885c09492194d8b89"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/SpikesGambit.zip",
+          "size": 6498,
+          "sha256": "9417d725ce772849018a64404a3564d29f2029371880c1c68c500ec78fd8affe"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:36:58Z",
+      "repoPushedAt": "2026-08-22T10:37:18Z",
       "license": "MIT",
       "archived": false
     }
