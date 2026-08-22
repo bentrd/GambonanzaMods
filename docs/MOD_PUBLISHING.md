@@ -92,6 +92,21 @@ new release, and players get an Update button.
 **Please keep release notes.** The manager shows your release body as the
 changelog; "fixed stuff" helps nobody.
 
+## Sharing your mod
+
+Every listed mod gets its own page, twice over:
+
+- **on the web**: `https://bentrd.github.io/GambonanzaMods/mod/<id>/` - this is
+  the link to paste in Discord. It unfurls with your mod's name and summary,
+  works for people who don't have the manager yet, and has an **Open in Mod
+  Manager** button for people who do.
+- **in the app**: the same page inside the manager (also reachable as
+  `gmm://mod/<id>`), with an Install button. Its **Copy link** button copies
+  the web URL above.
+
+Modpacks and texture packs get the same pair of pages at `/modpack/<id>/` and
+`/texturepack/<id>/`.
+
 ## Rules
 
 - public source in the linked repo, always

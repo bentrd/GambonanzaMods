@@ -183,6 +183,50 @@
   details .body { padding: 0 15px 13px; font-size: 13.5px; line-height: 1.55; color: rgba(90,34,48,.85); }
   details .body a { color: var(--wine); }
 
+  .mod-card a.cardlink { text-decoration: none; color: inherit; display: block; }
+  .mod-card .thumb {
+    margin: -12px -13px 10px; border-bottom: 2px solid var(--ink);
+    background: var(--wine-deep); overflow: hidden; aspect-ratio: 21/9;
+  }
+  .mod-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; image-rendering: pixelated; }
+
+  /* -------- detail pages (one mod / modpack / texture pack) -------- */
+  .detail-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 4px 0 2px; }
+  .detail-head h2 {
+    font-family: var(--font-mono); font-size: clamp(30px, 5vw, 44px);
+    margin: 0; line-height: 1.05; color: var(--wine);
+  }
+  .detail-by { font-size: 12px; text-transform: uppercase; letter-spacing: .9px; color: rgba(90,34,48,.6); }
+  .detail-tags { display: flex; gap: 5px; flex-wrap: wrap; margin: 10px 0 4px; }
+  .detail-desc { font-size: 14px; line-height: 1.6; color: rgba(90,34,48,.9); white-space: pre-wrap; max-width: 700px; }
+  .detail-stats { display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0 2px; }
+  .detail-stats .stat { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; color: rgba(90,34,48,.72); }
+  .detail-preview {
+    margin: 14px 0 4px; border: 3px solid var(--ink); border-radius: 10px;
+    box-shadow: 0 4px 0 0 var(--ink); overflow: hidden; max-width: 700px; background: var(--wine-deep);
+  }
+  .detail-preview img { display: block; width: 100%; image-rendering: pixelated; }
+  .open-app {
+    margin-top: 20px; padding: 18px;
+    background: var(--wine-deep); border: 3px solid var(--ink); border-radius: 10px;
+    box-shadow: 0 4px 0 0 var(--ink);
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  .open-app .hint { color: rgba(244,229,194,.75); font-size: 12.5px; line-height: 1.5; flex: 1; min-width: 220px; }
+  .open-app .hint a { color: var(--yellow); }
+  .member-list { margin-top: 6px; }
+  .member {
+    display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    padding: 9px 12px; border: 2px solid var(--ink); border-radius: 8px;
+    background: var(--cream-light); box-shadow: 0 3px 0 0 var(--ink); margin-bottom: 8px;
+  }
+  .member a { font-size: 14px; color: var(--wine); text-decoration: none; }
+  .member a:hover { text-decoration: underline; }
+  .member .msum { font-size: 12px; color: rgba(90,34,48,.75); flex: 1; min-width: 200px; }
+  .backlink { font-size: 12.5px; text-transform: uppercase; letter-spacing: .8px; }
+  .backlink a { color: rgba(244,229,194,.7); text-decoration: none; }
+  .backlink a:hover { color: var(--cream); }
+
   footer { text-align: center; margin-top: 44px; font-size: 12px; color: rgba(244,229,194,.45); text-transform: uppercase; letter-spacing: 1px; line-height: 2; }
   footer a { color: rgba(244,229,194,.7); }
   .loading { text-align: center; color: rgba(90,34,48,.55); padding: 20px; }
@@ -204,6 +248,7 @@
     </div>
   </header>
 
+  <div id="homeRoot">
   <section class="hero">
     <h2>Mods for Gambonanza,<br><span class="gold">one click away</span></h2>
     <p>
@@ -258,6 +303,16 @@
   <section class="card">
     <span class="title">Mods in the registry</span>
     <div class="mod-grid" id="modGrid"><div class="loading">Loading the registry…</div></div>
+  </section>
+
+  <section class="card" id="packsSection" hidden>
+    <span class="title">Modpacks</span>
+    <div class="mod-grid" id="packGrid"></div>
+  </section>
+
+  <section class="card" id="tpSection" hidden>
+    <span class="title">Texture packs</span>
+    <div class="mod-grid" id="tpGrid"></div>
   </section>
 
   <section class="card">
@@ -325,6 +380,10 @@
     </details>
   </section>
 
+  </div><!-- /homeRoot -->
+
+  <div id="detailRoot" hidden></div>
+
   <footer>
     MIT licensed · not affiliated with Blukulele ·
     <a href="https://github.com/bentrd/GambonanzaMods">source on GitHub</a>
@@ -339,6 +398,7 @@
 
   var RELEASES_PAGE = 'https://github.com/bentrd/GambonanzaMods/releases';
   var API = 'https://api.github.com/repos/bentrd/GambonanzaMods/releases?per_page=30';
+  var DEFAULT_TITLE = 'Gambonanza Mod Manager';
 
   // ------------------------------------------------------------------ OS detection
   function detectOs() {
@@ -458,109 +518,330 @@
     });
 
   // ------------------------------------------------------------------ registry
-  var grid = document.getElementById('modGrid');
-  fetch('registry/index.json')
-    .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); })
-    .then(function (index) {
-      grid.textContent = '';
-      var mods = index.mods || [];
-      if (!mods.length) throw new Error('empty');
+  // Fetched once, shared by the landing grids and the detail pages. Every
+  // registry entry has a page at #/<type>/<id>; the static stubs the deploy
+  // generates at /<type>/<id>/ redirect here (they exist so Discord embeds
+  // show the entry, not the site).
+  var indexPromise = fetch('registry/index.json')
+    .then(function (r) { if (!r.ok) throw new Error('http ' + r.status); return r.json(); });
 
-      // Download counts come from GitHub's per-asset counters, recorded into
-      // the index by CI. Popularity is relative: top fifth = hot, top half =
-      // popular, with absolute floors so a tiny registry isn't all flames.
-      var counts = [];
-      for (var c = 0; c < mods.length; c++) {
-        if (mods[c].latest) counts.push(mods[c].downloads || 0);
-      }
-      counts.sort(function (a, b) { return a - b; });
-      var tierAt = function (p) {
-        return counts.length ? counts[Math.min(counts.length - 1, Math.floor(p * counts.length))] : 0;
-      };
-      var hotAt = Math.max(tierAt(0.8), 25);
-      var popAt = Math.max(tierAt(0.5), 5);
-      var fmtCount = function (n) {
-        n = Number(n) || 0;
-        if (n >= 1e6) return (n / 1e6).toFixed(n < 1e7 ? 1 : 0) + 'M';
-        if (n >= 1000) return (n / 1000).toFixed(n < 1e4 ? 1 : 0) + 'k';
-        return String(n);
-      };
-      var pixIcon = function (d) {
-        return '<svg class="pix" width="12" height="12" viewBox="0 0 12 12" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><path d="' + d + '"/></svg>';
-      };
-      var DL_ICON = pixIcon('M5 1h2v1H5zM5 2h2v1H5zM5 3h2v1H5zM3 4h6v1H3zM4 5h4v1H4zM5 6h2v1H5zM1 8h10v2H1z');
-      var POP_ICONS = {
-        hot: pixIcon('M7 0h1v1H7zM6 1h2v1H6zM5 2h2v1H5zM4 3h3v1H4zM3 4h5v1H3zM3 5h6v1H3zM2 6h8v1H2zM2 7h8v1H2zM3 8h7v1H3zM4 9h5v1H4zM5 10h3v1H5z'),
-        popular: pixIcon('M5 1h2v1H5zM5 2h2v1H5zM4 3h4v1H4zM1 4h10v1H1zM2 5h8v1H2zM3 6h6v1H3zM2 7h8v1H2zM2 8h3v1H2zM7 8h3v1H7zM1 9h2v1H1zM9 9h2v1H9z'),
-        growing: pixIcon('M8 1h3v1H8zM7 2h4v1H7zM8 3h2v1H8zM1 3h3v1H1zM1 4h4v1H1zM2 5h2v1H2zM5 4h2v7H5z'),
-      };
+  function h(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text != null) node.textContent = text;
+    return node;
+  }
 
-      for (var i = 0; i < mods.length; i++) {
-        var m = mods[i];
-        var card = document.createElement('div');
-        card.className = 'mod-card';
+  function pixIcon(d) {
+    return '<svg class="pix" width="12" height="12" viewBox="0 0 12 12" shape-rendering="crispEdges" fill="currentColor" aria-hidden="true"><path d="' + d + '"/></svg>';
+  }
+  var DL_ICON = pixIcon('M5 1h2v1H5zM5 2h2v1H5zM5 3h2v1H5zM3 4h6v1H3zM4 5h4v1H4zM5 6h2v1H5zM1 8h10v2H1z');
+  var POP_ICONS = {
+    hot: pixIcon('M7 0h1v1H7zM6 1h2v1H6zM5 2h2v1H5zM4 3h3v1H4zM3 4h5v1H3zM3 5h6v1H3zM2 6h8v1H2zM2 7h8v1H2zM3 8h7v1H3zM4 9h5v1H4zM5 10h3v1H5z'),
+    popular: pixIcon('M5 1h2v1H5zM5 2h2v1H5zM4 3h4v1H4zM1 4h10v1H1zM2 5h8v1H2zM3 6h6v1H3zM2 7h8v1H2zM2 8h3v1H2zM7 8h3v1H7zM1 9h2v1H1zM9 9h2v1H9z'),
+    growing: pixIcon('M8 1h3v1H8zM7 2h4v1H7zM8 3h2v1H8zM1 3h3v1H1zM1 4h4v1H1zM2 5h2v1H2zM5 4h2v7H5z'),
+  };
 
-        var h = document.createElement('h3');
-        h.textContent = m.name;
-        var by = document.createElement('div');
-        by.className = 'by';
-        by.textContent = 'by ' + m.author + (m.latest && m.latest.version ? ' · v' + m.latest.version : m.pending ? ' · coming soon' : '');
-        var p = document.createElement('p');
-        p.textContent = m.summary || '';
+  function fmtCount(n) {
+    n = Number(n) || 0;
+    if (n >= 1e6) return (n / 1e6).toFixed(n < 1e7 ? 1 : 0) + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(n < 1e4 ? 1 : 0) + 'k';
+    return String(n);
+  }
 
-        var tags = document.createElement('div');
-        tags.className = 'tags';
-        // reviewed === false marks submissions still awaiting review; the
-        // index stamps everything that went through review with true.
-        var t0 = document.createElement('span');
-        if (m.reviewed === false) {
-          t0.className = 'tag red';
-          t0.textContent = 'unreviewed';
-          t0.title = 'Awaiting review - read the source before installing';
-        } else {
-          t0.className = 'tag gold';
-          t0.textContent = 'reviewed';
-          t0.title = 'The source code was reviewed before this mod was listed';
-        }
-        tags.appendChild(t0);
-        (m.tags || []).forEach(function (tg) {
-          var t = document.createElement('span');
-          t.className = 'tag';
-          t.textContent = tg.replace(/-/g, ' ');
-          tags.appendChild(t);
-        });
+  // Download counts come from GitHub's per-asset counters, recorded into
+  // the index by CI. Popularity is relative: top fifth = hot, top half =
+  // popular, with absolute floors so a tiny registry isn't all flames.
+  function popularityTiers(mods) {
+    var counts = [];
+    for (var c = 0; c < mods.length; c++) {
+      if (mods[c].latest) counts.push(mods[c].downloads || 0);
+    }
+    counts.sort(function (a, b) { return a - b; });
+    var tierAt = function (p) {
+      return counts.length ? counts[Math.min(counts.length - 1, Math.floor(p * counts.length))] : 0;
+    };
+    return { hot: Math.max(tierAt(0.8), 25), popular: Math.max(tierAt(0.5), 5) };
+  }
 
-        var dl = m.downloads || 0;
-        var tier = dl >= hotAt ? 'hot' : dl >= popAt ? 'popular' : 'growing';
-        var stats = document.createElement('div');
-        stats.className = 'stats';
-        var dlStat = document.createElement('span');
-        dlStat.className = 'stat';
-        dlStat.title = 'Downloaded ' + dl.toLocaleString() + ' times across all versions';
-        dlStat.innerHTML = DL_ICON + ' ' + fmtCount(dl);
-        var popStat = document.createElement('span');
-        popStat.className = 'stat pop ' + tier;
-        popStat.innerHTML = POP_ICONS[tier] + ' ' + tier;
-        stats.appendChild(dlStat);
-        stats.appendChild(popStat);
+  function reviewedTag(entry) {
+    var t = h('span', null, null);
+    // reviewed === false marks submissions still awaiting review; the
+    // index stamps everything that went through review with true.
+    if (entry.reviewed === false) {
+      t.className = 'tag red';
+      t.textContent = 'unreviewed';
+      t.title = 'Awaiting review - read the source before installing';
+    } else {
+      t.className = 'tag gold';
+      t.textContent = 'reviewed';
+      t.title = 'Reviewed before this was listed';
+    }
+    return t;
+  }
 
-        var link = document.createElement('a');
-        link.href = m.homepage || ('https://github.com/' + m.repo);
-        link.style.textDecoration = 'none';
-        link.style.color = 'inherit';
-        link.appendChild(h);
-        link.appendChild(by);
-        link.appendChild(p);
-        link.appendChild(stats);
-        link.appendChild(tags);
-        card.appendChild(link);
-        grid.appendChild(card);
-      }
-    })
+  function statSpan(icon, text, title, extraClass) {
+    var s = h('span', 'stat' + (extraClass ? ' ' + extraClass : ''), null);
+    if (title) s.title = title;
+    s.innerHTML = icon + ' ';
+    s.appendChild(document.createTextNode(text));
+    return s;
+  }
+
+  function downloadStat(entry) {
+    var dl = entry.downloads || 0;
+    return statSpan(DL_ICON, fmtCount(dl), 'Downloaded ' + dl.toLocaleString() + ' times across all versions');
+  }
+
+  function popularityStat(entry, tiers) {
+    var dl = entry.downloads || 0;
+    var tier = dl >= tiers.hot ? 'hot' : dl >= tiers.popular ? 'popular' : 'growing';
+    return statSpan(POP_ICONS[tier], tier, null, 'pop ' + tier);
+  }
+
+  /** One landing-grid card; the whole thing links to the entry's page. */
+  function entryCard(type, entry, tiers) {
+    var card = h('div', 'mod-card', null);
+    var link = h('a', 'cardlink', null);
+    link.href = '#/' + type + '/' + entry.id;
+
+    if (type === 'texturepack' && entry.preview) {
+      var thumb = h('div', 'thumb', null);
+      var img = document.createElement('img');
+      img.src = entry.preview;
+      img.alt = '';
+      img.loading = 'lazy';
+      thumb.appendChild(img);
+      card.appendChild(thumb);
+    }
+
+    link.appendChild(h('h3', null, entry.name));
+    var byBits = 'by ' + entry.author;
+    if (type === 'modpack') byBits += ' · ' + (entry.mods || []).length + ' mods';
+    else if (entry.latest && entry.latest.version) byBits += ' · v' + entry.latest.version;
+    else if (entry.pending) byBits += ' · coming soon';
+    link.appendChild(h('div', 'by', byBits));
+    link.appendChild(h('p', null, entry.summary || ''));
+
+    if (type !== 'modpack') {
+      var stats = h('div', 'stats', null);
+      stats.appendChild(downloadStat(entry));
+      if (tiers) stats.appendChild(popularityStat(entry, tiers));
+      link.appendChild(stats);
+    }
+
+    var tags = h('div', 'tags', null);
+    tags.appendChild(reviewedTag(entry));
+    (entry.tags || []).forEach(function (tg) {
+      tags.appendChild(h('span', 'tag', tg.replace(/-/g, ' ')));
+    });
+    link.appendChild(tags);
+
+    card.appendChild(link);
+    return card;
+  }
+
+  function renderGrids(index) {
+    var tiers = popularityTiers(index.mods || []);
+
+    var grid = document.getElementById('modGrid');
+    grid.textContent = '';
+    (index.mods || []).forEach(function (m) { grid.appendChild(entryCard('mod', m, tiers)); });
+    if (!(index.mods || []).length) throw new Error('empty');
+
+    var packs = index.modpacks || [];
+    document.getElementById('packsSection').hidden = !packs.length;
+    var packGrid = document.getElementById('packGrid');
+    packGrid.textContent = '';
+    packs.forEach(function (p) { packGrid.appendChild(entryCard('modpack', p, null)); });
+
+    var tps = index.texturepacks || [];
+    document.getElementById('tpSection').hidden = !tps.length;
+    var tpGrid = document.getElementById('tpGrid');
+    tpGrid.textContent = '';
+    tps.forEach(function (p) { tpGrid.appendChild(entryCard('texturepack', p, null)); });
+  }
+
+  indexPromise
+    .then(renderGrids)
     .catch(function () {
-      grid.innerHTML = '<div class="loading">Could not load the registry - browse it in the app, or ' +
+      document.getElementById('modGrid').innerHTML =
+        '<div class="loading">Could not load the registry - browse it in the app, or ' +
         '<a href="https://github.com/bentrd/GambonanzaMods/tree/main/registry/mods">on GitHub</a>.</div>';
     });
+
+  // ------------------------------------------------------------------ detail pages
+  var TYPE_META = {
+    mod: { title: 'Mod', listKey: 'mods', back: 'All mods' },
+    modpack: { title: 'Modpack', listKey: 'modpacks', back: 'All modpacks' },
+    texturepack: { title: 'Texture pack', listKey: 'texturepacks', back: 'All texture packs' },
+  };
+
+  var detailRoot = document.getElementById('detailRoot');
+  var homeRoot = document.getElementById('homeRoot');
+
+  /** The big hand-off block: gmm:// button + what to do when it does nothing. */
+  function openInAppBlock(type, entry) {
+    var box = h('div', 'open-app', null);
+    if (os === 'mobile') {
+      var hint = h('div', 'hint', 'The Mod Manager runs on computers - open this page on your Mac, Windows or Linux machine and this is one click.');
+      box.appendChild(hint);
+      return box;
+    }
+    var a = h('a', 'btn btn-green big', 'Open in Mod Manager');
+    a.href = 'gmm://' + type + '/' + entry.id;
+    box.appendChild(a);
+    var hint2 = h('div', 'hint', null);
+    hint2.appendChild(document.createTextNode('Opens this page in the app, one click from installed. Nothing happened? You need the '));
+    var dl = h('a', null, 'Mod Manager');
+    dl.href = '#';
+    hint2.appendChild(dl);
+    hint2.appendChild(document.createTextNode(' first - it’s free, and it patches the game safely with a backup.'));
+    box.appendChild(hint2);
+    return box;
+  }
+
+  function detailStats(entry, index) {
+    var stats = h('div', 'detail-stats', null);
+    if (entry.downloads != null) stats.appendChild(downloadStat(entry));
+    if (entry.latest && entry.latest.version) {
+      stats.appendChild(statSpan('', 'v' + entry.latest.version,
+        entry.latest.publishedAt ? 'released ' + entry.latest.publishedAt.slice(0, 10) : null));
+    }
+    if (entry.latest && entry.latest.asset && entry.latest.asset.size) {
+      stats.appendChild(statSpan('', (entry.latest.asset.size / 1e6 >= 1
+        ? (entry.latest.asset.size / 1e6).toFixed(1) + ' MB'
+        : Math.round(entry.latest.asset.size / 1e3) + ' KB'), null));
+    }
+    if (entry.license) stats.appendChild(statSpan('', entry.license, 'License'));
+    if (entry.gameVersion) stats.appendChild(statSpan('', 'game ' + entry.gameVersion, null));
+    return stats;
+  }
+
+  function memberRow(member, index) {
+    var row = h('div', 'member', null);
+    if (member.entry) {
+      var a = h('a', null, member.entry.name);
+      a.href = '#/mod/' + member.entry.id;
+      row.appendChild(a);
+      row.appendChild(h('span', 'msum', member.entry.summary || ''));
+      if (member.entry.reviewed === false) row.appendChild(reviewedTag(member.entry));
+    } else {
+      row.appendChild(h('span', null, member.id));
+      row.appendChild(h('span', 'msum', 'No longer in the registry - skipped on install.'));
+    }
+    return row;
+  }
+
+  function renderDetail(type, id, index) {
+    var meta = TYPE_META[type];
+    var list = index[meta.listKey] || [];
+    var entry = null;
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) { entry = list[i]; break; }
+    }
+
+    detailRoot.textContent = '';
+    var card = h('section', 'card', null);
+    card.appendChild(h('span', 'title', meta.title));
+
+    if (!entry) {
+      card.appendChild(h('p', 'detail-desc', 'Nothing in the registry is called "' + id + '" - the link may be stale, or the ' + meta.title.toLowerCase() + ' was removed.'));
+      var back = h('a', 'btn btn-cream small', '← Back to everything');
+      back.href = '#';
+      card.appendChild(back);
+      detailRoot.appendChild(card);
+      document.title = DEFAULT_TITLE;
+      return;
+    }
+
+    document.title = entry.name + ' — Gambonanza Mods';
+
+    var head = h('div', 'detail-head', null);
+    head.appendChild(h('h2', null, entry.name));
+    head.appendChild(h('span', 'detail-by', 'by ' + entry.author));
+    card.appendChild(head);
+
+    var tags = h('div', 'detail-tags', null);
+    tags.appendChild(reviewedTag(entry));
+    if (entry.official) tags.appendChild(h('span', 'tag gold', 'official'));
+    (entry.tags || []).forEach(function (tg) {
+      tags.appendChild(h('span', 'tag', tg.replace(/-/g, ' ')));
+    });
+    card.appendChild(tags);
+
+    card.appendChild(detailStats(entry, index));
+
+    if (type === 'texturepack' && entry.preview) {
+      var pv = h('div', 'detail-preview', null);
+      var img = document.createElement('img');
+      img.src = entry.preview;
+      img.alt = entry.name + ' in the game';
+      pv.appendChild(img);
+      card.appendChild(pv);
+    }
+
+    card.appendChild(h('p', 'detail-desc', entry.description || entry.summary || ''));
+
+    if (type === 'modpack') {
+      var byId = {};
+      (index.mods || []).forEach(function (m) { byId[m.id] = m; });
+      var members = (entry.mods || []).map(function (mid) { return { id: mid, entry: byId[mid] || null }; });
+      if (members.length) {
+        var listBox = h('div', 'member-list', null);
+        members.forEach(function (m) { listBox.appendChild(memberRow(m, index)); });
+        card.appendChild(h('p', 'detail-by', 'What’s inside · ' + members.length + ' mods'));
+        card.appendChild(listBox);
+      }
+      if ((entry.texturepacks || []).length) {
+        card.appendChild(h('p', 'detail-desc', 'Also wears: ' + entry.texturepacks.join(', ') + '.'));
+      }
+    }
+
+    card.appendChild(openInAppBlock(type, entry));
+
+    var links = h('div', 'alt-links', null);
+    links.style.justifyContent = 'flex-start';
+    links.style.marginTop = '14px';
+    if (entry.repo) {
+      var src = h('a', 'btn btn-cream small', 'Source on GitHub');
+      src.href = entry.homepage || ('https://github.com/' + entry.repo);
+      links.appendChild(src);
+    }
+    card.appendChild(links);
+
+    var back2 = h('p', 'backlink', null);
+    var backA = h('a', null, '← ' + meta.back + ', and the app that installs them');
+    backA.href = '#';
+    back2.appendChild(backA);
+    detailRoot.appendChild(back2);
+    detailRoot.appendChild(card);
+  }
+
+  function route() {
+    var m = (location.hash || '').match(/^#\/(mod|modpack|texturepack)\/([a-z0-9][a-z0-9-]{1,38}[a-z0-9])\/?$/);
+    if (!m) {
+      homeRoot.hidden = false;
+      detailRoot.hidden = true;
+      document.title = DEFAULT_TITLE;
+      return;
+    }
+    var type = m[1];
+    var id = m[2];
+    homeRoot.hidden = true;
+    detailRoot.hidden = false;
+    detailRoot.innerHTML = '<section class="card"><span class="title">' + TYPE_META[type].title + '</span><div class="loading">Loading…</div></section>';
+    window.scrollTo(0, 0);
+    indexPromise
+      .then(function (index) { renderDetail(type, id, index); })
+      .catch(function () {
+        detailRoot.innerHTML = '<section class="card"><div class="loading">Could not load the registry - try again in a minute, or browse it ' +
+          '<a href="https://github.com/bentrd/GambonanzaMods/tree/main/registry">on GitHub</a>.</div></section>';
+      });
+  }
+
+  window.addEventListener('hashchange', route);
+  route();
 })();
 </script>
 </body>

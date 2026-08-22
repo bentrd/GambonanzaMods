@@ -9,6 +9,7 @@ on:
       - 'site/**'
       - 'registry/index.json'
       - 'registry/assets/**'
+      - 'tools/make-site-pages.mjs'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -44,6 +45,15 @@ jobs:
           # by tools/build-asset-catalog.py and refreshed on game updates.
           cp registry/assets/catalog.json _site/registry/assets/catalog.json
           cp registry/assets/texts.json _site/registry/assets/texts.json
+
+      # One static page per registry entry at /<type>/<id>/, so a pasted link
+      # unfurls as that mod (Discord's crawler runs no JavaScript). Humans get
+      # bounced straight to the live #/<type>/<id> route.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Share pages for every registry entry
+        run: node tools/make-site-pages.mjs _site
 
       # enablement lets the workflow turn Pages on (source: GitHub Actions)
       # by itself on first run, instead of failing until someone visits
