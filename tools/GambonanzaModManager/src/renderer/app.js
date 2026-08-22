@@ -770,6 +770,23 @@ function registryModsById() {
 }
 
 /**
+ * Which registry entry an installed mod is, if any. The receipt answers first;
+ * failing that, the install folder does - mods that predate receipts, or that
+ * someone unzipped by hand, are still recognisably the registry's mod, and
+ * mods.mergeState() has always matched them that way. Without the fallback
+ * they would show a blank chip instead of their gambit, never offer an
+ * update, and quietly drop out of a shared setup.
+ */
+function registryEntryFinder() {
+  const rows = (state.data?.registry?.mods || []).filter((m) => m.kind === 'registry');
+  const byId = new Map(rows.map((m) => [m.id, m]));
+  const byFolder = new Map(rows.map((m) => [String(m.folder).toLowerCase(), m]));
+  return (mod) => (mod.registryId ? byId.get(mod.registryId) : null)
+    || byFolder.get(String(mod.folder).toLowerCase())
+    || null;
+}
+
+/**
  * The header dropdown between the game pill and Play: which setup the game
  * loads. Sits in the topbar because it answers the question Play asks -
  * "play WHAT?" - exactly like a Minecraft launcher's profile picker.
@@ -922,11 +939,11 @@ function renderModpackCards() {
   if (!grid) return;
   const chosen = selectedModpack();
   const skins = new Map(tpList().map((p) => [p.id, p]));
-  const registryById = registryModsById();
+  const entryFor = registryEntryFinder();
 
   const cards = mpList().map((mp) => {
     const skin = mp.texturePackId ? skins.get(mp.texturePackId) : null;
-    const unreviewed = mp.mods.filter((m) => registryById.get(m.registryId)?.reviewed === false);
+    const unreviewed = mp.mods.filter((m) => entryFor(m)?.reviewed === false);
     const bits = [`${mp.modCount} mod${mp.modCount === 1 ? '' : 's'}`];
     if (skin) bits.push(skin.name);
     if (mp.lastPlayedAt) bits.push(`played ${new Date(mp.lastPlayedAt).toLocaleDateString()}`);
@@ -1017,8 +1034,8 @@ function renderModpackPanel() {
       ? null
       : el('button', { class: 'btn btn-green small', onclick: () => selectModpack(mp.id) }, 'Switch to this'));
 
-  const registryById = registryModsById();
-  const squares = mp.mods.map((m) => modTile(mp, m, registryById.get(m.registryId) || null));
+  const entryFor = registryEntryFinder();
+  const squares = mp.mods.map((m) => modTile(mp, m, entryFor(m)));
   if (mp.active) squares.push(mpAddTile());
   tiles.replaceChildren(...(squares.length ? squares : [
     el('div', { class: 'empty-note' }, 'Nothing in this modpack yet - grab something from Browse mods.'),
@@ -1047,7 +1064,8 @@ function modTile(mp, mod, entry) {
 
   const bits = [];
   if (mod.version) bits.push(`v${String(mod.version).replace(/^v/, '')}`);
-  bits.push(mod.managed ? 'from the mod registry' : 'installed by hand');
+  if (entry) bits.push(mod.managed ? 'from the mod registry' : 'unzipped by hand');
+  else bits.push('not in the registry');
   if (!mod.enabled) bits.push('turned off');
   if (updatable) bits.push('update available');
 
@@ -1494,11 +1512,11 @@ function renderSharePackForm() {
   // and never published has no id for anyone else to install, and a texture
   // pack that only exists on your disk cannot be downloaded - so both are
   // listed as "left out" rather than silently dropped.
-  const registryById = registryModsById();
+  const entryFor = registryEntryFinder();
   const shareable = [];
   const notShareable = [];
   for (const m of mp.mods) {
-    const entry = m.registryId ? registryById.get(m.registryId) : null;
+    const entry = entryFor(m);
     if (entry) shareable.push(entry);
     else notShareable.push(m.name);
   }

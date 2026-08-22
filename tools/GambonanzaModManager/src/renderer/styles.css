@@ -128,8 +128,11 @@ header.topbar {
 
 /* ---------------------------------------------------------------- nav */
 
+/* Wide enough for the longest label plus its count badge on ONE line -
+   "Texture packs" is the one that decides it. A wrapped nav row reads as two
+   entries at a glance, which is worse than 16px less content width. */
 nav.side {
-  width: 196px; flex-shrink: 0;
+  width: 212px; flex-shrink: 0;
   display: flex; flex-direction: column; gap: 8px;
 }
 .nav-btn {
@@ -139,6 +142,7 @@ nav.side {
   box-shadow: 0 3px 0 0 var(--wine-deep), 0 4px 0 0 var(--ink);
   padding: 10px 13px;
   font-size: 14px; text-transform: uppercase; letter-spacing: 0.9px;
+  white-space: nowrap;
   transition: transform 60ms ease-out, background-color 80ms ease-out;
   position: relative; text-align: left;
 }
