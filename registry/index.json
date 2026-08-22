@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T22:42:04.856Z",
+  "generatedAt": "2026-08-22T22:44:46.684Z",
   "count": 24,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:40:10Z",
+      "repoPushedAt": "2026-08-22T22:42:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -302,7 +302,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-08-22T22:30:50Z",
       "license": "MIT",
@@ -311,7 +311,7 @@
     {
       "id": "coop",
       "name": "Co-op",
-      "author": "ben-gambo",
+      "author": "Ben",
       "summary": "Two players, one board, over Steam. Shared shop, own pieces, enemy plays twice. (beta)",
       "repo": "ben-gambo/mods",
       "asset": "Coop.zip",
@@ -325,9 +325,22 @@
       "reviewed": false,
       "issue": 29,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/29",
-      "latest": null,
+      "latest": {
+        "tag": "Coop-v0.0.2",
+        "version": "0.0.2",
+        "publishedAt": "2026-08-22T22:10:45Z",
+        "notes": "Two players, one board, over Steam. Shared shop, own pieces, enemy plays twice.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`Coop/`](../../tree/Coop-v0.0.2/Coop)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/Coop-v0.0.2",
+        "asset": {
+          "name": "Coop.zip",
+          "url": "https://github.com/ben-gambo/mods/releases/download/Coop-v0.0.2/Coop.zip",
+          "size": 31456,
+          "sha256": "6e47b9e3ed6e4c6e4968d7a1fb61fe9c1de89db9f18d95b8aee4857bb83c08f9"
+        },
+        "manifestVersion": "0.0.2",
+        "manifestAuthor": "Ben"
+      },
       "downloads": 0,
-      "pending": true,
       "stars": 0,
       "repoPushedAt": "2026-08-22T22:10:44Z",
       "license": "MIT",
@@ -530,7 +543,7 @@
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:40:10Z",
+      "repoPushedAt": "2026-08-22T22:42:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -678,7 +691,7 @@
       },
       "downloads": 24,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:40:10Z",
+      "repoPushedAt": "2026-08-22T22:42:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -944,7 +957,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:40:10Z",
+      "repoPushedAt": "2026-08-22T22:42:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -1091,7 +1104,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:40:10Z",
+      "repoPushedAt": "2026-08-22T22:42:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -1305,7 +1318,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:40:10Z",
+      "repoPushedAt": "2026-08-22T22:42:05Z",
       "license": "MIT",
       "archived": false
     }
