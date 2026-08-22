@@ -106,23 +106,23 @@ header.topbar {
 .game-pill.warn .dot { background: var(--yellow); }
 
 /* header instance selector - "play WHAT?" answered right next to Play */
-.inst-dd { position: relative; display: inline-flex; }
-.inst-btn { min-height: 44px; gap: 8px; max-width: 240px; }
-.inst-btn .inst-btn-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.inst-btn .caret { font-size: 11px; }
-/* .inst-dd.dropdown out-specifies the base .dropdown .menu rule, which is
+.setup-dd { position: relative; display: inline-flex; }
+.setup-btn { min-height: 44px; gap: 8px; max-width: 240px; }
+.setup-btn .setup-btn-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.setup-btn .caret { font-size: 11px; }
+/* .setup-dd.dropdown out-specifies the base .dropdown .menu rule, which is
    declared later in this file and would otherwise win the left/right fight */
-.inst-dd.dropdown .menu {
+.setup-dd.dropdown .menu {
   left: auto; right: 0; top: calc(100% + 8px);
   width: 300px; max-height: 60vh; overflow-y: auto;
 }
-.inst-dd .msep { border-top: 2px dashed rgba(90, 34, 48, 0.2); margin: 5px 6px; }
+.setup-dd .msep { border-top: 2px dashed rgba(90, 34, 48, 0.2); margin: 5px 6px; }
 /* same later-rule fight as the menu: .dropdown .mi sets display:block */
-.inst-dd.dropdown .mi.inst-mi { display: flex; align-items: center; gap: 8px; }
-.inst-mi .inst-check { width: 14px; flex-shrink: 0; color: var(--green-dark); }
-.inst-mi .inst-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.inst-mi .inst-count { font-size: 10.5px; color: rgba(90, 34, 48, 0.55); flex-shrink: 0; }
-.inst-mi.current .inst-name { color: var(--green-dark); }
+.setup-dd.dropdown .mi.setup-mi { display: flex; align-items: center; gap: 8px; }
+.setup-mi .setup-check { width: 14px; flex-shrink: 0; color: var(--green-dark); }
+.setup-mi .setup-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.setup-mi .setup-count { font-size: 10.5px; color: rgba(90, 34, 48, 0.55); flex-shrink: 0; }
+.setup-mi.current .setup-name { color: var(--green-dark); }
 
 .body { display: flex; flex: 1; min-height: 0; padding: 4px 18px 18px; gap: 16px; }
 
@@ -605,18 +605,21 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   padding: 7px 9px; font: inherit; color: inherit;
 }
 .dropdown .mi:hover { background: var(--cream-soft); }
-.dropdown .btn.in-draft { color: var(--green-dark); }
 
 .empty-note { text-align: center; padding: 42px 16px; color: rgba(244, 229, 194, 0.6); }
 .card-window .empty-note { color: rgba(90, 34, 48, 0.55); }
 
-/* ---------------------------------------------------------------- instances */
+/* -------------------------------------------------------------------- shelf */
 
-.inst-grid {
+/* One card per thing-you-own, used by both shelves: the modpacks you can
+   switch between, and the texture packs you can wear. Same question, same
+   shape - "which of these is the game using?" */
+
+.shelf-grid {
   display: grid; gap: 12px;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
 }
-.inst-card {
+.shelf-card {
   background: var(--cream-light); color: var(--wine-dark);
   border: 3px solid var(--ink); border-radius: 10px;
   box-shadow: 0 4px 0 0 var(--ink);
@@ -625,31 +628,144 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   cursor: pointer;
   transition: transform 60ms ease-out;
 }
-.inst-card:hover { background: #fff8e7; }
-.inst-card:active { transform: translateY(2px); }
-.inst-card.active {
+.shelf-card:hover { background: #fff8e7; }
+.shelf-card:active { transform: translateY(2px); }
+.shelf-card.active {
   background: #eef6e2;
   border-color: var(--green-dark);
   box-shadow: 0 4px 0 0 var(--green-dark);
   cursor: default;
 }
-.inst-card.active:active { transform: none; }
+.shelf-card.active:active { transform: none; }
 /* Texture packs need two states at once: which one the game is wearing (active,
    green) and which one the panel below is showing (sel, a quiet outline). */
-.inst-card.sel { border-color: var(--wine); box-shadow: 0 4px 0 0 var(--wine); }
-.inst-card .head { display: flex; align-items: flex-start; gap: 8px; }
-.inst-card h3 { margin: 0; font-size: 16px; line-height: 1.15; flex: 1; min-width: 0; overflow-wrap: anywhere; }
-.inst-card .meta { font-size: 11.5px; color: rgba(90, 34, 48, 0.6); flex: 1; }
-.inst-card .foot { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
-.inst-card.new {
+.shelf-card.sel { border-color: var(--wine); box-shadow: 0 4px 0 0 var(--wine); }
+.shelf-card .head { display: flex; align-items: flex-start; gap: 8px; }
+.shelf-card h3 { margin: 0; font-size: 16px; line-height: 1.15; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.shelf-card .meta { font-size: 11.5px; color: rgba(90, 34, 48, 0.6); flex: 1; }
+.shelf-card .foot { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+.shelf-card.new {
   align-items: center; justify-content: center; flex-direction: row; gap: 8px;
   background: transparent; color: rgba(90, 34, 48, 0.65);
   border-style: dashed; box-shadow: none;
   font: inherit; text-transform: uppercase; letter-spacing: 0.8px; font-size: 13px;
   min-height: 96px;
 }
-.inst-card.new:hover { background: rgba(184, 142, 92, 0.14); color: var(--wine-dark); }
-.inst-card.new .plus { font-family: var(--font-mono); font-size: 22px; }
+.shelf-card.new:hover { background: rgba(184, 142, 92, 0.14); color: var(--wine-dark); }
+.shelf-card.new .plus { font-family: var(--font-mono); font-size: 22px; }
+
+/* ------------------------------------------------------------- modpack tiles */
+
+/* The contents of a modpack: one square per mod, the same shelf-not-a-table
+   idea as the texture-pack panel below, so the two tabs read alike. A mod's
+   own first gambit sprite is the icon whenever it has one - the thing it
+   actually puts in your runs - and a generic chip when it doesn't. */
+.mp-tile-wrap { position: relative; display: inline-flex; }
+.mp-tile {
+  position: relative;
+  width: 58px; height: 58px; flex: 0 0 auto;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 3px solid var(--ink); border-radius: 9px;
+  box-shadow: 0 3px 0 0 var(--ink);
+  padding: 0; font: inherit; cursor: pointer;
+  transition: transform 60ms ease-out;
+}
+.mp-tile:hover { background: #fff8e7; z-index: 20; }
+.mp-tile:active { transform: translateY(2px); }
+.mp-tile .art { max-width: 44px; max-height: 44px; image-rendering: pixelated;
+  filter: drop-shadow(2px 2px 0 rgba(26, 14, 18, 0.25)); }
+.mp-tile .glyph { display: inline-flex; color: var(--wine); }
+.mp-tile .glyph svg { width: 28px; height: 28px; }
+/* A disabled mod is still in the modpack - it just isn't loaded. Greyed and
+   flattened rather than hidden, so "why isn't this working" has an answer. */
+.mp-tile.off { opacity: 0.45; box-shadow: none; border-style: dashed; }
+.mp-tile.off .art { filter: grayscale(1); }
+.mp-tile.add {
+  border-style: dashed; box-shadow: none;
+  background: transparent; color: rgba(90, 34, 48, 0.6);
+}
+.mp-tile.add:hover { background: rgba(184, 142, 92, 0.14); color: var(--wine-dark); }
+.mp-tile.add .plus { font-family: var(--font-mono); font-size: 26px; line-height: 1; }
+/* Corner pips: blue = a newer version exists, red = nobody reviewed this. */
+.mp-tile .dot {
+  position: absolute; top: -5px; right: -5px;
+  width: 11px; height: 11px; border-radius: 50%;
+  border: 2px solid var(--ink);
+}
+.mp-tile .dot.blue { background: var(--blue); }
+.mp-tile .dot.red { background: var(--red); right: auto; left: -5px; }
+
+.mp-tile .tp-tip {
+  position: absolute; bottom: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%) scale(0.9); transform-origin: bottom center;
+  opacity: 0; pointer-events: none;
+  width: 236px; z-index: 40;
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 3px solid var(--ink); border-radius: 9px;
+  box-shadow: 0 4px 0 0 var(--ink);
+  padding: 9px 11px; text-align: left;
+  transition: opacity 0.14s ease-out, transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.mp-tile:hover .tp-tip { opacity: 1; transform: translateX(-50%) scale(1); }
+.mp-tile-wrap:nth-child(-n+2) .tp-tip { left: 0; transform: translateX(0) scale(0.9); transform-origin: bottom left; }
+.mp-tile-wrap:nth-child(-n+2) .mp-tile:hover .tp-tip { transform: translateX(0) scale(1); }
+.tp-tip .warn { font-size: 11px; margin-top: 4px; color: var(--red); }
+
+/* The per-tile menu. Anchored to the tile so it opens where the click was. */
+.mp-tile-wrap .menu {
+  display: none;
+  position: absolute; left: 0; right: auto; top: calc(100% + 4px); z-index: 30;
+  min-width: 178px; max-width: 260px; text-align: left;
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 2px solid var(--ink); border-radius: 8px;
+  box-shadow: 0 4px 0 0 var(--ink);
+  padding: 6px;
+}
+.mp-tile-wrap.open .menu { display: block; }
+.mp-tile-wrap .mhead {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.6px;
+  color: rgba(90, 34, 48, 0.55); padding: 4px 9px 3px; overflow-wrap: anywhere;
+}
+.mp-tile-wrap .mi { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-radius: 6px; padding: 7px 9px; font: inherit; color: inherit; }
+.mp-tile-wrap .mi:hover { background: var(--cream-soft); }
+.mp-tile-wrap .mi.danger { color: var(--red); }
+
+/* The texture-pack picker in the panel head. */
+.mp-skin { position: relative; display: inline-flex; }
+/* Right-aligned: the picker sits at the right edge of the panel head, so a
+   left-anchored menu would hang off the content pane. */
+.mp-skin .menu {
+  display: none;
+  position: absolute; right: 0; left: auto; top: calc(100% + 4px); z-index: 30;
+  min-width: 220px; max-width: 300px; max-height: 320px; overflow-y: auto; text-align: left;
+  background: var(--cream-light); color: var(--wine-dark);
+  border: 2px solid var(--ink); border-radius: 8px;
+  box-shadow: 0 4px 0 0 var(--ink);
+  padding: 6px;
+}
+.mp-skin.open .menu { display: block; }
+.mp-skin .mi { display: flex; align-items: center; gap: 6px; width: 100%; text-align: left; cursor: pointer;
+  background: none; border: 0; border-radius: 6px; padding: 7px 9px; font: inherit; color: inherit; }
+.mp-skin .mi:hover { background: var(--cream-soft); }
+.mp-skin .mi.current { color: var(--green-dark); }
+.mp-skin .mhead {
+  font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.6px;
+  color: rgba(90, 34, 48, 0.55); padding: 4px 9px 3px;
+}
+.mp-skin .msep { border-top: 2px dashed rgba(90, 34, 48, 0.2); margin: 5px 6px; }
+.mp-skin .btn { gap: 7px; }
+.mp-skin .btn .micon { display: inline-flex; }
+.mp-skin .btn .caret { font-size: 11px; }
+
+/* "Something in here nobody reviewed." Deliberately small: a modpack is
+   allowed to contain unreviewed mods, it just has to say so. */
+.warn-mark { display: inline-flex; color: #b07a1a; flex-shrink: 0; }
+.warn-mark svg { width: 15px; height: 15px; }
+.warn-row { display: flex; align-items: flex-start; gap: 6px; margin-top: 10px; color: #8a5a12; }
+.warn-row .micon { display: inline-flex; flex-shrink: 0; margin-top: 1px; }
+.chip.warn { border-style: dashed; }
 
 /* ----------------------------------------------------------- texture packs */
 
@@ -981,7 +1097,7 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   text-align: center;
 }
 .modal h3 { margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px; font-size: 17px; }
-.modal p { margin: 0 0 14px; font-size: 13.5px; line-height: 1.45; }
+.modal p { margin: 0 0 14px; font-size: 13.5px; line-height: 1.45; white-space: pre-line; }
 /* Air above the buttons for the prompt dialog's one field. Scoped to that
    field by id, not to every .game-input inside a modal: the wider version put
    an 18px bottom margin on the asset browser's search box, its textarea and
@@ -1026,6 +1142,7 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 }
 .toast.ok { background: #e4f2d6; color: #2f5a18; }
 .toast.err { background: #f6d9cf; color: #7e2e1c; }
+.toast.warn { background: #f7ead0; color: #7a5510; }
 
 /* older toasts step back so the newest owns the spotlight */
 .toast:not(:last-child) { opacity: 0.75; transform: scale(0.93); }

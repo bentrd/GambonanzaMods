@@ -45,7 +45,7 @@ src/
 │   ├── game.js          find the install, inspect its patch state
 │   ├── framework.js     download bundle → backup → run patcher → verify
 │   ├── mods.js          install/update/remove/toggle mods (staged + atomic swap)
-│   ├── instances.js     named mod loadouts (park/unpark the game's Mods dir)
+│   ├── modpacks.js      named setups: mods + a texture pack, one active at a time
 │   ├── texturepacks.js  the pack library: edit, composite sheets, wear, share
 │   ├── assetcatalog.js  the game's sprites/textures/strings, fetched + cached
 │   ├── png.js           an exact PNG codec (see below)
@@ -59,6 +59,23 @@ src/
 ├── preload.js           the entire main↔renderer bridge, ~40 lines
 └── renderer/            sandboxed UI (no Node access)
 ```
+
+## Modpacks
+
+A modpack is a whole setup - the mods it loads and the texture pack it wears -
+and exactly one is active. The trick that keeps everything else oblivious: the
+active modpack's mods simply **are** the game's `Mods/` folder. Inactive ones
+park theirs under the manager's own data directory, and switching is a handful
+of directory renames.
+
+That is what makes installs need no special casing (writing to `Mods/` writes
+to the active modpack), and what makes launching straight from Steam load the
+right thing - there is no "the launcher forgot to sync" failure mode.
+
+Publishing one is metadata only: the registry stores the ids of the mods and
+the texture pack, never a binary. Installing someone else's modpack builds it
+as a new local modpack and switches to it, downloading each part from its own
+author's release and checking it against the checksum the registry recorded.
 
 ## Texture packs
 

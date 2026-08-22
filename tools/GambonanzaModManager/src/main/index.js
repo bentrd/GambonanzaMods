@@ -13,7 +13,7 @@ const { Store } = require('./store');
 const game = require('./game');
 const registry = require('./registry');
 const modsApi = require('./mods');
-const instances = require('./instances');
+const modpacks = require('./modpacks');
 const framework = require('./framework');
 const publish = require('./publish');
 const updater = require('./updater');
@@ -110,13 +110,77 @@ async function currentGameInfo() {
   return detected;
 }
 
+/**
+ * Put a texture pack on (or take one off) without letting a missing pack
+ * break the thing that asked. A modpack can name a pack the user has since
+ * deleted from the library; that means "no pack", not "refuse to switch".
+ */
+async function wearTexturePack(texturePackId, modsDir) {
+  try {
+    return await texturePacks.setActive({ id: texturePackId || null, modsDir });
+  } catch (err) {
+    log.warn('texturepacks', `could not wear ${texturePackId}: ${err.message}`);
+    if (texturePackId) await modpacks.forgetTexturePack(texturePackId).catch(() => {});
+    return texturePacks.setActive({ id: null, modsDir }).catch(() => null);
+  }
+}
+
+/**
+ * The texture-pack half of installing a shared setup. Reuses a copy already
+ * in the library at the same version rather than piling up duplicates every
+ * time someone re-installs a pack, and never fails the whole install: the
+ * mods are the part people came for, so a pack whose art will not download
+ * is a note in the result, not an exception.
+ */
+async function installPackSkin(pack, { report, signal, modsDir }) {
+  if (!pack.texturepack) return null;
+  try {
+    const reg = await registry.getIndex({});
+    const entry = (reg.index.texturepacks || []).find((t) => t.id === pack.texturepack);
+    if (!entry) throw new Error('it is no longer in the registry');
+
+    const library = await texturePacks.summary();
+    const have = library.packs.find((t) => t.registryId === entry.id
+      && (!entry.latest?.version || t.version === entry.latest.version));
+
+    let target = have;
+    if (!target) {
+      report({ step: 'skin', message: `Getting the ${entry.name} texture pack…`, percent: null });
+      target = await texturePacks.installFromRegistry({
+        entry,
+        onProgress: report,
+        signal,
+      });
+    }
+    await wearTexturePack(target.id, modsDir);
+    await modpacks.setTexturePack({ texturePackId: target.id });
+    return { id: target.id, name: entry.name, reused: !!have };
+  } catch (err) {
+    log.warn('modpacks', `could not install the pack's texture pack: ${err.message}`);
+    return { error: err.message };
+  }
+}
+
+/** Undo the "switch to a fresh modpack" half of a pack install that failed. */
+async function rollbackNewModpack(id, previousId, modsDir) {
+  try {
+    if (previousId && previousId !== id) {
+      const back = await modpacks.select({ id: previousId, modsDir });
+      await wearTexturePack(back.texturePackId, modsDir);
+    }
+    await modpacks.remove({ id });
+  } catch (err) {
+    log.warn('modpacks', `could not undo the half-made modpack: ${err.message}`);
+  }
+}
+
 async function fullState({ forceRegistry = false } = {}) {
   const gameInfo = await currentGameInfo();
   const reg = await registry.getIndex({ force: forceRegistry });
   const installed = gameInfo?.valid ? await modsApi.listInstalled(gameInfo.modsDir) : [];
-  const inst = await instances.summary({ modsDir: gameInfo?.valid ? gameInfo.modsDir : null });
-  const packs = await texturePacks.summary().catch((err) => {
-    log.warn('texturepacks', `could not list packs: ${err.message}`);
+  const packs = await modpacks.summary({ modsDir: gameInfo?.valid ? gameInfo.modsDir : null });
+  const skins = await texturePacks.summary().catch((err) => {
+    log.warn('texturepacks', `could not list texture packs: ${err.message}`);
     return { activeId: null, packs: [] };
   });
   return {
@@ -139,8 +203,8 @@ async function fullState({ forceRegistry = false } = {}) {
       texturepacks: reg.index.texturepacks || [],
     },
     installed,
-    instances: inst,
-    texturePacks: packs,
+    modpacks: packs,
+    texturePacks: skins,
     publish: { signInAvailable: publish.signInAvailable() },
   };
 }
@@ -289,19 +353,28 @@ function registerIpc() {
 
   handle('game:launch', async () => {
     openExternalSafe(`steam://rungameid/${config.STEAM_APP_ID}`);
-    instances.touchPlayed().catch(() => { /* bookkeeping only */ });
+    modpacks.touchPlayed().catch(() => { /* bookkeeping only */ });
     if (store.get('quitOnPlay')) setTimeout(() => app.quit(), 1500);
     return true;
   });
 
-  // ---- Instances ---------------------------------------------------------
+  // ---- Modpacks ----------------------------------------------------------
+  //
+  // A modpack owns both halves of a setup: the mods in its Mods/ folder and
+  // the texture pack it wears. Selecting one therefore always moves both -
+  // never the mods alone, or the tab would show a setup the game isn't in.
 
-  handle('instances:create', ({ name, modpackId } = {}) => instances.create({ name, modpackId }));
-  handle('instances:rename', ({ id, name } = {}) => instances.rename({ id, name }));
-  handle('instances:delete', ({ id } = {}) => instances.remove({ id }));
-  handle('instances:select', async ({ id } = {}) => {
+  handle('modpacks:create', ({ name, author, summary, description, texturePackId, registryId } = {}) =>
+    modpacks.create({ name, author, summary, description, texturePackId, registryId }));
+  handle('modpacks:rename', ({ id, name } = {}) => modpacks.rename({ id, name }));
+  handle('modpacks:describe', (payload = {}) => modpacks.describe(payload));
+  handle('modpacks:delete', ({ id } = {}) => modpacks.remove({ id }));
+  handle('modpacks:select', async ({ id } = {}) => {
     const info = await currentGameInfo();
-    return instances.select({ id, modsDir: info?.valid ? info.modsDir : null });
+    const modsDir = info?.valid ? info.modsDir : null;
+    const result = await modpacks.select({ id, modsDir });
+    await wearTexturePack(result.texturePackId, modsDir);
+    return result;
   });
 
   // ---- Texture packs -----------------------------------------------------
@@ -334,8 +407,21 @@ function registerIpc() {
   handle('texturepacks:create', ({ name } = {}) => texturePacks.create({ name }));
   handle('texturepacks:rename', ({ id, name } = {}) => texturePacks.rename({ id, name }));
   handle('texturepacks:describe', (payload = {}) => texturePacks.describe(payload));
-  handle('texturepacks:delete', async ({ id } = {}) => texturePacks.remove({ id, modsDir: await modsDirOrNull() }));
-  handle('texturepacks:select', async ({ id = null } = {}) => texturePacks.setActive({ id, modsDir: await modsDirOrNull() }));
+  handle('texturepacks:delete', async ({ id } = {}) => {
+    const result = await texturePacks.remove({ id, modsDir: await modsDirOrNull() });
+    // Nothing may keep pointing at art that no longer exists.
+    await modpacks.forgetTexturePack(id);
+    return result;
+  });
+  handle('texturepacks:select', async ({ id = null } = {}) => {
+    // Wearing a pack is a property of the setup you are in, not a global
+    // switch: switch modpacks and back, and you get your own look back.
+    // Recorded only once the pack is actually on, so a rejected id cannot
+    // leave the setup pointing at art the game never loaded.
+    const result = await texturePacks.setActive({ id, modsDir: await modsDirOrNull() });
+    await modpacks.setTexturePack({ texturePackId: id });
+    return result;
+  });
 
   handle('texturepacks:catalog', ({ force } = {}) => assetCatalog.browseCatalog({ force: !!force }));
   handle('texturepacks:texts', ({ force } = {}) => assetCatalog.browseTexts({ force: !!force }));
@@ -562,7 +648,16 @@ function registerIpc() {
     }
   });
 
-  handle('modpacks:install', async ({ id, operationId }) => {
+  /**
+   * Install a shared setup. `into: 'new'` (the default) builds it as its own
+   * modpack and switches to it, which is what "get someone's setup" means -
+   * you try theirs without losing yours. `into: 'active'` merges it into the
+   * setup you are already in for people who just want the mods.
+   *
+   * The texture pack comes along: a setup is how the game plays AND how it
+   * looks, and downloading half of one would be a strange thing to ship.
+   */
+  handle('modpacks:install', async ({ id, operationId, into = 'new' } = {}) => {
     const info = await currentGameInfo();
     if (!info?.valid) throw new Error('set up your game folder first');
     if (!info.patched) throw new Error('patch the game first - mods need the framework to load');
@@ -571,15 +666,30 @@ function registerIpc() {
     const pack = (reg.index.modpacks || []).find((p) => p.id === id);
     if (!pack) throw new Error('that modpack is no longer in the registry');
 
-    const registryMods = reg.index.mods || [];
-    const installed = await modsApi.listInstalled(info.modsDir);
-    const plan = modsApi.resolveModpackPlan(pack, registryMods, installed);
-    if (!plan.length) return { installed: [] };
-
     const controller = beginOperation(operationId);
     const report = progressReporter(operationId);
+    const cameFrom = (await modpacks.active())?.id || null;
+    let target = null;
+    const results = [];
     try {
-      const results = [];
+      if (into === 'new') {
+        target = await modpacks.create({
+          name: pack.name,
+          author: pack.author || '',
+          summary: pack.summary || '',
+          description: pack.description || '',
+          registryId: pack.id,
+        });
+        report({ step: 'pack', message: `Switching to "${target.name}"`, percent: null });
+        await modpacks.select({ id: target.id, modsDir: info.modsDir });
+        await wearTexturePack(null, info.modsDir);
+      }
+
+      // Read the destination AFTER the swap - "what is already here" is a
+      // different answer in a brand new modpack than in the one we came from.
+      const installed = await modsApi.listInstalled(info.modsDir);
+      const plan = modsApi.resolveModpackPlan(pack, reg.index.mods || [], installed);
+
       for (let i = 0; i < plan.length; i++) {
         report({ step: 'pack', message: `${pack.name}: mod ${i + 1} of ${plan.length}`, percent: null });
         results.push(await modsApi.install({
@@ -589,7 +699,18 @@ function registerIpc() {
           signal: controller.signal,
         }));
       }
-      return { installed: results };
+
+      const skin = await installPackSkin(pack, { report, signal: controller.signal, modsDir: info.modsDir });
+      return { installed: results, modpackId: target?.id || null, texturePack: skin };
+    } catch (err) {
+      // Cancelling a download must not leave the player sitting in an empty
+      // modpack they never asked for: put them back where they were and take
+      // the husk away. A partial install is different - those mods are real
+      // work, so the modpack stays and they keep looking at it.
+      if (target && !results.length) {
+        await rollbackNewModpack(target.id, cameFrom, info.modsDir);
+      }
+      throw err;
     } finally {
       endOperation(operationId);
     }
@@ -744,6 +865,7 @@ function sanitizeModpackEntry(raw, { partial = false } = {}) {
   take('author', 48);
   take('summary', 140);
   take('description', 4000);
+  take('texturepack', 40);
   if (Array.isArray(raw?.mods)) {
     entry.mods = [...new Set(raw.mods.filter((m) => typeof m === 'string' && m.trim()).map((m) => m.trim()))].slice(0, 24);
   }
@@ -755,8 +877,10 @@ function sanitizeModpackEntry(raw, { partial = false } = {}) {
     if (!/^[a-z0-9][a-z0-9-]{1,38}[a-z0-9]$/.test(entry.id)) {
       throw new Error('the id must be lowercase letters, digits and dashes, like "my-first-pack"');
     }
-    if (!entry.mods || entry.mods.length < 2) {
-      throw new Error('pick at least 2 mods - a pack of one is just a mod');
+    // A setup is worth sharing as soon as it changes something. One mod, or
+    // no mods and a texture pack, are both real answers to "what is my game".
+    if (!entry.mods?.length && !entry.texturepack) {
+      throw new Error('a modpack needs at least one mod or a texture pack in it');
     }
     entry.submittedBy = store.get('githubLogin') || undefined;
     entry.addedAt = new Date().toISOString().slice(0, 10);
@@ -820,6 +944,17 @@ if (!gotLock) {
     store = new Store(paths.settingsFile());
     await fsp.rm(paths.tempDir(), { recursive: true, force: true }).catch(() => {});
     await fsp.mkdir(paths.tempDir(), { recursive: true });
+
+    // Exactly once per upgrade: setups migrated from the old "instances" world
+    // have no opinion about texture packs yet, so whatever the game is wearing
+    // is credited to the active one. Without it, the first switch after
+    // upgrading would quietly undress the game. Two small file reads, and it
+    // happens before the window can ask for state - otherwise the first paint
+    // could show "no texture pack" for a setup that is wearing one.
+    await (async () => {
+      const skin = await texturePacks.summary().catch(() => null);
+      await modpacks.adoptTexturePack(skin?.activeId || null);
+    })().catch((err) => log.warn('modpacks', `could not adopt the worn texture pack: ${err.message}`));
 
     registerIpc();
     createWindow();

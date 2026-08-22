@@ -12,8 +12,8 @@ const zip = require('./zip');
 const catalog = require('./assetcatalog');
 
 // Texture packs: named sets of art and text overrides, exactly one applied at
-// a time. The same shape as instances, one level up - instances swap which
-// MODS load, packs swap how the game LOOKS.
+// a time. A modpack points at one of these; switching modpacks switches the
+// art with the mods, because "my setup" is both.
 //
 // On disk:
 //
@@ -265,7 +265,7 @@ async function remove({ id, modsDir = null }) {
 /**
  * Make `id` the pack the game loads (or none). The applied copy lives inside
  * the game folder, so launching from Steam directly still gets it - the same
- * property that makes instances work.
+ * property that makes modpack switching work.
  */
 async function setActive({ id = null, modsDir = null }) {
   const state = await readState();

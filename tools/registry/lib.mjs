@@ -201,19 +201,26 @@ function isStringArray(v) {
 }
 
 const KNOWN_MODPACK_FIELDS = new Set([
-  'id', 'name', 'author', 'summary', 'description', 'mods', 'tags',
-  'homepage', 'submittedBy', 'addedAt',
+  'id', 'name', 'author', 'summary', 'description', 'mods', 'texturepack',
+  'tags', 'homepage', 'submittedBy', 'addedAt',
 ]);
 
 /**
  * Validate one modpack entry (registry/modpacks/<id>.json). A modpack is
- * pure metadata: a name and a list of registry mod ids. It has no repo, no
- * asset and no binary of its own - installing one just installs its members,
- * so the pack itself never needs a checksum or a review pass beyond "are
- * these ids real". `knownModIds` are the ids of the REVIEWED registry files;
- * packs may only reference those, never unreviewed issue submissions.
+ * pure metadata: a name, a list of registry mod ids and optionally a registry
+ * texture-pack id. It has no repo, no asset and no binary of its own -
+ * installing one just installs its members, so the pack itself never needs a
+ * checksum or a review pass beyond "are these ids real".
+ *
+ * `knownModIds` are every listed mod id, reviewed files AND unreviewed issue
+ * submissions. A pack is allowed to contain an unreviewed mod: it is somebody
+ * describing what they actually play, and hiding that would only push people
+ * to publish half a setup. The unreviewed member keeps its own badge, the
+ * pack inherits a warning icon from it, and the manager names the unreviewed
+ * mods before it installs anything. What a pack still cannot do is invent a
+ * member: an id nobody listed is dropped.
  */
-export function validateModpackEntry(entry, fileName, knownModIds = null) {
+export function validateModpackEntry(entry, fileName, knownModIds = null, knownSkinIds = null) {
   const errors = [];
   const fail = (msg) => errors.push(msg);
 
@@ -251,16 +258,22 @@ export function validateModpackEntry(entry, fileName, knownModIds = null) {
     fail(`file name must match the id: expected ${id}.json, got ${fileName}`);
   }
 
-  if (!isStringArray(entry.mods)) {
+  const skin = str('texturepack', { max: 40, re: ID_RE, reHint: 'expected a registry texture-pack id' });
+  if (skin && knownSkinIds && !knownSkinIds.has(skin)) {
+    fail(`texture pack "${skin}" is not in the registry`);
+  }
+
+  if (entry.mods !== undefined && !isStringArray(entry.mods)) {
     fail('"mods" must be an array of registry mod ids');
   } else {
-    if (entry.mods.length < 2) fail('a modpack needs at least 2 mods (a single mod is just... a mod)');
-    if (entry.mods.length > 24) fail('"mods" allows at most 24 entries');
+    const mods = entry.mods || [];
+    if (!mods.length && !skin) fail('a modpack needs at least one mod, or a texture pack');
+    if (mods.length > 24) fail('"mods" allows at most 24 entries');
     const seen = new Set();
-    for (const modId of entry.mods) {
+    for (const modId of mods) {
       if (!ID_RE.test(modId)) fail(`mod id "${modId}" is malformed`);
       else if (seen.has(modId)) fail(`mod id "${modId}" is listed twice`);
-      else if (knownModIds && !knownModIds.has(modId)) fail(`mod "${modId}" is not in the registry (packs can only include reviewed mods)`);
+      else if (knownModIds && !knownModIds.has(modId)) fail(`mod "${modId}" is not in the registry`);
       seen.add(modId);
     }
   }
@@ -472,6 +485,44 @@ export function parseSubmissionIssue(body, { author = '', createdAt = '' } = {})
     ...(fields['entry type (bare-dll releases only)']
       ? { manifest: { entry: fields['entry type (bare-dll releases only)'] } }
       : {}),
+    submittedBy: author,
+    ...(createdAt ? { addedAt: String(createdAt).slice(0, 10) } : {}),
+  };
+}
+
+/**
+ * The same trick for a modpack submission issue. Unlike a mod submission this
+ * is not a "please review me" queue: a modpack holds no code of its own, and
+ * everything it points at was already reviewed (or already badged unreviewed)
+ * on its own terms. So an open modpack issue is simply LISTED, which is what
+ * makes "share my setup" one click rather than a wait.
+ */
+export function parseModpackSubmissionIssue(body, { author = '', createdAt = '' } = {}) {
+  const fields = {};
+  for (const match of String(body || '').matchAll(/###\s+([^\n]+)\n+([\s\S]*?)(?=\n###\s|$)/g)) {
+    const value = match[2].trim();
+    fields[match[1].trim().toLowerCase()] = value === '_No response_' ? '' : value;
+  }
+  if (!fields['pack name']) return null;
+
+  const name = fields['pack name'];
+  const id = (fields['registry id'] || name)
+    .toLowerCase().trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 40);
+  const mods = (fields['mods in the pack'] || '')
+    .split(',').map((m) => m.trim().toLowerCase()).filter(Boolean).slice(0, 24);
+  const skin = (fields['texture pack'] || '').trim().toLowerCase();
+
+  return {
+    id,
+    name,
+    author,
+    summary: fields['one-line summary'] || '',
+    mods,
+    ...(skin ? { texturepack: skin } : {}),
+    ...(fields['longer description'] ? { description: fields['longer description'] } : {}),
     submittedBy: author,
     ...(createdAt ? { addedAt: String(createdAt).slice(0, 10) } : {}),
   };

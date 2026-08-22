@@ -90,12 +90,21 @@ for (const { fileName, entry } of entries) {
   }
 }
 
+// Texture packs: art and wording rather than code, but they DO have a release
+// asset of their own, so they get the same treatment as a mod.
+const skins = await loadEntries(TEXTUREPACKS_DIR);
+const skinIds = new Set(skins.map(({ entry }) => entry.id).filter(Boolean));
+
 // Modpacks: same treatment, minus the release checks (a pack has no release
-// of its own - its members' releases were just checked above).
+// of its own - its members' releases were just checked above). Only committed
+// mod ids are offered here: a pack file in the repo naming an unreviewed
+// issue submission would break the moment that issue is closed, and this
+// check runs against the repo, not GitHub. The index build is laxer on
+// purpose - a SHARED pack may name one, and carries the warning for it.
 const packs = await loadEntries(MODPACKS_DIR);
 const seenPackIds = new Map();
 for (const { fileName, entry } of packs) {
-  const problems = validateModpackEntry(entry, fileName, ids);
+  const problems = validateModpackEntry(entry, fileName, ids, skinIds);
   if (entry.id) {
     if (seenPackIds.has(entry.id)) problems.push(`duplicate id, already used by ${seenPackIds.get(entry.id)}`);
     else seenPackIds.set(entry.id, fileName);
@@ -105,13 +114,12 @@ for (const { fileName, entry } of packs) {
     console.log(`${RED}✗ registry/modpacks/${fileName}${RESET}`);
     for (const p of problems) console.log(`    ${p}`);
   } else {
-    console.log(`${GREEN}✓${RESET} modpacks/${fileName} (${entry.mods.length} mods)`);
+    const bits = [`${(entry.mods || []).length} mods`];
+    if (entry.texturepack) bits.push(`the ${entry.texturepack} texture pack`);
+    console.log(`${GREEN}✓${RESET} modpacks/${fileName} (${bits.join(' + ')})`);
   }
 }
 
-// Texture packs: art and wording rather than code, but they DO have a release
-// asset of their own, so they get the same treatment as a mod.
-const skins = await loadEntries(TEXTUREPACKS_DIR);
 const seenSkinIds = new Map();
 for (const { fileName, entry } of skins) {
   const problems = validateTexturePackEntry(entry, fileName);

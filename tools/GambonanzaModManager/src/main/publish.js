@@ -195,6 +195,7 @@ function submitEntry(token, entry, opts = {}) {
 
 /** Submit one modpack entry as registry/modpacks/<id>.json. */
 function submitModpack(token, entry, opts = {}) {
+  const mods = entry.mods || [];
   return submitRegistryFile(token, {
     branch: `registry/modpack-${entry.id}`,
     filePath: `registry/modpacks/${entry.id}.json`,
@@ -204,10 +205,12 @@ function submitModpack(token, entry, opts = {}) {
     prBody: [
       `Adds the **${entry.name}** modpack by ${entry.author} to the registry.`,
       '',
-      `Mods in the pack:`,
-      ...entry.mods.map((id) => `- \`${id}\``),
+      mods.length ? 'Mods in the pack:' : 'No mods - this pack is a look, not a loadout.',
+      ...mods.map((id) => `- \`${id}\``),
+      ...(entry.texturepack ? ['', `Texture pack: \`${entry.texturepack}\``] : []),
       '',
-      '_A modpack is metadata only - it bundles mods that are already in the registry._',
+      '_A modpack is metadata only - it points at mods and a texture pack that are',
+      'already in the registry, each downloaded and checksum-verified on its own._',
       '_Submitted from the Gambonanza Mod Manager._',
     ].join('\n'),
   }, opts);
@@ -258,13 +261,20 @@ function submissionIssueUrl(entry) {
   return `https://github.com/${HOME_REPO}/issues/new?${params.toString()}`;
 }
 
-/** Pre-filled new-issue URL for a modpack, for the no-sign-in path. */
+/**
+ * Pre-filled new-issue URL for a modpack, for the no-sign-in path. Unlike a
+ * mod submission this is not a "please review me" queue: an open modpack
+ * issue is listed by the next index build, because a pack is metadata over
+ * downloads that were each verified on their own.
+ */
 function modpackIssueUrl(entry) {
   const params = new URLSearchParams({
     template: 'modpack-submission.yml',
     title: `[Modpack] ${entry.name || ''}`,
     'pack-name': entry.name || '',
+    'pack-id': entry.id || '',
     mods: (entry.mods || []).join(', '),
+    texturepack: entry.texturepack || '',
     summary: entry.summary || '',
     description: entry.description || '',
   });

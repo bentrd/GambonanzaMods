@@ -22,7 +22,8 @@ import { writeFile, readFile } from 'node:fs/promises';
 import {
   INDEX_PATH, HOME_REPO, MODPACKS_DIR, TEXTUREPACKS_DIR, loadEntries, validateEntry,
   validateModpackEntry, validateTexturePackEntry,
-  parseSubmissionIssue, resolveLatestRelease, githubFetch, sha256, versionFromTag,
+  parseSubmissionIssue, parseModpackSubmissionIssue,
+  resolveLatestRelease, githubFetch, sha256, versionFromTag,
   manifestVersionFromZip, manifestAuthorFromZip,
 } from './lib.mjs';
 
@@ -49,8 +50,10 @@ let errors = 0;
 
 // Declared before the resolution loop below on purpose: the loop's fallback
 // paths call withRepoMeta(), and a `const` further down the file would still
-// be in its temporal dead zone at that point.
+// be in its temporal dead zone at that point. Same for openIssues()'s memo,
+// which the submission collectors reach through top-level await.
 const REPO_META_FIELDS = ['stars', 'repoPushedAt', 'license', 'archived'];
+let openIssuesPromise = null;
 
 for (const { fileName, entry } of entries) {
   const problems = validateEntry(entry, fileName);
@@ -92,18 +95,20 @@ for (const { fileName, entry } of entries) {
 // without adding the file simply delists the submission.
 mods.push(...await collectSubmissionMods(entries));
 
-// Modpacks: curated bundles of registry mods. Pure metadata - the pack has no
-// binary, no repo and no checksum of its own; installing one installs its
-// members, each verified exactly as if installed alone. Packs may only
-// reference reviewed registry files (never issue submissions), so a pack can
-// never smuggle unvetted code past the reviewed badge.
-const modpacks = await buildModpacks(entries, mods);
-
 // Texture packs: art and wording, no code. They resolve like mods (their own
 // repo, their own release asset, hashed here so the manager can verify every
 // byte) but install into the manager's own library rather than the game's
 // Mods/ folder, and the framework applies them at runtime.
 const texturepacks = await buildTexturePacks();
+
+// Modpacks: somebody's whole setup - the mods they play with and the texture
+// pack they wear. Pure metadata: the pack has no binary, no repo and no
+// checksum of its own; installing one installs its members, each verified
+// exactly as if installed alone. That is also why a pack may contain an
+// unreviewed member and still be listed: nothing about the pack changes what
+// gets downloaded or how it is checked. The pack simply carries the warning,
+// and the manager names the unreviewed mods before installing.
+const modpacks = await buildModpacks(entries, mods, texturepacks);
 
 if (errors) {
   console.error(`\n${errors} entries failed validation - run tools/registry/validate.mjs for details.`);
@@ -245,20 +250,60 @@ async function buildTexturePacks() {
 }
 
 /**
- * Load, validate and resolve registry/modpacks/*.json. Validation failures
- * count into the global `errors` (these are curated files - a broken one
- * should fail CI, same as a broken mod entry). A member id that vanished from
- * the registry only drops that member with a warning: deleting a mod must
- * not take every pack that mentioned it down with it. Packs left with fewer
- * than 2 live members are delisted until fixed.
+ * Load, validate and resolve registry/modpacks/*.json, then everything people
+ * shared through an open submission issue.
+ *
+ * Validation failures in a committed file count into the global `errors`
+ * (these are curated files - a broken one should fail CI, same as a broken mod
+ * entry); a broken issue is skipped with a warning, never a build failure.
+ *
+ * A member id that vanished from the registry only drops that member with a
+ * warning: deleting a mod must not take every pack that mentioned it down with
+ * it. A pack left with nothing at all is delisted until it is fixed.
  */
-async function buildModpacks(fileEntries, resolvedMods) {
-  const reviewedIds = new Set(fileEntries.map(({ entry }) => entry.id));
+async function buildModpacks(fileEntries, resolvedMods, resolvedSkins) {
   const byId = new Map(resolvedMods.map((m) => [m.id, m]));
+  const skinById = new Map(resolvedSkins.map((t) => [t.id, t]));
+  const knownModIds = new Set(byId.keys());
+  const knownSkinIds = new Set(skinById.keys());
   const packs = [];
 
+  /** Turn a validated entry into the listing the manager reads. */
+  const resolve = (entry, extra) => {
+    const members = (entry.mods || []).filter((id) => {
+      if (byId.has(id)) return true;
+      console.warn(`! modpack ${entry.id}: mod "${id}" is gone from the registry - dropped from the pack`);
+      return false;
+    });
+    const skin = entry.texturepack && skinById.has(entry.texturepack) ? entry.texturepack : null;
+    if (entry.texturepack && !skin) {
+      console.warn(`! modpack ${entry.id}: texture pack "${entry.texturepack}" is gone from the registry - dropped`);
+    }
+    if (!members.length && !skin) {
+      console.warn(`! modpack ${entry.id}: nothing in it still exists - delisted`);
+      return null;
+    }
+
+    // Aggregate lifetime downloads of the members - the pack's own popularity
+    // signal. Approximate by design (members are also installed solo).
+    const downloads = members.reduce((sum, id) => sum + (byId.get(id)?.downloads || 0), 0);
+    // "Installable" means every part of it can actually be downloaded and
+    // checksum-checked right now. A member still waiting for its first
+    // release makes the whole setup un-gettable, so say so up front.
+    const installable = members.every((id) => !!byId.get(id)?.latest?.asset?.sha256)
+      && (!skin || !!skinById.get(skin)?.latest?.asset?.sha256);
+    // The one field the pack's warning icon hangs on. Computed here as well as
+    // in the manager so the site and any other reader gets it for free.
+    const unreviewed = members.filter((id) => byId.get(id)?.reviewed === false);
+
+    const record = { ...entry, mods: members, downloads, installable, unreviewed, ...extra };
+    if (skin) record.texturepack = skin;
+    else delete record.texturepack;
+    return record;
+  };
+
   for (const { fileName, entry } of await loadEntries(MODPACKS_DIR)) {
-    const problems = validateModpackEntry(entry, fileName, reviewedIds);
+    const problems = validateModpackEntry(entry, fileName, knownModIds, knownSkinIds);
     if (problems.length) {
       errors++;
       console.error(`✗ modpacks/${fileName}: ${problems[0]}`);
@@ -269,26 +314,70 @@ async function buildModpacks(fileEntries, resolvedMods) {
       console.error(`✗ modpacks/${fileName}: duplicate modpack id "${entry.id}"`);
       continue;
     }
+    const record = resolve(entry, { reviewed: true });
+    if (!record) continue;
+    packs.push(record);
+    console.log(`✓ pack ${entry.id} → ${record.mods.length} mods${record.texturepack ? ' + a texture pack' : ''}, ${record.downloads} downloads`);
+  }
 
-    const members = entry.mods.filter((id) => {
-      if (byId.has(id)) return true;
-      console.warn(`! modpack ${entry.id}: mod "${id}" is gone from the registry - dropped from the pack`);
-      return false;
+  packs.push(...await collectSubmissionModpacks(packs, resolve, knownModIds, knownSkinIds));
+  return packs;
+}
+
+/**
+ * Modpacks people shared through the submission form, listed straight from
+ * their open issues. Committing the file to registry/modpacks/ and closing the
+ * issue is still how a pack becomes curated - it takes the id, and the issue
+ * listing steps aside on the next refresh.
+ */
+async function collectSubmissionModpacks(committed, resolve, knownModIds, knownSkinIds) {
+  const takenIds = new Set(committed.map((p) => p.id));
+
+  const carryForward = (markStale) => (previous?.modpacks || [])
+    .filter((p) => p.issue && !takenIds.has(p.id))
+    .map((p) => (markStale ? { ...p, stale: true } : p));
+
+  if (offline) {
+    const kept = carryForward(false);
+    for (const p of kept) console.log(`· pack ${p.id} → shared in #${p.issue} (kept)`);
+    return kept;
+  }
+
+  const issues = await openIssues();
+  if (!issues) {
+    const kept = carryForward(true);
+    if (kept.length) console.warn(`! kept ${kept.length} shared modpack(s) from the previous index`);
+    return kept;
+  }
+
+  const out = [];
+  for (const issue of issues) {
+    const entry = parseModpackSubmissionIssue(issue.body, {
+      author: issue.user?.login || 'unknown',
+      createdAt: issue.created_at,
     });
-    if (members.length < 2) {
-      console.warn(`! modpack ${entry.id}: fewer than 2 of its mods still exist - delisted`);
+    if (!entry) continue; // not the modpack submission form
+
+    const problems = validateModpackEntry(entry, `${entry.id}.json`, knownModIds, knownSkinIds);
+    if (problems.length) {
+      console.warn(`! modpack issue #${issue.number} skipped: ${problems[0]}`);
       continue;
     }
+    if (takenIds.has(entry.id)) {
+      console.log(`· modpack issue #${issue.number} → id "${entry.id}" already taken - skipped`);
+      continue;
+    }
+    takenIds.add(entry.id);
 
-    // Aggregate lifetime downloads of the members - the pack's own popularity
-    // signal. Approximate by design (members are also installed solo).
-    const downloads = members.reduce((sum, id) => sum + (byId.get(id)?.downloads || 0), 0);
-    const installable = members.every((id) => !!byId.get(id)?.latest?.asset?.sha256);
-
-    packs.push({ ...entry, mods: members, downloads, installable });
-    console.log(`✓ pack ${entry.id} → ${members.length} mods, ${downloads} downloads`);
+    // `reviewed: true` on a pack means a maintainer curated the LIST, not the
+    // code - which nobody did here. The mods inside keep their own badges
+    // either way, so this only affects how the pack itself is presented.
+    const record = resolve(entry, { reviewed: false, issue: issue.number, issueUrl: issue.html_url });
+    if (!record) continue;
+    out.push(record);
   }
-  return packs;
+  if (out.length) console.log(`${out.length} shared modpack(s) listed from open issues.`);
+  return out;
 }
 
 /** Newest stable framework (v*) and manager (manager-v*) releases. */
@@ -460,20 +549,15 @@ async function collectSubmissionMods(fileEntries) {
     return kept;
   }
 
-  let issues;
-  try {
-    const res = await githubFetch(`/repos/${HOME_REPO}/issues?state=open&per_page=100`, { token });
-    if (!res.ok) throw new Error(`GitHub returned ${res.status} for open issues`);
-    issues = await res.json();
-  } catch (err) {
+  const issues = await openIssues();
+  if (!issues) {
     const kept = carryForward(true);
-    console.warn(`! could not list submission issues (${err.message})${kept.length ? ` - kept ${kept.length} from the previous index` : ''}`);
+    console.warn(`! could not list submission issues${kept.length ? ` - kept ${kept.length} from the previous index` : ''}`);
     return kept;
   }
 
   const out = [];
-  for (const issue of issues.sort((a, b) => a.number - b.number)) {
-    if (issue.pull_request) continue; // the issues API lists PRs too
+  for (const issue of issues) {
     const entry = parseSubmissionIssue(issue.body, {
       author: issue.user?.login || 'unknown',
       createdAt: issue.created_at,
@@ -514,6 +598,28 @@ async function collectSubmissionMods(fileEntries) {
   }
   if (out.length) console.log(`${out.length} unreviewed submission(s) listed from open issues.`);
   return out;
+}
+
+/**
+ * The repo's open issues, oldest first, pull requests filtered out. Fetched
+ * once and shared: mod submissions and modpack submissions both live here,
+ * and asking GitHub twice would double the cost of the one call in this
+ * script that is not cached anywhere. Returns null when the list could not be
+ * fetched, which callers translate into "keep what the last index had".
+ */
+function openIssues() {
+  openIssuesPromise ||= (async () => {
+    try {
+      const res = await githubFetch(`/repos/${HOME_REPO}/issues?state=open&per_page=100`, { token });
+      if (!res.ok) throw new Error(`GitHub returned ${res.status} for open issues`);
+      const all = await res.json();
+      return all.filter((i) => !i.pull_request).sort((a, b) => a.number - b.number);
+    } catch (err) {
+      console.warn(`! could not list open issues (${err.message})`);
+      return null;
+    }
+  })();
+  return openIssuesPromise;
 }
 
 /** Fetch a release asset into memory, with its own size ceiling. */

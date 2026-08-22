@@ -49,6 +49,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Unit tests (issue parsers + validators)
+        run: node --test tools/registry/lib.test.mjs
       - name: Validate entries (with release lookups)
         run: node tools/registry/validate.mjs --check-releases
         env:

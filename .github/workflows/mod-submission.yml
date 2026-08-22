@@ -1,12 +1,18 @@
-# Front desk for "Submit a mod" issues (the form in
-# ISSUE_TEMPLATE/mod-submission.yml).
+# Front desk for the two submission forms: "Submit a mod"
+# (ISSUE_TEMPLATE/mod-submission.yml) and "Share a modpack"
+# (ISSUE_TEMPLATE/modpack-submission.yml).
 #
-# The issue itself IS the submission now: the registry index builder lists
-# every open, well-formed submission issue in the mod manager as an
-# UNREVIEWED mod (players get a warning before installing one). A maintainer
+# The issue itself IS the submission: the registry index builder lists every
+# open, well-formed submission issue in the mod manager. A mod is listed as
+# UNREVIEWED (players get a warning before installing one); a maintainer
 # reviews the source, adds registry/mods/<id>.json and closes the issue -
 # that flips the listing to the reviewed badge. Closing without adding the
 # file just delists it. No pull request bot anymore.
+#
+# A modpack is listed the same way but without the warning on the pack itself:
+# it holds no code, only ids of things already listed, each still downloaded
+# and checksum-verified on its own. Any unreviewed MEMBER carries its own
+# badge, and the manager surfaces a warning on the pack for it.
 #
 # This workflow only does the fast feedback: validate the form the moment it
 # is opened or edited, comment problems back, and kick the registry refresh
@@ -21,7 +27,7 @@
 # Detection is by the form's headings, not the label: template labels are
 # silently dropped when the label doesn't exist in the repo, and real
 # submissions have arrived label-less.
-name: Mod submission check
+name: Submission check
 
 on:
   issues:
@@ -49,30 +55,37 @@ jobs:
           ISSUE_USER: ${{ github.event.issue.user.login }}
         run: |
           node <<'EOF'
-          const { appendFileSync, writeFileSync } = require('node:fs');
+          const { appendFileSync, writeFileSync, readFileSync } = require('node:fs');
+
+          const out = (line) => appendFileSync(process.env.GITHUB_OUTPUT, `${line}\n`);
 
           async function main() {
-            const { parseSubmissionIssue, validateEntry, loadEntries } =
-              await import(`${process.cwd()}/tools/registry/lib.mjs`);
+            const {
+              parseSubmissionIssue, parseModpackSubmissionIssue,
+              validateEntry, validateModpackEntry, loadEntries,
+            } = await import(`${process.cwd()}/tools/registry/lib.mjs`);
 
-            const entry = parseSubmissionIssue(process.env.ISSUE_BODY, {
-              author: process.env.ISSUE_USER,
-              createdAt: new Date().toISOString(),
-            });
-            if (!entry) {
-              // Not the submission form - some unrelated issue. Do nothing.
-              appendFileSync(process.env.GITHUB_OUTPUT, 'submission=false\n');
+            const context = { author: process.env.ISSUE_USER, createdAt: new Date().toISOString() };
+            const entry = parseSubmissionIssue(process.env.ISSUE_BODY, context);
+            const pack = entry ? null : parseModpackSubmissionIssue(process.env.ISSUE_BODY, context);
+            if (!entry && !pack) {
+              // Neither form - some unrelated issue. Do nothing.
+              out('submission=false');
               return;
             }
+            out('submission=true');
+            out(`kind=${entry ? 'mod' : 'modpack'}`);
 
-            const problems = validateEntry(entry, `${entry.id}.json`);
+            const problems = entry
+              ? validateEntry(entry, `${entry.id}.json`)
+              : validateModpackEntry(pack, `${pack.id}.json`, ...listedIds());
 
-            // Same collision rules the index builder enforces: an id that
-            // already exists belongs to someone's live mod - a submission must
-            // never be able to repoint its download - and two mods can't share
-            // an install folder.
             const existing = await loadEntries();
-            if (!problems.length) {
+            if (entry && !problems.length) {
+              // Same collision rules the index builder enforces: an id that
+              // already exists belongs to someone's live mod - a submission must
+              // never be able to repoint its download - and two mods can't share
+              // an install folder.
               if (existing.some(({ entry: reg }) => reg.id === entry.id)) {
                 problems.push(`the id "${entry.id}" is already taken by an existing registry entry. `
                   + 'If this is your own mod and you want to change its entry, open a pull request '
@@ -82,14 +95,32 @@ jobs:
               }
             }
 
-            appendFileSync(process.env.GITHUB_OUTPUT, 'submission=true\n');
             if (problems.length) {
               writeFileSync('/tmp/problems.md', problems.map((p) => `- ${p}`).join('\n'));
-              appendFileSync(process.env.GITHUB_OUTPUT, 'valid=false\n');
+              out('valid=false');
             } else {
-              appendFileSync(process.env.GITHUB_OUTPUT, 'valid=true\n');
+              out('valid=true');
             }
           }
+
+          /**
+           * What a modpack is allowed to name: everything the manager already
+           * lists, unreviewed submissions included. That is the committed index
+           * rather than registry/mods/, because "is it in the registry" is a
+           * question about the listing, not about which files exist here.
+           */
+          function listedIds() {
+            try {
+              const index = JSON.parse(readFileSync('registry/index.json', 'utf8'));
+              return [
+                new Set((index.mods || []).map((m) => m.id)),
+                new Set((index.texturepacks || []).map((t) => t.id)),
+              ];
+            } catch {
+              return [null, null]; // unreadable index - skip the id check rather than fail
+            }
+          }
+
           main().catch((err) => { console.error(err); process.exit(1); });
           EOF
 
@@ -115,6 +146,7 @@ jobs:
           && (github.event.action == 'opened' || github.event.action == 'edited')
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          KIND: ${{ steps.parse.outputs.kind }}
         run: |
           # Only ack once per issue - edits after a good ack stay silent.
           acked="$(gh api "repos/${GITHUB_REPOSITORY}/issues/${{ github.event.issue.number }}/comments" \
@@ -123,20 +155,38 @@ jobs:
             echo "already acknowledged"
             exit 0
           fi
-          {
-            echo "Thanks - your submission is valid! Here's what happens next:"
-            echo
-            echo "- Your mod appears in the mod manager within the hour, marked **unreviewed**."
-            echo "  Players are warned that nobody has checked the code yet and pointed at your source."
-            echo "- A maintainer will read your source. If it passes, your mod gets the **reviewed**"
-            echo "  badge and this issue is closed - that's the good ending, not a rejection."
-            echo "- No release published yet? The entry shows as \"coming soon\" and switches to"
-            echo "  installable automatically once you publish one with the asset attached."
-            echo
-            echo "Editing this issue updates the listing on the next refresh."
-            echo
-            echo "<!-- mod-submission-ack -->"
-          } > /tmp/comment.md
+          if [ "$KIND" = "modpack" ]; then
+            {
+              echo "Thanks - your modpack is valid! Here's what happens next:"
+              echo
+              echo "- It appears in everyone's mod manager within the hour, under **Community modpacks**."
+              echo "  There is no review queue for modpacks: yours holds no code, only ids of things"
+              echo "  already listed, and each one is still downloaded and checksum-verified on its own."
+              echo "- If any mod in it is still **unreviewed**, your pack shows a warning icon naming"
+              echo "  it, and players see that before they install. That is expected, not a problem."
+              echo "- A maintainer may later commit it to \`registry/modpacks/\` and close this issue,"
+              echo "  which just promotes the same pack from \"shared\" to \"curated\"."
+              echo
+              echo "Editing this issue updates the listing on the next refresh."
+              echo
+              echo "<!-- mod-submission-ack -->"
+            } > /tmp/comment.md
+          else
+            {
+              echo "Thanks - your submission is valid! Here's what happens next:"
+              echo
+              echo "- Your mod appears in the mod manager within the hour, marked **unreviewed**."
+              echo "  Players are warned that nobody has checked the code yet and pointed at your source."
+              echo "- A maintainer will read your source. If it passes, your mod gets the **reviewed**"
+              echo "  badge and this issue is closed - that's the good ending, not a rejection."
+              echo "- No release published yet? The entry shows as \"coming soon\" and switches to"
+              echo "  installable automatically once you publish one with the asset attached."
+              echo
+              echo "Editing this issue updates the listing on the next refresh."
+              echo
+              echo "<!-- mod-submission-ack -->"
+            } > /tmp/comment.md
+          fi
           gh issue comment "${{ github.event.issue.number }}" --body-file /tmp/comment.md
 
       - name: Refresh the registry index now
