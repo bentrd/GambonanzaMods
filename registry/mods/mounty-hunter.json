@@ -7,12 +7,24 @@
   "repo": "Agent15/Gambit_PWR_PACK",
   "asset": "BountyHuntersGambit.zip",
   "folder": "BountyHuntersGambit",
-  "dependencies": ["gambit-api"],
+  "dependencies": [
+    "gambit-api"
+  ],
   "tags": [
     "gameplay",
     "gambits"
   ],
   "gameVersion": ">=1.0",
   "submittedBy": "Agent15",
-  "addedAt": "2026-08-23"
+  "addedAt": "2026-08-23",
+  "gambits": [
+    {
+      "id": "bounty-hunter",
+      "name": "Bounty Hunter's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "Capturing a <sprite=5> <color=&>PAWN</color> earns <color=*>$5</color>.<br><i>(Changes after every trigger)</i>",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/BountyHuntersGambit/BountyHunter.png"
+    }
+  ]
 }
