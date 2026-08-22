@@ -1,0 +1,31 @@
+{
+  "id": "matryoshka",
+  "name": "Matryoshka's Gambit",
+  "author": "Agent15",
+  "summary": "If any of your pieces is captured, earn a piece of the next highest value.",
+  "description": "Whenever the enemy captures one of your pieces, a replacement of the next value up drops into your stock (queen to knight, knight to rook, rook to bishop, bishop to king, king to pawn). Only fires when there is room in the stock, and pawns don't trigger it. A legendary sacrifice gambit built on Wrecking Ball's capture hook. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "MatryoshkasGambit.zip",
+  "folder": "MatryoshkasGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "matryoshka",
+      "name": "Matryoshka's Gambit",
+      "rarity": "legendary",
+      "price": 10,
+      "description": "If any of your pieces is captured, earn a piece of the next highest value. <br>(<sprite=10>><sprite=7>><sprite=6>><sprite=8>><sprite=9>><sprite=5>)",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/MatryoshkasGambit/Matryoshka.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-22"
+}

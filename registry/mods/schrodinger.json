@@ -1,0 +1,31 @@
+{
+  "id": "schrodinger",
+  "name": "Schrodinger's Gambit",
+  "author": "Agent15",
+  "summary": "If any of your phantom pieces is threatened, it becomes default.",
+  "description": "At the start of each of your turns, every phantom piece of yours that an enemy is threatening loses its phantom state and turns back into a normal piece. A rare gambit that mixes Crybaby's threat scan with Necromancer's phantom reset. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "SchrodingersGambit.zip",
+  "folder": "SchrodingersGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "schrodinger",
+      "name": "Schrödinger's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "If any of your <color=ß>PHANTOM</color> pieces is <wave><sprite=11> THREATENED</wave>, it becomes DEFAULT.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SchrodingersGambit/Schrodinger.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-22"
+}

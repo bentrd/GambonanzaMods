@@ -1,0 +1,32 @@
+{
+  "id": "en-passant",
+  "name": "En Passant's Gambit",
+  "author": "Agent15",
+  "summary": "Capture the last enemy piece to move by moving onto the tile it came from.",
+  "description": "After every enemy move, a phantom after-image of the piece appears on the tile it left. Move any of your pieces onto that tile and the real piece is captured. Elite and stasis enemies are exempt. Needs the Gambit Creation API and the 'Point A' Manager library, both of which install automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "EnPassantsGambit.zip",
+  "folder": "EnPassantsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "point-a-mngr"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "en-passant",
+      "name": "En Passant's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "You can capture the last enemy piece to move by moving a piece over its original tile.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/EnPassantsGambit/EnPassant.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-22"
+}
