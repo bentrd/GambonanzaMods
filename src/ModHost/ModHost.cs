@@ -154,6 +154,57 @@ namespace Gambonanza.ModHost
         internal static bool TryDisable(string id, out string error) => _registry.TryDisable(id, out error);
         internal static int  Rescan() => _registry?.Rescan(_modsDirectory) ?? 0;
 
+        // ----- Achievement gate ---------------------------------------------
+
+        // Session-only opt-in, deliberately not persisted: every launch starts
+        // with achievements paused while a mod is enabled, so a forgotten
+        // toggle from last week can never leak a cheesed achievement.
+        private static bool _achievementsAllowed;
+        private static bool _achievementNoticePrinted;
+
+        internal static bool AchievementsAllowed
+        {
+            get => _achievementsAllowed;
+            set => _achievementsAllowed = value;
+        }
+
+        internal static bool AnyModActive()
+        {
+            var mods = _registry?.Mods;
+            if (mods == null) return false;
+            for (int i = 0; i < mods.Count; i++)
+            {
+                if (mods[i].IsActive) return true;
+                // A mod without IModLifecycle cannot actually stop once its
+                // OnLoad has run - 'mods disable' only takes full effect next
+                // launch - so it still counts against achievements this session.
+                if (mods[i].Instance != null && mods[i].Lifecycle == null) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Called by the patched game at the top of AchievementManager.UnlockAchievement
+        /// and IncreaseAchievement. Returning true swallows the grant (and its stat
+        /// progress). Must never throw: an exception here would surface inside vanilla
+        /// gameplay code, so any failure falls open to vanilla behaviour.
+        /// </summary>
+        public static bool ShouldBlockAchievement(string achievementName)
+        {
+            try
+            {
+                if (_achievementsAllowed || !AnyModActive()) return false;
+                LogLine($"blocked Steam achievement progress '{achievementName}' (mods active; 'achievements on' in the console allows it).");
+                if (!_achievementNoticePrinted)
+                {
+                    _achievementNoticePrinted = true;
+                    _console?.PrintWarn("Steam achievements are paused because at least one mod is enabled. Type 'achievements on' to allow them for this session.");
+                }
+                return true;
+            }
+            catch { return false; }
+        }
+
         internal static System.Collections.Generic.IEnumerable<ModRegistry.KeybindInfo> AllKeybinds(string modId = null)
             => _registry?.AllKeybinds(modId) ?? System.Linq.Enumerable.Empty<ModRegistry.KeybindInfo>();
 

@@ -113,13 +113,14 @@ Background on how the game stores its art is in [docs/ASSET_MODDING.md](docs/ASS
 
 ## How the framework works
 
-The patcher injects exactly three calls into vanilla Gambonanza:
+The patcher injects exactly four hooks into vanilla Gambonanza:
 
 | Where in `Assembly-CSharp.dll`              | Hook                                  |
 | ------------------------------------------- | ------------------------------------- |
 | `Blukulele.Core.GameManager.Start`          | `ModHost.LoadAll()` - boot, mod loading, and console setup. |
 | `Blukulele.CHE.CanvasMenu.OnEnable`         | `ModHost.OnHomeMenuOpenedInvoke(this)` - adds the CONSOLE home-screen button. |
 | `Blukulele.CHE.SettingsCanvas.OnEnable`     | `ModHost.OnSettingsOpenedInvoke(this)` - fans out to mods that subscribed via `IModContext.OnSettingsOpened`. |
+| `Blukulele.CHE.AchievementManager.UnlockAchievement` / `.IncreaseAchievement` | `ModHost.ShouldBlockAchievement(name)` - pauses Steam achievements (and stat progress toward them) while at least one mod is enabled. `achievements on` in the console lifts the pause for the current session. |
 
 The in-game console opens with `F10`, `F1`, backtick, or the home-screen CONSOLE button. Type `help` to list commands.
 
@@ -133,7 +134,7 @@ note when yours differs.
 
 Everything else lives in plain managed DLLs that get loaded via
 `Assembly.LoadFrom`. There is no Harmony, no MonoMod runtime detour, no IL
-weaving inside individual mods - only those three patches.
+weaving inside individual mods - only those four patches.
 
 A marker class `__GambonanzaModHostPatched` is added to the patched assembly
 so the patcher can detect a previous run and stay idempotent.

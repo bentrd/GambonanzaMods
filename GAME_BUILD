@@ -10,11 +10,53 @@
 #   2. Launch the game, open the console (F10), run `mods` and `list gambits`.
 #   3. If everything works, update the two values below and note what changed.
 
-steamBuildId=24648699
-assemblySha256=32d0aa4e12f58e65d58f1d5600da269ae2a65a4a2fa69d98610ca060081f3f91
+steamBuildId=24858528
+assemblySha256=fe99be1b50dd78d30f4a77895ac87c258d39602db646e0a4d57fa18e5db611f3
 unityVersion=6000.4.3f1
-verifiedOn=2026-08-15
+verifiedOn=2026-08-21
 
+# Build 24858528 (verified 2026-08-21): per-type diff against 24648699 done
+# (40 of ~700 types changed), then a full multi-agent audit with adversarial
+# verification of every claim. Verified by full ./build.sh, a live boot (all 6
+# bundled mods loaded, achievement gate fired on the startup tutorial check,
+# zero exceptions), and a line-by-line classification of all 40 diffs.
+# What the update actually is:
+#   - 19 types are pure churn (Steamworks.NET ref->out params, UnityWebRequest
+#     .Result typed compares). The achievement gate targets method NAMES on
+#     AchievementManager, whose two guarded methods kept their exact signatures.
+#   - Steam Deck UI pass: ControlSchemeManager.IsSteamDeck detection + scaling
+#     sprinkled through UI code; the joystick path now hides+locks the hardware
+#     cursor earlier (only affects controller play). Boss-info screen rework.
+#   - Gambit sorting-order/highlight refactor (GambitBehaviour/GambitInfo/
+#     GambitInfoCollection/GambitToBuy incl. gachapon highlight bookkeeping) -
+#     GambitApi territory; compiles and loads clean, screens still deserve an
+#     in-game look (follow-up port-review task).
+#   - New enemy-ability warning feedback (PieceEnemyModifier/PieceVisualEffect +
+#     SelectionManager/InterfaceManager wiring). KNOWN VANILLA 1.5.0 BUG: it
+#     leaks infinite Yoyo DOFade tweens + an alarm-shake Sequence on captured
+#     Magician/Crumbler/Invoker pieces (unsubscribes only in OnDestroy, never
+#     DOKills) -> repeating safe-mode-captured SpriteRenderer DOFade errors in
+#     Player.log after captures. Harmless noise, not framework-caused.
+#   - Injection targets GameManager.Start, CanvasMenu.OnEnable byte-identical;
+#     SettingsCanvas.OnEnable diff is Steam Deck churn only. No changed type
+#     touches Time.timeScale, physics, or Rigidbody anywhere.
+#   - Pachinko/gachapon flow (CanvasPachinko/PachinkoBehaviour/PachinkoBall/
+#     compartments) is byte-identical between builds. A ball stuck on the top
+#     pin is reachable in PURE VANILLA: the token releases kinematic->dynamic
+#     with exactly zero velocity from a player-timed x, so a dead-center launch
+#     can settle balanced on the top pin and the Rigidbody2D sleeps. No
+#     watchdog exists; designed recovery = the left/right HIT buttons that
+#     appear 5s after launch (AddForce impulse wakes a sleeping body), or
+#     quit-to-menu + continue (state PACHINKO is saved at purchase; the ball
+#     and reward tiles respawn intact). Audited: neither the framework, any
+#     mod, nor the achievement gate can touch the ball (zero physics/timeScale/
+#     EventSystem surface in all mod+framework code; gate call sites are all
+#     fire-and-forget voids; no Steam callbacks awaited anywhere in the game).
+#   - Only Steam readback in gameplay: Scheme_Sky polls GetAchievement
+#     ("07_ACH_LAND") to unlock the cosmetic Sky board scheme. With the v1.4.0
+#     gate pausing stat_land, Sky cannot NEWLY unlock during modded play
+#     (documented in CHANGELOG 1.4.0); already-earned unlocks are unaffected.
+#
 # Build 24648699 (verified 2026-08-15): no per-type diff was possible - the
 # previous build's Assembly-CSharp.dll was already gone from refs/ by the time
 # the update was noticed, so there is nothing to diff against. Verified the

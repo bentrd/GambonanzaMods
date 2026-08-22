@@ -8,10 +8,12 @@ using Mono.Cecil.Cil;
 namespace Gambonanza.Patcher;
 
 /// <summary>
-/// Generic Cecil patcher. Injects three calls into Assembly-CSharp.dll:
+/// Generic Cecil patcher. Injects four hooks into Assembly-CSharp.dll:
 ///   1. Gambonanza.ModHost.ModHost.LoadAll()                       at GameManager.Start
 ///   2. Gambonanza.ModHost.ModHost.OnSettingsOpenedInvoke(this)    at SettingsCanvas.OnEnable
 ///   3. Gambonanza.ModHost.ModHost.OnHomeMenuOpenedInvoke(this)    at CanvasMenu.OnEnable
+///   4. Gambonanza.ModHost.ModHost.ShouldBlockAchievement(name)    guarding AchievementManager
+///      .UnlockAchievement / .IncreaseAchievement (early-returns while a mod is enabled)
 ///
 /// All mod-specific logic lives in mods loaded by ModHost at runtime - this patcher
 /// has no knowledge of any individual mod.
@@ -205,10 +207,48 @@ internal static class Program
             Console.WriteLine("  patched -> Blukulele.CHE.CanvasMenu.OnEnable (appended ModHost.OnHomeMenuOpenedInvoke)");
         }
 
-        // 8. Add idempotency marker.
+        // 8. Guard AchievementManager so no Steam achievement (or stat progress toward
+        //    one) can be granted while a mod is enabled, unless the player lifts the
+        //    pause with 'achievements on' in the console. Both public entry points are
+        //    void instance methods with the achievement name as their first parameter;
+        //    everything in the game funnels through them, so the prologue below is the
+        //    single choke point:
+        //        if (ModHost.ShouldBlockAchievement(achievementName)) return;
+        var achievementManager = module.GetType("Blukulele.CHE.AchievementManager");
+        if (achievementManager == null)
+        {
+            Console.WriteLine("  warn: Blukulele.CHE.AchievementManager not found; achievement gate disabled.");
+        }
+        else
+        {
+            var shouldBlockRef = new MethodReference(
+                "ShouldBlockAchievement", module.TypeSystem.Boolean, modHostTypeRef) { HasThis = false };
+            shouldBlockRef.Parameters.Add(new ParameterDefinition(module.TypeSystem.String));
+
+            foreach (var name in new[] { "UnlockAchievement", "IncreaseAchievement" })
+            {
+                var method = achievementManager.Methods.FirstOrDefault(m =>
+                    m.Name == name && !m.IsStatic && m.HasBody &&
+                    m.Parameters.Count >= 1 && m.Parameters[0].ParameterType.FullName == "System.String");
+                if (method == null)
+                {
+                    Console.WriteLine($"  warn: AchievementManager.{name}(string, ...) not found; not gated.");
+                    continue;
+                }
+                var il = method.Body.GetILProcessor();
+                var first = method.Body.Instructions.First();
+                il.InsertBefore(first, il.Create(OpCodes.Ldarg_1));
+                il.InsertBefore(first, il.Create(OpCodes.Call, shouldBlockRef));
+                il.InsertBefore(first, il.Create(OpCodes.Brfalse, first));
+                il.InsertBefore(first, il.Create(OpCodes.Ret));
+                Console.WriteLine($"  patched -> Blukulele.CHE.AchievementManager.{name} (guarded by ModHost.ShouldBlockAchievement)");
+            }
+        }
+
+        // 9. Add idempotency marker.
         AddMarker(asm);
 
-        // 9. Write patched assembly out, then stamp it.
+        // 10. Write patched assembly out, then stamp it.
         //    detect "this dll is no longer ours" without re-reading the assembly.
         asm.Write(asmCsharp);
         WriteStamp(stamp, asmCsharp);

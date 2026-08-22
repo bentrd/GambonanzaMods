@@ -5,6 +5,24 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## 1.4.0
+
+- **Steam achievements now pause automatically while any mod is enabled.**
+  Some mods make rare achievements trivial to earn, and nobody wants a
+  cheapened trophy on their profile by accident - so with at least one mod
+  enabled, the game no longer unlocks achievements or counts progress toward
+  them (captures, promotions, and the other lifetime stats stop ticking up
+  too). Disable all your mods and everything works exactly as before. If you
+  know what you're doing and want achievements anyway, type `achievements on`
+  in the console (F10) - that lasts until you quit the game, and the next
+  launch starts paused again. Plain `achievements` shows the current state.
+  The first time something would have unlocked, the console tells you it was
+  paused, so nothing disappears silently. One knock-on effect: the secret Sky
+  board scheme unlocks by checking the "land 100 pieces" Steam achievement, so
+  it can't newly unlock while achievements are paused - play a stretch unmodded
+  (or use `achievements on`) and it unlocks as normal. A scheme you already
+  earned is unaffected.
+
 ## 1.3.4
 
 - GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the

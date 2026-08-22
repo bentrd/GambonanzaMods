@@ -95,6 +95,7 @@ namespace Gambonanza.ModHost
             RegisterCommand("mods folder", "open the Mods folder", _ => ModHost.OpenModsFolderInFinder());
             RegisterCommand("mods enable", "enable a mod: mods enable <id>", args => SetModEnabled(args, true), CompleteModIds);
             RegisterCommand("mods disable", "disable a mod: mods disable <id>", args => SetModEnabled(args, false), CompleteModIds);
+            RegisterCommand("achievements", "Steam achievements while modded: achievements [on|off] (paused by default while any mod is enabled)", Achievements, CompleteOnOff);
             RegisterCommand("keybinds", "list keybinds: keybinds [mod]", PrintKeybinds, CompleteModIds);
             RegisterCommand("keybind", "set keybind: keybind <mod> <name> then press a key/combo", BeginKeybindCapture, CompleteKeybindCommand);
             RegisterCommand("keybind unset", "unset keybind: keybind unset <mod> <name>", UnsetKeybind, CompleteKeybindCommandUnset);
@@ -629,6 +630,44 @@ namespace Gambonanza.ModHost
             var ok = enabled ? ModHost.TryEnable(args[0], out error) : ModHost.TryDisable(args[0], out error);
             if (ok && string.IsNullOrEmpty(error)) PrintInfo($"{args[0]} {(enabled ? "enabled" : "disabled")}");
             else PrintWarn(error ?? "failed");
+        }
+
+        private void Achievements(string[] args)
+        {
+            if (args != null && args.Length > 0)
+            {
+                switch (Normalize(args[0]))
+                {
+                    case "on":
+                    case "allow":
+                        ModHost.AchievementsAllowed = true;
+                        PrintInfo("Steam achievements are now allowed for this session, even with mods enabled.");
+                        PrintInfo("This resets on restart - the next launch pauses them again while a mod is enabled.");
+                        return;
+                    case "off":
+                    case "block":
+                        ModHost.AchievementsAllowed = false;
+                        PrintInfo("back to default: Steam achievements are paused while at least one mod is enabled.");
+                        return;
+                    default:
+                        PrintWarn("usage: achievements [on|off]");
+                        return;
+                }
+            }
+
+            var modsActive = ModHost.AnyModActive();
+            if (ModHost.AchievementsAllowed)
+                PrintInfo("achievements: allowed for this session (override; resets on restart). 'achievements off' restores the default pause.");
+            else if (modsActive)
+                PrintInfo("achievements: paused - at least one mod is enabled. 'achievements on' allows them for this session.");
+            else
+                PrintInfo("achievements: active - no mods are enabled. They pause automatically while a mod is enabled.");
+        }
+
+        private IEnumerable<string> CompleteOnOff(string[] args, int argIndex)
+        {
+            var prefix = args != null && args.Length > 0 ? Normalize(args[0]) : "";
+            return new[] { "on", "off" }.Where(s => s.StartsWith(prefix, StringComparison.Ordinal));
         }
 
         private void PrintKeybinds(string[] args)
