@@ -1,87 +1,87 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T08:50:50.128Z",
+  "generatedAt": "2026-08-22T09:09:13.247Z",
   "count": 22,
   "releases": {
     "framework": {
-      "tag": "v1.3.4",
-      "version": "1.3.4",
-      "publishedAt": "2026-08-17T21:12:22Z",
-      "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
+      "tag": "v1.4.0",
+      "version": "1.4.0",
+      "publishedAt": "2026-08-22T09:08:47Z",
+      "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/BetterCollection.zip",
-          "size": 7892,
-          "sha256": "ce37af072d92a5e8acd3ced50252622b5517c9d5051048e918006943d3bfb727"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/BetterCollection.zip",
+          "size": 7894,
+          "sha256": "6a8aa86ae550d44015391db8791b09cc2e910dc0468560429eaeebaebff10641"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/EnemyThreatOverlay.zip",
-          "size": 7617,
-          "sha256": "3ccd143b8dfa2016af127dfcaecf305abf3ce93dda6bb720d137177f8d95d815"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/EnemyThreatOverlay.zip",
+          "size": 7619,
+          "sha256": "d4fbeba67225a2dc8965b0ff154f8f02d8f4c1f97085dd8c0a1d6e11db72775d"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/GambitApi.zip",
-          "size": 19922,
-          "sha256": "fcc17f9452a87915a28546ab0ca252827c1cae09a1941f0d91d2199d90fa03c1"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/GambitApi.zip",
+          "size": 19924,
+          "sha256": "b85a5bb92c9ab1d42c1061e447b7c129b81f02f1e637502928c0e4ee1e8404d9"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-linux-arm64.zip",
-          "size": 28389696,
-          "sha256": "4a54fae1c4dfb09044202435205e8e2154a32d125e766839eb767ac804115432"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-linux-arm64.zip",
+          "size": 28389073,
+          "sha256": "2580a1fa24e52a2623d8597fbd17349b6d7cf7cc55fb2af646e84f23ddbe57f3"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-linux-x64.zip",
-          "size": 29617082,
-          "sha256": "f0865c819076219c54319f45ce3c51d505a6874d2a3ff99faa266de9fc79f789"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-linux-x64.zip",
+          "size": 29631021,
+          "sha256": "ac0d563639ad81e6f75b4c4a109b6b5260c4199b2d2ce17a11c8193b16accf78"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-osx-arm64.zip",
-          "size": 28619266,
-          "sha256": "e194b65444f935ebfee15fa2ed96f5638e52067a29f7808f8b496b862f99f6eb"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-osx-arm64.zip",
+          "size": 28614373,
+          "sha256": "8c7c00a86c2e83ac2f31d82c21b6494f620ad520686957a9e1392054d786d9fc"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-osx-x64.zip",
-          "size": 29966236,
-          "sha256": "457ad8c0c14e38941073beb69cec5a603b501847aa9bdd4ea95aed6c8ca5b0c8"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-osx-x64.zip",
+          "size": 29976748,
+          "sha256": "8444ae95a8462c6675551d0b1f9bab67d45a0c4b727480b82a7a021c806b59dd"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-win-arm64.zip",
-          "size": 28857679,
-          "sha256": "32cb5a0a52e791e693364c8ae111378919be626993f84877b2636a7d29119b6c"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-win-arm64.zip",
+          "size": 28863187,
+          "sha256": "8097a99b15678456c5359bf90ac43bdb71cabfb8fc3282c195bca88ff0d23dd3"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/gambonanza-framework-win-x64.zip",
-          "size": 29945938,
-          "sha256": "8ddb39a6744227e057278e978794e42f21a668257b5ef254f010393b0b2964da"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/gambonanza-framework-win-x64.zip",
+          "size": 29933491,
+          "sha256": "9eb23eddbb99737506dbd3b91869507ce0da19136f7d3828b27564e7f0ae2f6f"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/KamikazeGambit.zip",
-          "size": 8779,
-          "sha256": "5537a6230143df7227607dd210d935159847eb3285fa0c2e0f19aaa80bb0d3b7"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/KamikazeGambit.zip",
+          "size": 8780,
+          "sha256": "bc4ec6d0d4fb12cde9e0417a7daf1ea74581db82482fd339dd9048f6179b0b53"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/MightyKasparovEveryStage.zip",
-          "size": 4359,
-          "sha256": "b1a1778ee8d2768ee3554ae861938aa2f67947dfb31029f7c19a3dbeb2473efa"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/MightyKasparovEveryStage.zip",
+          "size": 4360,
+          "sha256": "3712fc349b9d1459d3df3a9534678296d9d3eb54fc5153d0d7457aac21978144"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/SpikesGambit.zip",
           "size": 6495,
-          "sha256": "8ca134faa8bf4cf3a5d6ed1aaca5667609e46a1ce118420bcf063015b53adf7a"
+          "sha256": "ea629f879b373402e9b9683b3a6920e72a7851f5efb9e08885c09492194d8b89"
         }
       ]
     },
@@ -193,23 +193,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.4",
+        "tag": "v1.4.0",
         "version": "1.1.0",
-        "publishedAt": "2026-08-17T21:12:22Z",
-        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
+        "publishedAt": "2026-08-22T09:08:47Z",
+        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/BetterCollection.zip",
-          "size": 7892,
-          "sha256": "ce37af072d92a5e8acd3ced50252622b5517c9d5051048e918006943d3bfb727"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/BetterCollection.zip",
+          "size": 7894,
+          "sha256": "6a8aa86ae550d44015391db8791b09cc2e910dc0468560429eaeebaebff10641"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T07:49:03Z",
+      "repoPushedAt": "2026-08-22T09:07:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -432,23 +432,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.4",
+        "tag": "v1.4.0",
         "version": "1.2.0",
-        "publishedAt": "2026-08-17T21:12:22Z",
-        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
+        "publishedAt": "2026-08-22T09:08:47Z",
+        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/EnemyThreatOverlay.zip",
-          "size": 7617,
-          "sha256": "3ccd143b8dfa2016af127dfcaecf305abf3ce93dda6bb720d137177f8d95d815"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/EnemyThreatOverlay.zip",
+          "size": 7619,
+          "sha256": "d4fbeba67225a2dc8965b0ff154f8f02d8f4c1f97085dd8c0a1d6e11db72775d"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 15,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T07:49:03Z",
+      "repoPushedAt": "2026-08-22T09:07:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -580,23 +580,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.4",
+        "tag": "v1.4.0",
         "version": "1.4.1",
-        "publishedAt": "2026-08-17T21:12:22Z",
-        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
+        "publishedAt": "2026-08-22T09:08:47Z",
+        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/GambitApi.zip",
-          "size": 19922,
-          "sha256": "fcc17f9452a87915a28546ab0ca252827c1cae09a1941f0d91d2199d90fa03c1"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/GambitApi.zip",
+          "size": 19924,
+          "sha256": "b85a5bb92c9ab1d42c1061e447b7c129b81f02f1e637502928c0e4ee1e8404d9"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T07:49:03Z",
+      "repoPushedAt": "2026-08-22T09:07:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -846,23 +846,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.4",
+        "tag": "v1.4.0",
         "version": "1.3.0",
-        "publishedAt": "2026-08-17T21:12:22Z",
-        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
+        "publishedAt": "2026-08-22T09:08:47Z",
+        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/KamikazeGambit.zip",
-          "size": 8779,
-          "sha256": "5537a6230143df7227607dd210d935159847eb3285fa0c2e0f19aaa80bb0d3b7"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/KamikazeGambit.zip",
+          "size": 8780,
+          "sha256": "bc4ec6d0d4fb12cde9e0417a7daf1ea74581db82482fd339dd9048f6179b0b53"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T07:49:03Z",
+      "repoPushedAt": "2026-08-22T09:07:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -979,23 +979,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.4",
+        "tag": "v1.4.0",
         "version": "1.1.0",
-        "publishedAt": "2026-08-17T21:12:22Z",
-        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
+        "publishedAt": "2026-08-22T09:08:47Z",
+        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/MightyKasparovEveryStage.zip",
-          "size": 4359,
-          "sha256": "b1a1778ee8d2768ee3554ae861938aa2f67947dfb31029f7c19a3dbeb2473efa"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/MightyKasparovEveryStage.zip",
+          "size": 4360,
+          "sha256": "3712fc349b9d1459d3df3a9534678296d9d3eb54fc5153d0d7457aac21978144"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T07:49:03Z",
+      "repoPushedAt": "2026-08-22T09:07:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -1179,23 +1179,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.3.4",
+        "tag": "v1.4.0",
         "version": "1.1.0",
-        "publishedAt": "2026-08-17T21:12:22Z",
-        "notes": "\n- GambitApi 1.4.1: custom gambits taken from a Gambit Token (or bought in the\n  shop) no longer get visually stuck where they were picked. A gambit that\n  fires its own visual effect the moment you acquire it - Impatient Gambit\n  does - was cancelling the little animation that flies the card into your\n  stock, leaving the icon stranded and the stock slot looking empty. The card\n  now snaps into its slot if that happens.\n- Better Collection: the gambit search bar added in 1.3.2 has been removed. It\n  did not look like it belonged on that screen, and a box that looks wrong is\n  worse than no box. Everything that made the collection run smoothly is\n  untouched - only the search went.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.3.4",
+        "publishedAt": "2026-08-22T09:08:47Z",
+        "notes": "\n- **Steam achievements now pause automatically while any mod is enabled.**\n  Some mods make rare achievements trivial to earn, and nobody wants a\n  cheapened trophy on their profile by accident - so with at least one mod\n  enabled, the game no longer unlocks achievements or counts progress toward\n  them (captures, promotions, and the other lifetime stats stop ticking up\n  too). Disable all your mods and everything works exactly as before. If you\n  know what you're doing and want achievements anyway, type `achievements on`\n  in the console (F10) - that lasts until you quit the game, and the next\n  launch starts paused again. Plain `achievements` shows the current state.\n  The first time something would have unlocked, the console tells you it was\n  paused, so nothing disappears silently. One knock-on effect: the secret Sky\n  board scheme unlocks by checking the \"land 100 pieces\" Steam achievement, so\n  it can't newly unlock while achievements are paused - play a stretch unmodded\n  (or use `achievements on`) and it unlocks as normal. A scheme you already\n  earned is unaffected.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.4.0",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.3.4/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.4.0/SpikesGambit.zip",
           "size": 6495,
-          "sha256": "8ca134faa8bf4cf3a5d6ed1aaca5667609e46a1ce118420bcf063015b53adf7a"
+          "sha256": "ea629f879b373402e9b9683b3a6920e72a7851f5efb9e08885c09492194d8b89"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T07:49:03Z",
+      "repoPushedAt": "2026-08-22T09:07:49Z",
       "license": "MIT",
       "archived": false
     }
