@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T10:38:23.381Z",
+  "generatedAt": "2026-08-22T10:39:18.940Z",
   "count": 22,
   "releases": {
     "framework": {
@@ -12,16 +12,16 @@
       "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
       "assets": [
         {
+          "name": "BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/BetterCollection.zip",
+          "size": 7897,
+          "sha256": "6b1e84698604f21c8aa33a1a9ce88a8d50f76526fac707789dde25361f32a9bf"
+        },
+        {
           "name": "EnemyThreatOverlay.zip",
           "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/EnemyThreatOverlay.zip",
           "size": 7619,
           "sha256": "cafc4447cceeb32155e2f8a7bd0f117a6e9f4d906990c475b1121f26a316358b"
-        },
-        {
-          "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/MightyKasparovEveryStage.zip",
-          "size": 4356,
-          "sha256": "89c359955d61115a15f07a2f4c4731811c8dbe444426b057b26c9720c352af40"
         },
         {
           "name": "GambitApi.zip",
@@ -30,28 +30,10 @@
           "sha256": "e26e1d43b0a80a7fb1c5e4df3b422d172b08bbf40499eb738fbd50aaf27cf854"
         },
         {
-          "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/KamikazeGambit.zip",
-          "size": 8775,
-          "sha256": "8bc27eca52172027e67a572678e697bd95a1b2e26cd7245c2ebda3dfeda9624b"
-        },
-        {
-          "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/BetterCollection.zip",
-          "size": 7897,
-          "sha256": "6b1e84698604f21c8aa33a1a9ce88a8d50f76526fac707789dde25361f32a9bf"
-        },
-        {
           "name": "gambonanza-framework-linux-arm64.zip",
           "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-linux-arm64.zip",
           "size": 28397596,
           "sha256": "a52a4a932ab5ccf186b288a3a6c5f242b2709bd29c8177ee0c7e7a0322915b1b"
-        },
-        {
-          "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/SpikesGambit.zip",
-          "size": 6498,
-          "sha256": "9417d725ce772849018a64404a3564d29f2029371880c1c68c500ec78fd8affe"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
@@ -82,6 +64,24 @@
           "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-win-x64.zip",
           "size": 29941813,
           "sha256": "943bae07ec2c8dd921f70cb2f86b17bdf2e3575074d1fbbb6b1e60b6f697cd36"
+        },
+        {
+          "name": "KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/KamikazeGambit.zip",
+          "size": 8775,
+          "sha256": "8bc27eca52172027e67a572678e697bd95a1b2e26cd7245c2ebda3dfeda9624b"
+        },
+        {
+          "name": "MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/MightyKasparovEveryStage.zip",
+          "size": 4356,
+          "sha256": "89c359955d61115a15f07a2f4c4731811c8dbe444426b057b26c9720c352af40"
+        },
+        {
+          "name": "SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/SpikesGambit.zip",
+          "size": 6498,
+          "sha256": "9417d725ce772849018a64404a3564d29f2029371880c1c68c500ec78fd8affe"
         }
       ]
     },
@@ -93,10 +93,40 @@
       "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.7.1",
       "assets": [
         {
+          "name": "Gambonanza.Mod.Manager-1.7.1-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1-arm64-mac.zip",
+          "size": 119657336,
+          "sha256": "ef76a9bce10901b8423dc786a044bc335c69a22382625d3c425087704e78bf66"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.7.1-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1-arm64.dmg",
+          "size": 119588139,
+          "sha256": "5d745cc639010db3b70c32013c1420b94d0a9229cd757f60f723308c8271b537"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.7.1-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1-mac.zip",
+          "size": 121783879,
+          "sha256": "f3bbc9c9e69441a9f11c6d0ba67a874743a4cffeebb9c15a824c49ba13978026"
+        },
+        {
           "name": "Gambonanza.Mod.Manager-1.7.1.AppImage",
           "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1.AppImage",
           "size": 127901181,
           "sha256": "49ecd733afc53058b8ec0451622576a54ef912a4121293df7b8cb473da8050e0"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager-1.7.1.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1.dmg",
+          "size": 121661794,
+          "sha256": "630deb006305b264d7063a3deed8edf85e170cc96348b89ea7229329fb128233"
+        },
+        {
+          "name": "Gambonanza.Mod.Manager.Setup.1.7.1.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager.Setup.1.7.1.exe",
+          "size": 99772647,
+          "sha256": "ebf23531dc16e2dbdad548658dbe2a140483c235b5220c65e17660b9f3111310"
         }
       ]
     }
@@ -179,7 +209,7 @@
       },
       "downloads": 19,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:37:18Z",
+      "repoPushedAt": "2026-08-22T10:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -418,7 +448,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:37:18Z",
+      "repoPushedAt": "2026-08-22T10:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -566,7 +596,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:37:18Z",
+      "repoPushedAt": "2026-08-22T10:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -832,7 +862,7 @@
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:37:18Z",
+      "repoPushedAt": "2026-08-22T10:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -965,7 +995,7 @@
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:37:18Z",
+      "repoPushedAt": "2026-08-22T10:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1165,7 +1195,7 @@
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:37:18Z",
+      "repoPushedAt": "2026-08-22T10:38:24Z",
       "license": "MIT",
       "archived": false
     }
