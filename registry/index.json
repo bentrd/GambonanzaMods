@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T10:39:18.940Z",
+  "generatedAt": "2026-08-22T10:44:10.038Z",
   "count": 22,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 19,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:38:24Z",
+      "repoPushedAt": "2026-08-22T10:43:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -375,8 +375,9 @@
     {
       "id": "en-passant",
       "name": "En Passant's Gambit",
-      "author": "FRO_PWR",
-      "summary": "You can capture the last enemy piece to move by moving a piece over its original tile.",
+      "author": "Agent15",
+      "summary": "Capture the last enemy piece to move by moving onto the tile it came from.",
+      "description": "After every enemy move, a phantom after-image of the piece appears on the tile it left. Move any of your pieces onto that tile and the real piece is captured. Elite and stasis enemies are exempt. Needs the Gambit Creation API and the 'Point A' Manager library, both of which install automatically.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "EnPassantsGambit.zip",
       "folder": "EnPassantsGambit",
@@ -384,12 +385,26 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api",
+        "point-a-mngr"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "en-passant",
+          "name": "En Passant's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "You can capture the last enemy piece to move by moving a piece over its original tile.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/EnPassantsGambit/EnPassant.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-08-21",
+      "addedAt": "2026-08-22",
       "official": false,
-      "reviewed": false,
-      "issue": 27,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/27",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -448,7 +463,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:38:24Z",
+      "repoPushedAt": "2026-08-22T10:43:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -596,7 +611,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:38:24Z",
+      "repoPushedAt": "2026-08-22T10:43:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -862,7 +877,7 @@
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:38:24Z",
+      "repoPushedAt": "2026-08-22T10:43:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -922,8 +937,9 @@
     {
       "id": "matryoshka",
       "name": "Matryoshka's Gambit",
-      "author": "FRO_PWR",
-      "summary": "If any of your pieces is captured, earn a piece of the next highest value",
+      "author": "Agent15",
+      "summary": "If any of your pieces is captured, earn a piece of the next highest value.",
+      "description": "Whenever the enemy captures one of your pieces, a replacement of the next value up drops into your stock (queen to knight, knight to rook, rook to bishop, bishop to king, king to pawn). Only fires when there is room in the stock, and pawns don't trigger it. A legendary sacrifice gambit built on Wrecking Ball's capture hook. Needs the Gambit Creation API, which installs automatically.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "MatryoshkasGambit.zip",
       "folder": "MatryoshkasGambit",
@@ -931,12 +947,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "matryoshka",
+          "name": "Matryoshka's Gambit",
+          "rarity": "legendary",
+          "price": 10,
+          "description": "If any of your pieces is captured, earn a piece of the next highest value. <br>(<sprite=10>><sprite=7>><sprite=6>><sprite=8>><sprite=9>><sprite=5>)",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/MatryoshkasGambit/Matryoshka.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-08-20",
+      "addedAt": "2026-08-22",
       "official": false,
-      "reviewed": false,
-      "issue": 26,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/26",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.1",
         "version": "1.0.1",
@@ -995,7 +1024,7 @@
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:38:24Z",
+      "repoPushedAt": "2026-08-22T10:43:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1055,9 +1084,10 @@
     },
     {
       "id": "schrodinger",
-      "name": "Shcrodinger's Gambit",
-      "author": "FRO_PWR",
-      "summary": "If any of your pieces is threatened, it becomes default.",
+      "name": "Schrodinger's Gambit",
+      "author": "Agent15",
+      "summary": "If any of your phantom pieces is threatened, it becomes default.",
+      "description": "At the start of each of your turns, every phantom piece of yours that an enemy is threatening loses its phantom state and turns back into a normal piece. A rare gambit that mixes Crybaby's threat scan with Necromancer's phantom reset. Needs the Gambit Creation API, which installs automatically.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "SchrodingersGambit.zip",
       "folder": "SchrodingersGambit",
@@ -1065,12 +1095,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "schrodinger",
+          "name": "Schrödinger's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "If any of your <color=ß>PHANTOM</color> pieces is <wave><sprite=11> THREATENED</wave>, it becomes DEFAULT.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SchrodingersGambit/Schrodinger.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-08-18",
+      "addedAt": "2026-08-22",
       "official": false,
-      "reviewed": false,
-      "issue": 24,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/24",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -1195,7 +1238,7 @@
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T10:38:24Z",
+      "repoPushedAt": "2026-08-22T10:43:47Z",
       "license": "MIT",
       "archived": false
     }
