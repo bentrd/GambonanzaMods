@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-21T23:42:29.646Z",
+  "generatedAt": "2026-08-22T01:53:40.346Z",
   "count": 22,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 16,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T23:13:02Z",
+      "repoPushedAt": "2026-08-21T23:42:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -375,7 +375,7 @@
     {
       "id": "en-passant",
       "name": "En Passant's Gambit",
-      "author": "Agent15",
+      "author": "FRO_PWR",
       "summary": "You can capture the last enemy piece to move by moving a piece over its original tile.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "EnPassantsGambit.zip",
@@ -390,9 +390,22 @@
       "reviewed": false,
       "issue": 27,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/27",
-      "latest": null,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "I'm using this release as a bucket for every 1st edition gambit mod now. Fight me.\r\nAdded En Passant's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "EnPassantsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/EnPassantsGambit.zip",
+          "size": 6243,
+          "sha256": "67b79fe5e667e0a8842788e02304ccc8fa42fc903e930bb11cfa6092574fb78c"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
       "downloads": 0,
-      "pending": true,
       "stars": 0,
       "repoPushedAt": "2026-08-21T23:06:29Z",
       "license": "MIT",
@@ -435,7 +448,7 @@
       },
       "downloads": 15,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T23:13:02Z",
+      "repoPushedAt": "2026-08-21T23:42:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -583,7 +596,7 @@
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T23:13:02Z",
+      "repoPushedAt": "2026-08-21T23:42:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -849,7 +862,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T23:13:02Z",
+      "repoPushedAt": "2026-08-21T23:42:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -982,7 +995,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T23:13:02Z",
+      "repoPushedAt": "2026-08-21T23:42:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1062,7 +1075,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Schrodinger's Gambit: Every time one of your phantom pieces is threatened, it becomes default.",
+        "notes": "I'm using this release as a bucket for every 1st edition gambit mod now. Fight me.\r\nAdded En Passant's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -1182,7 +1195,7 @@
       },
       "downloads": 14,
       "stars": 3,
-      "repoPushedAt": "2026-08-21T23:13:02Z",
+      "repoPushedAt": "2026-08-21T23:42:30Z",
       "license": "MIT",
       "archived": false
     }
