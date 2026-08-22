@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T22:36:24.763Z",
-  "count": 23,
+  "generatedAt": "2026-08-22T22:40:09.019Z",
+  "count": 24,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:35:41Z",
+      "repoPushedAt": "2026-08-22T22:36:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -305,6 +305,31 @@
       "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-08-22T22:30:50Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "coop",
+      "name": "Co-op",
+      "author": "ben-gambo",
+      "summary": "Two players, one board, over Steam. Shared shop, own pieces, enemy plays twice. (beta)",
+      "repo": "ben-gambo/mods",
+      "asset": "Coop.zip",
+      "folder": "Coop",
+      "tags": [
+        "gameplay"
+      ],
+      "submittedBy": "ben-gambo",
+      "addedAt": "2026-08-22",
+      "official": false,
+      "reviewed": false,
+      "issue": 29,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/29",
+      "latest": null,
+      "downloads": 0,
+      "pending": true,
+      "stars": 0,
+      "repoPushedAt": "2026-08-22T22:10:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -505,7 +530,7 @@
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:35:41Z",
+      "repoPushedAt": "2026-08-22T22:36:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -653,7 +678,7 @@
       },
       "downloads": 24,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:35:41Z",
+      "repoPushedAt": "2026-08-22T22:36:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -919,7 +944,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:35:41Z",
+      "repoPushedAt": "2026-08-22T22:36:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -1066,7 +1091,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:35:41Z",
+      "repoPushedAt": "2026-08-22T22:36:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -1280,7 +1305,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T22:35:41Z",
+      "repoPushedAt": "2026-08-22T22:36:25Z",
       "license": "MIT",
       "archived": false
     }
