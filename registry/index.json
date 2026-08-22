@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-22T16:44:12.591Z",
+  "generatedAt": "2026-08-22T17:09:00.222Z",
   "count": 22,
   "releases": {
     "framework": {
@@ -86,47 +86,47 @@
       ]
     },
     "manager": {
-      "tag": "manager-v1.7.1",
-      "version": "1.7.1",
-      "publishedAt": "2026-08-22T10:37:09Z",
-      "notes": "\n- **Wear several texture packs at once**, in an order you control. Worn packs\n  move to the front of the shelf with a \"worn 1st / 2nd\" badge and a pair of\n  ▲▼ arrows; where two of them change the same sprite or the same line, the\n  higher one wins. Everything else stays where it was - one pack behaves\n  exactly as before, and whatever you were wearing stays on.\n- Under the hood this had to merge properly rather than layer. A pack's art is\n  stored as WHOLE game sheets - 210 gambit icons on one 512x512 texture - so\n  handing the game two packs that both touch that sheet would have let the\n  second one paint over the first one's icon and silently lose it. The manager\n  now resolves one winner per sprite and per string across the stack, then\n  composites those onto the pristine sheet once. The game still receives a\n  single pack and needs no update.\n- A modpack remembers the whole stack, not one pack, so switching modpacks\n  still switches the entire look. Shared modpacks carry the stack and its\n  order, because the same two packs in the other order are a different setup.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.7.1",
+      "tag": "manager-v1.7.2",
+      "version": "1.7.2",
+      "publishedAt": "2026-08-22T17:06:56Z",
+      "notes": "\n- **Every mod, modpack and texture pack now has its own page** - in the app\n  and on the website. In the app, click any card for the whole story:\n  description, the gambits at full size, release notes, downloads, license,\n  provenance. On the web, the same page lives at\n  `bentrd.github.io/GambonanzaMods/mod/<id>/` with an **Open in Mod Manager**\n  button that jumps straight to it in the app.\n- **Deep links.** The app registers the `gmm://` scheme: `gmm://mod/<id>`,\n  `gmm://modpack/<id>` and `gmm://texturepack/<id>` open the matching page,\n  whether the app is already running or not. Links carry a registry id and\n  nothing else - never a URL or a file - so a malicious link can name a page\n  but can't smuggle anything onto your machine, and nothing installs without\n  the same confirmation as always. A **Copy link** button on every page hands\n  you the website URL, which is the one to paste in Discord (Discord doesn't\n  linkify `gmm://`, and friends without the app land on a download button\n  instead of nothing).\n- **The Play button no longer does nothing on Linux.** It hands the launch to\n  Steam as before, but if the desktop has no handler for `steam://` - common on\n  Linux, and the case with a Flatpak Steam - the manager starts the game's own\n  executable instead and says so. When Steam refuses the handoff outright, that\n  now shows up as an error on the button rather than silence.\n- Fixed a bogus \"could not fetch ... redirect with no destination\" warning in\n  the activity log. The registry index is fetched with the cached tag attached,\n  and the \"nothing changed since last time\" reply was being mistaken for a\n  broken redirect - so every cached refresh logged a failure it had not had.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.7.2",
       "assets": [
         {
-          "name": "Gambonanza.Mod.Manager-1.7.1-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1-arm64-mac.zip",
-          "size": 119657336,
-          "sha256": "ef76a9bce10901b8423dc786a044bc335c69a22382625d3c425087704e78bf66"
+          "name": "Gambonanza.Mod.Manager-1.7.2-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2-arm64-mac.zip",
+          "size": 119665604,
+          "sha256": "63047129284f77b179592a2502feb8765c22de285e76ec1a504a29ba32a0ca02"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.7.1-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1-arm64.dmg",
-          "size": 119588139,
-          "sha256": "5d745cc639010db3b70c32013c1420b94d0a9229cd757f60f723308c8271b537"
+          "name": "Gambonanza.Mod.Manager-1.7.2-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2-arm64.dmg",
+          "size": 119557229,
+          "sha256": "48145f5ec4fdf7d02fa9db452e3bf62f8222fea381b659aa49b9014ad34c9eb8"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.7.1-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1-mac.zip",
-          "size": 121783879,
-          "sha256": "f3bbc9c9e69441a9f11c6d0ba67a874743a4cffeebb9c15a824c49ba13978026"
+          "name": "Gambonanza.Mod.Manager-1.7.2-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2-mac.zip",
+          "size": 121792147,
+          "sha256": "2c8c5919a682a5c40b113808da80025e70e8bfdcb2cd6cf6a232128718e7c492"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.7.1.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1.AppImage",
-          "size": 127901181,
-          "sha256": "49ecd733afc53058b8ec0451622576a54ef912a4121293df7b8cb473da8050e0"
+          "name": "Gambonanza.Mod.Manager-1.7.2.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2.AppImage",
+          "size": 127909369,
+          "sha256": "3b66690af2ff461c4bf8c1d31e2677a09b9ad48fcad1be31b58ec10f63eb73ae"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.7.1.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager-1.7.1.dmg",
-          "size": 121661794,
-          "sha256": "630deb006305b264d7063a3deed8edf85e170cc96348b89ea7229329fb128233"
+          "name": "Gambonanza.Mod.Manager-1.7.2.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2.dmg",
+          "size": 121653718,
+          "sha256": "62a675773dfe1ba6b578c3366c7420e4c6b6ab9e75f14f341878e40c22233aef"
         },
         {
-          "name": "Gambonanza.Mod.Manager.Setup.1.7.1.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.1/Gambonanza.Mod.Manager.Setup.1.7.1.exe",
-          "size": 99772647,
-          "sha256": "ebf23531dc16e2dbdad548658dbe2a140483c235b5220c65e17660b9f3111310"
+          "name": "Gambonanza.Mod.Manager.Setup.1.7.2.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager.Setup.1.7.2.exe",
+          "size": 99777929,
+          "sha256": "f3a80bf9a0c02cfa1ccf76a89bfa02d1f4c1a21cf79f83d029d125f50d7f3834"
         }
       ]
     }
@@ -209,7 +209,7 @@
       },
       "downloads": 20,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T15:39:40Z",
+      "repoPushedAt": "2026-08-22T17:06:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -463,7 +463,7 @@
       },
       "downloads": 19,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T15:39:40Z",
+      "repoPushedAt": "2026-08-22T17:06:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -611,7 +611,7 @@
       },
       "downloads": 23,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T15:39:40Z",
+      "repoPushedAt": "2026-08-22T17:06:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -877,7 +877,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T15:39:40Z",
+      "repoPushedAt": "2026-08-22T17:06:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1024,7 +1024,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T15:39:40Z",
+      "repoPushedAt": "2026-08-22T17:06:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1238,7 +1238,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-22T15:39:40Z",
+      "repoPushedAt": "2026-08-22T17:06:47Z",
       "license": "MIT",
       "archived": false
     }
