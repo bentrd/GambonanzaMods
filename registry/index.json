@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-23T11:39:57.691Z",
+  "generatedAt": "2026-08-23T13:05:46.098Z",
   "count": 24,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T10:44:41Z",
+      "repoPushedAt": "2026-08-23T11:39:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -551,9 +551,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 20,
+      "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T10:44:41Z",
+      "repoPushedAt": "2026-08-23T11:39:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -701,7 +701,7 @@
       },
       "downloads": 24,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T10:44:41Z",
+      "repoPushedAt": "2026-08-23T11:39:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -967,7 +967,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T10:44:41Z",
+      "repoPushedAt": "2026-08-23T11:39:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -1114,7 +1114,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T10:44:41Z",
+      "repoPushedAt": "2026-08-23T11:39:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -1328,7 +1328,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T10:44:41Z",
+      "repoPushedAt": "2026-08-23T11:39:58Z",
       "license": "MIT",
       "archived": false
     }
@@ -1375,7 +1375,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 41,
+      "downloads": 42,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
