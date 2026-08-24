@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-24T19:04:09.345Z",
+  "generatedAt": "2026-08-24T19:15:51.877Z",
   "count": 25,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T17:50:16Z",
+      "repoPushedAt": "2026-08-24T19:04:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -336,23 +336,23 @@
       "issue": 29,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/29",
       "latest": {
-        "tag": "Coop-v0.0.5",
-        "version": "0.0.5",
-        "publishedAt": "2026-08-24T17:17:35Z",
-        "notes": "Two players, one board, over Steam. Shared shop, own pieces, enemy plays twice.\n\nUnzip into your game's `Mods/` folder. **Both players need this version** — the\nwire protocol changed, so 0.0.3 refuses to play with 0.0.2 rather than desyncing.\n\n## 0.0.5\n\n- **Soft-lock fixed.** The double enemy turn rides the game's own FinalBossSkip,\n  but the game only consumes that flag when its post-turn scan finds you a legal\n  move - a stalemate check could strand it, freezing both clients with the enemy\n  having played once. The watchdog now detects the strand and recovers the round;\n  a second net unlocks input if the game ever withholds it for 8s outside a\n  stalemate.\n- **The gachapon is shared.** The capsule and its cards were already identical\n  (seeded); now the pick is too - take or sell, first click wins, and skipping\n  closes it on both clients. Same treatment the wheels got.\n- **The turn banner names the player.** \"Your turn! (P1)\" on your screen,\n  \"P1's turn!\" on theirs, with the seat colour on the P1/P2 tag. The enemy\n  phase keeps the vanilla banner.\n- **Tile-selection badges lost their P1/P2 text** - the colours carry it.\n- **The ally cursor is smooth**: 30 Hz on the wire (was 10) plus per-frame\n  smoothing on the receiver.\n- **Income now rounds up.** Each player banks ceil(earned/2) - two of you never\n  earn less than one solo player. The WIN screen shows it: a CO-OP SPLIT row in\n  the money breakdown, and the collect button shows what you actually bank.\n\n## 0.0.4\n\n- **The run-start piece wheel is shared.** 0.0.3 synced the token-shop wheel, but\n  the wheel at the start of a run is a different component wearing the same look -\n  either player's STOP now resolves both clients, hit-button re-aims included.\n- **Setup-phase moves are mirrored.** Rearranging pieces between stock and board\n  before pressing GO now replicates - stock↔board both ways, swaps included. This\n  was the board mismatch you could create before the battle even started.\n- **GO is shared.** Either player's GO sends both clients into battle, so one\n  player can no longer fight while the other is still arranging.\n- **Selling is mirrored.** Selling a piece (right-click) or a gambit now replays\n  on the other client through the game's own sell path, so the shared wallet and\n  the board stay in step. Buying, rerolls and limit upgrades already synced.\n- The P1/P2 corner labels on tile selections are darker and bolded - they washed\n  out against the tile art.\n\n## 0.0.3\n\n- **The tutorial is disabled while the mod is installed.** It drives the game\n  directly — locking shop buttons, forcing gambits into the roll, taking over\n  navigation — and none of that can be shared between two clients, so a\n  first-time host used to come apart within the first wave.\n- **The piece wheel is shared.** Either player can hit STOP, and the piece that\n  gets taken (or sold) lands on both clients. Previously each player resolved\n  their own wheel and the two stocks diverged for the rest of the run.\n- **P2's co-op panel opens by itself** when they join, instead of leaving them\n  sitting on the home menu with nothing to show that the lobby worked.\n\n## 0.0.2\n\n- A native CO-OP button and panel in the home menu, built from the game's own\n  menu parts. The console commands still work but nobody has to use them.\n\n## 0.0.1\n\n- Fixed five critical desyncs, marked the mod beta.\n",
-        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/Coop-v0.0.5",
+        "tag": "Coop-v0.0.6",
+        "version": "0.0.6",
+        "publishedAt": "2026-08-24T19:15:21Z",
+        "notes": "Two players, one board, over Steam. Shared shop, own pieces, enemy plays twice.\n\nUnzip into your game's `Mods/` folder. **Both players need this version** — the\nwire protocol changed, so 0.0.3 refuses to play with 0.0.2 rather than desyncing.\n\n## 0.0.6\n\n- **Waiting works.** A wait is more than a seat change - it decrements the shared\n  3-per-battle counter and it is what triggers the enemy's turn - but the old\n  handler mirrored none of that, so the peer's game sat waiting for an action\n  that never came: the enemy never played and the round died. A remote wait now\n  replays through the game's own WaitManager on the other client, so the counter,\n  the costly-wait coin charge and the enemy phase all run the vanilla path on\n  both sides.\n- The wait button is now properly gated to your own window (it could look alive\n  on the other player's turn), and a window that opened after a wait no longer\n  has a dead wait button.\n- A failed enemy phase can no longer leak its double-turn flag into the next\n  round (which used to fire a rogue enemy move mid-window after a recovery).\n- **Promotions no longer derail the turn order.** A seat-0 promotion used to let\n  the interleaved enemy turn play for real, and a replayed promotion reset the\n  shared seats mid-apply - both ended in a soft lock or a rogue enemy move.\n- **Round counters stay in step.** The host's double enemy turn quietly advanced\n  its round counter one more than the guest's every round, splitting everything\n  keyed on it (Savage Mat, crumble timing). Skipped enemy turns (bribes, demons,\n  trapped enemies) now also replay their side effects on the other client.\n- **Strains actually sync now.** The run-start message always carried the host's\n  strain list, but the game only reads it back when LOADING a save - a new co-op\n  run played with whatever each client's last solo run had selected: different\n  wheel counts, different strain rules on the two boards. The synced list is now\n  pushed into the game's live strain state on both clients, and the \"enemy plays\n  first\" strain's wave opener is host-authoritative like every other enemy turn.\n- Promotion detection now uses the game's own signal instead of tile geometry,\n  which fixes two corners: the Excalibur gambit's promote-next-to-the-king (not\n  an end tile) desynced the seats, and a skipped promotion (no enemies left)\n  left the other client waiting forever for a choice.\n\n## 0.0.5\n\n- **Soft-lock fixed.** The double enemy turn rides the game's own FinalBossSkip,\n  but the game only consumes that flag when its post-turn scan finds you a legal\n  move - a stalemate check could strand it, freezing both clients with the enemy\n  having played once. The watchdog now detects the strand and recovers the round;\n  a second net unlocks input if the game ever withholds it for 8s outside a\n  stalemate.\n- **The gachapon is shared.** The capsule and its cards were already identical\n  (seeded); now the pick is too - take or sell, first click wins, and skipping\n  closes it on both clients. Same treatment the wheels got.\n- **The turn banner names the player.** \"Your turn! (P1)\" on your screen,\n  \"P1's turn!\" on theirs, with the seat colour on the P1/P2 tag. The enemy\n  phase keeps the vanilla banner.\n- **Tile-selection badges lost their P1/P2 text** - the colours carry it.\n- **The ally cursor is smooth**: 30 Hz on the wire (was 10) plus per-frame\n  smoothing on the receiver.\n- **Income now rounds up.** Each player banks ceil(earned/2) - two of you never\n  earn less than one solo player. The WIN screen shows it: a CO-OP SPLIT row in\n  the money breakdown, and the collect button shows what you actually bank.\n\n## 0.0.4\n\n- **The run-start piece wheel is shared.** 0.0.3 synced the token-shop wheel, but\n  the wheel at the start of a run is a different component wearing the same look -\n  either player's STOP now resolves both clients, hit-button re-aims included.\n- **Setup-phase moves are mirrored.** Rearranging pieces between stock and board\n  before pressing GO now replicates - stock↔board both ways, swaps included. This\n  was the board mismatch you could create before the battle even started.\n- **GO is shared.** Either player's GO sends both clients into battle, so one\n  player can no longer fight while the other is still arranging.\n- **Selling is mirrored.** Selling a piece (right-click) or a gambit now replays\n  on the other client through the game's own sell path, so the shared wallet and\n  the board stay in step. Buying, rerolls and limit upgrades already synced.\n- The P1/P2 corner labels on tile selections are darker and bolded - they washed\n  out against the tile art.\n\n## 0.0.3\n\n- **The tutorial is disabled while the mod is installed.** It drives the game\n  directly — locking shop buttons, forcing gambits into the roll, taking over\n  navigation — and none of that can be shared between two clients, so a\n  first-time host used to come apart within the first wave.\n- **The piece wheel is shared.** Either player can hit STOP, and the piece that\n  gets taken (or sold) lands on both clients. Previously each player resolved\n  their own wheel and the two stocks diverged for the rest of the run.\n- **P2's co-op panel opens by itself** when they join, instead of leaving them\n  sitting on the home menu with nothing to show that the lobby worked.\n\n## 0.0.2\n\n- A native CO-OP button and panel in the home menu, built from the game's own\n  menu parts. The console commands still work but nobody has to use them.\n\n## 0.0.1\n\n- Fixed five critical desyncs, marked the mod beta.\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/Coop-v0.0.6",
         "asset": {
           "name": "Coop.zip",
-          "url": "https://github.com/ben-gambo/mods/releases/download/Coop-v0.0.5/Coop.zip",
-          "size": 37877,
-          "sha256": "013a0514943fc0733f169b1b223a117450ce8bcef28b774d17935603af9d3e3e"
+          "url": "https://github.com/ben-gambo/mods/releases/download/Coop-v0.0.6/Coop.zip",
+          "size": 38952,
+          "sha256": "b2c2fcb7e780ce9dc8dbb593852b66d95c6194f5b72223f8b57667a0490bac9e"
         },
-        "manifestVersion": "0.0.5",
+        "manifestVersion": "0.0.6",
         "manifestAuthor": "Ben"
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T17:17:35Z",
+      "repoPushedAt": "2026-08-24T19:15:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -553,7 +553,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T17:50:16Z",
+      "repoPushedAt": "2026-08-24T19:04:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -607,7 +607,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T17:17:35Z",
+      "repoPushedAt": "2026-08-24T19:15:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -701,7 +701,7 @@
       },
       "downloads": 24,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T17:50:16Z",
+      "repoPushedAt": "2026-08-24T19:04:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -808,7 +808,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T17:17:35Z",
+      "repoPushedAt": "2026-08-24T19:15:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -967,7 +967,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T17:50:16Z",
+      "repoPushedAt": "2026-08-24T19:04:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -1114,7 +1114,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T17:50:16Z",
+      "repoPushedAt": "2026-08-24T19:04:10Z",
       "license": "MIT",
       "archived": false
     },
@@ -1328,7 +1328,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T17:50:16Z",
+      "repoPushedAt": "2026-08-24T19:04:10Z",
       "license": "MIT",
       "archived": false
     },
