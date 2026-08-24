@@ -1,0 +1,32 @@
+{
+  "id": "stop-signs-gambit",
+  "name": "Stop Sign's Gambit",
+  "author": "Minty",
+  "summary": "Waiting skips the enemy's turn.",
+  "description": "Adds a common gambit that hooks the game's wait action: every time you choose to wait, the enemy's turn is skipped as well. Costs 4 in the shop and unlocks automatically, so it can show up in runs straight away.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "StopSignsGambit.zip",
+  "folder": "StopSignsGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/StopSignsGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.1.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "stopsign",
+      "name": "Stop Sign's Gambit",
+      "rarity": "common",
+      "price": 4,
+      "description": "<color=µ>Waiting</color> skips the enemy's turn.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/StopSignsGambit/StopSign.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-08-24"
+}
