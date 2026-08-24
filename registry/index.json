@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-24T13:17:34.117Z",
+  "generatedAt": "2026-08-24T14:28:05.387Z",
   "count": 25,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T11:47:10Z",
+      "repoPushedAt": "2026-08-24T14:27:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -553,7 +553,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T11:47:10Z",
+      "repoPushedAt": "2026-08-24T14:27:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -701,7 +701,7 @@
       },
       "downloads": 24,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T11:47:10Z",
+      "repoPushedAt": "2026-08-24T14:27:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -967,7 +967,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T11:47:10Z",
+      "repoPushedAt": "2026-08-24T14:27:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1114,7 +1114,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T11:47:10Z",
+      "repoPushedAt": "2026-08-24T14:27:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1328,7 +1328,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T11:47:10Z",
+      "repoPushedAt": "2026-08-24T14:27:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1336,19 +1336,35 @@
       "id": "stop-signs-gambit",
       "name": "Stop Sign's Gambit",
       "author": "Minty",
-      "summary": "Waiting skips the enemy turn",
+      "summary": "Waiting skips the enemy's turn.",
+      "description": "Adds a common gambit that hooks the game's wait action: every time you choose to wait, the enemy's turn is skipped as well. Costs 4 in the shop and unlocks automatically, so it can show up in runs straight away.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "StopSignsGambit.zip",
       "folder": "StopSignsGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/StopSignsGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.1.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "stopsign",
+          "name": "Stop Sign's Gambit",
+          "rarity": "common",
+          "price": 4,
+          "description": "<color=µ>Waiting</color> skips the enemy's turn.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/StopSignsGambit/StopSign.png"
+        }
       ],
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-24",
       "official": false,
-      "reviewed": false,
-      "issue": 30,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/30",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -1366,7 +1382,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T00:17:16Z",
+      "repoPushedAt": "2026-08-24T14:00:33Z",
       "license": "MIT",
       "archived": false
     }
