@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-23T23:39:18.406Z",
-  "count": 24,
+  "generatedAt": "2026-08-24T00:24:05.877Z",
+  "count": 25,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T22:41:52Z",
+      "repoPushedAt": "2026-08-23T23:39:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -553,7 +553,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T22:41:52Z",
+      "repoPushedAt": "2026-08-23T23:39:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -701,7 +701,7 @@
       },
       "downloads": 24,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T22:41:52Z",
+      "repoPushedAt": "2026-08-23T23:39:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -967,7 +967,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T22:41:52Z",
+      "repoPushedAt": "2026-08-23T23:39:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -1114,7 +1114,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T22:41:52Z",
+      "repoPushedAt": "2026-08-23T23:39:19Z",
       "license": "MIT",
       "archived": false
     },
@@ -1328,7 +1328,45 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-23T22:41:52Z",
+      "repoPushedAt": "2026-08-23T23:39:19Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "stop-signs-gambit",
+      "name": "Stop Sign's Gambit",
+      "author": "Minty",
+      "summary": "Waiting skips the enemy turn",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "StopSignsGambit.zip",
+      "folder": "StopSignsGambit",
+      "tags": [
+        "gambits"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-08-24",
+      "official": false,
+      "reviewed": false,
+      "issue": 30,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/30",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-24T00:17:17Z",
+        "notes": "Added Stop Sign's Gambit",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.0",
+        "asset": {
+          "name": "StopSignsGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.0/StopSignsGambit.zip",
+          "size": 4622,
+          "sha256": "afe9ea6e7ba5b5a2920f6bd7552f3a76c0c7542d5ff8abec87059d18cbdfec9c"
+        },
+        "manifestVersion": "1.1.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-24T00:17:16Z",
       "license": "MIT",
       "archived": false
     }
