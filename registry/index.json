@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-24T15:58:39.913Z",
+  "generatedAt": "2026-08-24T16:36:23.714Z",
   "count": 25,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T15:04:04Z",
+      "repoPushedAt": "2026-08-24T15:58:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -336,23 +336,23 @@
       "issue": 29,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/29",
       "latest": {
-        "tag": "Coop-v0.0.2",
-        "version": "0.0.2",
-        "publishedAt": "2026-08-22T22:10:45Z",
-        "notes": "Two players, one board, over Steam. Shared shop, own pieces, enemy plays twice.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`Coop/`](../../tree/Coop-v0.0.2/Coop)\n",
-        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/Coop-v0.0.2",
+        "tag": "Coop-v0.0.3",
+        "version": "0.0.3",
+        "publishedAt": "2026-08-24T16:35:23Z",
+        "notes": "Two players, one board, over Steam. Shared shop, own pieces, enemy plays twice.\n\nUnzip into your game's `Mods/` folder. **Both players need this version** — the\nwire protocol changed, so 0.0.3 refuses to play with 0.0.2 rather than desyncing.\n\n## 0.0.3\n\n- **The tutorial is disabled while the mod is installed.** It drives the game\n  directly — locking shop buttons, forcing gambits into the roll, taking over\n  navigation — and none of that can be shared between two clients, so a\n  first-time host used to come apart within the first wave.\n- **The piece wheel is shared.** Either player can hit STOP, and the piece that\n  gets taken (or sold) lands on both clients. Previously each player resolved\n  their own wheel and the two stocks diverged for the rest of the run.\n- **P2's co-op panel opens by itself** when they join, instead of leaving them\n  sitting on the home menu with nothing to show that the lobby worked.\n\n## 0.0.2\n\n- A native CO-OP button and panel in the home menu, built from the game's own\n  menu parts. The console commands still work but nobody has to use them.\n\n## 0.0.1\n\n- Fixed five critical desyncs, marked the mod beta.\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/Coop-v0.0.3",
         "asset": {
           "name": "Coop.zip",
-          "url": "https://github.com/ben-gambo/mods/releases/download/Coop-v0.0.2/Coop.zip",
-          "size": 31456,
-          "sha256": "6e47b9e3ed6e4c6e4968d7a1fb61fe9c1de89db9f18d95b8aee4857bb83c08f9"
+          "url": "https://github.com/ben-gambo/mods/releases/download/Coop-v0.0.3/Coop.zip",
+          "size": 33558,
+          "sha256": "f1c9f4f85aa83100af4751956dc18bae68dcea99142c3b30282a7d640cad9283"
         },
-        "manifestVersion": "0.0.2",
+        "manifestVersion": "0.0.3",
         "manifestAuthor": "Ben"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-22T22:10:44Z",
+      "repoPushedAt": "2026-08-24T16:35:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -553,7 +553,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T15:04:04Z",
+      "repoPushedAt": "2026-08-24T15:58:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -607,7 +607,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-08-22T22:10:44Z",
+      "repoPushedAt": "2026-08-24T16:35:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -701,7 +701,7 @@
       },
       "downloads": 24,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T15:04:04Z",
+      "repoPushedAt": "2026-08-24T15:58:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -808,7 +808,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-22T22:10:44Z",
+      "repoPushedAt": "2026-08-24T16:35:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -967,7 +967,7 @@
       },
       "downloads": 21,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T15:04:04Z",
+      "repoPushedAt": "2026-08-24T15:58:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -1114,7 +1114,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T15:04:04Z",
+      "repoPushedAt": "2026-08-24T15:58:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -1328,7 +1328,7 @@
       },
       "downloads": 17,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T15:04:04Z",
+      "repoPushedAt": "2026-08-24T15:58:41Z",
       "license": "MIT",
       "archived": false
     },
