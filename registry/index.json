@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T14:09:43.178Z",
-  "count": 29,
+  "generatedAt": "2026-08-25T14:10:46.131Z",
+  "count": 30,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 4,
-      "repoPushedAt": "2026-08-25T13:15:29Z",
+      "repoPushedAt": "2026-08-25T14:09:45Z",
       "license": "MIT",
       "archived": false
     },
@@ -617,7 +617,7 @@
       },
       "downloads": 22,
       "stars": 4,
-      "repoPushedAt": "2026-08-25T13:15:29Z",
+      "repoPushedAt": "2026-08-25T14:09:45Z",
       "license": "MIT",
       "archived": false
     },
@@ -765,7 +765,7 @@
       },
       "downloads": 25,
       "stars": 4,
-      "repoPushedAt": "2026-08-25T13:15:29Z",
+      "repoPushedAt": "2026-08-25T14:09:45Z",
       "license": "MIT",
       "archived": false
     },
@@ -1031,7 +1031,7 @@
       },
       "downloads": 22,
       "stars": 4,
-      "repoPushedAt": "2026-08-25T13:15:29Z",
+      "repoPushedAt": "2026-08-25T14:09:45Z",
       "license": "MIT",
       "archived": false
     },
@@ -1178,7 +1178,7 @@
       },
       "downloads": 18,
       "stars": 4,
-      "repoPushedAt": "2026-08-25T13:15:29Z",
+      "repoPushedAt": "2026-08-25T14:09:45Z",
       "license": "MIT",
       "archived": false
     },
@@ -1399,6 +1399,44 @@
       "archived": false
     },
     {
+      "id": "speed-limits-gambit",
+      "name": "Speed Limit's Gambit",
+      "author": "Minty",
+      "summary": "Moving a piece 1 tile gives $1. Moving a piece 3 or more tiles costs $3",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "SpeedLimitsGambit.zip",
+      "folder": "SpeedLimitsGambit",
+      "tags": [
+        "gambits"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-08-25",
+      "official": false,
+      "reviewed": false,
+      "issue": 36,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/36",
+      "latest": {
+        "tag": "v1.0.3",
+        "version": "1.0.3",
+        "publishedAt": "2026-08-25T14:06:45Z",
+        "notes": "Added Speed Limit's Gambit as well as fixed a few issues with both U-Turn's Gambit and One Way's Gambit.",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.3",
+        "asset": {
+          "name": "SpeedLimitsGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.3/SpeedLimitsGambit.zip",
+          "size": 5692,
+          "sha256": "b2fc16da0af485cd3c7b44176caa1d2182addcd033c2cf7538240b2c7fdd1b3e"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-25T14:06:45Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "spikes-gambit",
       "name": "Spikes' Gambit",
       "author": "TGM",
@@ -1447,7 +1485,7 @@
       },
       "downloads": 18,
       "stars": 4,
-      "repoPushedAt": "2026-08-25T13:15:29Z",
+      "repoPushedAt": "2026-08-25T14:09:45Z",
       "license": "MIT",
       "archived": false
     },
