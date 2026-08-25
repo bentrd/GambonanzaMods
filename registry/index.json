@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T07:20:59.147Z",
+  "generatedAt": "2026-08-25T07:21:30.004Z",
   "count": 27,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:20:34Z",
+      "repoPushedAt": "2026-08-25T07:21:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -555,7 +555,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:20:34Z",
+      "repoPushedAt": "2026-08-25T07:21:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -703,7 +703,7 @@
       },
       "downloads": 25,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:20:34Z",
+      "repoPushedAt": "2026-08-25T07:21:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -969,7 +969,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:20:34Z",
+      "repoPushedAt": "2026-08-25T07:21:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -1116,7 +1116,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:20:34Z",
+      "repoPushedAt": "2026-08-25T07:21:09Z",
       "license": "MIT",
       "archived": false
     },
@@ -1392,15 +1392,16 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:20:34Z",
+      "repoPushedAt": "2026-08-25T07:21:09Z",
       "license": "MIT",
       "archived": false
     },
     {
       "id": "starter-pack",
       "name": "Starter Pack's Gambit",
-      "author": "FRO_PWR",
-      "summary": "Buying a gambit in the shop also earns a piece of its resepctive synergy.",
+      "author": "Agent15",
+      "summary": "Buying a gambit in the shop also earns a piece of each synergy it belongs to.",
+      "description": "A cheap common that pays you back for shopping. Every time you buy a gambit, this one looks at that gambit's synergies (PAWN, ROOK, KNIGHT, BISHOP, QUEEN, KING) and adds a matching piece to your stock for each one - so a two-synergy card hands you two pieces. Gambits with no piece synergy give nothing, and nothing is added once your stock is full. Needs the Gambit Creation API, which installs automatically.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "StarterPacksGambit.zip",
       "folder": "StarterPacksGambit",
@@ -1408,12 +1409,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "starter-pack",
+          "name": "Starter Pack's Gambit",
+          "rarity": "common",
+          "price": 5,
+          "description": "Buying a gambit in the shop also earns a piece of its respective synergy <br><i>(if applicable)</i>",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/StarterPacksGambit/StarterPack.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-25",
       "official": false,
-      "reviewed": false,
-      "issue": 32,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/32",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
