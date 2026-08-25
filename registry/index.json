@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T07:21:30.004Z",
+  "generatedAt": "2026-08-25T07:22:58.393Z",
   "count": 27,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:09Z",
+      "repoPushedAt": "2026-08-25T07:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -555,7 +555,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:09Z",
+      "repoPushedAt": "2026-08-25T07:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -703,7 +703,7 @@
       },
       "downloads": 25,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:09Z",
+      "repoPushedAt": "2026-08-25T07:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -969,7 +969,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:09Z",
+      "repoPushedAt": "2026-08-25T07:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1116,7 +1116,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:09Z",
+      "repoPushedAt": "2026-08-25T07:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1392,7 +1392,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:09Z",
+      "repoPushedAt": "2026-08-25T07:21:31Z",
       "license": "MIT",
       "archived": false
     },
