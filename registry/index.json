@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T07:22:58.393Z",
-  "count": 27,
+  "generatedAt": "2026-08-25T07:24:47.675Z",
+  "count": 29,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:31Z",
+      "repoPushedAt": "2026-08-25T07:24:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -555,7 +555,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:31Z",
+      "repoPushedAt": "2026-08-25T07:24:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -703,7 +703,7 @@
       },
       "downloads": 25,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:31Z",
+      "repoPushedAt": "2026-08-25T07:24:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -969,7 +969,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:31Z",
+      "repoPushedAt": "2026-08-25T07:24:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1116,7 +1116,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:31Z",
+      "repoPushedAt": "2026-08-25T07:24:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1179,6 +1179,61 @@
       "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-08-25T07:20:38Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "one-ways-gambit",
+      "name": "One Way's Gambit",
+      "author": "Minty",
+      "summary": "Moving a piece to the right protects it.",
+      "description": "A rare protective gambit. Every time you move a piece east - any distance, any piece - it comes out of the move with the protected modifier on it. Move in any other direction and nothing happens. Uses the 'Point A' Manager library to work out which way the piece travelled, so both that and the Gambit Creation API install alongside it.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "OneWaysGambit.zip",
+      "folder": "OneWaysGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/OneWaysGambit",
+      "tags": [
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api",
+        "point-a-mngr"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "OneWay",
+          "name": "One Way's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "Moving a piece to the right <color=æ>protects</color> it.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/OneWaysGambit/OneWay.png"
+        }
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-08-25",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.2",
+        "version": "1.0.2",
+        "publishedAt": "2026-08-25T01:31:18Z",
+        "notes": "added One Way's Gambit",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.2",
+        "asset": {
+          "name": "OneWaysGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.2/OneWaysGambit.zip",
+          "size": 5373,
+          "sha256": "6749122c29f05199e3dddf106db7a446d6bd1a503a63e1715d94789dcbe1fbba"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-25T01:31:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -1392,7 +1447,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T07:21:31Z",
+      "repoPushedAt": "2026-08-25T07:24:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1498,6 +1553,61 @@
         "manifestAuthor": "Minty"
       },
       "downloads": 3,
+      "stars": 0,
+      "repoPushedAt": "2026-08-25T01:31:18Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "uturns-gambit",
+      "name": "U-Turn's Gambit",
+      "author": "Minty",
+      "summary": "Moving a piece backwards blesses it.",
+      "description": "A rare gambit that rewards retreating. Any piece you move backwards - south, toward your own side - comes out of the move blessed. Moves in any other direction do nothing. Uses the 'Point A' Manager library to work out which way the piece travelled, so both that and the Gambit Creation API install alongside it.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "UTurnsGambit.zip",
+      "folder": "UTurnsGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/UTurnsGambit",
+      "tags": [
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api",
+        "point-a-mngr"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "UTurn",
+          "name": "U-Turn's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "Moving a piece backwards <color=ƒ>blesses</color> it.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/UTurnsGambit/UTurn.png"
+        }
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-08-25",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.1",
+        "version": "1.0.1",
+        "publishedAt": "2026-08-24T20:03:01Z",
+        "notes": "Added U-Turn's Gambit.",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.1",
+        "asset": {
+          "name": "UTurnsGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.1/UTurnsGambit.zip",
+          "size": 5370,
+          "sha256": "df1d6c2c2e4395b5c2d73df02178b2f92aa55cf1295e45efed08c35ae7daf449"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-25T01:31:18Z",
       "license": "MIT",
