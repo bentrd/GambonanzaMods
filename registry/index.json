@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T11:48:10.186Z",
+  "generatedAt": "2026-08-25T13:15:28.685Z",
   "count": 29,
   "releases": {
     "framework": {
@@ -208,8 +208,8 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 22,
-      "stars": 3,
-      "repoPushedAt": "2026-08-25T10:53:19Z",
+      "stars": 4,
+      "repoPushedAt": "2026-08-25T13:11:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -616,8 +616,8 @@
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 22,
-      "stars": 3,
-      "repoPushedAt": "2026-08-25T10:53:19Z",
+      "stars": 4,
+      "repoPushedAt": "2026-08-25T13:11:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -764,8 +764,8 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 25,
-      "stars": 3,
-      "repoPushedAt": "2026-08-25T10:53:19Z",
+      "stars": 4,
+      "repoPushedAt": "2026-08-25T13:11:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1030,8 +1030,8 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 22,
-      "stars": 3,
-      "repoPushedAt": "2026-08-25T10:53:19Z",
+      "stars": 4,
+      "repoPushedAt": "2026-08-25T13:11:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1177,8 +1177,8 @@
         "manifestAuthor": "Minty"
       },
       "downloads": 18,
-      "stars": 3,
-      "repoPushedAt": "2026-08-25T10:53:19Z",
+      "stars": 4,
+      "repoPushedAt": "2026-08-25T13:11:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1446,8 +1446,8 @@
         "manifestAuthor": "TGM"
       },
       "downloads": 18,
-      "stars": 3,
-      "repoPushedAt": "2026-08-25T10:53:19Z",
+      "stars": 4,
+      "repoPushedAt": "2026-08-25T13:11:52Z",
       "license": "MIT",
       "archived": false
     },
