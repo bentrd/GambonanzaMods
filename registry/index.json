@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T00:24:31.998Z",
+  "generatedAt": "2026-08-25T01:39:07.530Z",
   "count": 26,
   "releases": {
     "framework": {
@@ -166,9 +166,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T23:40:22Z",
+      "repoPushedAt": "2026-08-25T00:24:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -262,7 +262,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -314,7 +314,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -407,7 +407,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -460,7 +460,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -514,7 +514,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -555,7 +555,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T23:40:22Z",
+      "repoPushedAt": "2026-08-25T00:24:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -662,7 +662,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -703,7 +703,7 @@
       },
       "downloads": 25,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T23:40:22Z",
+      "repoPushedAt": "2026-08-25T00:24:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -756,7 +756,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -863,7 +863,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -916,7 +916,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -969,7 +969,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T23:40:22Z",
+      "repoPushedAt": "2026-08-25T00:24:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1022,7 +1022,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1075,7 +1075,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1116,7 +1116,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T23:40:22Z",
+      "repoPushedAt": "2026-08-25T00:24:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1170,7 +1170,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1223,7 +1223,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1277,7 +1277,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1330,7 +1330,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T23:40:22Z",
+      "repoPushedAt": "2026-08-25T00:24:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1367,9 +1367,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T00:15:27Z",
+      "repoPushedAt": "2026-08-25T00:25:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1423,7 +1423,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T20:11:26Z",
+      "repoPushedAt": "2026-08-25T01:31:18Z",
       "license": "MIT",
       "archived": false
     }
