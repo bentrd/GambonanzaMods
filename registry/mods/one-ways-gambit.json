@@ -1,0 +1,33 @@
+{
+  "id": "one-ways-gambit",
+  "name": "One Way's Gambit",
+  "author": "Minty",
+  "summary": "Moving a piece to the right protects it.",
+  "description": "A rare protective gambit. Every time you move a piece east - any distance, any piece - it comes out of the move with the protected modifier on it. Move in any other direction and nothing happens. Uses the 'Point A' Manager library to work out which way the piece travelled, so both that and the Gambit Creation API install alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "OneWaysGambit.zip",
+  "folder": "OneWaysGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/OneWaysGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "point-a-mngr"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "OneWay",
+      "name": "One Way's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "Moving a piece to the right <color=æ>protects</color> it.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/OneWaysGambit/OneWay.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-08-25"
+}

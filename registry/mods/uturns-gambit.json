@@ -1,0 +1,33 @@
+{
+  "id": "uturns-gambit",
+  "name": "U-Turn's Gambit",
+  "author": "Minty",
+  "summary": "Moving a piece backwards blesses it.",
+  "description": "A rare gambit that rewards retreating. Any piece you move backwards - south, toward your own side - comes out of the move blessed. Moves in any other direction do nothing. Uses the 'Point A' Manager library to work out which way the piece travelled, so both that and the Gambit Creation API install alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "UTurnsGambit.zip",
+  "folder": "UTurnsGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/UTurnsGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "point-a-mngr"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "UTurn",
+      "name": "U-Turn's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "Moving a piece backwards <color=ƒ>blesses</color> it.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/UTurnsGambit/UTurn.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-08-25"
+}
