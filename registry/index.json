@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T17:48:30.488Z",
-  "count": 30,
+  "generatedAt": "2026-08-25T18:41:26.030Z",
+  "count": 31,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-25T16:59:07Z",
+      "repoPushedAt": "2026-08-25T17:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -617,7 +617,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-25T16:59:07Z",
+      "repoPushedAt": "2026-08-25T17:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -765,7 +765,7 @@
       },
       "downloads": 25,
       "stars": 5,
-      "repoPushedAt": "2026-08-25T16:59:07Z",
+      "repoPushedAt": "2026-08-25T17:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1031,7 +1031,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-25T16:59:07Z",
+      "repoPushedAt": "2026-08-25T17:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1178,7 +1178,7 @@
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-08-25T16:59:07Z",
+      "repoPushedAt": "2026-08-25T17:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1233,7 +1233,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T14:13:46Z",
+      "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -1288,6 +1288,44 @@
       "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-08-25T00:25:14Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "road-work-aheads-gambit",
+      "name": "Road Work Ahead's Gambit",
+      "author": "Minty",
+      "summary": "Capturing an enemy piece crumbles the tile ahead of it.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "RoadWorkAheadsGambit.zip",
+      "folder": "RoadWorkAheadsGambit",
+      "tags": [
+        "gambits"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-08-25",
+      "official": false,
+      "reviewed": false,
+      "issue": 37,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/37",
+      "latest": {
+        "tag": "v.1.0.5",
+        "version": "1.0.5",
+        "publishedAt": "2026-08-25T18:31:05Z",
+        "notes": "Added Road Work Ahead's Gambit",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v.1.0.5",
+        "asset": {
+          "name": "RoadWorkAheadsGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v.1.0.5/RoadWorkAheadsGambit.zip",
+          "size": 5133,
+          "sha256": "d221e6038798276b207415abf235f1ac0c3204c1f1509f0258088bb78465b63b"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -1432,7 +1470,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T14:13:46Z",
+      "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -1485,7 +1523,7 @@
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-08-25T16:59:07Z",
+      "repoPushedAt": "2026-08-25T17:48:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1592,7 +1630,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T14:13:46Z",
+      "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -1647,7 +1685,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T14:13:46Z",
+      "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",
       "archived": false
     }
