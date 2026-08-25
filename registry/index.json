@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T07:12:30.800Z",
-  "count": 26,
+  "generatedAt": "2026-08-25T07:18:58.258Z",
+  "count": 27,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T05:50:45Z",
+      "repoPushedAt": "2026-08-25T07:18:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -354,7 +354,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T20:06:20Z",
+      "repoPushedAt": "2026-08-25T07:17:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -555,7 +555,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T05:50:45Z",
+      "repoPushedAt": "2026-08-25T07:18:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -609,7 +609,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T20:06:20Z",
+      "repoPushedAt": "2026-08-25T07:17:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -703,7 +703,7 @@
       },
       "downloads": 25,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T05:50:45Z",
+      "repoPushedAt": "2026-08-25T07:18:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -810,7 +810,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T20:06:20Z",
+      "repoPushedAt": "2026-08-25T07:17:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -969,7 +969,7 @@
       },
       "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T05:50:45Z",
+      "repoPushedAt": "2026-08-25T07:18:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1116,7 +1116,69 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T05:50:45Z",
+      "repoPushedAt": "2026-08-25T07:18:35Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "moon-gambit",
+      "name": "Moon Gambit",
+      "author": "Ben",
+      "summary": "The Moon does nothing. Drag it onto the Sun and get the Eclipse's Gambit.",
+      "description": "Two legendary cards. The Moon Gambit (8 coins) has no effect whatsoever - the tooltip says all there is to say: 'Surely this does something... right?'. But drag it onto the vanilla Sun gambit in your tray (either direction works) and the two merge into the Eclipse's Gambit, which is also how the Eclipse gets unlocked in your collection.\n\nThe Eclipse still contains the Sun - earning a KING turns a random blank tile golden - and the Moon crossing in front makes every golden tile behave like EVERY tile at once: your pieces landing there are gilded, blessed, protected, and phantom-copied into your reserve, while enemy pieces stepping onto the gold are trapped, hunter-style, with no visual warning. Selling the Eclipse reverts every golden tile on the spot.",
+      "repo": "ben-gambo/mods",
+      "asset": "MoonGambit.zip",
+      "folder": "MoonGambit",
+      "homepage": "https://github.com/ben-gambo/mods/tree/main/MoonGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.5.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "moon",
+          "name": "Moon Gambit",
+          "rarity": "legendary",
+          "price": 8,
+          "description": "Surely this does<br>something... <i>right?</i>",
+          "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/MoonGambit/moon.png"
+        },
+        {
+          "id": "eclipse",
+          "name": "Eclipse's Gambit",
+          "rarity": "legendary",
+          "price": 12,
+          "description": "Earning a <b>KING</b> turns a tile <color=*>GOLDEN</color>.<br><color=*>GOLDEN</color> tiles behave like <b>EVERY</b> tile.",
+          "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/MoonGambit/eclipse.png"
+        }
+      ],
+      "submittedBy": "ben-gambo",
+      "addedAt": "2026-08-25",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "MoonGambit-v1.0.1",
+        "version": "1.0.1",
+        "publishedAt": "2026-08-25T07:17:52Z",
+        "notes": "Adds the Moon Gambit, a legendary that does nothing at all. Surely it does something... right?\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`MoonGambit/`](../../tree/MoonGambit-v1.0.1/MoonGambit)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/MoonGambit-v1.0.1",
+        "asset": {
+          "name": "MoonGambit.zip",
+          "url": "https://github.com/ben-gambo/mods/releases/download/MoonGambit-v1.0.1/MoonGambit.zip",
+          "size": 10446,
+          "sha256": "09d1cf12eb0815108fbd765a3ddbe2eb21f90b855757e939e11085424094e345"
+        },
+        "manifestVersion": "1.0.1",
+        "manifestAuthor": "Ben"
+      },
+      "downloads": 1,
+      "stars": 0,
+      "repoPushedAt": "2026-08-25T07:17:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1330,7 +1392,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-25T05:50:45Z",
+      "repoPushedAt": "2026-08-25T07:18:35Z",
       "license": "MIT",
       "archived": false
     },
