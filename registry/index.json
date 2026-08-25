@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-25T14:10:46.131Z",
+  "generatedAt": "2026-08-25T15:08:57.849Z",
   "count": 30,
   "releases": {
     "framework": {
@@ -208,8 +208,8 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 22,
-      "stars": 4,
-      "repoPushedAt": "2026-08-25T14:09:45Z",
+      "stars": 5,
+      "repoPushedAt": "2026-08-25T14:10:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -616,8 +616,8 @@
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 22,
-      "stars": 4,
-      "repoPushedAt": "2026-08-25T14:09:45Z",
+      "stars": 5,
+      "repoPushedAt": "2026-08-25T14:10:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -764,8 +764,8 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 25,
-      "stars": 4,
-      "repoPushedAt": "2026-08-25T14:09:45Z",
+      "stars": 5,
+      "repoPushedAt": "2026-08-25T14:10:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1030,8 +1030,8 @@
         "manifestAuthor": "Ben"
       },
       "downloads": 22,
-      "stars": 4,
-      "repoPushedAt": "2026-08-25T14:09:45Z",
+      "stars": 5,
+      "repoPushedAt": "2026-08-25T14:10:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1177,8 +1177,8 @@
         "manifestAuthor": "Minty"
       },
       "downloads": 18,
-      "stars": 4,
-      "repoPushedAt": "2026-08-25T14:09:45Z",
+      "stars": 5,
+      "repoPushedAt": "2026-08-25T14:10:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1231,9 +1231,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T14:06:45Z",
+      "repoPushedAt": "2026-08-25T14:13:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1430,9 +1430,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T14:06:45Z",
+      "repoPushedAt": "2026-08-25T14:13:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1484,8 +1484,8 @@
         "manifestAuthor": "TGM"
       },
       "downloads": 18,
-      "stars": 4,
-      "repoPushedAt": "2026-08-25T14:09:45Z",
+      "stars": 5,
+      "repoPushedAt": "2026-08-25T14:10:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1592,7 +1592,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T14:06:45Z",
+      "repoPushedAt": "2026-08-25T14:13:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1631,23 +1631,23 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.0.3",
-        "version": "1.0.3",
-        "publishedAt": "2026-08-25T14:06:45Z",
-        "notes": "Added Speed Limit's Gambit as well as fixed a few issues with both U-Turn's Gambit and One Way's Gambit.",
-        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.3",
+        "tag": "v1.0.4",
+        "version": "1.0.4",
+        "publishedAt": "2026-08-25T14:13:47Z",
+        "notes": "forgot to hit ctrl s on mod.json :(",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.4",
         "asset": {
           "name": "UTurnsGambit.zip",
-          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.3/UTurnsGambit.zip",
-          "size": 5358,
-          "sha256": "db59b1dc31266b0df66ed9fb78b9aed9b616a146eee5777cb3b2ff16b73f4e1b"
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.4/UTurnsGambit.zip",
+          "size": 5368,
+          "sha256": "a74338a27cac42237853164cdda2170c43508591673426ddbea3390d1c742a2c"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T14:06:45Z",
+      "repoPushedAt": "2026-08-25T14:13:46Z",
       "license": "MIT",
       "archived": false
     }
