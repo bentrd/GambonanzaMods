@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-24T23:40:21.166Z",
-  "count": 25,
+  "generatedAt": "2026-08-25T00:24:31.998Z",
+  "count": 26,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -152,23 +152,23 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.2.0",
-        "version": "1.2.0",
-        "publishedAt": "2026-08-16T20:16:23Z",
-        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
+        "tag": "v1.3.0",
+        "version": "1.3.0",
+        "publishedAt": "2026-08-25T00:15:27Z",
+        "notes": "Added PointAManager",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.3.0",
         "asset": {
           "name": "PointAMngr.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/PointAMngr.zip",
-          "size": 3708,
-          "sha256": "adb7bf5ccb4b520bf501c6a3c4fd2bb305974a25107ba520d2e99ac63ec78e3b"
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.3.0/PointAMngr.zip",
+          "size": 3721,
+          "sha256": "c4378928b2877b952f8d569f657654e8bcd71f4c06ff86bca7ed6ef15c96f003"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 5,
+      "downloads": 0,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -207,9 +207,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 21,
+      "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T22:47:16Z",
+      "repoPushedAt": "2026-08-24T23:40:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -249,7 +249,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "notes": "Migrated Recursion's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "BougiesGambit.zip",
@@ -260,9 +260,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -301,7 +301,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Bounty Hunter's Gambit",
+        "notes": "Added Starter Pack's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -312,9 +312,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -394,7 +394,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "notes": "Migrated Recursion's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "CrybabysGambit.zip",
@@ -405,9 +405,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -447,7 +447,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "notes": "Migrated Recursion's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "DominoEffectsGambit.zip",
@@ -458,9 +458,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 11,
+      "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -501,7 +501,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Bounty Hunter's Gambit",
+        "notes": "Added Starter Pack's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EnPassantsGambit.zip",
@@ -512,9 +512,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -553,9 +553,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 21,
+      "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T22:47:16Z",
+      "repoPushedAt": "2026-08-24T23:40:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -607,7 +607,7 @@
         "manifestVersion": "1.1.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 11,
+      "downloads": 12,
       "stars": 0,
       "repoPushedAt": "2026-08-24T20:06:20Z",
       "license": "MIT",
@@ -649,7 +649,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "notes": "Migrated Recursion's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "FishingNetsGambit.zip",
@@ -660,9 +660,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -701,9 +701,9 @@
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 24,
+      "downloads": 25,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T22:47:16Z",
+      "repoPushedAt": "2026-08-24T23:40:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -743,7 +743,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "notes": "Migrated Recursion's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "GrandMasCookiesGambit.zip",
@@ -754,9 +754,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 8,
+      "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -808,7 +808,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-08-24T20:06:20Z",
       "license": "MIT",
@@ -850,7 +850,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "notes": "Migrated Recursion's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "JumperCablesGambit.zip",
@@ -861,9 +861,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 11,
+      "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -903,7 +903,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "notes": "Migrated Recursion's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "JunksGambit.zip",
@@ -914,9 +914,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -967,9 +967,9 @@
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 21,
+      "downloads": 22,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T22:47:16Z",
+      "repoPushedAt": "2026-08-24T23:40:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -1009,7 +1009,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added Domino Effect's Gambit, Fixed a game-breaking bug in Recursion's gambit",
+        "notes": "Migrated Recursion's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "LobbyistsGambit.zip",
@@ -1020,9 +1020,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -1073,9 +1073,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -1116,7 +1116,7 @@
       },
       "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T22:47:16Z",
+      "repoPushedAt": "2026-08-24T23:40:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -1157,7 +1157,7 @@
         "tag": "v1.2.0",
         "version": "1.2.0",
         "publishedAt": "2026-08-16T20:16:23Z",
-        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
+        "notes": "Migrated PointAManager",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
         "asset": {
           "name": "RecursionsGambit.zip",
@@ -1168,9 +1168,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 9,
+      "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -1210,7 +1210,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Bounty Hunter's Gambit",
+        "notes": "Added Starter Pack's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -1221,9 +1221,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -1264,7 +1264,7 @@
         "tag": "v1.2.0",
         "version": "1.2.0",
         "publishedAt": "2026-08-16T20:16:23Z",
-        "notes": "Added the PointAManager as a separate class. \r\nModified Recursion's Gambit to depend on PointAManager\r\nCreated Sniper's Gambit",
+        "notes": "Migrated PointAManager",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
         "asset": {
           "name": "SnipersGambit.zip",
@@ -1275,9 +1275,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-24T22:03:51Z",
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -1328,9 +1328,48 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
-      "downloads": 17,
+      "downloads": 18,
       "stars": 3,
-      "repoPushedAt": "2026-08-24T22:47:16Z",
+      "repoPushedAt": "2026-08-24T23:40:22Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "starter-pack",
+      "name": "Starter Pack's Gambit",
+      "author": "FRO_PWR",
+      "summary": "Buying a gambit in the shop also earns a piece of its resepctive synergy.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "StarterPacksGambit.zip",
+      "folder": "StarterPacksGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-25",
+      "official": false,
+      "reviewed": false,
+      "issue": 32,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/32",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Starter Pack's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "StarterPacksGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/StarterPacksGambit.zip",
+          "size": 5092,
+          "sha256": "d483e17ea8b5a03bab678a123610117352106d46527f73453c8ca5444dbcac66"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-25T00:15:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -1382,7 +1421,7 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-08-24T20:11:26Z",
       "license": "MIT",
@@ -1410,7 +1449,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 82,
+      "downloads": 88,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -1431,7 +1470,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 42,
+      "downloads": 44,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
