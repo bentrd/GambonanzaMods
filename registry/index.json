@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-26T16:55:14.410Z",
-  "count": 32,
+  "generatedAt": "2026-08-26T17:43:50.895Z",
+  "count": 33,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T16:33:33Z",
+      "repoPushedAt": "2026-08-26T16:55:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T16:33:33Z",
+      "repoPushedAt": "2026-08-26T16:55:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,45 @@
       },
       "downloads": 25,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T16:33:33Z",
+      "repoPushedAt": "2026-08-26T16:55:15Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "golden-roads-gambit",
+      "name": "Golden Road's Gambit",
+      "author": "Minty",
+      "summary": "Promoting into a king turns every tile golden, fills your stock with kings, gives Dainsleif's Gambit, and destroys this gambit.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "GoldenRoadsGambit.zip",
+      "folder": "GoldenRoadsGambit",
+      "tags": [
+        "gambits"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-08-26",
+      "official": false,
+      "reviewed": false,
+      "issue": 38,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/38",
+      "latest": {
+        "tag": "v.1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-26T17:41:33Z",
+        "notes": "Added Golden Road's Gambit and capitalized keywords in the descriptions of Stop Sign's, U-Turn's, and One Way's Gambits.\r\n\r\nMarks the completion of the Roadside Pack",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v.1.1.0",
+        "asset": {
+          "name": "GoldenRoadsGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v.1.1.0/GoldenRoadsGambit.zip",
+          "size": 5207,
+          "sha256": "6d09a0f4bf0c55b9995f929c833081b1858e59eebefe72624ef6bd93ddf6a0eb"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-26T17:41:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1085,7 +1123,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T16:33:33Z",
+      "repoPushedAt": "2026-08-26T16:55:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -1232,7 +1270,7 @@
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T16:33:33Z",
+      "repoPushedAt": "2026-08-26T16:55:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -1271,23 +1309,23 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.0.3",
-        "version": "1.0.3",
-        "publishedAt": "2026-08-25T14:06:45Z",
-        "notes": "Added Speed Limit's Gambit as well as fixed a few issues with both U-Turn's Gambit and One Way's Gambit.",
-        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.3",
+        "tag": "v.1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-26T17:41:33Z",
+        "notes": "Added Golden Road's Gambit and capitalized keywords in the descriptions of Stop Sign's, U-Turn's, and One Way's Gambits.\r\n\r\nMarks the completion of the Roadside Pack",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v.1.1.0",
         "asset": {
           "name": "OneWaysGambit.zip",
-          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.3/OneWaysGambit.zip",
-          "size": 5385,
-          "sha256": "d097efd7a457708ea0986ebe6a5cd84547f5743cd7afaca3ec21c3386b7c9bba"
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v.1.1.0/OneWaysGambit.zip",
+          "size": 5382,
+          "sha256": "19e8cfc81b3c981a8a3f0471b216069449a302aa5ebd822ab3bcd74bc8273acf"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T18:31:05Z",
+      "repoPushedAt": "2026-08-26T17:41:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1395,7 +1433,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T18:31:05Z",
+      "repoPushedAt": "2026-08-26T17:41:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1557,7 +1595,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T18:31:05Z",
+      "repoPushedAt": "2026-08-26T17:41:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1610,7 +1648,7 @@
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T16:33:33Z",
+      "repoPushedAt": "2026-08-26T16:55:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -1701,23 +1739,23 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-24T00:17:17Z",
-        "notes": "Added Stop Sign's Gambit",
-        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.0",
+        "tag": "v.1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-26T17:41:33Z",
+        "notes": "Added Golden Road's Gambit and capitalized keywords in the descriptions of Stop Sign's, U-Turn's, and One Way's Gambits.\r\n\r\nMarks the completion of the Roadside Pack",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v.1.1.0",
         "asset": {
           "name": "StopSignsGambit.zip",
-          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.0/StopSignsGambit.zip",
-          "size": 4622,
-          "sha256": "afe9ea6e7ba5b5a2920f6bd7552f3a76c0c7542d5ff8abec87059d18cbdfec9c"
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v.1.1.0/StopSignsGambit.zip",
+          "size": 4636,
+          "sha256": "8c6790f5658b8c3281af62b4a3061b4e3c00c722bb35cd99ff9378a9743cedc4"
         },
-        "manifestVersion": "1.1.0",
+        "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T18:31:05Z",
+      "repoPushedAt": "2026-08-26T17:41:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1756,23 +1794,23 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.0.4",
-        "version": "1.0.4",
-        "publishedAt": "2026-08-25T14:13:47Z",
-        "notes": "forgot to hit ctrl s on mod.json :(",
-        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.0.4",
+        "tag": "v.1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-26T17:41:33Z",
+        "notes": "Added Golden Road's Gambit and capitalized keywords in the descriptions of Stop Sign's, U-Turn's, and One Way's Gambits.\r\n\r\nMarks the completion of the Roadside Pack",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v.1.1.0",
         "asset": {
           "name": "UTurnsGambit.zip",
-          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.0.4/UTurnsGambit.zip",
-          "size": 5368,
-          "sha256": "a74338a27cac42237853164cdda2170c43508591673426ddbea3390d1c742a2c"
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v.1.1.0/UTurnsGambit.zip",
+          "size": 5370,
+          "sha256": "ee79e69f8665b30c28b0be429087ff90be1ca66b0c2e7a067adea5675cb36ef6"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T18:31:05Z",
+      "repoPushedAt": "2026-08-26T17:41:32Z",
       "license": "MIT",
       "archived": false
     }
