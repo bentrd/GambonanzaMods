@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-26T16:08:06.196Z",
+  "generatedAt": "2026-08-26T16:25:46.414Z",
   "count": 32,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T15:55:08Z",
+      "repoPushedAt": "2026-08-26T16:08:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -354,7 +354,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T16:06:20Z",
+      "repoPushedAt": "2026-08-26T16:25:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -468,8 +468,8 @@
       "id": "drunkard-gambit",
       "name": "Drunkard",
       "author": "Ben",
-      "summary": "After capturing, the piece staggers to a random empty tile.",
-      "description": "A Rare gambit for 6 coins. Every time one of your pieces captures, it doesn't stay to gloat: it staggers on to a uniformly random intact empty tile, anywhere on the board. Sometimes that walks it out of the counter-attack it just invited; sometimes it delivers it gift-wrapped to the enemy's back rank. That's the drink talking.\n\nTwo sober exceptions: a capture that triggers a promotion is left alone - drunk pawns sober up at the finish line - and if the board has no intact empty tile the piece simply stays put. The card only relocates, it never kills.",
+      "summary": "After capturing, the piece staggers to a random safe empty tile.",
+      "description": "A Rare gambit for 6 coins. Every time one of your pieces captures, it doesn't stay to gloat: it staggers on to a uniformly random intact empty tile, anywhere on the board - but drunkard's luck holds, and it never stumbles onto a square an enemy threatens. It might wander deep behind enemy lines or wobble two squares sideways; it just won't fall into a capture doing it.\n\nTwo sober exceptions: a capture that triggers a promotion is left alone - drunk pawns sober up at the finish line - and if every intact empty tile is threatened, or the board has none at all, the piece simply stays put. The card only relocates, it never kills.",
       "repo": "ben-gambo/mods",
       "asset": "DrunkardGambit.zip",
       "folder": "DrunkardGambit",
@@ -489,7 +489,7 @@
           "name": "Drunkard's Gambit",
           "rarity": "rare",
           "price": 6,
-          "description": "After <b>CAPTURING</b>, the piece staggers<br>to a <color=©>RANDOM</color> empty tile.",
+          "description": "After <b>CAPTURING</b>, the piece staggers<br>to a <color=©>RANDOM</color> <color=∆>SAFE</color> empty tile.",
           "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/DrunkardGambit/drunkard.png"
         }
       ],
@@ -498,23 +498,23 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "DrunkardGambit-v1.0.0",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-26T16:06:21Z",
-        "notes": "Adds Drunkard's Gambit: when capturing, the capturing piece staggers to a random empty tile.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`DrunkardGambit/`](../../tree/DrunkardGambit-v1.0.0/DrunkardGambit)\n",
-        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/DrunkardGambit-v1.0.0",
+        "tag": "DrunkardGambit-v1.0.1",
+        "version": "1.0.1",
+        "publishedAt": "2026-08-26T16:25:05Z",
+        "notes": "Adds Drunkard's Gambit: when capturing, the capturing piece staggers to a random safe empty tile - anywhere on the board, but never onto a square an enemy threatens.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`DrunkardGambit/`](../../tree/DrunkardGambit-v1.0.1/DrunkardGambit)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/DrunkardGambit-v1.0.1",
         "asset": {
           "name": "DrunkardGambit.zip",
-          "url": "https://github.com/ben-gambo/mods/releases/download/DrunkardGambit-v1.0.0/DrunkardGambit.zip",
-          "size": 6839,
-          "sha256": "79eeeb5e84a53b8575422e22fb6be107301d7325edf287bc12450faea10b9cc1"
+          "url": "https://github.com/ben-gambo/mods/releases/download/DrunkardGambit-v1.0.1/DrunkardGambit.zip",
+          "size": 7319,
+          "sha256": "d5c34cb0e902e85c4108a1437c8899981d8d4911005f405ca55f81bc9e4941fa"
         },
-        "manifestVersion": "1.0.0",
+        "manifestVersion": "1.0.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T16:06:20Z",
+      "repoPushedAt": "2026-08-26T16:25:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -576,7 +576,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T16:06:20Z",
+      "repoPushedAt": "2026-08-26T16:25:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T15:55:08Z",
+      "repoPushedAt": "2026-08-26T16:08:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -725,7 +725,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T16:06:20Z",
+      "repoPushedAt": "2026-08-26T16:25:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,7 @@
       },
       "downloads": 25,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T15:55:08Z",
+      "repoPushedAt": "2026-08-26T16:08:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -926,7 +926,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T16:06:20Z",
+      "repoPushedAt": "2026-08-26T16:25:05Z",
       "license": "MIT",
       "archived": false
     },
@@ -1085,7 +1085,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T15:55:08Z",
+      "repoPushedAt": "2026-08-26T16:08:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -1232,7 +1232,7 @@
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T15:55:08Z",
+      "repoPushedAt": "2026-08-26T16:08:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -1285,7 +1285,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",
@@ -1350,18 +1350,34 @@
       "name": "Road Work Ahead's Gambit",
       "author": "Minty",
       "summary": "Capturing an enemy piece crumbles the tile ahead of it.",
+      "description": "A rare gambit that turns every capture into demolition work. Whenever you take an enemy piece, the tile directly ahead of it (one square north) crumbles away, as if a crumbler had been at work. Stock tiles are spared. Installs alongside the Gambit Creation API.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "RoadWorkAheadsGambit.zip",
       "folder": "RoadWorkAheadsGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/RoadWorkAheadsGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "RoadWorkAhead",
+          "name": "Road Work Ahead's Gambit",
+          "rarity": "rare",
+          "price": 4,
+          "description": "Capturing an enemy piece <shake>crumbles</shake> the tile ahead of it.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/RoadWorkAheadsGambit/RoadWorkAhead.png"
+        }
       ],
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-08-25",
+      "addedAt": "2026-08-26",
       "official": false,
-      "reviewed": false,
-      "issue": 37,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/37",
+      "reviewed": true,
       "latest": {
         "tag": "v.1.0.5",
         "version": "1.0.5",
@@ -1377,7 +1393,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 1,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",
@@ -1494,19 +1510,36 @@
       "id": "speed-limits-gambit",
       "name": "Speed Limit's Gambit",
       "author": "Minty",
-      "summary": "Moving a piece 1 tile gives $1. Moving a piece 3 or more tiles costs $3",
+      "summary": "Moving a piece 1 tile gives $1. Moving a piece 3 or more tiles costs $3.",
+      "description": "A common money gambit that rewards careful, short moves. Move a piece exactly one tile and you pocket $1; fling a piece three or more tiles and you're fined $3. Uses the 'Point A' Manager library to measure how far each piece travelled, so both that and the Gambit Creation API install alongside it.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "SpeedLimitsGambit.zip",
       "folder": "SpeedLimitsGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/SpeedLimitsGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api",
+        "point-a-mngr"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "SpeedLimit",
+          "name": "Speed Limit's Gambit",
+          "rarity": "common",
+          "price": 4,
+          "description": "Moving a piece 1 tile gives <color=∞>$1</color>. Moving a piece 3 or more tiles costs <color=∞>$3</color>",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/SpeedLimitsGambit/SpeedLimit.png"
+        }
       ],
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-08-25",
+      "addedAt": "2026-08-26",
       "official": false,
-      "reviewed": false,
-      "issue": 36,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/36",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.3",
         "version": "1.0.3",
@@ -1522,7 +1555,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 1,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",
@@ -1577,7 +1610,7 @@
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T15:55:08Z",
+      "repoPushedAt": "2026-08-26T16:08:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -1737,7 +1770,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-08-25T18:31:05Z",
       "license": "MIT",

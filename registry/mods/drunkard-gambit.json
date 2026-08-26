@@ -2,8 +2,8 @@
   "id": "drunkard-gambit",
   "name": "Drunkard",
   "author": "Ben",
-  "summary": "After capturing, the piece staggers to a random empty tile.",
-  "description": "A Rare gambit for 6 coins. Every time one of your pieces captures, it doesn't stay to gloat: it staggers on to a uniformly random intact empty tile, anywhere on the board. Sometimes that walks it out of the counter-attack it just invited; sometimes it delivers it gift-wrapped to the enemy's back rank. That's the drink talking.\n\nTwo sober exceptions: a capture that triggers a promotion is left alone - drunk pawns sober up at the finish line - and if the board has no intact empty tile the piece simply stays put. The card only relocates, it never kills.",
+  "summary": "After capturing, the piece staggers to a random safe empty tile.",
+  "description": "A Rare gambit for 6 coins. Every time one of your pieces captures, it doesn't stay to gloat: it staggers on to a uniformly random intact empty tile, anywhere on the board - but drunkard's luck holds, and it never stumbles onto a square an enemy threatens. It might wander deep behind enemy lines or wobble two squares sideways; it just won't fall into a capture doing it.\n\nTwo sober exceptions: a capture that triggers a promotion is left alone - drunk pawns sober up at the finish line - and if every intact empty tile is threatened, or the board has none at all, the piece simply stays put. The card only relocates, it never kills.",
   "repo": "ben-gambo/mods",
   "asset": "DrunkardGambit.zip",
   "folder": "DrunkardGambit",
@@ -23,7 +23,7 @@
       "name": "Drunkard's Gambit",
       "rarity": "rare",
       "price": 6,
-      "description": "After <b>CAPTURING</b>, the piece staggers<br>to a <color=©>RANDOM</color> empty tile.",
+      "description": "After <b>CAPTURING</b>, the piece staggers<br>to a <color=©>RANDOM</color> <color=∆>SAFE</color> empty tile.",
       "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/DrunkardGambit/drunkard.png"
     }
   ],
