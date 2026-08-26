@@ -1,0 +1,33 @@
+{
+  "id": "speed-limits-gambit",
+  "name": "Speed Limit's Gambit",
+  "author": "Minty",
+  "summary": "Moving a piece 1 tile gives $1. Moving a piece 3 or more tiles costs $3.",
+  "description": "A common money gambit that rewards careful, short moves. Move a piece exactly one tile and you pocket $1; fling a piece three or more tiles and you're fined $3. Uses the 'Point A' Manager library to measure how far each piece travelled, so both that and the Gambit Creation API install alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "SpeedLimitsGambit.zip",
+  "folder": "SpeedLimitsGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/SpeedLimitsGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "point-a-mngr"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "SpeedLimit",
+      "name": "Speed Limit's Gambit",
+      "rarity": "common",
+      "price": 4,
+      "description": "Moving a piece 1 tile gives <color=∞>$1</color>. Moving a piece 3 or more tiles costs <color=∞>$3</color>",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/SpeedLimitsGambit/SpeedLimit.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-08-26"
+}

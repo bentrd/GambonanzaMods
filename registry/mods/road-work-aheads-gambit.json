@@ -1,0 +1,32 @@
+{
+  "id": "road-work-aheads-gambit",
+  "name": "Road Work Ahead's Gambit",
+  "author": "Minty",
+  "summary": "Capturing an enemy piece crumbles the tile ahead of it.",
+  "description": "A rare gambit that turns every capture into demolition work. Whenever you take an enemy piece, the tile directly ahead of it (one square north) crumbles away, as if a crumbler had been at work. Stock tiles are spared. Installs alongside the Gambit Creation API.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "RoadWorkAheadsGambit.zip",
+  "folder": "RoadWorkAheadsGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/RoadWorkAheadsGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "RoadWorkAhead",
+      "name": "Road Work Ahead's Gambit",
+      "rarity": "rare",
+      "price": 4,
+      "description": "Capturing an enemy piece <shake>crumbles</shake> the tile ahead of it.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/RoadWorkAheadsGambit/RoadWorkAhead.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-08-26"
+}
