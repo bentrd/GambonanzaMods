@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-26T15:55:07.208Z",
-  "count": 31,
+  "generatedAt": "2026-08-26T16:08:06.196Z",
+  "count": 32,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T13:26:21Z",
+      "repoPushedAt": "2026-08-26T15:55:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -354,7 +354,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T07:26:13Z",
+      "repoPushedAt": "2026-08-26T16:06:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -465,6 +465,60 @@
       "archived": false
     },
     {
+      "id": "drunkard-gambit",
+      "name": "Drunkard",
+      "author": "Ben",
+      "summary": "After capturing, the piece staggers to a random empty tile.",
+      "description": "A Rare gambit for 6 coins. Every time one of your pieces captures, it doesn't stay to gloat: it staggers on to a uniformly random intact empty tile, anywhere on the board. Sometimes that walks it out of the counter-attack it just invited; sometimes it delivers it gift-wrapped to the enemy's back rank. That's the drink talking.\n\nTwo sober exceptions: a capture that triggers a promotion is left alone - drunk pawns sober up at the finish line - and if the board has no intact empty tile the piece simply stays put. The card only relocates, it never kills.",
+      "repo": "ben-gambo/mods",
+      "asset": "DrunkardGambit.zip",
+      "folder": "DrunkardGambit",
+      "homepage": "https://github.com/ben-gambo/mods/tree/main/DrunkardGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.3.3",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "drunkard",
+          "name": "Drunkard's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "After <b>CAPTURING</b>, the piece staggers<br>to a <color=©>RANDOM</color> empty tile.",
+          "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/DrunkardGambit/drunkard.png"
+        }
+      ],
+      "submittedBy": "ben-gambo",
+      "addedAt": "2026-08-26",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "DrunkardGambit-v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-26T16:06:21Z",
+        "notes": "Adds Drunkard's Gambit: when capturing, the capturing piece staggers to a random empty tile.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`DrunkardGambit/`](../../tree/DrunkardGambit-v1.0.0/DrunkardGambit)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/DrunkardGambit-v1.0.0",
+        "asset": {
+          "name": "DrunkardGambit.zip",
+          "url": "https://github.com/ben-gambo/mods/releases/download/DrunkardGambit-v1.0.0/DrunkardGambit.zip",
+          "size": 6839,
+          "sha256": "79eeeb5e84a53b8575422e22fb6be107301d7325edf287bc12450faea10b9cc1"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-26T16:06:20Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "moon-gambit",
       "name": "Eclipse Gambit",
       "author": "Ben",
@@ -522,7 +576,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T07:26:13Z",
+      "repoPushedAt": "2026-08-26T16:06:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -617,7 +671,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T13:26:21Z",
+      "repoPushedAt": "2026-08-26T15:55:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +725,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T07:26:13Z",
+      "repoPushedAt": "2026-08-26T16:06:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -765,7 +819,7 @@
       },
       "downloads": 25,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T13:26:21Z",
+      "repoPushedAt": "2026-08-26T15:55:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -872,7 +926,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-08-25T07:26:13Z",
+      "repoPushedAt": "2026-08-26T16:06:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -1031,7 +1085,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T13:26:21Z",
+      "repoPushedAt": "2026-08-26T15:55:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -1178,7 +1232,7 @@
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T13:26:21Z",
+      "repoPushedAt": "2026-08-26T15:55:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -1523,7 +1577,7 @@
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T13:26:21Z",
+      "repoPushedAt": "2026-08-26T15:55:08Z",
       "license": "MIT",
       "archived": false
     },

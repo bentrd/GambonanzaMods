@@ -1,0 +1,32 @@
+{
+  "id": "drunkard-gambit",
+  "name": "Drunkard",
+  "author": "Ben",
+  "summary": "After capturing, the piece staggers to a random empty tile.",
+  "description": "A Rare gambit for 6 coins. Every time one of your pieces captures, it doesn't stay to gloat: it staggers on to a uniformly random intact empty tile, anywhere on the board. Sometimes that walks it out of the counter-attack it just invited; sometimes it delivers it gift-wrapped to the enemy's back rank. That's the drink talking.\n\nTwo sober exceptions: a capture that triggers a promotion is left alone - drunk pawns sober up at the finish line - and if the board has no intact empty tile the piece simply stays put. The card only relocates, it never kills.",
+  "repo": "ben-gambo/mods",
+  "asset": "DrunkardGambit.zip",
+  "folder": "DrunkardGambit",
+  "homepage": "https://github.com/ben-gambo/mods/tree/main/DrunkardGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.3.3",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "drunkard",
+      "name": "Drunkard's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "After <b>CAPTURING</b>, the piece staggers<br>to a <color=©>RANDOM</color> empty tile.",
+      "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/DrunkardGambit/drunkard.png"
+    }
+  ],
+  "submittedBy": "ben-gambo",
+  "addedAt": "2026-08-26"
+}
