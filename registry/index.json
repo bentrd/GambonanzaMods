@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-27T20:35:02.097Z",
-  "count": 34,
+  "generatedAt": "2026-08-27T23:38:22.772Z",
+  "count": 35,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -168,7 +168,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -209,7 +209,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T18:50:55Z",
+      "repoPushedAt": "2026-08-27T20:35:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -262,7 +262,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -301,7 +301,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Mystery's Gambit",
+        "notes": "Added Tortoise's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -314,7 +314,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -407,7 +407,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -460,7 +460,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -617,7 +617,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Mystery's Gambit",
+        "notes": "Added Tortoise's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EnPassantsGambit.zip",
@@ -630,7 +630,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T18:50:55Z",
+      "repoPushedAt": "2026-08-27T20:35:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -778,7 +778,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T18:50:55Z",
+      "repoPushedAt": "2026-08-27T20:35:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -925,7 +925,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1032,7 +1032,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1085,7 +1085,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1138,7 +1138,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T18:50:55Z",
+      "repoPushedAt": "2026-08-27T20:35:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -1191,7 +1191,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1244,7 +1244,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1285,7 +1285,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T18:50:55Z",
+      "repoPushedAt": "2026-08-27T20:35:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -1325,7 +1325,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Mystery's Gambit",
+        "notes": "Added Tortoise's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "MysterysGambit.zip",
@@ -1338,7 +1338,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1447,7 +1447,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1541,7 +1541,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Mystery's Gambit",
+        "notes": "Added Tortoise's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -1554,7 +1554,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1608,7 +1608,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1716,7 +1716,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T18:50:55Z",
+      "repoPushedAt": "2026-08-27T20:35:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -1756,7 +1756,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Mystery's Gambit",
+        "notes": "Added Tortoise's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -1769,7 +1769,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-08-27T01:35:30Z",
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1824,6 +1824,45 @@
       "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "tortoise",
+      "name": "Tortoise's Gambit",
+      "author": "FRO_PWR",
+      "summary": "Every king move has a 1/2 chance to also count as waiting.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "TortoisesGambit.zip",
+      "folder": "TortoisesGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-27",
+      "official": false,
+      "reviewed": false,
+      "issue": 41,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/41",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Tortoise's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "TortoisesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/TortoisesGambit.zip",
+          "size": 4669,
+          "sha256": "61f7156121767caf222af3dd93feb8d425f666419fee4c6595a54599e702e779"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
       "archived": false
     },
