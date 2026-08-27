@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-26T23:42:07.687Z",
-  "count": 33,
+  "generatedAt": "2026-08-27T01:40:11.650Z",
+  "count": 34,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -168,7 +168,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -209,7 +209,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T20:09:47Z",
+      "repoPushedAt": "2026-08-26T23:42:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -262,7 +262,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -301,7 +301,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Starter Pack's Gambit",
+        "notes": "Added Mystery's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -314,7 +314,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -407,7 +407,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -460,7 +460,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -617,7 +617,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Starter Pack's Gambit",
+        "notes": "Added Mystery's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EnPassantsGambit.zip",
@@ -630,7 +630,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T20:09:47Z",
+      "repoPushedAt": "2026-08-26T23:42:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -778,7 +778,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T20:09:47Z",
+      "repoPushedAt": "2026-08-26T23:42:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -910,7 +910,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1017,7 +1017,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1070,7 +1070,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1123,7 +1123,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T20:09:47Z",
+      "repoPushedAt": "2026-08-26T23:42:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -1176,7 +1176,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1229,7 +1229,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1270,7 +1270,46 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T20:09:47Z",
+      "repoPushedAt": "2026-08-26T23:42:08Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "mystery",
+      "name": "Mystery's Gambit",
+      "author": "FRO_PWR",
+      "summary": "Mimics the effects of three random gambits (Including modded gambits)",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "MysterysGambit.zip",
+      "folder": "MysterysGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-27",
+      "official": false,
+      "reviewed": false,
+      "issue": 39,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/39",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Mystery's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "MysterysGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/MysterysGambit.zip",
+          "size": 7148,
+          "sha256": "8f83a53bd017d0691872d502d7f11244553cf12c7e4a42285282a2e970b4eb24"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1379,7 +1418,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1473,7 +1512,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Starter Pack's Gambit",
+        "notes": "Added Mystery's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -1486,7 +1525,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1540,7 +1579,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1648,7 +1687,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T20:09:47Z",
+      "repoPushedAt": "2026-08-26T23:42:08Z",
       "license": "MIT",
       "archived": false
     },
@@ -1688,7 +1727,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Starter Pack's Gambit",
+        "notes": "Added Mystery's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -1701,7 +1740,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-08-26T01:47:04Z",
+      "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
       "archived": false
     },
