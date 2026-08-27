@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-27T08:20:34.626Z",
+  "generatedAt": "2026-08-27T09:57:23.851Z",
   "count": 34,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:04Z",
+      "repoPushedAt": "2026-08-27T08:20:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:04Z",
+      "repoPushedAt": "2026-08-27T08:20:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:04Z",
+      "repoPushedAt": "2026-08-27T08:20:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -870,7 +870,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-08-26T17:50:48Z",
       "license": "MIT",
@@ -1138,7 +1138,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:04Z",
+      "repoPushedAt": "2026-08-27T08:20:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1285,7 +1285,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:04Z",
+      "repoPushedAt": "2026-08-27T08:20:35Z",
       "license": "MIT",
       "archived": false
     },
@@ -1336,7 +1336,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
@@ -1716,7 +1716,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:04Z",
+      "repoPushedAt": "2026-08-27T08:20:35Z",
       "license": "MIT",
       "archived": false
     },
