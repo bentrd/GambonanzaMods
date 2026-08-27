@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-27T01:40:11.650Z",
+  "generatedAt": "2026-08-27T08:20:34.626Z",
   "count": 34,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T23:42:08Z",
+      "repoPushedAt": "2026-08-27T08:20:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T23:42:08Z",
+      "repoPushedAt": "2026-08-27T08:20:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T23:42:08Z",
+      "repoPushedAt": "2026-08-27T08:20:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -828,18 +828,33 @@
       "name": "Golden Road's Gambit",
       "author": "Minty",
       "summary": "Promoting into a king turns every tile golden, fills your stock with kings, gives Dainsleif's Gambit, and destroys this gambit.",
+      "description": "A legendary one-shot jackpot. The moment one of your pawns promotes into a king, the whole board turns golden, your stock fills up with kings, Dainsleif's Gambit appears in this gambit's place, and Golden Road's Gambit destroys itself on the way out. Needs the Gambit Creation API, which installs automatically.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "GoldenRoadsGambit.zip",
       "folder": "GoldenRoadsGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/GoldenRoadsGambit",
       "tags": [
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "GoldenRoad",
+          "name": "Golden Road's Gambit",
+          "rarity": "legendary",
+          "price": 12,
+          "description": "<rainb l=0.5>PROMOTING</rainb> into a <sprite=9> <color=£>KING</color> turns every tile <sprite=1> <color=∞>GOLDEN</color>, fills your stock with <sprite=9> <color=£>KINGS</color>, gives <color=Ø>DAINSLEIF'S GAMBIT</color>, and destroys this gambit.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/GoldenRoadsGambit/GoldenRoad.png"
+        }
+      ],
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-08-26",
+      "addedAt": "2026-08-27",
       "official": false,
-      "reviewed": false,
-      "issue": 38,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/38",
+      "reviewed": true,
       "latest": {
         "tag": "v.1.1.0",
         "version": "1.1.0",
@@ -1123,7 +1138,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T23:42:08Z",
+      "repoPushedAt": "2026-08-27T08:20:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1270,7 +1285,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T23:42:08Z",
+      "repoPushedAt": "2026-08-27T08:20:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1278,7 +1293,8 @@
       "id": "mystery",
       "name": "Mystery's Gambit",
       "author": "FRO_PWR",
-      "summary": "Mimics the effects of three random gambits (Including modded gambits)",
+      "summary": "Mimics the effects of three random gambits (including modded gambits).",
+      "description": "A rare utility gambit that is three gambits in a trench coat. When it enters play it picks three random gambits from everything the game knows about - vanilla and modded alike - and quietly runs their effects as its own. Selling it triggers each hidden gambit's sell behaviour before the whole bundle disappears. Needs the Gambit Creation API, which installs automatically.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "MysterysGambit.zip",
       "folder": "MysterysGambit",
@@ -1286,12 +1302,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "mystery",
+          "name": "Mystery's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "Mimics the effects of 3 random gambits<br><i>(Including modded gambits)</i>",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/MysterysGambit/Mystery.png"
+        }
+      ],
       "submittedBy": "Agent15",
       "addedAt": "2026-08-27",
       "official": false,
-      "reviewed": false,
-      "issue": 39,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/39",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -1307,7 +1336,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-08-27T01:35:30Z",
       "license": "MIT",
@@ -1687,7 +1716,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-26T23:42:08Z",
+      "repoPushedAt": "2026-08-27T08:20:04Z",
       "license": "MIT",
       "archived": false
     },
