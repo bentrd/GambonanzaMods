@@ -1,0 +1,31 @@
+{
+  "id": "golden-roads-gambit",
+  "name": "Golden Road's Gambit",
+  "author": "Minty",
+  "summary": "Promoting into a king turns every tile golden, fills your stock with kings, gives Dainsleif's Gambit, and destroys this gambit.",
+  "description": "A legendary one-shot jackpot. The moment one of your pawns promotes into a king, the whole board turns golden, your stock fills up with kings, Dainsleif's Gambit appears in this gambit's place, and Golden Road's Gambit destroys itself on the way out. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "GoldenRoadsGambit.zip",
+  "folder": "GoldenRoadsGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/GoldenRoadsGambit",
+  "tags": [
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "GoldenRoad",
+      "name": "Golden Road's Gambit",
+      "rarity": "legendary",
+      "price": 12,
+      "description": "<rainb l=0.5>PROMOTING</rainb> into a <sprite=9> <color=£>KING</color> turns every tile <sprite=1> <color=∞>GOLDEN</color>, fills your stock with <sprite=9> <color=£>KINGS</color>, gives <color=Ø>DAINSLEIF'S GAMBIT</color>, and destroys this gambit.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/GoldenRoadsGambit/GoldenRoad.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-08-27"
+}

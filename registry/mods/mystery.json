@@ -1,0 +1,31 @@
+{
+  "id": "mystery",
+  "name": "Mystery's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Mimics the effects of three random gambits (including modded gambits).",
+  "description": "A rare utility gambit that is three gambits in a trench coat. When it enters play it picks three random gambits from everything the game knows about - vanilla and modded alike - and quietly runs their effects as its own. Selling it triggers each hidden gambit's sell behaviour before the whole bundle disappears. Needs the Gambit Creation API, which installs automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "MysterysGambit.zip",
+  "folder": "MysterysGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "mystery",
+      "name": "Mystery's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "Mimics the effects of 3 random gambits<br><i>(Including modded gambits)</i>",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/MysterysGambit/Mystery.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-08-27"
+}
