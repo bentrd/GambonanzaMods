@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-27T09:57:23.851Z",
+  "generatedAt": "2026-08-27T18:50:54.248Z",
   "count": 34,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:35Z",
+      "repoPushedAt": "2026-08-27T09:57:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:35Z",
+      "repoPushedAt": "2026-08-27T09:57:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:35Z",
+      "repoPushedAt": "2026-08-27T09:57:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -1138,7 +1138,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:35Z",
+      "repoPushedAt": "2026-08-27T09:57:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -1285,7 +1285,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:35Z",
+      "repoPushedAt": "2026-08-27T09:57:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -1716,7 +1716,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T08:20:35Z",
+      "repoPushedAt": "2026-08-27T09:57:25Z",
       "license": "MIT",
       "archived": false
     },
@@ -1929,6 +1929,32 @@
       "installable": true,
       "unreviewed": [],
       "reviewed": true
+    },
+    {
+      "id": "roadside-gambits",
+      "name": "Roadside Gambits",
+      "author": "Craftyman6",
+      "summary": "A road sign themed collection of custom gambits",
+      "mods": [
+        "better-collection",
+        "gambit-api",
+        "golden-roads-gambit",
+        "one-ways-gambit",
+        "point-a-mngr",
+        "road-work-aheads-gambit",
+        "speed-limits-gambit",
+        "stop-signs-gambit",
+        "uturns-gambit"
+      ],
+      "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-08-27",
+      "downloads": 77,
+      "installable": true,
+      "unreviewed": [],
+      "reviewed": false,
+      "issue": 40,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/40"
     }
   ],
   "texturepacks": []
