@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-27T23:38:22.772Z",
+  "generatedAt": "2026-08-28T05:28:02.998Z",
   "count": 35,
   "releases": {
     "framework": {
@@ -166,7 +166,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -209,7 +209,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T20:35:03Z",
+      "repoPushedAt": "2026-08-27T23:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -260,7 +260,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 14,
+      "downloads": 15,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -312,7 +312,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -405,7 +405,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 14,
+      "downloads": 15,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -458,7 +458,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -512,7 +512,7 @@
         "manifestVersion": "1.0.2",
         "manifestAuthor": "Ben"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-08-26T16:32:15Z",
       "license": "MIT",
@@ -574,7 +574,7 @@
         "manifestVersion": "1.0.3",
         "manifestAuthor": "Ben"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-08-26T16:32:15Z",
       "license": "MIT",
@@ -628,7 +628,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -669,9 +669,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 23,
+      "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T20:35:03Z",
+      "repoPushedAt": "2026-08-27T23:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -723,7 +723,7 @@
         "manifestVersion": "1.1.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 0,
       "repoPushedAt": "2026-08-26T16:32:15Z",
       "license": "MIT",
@@ -776,7 +776,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 14,
+      "downloads": 15,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -819,7 +819,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T20:35:03Z",
+      "repoPushedAt": "2026-08-27T23:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -870,7 +870,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -923,7 +923,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1030,7 +1030,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1083,7 +1083,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1136,9 +1136,9 @@
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 23,
+      "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T20:35:03Z",
+      "repoPushedAt": "2026-08-27T23:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1189,7 +1189,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1242,7 +1242,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1285,7 +1285,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T20:35:03Z",
+      "repoPushedAt": "2026-08-27T23:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1336,7 +1336,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1391,7 +1391,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1445,7 +1445,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1499,7 +1499,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1552,7 +1552,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1606,7 +1606,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1661,7 +1661,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1714,9 +1714,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
-      "downloads": 19,
+      "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-08-27T20:35:03Z",
+      "repoPushedAt": "2026-08-27T23:38:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1767,7 +1767,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1821,7 +1821,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1860,7 +1860,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-08-27T23:34:35Z",
       "license": "MIT",
@@ -1915,7 +1915,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 8,
+      "downloads": 9,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1943,7 +1943,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 90,
+      "downloads": 96,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -1964,7 +1964,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 47,
+      "downloads": 48,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -1988,7 +1988,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 86,
+      "downloads": 93,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
