@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-29T14:32:45.121Z",
-  "count": 35,
+  "generatedAt": "2026-08-29T18:24:59.768Z",
+  "count": 36,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T09:11:16Z",
+      "repoPushedAt": "2026-08-29T14:32:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -301,7 +301,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Tortoise's Gambit",
+        "notes": "Added Guardian Angel's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -617,7 +617,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Tortoise's Gambit",
+        "notes": "Added Guardian Angel's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EnPassantsGambit.zip",
@@ -671,7 +671,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T09:11:16Z",
+      "repoPushedAt": "2026-08-29T14:32:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T09:11:16Z",
+      "repoPushedAt": "2026-08-29T14:32:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -924,6 +924,45 @@
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 10,
+      "stars": 0,
+      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "guardian-angel",
+      "name": "Guardian Angel's Gambit",
+      "author": "FRO_PWR",
+      "summary": "If any of your pieces is protected, bless it when the effect expires.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "GuardianAngelsGambit.zip",
+      "folder": "GuardianAngelsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-29",
+      "official": false,
+      "reviewed": false,
+      "issue": 42,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/42",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Guardian Angel's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "GuardianAngelsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/GuardianAngelsGambit.zip",
+          "size": 5735,
+          "sha256": "64589b3f1e9a8eef88003a9030ad393a20e3272e69898acb00844a659fb0df8c"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
       "stars": 0,
       "repoPushedAt": "2026-08-29T02:17:40Z",
       "license": "MIT",
@@ -1138,7 +1177,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T09:11:16Z",
+      "repoPushedAt": "2026-08-29T14:32:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1285,7 +1324,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T09:11:16Z",
+      "repoPushedAt": "2026-08-29T14:32:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1325,7 +1364,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Tortoise's Gambit",
+        "notes": "Added Guardian Angel's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "MysterysGambit.zip",
@@ -1541,7 +1580,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Tortoise's Gambit",
+        "notes": "Added Guardian Angel's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -1716,7 +1755,7 @@
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T09:11:16Z",
+      "repoPushedAt": "2026-08-29T14:32:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1756,7 +1795,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Tortoise's Gambit",
+        "notes": "Added Guardian Angel's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -1849,7 +1888,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Tortoise's Gambit",
+        "notes": "Added Guardian Angel's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "TortoisesGambit.zip",
