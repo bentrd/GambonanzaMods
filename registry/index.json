@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-29T18:36:31.890Z",
+  "generatedAt": "2026-08-29T21:47:38.216Z",
   "count": 36,
   "releases": {
     "framework": {
@@ -166,7 +166,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-08-29T02:17:40Z",
       "license": "MIT",
@@ -209,7 +209,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T18:25:00Z",
+      "repoPushedAt": "2026-08-29T18:36:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -512,7 +512,7 @@
         "manifestVersion": "1.0.2",
         "manifestAuthor": "Ben"
       },
-      "downloads": 8,
+      "downloads": 9,
       "stars": 0,
       "repoPushedAt": "2026-08-26T16:32:15Z",
       "license": "MIT",
@@ -574,7 +574,7 @@
         "manifestVersion": "1.0.3",
         "manifestAuthor": "Ben"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-08-26T16:32:15Z",
       "license": "MIT",
@@ -671,7 +671,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T18:25:00Z",
+      "repoPushedAt": "2026-08-29T18:36:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +819,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T18:25:00Z",
+      "repoPushedAt": "2026-08-29T18:36:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -870,7 +870,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1177,7 +1177,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T18:25:00Z",
+      "repoPushedAt": "2026-08-29T18:36:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1324,7 +1324,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T18:25:00Z",
+      "repoPushedAt": "2026-08-29T18:36:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1430,7 +1430,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 8,
+      "downloads": 9,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1538,7 +1538,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1700,7 +1700,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1755,7 +1755,7 @@
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-08-29T18:25:00Z",
+      "repoPushedAt": "2026-08-29T18:36:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1806,7 +1806,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-08-29T02:17:40Z",
       "license": "MIT",
@@ -1860,7 +1860,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -1954,7 +1954,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-08-27T18:52:07Z",
       "license": "MIT",
@@ -2027,7 +2027,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 93,
+      "downloads": 100,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
