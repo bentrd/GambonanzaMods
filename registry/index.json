@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-30T23:34:54.862Z",
-  "count": 36,
+  "generatedAt": "2026-08-30T23:48:59.418Z",
+  "count": 37,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -168,7 +168,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -209,7 +209,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T21:12:50Z",
+      "repoPushedAt": "2026-08-30T23:34:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -262,7 +262,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -301,7 +301,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Guardian Angel's Gambit",
+        "notes": "Added Evangelist's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -314,7 +314,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -407,7 +407,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -460,7 +460,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -617,7 +617,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Guardian Angel's Gambit",
+        "notes": "Added Evangelist's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EnPassantsGambit.zip",
@@ -630,7 +630,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,46 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T21:12:50Z",
+      "repoPushedAt": "2026-08-30T23:34:55Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "evangelist",
+      "name": "Evangelist's Gambit",
+      "author": "FRO_PWR",
+      "summary": "Moving a bishop adjacent to an enemy piece has a 1/4 chance of transforming it into one of your pieces (If possible)",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "EvangelistsGambit.zip",
+      "folder": "EvangelistsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-08-30",
+      "official": false,
+      "reviewed": false,
+      "issue": 43,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/43",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Evangelist's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "EvangelistsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/EvangelistsGambit.zip",
+          "size": 5597,
+          "sha256": "a2bed2988e08f8387a354656edebbbe65039a22b464668067387f1b211c47198"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -778,7 +817,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -819,7 +858,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T21:12:50Z",
+      "repoPushedAt": "2026-08-30T23:34:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -925,7 +964,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -951,7 +990,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Guardian Angel's Gambit",
+        "notes": "Added Evangelist's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GuardianAngelsGambit.zip",
@@ -964,7 +1003,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1071,7 +1110,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1124,7 +1163,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1177,7 +1216,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T21:12:50Z",
+      "repoPushedAt": "2026-08-30T23:34:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1230,7 +1269,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1283,7 +1322,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1324,7 +1363,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T21:12:50Z",
+      "repoPushedAt": "2026-08-30T23:34:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1364,7 +1403,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Guardian Angel's Gambit",
+        "notes": "Added Evangelist's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "MysterysGambit.zip",
@@ -1377,7 +1416,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1486,7 +1525,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1580,7 +1619,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Guardian Angel's Gambit",
+        "notes": "Added Evangelist's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -1593,7 +1632,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1647,7 +1686,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1755,7 +1794,7 @@
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T21:12:50Z",
+      "repoPushedAt": "2026-08-30T23:34:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1795,7 +1834,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Guardian Angel's Gambit",
+        "notes": "Added Evangelist's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -1808,7 +1847,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
@@ -1888,7 +1927,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Guardian Angel's Gambit",
+        "notes": "Added Evangelist's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "TortoisesGambit.zip",
@@ -1901,7 +1940,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-08-29T02:17:40Z",
+      "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
       "archived": false
     },
