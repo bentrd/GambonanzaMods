@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-08-30T23:48:59.418Z",
+  "generatedAt": "2026-08-31T05:44:42.714Z",
   "count": 37,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T23:34:55Z",
+      "repoPushedAt": "2026-08-30T23:49:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T23:34:55Z",
+      "repoPushedAt": "2026-08-30T23:49:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -708,7 +708,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-08-30T23:44:44Z",
       "license": "MIT",
@@ -858,7 +858,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T23:34:55Z",
+      "repoPushedAt": "2026-08-30T23:49:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1216,7 +1216,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T23:34:55Z",
+      "repoPushedAt": "2026-08-30T23:49:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1363,7 +1363,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T23:34:55Z",
+      "repoPushedAt": "2026-08-30T23:49:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1794,7 +1794,7 @@
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-08-30T23:34:55Z",
+      "repoPushedAt": "2026-08-30T23:49:00Z",
       "license": "MIT",
       "archived": false
     },
