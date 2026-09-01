@@ -147,11 +147,8 @@ namespace Gambonanza.ModHost
 
         private static IEnumerable<string> CompleteSchemeNames(string[] args, int argIndex)
         {
-            var head = Norm(args == null || args.Length == 0 ? "" : string.Join(" ", args));
-            return SchemeCatalogue().Select(SchemeId)
-                .Where(id => !string.IsNullOrEmpty(id))
-                .Where(id => string.IsNullOrEmpty(head) || Norm(id).StartsWith(head))
-                .Take(8);
+            if (args == null) return Enumerable.Empty<string>();
+            return CompleteIdTail(SchemeCatalogue().Select(SchemeId), args, 0, argIndex);
         }
 
         private static void Give(IConsoleApi console, string[] args)
@@ -338,15 +335,35 @@ namespace Gambonanza.ModHost
 
         private static IEnumerable<string> CompleteGive(string[] args, int argIndex)
         {
-            if (args == null || args.Length == 0) return new[] { "money ", "piece ", "gambit " };
+            if (args == null || argIndex <= 0) return new[] { "money", "piece", "gambit" };
             var head = Norm(args[0]);
-            if (args.Length == 1) return new[] { "money", "piece", "gambit" }.Where(x => x.StartsWith(head));
-            if (head == "piece") return PieceNames.Where(p => p.StartsWith(Norm(args[1]))).Select(p => "piece " + p);
-            if (head == "gambit") return GambitIds(string.Join(" ", args.Skip(1).ToArray())).Take(8).Select(g => "gambit " + g);
+            if (head == "piece") return argIndex == 1 ? PieceNames : Enumerable.Empty<string>();
+            if (head == "gambit") return CompleteIdTail(GambitIds(""), args, 1, argIndex);
             return Enumerable.Empty<string>();
         }
 
-        private static IEnumerable<string> CompleteGambitNames(string[] args, int argIndex) => GambitIds(args == null ? "" : string.Join(" ", args)).Take(8);
+        private static IEnumerable<string> CompleteGambitNames(string[] args, int argIndex) => CompleteIdTail(GambitIds(""), args, 0, argIndex);
+
+        // Completes one argument of a possibly multi-word id ("thunder strike" is
+        // typed as two args). Given the id words already typed before the argument
+        // being completed, suggests each matching id's remaining words; the console
+        // filters those against the partial token and rebuilds the input line.
+        private static IEnumerable<string> CompleteIdTail(IEnumerable<string> ids, string[] args, int firstIdArg, int argIndex)
+        {
+            var typed = args.Skip(firstIdArg).Take(Math.Max(0, argIndex - firstIdArg)).ToArray();
+            var results = new List<string>();
+            foreach (var id in ids)
+            {
+                if (string.IsNullOrEmpty(id)) continue;
+                var words = id.Split((char[])null, StringSplitOptions.RemoveEmptyEntries);
+                if (words.Length <= typed.Length) continue; // fully typed already
+                bool match = true;
+                for (int i = 0; i < typed.Length && match; i++)
+                    match = Norm(words[i]) == Norm(typed[i]);
+                if (match) results.Add(string.Join(" ", words.Skip(typed.Length).ToArray()));
+            }
+            return results.Distinct();
+        }
 
         private static IEnumerable<string> GambitIds(string filter)
         {

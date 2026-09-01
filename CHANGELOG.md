@@ -5,6 +5,21 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## Unreleased
+
+- Console (F10) tab completion now completes the argument your cursor is on
+  instead of throwing away everything you typed before it. Completing a
+  command's second argument used to replace the first one - `collection
+  outlines ` + Tab became `collection 0` - and now it correctly gives
+  `collection outlines 0`. Suggestions are also filtered by what you've
+  already typed of the argument (names that merely contain it are offered
+  after names that start with it), so `keybind gambitapi to` + Tab lands on
+  `ToggleOverlay` instead of the first name in the list. For modders: the
+  console now honours the `ConsoleArgumentCompleter` contract exactly as
+  documented in the SDK - return every candidate for the argument at
+  `argIndex` and the console does the filtering, ranking, and line
+  rebuilding for you.
+
 ## 1.5.0
 
 - **Texture packs.** The framework can now re-skin the game: replacement art
