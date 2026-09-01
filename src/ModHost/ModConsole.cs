@@ -540,9 +540,27 @@ namespace Gambonanza.ModHost
                 try
                 {
                     var args = SplitArgsForCompletion(argText).ToArray();
-                    var argIndex = Math.Max(0, args.Length - 1);
+                    // Contract (IConsoleApi): args.Length >= argIndex + 1 and
+                    // args[argIndex] is the partial token being completed.
+                    if (args.Length == 0) args = new[] { "" };
+                    var argIndex = args.Length - 1;
+                    var partial = Normalize(args[argIndex]);
+                    // Candidates are whole input lines: keep every argument
+                    // before the one being completed, so accepting a suggestion
+                    // replaces args[argIndex] rather than args[0].
+                    var head = exact.Name;
+                    for (int i = 0; i < argIndex; i++) head += " " + QuoteIfNeeded(args[i]);
+                    var bySubstring = new List<string>();
                     foreach (var s in exact.Completer(args, argIndex) ?? Enumerable.Empty<string>())
-                        if (!string.IsNullOrEmpty(s)) result.Add(exact.Name + " " + s);
+                    {
+                        if (string.IsNullOrEmpty(s)) continue;
+                        var suggestion = Normalize(s);
+                        if (suggestion.StartsWith(partial, StringComparison.Ordinal))
+                            result.Add(head + " " + QuoteIfNeeded(s));
+                        else if (partial.Length > 0 && suggestion.Contains(partial))
+                            bySubstring.Add(head + " " + QuoteIfNeeded(s));
+                    }
+                    result.AddRange(bySubstring);
                 }
                 catch { }
             }
@@ -594,12 +612,9 @@ namespace Gambonanza.ModHost
 
         private IEnumerable<string> CompleteModIds(string[] args, int argIndex)
         {
-            var prefix = args != null && args.Length > 0 ? Normalize(args[0]) : "";
             return ModHost.AllMods()
                 .Select(m => m.Manifest.id)
-                .Where(id => string.IsNullOrEmpty(prefix) || Normalize(id).StartsWith(prefix))
-                .OrderBy(id => id)
-                .Take(8);
+                .OrderBy(id => id);
         }
 
         private void PrintHelp()
@@ -667,8 +682,7 @@ namespace Gambonanza.ModHost
 
         private IEnumerable<string> CompleteOnOff(string[] args, int argIndex)
         {
-            var prefix = args != null && args.Length > 0 ? Normalize(args[0]) : "";
-            return new[] { "on", "off" }.Where(s => s.StartsWith(prefix, StringComparison.Ordinal));
+            return new[] { "on", "off" };
         }
 
         private void PrintKeybinds(string[] args)
@@ -778,20 +792,20 @@ namespace Gambonanza.ModHost
 
         private IEnumerable<string> CompleteKeybindCommand(string[] args, int argIndex)
         {
-            if (args == null || args.Length <= 1) return CompleteModIds(args, argIndex);
+            if (args == null || argIndex <= 0) return CompleteModIds(args, argIndex);
             return CompleteKeybindNamesAfterMod(args[0]);
         }
 
         private IEnumerable<string> CompleteKeybindCommandUnset(string[] args, int argIndex)
         {
-            if (args == null || args.Length <= 1) return CompleteModIds(args, argIndex);
+            if (args == null || argIndex <= 0) return CompleteModIds(args, argIndex);
             return CompleteKeybindNamesAfterMod(args[0]);
         }
 
         private IEnumerable<string> CompleteKeybindNamesAfterMod(string modId)
         {
             return ModHost.AllKeybinds(modId)
-                .Select(k => modId + " " + k.Name)
+                .Select(k => k.Name)
                 .Distinct()
                 .OrderBy(s => s);
         }
@@ -952,6 +966,13 @@ namespace Gambonanza.ModHost
                 colors.Add($"<color={color}>" + Escape(parts[i]) + "</color>");
             }
             return string.Join(" ", colors.ToArray());
+        }
+
+        private static string QuoteIfNeeded(string token)
+        {
+            // SplitArgs strips quotes, so a token holding whitespace must be
+            // re-quoted to survive the round-trip through the input line.
+            return token != null && token.Any(char.IsWhiteSpace) ? "\"" + token + "\"" : token;
         }
 
         private static IEnumerable<string> SplitArgsForCompletion(string text)
