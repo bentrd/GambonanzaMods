@@ -1,0 +1,204 @@
+From 394d0c22a06fc1a0d276787a6ac5efee153a89a2 Mon Sep 17 00:00:00 2001
+From: bentrd <benj.tordjman@gmail.com>
+Date: Tue, 1 Sep 2026 11:52:07 +0000
+Subject: [PATCH] wiki: document the gambit UI explanation flags and the rest
+ of ModGambitApi
+
+The Show* builder calls were listed with no explanation of what each one
+does, so modders had to open GambitDefinition.cs to see what they could
+use. API Reference now tables all fourteen flags with the exact vanilla
+explainer box each one adds (title + wording, from the game's text data),
+the matching <color>/<sprite> description markup, the enable-what-your-
+description-uses rule, and the flagless ADJACENT PIECE exception.
+Your First Gambit gets a compact version of the same, explaining the
+.ShowLanding() its example already used.
+
+Also fills other reference gaps:
+- ModGambitApi documented only LoadSprite; adds CreateGambit, Register/
+  RegisterAll for hand-built definitions, Unlock (and how it differs from
+  AutoUnlock's retry queue), and LoadSprite's pivot parameter
+- name/description localization behaviour: injected under <id>_name /
+  <id>_description, re-injected on language change, one string for all
+  eleven languages
+---
+ API-Reference.md     | 101 ++++++++++++++++++++++++++++++++++++-------
+ Your-First-Gambit.md |  30 +++++++++++++
+ 2 files changed, 116 insertions(+), 15 deletions(-)
+
+diff --git a/API-Reference.md b/API-Reference.md
+index 7871103..64313c1 100644
+--- a/API-Reference.md
++++ b/API-Reference.md
+@@ -189,6 +189,13 @@ four vanilla's shop handles. `STRAIN` is rejected, logged, and replaced with
+ > gambit half-added to the library — an unobtainable "Locked" card, a wrong
+ > collection count, **and every gambit mod loaded after it silently broken.**
+ 
++`WithName` and `WithDescription` are injected into the game's localization
++tables under `<id>_name` / `<id>_description` keys, and re-injected
++automatically whenever the player switches language (the game rebuilds its
++text cache on a language change, which used to blank modded card text). One
++string serves all eleven languages — per-language gambit text isn't
++supported.
++
+ ### Art
+ 
+ ```csharp
+@@ -212,17 +219,63 @@ below 1 if your art reads large because it's cropped tighter than vanilla.
+ Neither one set means you cloned a vanilla prefab and kept vanilla's logic —
+ only useful for a deliberate re-skin.
+ 
+-### Visual flags
+-
+-`Show*` toggles which in-game effects the card highlights. Vanilla uses these
+-to dim effects that don't apply.
+-
+-```csharp
+-.ShowPromotion()   .ShowBless()          .ShowGolden()        .ShowProtect()
+-.ShowTrap()        .ShowPhantom()        .ShowWait()          .ShowGoldenTile()
+-.ShowBlessedTile() .ShowProtectedTile()  .ShowTrapTile()      .ShowPhantomTile()
+-.ShowLanding()     .ShowConsideredAs()
+-```
++### UI explanation flags
++
++Vanilla cards that use a keyword mechanic show small **explainer boxes**
++alongside the description wherever the card's full tooltip appears — the
++shop, the collection, and hovering the card mid-run. Each box is a title
++plus vanilla's one-line definition of the mechanic, already translated into
++the game's eleven languages.
++
++Each `Show*` method turns exactly one box on for your card. All fourteen are
++off by default, and they are display-only — no gameplay effect.
++
++**Enable the flag for every keyword your description uses, and no others.**
++That is what vanilla cards do: the player who has never seen the mechanic
++gets vanilla's own definition of it in their language, and unrelated boxes
++just crowd the tooltip.
++
++Piece states:
++
++| Method | Explainer box | Vanilla's text | Description markup |
++| ------ | ------------- | -------------- | ------------------ |
++| `.ShowGolden()` | GOLDEN PIECE | "Give +$2 at the end of the game and reset to DEFAULT piece." | `<color=∞>` |
++| `.ShowBless()` | BLESSED PIECE | "Once captured, return to your stock." | `<color=ƒ>` |
++| `.ShowProtect()` | PROTECTED PIECE | "Can't be captured." | `<color=æ>` |
++| `.ShowTrap()` | TRAPPED PIECE | "Can't move." | `<color=◊>` |
++| `.ShowPhantom()` | PHANTOM PIECE | "Sell for $0 and disappear at the end of a game." | `<color=ß>` |
++
++Tiles — each explains the tile that applies the matching piece state:
++
++| Method | Explainer box | Vanilla's text | Description markup |
++| ------ | ------------- | -------------- | ------------------ |
++| `.ShowGoldenTile()` | GOLDEN TILE | "Moving a piece on this tile turns it into a GOLDEN PIECE." | `<sprite=1>` `<color=∞>` |
++| `.ShowBlessedTile()` | BLESS TILE | "Moving a piece on this tile BLESSES it." | `<sprite=0>` `<color=ƒ>` |
++| `.ShowProtectedTile()` | PROTECT TILE | "Moving a piece on this tile PROTECTS it." | `<sprite=2>` `<color=æ>` |
++| `.ShowTrapTile()` | TRAP TILE | "When an enemy piece steps on this tile, TRAPS it." | `<sprite=3>` `<color=◊>` |
++| `.ShowPhantomTile()` | PHANTOM TILE | "Moving a piece on this tile grants a PHANTOM copy of it." | `<sprite=12>` `<color=ß>` |
++
++Actions and concepts:
++
++| Method | Explainer box | Vanilla's text | Description markup |
++| ------ | ------------- | -------------- | ------------------ |
++| `.ShowLanding()` | LANDING | "Placing a piece from stock to board during a game." | `<color=©>` |
++| `.ShowWait()` | WAIT | "Skip your turn without playing." | `<color=µ>` |
++| `.ShowPromotion()` | PROMOTION | "Transform a PAWN into another piece when it reaches the end of the board." | `<rainb l=0.5>` |
++| `.ShowConsideredAs()` | COUNTED AS | "For Gambit effects only, this piece is treated as the specified piece. (This piece keeps its normal movement)." | — |
++
++The **Description markup** column is the matching vocabulary from
++[Writing card text](Your-First-Gambit#writing-card-text): a description that
++says `<color=◊>TRAP</color>` tiles is a card that sets `.ShowTrapTile()`.
++That is exactly what the SpikesGambit sample does — "Enemy pieces that step
++on TRAP tiles are captured instead of trapped" sets `.ShowTrapTile()` and
++nothing else. A card that referenced both trap tiles and landing would set
++both flags.
++
++One vanilla explainer has no flag: ADJACENT PIECE ("Refers to every piece
++next to another one vertically or horizontally."). GambitApi doesn't expose
++it — if your card cares about adjacency, spell the rule out in your
++description instead.
+ 
+ ### Unlocks
+ 
+@@ -282,17 +335,35 @@ or anything with per-event hooks, write your own `BaseGambit`.
+ 
+ ## `Gambonanza.GambitApi.ModGambitApi`
+ 
++Static convenience surface. The builder is the usual way in; everything else
++here is for the cases the builder doesn't cover.
++
+ ```csharp
+-public static Sprite LoadSprite(string path);
++public static GambitBuilder CreateGambit(string id);
++public static void   Register(GambitDefinition def);
++public static void   RegisterAll(params GambitDefinition[] defs);
++public static void   Unlock(string gambitId);
++public static Sprite LoadSprite(string filePath, Vector2? pivot = null);
+ ```
+ 
+-Loads a PNG with the right pixel-art settings: `FilterMode.Point`, pivot
+-`(0.5, 0.5)`, and a PPU that `Register()` later rebuilds from the cloned
++| Member | Notes |
++| ------ | ----- |
++| `CreateGambit(id)` | Alias for `GambitBuilder.Create(id)`. |
++| `Register(def)` | Registers a hand-built `GambitDefinition` — the plain-data object the builder fills. Its public fields map 1:1 to the builder methods (plus the `Show*` bools as plain fields). Rarity and focus are re-validated at registration, so a definition assembled without the builder gets the same guards. |
++| `RegisterAll(defs)` | `Register` in a loop. |
++| `Unlock(id)` | Force-unlock a gambit right now. Pair with `.AutoUnlock(false)` to gate your gambit behind your own condition. Unlike `AutoUnlock` — which queues and retries until the game's unlock manager is up — this is a one-shot: it silently does nothing if called before the unlock manager exists. |
++| `LoadSprite(path, pivot?)` | PNG loader with the right pixel-art settings — details below. |
++
++### `LoadSprite`
++
++Loads a PNG with `FilterMode.Point` and an optional pivot (default centre,
++`(0.5, 0.5)`). Any pixel size works: the PPU you get here is provisional, and
++`Register()` rebuilds the in-game sprite with a PPU computed from the cloned
+ template's world height, so your card lands at vanilla's on-board size at any
+ resolution.
+ 
+ Returns `null` if the file is missing — the builder then falls back to a
+-placeholder, which is fine during development.
++magenta "?" placeholder, which is fine during development.
+ 
+ ---
+ 
+diff --git a/Your-First-Gambit.md b/Your-First-Gambit.md
+index f9fba54..b7d0cc3 100644
+--- a/Your-First-Gambit.md
++++ b/Your-First-Gambit.md
+@@ -248,6 +248,36 @@ If you publish your mod, put this same string in the `gambits` array of your
+ registry entry, markup and all: the manager renders it exactly as the game
+ does.
+ 
++### UI explanation flags — the `Show*` calls
++
++The `.ShowLanding()` in the example is why Lucky Penny's card gets vanilla's
++little LANDING explainer box ("Placing a piece from stock to board during a
++game.") next to its description wherever the card is inspected — shop,
++collection, and mid-run. Each keyword mechanic in the game has a box like
++that, and the builder has fourteen flags for them, all off by default:
++
++| Flag | Explainer it adds |
++| ---- | ----------------- |
++| `.ShowGolden()` / `.ShowGoldenTile()` | GOLDEN PIECE / GOLDEN TILE |
++| `.ShowBless()` / `.ShowBlessedTile()` | BLESSED PIECE / BLESS TILE |
++| `.ShowProtect()` / `.ShowProtectedTile()` | PROTECTED PIECE / PROTECT TILE |
++| `.ShowTrap()` / `.ShowTrapTile()` | TRAPPED PIECE / TRAP TILE |
++| `.ShowPhantom()` / `.ShowPhantomTile()` | PHANTOM PIECE / PHANTOM TILE |
++| `.ShowLanding()` | LANDING |
++| `.ShowWait()` | WAIT |
++| `.ShowPromotion()` | PROMOTION |
++| `.ShowConsideredAs()` | COUNTED AS |
++
++The rule: **turn on the flag for every keyword your description uses**, and
++no others. The piece flags explain a piece state; the `*Tile` flags explain
++the tile that applies that state. The boxes are display-only and come
++pre-translated into the game's eleven languages — one more reason to build on
++vanilla vocabulary instead of inventing your own terms.
++
++Vanilla's exact wording for every box, plus which `<color>`/`<sprite>` markup
++pairs with which flag, is tabled in the
++[API Reference](API-Reference#ui-explanation-flags).
++
+ ### `WithBaseGambit<T>()` vs `OnTrigger()`
+ 
+ The builder clones a vanilla gambit prefab as a template.
+-- 
+2.43.0
+

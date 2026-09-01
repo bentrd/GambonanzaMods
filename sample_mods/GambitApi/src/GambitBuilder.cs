@@ -153,20 +153,41 @@ namespace Gambonanza.GambitApi
         }
 
         // --- UI explanation toggles ---
+        //
+        // Each Show* adds one of vanilla's keyword-explainer boxes (localized title +
+        // one-line rule, quoted below in English) to the card's tooltip in the shop,
+        // the collection and in-run. Display-only - no gameplay effect. All off by
+        // default; convention is to enable one for every keyword the description uses,
+        // and no others. Full table incl. the pairing with <color>/<sprite> description
+        // markup: wiki -> API Reference -> "UI explanation flags".
 
+        /// <summary>Explainer: PROMOTION - "Transform a PAWN into another piece when it reaches the end of the board."</summary>
         public GambitBuilder ShowPromotion() { _def.ShowPromotion = true; return this; }
+        /// <summary>Explainer: BLESSED PIECE - "Once captured, return to your stock."</summary>
         public GambitBuilder ShowBless() { _def.ShowBless = true; return this; }
+        /// <summary>Explainer: GOLDEN PIECE - "Give +$2 at the end of the game and reset to DEFAULT piece."</summary>
         public GambitBuilder ShowGolden() { _def.ShowGolden = true; return this; }
+        /// <summary>Explainer: PROTECTED PIECE - "Can't be captured."</summary>
         public GambitBuilder ShowProtect() { _def.ShowProtect = true; return this; }
+        /// <summary>Explainer: TRAPPED PIECE - "Can't move."</summary>
         public GambitBuilder ShowTrap() { _def.ShowTrap = true; return this; }
+        /// <summary>Explainer: PHANTOM PIECE - "Sell for $0 and disappear at the end of a game."</summary>
         public GambitBuilder ShowPhantom() { _def.ShowPhantom = true; return this; }
+        /// <summary>Explainer: WAIT - "Skip your turn without playing."</summary>
         public GambitBuilder ShowWait() { _def.ShowWait = true; return this; }
+        /// <summary>Explainer: GOLDEN TILE - "Moving a piece on this tile turns it into a GOLDEN PIECE."</summary>
         public GambitBuilder ShowGoldenTile() { _def.ShowGoldenTile = true; return this; }
+        /// <summary>Explainer: BLESS TILE - "Moving a piece on this tile BLESSES it."</summary>
         public GambitBuilder ShowBlessedTile() { _def.ShowBlessedTile = true; return this; }
+        /// <summary>Explainer: PROTECT TILE - "Moving a piece on this tile PROTECTS it."</summary>
         public GambitBuilder ShowProtectedTile() { _def.ShowProtectedTile = true; return this; }
+        /// <summary>Explainer: TRAP TILE - "When an enemy piece steps on this tile, TRAPS it."</summary>
         public GambitBuilder ShowTrapTile() { _def.ShowTrapTile = true; return this; }
+        /// <summary>Explainer: PHANTOM TILE - "Moving a piece on this tile grants a PHANTOM copy of it."</summary>
         public GambitBuilder ShowPhantomTile() { _def.ShowPhantomTile = true; return this; }
+        /// <summary>Explainer: LANDING - "Placing a piece from stock to board during a game."</summary>
         public GambitBuilder ShowLanding() { _def.ShowLanding = true; return this; }
+        /// <summary>Explainer: COUNTED AS - "For Gambit effects only, this piece is treated as the specified piece. (This piece keeps its normal movement)."</summary>
         public GambitBuilder ShowConsideredAs() { _def.ShowConsideredAs = true; return this; }
 
         /// <summary>
