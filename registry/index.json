@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-02T16:40:25.240Z",
-  "count": 38,
+  "generatedAt": "2026-09-02T17:01:14.795Z",
+  "count": 39,
   "releases": {
     "framework": {
       "tag": "v1.5.0",
@@ -209,7 +209,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T11:26:39Z",
+      "repoPushedAt": "2026-09-02T16:40:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T11:26:39Z",
+      "repoPushedAt": "2026-09-02T16:40:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -858,7 +858,7 @@
       },
       "downloads": 30,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T11:26:39Z",
+      "repoPushedAt": "2026-09-02T16:40:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -911,7 +911,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T03:05:56Z",
+      "repoPushedAt": "2026-09-02T17:00:01Z",
       "license": "MIT",
       "archived": false
     },
@@ -1255,7 +1255,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T11:26:39Z",
+      "repoPushedAt": "2026-09-02T16:40:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1402,7 +1402,7 @@
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T11:26:39Z",
+      "repoPushedAt": "2026-09-02T16:40:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1510,7 +1510,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T03:05:56Z",
+      "repoPushedAt": "2026-09-02T17:00:01Z",
       "license": "MIT",
       "archived": false
     },
@@ -1618,7 +1618,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T03:05:56Z",
+      "repoPushedAt": "2026-09-02T17:00:01Z",
       "license": "MIT",
       "archived": false
     },
@@ -1780,7 +1780,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T03:05:56Z",
+      "repoPushedAt": "2026-09-02T17:00:01Z",
       "license": "MIT",
       "archived": false
     },
@@ -1833,7 +1833,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T11:26:39Z",
+      "repoPushedAt": "2026-09-02T16:40:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1940,7 +1940,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T03:05:56Z",
+      "repoPushedAt": "2026-09-02T17:00:01Z",
       "license": "MIT",
       "archived": false
     },
@@ -1980,6 +1980,44 @@
       "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-09-01T00:28:11Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "turf-wars-gambit",
+      "name": "Turf War's Gambit",
+      "author": "Minty",
+      "summary": "Pieces paint tiles their respective color, splashing into adjacent tiles on capture. Earn $1 per 5 white tiles at end of game",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "TurfWarsGambit.zip",
+      "folder": "TurfWarsGambit",
+      "tags": [
+        "gambits"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-09-02",
+      "official": false,
+      "reviewed": false,
+      "issue": 47,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/47",
+      "latest": {
+        "tag": "v1.1.2",
+        "version": "1.1.2",
+        "publishedAt": "2026-09-02T16:59:37Z",
+        "notes": "Fix mod.json of Turf War's Gambit to have an accurate description",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.1.2",
+        "asset": {
+          "name": "TurfWarsGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.1.2/TurfWarsGambit.zip",
+          "size": 6080,
+          "sha256": "ff2c1feb773ef0fcd70b3ad23cc4f30dae7fa4d2dd48c98320b620c9bc4944f8"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-09-02T17:00:01Z",
       "license": "MIT",
       "archived": false
     },
@@ -2034,7 +2072,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T03:05:56Z",
+      "repoPushedAt": "2026-09-02T17:00:01Z",
       "license": "MIT",
       "archived": false
     }
