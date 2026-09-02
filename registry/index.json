@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-02T22:42:11.169Z",
+  "generatedAt": "2026-09-02T22:49:13.193Z",
   "count": 39,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T19:50:42Z",
+      "repoPushedAt": "2026-09-02T22:42:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T19:50:42Z",
+      "repoPushedAt": "2026-09-02T22:42:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -858,7 +858,7 @@
       },
       "downloads": 30,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T19:50:42Z",
+      "repoPushedAt": "2026-09-02T22:42:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -1255,7 +1255,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T19:50:42Z",
+      "repoPushedAt": "2026-09-02T22:42:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -1402,7 +1402,7 @@
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T19:50:42Z",
+      "repoPushedAt": "2026-09-02T22:42:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -1833,7 +1833,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T19:50:42Z",
+      "repoPushedAt": "2026-09-02T22:42:12Z",
       "license": "MIT",
       "archived": false
     },
@@ -2078,6 +2078,51 @@
     }
   ],
   "modpacks": [
+    {
+      "id": "gambit-pwr-pack",
+      "name": "Gambit PWR_PACK",
+      "author": "Agent15",
+      "summary": "Collection of Gambit mods by FRO_PWR",
+      "mods": [
+        "better-collection",
+        "bougie",
+        "mounty-hunter",
+        "crybaby",
+        "domino-effect",
+        "en-passant",
+        "evangelist",
+        "fishing-net",
+        "gambit-api",
+        "grandma-cookies",
+        "guardian-angel",
+        "hydraulic-press",
+        "jumper-cables",
+        "junk",
+        "lobbyist",
+        "matryoshka",
+        "mystery",
+        "point-a-mngr",
+        "recursion",
+        "schrodinger",
+        "sniper",
+        "starter-pack",
+        "tortoise"
+      ],
+      "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-09-02",
+      "downloads": 258,
+      "installable": true,
+      "unreviewed": [
+        "evangelist",
+        "guardian-angel",
+        "hydraulic-press",
+        "tortoise"
+      ],
+      "reviewed": false,
+      "issue": 48,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/48"
+    },
     {
       "id": "gambit-variety-pack",
       "name": "Gambit Variety Pack",
