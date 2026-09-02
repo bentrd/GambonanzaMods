@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-02T17:01:14.795Z",
+  "generatedAt": "2026-09-02T19:50:41.555Z",
   "count": 39,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T16:40:26Z",
+      "repoPushedAt": "2026-09-02T17:01:16Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T16:40:26Z",
+      "repoPushedAt": "2026-09-02T17:01:16Z",
       "license": "MIT",
       "archived": false
     },
@@ -858,7 +858,7 @@
       },
       "downloads": 30,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T16:40:26Z",
+      "repoPushedAt": "2026-09-02T17:01:16Z",
       "license": "MIT",
       "archived": false
     },
@@ -1255,7 +1255,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T16:40:26Z",
+      "repoPushedAt": "2026-09-02T17:01:16Z",
       "license": "MIT",
       "archived": false
     },
@@ -1402,7 +1402,7 @@
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T16:40:26Z",
+      "repoPushedAt": "2026-09-02T17:01:16Z",
       "license": "MIT",
       "archived": false
     },
@@ -1833,7 +1833,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-09-02T16:40:26Z",
+      "repoPushedAt": "2026-09-02T17:01:16Z",
       "license": "MIT",
       "archived": false
     },
@@ -2015,7 +2015,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-09-02T17:00:01Z",
       "license": "MIT",
