@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-03T18:39:24.791Z",
+  "generatedAt": "2026-09-03T19:24:27.114Z",
   "count": 40,
   "releases": {
     "framework": {
@@ -86,47 +86,47 @@
       ]
     },
     "manager": {
-      "tag": "manager-v1.7.2",
-      "version": "1.7.2",
-      "publishedAt": "2026-08-22T17:06:56Z",
-      "notes": "\n- **Every mod, modpack and texture pack now has its own page** - in the app\n  and on the website. In the app, click any card for the whole story:\n  description, the gambits at full size, release notes, downloads, license,\n  provenance. On the web, the same page lives at\n  `bentrd.github.io/GambonanzaMods/mod/<id>/` with an **Open in Mod Manager**\n  button that jumps straight to it in the app.\n- **Deep links.** The app registers the `gmm://` scheme: `gmm://mod/<id>`,\n  `gmm://modpack/<id>` and `gmm://texturepack/<id>` open the matching page,\n  whether the app is already running or not. Links carry a registry id and\n  nothing else - never a URL or a file - so a malicious link can name a page\n  but can't smuggle anything onto your machine, and nothing installs without\n  the same confirmation as always. A **Copy link** button on every page hands\n  you the website URL, which is the one to paste in Discord (Discord doesn't\n  linkify `gmm://`, and friends without the app land on a download button\n  instead of nothing).\n- **The Play button no longer does nothing on Linux.** It hands the launch to\n  Steam as before, but if the desktop has no handler for `steam://` - common on\n  Linux, and the case with a Flatpak Steam - the manager starts the game's own\n  executable instead and says so. When Steam refuses the handoff outright, that\n  now shows up as an error on the button rather than silence.\n- Fixed a bogus \"could not fetch ... redirect with no destination\" warning in\n  the activity log. The registry index is fetched with the cached tag attached,\n  and the \"nothing changed since last time\" reply was being mistaken for a\n  broken redirect - so every cached refresh logged a failure it had not had.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.7.2",
+      "tag": "manager-v1.7.3",
+      "version": "1.7.3",
+      "publishedAt": "2026-09-03T19:21:45Z",
+      "notes": "\n- **\"Open submission on GitHub\" now hands over the whole form.** The Registry\n  id and the repository were arriving blank on the GitHub issue it opens, so\n  you had to type both a second time. The id was never sent at all, and\n  GitHub quietly discards a pre-filled field called `repo`, which is what the\n  form's repository field happened to be named. Both now arrive filled in\n  with the rest. Reported by Craftyman6 (#33).\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.7.3",
       "assets": [
         {
-          "name": "Gambonanza.Mod.Manager-1.7.2-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2-arm64-mac.zip",
-          "size": 119665604,
-          "sha256": "63047129284f77b179592a2502feb8765c22de285e76ec1a504a29ba32a0ca02"
+          "name": "Gambonanza.Mod.Manager-1.7.3-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.3/Gambonanza.Mod.Manager-1.7.3-arm64-mac.zip",
+          "size": 119676478,
+          "sha256": "b323c2123f4b2b79ce1a217e2a337d14e2c9baf15516f95c6b4d6ed280a75e09"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.7.2-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2-arm64.dmg",
-          "size": 119557229,
-          "sha256": "48145f5ec4fdf7d02fa9db452e3bf62f8222fea381b659aa49b9014ad34c9eb8"
+          "name": "Gambonanza.Mod.Manager-1.7.3-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.3/Gambonanza.Mod.Manager-1.7.3-arm64.dmg",
+          "size": 119562903,
+          "sha256": "7acc59ea35ddc28ddab225f654915036020f2c861895265aa55379214d37b215"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.7.2-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2-mac.zip",
-          "size": 121792147,
-          "sha256": "2c8c5919a682a5c40b113808da80025e70e8bfdcb2cd6cf6a232128718e7c492"
+          "name": "Gambonanza.Mod.Manager-1.7.3-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.3/Gambonanza.Mod.Manager-1.7.3-mac.zip",
+          "size": 121803021,
+          "sha256": "11a9346b04e22f711d093b118e574f92aab3492d04814f75898ce5a2410f4c34"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.7.2.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2.AppImage",
-          "size": 127909369,
-          "sha256": "3b66690af2ff461c4bf8c1d31e2677a09b9ad48fcad1be31b58ec10f63eb73ae"
+          "name": "Gambonanza.Mod.Manager-1.7.3.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.3/Gambonanza.Mod.Manager-1.7.3.AppImage",
+          "size": 127921706,
+          "sha256": "d090c2d6b7580ad07d709353e376570e7777c948f9a7bb53c9cf339b89a0731e"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.7.2.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager-1.7.2.dmg",
-          "size": 121653718,
-          "sha256": "62a675773dfe1ba6b578c3366c7420e4c6b6ab9e75f14f341878e40c22233aef"
+          "name": "Gambonanza.Mod.Manager-1.7.3.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.3/Gambonanza.Mod.Manager-1.7.3.dmg",
+          "size": 121650207,
+          "sha256": "85cadd9a146b139cb5fed15c4c15f75bceafe87143e0b2124080dca221d73407"
         },
         {
-          "name": "Gambonanza.Mod.Manager.Setup.1.7.2.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.2/Gambonanza.Mod.Manager.Setup.1.7.2.exe",
-          "size": 99777929,
-          "sha256": "f3a80bf9a0c02cfa1ccf76a89bfa02d1f4c1a21cf79f83d029d125f50d7f3834"
+          "name": "Gambonanza.Mod.Manager.Setup.1.7.3.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.7.3/Gambonanza.Mod.Manager.Setup.1.7.3.exe",
+          "size": 99787161,
+          "sha256": "191d504f379f2dc7fe698be0cc8ecd22dffba0ec8ab0fb5a2cc45e8a2b6d4479"
         }
       ]
     }
@@ -209,7 +209,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T18:38:41Z",
+      "repoPushedAt": "2026-09-03T19:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T18:38:41Z",
+      "repoPushedAt": "2026-09-03T19:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -722,7 +722,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-09-03T00:35:21Z",
       "license": "MIT",
@@ -872,7 +872,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T18:38:41Z",
+      "repoPushedAt": "2026-09-03T19:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1029,7 +1029,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-09-03T00:35:21Z",
       "license": "MIT",
@@ -1083,7 +1083,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-09-03T00:35:21Z",
       "license": "MIT",
@@ -1298,7 +1298,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T18:38:41Z",
+      "repoPushedAt": "2026-09-03T19:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1445,7 +1445,7 @@
       },
       "downloads": 21,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T18:38:41Z",
+      "repoPushedAt": "2026-09-03T19:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -1876,7 +1876,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T18:38:41Z",
+      "repoPushedAt": "2026-09-03T19:21:31Z",
       "license": "MIT",
       "archived": false
     },
@@ -2022,7 +2022,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
@@ -2075,7 +2075,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-09-03T00:35:21Z",
       "license": "MIT",
@@ -2129,7 +2129,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
@@ -2225,7 +2225,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 261,
+      "downloads": 265,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
