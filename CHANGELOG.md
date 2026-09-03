@@ -5,7 +5,7 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
-## Unreleased
+## 1.5.1
 
 - Console (F10) tab completion now completes the argument your cursor is on
   instead of throwing away everything you typed before it. Completing a
