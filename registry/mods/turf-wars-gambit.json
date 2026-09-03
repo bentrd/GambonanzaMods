@@ -1,0 +1,32 @@
+{
+  "id": "turf-wars-gambit",
+  "name": "Turf War's Gambit",
+  "author": "Minty",
+  "summary": "Pieces paint tiles their color, splashing onto adjacent tiles on capture. Earn $1 per 5 white tiles at the end of a game.",
+  "description": "A rare money gambit that turns the board into a paint fight. When the board is set, every tile with a piece takes that piece's color. Each move paints the destination tile, and each capture also splashes the four adjacent tiles. When you win the game you earn $1 for every 5 white tiles on the board, crumbled ones included. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "TurfWarsGambit.zip",
+  "folder": "TurfWarsGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TurfWarsGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "TurfWar",
+      "name": "Turf War's Gambit",
+      "rarity": "rare",
+      "price": 4,
+      "description": "Pieces paint tiles their respective color, splashing into <bounce><color=≠>ADJACENT</color></bounce> tiles on capture. Earn <color=∞>$1</color> per 5 <color=€>WHITE</color> tiles at end of game.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/TurfWarsGambit/TurfWar.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-09-03"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "tortoise",
+  "name": "Tortoise's Gambit",
+  "author": "Agent15",
+  "summary": "Every King move has a 1/2 chance to also count as waiting.",
+  "description": "A rare King gambit. Each time you move your King there is a 1/2 chance the move also fires the game's 'wait' event, so anything that triggers on waiting triggers too. With Anarchist active, every piece counts as a King for this roll. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "TortoisesGambit.zip",
+  "folder": "TortoisesGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "tortoise",
+      "name": "Tortoise's Gambit",
+      "rarity": "rare",
+      "price": 7,
+      "description": "Every <sprite=9> <color=£>KING</color> move has a<br><color=Ø>1/2 chance</color> to also<br><wave><color=∫>COUNT AS</color></wave> <color=µ>WAITING</color>.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/TortoisesGambit/Tortoise.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-03"
+}

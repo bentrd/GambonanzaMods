@@ -1,0 +1,19 @@
+{
+  "id": "tile-console",
+  "name": "Tile Console",
+  "author": "Minty",
+  "summary": "Adds a 'tile' console command to modify, recolor or crumble a tile, a row, a column, or the whole board.",
+  "description": "A console utility, not a gambit. Open the in-game console and run `tile <where> <what>`: `<where>` is `all`, a row (1-5), a column (a-h) or a single coordinate like `d3`; `<what>` is a tile modifier (golden, protective, blessing, trap, phantom, cursed), a color (white, black), `crumble`, or `default` to reset the tile and bring a crumbled one back. Turn on the game's tile-coordinate overlay in settings to see which square is which. Handy for testing gambits and setting up board states.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "TileConsole.zip",
+  "folder": "TileConsole",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TileConsole",
+  "tags": [
+    "cheats",
+    "tools"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-09-03"
+}

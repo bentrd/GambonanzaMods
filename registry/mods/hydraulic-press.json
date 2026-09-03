@@ -1,0 +1,32 @@
+{
+  "id": "hydraulic-press",
+  "name": "Hydraulic Press's Gambit",
+  "author": "Agent15",
+  "summary": "Capturing with a Rook on an adjacent tile skips the enemy's turn.",
+  "description": "An epic gambit for close-quarters Rooks: capture a piece that sits one tile away orthogonally and the enemy's next turn is skipped. The counterpart to Sniper's Gambit, which rewards long-range Bishop captures instead. Needs the Gambit Creation API and the 'Point A' Manager library, both of which install automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "HydraulicPresssGambit.zip",
+  "folder": "HydraulicPresssGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "point-a-mngr"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "hydraulic-press",
+      "name": "Hydraulic Press's Gambit",
+      "rarity": "epic",
+      "price": 9,
+      "description": "Capturing with a <sprite=6> <color=°>ROOK</color> on an <bounce><color=≠>ADJACENT</color></bounce> tile skips the enemy's turn.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/HydraulicPresssGambit/HydraulicPress.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-03"
+}

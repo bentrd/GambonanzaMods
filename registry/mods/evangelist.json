@@ -1,0 +1,31 @@
+{
+  "id": "evangelist",
+  "name": "Evangelist's Gambit",
+  "author": "Agent15",
+  "summary": "Moving a Bishop adjacent to an enemy piece has a 1/4 chance to convert it into one of your pieces.",
+  "description": "An epic Bishop gambit. After each Bishop move, every adjacent enemy piece rolls a 1/4 chance to switch sides: the piece is replaced with a white piece of the same type, keeping its modifiers, and gets a home tile on your side of the board. Enemy pieces with special enemy abilities are skipped, and conversions stop once your board is at its piece cap. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "EvangelistsGambit.zip",
+  "folder": "EvangelistsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "evangelist",
+      "name": "Evangelist's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "Moving a <sprite=8> <color=∏>BISHOP</color> <bounce><color=≠>ADJACENT</color></bounce> to an enemy piece has a <br><color=Ø>1/4 chance</color> to transform it into one of your pieces. <br><i>(If possible)</i>",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/EvangelistsGambit/Evangelist.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-03"
+}

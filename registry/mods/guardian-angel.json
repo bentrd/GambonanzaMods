@@ -1,0 +1,31 @@
+{
+  "id": "guardian-angel",
+  "name": "Guardian Angel's Gambit",
+  "author": "Agent15",
+  "summary": "If any of your pieces is protected, bless it when the protection expires.",
+  "description": "A rare gambit that chains two buffs. Whenever one of your pieces becomes protected it is remembered, and on a later player turn, once that protection has worn off, the piece is blessed instead. The list resets when you enter the shop. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "GuardianAngelsGambit.zip",
+  "folder": "GuardianAngelsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "guardian-angel",
+      "name": "Guardian Angel's Gambit",
+      "rarity": "rare",
+      "price": 7,
+      "description": "If any of your pieces is <color=æ>PROTECED</color>, <color=ƒ>BLESS</color> it when the effect expires.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/GuardianAngelsGambit/GuardianAngel.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-03"
+}
