@@ -1,87 +1,87 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-03T05:53:40.499Z",
+  "generatedAt": "2026-09-03T06:07:16.578Z",
   "count": 39,
   "releases": {
     "framework": {
-      "tag": "v1.5.0",
-      "version": "1.5.0",
-      "publishedAt": "2026-08-22T10:37:58Z",
-      "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
+      "tag": "v1.5.1",
+      "version": "1.5.1",
+      "publishedAt": "2026-09-03T06:06:43Z",
+      "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/BetterCollection.zip",
           "size": 7897,
-          "sha256": "6b1e84698604f21c8aa33a1a9ce88a8d50f76526fac707789dde25361f32a9bf"
+          "sha256": "03e2e00e345eabbfa69944c7bcdfe638af0472efed14522663fc0f241de8ad36"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "cafc4447cceeb32155e2f8a7bd0f117a6e9f4d906990c475b1121f26a316358b"
+          "sha256": "90674b9907d6d5f5f514359340f7e1ed64bfadb94c43e09e74a029c1e7174976"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/GambitApi.zip",
           "size": 19924,
-          "sha256": "e26e1d43b0a80a7fb1c5e4df3b422d172b08bbf40499eb738fbd50aaf27cf854"
+          "sha256": "d9efd9760e8941e192034cb0cfe5609ad17f42068fe972658f1177dbc0b44b0e"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-linux-arm64.zip",
-          "size": 28397596,
-          "sha256": "a52a4a932ab5ccf186b288a3a6c5f242b2709bd29c8177ee0c7e7a0322915b1b"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-linux-arm64.zip",
+          "size": 28397808,
+          "sha256": "44d659de2f86a4593a98430fd4cd904632d7fce0813af2bd956d94b2d3429c24"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-linux-x64.zip",
-          "size": 29639402,
-          "sha256": "f35c7709696ee901209aafa68d6e566a018da5dbe75ff709dc86274b96e1aba6"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-linux-x64.zip",
+          "size": 29639650,
+          "sha256": "a0086c4f431bf4e009015fca5fb7f10357eeb0ec5847a07eeca4c725a65b67e4"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-osx-arm64.zip",
-          "size": 28622750,
-          "sha256": "7a873ef7e96512eb8d540ac296ffa5ad97f193b0d1638b249f34a4565b239270"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-osx-arm64.zip",
+          "size": 28623506,
+          "sha256": "a47eda3f9b1275b696d0b9c055ab2c190b5bd75132bad35936eefa201092f565"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-osx-x64.zip",
-          "size": 29985218,
-          "sha256": "ace01277d5809984e750279040a303cb5605e51ec5ee9e17b18e3c63750e3db2"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-osx-x64.zip",
+          "size": 29985272,
+          "sha256": "79b6aa0462ba356528eedb5c6d61a5ea81c6a377f9f72991a47b20314ac98ab7"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-win-arm64.zip",
-          "size": 28871714,
-          "sha256": "7ac59472ebf9a5f938b113f0e4c20924d6d7bf63a29cf7f8778fb267b0872be2"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-win-arm64.zip",
+          "size": 28871826,
+          "sha256": "53c83fbd44e4d7d9303af1ca697f7db084f3b6c9ee13b65909c57d8848b1515e"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/gambonanza-framework-win-x64.zip",
-          "size": 29941813,
-          "sha256": "943bae07ec2c8dd921f70cb2f86b17bdf2e3575074d1fbbb6b1e60b6f697cd36"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-win-x64.zip",
+          "size": 29942069,
+          "sha256": "87a9e2ec7285ac5f0c12253d940d0135e42fc6bbd3ff4ab74e51f21c1fd6545e"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "8bc27eca52172027e67a572678e697bd95a1b2e26cd7245c2ebda3dfeda9624b"
+          "sha256": "6a17c124cc82348774b19c41debe91ed5265fe6c5e6435eb0fcda3e0b696276b"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "89c359955d61115a15f07a2f4c4731811c8dbe444426b057b26c9720c352af40"
+          "sha256": "434b46f405994837b31e7a3d51e7e7729088bea45c2f086add1fdbd78340f842"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "9417d725ce772849018a64404a3564d29f2029371880c1c68c500ec78fd8affe"
+          "sha256": "6266aff61521f05fe6f8713882a64e5511e14fafd371869c2882069299413069"
         }
       ]
     },
@@ -193,23 +193,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.0",
+        "tag": "v1.5.1",
         "version": "1.1.0",
-        "publishedAt": "2026-08-22T10:37:58Z",
-        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
+        "publishedAt": "2026-09-03T06:06:43Z",
+        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/BetterCollection.zip",
           "size": 7897,
-          "sha256": "6b1e84698604f21c8aa33a1a9ce88a8d50f76526fac707789dde25361f32a9bf"
+          "sha256": "03e2e00e345eabbfa69944c7bcdfe638af0472efed14522663fc0f241de8ad36"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T01:10:16Z",
+      "repoPushedAt": "2026-09-03T06:05:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -655,23 +655,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.0",
+        "tag": "v1.5.1",
         "version": "1.2.0",
-        "publishedAt": "2026-08-22T10:37:58Z",
-        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
+        "publishedAt": "2026-09-03T06:06:43Z",
+        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "cafc4447cceeb32155e2f8a7bd0f117a6e9f4d906990c475b1121f26a316358b"
+          "sha256": "90674b9907d6d5f5f514359340f7e1ed64bfadb94c43e09e74a029c1e7174976"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T01:10:16Z",
+      "repoPushedAt": "2026-09-03T06:05:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -842,23 +842,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.0",
+        "tag": "v1.5.1",
         "version": "1.4.1",
-        "publishedAt": "2026-08-22T10:37:58Z",
-        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
+        "publishedAt": "2026-09-03T06:06:43Z",
+        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/GambitApi.zip",
           "size": 19924,
-          "sha256": "e26e1d43b0a80a7fb1c5e4df3b422d172b08bbf40499eb738fbd50aaf27cf854"
+          "sha256": "d9efd9760e8941e192034cb0cfe5609ad17f42068fe972658f1177dbc0b44b0e"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 30,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T01:10:16Z",
+      "repoPushedAt": "2026-09-03T06:05:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,23 +1239,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.0",
+        "tag": "v1.5.1",
         "version": "1.3.0",
-        "publishedAt": "2026-08-22T10:37:58Z",
-        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
+        "publishedAt": "2026-09-03T06:06:43Z",
+        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "8bc27eca52172027e67a572678e697bd95a1b2e26cd7245c2ebda3dfeda9624b"
+          "sha256": "6a17c124cc82348774b19c41debe91ed5265fe6c5e6435eb0fcda3e0b696276b"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T01:10:16Z",
+      "repoPushedAt": "2026-09-03T06:05:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1386,23 +1386,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.0",
+        "tag": "v1.5.1",
         "version": "1.1.0",
-        "publishedAt": "2026-08-22T10:37:58Z",
-        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
+        "publishedAt": "2026-09-03T06:06:43Z",
+        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "89c359955d61115a15f07a2f4c4731811c8dbe444426b057b26c9720c352af40"
+          "sha256": "434b46f405994837b31e7a3d51e7e7729088bea45c2f086add1fdbd78340f842"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T01:10:16Z",
+      "repoPushedAt": "2026-09-03T06:05:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1817,23 +1817,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.0",
+        "tag": "v1.5.1",
         "version": "1.1.0",
-        "publishedAt": "2026-08-22T10:37:58Z",
-        "notes": "\n- **Texture packs.** The framework can now re-skin the game: replacement art\n  for any sprite or sheet, and replacement wording for any of the game's\n  1229 lines of text, in any of its 11 languages. You build one in the mod\n  manager's new **Texture packs** tab; the framework applies it while the game\n  runs. Nothing in your install is rewritten, which is the whole point - a\n  Steam update can't wipe it, turning it off is instant, and there is no\n  backup to restore. Packs are zips you can hand to anyone, and they can be\n  published to the registry like modpacks.\n  The console (F10) grew `texturepack` to show what the active pack replaced,\n  `texturepack list` for every override in it, and `texturepack reapply` to\n  put it back on without restarting.\n- Mods still win over texture packs: a mod that ships its own art is loaded\n  first, so a re-skin can never break a mod's UI.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.0",
+        "publishedAt": "2026-09-03T06:06:43Z",
+        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "9417d725ce772849018a64404a3564d29f2029371880c1c68c500ec78fd8affe"
+          "sha256": "6266aff61521f05fe6f8713882a64e5511e14fafd371869c2882069299413069"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T01:10:16Z",
+      "repoPushedAt": "2026-09-03T06:05:37Z",
       "license": "MIT",
       "archived": false
     },
