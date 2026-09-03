@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-03T16:31:25.400Z",
+  "generatedAt": "2026-09-03T18:38:40.056Z",
   "count": 40,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T14:55:08Z",
+      "repoPushedAt": "2026-09-03T18:38:06Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,15 +671,16 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T14:55:08Z",
+      "repoPushedAt": "2026-09-03T18:38:06Z",
       "license": "MIT",
       "archived": false
     },
     {
       "id": "evangelist",
       "name": "Evangelist's Gambit",
-      "author": "FRO_PWR",
-      "summary": "Moving a bishop adjacent to an enemy piece has a 1/4 chance of transforming it into one of your pieces (If possible)",
+      "author": "Agent15",
+      "summary": "Moving a Bishop adjacent to an enemy piece has a 1/4 chance to convert it into one of your pieces.",
+      "description": "An epic Bishop gambit. After each Bishop move, every adjacent enemy piece rolls a 1/4 chance to switch sides: the piece is replaced with a white piece of the same type, keeping its modifiers, and gets a home tile on your side of the board. Enemy pieces with special enemy abilities are skipped, and conversions stop once your board is at its piece cap. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "EvangelistsGambit.zip",
       "folder": "EvangelistsGambit",
@@ -687,12 +688,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "evangelist",
+          "name": "Evangelist's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "Moving a <sprite=8> <color=∏>BISHOP</color> <bounce><color=≠>ADJACENT</color></bounce> to an enemy piece has a <br><color=Ø>1/4 chance</color> to transform it into one of your pieces. <br><i>(If possible)</i>",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/EvangelistsGambit/Evangelist.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-08-30",
+      "addedAt": "2026-09-03",
       "official": false,
-      "reviewed": false,
-      "issue": 43,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/43",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -858,7 +872,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T14:55:08Z",
+      "repoPushedAt": "2026-09-03T18:38:06Z",
       "license": "MIT",
       "archived": false
     },
@@ -971,8 +985,9 @@
     {
       "id": "guardian-angel",
       "name": "Guardian Angel's Gambit",
-      "author": "FRO_PWR",
-      "summary": "If any of your pieces is protected, bless it when the effect expires.",
+      "author": "Agent15",
+      "summary": "If any of your pieces is protected, bless it when the protection expires.",
+      "description": "A rare gambit that chains two buffs. Whenever one of your pieces becomes protected it is remembered, and on a later player turn, once that protection has worn off, the piece is blessed instead. The list resets when you enter the shop. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "GuardianAngelsGambit.zip",
       "folder": "GuardianAngelsGambit",
@@ -980,12 +995,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "guardian-angel",
+          "name": "Guardian Angel's Gambit",
+          "rarity": "rare",
+          "price": 7,
+          "description": "If any of your pieces is <color=æ>PROTECED</color>, <color=ƒ>BLESS</color> it when the effect expires.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/GuardianAngelsGambit/GuardianAngel.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-08-29",
+      "addedAt": "2026-09-03",
       "official": false,
-      "reviewed": false,
-      "issue": 42,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/42",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -1010,8 +1038,9 @@
     {
       "id": "hydraulic-press",
       "name": "Hydraulic Press's Gambit",
-      "author": "FRO_PWR",
-      "summary": "Capturing with a rook on an adjacent tile skips the enemy's turn.",
+      "author": "Agent15",
+      "summary": "Capturing with a Rook on an adjacent tile skips the enemy's turn.",
+      "description": "An epic gambit for close-quarters Rooks: capture a piece that sits one tile away orthogonally and the enemy's next turn is skipped. The counterpart to Sniper's Gambit, which rewards long-range Bishop captures instead. Needs the Gambit Creation API and the 'Point A' Manager library, both of which install automatically.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "HydraulicPresssGambit.zip",
       "folder": "HydraulicPresssGambit",
@@ -1019,12 +1048,26 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api",
+        "point-a-mngr"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "hydraulic-press",
+          "name": "Hydraulic Press's Gambit",
+          "rarity": "epic",
+          "price": 9,
+          "description": "Capturing with a <sprite=6> <color=°>ROOK</color> on an <bounce><color=≠>ADJACENT</color></bounce> tile skips the enemy's turn.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/HydraulicPresssGambit/HydraulicPress.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-09-01",
+      "addedAt": "2026-09-03",
       "official": false,
-      "reviewed": false,
-      "issue": 44,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/44",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -1255,7 +1298,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T14:55:08Z",
+      "repoPushedAt": "2026-09-03T18:38:06Z",
       "license": "MIT",
       "archived": false
     },
@@ -1402,7 +1445,7 @@
       },
       "downloads": 21,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T14:55:08Z",
+      "repoPushedAt": "2026-09-03T18:38:06Z",
       "license": "MIT",
       "archived": false
     },
@@ -1833,7 +1876,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T14:55:08Z",
+      "repoPushedAt": "2026-09-03T18:38:06Z",
       "license": "MIT",
       "archived": false
     },
@@ -1948,20 +1991,22 @@
       "id": "tile-console",
       "name": "Tile Console",
       "author": "Minty",
-      "summary": "Registers a command used to modify a tile or group of tiles.",
+      "summary": "Adds a 'tile' console command to modify, recolor or crumble a tile, a row, a column, or the whole board.",
+      "description": "A console utility, not a gambit. Open the in-game console and run `tile <where> <what>`: `<where>` is `all`, a row (1-5), a column (a-h) or a single coordinate like `d3`; `<what>` is a tile modifier (golden, protective, blessing, trap, phantom, cursed), a color (white, black), `crumble`, or `default` to reset the tile and bring a crumbled one back. Turn on the game's tile-coordinate overlay in settings to see which square is which. Handy for testing gambits and setting up board states.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "TileConsole.zip",
       "folder": "TileConsole",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TileConsole",
       "tags": [
         "cheats",
         "tools"
       ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-09-03",
       "official": false,
-      "reviewed": false,
-      "issue": 49,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/49",
+      "reviewed": true,
       "latest": {
         "tag": "v1.2.0",
         "version": "1.2.0",
@@ -1986,8 +2031,9 @@
     {
       "id": "tortoise",
       "name": "Tortoise's Gambit",
-      "author": "FRO_PWR",
-      "summary": "Every king move has a 1/2 chance to also count as waiting.",
+      "author": "Agent15",
+      "summary": "Every King move has a 1/2 chance to also count as waiting.",
+      "description": "A rare King gambit. Each time you move your King there is a 1/2 chance the move also fires the game's 'wait' event, so anything that triggers on waiting triggers too. With Anarchist active, every piece counts as a King for this roll. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "TortoisesGambit.zip",
       "folder": "TortoisesGambit",
@@ -1995,12 +2041,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "tortoise",
+          "name": "Tortoise's Gambit",
+          "rarity": "rare",
+          "price": 7,
+          "description": "Every <sprite=9> <color=£>KING</color> move has a<br><color=Ø>1/2 chance</color> to also<br><wave><color=∫>COUNT AS</color></wave> <color=µ>WAITING</color>.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/TortoisesGambit/Tortoise.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-08-27",
+      "addedAt": "2026-09-03",
       "official": false,
-      "reviewed": false,
-      "issue": 41,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/41",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -2026,19 +2085,35 @@
       "id": "turf-wars-gambit",
       "name": "Turf War's Gambit",
       "author": "Minty",
-      "summary": "Pieces paint tiles their respective color, splashing into adjacent tiles on capture. Earn $1 per 5 white tiles at end of game",
+      "summary": "Pieces paint tiles their color, splashing onto adjacent tiles on capture. Earn $1 per 5 white tiles at the end of a game.",
+      "description": "A rare money gambit that turns the board into a paint fight. When the board is set, every tile with a piece takes that piece's color. Each move paints the destination tile, and each capture also splashes the four adjacent tiles. When you win the game you earn $1 for every 5 white tiles on the board, crumbled ones included. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "TurfWarsGambit.zip",
       "folder": "TurfWarsGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TurfWarsGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "TurfWar",
+          "name": "Turf War's Gambit",
+          "rarity": "rare",
+          "price": 4,
+          "description": "Pieces paint tiles their respective color, splashing into <bounce><color=≠>ADJACENT</color></bounce> tiles on capture. Earn <color=∞>$1</color> per 5 <color=€>WHITE</color> tiles at end of game.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/TurfWarsGambit/TurfWar.png"
+        }
       ],
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-09-02",
+      "addedAt": "2026-09-03",
       "official": false,
-      "reviewed": false,
-      "issue": 47,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/47",
+      "reviewed": true,
       "latest": {
         "tag": "v1.1.2",
         "version": "1.1.2",
@@ -2152,12 +2227,7 @@
       "addedAt": "2026-09-02",
       "downloads": 261,
       "installable": true,
-      "unreviewed": [
-        "evangelist",
-        "guardian-angel",
-        "hydraulic-press",
-        "tortoise"
-      ],
+      "unreviewed": [],
       "reviewed": false,
       "issue": 48,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/48"
