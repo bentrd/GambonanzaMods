@@ -4,6 +4,15 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.7.3
+
+- **"Open submission on GitHub" now hands over the whole form.** The Registry
+  id and the repository were arriving blank on the GitHub issue it opens, so
+  you had to type both a second time. The id was never sent at all, and
+  GitHub quietly discards a pre-filled field called `repo`, which is what the
+  form's repository field happened to be named. Both now arrive filled in
+  with the rest. Reported by Craftyman6 (#33).
+
 ## 1.7.2
 
 - **Every mod, modpack and texture pack now has its own page** - in the app
