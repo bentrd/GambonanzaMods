@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-03T11:23:33.390Z",
-  "count": 39,
+  "generatedAt": "2026-09-03T14:55:06.922Z",
+  "count": 40,
   "releases": {
     "framework": {
       "tag": "v1.5.1",
@@ -209,7 +209,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T06:07:17Z",
+      "repoPushedAt": "2026-09-03T11:23:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T06:07:17Z",
+      "repoPushedAt": "2026-09-03T11:23:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -858,7 +858,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T06:07:17Z",
+      "repoPushedAt": "2026-09-03T11:23:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -911,7 +911,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T17:00:01Z",
+      "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -1255,7 +1255,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T06:07:17Z",
+      "repoPushedAt": "2026-09-03T11:23:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -1402,7 +1402,7 @@
       },
       "downloads": 21,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T06:07:17Z",
+      "repoPushedAt": "2026-09-03T11:23:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -1510,7 +1510,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T17:00:01Z",
+      "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -1618,7 +1618,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T17:00:01Z",
+      "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -1780,7 +1780,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T17:00:01Z",
+      "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -1833,7 +1833,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-09-03T06:07:17Z",
+      "repoPushedAt": "2026-09-03T11:23:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -1940,7 +1940,46 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T17:00:01Z",
+      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "tile-console",
+      "name": "Tile Console",
+      "author": "Minty",
+      "summary": "Registers a command used to modify a tile or group of tiles.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "TileConsole.zip",
+      "folder": "TileConsole",
+      "tags": [
+        "cheats",
+        "tools"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-09-03",
+      "official": false,
+      "reviewed": false,
+      "issue": 49,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/49",
+      "latest": {
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-09-03T14:49:59Z",
+        "notes": "Added the tile console mod",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.2.0",
+        "asset": {
+          "name": "TileConsole.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.2.0/TileConsole.zip",
+          "size": 5521,
+          "sha256": "fb3bd104aa8f610cdb16d8235b9f18e48408684b312c3665d3f9a5f11458234b"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -2017,7 +2056,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T17:00:01Z",
+      "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
       "archived": false
     },
@@ -2072,7 +2111,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-02T17:00:01Z",
+      "repoPushedAt": "2026-09-03T14:49:59Z",
       "license": "MIT",
       "archived": false
     }
