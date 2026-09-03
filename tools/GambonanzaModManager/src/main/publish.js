@@ -248,17 +248,26 @@ async function waitForRepo(token, fullName) {
   throw new Error(`the fork ${fullName} did not become ready - try again in a minute`);
 }
 
-/** Pre-filled new-issue URL for the no-sign-in path. */
+/**
+ * Pre-filled new-issue URL for the no-sign-in path. Every key below is the
+ * `id` of a field in .github/ISSUE_TEMPLATE/mod-submission.yml - that is how
+ * GitHub matches a query parameter to a form field, and test/publish.test.js
+ * keeps the two files in step. Mind the names: GitHub silently drops a
+ * parameter it uses for itself. `repo` is one (undocumented, but eaten all
+ * the same), which is why the repository field is `mod-repo` (#33).
+ */
 function submissionIssueUrl(entry) {
   const params = new URLSearchParams({
     template: 'mod-submission.yml',
     title: `[Mod] ${entry.name || ''}`,
     'mod-name': entry.name || '',
-    repo: entry.repo || '',
+    'mod-id': entry.id || '',
+    'mod-repo': entry.repo || '',
     asset: entry.asset || '',
     folder: entry.folder || '',
     summary: entry.summary || '',
     tags: (entry.tags || []).join(', '),
+    'entry-type': entry.manifest?.entry || '',
   });
   return `https://github.com/${HOME_REPO}/issues/new?${params.toString()}`;
 }

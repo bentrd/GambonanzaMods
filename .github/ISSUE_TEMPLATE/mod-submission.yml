@@ -35,7 +35,10 @@ body:
       description: lowercase-with-dashes, permanent. Leave blank to derive it from the name.
       placeholder: my-cool-mod
   - type: input
-    id: repo
+    # Not "repo": GitHub silently drops a prefill query parameter by that name,
+    # so the mod manager's pre-filled link arrived with this field blank (#33).
+    # The id is only the URL key - the registry parser reads the label.
+    id: mod-repo
     attributes:
       label: GitHub repository
       description: owner/name of the public repo with your source and releases.
