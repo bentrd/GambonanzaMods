@@ -1,87 +1,93 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-04T14:59:44.153Z",
-  "count": 41,
+  "generatedAt": "2026-09-04T15:40:45.985Z",
+  "count": 42,
   "releases": {
     "framework": {
-      "tag": "v1.5.1",
-      "version": "1.5.1",
-      "publishedAt": "2026-09-03T06:06:43Z",
-      "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
+      "tag": "v1.5.2",
+      "version": "1.5.2",
+      "publishedAt": "2026-09-04T15:39:29Z",
+      "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/BetterCollection.zip",
           "size": 7897,
-          "sha256": "03e2e00e345eabbfa69944c7bcdfe638af0472efed14522663fc0f241de8ad36"
+          "sha256": "50e799ac65d7c97ac89e2f18aaaf9ab70c717f4c8e8de04a58564be4c91c475c"
+        },
+        {
+          "name": "CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/CrumbleApi.zip",
+          "size": 15555,
+          "sha256": "de4887fb524fa14545523ee4c07035d459e91dd458894d4d4e284d200c3ddece"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "90674b9907d6d5f5f514359340f7e1ed64bfadb94c43e09e74a029c1e7174976"
+          "sha256": "c0ef8dab812af66031601be8e34147f52b95e2c803c0cc2bec3be896b2a70d97"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/GambitApi.zip",
           "size": 19924,
-          "sha256": "d9efd9760e8941e192034cb0cfe5609ad17f42068fe972658f1177dbc0b44b0e"
+          "sha256": "32c2ec926b4b438384bbd8580d751dadbd68de84f41e7c129355a60606f278d8"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-linux-arm64.zip",
-          "size": 28397808,
-          "sha256": "44d659de2f86a4593a98430fd4cd904632d7fce0813af2bd956d94b2d3429c24"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-linux-arm64.zip",
+          "size": 28397037,
+          "sha256": "58a1f680b69ba3606ca15c2eb473c370bda2e37439d51bbaf5d5845593f855cd"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-linux-x64.zip",
-          "size": 29639650,
-          "sha256": "a0086c4f431bf4e009015fca5fb7f10357eeb0ec5847a07eeca4c725a65b67e4"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-linux-x64.zip",
+          "size": 29638971,
+          "sha256": "40e3a9119a4f0492b55bb2b190f91e6a6906f3f30ad445986758024838701de0"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-osx-arm64.zip",
-          "size": 28623506,
-          "sha256": "a47eda3f9b1275b696d0b9c055ab2c190b5bd75132bad35936eefa201092f565"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-osx-arm64.zip",
+          "size": 28622933,
+          "sha256": "2d77b04278e07ac8b81586c44391b058643c150d75d4d79792c3860b0bf9a087"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-osx-x64.zip",
-          "size": 29985272,
-          "sha256": "79b6aa0462ba356528eedb5c6d61a5ea81c6a377f9f72991a47b20314ac98ab7"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-osx-x64.zip",
+          "size": 29985429,
+          "sha256": "b1e0958feba28ce0d673b36943a8c2fd07807a44f69b6fa28dbbdf90aca091aa"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-win-arm64.zip",
-          "size": 28871826,
-          "sha256": "53c83fbd44e4d7d9303af1ca697f7db084f3b6c9ee13b65909c57d8848b1515e"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-win-arm64.zip",
+          "size": 28871763,
+          "sha256": "17fb3fff45369798f184ab1852ecbc673e6d5cf5b51f521f759a9f353d62708b"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/gambonanza-framework-win-x64.zip",
-          "size": 29942069,
-          "sha256": "87a9e2ec7285ac5f0c12253d940d0135e42fc6bbd3ff4ab74e51f21c1fd6545e"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-win-x64.zip",
+          "size": 29941442,
+          "sha256": "de20239e7d857454c06f2cbda261c3da4237218975d625fcbdc6c1f9baf43fae"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "6a17c124cc82348774b19c41debe91ed5265fe6c5e6435eb0fcda3e0b696276b"
+          "sha256": "92d5480a41654a88452860bbb313b16c87e92f9fc9e86c36f3b87845231fee33"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "434b46f405994837b31e7a3d51e7e7729088bea45c2f086add1fdbd78340f842"
+          "sha256": "0f66727ccefb7a29806ab087622936b885d54948c906c38aeb16cde84c888cd2"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "6266aff61521f05fe6f8713882a64e5511e14fafd371869c2882069299413069"
+          "sha256": "7c6558e974f079f3104191a1c9c205f6e23b7fc6e819ac95286ec7e470e4f058"
         }
       ]
     },
@@ -193,23 +199,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.1",
+        "tag": "v1.5.2",
         "version": "1.1.0",
-        "publishedAt": "2026-09-03T06:06:43Z",
-        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
+        "publishedAt": "2026-09-04T15:39:29Z",
+        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/BetterCollection.zip",
           "size": 7897,
-          "sha256": "03e2e00e345eabbfa69944c7bcdfe638af0472efed14522663fc0f241de8ad36"
+          "sha256": "50e799ac65d7c97ac89e2f18aaaf9ab70c717f4c8e8de04a58564be4c91c475c"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T14:59:04Z",
+      "repoPushedAt": "2026-09-04T15:39:56Z",
       "license": "MIT",
       "archived": false
     },
@@ -355,6 +361,47 @@
       "downloads": 15,
       "stars": 0,
       "repoPushedAt": "2026-08-26T16:32:15Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "crumble-api",
+      "name": "Crumble Control API",
+      "author": "Ben",
+      "summary": "Library that lets mods freeze, block, delay, start or stop the crumble. Adds 'crumble' console commands.",
+      "description": "Not much to look at on its own - install it because a gambit asked for it. It exposes the crumble mode the game keeps private: a gambit can freeze the crumble (the countdown stops, nothing falls, nothing new shakes), block it from ever starting, or lengthen the countdown by any number of turns - each as a handle tied to the gambit, so selling the card undoes it - and it can start or stop the crumble outright.\n\nIt also adds console commands you can use directly: `crumble` shows the live countdown and who is holding it, then `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`, `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "CrumbleApi.zip",
+      "folder": "CrumbleApi",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/CrumbleApi",
+      "tags": [
+        "library",
+        "tools"
+      ],
+      "frameworkVersion": ">=1.5.2",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-09-04",
+      "official": true,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.5.2",
+        "version": "1.0.0",
+        "publishedAt": "2026-09-04T15:39:29Z",
+        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+        "asset": {
+          "name": "CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/CrumbleApi.zip",
+          "size": 15555,
+          "sha256": "de4887fb524fa14545523ee4c07035d459e91dd458894d4d4e284d200c3ddece"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
+      },
+      "downloads": 0,
+      "stars": 5,
+      "repoPushedAt": "2026-09-04T15:39:56Z",
       "license": "MIT",
       "archived": false
     },
@@ -655,23 +702,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.1",
+        "tag": "v1.5.2",
         "version": "1.2.0",
-        "publishedAt": "2026-09-03T06:06:43Z",
-        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
+        "publishedAt": "2026-09-04T15:39:29Z",
+        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "90674b9907d6d5f5f514359340f7e1ed64bfadb94c43e09e74a029c1e7174976"
+          "sha256": "c0ef8dab812af66031601be8e34147f52b95e2c803c0cc2bec3be896b2a70d97"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T14:59:04Z",
+      "repoPushedAt": "2026-09-04T15:39:56Z",
       "license": "MIT",
       "archived": false
     },
@@ -856,23 +903,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.1",
+        "tag": "v1.5.2",
         "version": "1.4.1",
-        "publishedAt": "2026-09-03T06:06:43Z",
-        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
+        "publishedAt": "2026-09-04T15:39:29Z",
+        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/GambitApi.zip",
           "size": 19924,
-          "sha256": "d9efd9760e8941e192034cb0cfe5609ad17f42068fe972658f1177dbc0b44b0e"
+          "sha256": "32c2ec926b4b438384bbd8580d751dadbd68de84f41e7c129355a60606f278d8"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T14:59:04Z",
+      "repoPushedAt": "2026-09-04T15:39:56Z",
       "license": "MIT",
       "archived": false
     },
@@ -1083,7 +1130,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
@@ -1336,23 +1383,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.1",
+        "tag": "v1.5.2",
         "version": "1.3.0",
-        "publishedAt": "2026-09-03T06:06:43Z",
-        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
+        "publishedAt": "2026-09-04T15:39:29Z",
+        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "6a17c124cc82348774b19c41debe91ed5265fe6c5e6435eb0fcda3e0b696276b"
+          "sha256": "92d5480a41654a88452860bbb313b16c87e92f9fc9e86c36f3b87845231fee33"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T14:59:04Z",
+      "repoPushedAt": "2026-09-04T15:39:56Z",
       "license": "MIT",
       "archived": false
     },
@@ -1483,23 +1530,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.1",
+        "tag": "v1.5.2",
         "version": "1.1.0",
-        "publishedAt": "2026-09-03T06:06:43Z",
-        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
+        "publishedAt": "2026-09-04T15:39:29Z",
+        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "434b46f405994837b31e7a3d51e7e7729088bea45c2f086add1fdbd78340f842"
+          "sha256": "0f66727ccefb7a29806ab087622936b885d54948c906c38aeb16cde84c888cd2"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 21,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T14:59:04Z",
+      "repoPushedAt": "2026-09-04T15:39:56Z",
       "license": "MIT",
       "archived": false
     },
@@ -1914,23 +1961,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.1",
+        "tag": "v1.5.2",
         "version": "1.1.0",
-        "publishedAt": "2026-09-03T06:06:43Z",
-        "notes": "\n- Console (F10) tab completion now completes the argument your cursor is on\n  instead of throwing away everything you typed before it. Completing a\n  command's second argument used to replace the first one - `collection\n  outlines ` + Tab became `collection 0` - and now it correctly gives\n  `collection outlines 0`. Suggestions are also filtered by what you've\n  already typed of the argument (names that merely contain it are offered\n  after names that start with it), so `keybind gambitapi to` + Tab lands on\n  `ToggleOverlay` instead of the first name in the list. For modders: the\n  console now honours the `ConsoleArgumentCompleter` contract exactly as\n  documented in the SDK - return every candidate for the argument at\n  `argIndex` and the console does the filtering, ranking, and line\n  rebuilding for you.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.1",
+        "publishedAt": "2026-09-04T15:39:29Z",
+        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.1/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "6266aff61521f05fe6f8713882a64e5511e14fafd371869c2882069299413069"
+          "sha256": "7c6558e974f079f3104191a1c9c205f6e23b7fc6e819ac95286ec7e470e4f058"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T14:59:04Z",
+      "repoPushedAt": "2026-09-04T15:39:56Z",
       "license": "MIT",
       "archived": false
     },
