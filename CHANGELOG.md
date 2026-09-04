@@ -5,6 +5,27 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## Unreleased
+
+- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod
+  authors can now do things to the crumble that the game keeps private: a
+  gambit can freeze it (the countdown stops, nothing falls, nothing new
+  shakes), block it from ever starting, or lengthen the countdown by any
+  number of turns - each as a handle tied to the gambit, so selling the card
+  undoes it on its own - and it can start or stop the crumble outright.
+  Nothing changed in the patcher and no re-patch is needed - the library
+  reads the private `CrumbleManager` state by reflection and wraps the game's
+  own per-turn crumble step. It also adds console (F10) commands you can use
+  directly: `crumble` shows the live countdown and who is holding it, then
+  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,
+  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.
+- Recorded Gambonanza build 25059529 (the update Steam shipped on
+  2026-09-04) as the supported one. It changes eight game types, none of
+  which the framework or the bundled mods bind to: a 16:9 letterbox for odd
+  window sizes, the graveyard surviving a stalemate retry, and two vanilla
+  gambits' state checks. The framework DLLs in this release are built
+  against it.
+
 ## 1.5.1
 
 - Console (F10) tab completion now completes the argument your cursor is on
