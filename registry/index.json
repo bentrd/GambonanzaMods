@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-04T13:51:38.066Z",
+  "generatedAt": "2026-09-04T14:59:44.153Z",
   "count": 41,
   "releases": {
     "framework": {
@@ -209,7 +209,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T11:26:29Z",
+      "repoPushedAt": "2026-09-04T14:59:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T11:26:29Z",
+      "repoPushedAt": "2026-09-04T14:59:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -872,7 +872,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T11:26:29Z",
+      "repoPushedAt": "2026-09-04T14:59:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1040,18 +1040,34 @@
       "name": "Gumbo's Gambit",
       "author": "Minty",
       "summary": "When a tile falls, the tile under it begins to crumble.",
+      "description": "A common crumble gambit that chains falls downward. Whenever a tile falls off the board, the tile directly below it starts crumbling and drops on the next turn, so a single fall can cascade down a column until it reaches the edge of the board or your stock. Any leftover crumbling tiles are reset when the game ends. Costs 4 in the shop and unlocks automatically. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "GumbosGambit.zip",
       "folder": "GumbosGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/GumbosGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "Gumbo",
+          "name": "Gumbo's Gambit",
+          "rarity": "common",
+          "price": 4,
+          "description": "When a tile falls, the tile under it begins to <shake>crumble</shake>.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/GumbosGambit/Gumbo.png"
+        }
       ],
       "submittedBy": "Craftyman6",
       "addedAt": "2026-09-04",
       "official": false,
-      "reviewed": false,
-      "issue": 51,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/51",
+      "reviewed": true,
       "latest": {
         "tag": "v1.2.1",
         "version": "1.2.1",
@@ -1067,7 +1083,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
@@ -1336,7 +1352,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T11:26:29Z",
+      "repoPushedAt": "2026-09-04T14:59:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1483,7 +1499,7 @@
       },
       "downloads": 21,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T11:26:29Z",
+      "repoPushedAt": "2026-09-04T14:59:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1914,7 +1930,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T11:26:29Z",
+      "repoPushedAt": "2026-09-04T14:59:04Z",
       "license": "MIT",
       "archived": false
     },
