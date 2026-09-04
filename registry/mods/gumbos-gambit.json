@@ -1,0 +1,32 @@
+{
+  "id": "gumbos-gambit",
+  "name": "Gumbo's Gambit",
+  "author": "Minty",
+  "summary": "When a tile falls, the tile under it begins to crumble.",
+  "description": "A common crumble gambit that chains falls downward. Whenever a tile falls off the board, the tile directly below it starts crumbling and drops on the next turn, so a single fall can cascade down a column until it reaches the edge of the board or your stock. Any leftover crumbling tiles are reset when the game ends. Costs 4 in the shop and unlocks automatically. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "GumbosGambit.zip",
+  "folder": "GumbosGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/GumbosGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "Gumbo",
+      "name": "Gumbo's Gambit",
+      "rarity": "common",
+      "price": 4,
+      "description": "When a tile falls, the tile under it begins to <shake>crumble</shake>.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/GumbosGambit/Gumbo.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-09-04"
+}
