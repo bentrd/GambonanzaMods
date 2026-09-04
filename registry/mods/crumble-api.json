@@ -12,9 +12,8 @@
     "library",
     "tools"
   ],
-  "frameworkVersion": ">=1.5.1",
+  "frameworkVersion": ">=1.5.2",
   "gameVersion": ">=1.0",
-  "pending": true,
   "submittedBy": "bentrd",
   "addedAt": "2026-09-04"
 }
