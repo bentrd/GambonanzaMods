@@ -5,7 +5,7 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
-## Unreleased
+## 1.5.2
 
 - New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod
   authors can now do things to the crumble that the game keeps private: a
