@@ -1,0 +1,10 @@
+{
+    "id": "CrumbleApi",
+    "name": "Crumble Control API",
+    "version": "1.0.0",
+    "author": "Ben",
+    "entry": "Gambonanza.CrumbleApi.CrumbleApiMod",
+    "enabled": true,
+    "gameVersion": ">=1.0",
+    "description": "Exposes the game's crumble mode to other mods: read the countdown, freeze it, block it, lengthen it, or start and stop the crumble outright. Reference Gambonanza.CrumbleApi.dll and use the static Crumble class."
+}

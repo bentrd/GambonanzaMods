@@ -1,0 +1,20 @@
+{
+  "id": "crumble-api",
+  "name": "Crumble Control API",
+  "author": "Ben",
+  "summary": "Library that lets mods freeze, block, delay, start or stop the crumble. Adds 'crumble' console commands.",
+  "description": "Not much to look at on its own - install it because a gambit asked for it. It exposes the crumble mode the game keeps private: a gambit can freeze the crumble (the countdown stops, nothing falls, nothing new shakes), block it from ever starting, or lengthen the countdown by any number of turns - each as a handle tied to the gambit, so selling the card undoes it - and it can start or stop the crumble outright.\n\nIt also adds console commands you can use directly: `crumble` shows the live countdown and who is holding it, then `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`, `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "CrumbleApi.zip",
+  "folder": "CrumbleApi",
+  "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/CrumbleApi",
+  "tags": [
+    "library",
+    "tools"
+  ],
+  "frameworkVersion": ">=1.5.1",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-09-04"
+}

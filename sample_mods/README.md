@@ -7,6 +7,7 @@ can build on.
 ```
 sample_mods/
 ├── GambitApi/                Library mod - builder for adding new gambits.
+├── CrumbleApi/               Library mod - freeze, block, delay, start or stop the crumble.
 ├── KamikazeGambit/           Custom gambit built on GambitApi.
 ├── SpikesGambit/             Custom gambit by TGM: trap tiles capture enemies.
 ├── EnemyThreatOverlay/       Keybind-driven enemy threat display overlay.
@@ -142,6 +143,47 @@ gambits at runtime. Demonstrates the harder patterns:
 
 GambitApi is itself a mod - it has its own `mod.json` and is loaded by
 ModHost - but it is also a library: KamikazeGambit references it directly.
+
+### CrumbleApi - a library for the crumble
+
+[`CrumbleApi/`](CrumbleApi/) - multi-file project.
+
+Exposes the game's crumble mode - everything `CrumbleManager` keeps private -
+as a static `Crumble` class other mods reference:
+
+```csharp
+using Gambonanza.CrumbleApi;
+
+public sealed class GambitBedrock : BaseGambit
+{
+    private CrumbleHandle _freeze;
+    private void Start()     => _freeze = Crumble.Freeze(this);   // released when the card is sold
+    private void OnDestroy() => _freeze?.Dispose();
+    public override void Trigger() => VisualEffect();
+}
+```
+
+`Freeze(owner)` pauses the crumble (no countdown tick, nothing falls, nothing
+new shakes), `Block(owner)` keeps crumble mode from ever starting,
+`Delay(turns, owner)` lengthens the countdown. `Start()`, `Stop()`,
+`TurnCounter`, `ShakeTile()`, `CalmTile()` and `RestoreTile()` are the direct
+controls; `OnBeforeStep` / `OnAfterStep` fire around the game's per-turn
+crumble step for anything else. Add `"dependencies": ["CrumbleApi"]` to your
+`mod.json`. Two patterns worth stealing:
+
+- **A hook before *and* after a private game method, without Harmony.**
+  `CrumbleCore.cs` finds the game's own `PlayerTurnEffects` delegate inside
+  `TurnManager.OnPlayerCheckIfCanPlay` and rebuilds that multicast list as
+  `[before, PlayerTurnEffects, after]`. Multicast delegates invoke in order,
+  and a `Delegate.CreateDelegate` over the same target and method compares
+  equal to the game's, so the game's private method can be found and bracketed.
+- **Handles with an owner.** Pass the gambit `MonoBehaviour` and the modifier
+  releases itself when Unity destroys it, so a sold card can never leave the
+  board frozen.
+
+Also adds the `crumble` console commands (status, `freeze`, `block`,
+`delay <n>`, `start`, `stop`, `counter <n>`, `shake`, `calm`), which double as
+the API's test bench.
 
 ### KamikazeGambit - a real custom gambit
 

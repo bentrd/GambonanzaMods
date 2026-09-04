@@ -10,11 +10,42 @@
 #   2. Launch the game, open the console (F10), run `mods` and `list gambits`.
 #   3. If everything works, update the two values below and note what changed.
 
-steamBuildId=24858528
-assemblySha256=fe99be1b50dd78d30f4a77895ac87c258d39602db646e0a4d57fa18e5db611f3
+steamBuildId=25059529
+assemblySha256=15610e2a591e5183935919660c430388699c8cc6072cbb8b8c6800c77af4b5e0
 unityVersion=6000.4.3f1
-verifiedOn=2026-08-21
+verifiedOn=2026-09-04
 
+# Build 25059529 (verified 2026-09-04): clean per-type ILSpy diff against
+# 24858528, both decompiled with the same reference set (a first pass without
+# one produced 676 files of op_Implicit noise - always pass -r <Managed>).
+# 8 of 808 decompiled types changed. All 56 by-name bindings in src/ and
+# sample_mods/ (patcher targets included) were mechanically confirmed to still
+# exist in the new assembly. Live boot on the new build with 3 mods loaded
+# (CrumbleApi hooked CrumbleManager.PlayerTurnEffects, a Freeze-holding test
+# gambit worked in a real run), zero exceptions; the Mod Manager re-patched
+# the new dll with the unchanged patcher. Unity version unchanged.
+# What the update actually is:
+#   - 16:9 letterbox: RatioStarter.ApplyLetterbox() sets Camera.main.rect to
+#     a letterbox/pillarbox for odd window sizes (skipped on Steam Deck),
+#     called from GameManager.Start, SettingsCanvas resolution/fullscreen
+#     changes and on window resize. Framework UI (console, injected buttons,
+#     GameUI modals) is ScreenSpaceOverlay uGUI, unaffected by the camera
+#     rect; KamikazeGambit raycasts from the game's own
+#     SelectionManager.PointerPosition, so the conversion is vanilla's.
+#   - The graveyard survives a stalemate retry: BaseData.Pat_Graveyard,
+#     copied in SaveManager/PatManager. Nothing in the framework or bundled
+#     mods reads BaseData by layout; KamikazeGambit's AddPieceToGraveyard
+#     reflection target is unchanged.
+#   - Gambit_Barter now also fires on SHOP-after-GRAVEYARD, GambitKeyOfLife
+#     also on BOARD_PLACEMENT: vanilla gambit logic, GambitApi untouched.
+#   - Injection targets: GameManager.Start gained one ApplyLetterbox() call
+#     (LoadAll is still prepended ahead of it); SettingsCanvas.OnEnable,
+#     CanvasMenu.OnEnable and AchievementManager are byte-identical.
+#   - CrumbleManager, TurnManager, CrumbleIndicator, LoadManager and
+#     TileBehaviour are identical (CrumbleApi territory).
+#   - Not audited: the 16 other files the update touched (assets and a few
+#     Managed/System DLLs). Nothing of ours binds to them.
+#
 # Build 24858528 (verified 2026-08-21): per-type diff against 24648699 done
 # (40 of ~700 types changed), then a full multi-agent audit with adversarial
 # verification of every claim. Verified by full ./build.sh, a live boot (all 6
