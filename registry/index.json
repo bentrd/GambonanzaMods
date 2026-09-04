@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-04T21:59:53.769Z",
+  "generatedAt": "2026-09-04T22:04:19.771Z",
   "count": 44,
   "releases": {
     "framework": {
@@ -270,7 +270,7 @@
       },
       "downloads": 34,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:48:30Z",
+      "repoPushedAt": "2026-09-04T21:59:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:48:30Z",
+      "repoPushedAt": "2026-09-04T21:59:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 32,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:48:30Z",
+      "repoPushedAt": "2026-09-04T21:59:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -974,7 +974,7 @@
       },
       "downloads": 36,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:48:30Z",
+      "repoPushedAt": "2026-09-04T21:59:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1454,7 +1454,7 @@
       },
       "downloads": 32,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:48:30Z",
+      "repoPushedAt": "2026-09-04T21:59:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1601,7 +1601,7 @@
       },
       "downloads": 25,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:48:30Z",
+      "repoPushedAt": "2026-09-04T21:59:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2032,7 +2032,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:48:30Z",
+      "repoPushedAt": "2026-09-04T21:59:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2417,7 +2417,7 @@
         "kamikaze-gambit",
         "lobbyist"
       ],
-      "description": "NOTE: Please DISABLE GAMBIT PWR_PACK and ROADSIDE GAMBITS Modpacks before enabling!\n\nAll Reviewed Mod Gambits Included.\n\nCurrent Mod Exclusions:\nTile Console (Mod Builder)\nMighty Kasparov Every Stage (Boss Mod)\nCo-Op Mod (excluded for now)",
+      "description": "NOTE: Please REMOVE the following Modpacks to prevent duplicates!! : \nGambit PWR_PACK, Gambit Variety Pack, Quality of Life Pack, Roadside Gambits\n\nAll Reviewed Mod Gambits Included.\n\nCurrent Mod Exclusions:\nTile Console (Mod Builder)\nMighty Kasparov Every Stage (Boss Mod)\nCo-Op Mod (excluded for now)",
       "submittedBy": "RevengeWorld",
       "addedAt": "2026-09-04",
       "downloads": 358,
