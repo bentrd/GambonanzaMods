@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-04T11:26:28.455Z",
-  "count": 40,
+  "generatedAt": "2026-09-04T13:51:38.066Z",
+  "count": 41,
   "releases": {
     "framework": {
       "tag": "v1.5.1",
@@ -209,7 +209,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T05:59:24Z",
+      "repoPushedAt": "2026-09-04T11:26:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -671,7 +671,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T05:59:24Z",
+      "repoPushedAt": "2026-09-04T11:26:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -872,7 +872,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T05:59:24Z",
+      "repoPushedAt": "2026-09-04T11:26:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -925,7 +925,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1032,6 +1032,44 @@
       "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-09-04T01:37:49Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "gumbos-gambit",
+      "name": "Gumbo's Gambit",
+      "author": "Minty",
+      "summary": "When a tile falls, the tile under it begins to crumble.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "GumbosGambit.zip",
+      "folder": "GumbosGambit",
+      "tags": [
+        "gambits"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-09-04",
+      "official": false,
+      "reviewed": false,
+      "issue": 51,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/51",
+      "latest": {
+        "tag": "v1.2.1",
+        "version": "1.2.1",
+        "publishedAt": "2026-09-04T13:47:57Z",
+        "notes": "Added Gumbo's Gambit",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.2.1",
+        "asset": {
+          "name": "GumbosGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.2.1/GumbosGambit.zip",
+          "size": 6156,
+          "sha256": "f136ee314b8ce3652b0634387af2016a193830b1eb2e81b1f40e616a2616c5cb"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1298,7 +1336,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T05:59:24Z",
+      "repoPushedAt": "2026-09-04T11:26:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1445,7 +1483,7 @@
       },
       "downloads": 21,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T05:59:24Z",
+      "repoPushedAt": "2026-09-04T11:26:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1553,7 +1591,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1661,7 +1699,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1861,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1876,7 +1914,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T05:59:24Z",
+      "repoPushedAt": "2026-09-04T11:26:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1983,7 +2021,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -2024,7 +2062,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -2131,7 +2169,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -2186,7 +2224,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-03T14:49:59Z",
+      "repoPushedAt": "2026-09-04T13:47:57Z",
       "license": "MIT",
       "archived": false
     }
