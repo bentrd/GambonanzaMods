@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-04T22:04:19.771Z",
+  "generatedAt": "2026-09-04T22:24:17.664Z",
   "count": 44,
   "releases": {
     "framework": {
@@ -174,7 +174,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -270,7 +270,7 @@
       },
       "downloads": 34,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:59:54Z",
+      "repoPushedAt": "2026-09-04T22:04:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -323,7 +323,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -362,7 +362,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -375,7 +375,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:59:54Z",
+      "repoPushedAt": "2026-09-04T22:04:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -509,7 +509,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -562,7 +562,7 @@
       },
       "downloads": 16,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -719,7 +719,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EnPassantsGambit.zip",
@@ -732,7 +732,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 32,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:59:54Z",
+      "repoPushedAt": "2026-09-04T22:04:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -813,7 +813,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EvangelistsGambit.zip",
@@ -826,7 +826,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -933,7 +933,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -974,7 +974,7 @@
       },
       "downloads": 36,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:59:54Z",
+      "repoPushedAt": "2026-09-04T22:04:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -1080,7 +1080,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1120,7 +1120,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GuardianAngelsGambit.zip",
@@ -1133,7 +1133,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1228,7 +1228,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HydraulicPresssGambit.zip",
@@ -1241,7 +1241,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1348,7 +1348,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1401,7 +1401,7 @@
       },
       "downloads": 16,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1454,7 +1454,7 @@
       },
       "downloads": 32,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:59:54Z",
+      "repoPushedAt": "2026-09-04T22:04:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -1507,7 +1507,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1560,7 +1560,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1601,7 +1601,7 @@
       },
       "downloads": 25,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:59:54Z",
+      "repoPushedAt": "2026-09-04T22:04:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -1641,7 +1641,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "MysterysGambit.zip",
@@ -1654,7 +1654,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1763,7 +1763,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1857,7 +1857,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -1870,7 +1870,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -1924,7 +1924,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -2032,7 +2032,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-04T21:59:54Z",
+      "repoPushedAt": "2026-09-04T22:04:20Z",
       "license": "MIT",
       "archived": false
     },
@@ -2072,7 +2072,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -2085,7 +2085,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
@@ -2258,7 +2258,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Evangelist's Gambit",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "TortoisesGambit.zip",
@@ -2271,7 +2271,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T01:37:49Z",
+      "repoPushedAt": "2026-09-04T22:09:30Z",
       "license": "MIT",
       "archived": false
     },
