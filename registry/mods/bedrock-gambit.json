@@ -1,0 +1,33 @@
+{
+  "id": "bedrock-gambit",
+  "name": "Bedrock's Gambit",
+  "author": "Ben",
+  "summary": "The board never crumbles while you hold it: the countdown stops, shaking tiles never fall.",
+  "description": "A Rare gambit for 6 coins. Hold the card and the floor holds: the crumble countdown under the board stops ticking, tiles that were already shaking never fall, and the crumble picks no new ones. Sell the card and everything resumes exactly where it left off, the next turn.\n\nTiles the Mask boss or a Crumbler enemy shake are not crumble mode: they queue up while you hold the card and fall together the turn after it goes. Built on the Crumble Control API library, which installs alongside it.",
+  "repo": "ben-gambo/mods",
+  "asset": "BedrockGambit.zip",
+  "folder": "BedrockGambit",
+  "homepage": "https://github.com/ben-gambo/mods/tree/main/BedrockGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "crumble-api"
+  ],
+  "frameworkVersion": ">=1.5.2",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "bedrock",
+      "name": "Bedrock's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "The board never <color=§>CRUMBLES</color> while you hold this.",
+      "sprite": "https://raw.githubusercontent.com/ben-gambo/mods/main/BedrockGambit/bedrock.png"
+    }
+  ],
+  "submittedBy": "ben-gambo",
+  "addedAt": "2026-09-04"
+}
