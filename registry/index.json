@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-05T18:13:57.650Z",
-  "count": 46,
+  "generatedAt": "2026-09-05T18:16:00.155Z",
+  "count": 47,
   "releases": {
     "framework": {
       "tag": "v1.5.2",
@@ -270,7 +270,7 @@
       },
       "downloads": 37,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T18:12:01Z",
+      "repoPushedAt": "2026-09-05T18:13:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 7,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T18:12:01Z",
+      "repoPushedAt": "2026-09-05T18:13:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T18:12:01Z",
+      "repoPushedAt": "2026-09-05T18:13:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -974,7 +974,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T18:12:01Z",
+      "repoPushedAt": "2026-09-05T18:13:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -1493,7 +1493,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T18:12:01Z",
+      "repoPushedAt": "2026-09-05T18:13:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -1640,7 +1640,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T18:12:01Z",
+      "repoPushedAt": "2026-09-05T18:13:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -2071,7 +2071,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T18:12:01Z",
+      "repoPushedAt": "2026-09-05T18:13:58Z",
       "license": "MIT",
       "archived": false
     },
@@ -2452,6 +2452,45 @@
           "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/VampiresGambit.zip",
           "size": 5784,
           "sha256": "b1f5b957db35d3c0be0f4fac6e5687da58c9142869c06f9d90af784408b23d1e"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-09-05T17:53:39Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "zombie",
+      "name": "Zombie's Gambit",
+      "author": "FRO_PWR",
+      "summary": "Capturing with a king earns a king.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "ZombiesGambit.zip",
+      "folder": "ZombiesGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-09-05",
+      "official": false,
+      "reviewed": false,
+      "issue": 59,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/59",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added:\r\n- Headless Horseman's Gambit\r\n- Vampire's Gambit\r\n- Zombie's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "ZombiesGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/ZombiesGambit.zip",
+          "size": 4452,
+          "sha256": "3a70530bf5eed87ab753688cb919a83ec8677355d5de69f768f346bcfd6e26d7"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
