@@ -149,9 +149,10 @@ repo's Releases page, that's the exact number the manager shows.
 
 ## Modpacks
 
-A modpack is somebody's whole setup: a name, a blurb, the registry ids of up
-to 24 mods, and the registry ids of up to 8 texture packs in precedence order
-(the first one listed wins where two of them change the same thing). Packs contain
+A modpack is somebody's whole setup: a name, a blurb, the registry ids of the
+mods in it, and the registry ids of the texture packs it wears in precedence
+order (the first one listed wins where two of them change the same thing).
+There is no cap on either list - a pack is as big as your setup. Packs contain
 **no code** - installing one installs each member through the exact same
 checksum-verified path as installing it alone, and dependencies come along
 automatically.

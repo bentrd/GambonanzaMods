@@ -18,7 +18,7 @@ body:
         blurb, the registry ids of the mods in it, and optionally the registry
         ids of the texture packs it wears. Rules:
         - at least **one mod, or a texture pack** (both is the usual case)
-        - at most 24 mods and 8 texture packs
+        - as many mods and texture packs as your setup actually has
         - everything must already be **listed in the registry** - open the mod
           manager and check that each one shows up under Browse mods
         - dependencies (like `gambit-api`) come along automatically, no need

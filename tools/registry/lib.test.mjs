@@ -87,8 +87,6 @@ test('the texture-pack list keeps its order and rejects repeats', () => {
   const twice = parsePack({ 'Texture packs': 'midnight-chess, midnight-chess' });
   assert.match(validateModpackEntry(twice, `${twice.id}.json`, MODS, skins).join(' '), /listed twice/);
 
-  const tooMany = { id: 'x-y', name: 'Xy', author: 'a', summary: 'eight chars', texturepacks: Array.from({ length: 9 }, (_, i) => `tp-${i}`) };
-  assert.match(validateModpackEntry(tooMany, 'x-y.json', MODS, null).join(' '), /at most 8 entries/);
 });
 
 test('a modpack with nothing in it is refused', () => {
@@ -131,13 +129,18 @@ test('unknown fields are refused, so a typo is never silently ignored', () => {
   assert.match(problems.join(' '), /unknown field "texturepack"/);
 });
 
-test('caps hold: 24 mods and the length limits', () => {
-  const many = Array.from({ length: 25 }, (_, i) => `mod-${i}`);
-  const problems = validateModpackEntry({
-    id: 'x-y', name: 'Xy', author: 'a', summary: 'eight chars', mods: many,
-  }, 'x-y.json', null, null);
-  assert.match(problems.join(' '), /at most 24 entries/);
+test('a pack is as big as somebody\'s setup - no cap on members', () => {
+  // Somebody who plays with 60 mods and wears a dozen texture packs gets to
+  // share exactly that. Every member is still checked one by one below.
+  const mods = Array.from({ length: 60 }, (_, i) => `mod-${i}`);
+  const texturepacks = Array.from({ length: 12 }, (_, i) => `tp-${i}`);
+  const known = { mods: new Set(mods), skins: new Set(texturepacks) };
+  assert.deepEqual(validateModpackEntry({
+    id: 'x-y', name: 'Xy', author: 'a', summary: 'eight chars', mods, texturepacks,
+  }, 'x-y.json', known.mods, known.skins), []);
+});
 
+test('the length limits hold', () => {
   const long = validateModpackEntry({
     id: 'x-y', name: 'Xy', author: 'a', summary: 'short', mods: ['kamikaze-gambit'],
   }, 'x-y.json', MODS, SKINS);

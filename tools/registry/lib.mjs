@@ -263,7 +263,6 @@ export function validateModpackEntry(entry, fileName, knownModIds = null, knownS
     fail('"texturepacks" must be an array of registry texture-pack ids');
   } else {
     skins = entry.texturepacks || [];
-    if (skins.length > 8) fail('"texturepacks" allows at most 8 entries');
     const seenSkins = new Set();
     for (const skinId of skins) {
       if (!ID_RE.test(skinId)) fail(`texture pack id "${skinId}" is malformed`);
@@ -278,7 +277,6 @@ export function validateModpackEntry(entry, fileName, knownModIds = null, knownS
   } else {
     const mods = entry.mods || [];
     if (!mods.length && !skins.length) fail('a modpack needs at least one mod, or a texture pack');
-    if (mods.length > 24) fail('"mods" allows at most 24 entries');
     const seen = new Set();
     for (const modId of mods) {
       if (!ID_RE.test(modId)) fail(`mod id "${modId}" is malformed`);
@@ -522,11 +520,11 @@ export function parseModpackSubmissionIssue(body, { author = '', createdAt = '' 
     .replace(/^-+|-+$/g, '')
     .slice(0, 40);
   const mods = (fields['mods in the pack'] || '')
-    .split(',').map((m) => m.trim().toLowerCase()).filter(Boolean).slice(0, 24);
+    .split(',').map((m) => m.trim().toLowerCase()).filter(Boolean);
   // Comma-separated and ORDERED: the first one listed wins where two packs
   // change the same thing, which is part of what the setup is.
   const skins = (fields['texture packs'] || '')
-    .split(',').map((t) => t.trim().toLowerCase()).filter(Boolean).slice(0, 8);
+    .split(',').map((t) => t.trim().toLowerCase()).filter(Boolean);
 
   return {
     id,
