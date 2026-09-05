@@ -1005,11 +1005,11 @@ function sanitizeModpackEntry(raw, { partial = false } = {}) {
   take('summary', 140);
   take('description', 4000);
   if (Array.isArray(raw?.mods)) {
-    entry.mods = [...new Set(raw.mods.filter((m) => typeof m === 'string' && m.trim()).map((m) => m.trim()))].slice(0, 24);
+    entry.mods = [...new Set(raw.mods.filter((m) => typeof m === 'string' && m.trim()).map((m) => m.trim()))];
   }
   if (Array.isArray(raw?.texturepacks)) {
     // Order is precedence, so dedupe must keep the FIRST occurrence.
-    entry.texturepacks = [...new Set(raw.texturepacks.filter((t) => typeof t === 'string' && t.trim()).map((t) => t.trim()))].slice(0, 8);
+    entry.texturepacks = [...new Set(raw.texturepacks.filter((t) => typeof t === 'string' && t.trim()).map((t) => t.trim()))];
   }
   if (Array.isArray(raw?.tags)) entry.tags = raw.tags.filter((t) => typeof t === 'string').slice(0, 5);
   if (!partial) {

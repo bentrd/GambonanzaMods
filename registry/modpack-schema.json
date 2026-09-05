@@ -38,7 +38,6 @@
     "mods": {
       "type": "array",
       "minItems": 0,
-      "maxItems": 24,
       "uniqueItems": true,
       "items": {
         "type": "string",
@@ -49,7 +48,6 @@
     "texturepacks": {
       "type": "array",
       "minItems": 0,
-      "maxItems": 8,
       "uniqueItems": true,
       "items": {
         "type": "string",

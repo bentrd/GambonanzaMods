@@ -48,7 +48,6 @@ const FORMAT_VERSION = 1;
 
 /** A pack is art. This is generous for art and stingy for a zip bomb. */
 const MAX_PACK_BYTES = 192 * 1024 * 1024;
-const MAX_ASSETS = 400;
 
 // ---------------------------------------------------------------------------
 // Paths + ids
@@ -370,11 +369,6 @@ function targetOf(entry) {
  */
 async function setImage({ id, assetId, bytes }) {
   const manifest = await readManifest(id);
-  if (manifest.images.length + manifest.texts.length >= MAX_ASSETS
-    && !manifest.images.some((i) => i.assetId === assetId)) {
-    throw new Error(`a pack holds at most ${MAX_ASSETS} overrides`);
-  }
-
   const entry = await catalog.findEntry(catalog.safeId(assetId));
   let image = png.decode(Buffer.from(bytes));
   const resized = image.width !== entry.width || image.height !== entry.height;
@@ -664,12 +658,7 @@ async function setText({ id, section, key, lang = '*', value, original = '' }) {
   const record = existing || { section: cleanSection, key: cleanKey, values: [], original: '' };
   record.original = original || record.original || '';
   record.values = record.values.filter((v) => v.lang !== code).concat({ lang: code, value: text });
-  if (!existing) {
-    if (manifest.images.length + manifest.texts.length >= MAX_ASSETS) {
-      throw new Error(`a pack holds at most ${MAX_ASSETS} overrides`);
-    }
-    manifest.texts.push(record);
-  }
+  if (!existing) manifest.texts.push(record);
 
   await saveManifest(manifest);
   return { entry: record, markup: markupWarnings(text) };
@@ -752,7 +741,7 @@ async function importPack({ zipPath }) {
     await fsp.mkdir(path.join(packDir(id), 'atlases'), { recursive: true });
 
     let skipped = 0;
-    for (const raw of Array.isArray(incoming.images) ? incoming.images.slice(0, MAX_ASSETS) : []) {
+    for (const raw of Array.isArray(incoming.images) ? incoming.images : []) {
       try {
         const entry = await catalog.findEntry(catalog.safeId(raw?.assetId));
         const source = path.join(root, 'images', `${entry.id}.png`);
@@ -784,7 +773,7 @@ async function importPack({ zipPath }) {
       }
     }
 
-    for (const raw of Array.isArray(incoming.texts) ? incoming.texts.slice(0, MAX_ASSETS) : []) {
+    for (const raw of Array.isArray(incoming.texts) ? incoming.texts : []) {
       const section = String(raw?.section || '').trim();
       const key = String(raw?.key || '').trim();
       if (!section || !key || !Array.isArray(raw.values)) { skipped++; continue; }
@@ -878,7 +867,6 @@ async function findPackRoot(dir, depth = 0) {
 
 module.exports = {
   MAX_PACK_BYTES,
-  MAX_ASSETS,
   FORMAT_VERSION,
   gamePackDir,
   summary,

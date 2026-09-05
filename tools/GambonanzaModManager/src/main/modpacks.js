@@ -67,11 +67,10 @@ function cleanText(value, max) {
   return String(value || '').trim().slice(0, max);
 }
 
-/** At most a handful of packs make sense in one stack, and it bounds the merge. */
-const MAX_WORN = 8;
-
+/** A setup wears as many packs as it wears - the merge resolves one winner per
+ * asset, so a deeper stack costs a little work, never correctness. */
 function cleanWorn(ids) {
-  return [...new Set((ids || []).filter((id) => typeof id === 'string' && id))].slice(0, MAX_WORN);
+  return [...new Set((ids || []).filter((id) => typeof id === 'string' && id))];
 }
 
 /** The worn stack of a record, reading the pre-1.7.1 single-pack field too. */
