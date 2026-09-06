@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-05T23:58:00.889Z",
-  "count": 48,
+  "generatedAt": "2026-09-06T00:11:27.639Z",
+  "count": 49,
   "releases": {
     "framework": {
       "tag": "v1.5.2",
@@ -270,7 +270,7 @@
       },
       "downloads": 37,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T21:20:03Z",
+      "repoPushedAt": "2026-09-05T23:58:02Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 7,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T21:20:03Z",
+      "repoPushedAt": "2026-09-05T23:58:02Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T21:20:03Z",
+      "repoPushedAt": "2026-09-05T23:58:02Z",
       "license": "MIT",
       "archived": false
     },
@@ -974,7 +974,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T21:20:03Z",
+      "repoPushedAt": "2026-09-05T23:58:02Z",
       "license": "MIT",
       "archived": false
     },
@@ -1027,7 +1027,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1187,7 +1187,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1493,7 +1493,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T21:20:03Z",
+      "repoPushedAt": "2026-09-05T23:58:02Z",
       "license": "MIT",
       "archived": false
     },
@@ -1640,7 +1640,7 @@
       },
       "downloads": 26,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T21:20:03Z",
+      "repoPushedAt": "2026-09-05T23:58:02Z",
       "license": "MIT",
       "archived": false
     },
@@ -1748,7 +1748,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1786,7 +1786,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1894,7 +1894,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2056,7 +2056,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2109,7 +2109,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-05T21:20:03Z",
+      "repoPushedAt": "2026-09-05T23:58:02Z",
       "license": "MIT",
       "archived": false
     },
@@ -2216,7 +2216,45 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "temp-works-gambit",
+      "name": "Temp Work's Gambit",
+      "author": "Minty",
+      "summary": "After each game, earn $10 if there's a queen adjacent to a pawn.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "TempWorksGambit.zip",
+      "folder": "TempWorksGambit",
+      "tags": [
+        "gambits"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-09-06",
+      "official": false,
+      "reviewed": false,
+      "issue": 61,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/61",
+      "latest": {
+        "tag": "v1.2.4",
+        "version": "1.2.4",
+        "publishedAt": "2026-09-06T00:09:42Z",
+        "notes": "Added Temp Work's Gambit",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v1.2.4",
+        "asset": {
+          "name": "TempWorksGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v1.2.4/TempWorksGambit.zip",
+          "size": 5979,
+          "sha256": "770c48e6d4c6f11c4fd10456f7e551467a8a777d5ba5262f6f691a268e24e0da"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2257,7 +2295,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2295,7 +2333,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2402,7 +2440,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2457,7 +2495,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-09-05T18:43:57Z",
+      "repoPushedAt": "2026-09-06T00:09:42Z",
       "license": "MIT",
       "archived": false
     },
