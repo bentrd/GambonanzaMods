@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-09T11:32:21.156Z",
+  "generatedAt": "2026-09-09T16:44:15.462Z",
   "count": 50,
   "releases": {
     "framework": {
@@ -172,7 +172,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
       "repoPushedAt": "2026-09-09T01:43:01Z",
       "license": "MIT",
@@ -270,7 +270,7 @@
       },
       "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T06:03:49Z",
+      "repoPushedAt": "2026-09-09T11:32:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 7,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T06:03:49Z",
+      "repoPushedAt": "2026-09-09T11:32:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -730,7 +730,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-09-09T01:43:01Z",
       "license": "MIT",
@@ -773,7 +773,7 @@
       },
       "downloads": 36,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T06:03:49Z",
+      "repoPushedAt": "2026-09-09T11:32:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -974,7 +974,7 @@
       },
       "downloads": 40,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T06:03:49Z",
+      "repoPushedAt": "2026-09-09T11:32:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -1493,7 +1493,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T06:03:49Z",
+      "repoPushedAt": "2026-09-09T11:32:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -1640,7 +1640,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T06:03:49Z",
+      "repoPushedAt": "2026-09-09T11:32:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -1691,7 +1691,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-09-09T01:43:01Z",
       "license": "MIT",
@@ -2109,7 +2109,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T06:03:49Z",
+      "repoPushedAt": "2026-09-09T11:32:22Z",
       "license": "MIT",
       "archived": false
     },
@@ -2650,7 +2650,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 324,
+      "downloads": 327,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -2722,7 +2722,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 150,
+      "downloads": 151,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
