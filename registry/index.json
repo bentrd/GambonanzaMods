@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-10T00:28:59.141Z",
-  "count": 51,
+  "generatedAt": "2026-09-10T00:31:04.614Z",
+  "count": 52,
   "releases": {
     "framework": {
       "tag": "v1.5.2",
@@ -270,7 +270,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T22:36:54Z",
+      "repoPushedAt": "2026-09-10T00:29:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 7,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T22:36:54Z",
+      "repoPushedAt": "2026-09-10T00:29:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 37,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T22:36:54Z",
+      "repoPushedAt": "2026-09-10T00:29:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1013,7 +1013,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T22:36:54Z",
+      "repoPushedAt": "2026-09-10T00:29:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1532,7 +1532,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T22:36:54Z",
+      "repoPushedAt": "2026-09-10T00:29:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1679,7 +1679,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T22:36:54Z",
+      "repoPushedAt": "2026-09-10T00:29:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1788,6 +1788,45 @@
       "downloads": 13,
       "stars": 0,
       "repoPushedAt": "2026-09-06T05:00:42Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "possession",
+      "name": "Possession's Gambit",
+      "author": "FRO_PWR",
+      "summary": "Capturing with a phantom piece transforms it into a default copy of the captured piece.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "PossessionsGambit.zip",
+      "folder": "PossessionsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-09-10",
+      "official": false,
+      "reviewed": false,
+      "issue": 64,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/64",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "PossessionsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/PossessionsGambit.zip",
+          "size": 5797,
+          "sha256": "597d874b8e323cd54118ae632cfe8e40786e1ac0a5540f75064876fb9f476e89"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-09-10T00:24:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -2148,7 +2187,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-09T22:36:54Z",
+      "repoPushedAt": "2026-09-10T00:29:00Z",
       "license": "MIT",
       "archived": false
     },
