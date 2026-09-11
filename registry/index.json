@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-10T22:39:27.381Z",
+  "generatedAt": "2026-09-11T01:10:43.231Z",
   "count": 52,
   "releases": {
     "framework": {
@@ -174,7 +174,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -227,7 +227,7 @@
         "manifestVersion": "1.0.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-09-04T15:57:11Z",
       "license": "MIT",
@@ -270,7 +270,7 @@
       },
       "downloads": 40,
       "stars": 5,
-      "repoPushedAt": "2026-09-10T19:46:57Z",
+      "repoPushedAt": "2026-09-10T22:39:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -323,7 +323,7 @@
       },
       "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -362,7 +362,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -375,7 +375,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -454,9 +454,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-09-10T19:46:57Z",
+      "repoPushedAt": "2026-09-10T22:39:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -507,9 +507,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 20,
+      "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -560,9 +560,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 18,
+      "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -614,7 +614,7 @@
         "manifestVersion": "1.0.2",
         "manifestAuthor": "Ben"
       },
-      "downloads": 14,
+      "downloads": 15,
       "stars": 0,
       "repoPushedAt": "2026-09-04T15:57:11Z",
       "license": "MIT",
@@ -676,7 +676,7 @@
         "manifestVersion": "1.0.3",
         "manifestAuthor": "Ben"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-09-04T15:57:11Z",
       "license": "MIT",
@@ -732,7 +732,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-09-10T19:46:57Z",
+      "repoPushedAt": "2026-09-10T22:39:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -813,7 +813,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EvangelistsGambit.zip",
@@ -826,7 +826,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -933,7 +933,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -959,7 +959,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "FrankensteinsGambit.zip",
@@ -972,7 +972,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1013,7 +1013,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-09-10T19:46:57Z",
+      "repoPushedAt": "2026-09-10T22:39:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -1119,7 +1119,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1159,7 +1159,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GuardianAngelsGambit.zip",
@@ -1172,7 +1172,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1252,7 +1252,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HeadlessHorsemansGambit.zip",
@@ -1265,7 +1265,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1306,7 +1306,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HydraulicPresssGambit.zip",
@@ -1319,7 +1319,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1426,7 +1426,7 @@
       },
       "downloads": 17,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1479,7 +1479,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1532,7 +1532,7 @@
       },
       "downloads": 36,
       "stars": 5,
-      "repoPushedAt": "2026-09-10T19:46:57Z",
+      "repoPushedAt": "2026-09-10T22:39:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -1585,7 +1585,7 @@
       },
       "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1638,7 +1638,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1679,7 +1679,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-10T19:46:57Z",
+      "repoPushedAt": "2026-09-10T22:39:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -1732,7 +1732,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1813,7 +1813,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "PossessionsGambit.zip",
@@ -1826,7 +1826,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1918,7 +1918,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -2012,7 +2012,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -2025,7 +2025,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -2079,7 +2079,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -2187,7 +2187,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-10T19:46:57Z",
+      "repoPushedAt": "2026-09-10T22:39:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -2227,7 +2227,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -2240,7 +2240,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -2489,7 +2489,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "TortoisesGambit.zip",
@@ -2502,7 +2502,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -2637,7 +2637,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "VampiresGambit.zip",
@@ -2650,7 +2650,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -2676,7 +2676,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Frankenstein's Gambit\r\n- Possession's Gambit",
+        "notes": "Added Blood/Pumpkin Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "ZombiesGambit.zip",
@@ -2689,7 +2689,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-09-10T01:33:44Z",
+      "repoPushedAt": "2026-09-11T00:57:43Z",
       "license": "MIT",
       "archived": false
     }
@@ -2728,7 +2728,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 341,
+      "downloads": 343,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
