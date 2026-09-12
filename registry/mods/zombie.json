@@ -1,0 +1,31 @@
+{
+  "id": "zombie",
+  "name": "Zombie's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Capturing with a king earns a king.",
+  "description": "An epic king gambit with a simple, greedy rule: every time one of your kings captures, another king drops into your stock (space permitting). Anarchist's Gambit, which counts every piece as a king, turns it into a king factory. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "ZombiesGambit.zip",
+  "folder": "ZombiesGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "zombie",
+      "name": "Zombie's Gambit",
+      "rarity": "epic",
+      "price": 10,
+      "description": "Capturing with a <sprite=9> <color=£>KING</color> earns a <sprite=9> <color=£>KING</color>",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/ZombiesGambit/Zombie.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-12"
+}

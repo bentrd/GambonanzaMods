@@ -1,0 +1,31 @@
+{
+  "id": "possession",
+  "name": "Possession's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Capturing with a phantom piece transforms it into a default copy of the captured piece.",
+  "description": "A rare phantom gambit that turns your ghosts into whatever they eat. Whenever one of your phantom pieces captures, it is replaced in place by a plain copy of the piece it just took, keeping the original's tile characteristics (protected, blessed, and so on). Owning Exorcist's Gambit at the same time makes this one twitch and sell itself. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "PossessionsGambit.zip",
+  "folder": "PossessionsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "possession",
+      "name": "Possession's Gambit",
+      "rarity": "rare",
+      "price": 7,
+      "description": "Capturing with a <color=ß>PHANTOM</color> piece transforms it into a DEFAULT copy of the captured piece.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/PossessionsGambit/Possession.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-12"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "princes-gambit",
+  "name": "Prince's Gambit",
+  "author": "Minty",
+  "summary": "After each game, shuffle the tiles on the board. Stepping on 46 modified tiles gives $100 and Inheritance's Gambit.",
+  "description": "An epic money gambit built around a long count. At the end of every game it lifts every tile modification off the board - golden, protection, benediction, hunter, phantom - and deals them back out to random tiles. Meanwhile it counts each time you move onto a modified tile; the card shows the running total. Reach 46 and it pays $100, replaces itself with Inheritance's Gambit and disappears. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "PrincesGambit.zip",
+  "folder": "PrincesGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/PrincesGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "Prince",
+      "name": "Prince's Gambit",
+      "rarity": "epic",
+      "price": 7,
+      "description": "After each game, <shake>shuffle</shake> the tiles on the board. Stepping on 46 modified tiles gives <color=∞>$100</color> and replaces this gambit with <color=Ø>INHERITANCE'S GAMBIT</color>",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/PrincesGambit/Prince.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-09-12"
+}

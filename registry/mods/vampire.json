@@ -1,0 +1,31 @@
+{
+  "id": "vampire",
+  "name": "Vampire's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Golden pieces immediately reset and earn $2.",
+  "description": "A rare golden gambit that cashes your gold in early. Instead of waiting for the end of the game, it drains every golden piece on the board as soon as your turn comes round - each one turns back to default and pays you $2 on the spot. Pieces you gild on a winning move are left to the game to handle as usual. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "VampiresGambit.zip",
+  "folder": "VampiresGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "vampire",
+      "name": "Vampire's Gambit",
+      "rarity": "rare",
+      "price": 7,
+      "description": "<color=∞>GOLDEN</color> pieces immediately reset and give <color=∞>$2</color>.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/VampiresGambit/Vampire.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-12"
+}

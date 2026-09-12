@@ -1,0 +1,31 @@
+{
+  "id": "frankenstein",
+  "name": "Frankenstein's Gambit",
+  "author": "FRO_PWR",
+  "summary": "After 3 of your pieces are captured, earn a random piece among those 3.",
+  "description": "A common sacrifice gambit that stitches your losses back together. It remembers the type of each of your pieces the enemy takes, showing them on the card as it goes, and on the third capture it hands you one of those three back at random and starts a new set. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "FrankensteinsGambit.zip",
+  "folder": "FrankensteinsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "frankenstein",
+      "name": "Frankenstein's Gambit",
+      "rarity": "common",
+      "price": 5,
+      "description": "After 3 of your pieces are captured, earn a random piece among those 3.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/FrankensteinsGambit/Frankenstein.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-12"
+}

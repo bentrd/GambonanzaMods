@@ -1,0 +1,33 @@
+{
+  "id": "time-loops-gambit",
+  "name": "Time Loop's Gambit",
+  "author": "Minty",
+  "summary": "Crumble mode will never begin.",
+  "description": "A legendary utility gambit that simply switches the crumble off. While you hold it, the board never starts crumbling - no countdown, no shaking, no falling tiles. Sell it and the crumble resumes as normal. It works by holding a block through the Crumble Control API, so that and the Gambit Creation API install alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "TimeLoopsGambit.zip",
+  "folder": "TimeLoopsGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TimeLoopsGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "crumble-api"
+  ],
+  "frameworkVersion": ">=1.5.2",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "TimeLoop",
+      "name": "Time Loop's Gambit",
+      "rarity": "legendary",
+      "price": 8,
+      "description": "<shake>Crumble mode</shake> will never begin.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/TimeLoopsGambit/TimeLoop.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-09-12"
+}

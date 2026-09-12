@@ -1,0 +1,31 @@
+{
+  "id": "headless-horseman",
+  "name": "Headless Horseman's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Moving a king adjacent to a knight (or vice versa) earns $5 (once per game).",
+  "description": "A common gambit that pays you for reuniting the rider with the horse. Move a king next to a knight - or a knight next to a king - and you collect $5. It only fires once per game and rearms in the shop. It also honours the 'counts as' gambits: Pegasus makes promoted pieces read as knights, Anarchist makes everything read as a king. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "HeadlessHorsemansGambit.zip",
+  "folder": "HeadlessHorsemansGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "headless-horseman",
+      "name": "Headless Horseman's Gambit",
+      "rarity": "common",
+      "price": 6,
+      "description": "Moving a <sprite=9> <color=£>KING</color> <bounce><color=≠>ADJACENT</color></bounce> to a <sprite=7> <color=|>KNIGHT</color> (or vice versa) earns <color=*>$5</color>.<br><i>(Once per game)</i>",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/HeadlessHorsemansGambit/HeadlessHorseman.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-12"
+}

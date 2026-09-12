@@ -1,0 +1,32 @@
+{
+  "id": "temp-works-gambit",
+  "name": "Temp Work's Gambit",
+  "author": "Minty",
+  "summary": "After each game, earn $10 if there's a queen adjacent to a pawn.",
+  "description": "An epic money gambit that pays a bonus for keeping the boss next to the help. When you win a game, it sweeps your pieces for a queen standing next to one of your pawns and pays $10 if it finds one - once per game, however many pairs are on the board. If you own Pope's Gambit, bishops count as queens for the check too. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "TempWorksGambit.zip",
+  "folder": "TempWorksGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TempWorksGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "TempWork",
+      "name": "Temp Work's Gambit",
+      "rarity": "epic",
+      "price": 8,
+      "description": "After each game, earn <color=∞>$10</color> if there's a <sprite=10><color=^>QUEEN</color> <bounce><color=≠>ADJACENT</color></bounce> to a <sprite=5><color=&>PAWN</color>.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/TempWorksGambit/TempWork.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-09-12"
+}

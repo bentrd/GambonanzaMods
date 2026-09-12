@@ -1,0 +1,33 @@
+{
+  "id": "tall-rooks-gambit",
+  "name": "Tall Rook's Gambit",
+  "author": "Minty",
+  "summary": "Moving a rook 4 or more tiles skips the enemy turn.",
+  "description": "A rare rook gambit that rewards the long haul. Slide a rook four or more tiles in a single move and the enemy's turn is skipped entirely; shorter rook moves and every other piece do nothing. Uses the 'Point A' Manager library to measure how far the piece actually travelled, so both that and the Gambit Creation API install alongside it.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "TallRooksGambit.zip",
+  "folder": "TallRooksGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TallRooksGambit",
+  "tags": [
+    "gambits",
+    "gameplay"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "point-a-mngr"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "TallRook",
+      "name": "Tall Rook's Gambit",
+      "rarity": "rare",
+      "price": 6,
+      "description": "Moving a <sprite=6><color=°>ROOK</color> 4 or more tiles skips the enemy turn.",
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/TallRooksGambit/TallRook.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-09-12"
+}
