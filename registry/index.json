@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-12T05:54:04.958Z",
+  "generatedAt": "2026-09-12T10:42:05.261Z",
   "count": 52,
   "releases": {
     "framework": {
@@ -270,7 +270,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T04:33:38Z",
+      "repoPushedAt": "2026-09-12T10:41:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 9,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T04:33:38Z",
+      "repoPushedAt": "2026-09-12T10:41:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 43,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T04:33:38Z",
+      "repoPushedAt": "2026-09-12T10:41:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -942,6 +942,7 @@
       "name": "Frankenstein's Gambit",
       "author": "FRO_PWR",
       "summary": "After 3 of your pieces are captured, earn a random piece among those 3.",
+      "description": "A common sacrifice gambit that stitches your losses back together. It remembers the type of each of your pieces the enemy takes, showing them on the card as it goes, and on the third capture it hands you one of those three back at random and starts a new set. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "FrankensteinsGambit.zip",
       "folder": "FrankensteinsGambit",
@@ -949,12 +950,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "frankenstein",
+          "name": "Frankenstein's Gambit",
+          "rarity": "common",
+          "price": 5,
+          "description": "After 3 of your pieces are captured, earn a random piece among those 3.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/FrankensteinsGambit/Frankenstein.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-09-10",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 63,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/63",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -1013,7 +1027,7 @@
       },
       "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T04:33:38Z",
+      "repoPushedAt": "2026-09-12T10:41:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -1234,7 +1248,8 @@
       "id": "headless-horseman",
       "name": "Headless Horseman's Gambit",
       "author": "FRO_PWR",
-      "summary": "Moving a king adjacent to a knight (or vice versa) earns $5 (Once per game).",
+      "summary": "Moving a king adjacent to a knight (or vice versa) earns $5 (once per game).",
+      "description": "A common gambit that pays you for reuniting the rider with the horse. Move a king next to a knight - or a knight next to a king - and you collect $5. It only fires once per game and rearms in the shop. It also honours the 'counts as' gambits: Pegasus makes promoted pieces read as knights, Anarchist makes everything read as a king. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "HeadlessHorsemansGambit.zip",
       "folder": "HeadlessHorsemansGambit",
@@ -1242,12 +1257,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "headless-horseman",
+          "name": "Headless Horseman's Gambit",
+          "rarity": "common",
+          "price": 6,
+          "description": "Moving a <sprite=9> <color=£>KING</color> <bounce><color=≠>ADJACENT</color></bounce> to a <sprite=7> <color=|>KNIGHT</color> (or vice versa) earns <color=*>$5</color>.<br><i>(Once per game)</i>",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/HeadlessHorsemansGambit/HeadlessHorseman.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-09-05",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 57,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/57",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -1532,7 +1560,7 @@
       },
       "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T04:33:38Z",
+      "repoPushedAt": "2026-09-12T10:41:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -1679,7 +1707,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T04:33:38Z",
+      "repoPushedAt": "2026-09-12T10:41:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -1796,6 +1824,7 @@
       "name": "Possession's Gambit",
       "author": "FRO_PWR",
       "summary": "Capturing with a phantom piece transforms it into a default copy of the captured piece.",
+      "description": "A rare phantom gambit that turns your ghosts into whatever they eat. Whenever one of your phantom pieces captures, it is replaced in place by a plain copy of the piece it just took, keeping the original's tile characteristics (protected, blessed, and so on). Owning Exorcist's Gambit at the same time makes this one twitch and sell itself. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "PossessionsGambit.zip",
       "folder": "PossessionsGambit",
@@ -1803,12 +1832,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "possession",
+          "name": "Possession's Gambit",
+          "rarity": "rare",
+          "price": 7,
+          "description": "Capturing with a <color=ß>PHANTOM</color> piece transforms it into a DEFAULT copy of the captured piece.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/PossessionsGambit/Possession.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-09-10",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 64,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/64",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -1834,19 +1876,35 @@
       "id": "princes-gambit",
       "name": "Prince's Gambit",
       "author": "Minty",
-      "summary": "After each game, shuffle the tiles on the board. Stepping on 46 modified tiles gives $100 and replaces this gambit with Inheritance's Gambit",
+      "summary": "After each game, shuffle the tiles on the board. Stepping on 46 modified tiles gives $100 and Inheritance's Gambit.",
+      "description": "An epic money gambit built around a long count. At the end of every game it lifts every tile modification off the board - golden, protection, benediction, hunter, phantom - and deals them back out to random tiles. Meanwhile it counts each time you move onto a modified tile; the card shows the running total. Reach 46 and it pays $100, replaces itself with Inheritance's Gambit and disappears. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "PrincesGambit.zip",
       "folder": "PrincesGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/PrincesGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "Prince",
+          "name": "Prince's Gambit",
+          "rarity": "epic",
+          "price": 7,
+          "description": "After each game, <shake>shuffle</shake> the tiles on the board. Stepping on 46 modified tiles gives <color=∞>$100</color> and replaces this gambit with <color=Ø>INHERITANCE'S GAMBIT</color>",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/PrincesGambit/Prince.png"
+        }
       ],
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-09-05",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 60,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/60",
+      "reviewed": true,
       "latest": {
         "tag": "v1.2.3",
         "version": "1.2.3",
@@ -2187,7 +2245,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T04:33:38Z",
+      "repoPushedAt": "2026-09-12T10:41:34Z",
       "license": "MIT",
       "archived": false
     },
@@ -2303,18 +2361,35 @@
       "name": "Tall Rook's Gambit",
       "author": "Minty",
       "summary": "Moving a rook 4 or more tiles skips the enemy turn.",
+      "description": "A rare rook gambit that rewards the long haul. Slide a rook four or more tiles in a single move and the enemy's turn is skipped entirely; shorter rook moves and every other piece do nothing. Uses the 'Point A' Manager library to measure how far the piece actually travelled, so both that and the Gambit Creation API install alongside it.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "TallRooksGambit.zip",
       "folder": "TallRooksGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TallRooksGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api",
+        "point-a-mngr"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "TallRook",
+          "name": "Tall Rook's Gambit",
+          "rarity": "rare",
+          "price": 6,
+          "description": "Moving a <sprite=6><color=°>ROOK</color> 4 or more tiles skips the enemy turn.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/TallRooksGambit/TallRook.png"
+        }
       ],
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-09-06",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 62,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/62",
+      "reviewed": true,
       "latest": {
         "tag": "v1.2.5",
         "version": "1.2.5",
@@ -2341,18 +2416,34 @@
       "name": "Temp Work's Gambit",
       "author": "Minty",
       "summary": "After each game, earn $10 if there's a queen adjacent to a pawn.",
+      "description": "An epic money gambit that pays a bonus for keeping the boss next to the help. When you win a game, it sweeps your pieces for a queen standing next to one of your pawns and pays $10 if it finds one - once per game, however many pairs are on the board. If you own Pope's Gambit, bishops count as queens for the check too. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "TempWorksGambit.zip",
       "folder": "TempWorksGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TempWorksGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "TempWork",
+          "name": "Temp Work's Gambit",
+          "rarity": "epic",
+          "price": 8,
+          "description": "After each game, earn <color=∞>$10</color> if there's a <sprite=10><color=^>QUEEN</color> <bounce><color=≠>ADJACENT</color></bounce> to a <sprite=5><color=&>PAWN</color>.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/TempWorksGambit/TempWork.png"
+        }
       ],
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-09-06",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 61,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/61",
+      "reviewed": true,
       "latest": {
         "tag": "v1.2.4",
         "version": "1.2.4",
@@ -2420,18 +2511,35 @@
       "name": "Time Loop's Gambit",
       "author": "Minty",
       "summary": "Crumble mode will never begin.",
+      "description": "A legendary utility gambit that simply switches the crumble off. While you hold it, the board never starts crumbling - no countdown, no shaking, no falling tiles. Sell it and the crumble resumes as normal. It works by holding a block through the Crumble Control API, so that and the Gambit Creation API install alongside it.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "TimeLoopsGambit.zip",
       "folder": "TimeLoopsGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/TimeLoopsGambit",
       "tags": [
-        "gambits"
+        "gambits",
+        "gameplay"
+      ],
+      "dependencies": [
+        "gambit-api",
+        "crumble-api"
+      ],
+      "frameworkVersion": ">=1.5.2",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "TimeLoop",
+          "name": "Time Loop's Gambit",
+          "rarity": "legendary",
+          "price": 8,
+          "description": "<shake>Crumble mode</shake> will never begin.",
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/TimeLoopsGambit/TimeLoop.png"
+        }
       ],
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-09-04",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 55,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/55",
+      "reviewed": true,
       "latest": {
         "tag": "v1.2.2",
         "version": "1.2.2",
@@ -2620,6 +2728,7 @@
       "name": "Vampire's Gambit",
       "author": "FRO_PWR",
       "summary": "Golden pieces immediately reset and earn $2.",
+      "description": "A rare golden gambit that cashes your gold in early. Instead of waiting for the end of the game, it drains every golden piece on the board as soon as your turn comes round - each one turns back to default and pays you $2 on the spot. Pieces you gild on a winning move are left to the game to handle as usual. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "VampiresGambit.zip",
       "folder": "VampiresGambit",
@@ -2627,12 +2736,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "vampire",
+          "name": "Vampire's Gambit",
+          "rarity": "rare",
+          "price": 7,
+          "description": "<color=∞>GOLDEN</color> pieces immediately reset and give <color=∞>$2</color>.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/VampiresGambit/Vampire.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-09-05",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 58,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/58",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -2659,6 +2781,7 @@
       "name": "Zombie's Gambit",
       "author": "FRO_PWR",
       "summary": "Capturing with a king earns a king.",
+      "description": "An epic king gambit with a simple, greedy rule: every time one of your kings captures, another king drops into your stock (space permitting). Anarchist's Gambit, which counts every piece as a king, turns it into a king factory. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "ZombiesGambit.zip",
       "folder": "ZombiesGambit",
@@ -2666,12 +2789,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "zombie",
+          "name": "Zombie's Gambit",
+          "rarity": "epic",
+          "price": 10,
+          "description": "Capturing with a <sprite=9> <color=£>KING</color> earns a <sprite=9> <color=£>KING</color>",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/ZombiesGambit/Zombie.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-09-05",
+      "addedAt": "2026-09-12",
       "official": false,
-      "reviewed": false,
-      "issue": 59,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/59",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
