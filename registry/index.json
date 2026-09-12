@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-12T04:32:36.317Z",
+  "generatedAt": "2026-09-12T04:33:37.778Z",
   "count": 52,
   "releases": {
     "framework": {
@@ -270,7 +270,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T01:12:14Z",
+      "repoPushedAt": "2026-09-12T04:32:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 9,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T01:12:14Z",
+      "repoPushedAt": "2026-09-12T04:32:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T01:12:14Z",
+      "repoPushedAt": "2026-09-12T04:32:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1013,7 +1013,7 @@
       },
       "downloads": 46,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T01:12:14Z",
+      "repoPushedAt": "2026-09-12T04:32:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1532,7 +1532,7 @@
       },
       "downloads": 37,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T01:12:14Z",
+      "repoPushedAt": "2026-09-12T04:32:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1679,7 +1679,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T01:12:14Z",
+      "repoPushedAt": "2026-09-12T04:32:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -2187,7 +2187,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T01:12:14Z",
+      "repoPushedAt": "2026-09-12T04:32:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -2695,6 +2695,34 @@
     }
   ],
   "modpacks": [
+    {
+      "id": "default",
+      "name": "Awesome pack",
+      "author": "sanchezvilla101512-hue",
+      "summary": "idk its just a modpack i made",
+      "mods": [
+        "mounty-hunter",
+        "coop",
+        "domino-effect",
+        "enemy-threat-overlay",
+        "gambit-api",
+        "grandma-cookies",
+        "kamikaze-gambit",
+        "matryoshka",
+        "mystery",
+        "point-a-mngr",
+        "sniper",
+        "tile-console"
+      ],
+      "submittedBy": "sanchezvilla101512-hue",
+      "addedAt": "2026-09-12",
+      "downloads": 241,
+      "installable": true,
+      "unreviewed": [],
+      "reviewed": false,
+      "issue": 67,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/67"
+    },
     {
       "id": "gambit-pwr-pack",
       "name": "Gambit PWR_PACK",
