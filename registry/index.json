@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-11T22:38:59.295Z",
+  "generatedAt": "2026-09-12T01:12:13.592Z",
   "count": 52,
   "releases": {
     "framework": {
@@ -174,7 +174,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -270,7 +270,7 @@
       },
       "downloads": 40,
       "stars": 5,
-      "repoPushedAt": "2026-09-11T19:48:00Z",
+      "repoPushedAt": "2026-09-11T22:39:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -323,7 +323,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -362,7 +362,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -375,7 +375,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-09-11T19:48:00Z",
+      "repoPushedAt": "2026-09-11T22:39:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -509,7 +509,7 @@
       },
       "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -562,7 +562,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -732,7 +732,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-09-11T19:48:00Z",
+      "repoPushedAt": "2026-09-11T22:39:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -813,7 +813,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EvangelistsGambit.zip",
@@ -826,7 +826,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -933,7 +933,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -959,7 +959,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "FrankensteinsGambit.zip",
@@ -972,7 +972,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1013,7 +1013,7 @@
       },
       "downloads": 43,
       "stars": 5,
-      "repoPushedAt": "2026-09-11T19:48:00Z",
+      "repoPushedAt": "2026-09-11T22:39:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1119,7 +1119,7 @@
       },
       "downloads": 20,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1159,7 +1159,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GuardianAngelsGambit.zip",
@@ -1172,7 +1172,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1252,7 +1252,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HeadlessHorsemansGambit.zip",
@@ -1265,7 +1265,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1306,7 +1306,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HydraulicPresssGambit.zip",
@@ -1319,7 +1319,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1426,7 +1426,7 @@
       },
       "downloads": 17,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1479,7 +1479,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1532,7 +1532,7 @@
       },
       "downloads": 36,
       "stars": 5,
-      "repoPushedAt": "2026-09-11T19:48:00Z",
+      "repoPushedAt": "2026-09-11T22:39:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1585,7 +1585,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1638,7 +1638,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1679,7 +1679,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-11T19:48:00Z",
+      "repoPushedAt": "2026-09-11T22:39:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -1732,7 +1732,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1813,7 +1813,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "PossessionsGambit.zip",
@@ -1826,7 +1826,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1918,7 +1918,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -2012,7 +2012,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -2025,7 +2025,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -2079,7 +2079,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -2187,7 +2187,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-11T19:48:00Z",
+      "repoPushedAt": "2026-09-11T22:39:00Z",
       "license": "MIT",
       "archived": false
     },
@@ -2227,7 +2227,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -2240,7 +2240,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -2489,7 +2489,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "TortoisesGambit.zip",
@@ -2502,7 +2502,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -2637,7 +2637,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "VampiresGambit.zip",
@@ -2650,7 +2650,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -2676,7 +2676,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Blood/Pumpkin Pieces",
+        "notes": "Added:\r\n- Blood/Pumpkin Pieces\r\n- Classic Chess Pieces",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "ZombiesGambit.zip",
@@ -2689,7 +2689,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-09-11T00:57:43Z",
+      "repoPushedAt": "2026-09-12T00:37:24Z",
       "license": "MIT",
       "archived": false
     }
