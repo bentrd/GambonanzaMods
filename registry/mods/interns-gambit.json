@@ -1,0 +1,29 @@
+{
+  "id": "interns-gambit",
+  "name": "Intern's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Enemy pawns instead promote to random pieces.",
+  "description": "Enemy pawns that reach the end of the board are re-rolled into a random piece type after promotion. The effect runs by watching enemy pawn moves and swapping the newly promoted piece.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "InternsGambit.zip",
+  "folder": "InternsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "gambits": [
+    {
+      "id": "intern",
+      "name": "Intern's Gambit",
+      "rarity": "common",
+      "price": 5,
+      "description": "Enemy <sprite=5> <color=>PAWNS</color> instead promote to random pieces.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/InternsGambit/Intern.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-13"
+}
