@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-13T00:00:31.726Z",
+  "generatedAt": "2026-09-13T01:06:19.323Z",
   "count": 53,
   "releases": {
     "framework": {
@@ -270,7 +270,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T22:22:51Z",
+      "repoPushedAt": "2026-09-13T00:00:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 10,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T22:22:51Z",
+      "repoPushedAt": "2026-09-13T00:00:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T22:22:51Z",
+      "repoPushedAt": "2026-09-13T00:00:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1027,7 +1027,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T22:22:51Z",
+      "repoPushedAt": "2026-09-13T00:00:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1438,7 +1438,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-09-12T23:55:26Z",
       "license": "MIT",
@@ -1599,7 +1599,7 @@
       },
       "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T22:22:51Z",
+      "repoPushedAt": "2026-09-13T00:00:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1746,7 +1746,7 @@
       },
       "downloads": 28,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T22:22:51Z",
+      "repoPushedAt": "2026-09-13T00:00:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2284,7 +2284,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-12T22:22:51Z",
+      "repoPushedAt": "2026-09-13T00:00:32Z",
       "license": "MIT",
       "archived": false
     },
