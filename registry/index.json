@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-13T22:28:20.296Z",
+  "generatedAt": "2026-09-14T01:12:19.358Z",
   "count": 53,
   "releases": {
     "framework": {
@@ -174,7 +174,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -270,7 +270,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-09-13T19:34:40Z",
+      "repoPushedAt": "2026-09-13T22:28:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -323,7 +323,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -362,7 +362,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -375,7 +375,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 11,
       "stars": 5,
-      "repoPushedAt": "2026-09-13T19:34:40Z",
+      "repoPushedAt": "2026-09-13T22:28:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -509,7 +509,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -562,7 +562,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -732,7 +732,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 46,
       "stars": 5,
-      "repoPushedAt": "2026-09-13T19:34:40Z",
+      "repoPushedAt": "2026-09-13T22:28:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -813,7 +813,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EvangelistsGambit.zip",
@@ -826,7 +826,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -931,9 +931,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 23,
+      "downloads": 24,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -973,7 +973,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "FrankensteinsGambit.zip",
@@ -986,7 +986,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1027,7 +1027,7 @@
       },
       "downloads": 52,
       "stars": 5,
-      "repoPushedAt": "2026-09-13T19:34:40Z",
+      "repoPushedAt": "2026-09-13T22:28:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1133,7 +1133,7 @@
       },
       "downloads": 24,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1173,7 +1173,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GuardianAngelsGambit.zip",
@@ -1184,9 +1184,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1280,7 +1280,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HeadlessHorsemansGambit.zip",
@@ -1293,7 +1293,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1334,7 +1334,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HydraulicPresssGambit.zip",
@@ -1347,7 +1347,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1439,7 +1439,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "InternsGambit.zip",
@@ -1450,9 +1450,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 3,
+      "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1503,9 +1503,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 18,
+      "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1558,7 +1558,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1609,9 +1609,9 @@
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 40,
+      "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-09-13T19:34:40Z",
+      "repoPushedAt": "2026-09-13T22:28:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1664,7 +1664,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1717,7 +1717,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1758,7 +1758,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-13T19:34:40Z",
+      "repoPushedAt": "2026-09-13T22:28:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1809,9 +1809,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1906,7 +1906,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "PossessionsGambit.zip",
@@ -1917,9 +1917,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1971,7 +1971,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-09-06T05:00:42Z",
       "license": "MIT",
@@ -2027,7 +2027,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2121,7 +2121,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -2134,7 +2134,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2188,7 +2188,7 @@
       },
       "downloads": 16,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2294,9 +2294,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
-      "downloads": 32,
+      "downloads": 33,
       "stars": 5,
-      "repoPushedAt": "2026-09-13T19:34:40Z",
+      "repoPushedAt": "2026-09-13T22:28:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2336,7 +2336,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -2349,7 +2349,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2456,7 +2456,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-09-06T05:00:42Z",
       "license": "MIT",
@@ -2648,7 +2648,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "TortoisesGambit.zip",
@@ -2661,7 +2661,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2810,7 +2810,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "VampiresGambit.zip",
@@ -2823,7 +2823,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2863,7 +2863,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added Intern's Gambit",
+        "notes": "Added Slimer Hikarul",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "ZombiesGambit.zip",
@@ -2876,7 +2876,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-09-12T23:55:26Z",
+      "repoPushedAt": "2026-09-13T22:46:32Z",
       "license": "MIT",
       "archived": false
     }
@@ -2903,7 +2903,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 285,
+      "downloads": 287,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -2943,7 +2943,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 414,
+      "downloads": 418,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -2970,7 +2970,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 164,
+      "downloads": 167,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
