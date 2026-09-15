@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-15T01:33:06.718Z",
+  "generatedAt": "2026-09-15T07:51:08.347Z",
   "count": 53,
   "releases": {
     "framework": {
@@ -270,7 +270,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-09-14T23:11:44Z",
+      "repoPushedAt": "2026-09-15T01:33:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -456,7 +456,7 @@
       },
       "downloads": 11,
       "stars": 5,
-      "repoPushedAt": "2026-09-14T23:11:44Z",
+      "repoPushedAt": "2026-09-15T01:33:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -773,7 +773,7 @@
       },
       "downloads": 46,
       "stars": 5,
-      "repoPushedAt": "2026-09-14T23:11:44Z",
+      "repoPushedAt": "2026-09-15T01:33:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1027,7 +1027,7 @@
       },
       "downloads": 52,
       "stars": 5,
-      "repoPushedAt": "2026-09-14T23:11:44Z",
+      "repoPushedAt": "2026-09-15T01:33:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1611,7 +1611,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-09-14T23:11:44Z",
+      "repoPushedAt": "2026-09-15T01:33:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1662,7 +1662,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-09-15T00:47:59Z",
       "license": "MIT",
@@ -1758,7 +1758,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-14T23:11:44Z",
+      "repoPushedAt": "2026-09-15T01:33:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2296,7 +2296,7 @@
       },
       "downloads": 33,
       "stars": 5,
-      "repoPushedAt": "2026-09-14T23:11:44Z",
+      "repoPushedAt": "2026-09-15T01:33:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2943,7 +2943,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 395,
+      "downloads": 396,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -2970,7 +2970,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 144,
+      "downloads": 145,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
