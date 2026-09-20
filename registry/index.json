@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-20T12:27:39.108Z",
+  "generatedAt": "2026-09-20T16:52:11.663Z",
   "count": 55,
   "releases": {
     "framework": {
@@ -307,9 +307,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 44,
+      "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-09-20T06:26:47Z",
+      "repoPushedAt": "2026-09-20T12:27:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -495,7 +495,7 @@
       },
       "downloads": 11,
       "stars": 5,
-      "repoPushedAt": "2026-09-20T06:26:47Z",
+      "repoPushedAt": "2026-09-20T12:27:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -849,9 +849,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 46,
+      "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-09-20T06:26:47Z",
+      "repoPushedAt": "2026-09-20T12:27:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -1105,7 +1105,7 @@
       },
       "downloads": 52,
       "stars": 5,
-      "repoPushedAt": "2026-09-20T06:26:47Z",
+      "repoPushedAt": "2026-09-20T12:27:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -1689,7 +1689,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-09-20T06:26:47Z",
+      "repoPushedAt": "2026-09-20T12:27:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -1836,7 +1836,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-20T06:26:47Z",
+      "repoPushedAt": "2026-09-20T12:27:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -2374,7 +2374,7 @@
       },
       "downloads": 33,
       "stars": 5,
-      "repoPushedAt": "2026-09-20T06:26:47Z",
+      "repoPushedAt": "2026-09-20T12:27:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -2981,7 +2981,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 287,
+      "downloads": 288,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3021,7 +3021,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 398,
+      "downloads": 399,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3069,7 +3069,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 90,
+      "downloads": 92,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3093,7 +3093,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 187,
+      "downloads": 188,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
