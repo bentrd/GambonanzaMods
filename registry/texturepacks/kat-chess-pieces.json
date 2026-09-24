@@ -1,0 +1,15 @@
+{
+  "id": "kat-chess-pieces",
+  "name": "Kat Chess Pieces",
+  "author": "FRO_PWR",
+  "summary": "Re-skins the chess pieces (player and enemy) into cats. :3",
+  "description": "Re-skins the chess pieces (Player & Enemy) into cats.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "KatChessPieces.zip",
+  "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/KatChessPieces/tp-5616cf74/images/spr-chesspieces.png",
+  "tags": [
+    "visual"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-24"
+}

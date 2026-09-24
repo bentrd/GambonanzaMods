@@ -1,0 +1,32 @@
+{
+  "id": "back-stabbers-gambit",
+  "name": "Back-Stabber's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Capturing with a backward move skips the enemy's turn.",
+  "description": "An epic gambit for sneaky retreats: capture with a move that goes backward (toward your own side) and the enemy's next turn is skipped. Needs the Gambit Creation API and the 'Point A' Manager library, both of which install automatically.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "BackStabbersGambit.zip",
+  "folder": "BackStabbersGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api",
+    "point-a-mngr"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "back-stabber",
+      "name": "Back-Stabber's Gambit",
+      "rarity": "epic",
+      "price": 10,
+      "description": "Capturing with a backward move skips the enemy's turn.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/BackStabbersGambit/BackStabber.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-24"
+}

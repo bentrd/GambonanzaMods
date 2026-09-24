@@ -1,0 +1,31 @@
+{
+  "id": "doots-gambit",
+  "name": "Doot's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Moving adjacent to an enemy piece has a 1/7 chance to capture it.",
+  "description": "A common gambit with a lucky streak: every move that ends next to an enemy piece rolls a 1-in-7 chance, per adjacent enemy, to capture it outright. Elite and stasis pieces are immune. Needs the Gambit Creation API, which installs alongside it.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "DootsGambit.zip",
+  "folder": "DootsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "frameworkVersion": ">=1.2.0",
+  "gameVersion": ">=1.0",
+  "gambits": [
+    {
+      "id": "doot",
+      "name": "Doot's Gambit",
+      "rarity": "common",
+      "price": 5,
+      "description": "Moving <bounce><color=≠>ADJACENT</color></bounce> to an enemy piece has a <color=Ø>1/7 chance</color> to capture it.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/DootsGambit/Doot.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-24"
+}

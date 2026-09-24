@@ -1,0 +1,15 @@
+{
+  "id": "classic-chess-pieces",
+  "name": "Classic Chess Pieces",
+  "author": "FRO_PWR",
+  "summary": "A piece set to match the Classic board color.",
+  "description": "Modifies the chess pieces to a pure white (Player) and pure black (Enemy) color scheme, similar to the Classic custom board color (Unlock condition: Win a run).",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "ClassicChessPieces.zip",
+  "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/ClassicChessPieces/tp-2ff6261f/images/spr-chesspieces.png",
+  "tags": [
+    "visual"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-24"
+}

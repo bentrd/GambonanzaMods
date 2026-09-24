@@ -1,0 +1,15 @@
+{
+  "id": "slimer-hikarul",
+  "name": "Slimer Hikarul",
+  "author": "FRO_PWR",
+  "summary": "Re-skins Hikarul the Banished into Slimer from Ghostbusters.",
+  "description": "Re-skins the boss Hikarul the Banished into Slimer from Ghostbusters.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "SlimerHikarul.zip",
+  "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/SlimerHikarul/tp-ff38b8d9/images/spr-boss-torturer.png",
+  "tags": [
+    "visual"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-24"
+}
