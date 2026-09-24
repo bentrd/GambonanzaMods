@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-24T15:13:27.281Z",
+  "generatedAt": "2026-09-24T15:57:53.485Z",
   "count": 55,
   "releases": {
     "framework": {
@@ -183,6 +183,7 @@
       "name": "Back-Stabber's Gambit",
       "author": "FRO_PWR",
       "summary": "Capturing with a backward move skips the enemy's turn.",
+      "description": "An epic gambit for sneaky retreats: capture with a move that goes backward (toward your own side) and the enemy's next turn is skipped. Needs the Gambit Creation API and the 'Point A' Manager library, both of which install automatically.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "BackStabbersGambit.zip",
       "folder": "BackStabbersGambit",
@@ -190,12 +191,26 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api",
+        "point-a-mngr"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "back-stabber",
+          "name": "Back-Stabber's Gambit",
+          "rarity": "epic",
+          "price": 10,
+          "description": "Capturing with a backward move skips the enemy's turn.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/BackStabbersGambit/BackStabber.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-09-18",
+      "addedAt": "2026-09-24",
       "official": false,
-      "reviewed": false,
-      "issue": 71,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/71",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -309,7 +324,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T10:08:28Z",
+      "repoPushedAt": "2026-09-24T15:57:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -495,7 +510,7 @@
       },
       "downloads": 11,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T10:08:28Z",
+      "repoPushedAt": "2026-09-24T15:57:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -610,6 +625,7 @@
       "name": "Doot's Gambit",
       "author": "FRO_PWR",
       "summary": "Moving adjacent to an enemy piece has a 1/7 chance to capture it.",
+      "description": "A common gambit with a lucky streak: every move that ends next to an enemy piece rolls a 1-in-7 chance, per adjacent enemy, to capture it outright. Elite and stasis pieces are immune. Needs the Gambit Creation API, which installs alongside it.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "DootsGambit.zip",
       "folder": "DootsGambit",
@@ -617,12 +633,25 @@
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "frameworkVersion": ">=1.2.0",
+      "gameVersion": ">=1.0",
+      "gambits": [
+        {
+          "id": "doot",
+          "name": "Doot's Gambit",
+          "rarity": "common",
+          "price": 5,
+          "description": "Moving <bounce><color=≠>ADJACENT</color></bounce> to an enemy piece has a <color=Ø>1/7 chance</color> to capture it.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/DootsGambit/Doot.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-09-18",
+      "addedAt": "2026-09-24",
       "official": false,
-      "reviewed": false,
-      "issue": 72,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/72",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -851,7 +880,7 @@
       },
       "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T10:08:28Z",
+      "repoPushedAt": "2026-09-24T15:57:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1105,7 +1134,7 @@
       },
       "downloads": 52,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T10:08:28Z",
+      "repoPushedAt": "2026-09-24T15:57:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1689,7 +1718,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T10:08:28Z",
+      "repoPushedAt": "2026-09-24T15:57:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -1836,7 +1865,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T10:08:28Z",
+      "repoPushedAt": "2026-09-24T15:57:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -2374,7 +2403,7 @@
       },
       "downloads": 33,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T10:08:28Z",
+      "repoPushedAt": "2026-09-24T15:57:14Z",
       "license": "MIT",
       "archived": false
     },
@@ -3101,5 +3130,130 @@
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/40"
     }
   ],
-  "texturepacks": []
+  "texturepacks": [
+    {
+      "id": "classic-chess-pieces",
+      "name": "Classic Chess Pieces",
+      "author": "FRO_PWR",
+      "summary": "A piece set to match the Classic board color.",
+      "description": "Modifies the chess pieces to a pure white (Player) and pure black (Enemy) color scheme, similar to the Classic custom board color (Unlock condition: Win a run).",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "ClassicChessPieces.zip",
+      "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/ClassicChessPieces/tp-2ff6261f/images/spr-chesspieces.png",
+      "tags": [
+        "visual"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-09-24",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Dracula Botezarro",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "ClassicChessPieces.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/ClassicChessPieces.zip",
+          "size": 5058,
+          "sha256": "4a569419a1b21bf05b0b979d120c52af34b74a172c498d5a55ee6f958b828596"
+        }
+      },
+      "downloads": 0
+    },
+    {
+      "id": "halloween-blood-pumpkin-pieces",
+      "name": "Halloween Blood/Pumpkin Pieces",
+      "author": "FRO_PWR",
+      "summary": "Gives the chess pieces a blood and pumpkin re-skin.",
+      "description": "Re-skins the chess pieces with a Jack-o-lantern (Player) and Dark/Bloody (Enemy) theme.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "BloodPumpkinPieces.zip",
+      "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/BloodPumpkinPieces/tp-f292eb63/images/spr-chesspieces.png",
+      "tags": [
+        "visual"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-09-24",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Dracula Botezarro",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "BloodPumpkinPieces.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/BloodPumpkinPieces.zip",
+          "size": 5957,
+          "sha256": "3ff10640a9833b941a5d786ee97c77b21e4aeeb02aa709da850b943f8bca27c2"
+        }
+      },
+      "downloads": 0
+    },
+    {
+      "id": "kat-chess-pieces",
+      "name": "Kat Chess Pieces",
+      "author": "FRO_PWR",
+      "summary": "Re-skins the chess pieces (player and enemy) into cats. :3",
+      "description": "Re-skins the chess pieces (Player & Enemy) into cats.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "KatChessPieces.zip",
+      "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/KatChessPieces/tp-5616cf74/images/spr-chesspieces.png",
+      "tags": [
+        "visual"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-09-24",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Dracula Botezarro",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "KatChessPieces.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/KatChessPieces.zip",
+          "size": 5665,
+          "sha256": "32fccbd2b5d7ad604dc3b37333f798fd260d134eae7a553317926f27c50823f5"
+        }
+      },
+      "downloads": 0
+    },
+    {
+      "id": "slimer-hikarul",
+      "name": "Slimer Hikarul",
+      "author": "FRO_PWR",
+      "summary": "Re-skins Hikarul the Banished into Slimer from Ghostbusters.",
+      "description": "Re-skins the boss Hikarul the Banished into Slimer from Ghostbusters.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "SlimerHikarul.zip",
+      "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/SlimerHikarul/tp-ff38b8d9/images/spr-boss-torturer.png",
+      "tags": [
+        "visual"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-09-24",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Dracula Botezarro",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "SlimerHikarul.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/SlimerHikarul.zip",
+          "size": 24667,
+          "sha256": "4b6377f2b9d0235c100799d1b26966884e528e7e5fe0258821ce7226fe39d85b"
+        }
+      },
+      "downloads": 0
+    }
+  ]
 }
