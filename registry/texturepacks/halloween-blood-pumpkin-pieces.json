@@ -1,0 +1,15 @@
+{
+  "id": "halloween-blood-pumpkin-pieces",
+  "name": "Halloween Blood/Pumpkin Pieces",
+  "author": "FRO_PWR",
+  "summary": "Gives the chess pieces a blood and pumpkin re-skin.",
+  "description": "Re-skins the chess pieces with a Jack-o-lantern (Player) and Dark/Bloody (Enemy) theme.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "BloodPumpkinPieces.zip",
+  "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/BloodPumpkinPieces/tp-f292eb63/images/spr-chesspieces.png",
+  "tags": [
+    "visual"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-09-24"
+}
