@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-24T15:57:53.485Z",
+  "generatedAt": "2026-09-24T19:16:50.547Z",
   "count": 55,
   "releases": {
     "framework": {
@@ -324,7 +324,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T15:57:14Z",
+      "repoPushedAt": "2026-09-24T15:57:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -510,7 +510,7 @@
       },
       "downloads": 11,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T15:57:14Z",
+      "repoPushedAt": "2026-09-24T15:57:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -880,7 +880,7 @@
       },
       "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T15:57:14Z",
+      "repoPushedAt": "2026-09-24T15:57:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1134,7 +1134,7 @@
       },
       "downloads": 52,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T15:57:14Z",
+      "repoPushedAt": "2026-09-24T15:57:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1718,7 +1718,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T15:57:14Z",
+      "repoPushedAt": "2026-09-24T15:57:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1865,7 +1865,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T15:57:14Z",
+      "repoPushedAt": "2026-09-24T15:57:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2403,7 +2403,7 @@
       },
       "downloads": 33,
       "stars": 5,
-      "repoPushedAt": "2026-09-24T15:57:14Z",
+      "repoPushedAt": "2026-09-24T15:57:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -3160,7 +3160,7 @@
           "sha256": "4a569419a1b21bf05b0b979d120c52af34b74a172c498d5a55ee6f958b828596"
         }
       },
-      "downloads": 0
+      "downloads": 2
     },
     {
       "id": "halloween-blood-pumpkin-pieces",
@@ -3191,7 +3191,7 @@
           "sha256": "3ff10640a9833b941a5d786ee97c77b21e4aeeb02aa709da850b943f8bca27c2"
         }
       },
-      "downloads": 0
+      "downloads": 2
     },
     {
       "id": "kat-chess-pieces",
@@ -3222,7 +3222,7 @@
           "sha256": "32fccbd2b5d7ad604dc3b37333f798fd260d134eae7a553317926f27c50823f5"
         }
       },
-      "downloads": 0
+      "downloads": 2
     },
     {
       "id": "slimer-hikarul",
@@ -3253,7 +3253,7 @@
           "sha256": "4b6377f2b9d0235c100799d1b26966884e528e7e5fe0258821ce7226fe39d85b"
         }
       },
-      "downloads": 0
+      "downloads": 2
     }
   ]
 }
