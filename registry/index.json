@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-27T19:01:31.807Z",
+  "generatedAt": "2026-09-27T22:17:55.665Z",
   "count": 55,
   "releases": {
     "framework": {
@@ -226,7 +226,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-09-22T22:04:41Z",
       "license": "MIT",
@@ -324,7 +324,7 @@
       },
       "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T14:44:28Z",
+      "repoPushedAt": "2026-09-27T21:49:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -510,7 +510,7 @@
       },
       "downloads": 11,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T14:44:28Z",
+      "repoPushedAt": "2026-09-27T21:49:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -667,7 +667,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-09-22T22:04:41Z",
       "license": "MIT",
@@ -880,7 +880,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T14:44:28Z",
+      "repoPushedAt": "2026-09-27T21:49:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1134,7 +1134,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T14:44:28Z",
+      "repoPushedAt": "2026-09-27T21:49:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1718,7 +1718,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T14:44:28Z",
+      "repoPushedAt": "2026-09-27T21:49:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1865,7 +1865,7 @@
       },
       "downloads": 30,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T14:44:28Z",
+      "repoPushedAt": "2026-09-27T21:49:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2403,7 +2403,7 @@
       },
       "downloads": 34,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T14:44:28Z",
+      "repoPushedAt": "2026-09-27T21:49:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -3191,7 +3191,7 @@
           "sha256": "3ff10640a9833b941a5d786ee97c77b21e4aeeb02aa709da850b943f8bca27c2"
         }
       },
-      "downloads": 2
+      "downloads": 3
     },
     {
       "id": "kat-chess-pieces",
