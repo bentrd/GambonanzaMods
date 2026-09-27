@@ -1,0 +1,674 @@
+From e5c6958d17d17bb1db0d6bc933641876fd0bf824 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sun, 27 Sep 2026 21:47:56 +0000
+Subject: [PATCH] wiki: document the Strain Creation API, with a Your First
+ Strain tutorial
+
+New page Your First Strain walks through a strain end to end (Overtime:
+after ten turns in a game, every turn costs $1): project setup, a
+StrainBehaviour with per-game state, registering in OnEnable and
+unregistering in OnDisable, the hook table and when each fires (the
+"started" hooks never fire on Continue), writing strain text in the game's
+markup, incompatible strains, testing with 'strain apply', reading the
+game's own strains, and publishing with the registry's "strains" list.
+
+API Reference gains a Gambonanza.StrainApi section: StrainBuilder, the
+hooks, StrainBehaviour, every Strains member, and how the API follows the
+run from GameManager state changes. Console Commands lists the 'strain'
+family; Example Mods, Home, the sidebar, How Modding Works, Publishing
+Your Mod (the "strains" field and tag) and Troubleshooting ("My strain
+does nothing") point at it.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_01CV8znuUeBk2tv2Me4SdDvH
+---
+ API-Reference.md       | 149 +++++++++++++++++++-
+ Console-Commands.md    |  21 +++
+ Example-Mods.md        |   2 +
+ Home.md                |   4 +-
+ How-Modding-Works.md   |   2 +
+ Publishing-Your-Mod.md |  25 +++-
+ Troubleshooting.md     |  19 +++
+ Your-First-Strain.md   | 303 +++++++++++++++++++++++++++++++++++++++++
+ _Sidebar.md            |   1 +
+ 9 files changed, 521 insertions(+), 5 deletions(-)
+ create mode 100644 Your-First-Strain.md
+
+diff --git a/API-Reference.md b/API-Reference.md
+index 08a3a46..5cf1a5e 100644
+--- a/API-Reference.md
++++ b/API-Reference.md
+@@ -1,9 +1,11 @@
+ # API Reference
+ 
+ The framework's public surface is intentionally small — four interfaces in
+-`Gambonanza.ModSdk`, a fluent builder in `Gambonanza.GambitApi`, and a helper
+-class in `Gambonanza.GameUI`. Everything else is your code reaching into the
+-game via reflection.
++`Gambonanza.ModSdk` and a helper class in `Gambonanza.GameUI`, plus three
++library mods for the usual kinds of content: fluent builders for gambits
++(`Gambonanza.GambitApi`) and strains (`Gambonanza.StrainApi`), and control of
++the crumble (`Gambonanza.CrumbleApi`). Everything else is your code reaching
++into the game via reflection.
+ 
+ ---
+ 
+@@ -419,6 +421,147 @@ Things to know:
+ 
+ ---
+ 
++## `Gambonanza.StrainApi`
++
++The Strain Creation API, a library mod like GambitApi. A **strain** is one of
++the game's run modifiers - No Queen, Tile Exhauster, Time is money! - picked
++before a run and in force for all of it. StrainApi lets a mod add its own.
++Reference `Gambonanza.StrainApi.dll`, add `"dependencies": ["StrainApi"]` to
++your `mod.json`, and build strains with `StrainBuilder`. Walkthrough:
++[Your First Strain](Your-First-Strain).
++
++Modded strains sit next to the game's strain screen rather than inside it. The
++player picks them from a **MOD STRAINS** button StrainApi adds to the home
++screen (next to Settings) or with `strain on <id>` in the console. Picks lock
++in when the next run starts, and the run keeps them - through quitting and
++continuing - until another run starts.
++
++Three words, used precisely throughout: **registered** (a loaded mod defined
++it this session), **selected** (the player picked it for their next run - a
++saved preference), **active** (it is on the run being played right now).
++
++### The one-strain example
++
++```csharp
++using Gambonanza.StrainApi;
++
++StrainBuilder.Create("taxman")
++    .WithName("Taxman")
++    .WithDescription("Every game costs <color=*>$1</color> to start.")
++    .OnGameStart(strain => PayTheTaxman())
++    .Register();
++```
++
++Registering needs nothing from the game, so it is immediate and works from
++`OnLoad`. Registering in `OnEnable` and calling `Strains.Unregister(id)` in
++`OnDisable` makes a strain mod hot-toggleable.
++
++### `StrainBuilder`
++
++Every method returns `this`; only `Create(id)` (first) and `Register()` (last)
++are required.
++
++| Call | Notes |
++| ---- | ----- |
++| `Create(string id)` | Lowercase letters, digits, `-` and `_`, up to 40 characters. **Permanent**: the player's picks and saved runs refer to it. |
++| `.WithName(string)` | Display name. Defaults to the id. |
++| `.WithDescription(string)` | One sentence, in the game's markup (`<color=*>$1</color>`). Shown as plain text in the picker and the console. |
++| `.IncompatibleWith(params string[] ids)` | Picking either side unpicks the other. One side is enough; unknown ids are fine. |
++| `.WithBehaviour<T>()` | `T : StrainBehaviour`, spawned while the strain is active. |
++| `.OnActivate` / `.OnDeactivate` | `Action<StrainBehaviour>` around the strain's stay on a run. |
++| `.OnRunStart` / `.OnGameStart` / `.OnPlayerTurn` / `.OnGameEnd` / `.OnShopOpen` | `Action<StrainBehaviour>`, see the hook table below. |
++| `.Build()` | The `StrainDefinition` without registering it. |
++| `.Register()` | Builds and registers it; returns the definition, or `null` if it was rejected (bad or duplicate id, abstract behaviour type - the log says why). |
++
++### The hooks
++
++A strain uses the builder delegates, a `StrainBehaviour` subclass, or both (the
++override runs first). An exception in any hook is logged and contained - it
++never reaches the game or another strain.
++
++| Override | Builder | When |
++| -------- | ------- | ---- |
++| `Awake` / `Start` | `.OnActivate` | The strain came alive on the run: a new run started with it, or a saved run with it was continued. |
++| `OnRunStarted()` | `.OnRunStart` | A **new** run started with it. Once per run, never on Continue: the place for one-time changes to the run itself (money, pieces, gambits), which the game saves with the run. |
++| `OnGameStarted()` | `.OnGameStart` | A game (one match) began. Once per game. |
++| `OnPlayerTurn()` | `.OnPlayerTurn` | The start of each of the player's turns (`TurnManager.OnPlayerTurn`). |
++| `OnGameEnded()` | `.OnGameEnd` | The game is over: won, lost, or left mid-way. |
++| `OnShopOpened()` | `.OnShopOpen` | The shop opened after a game. |
++| `OnDestroy` | `.OnDeactivate` | Put away: the player left the run, the strain was taken off it, it was unregistered, or StrainApi was disabled. |
++
++"Started" hooks fire only when something actually starts. Continuing a saved
++run gives no `OnRunStarted`, and continuing into the middle of a game or the
++shop gives no `OnGameStarted` / `OnShopOpened` (that game still gets its
++`OnGameEnded`). `Awake`/`Start` run either way; `Strains.IsGameInProgress`
++tells you whether you came back mid-game.
++
++### `StrainBehaviour`
++
++```csharp
++public abstract class StrainBehaviour : MonoBehaviour
++{
++    public StrainDefinition Definition { get; }   // set before Awake runs
++    public string Id { get; }
++    protected virtual void OnRunStarted();
++    protected virtual void OnGameStarted();
++    protected virtual void OnPlayerTurn();
++    protected virtual void OnGameEnded();
++    protected virtual void OnShopOpened();
++    protected void Log(string message);           // [StrainApi] [<id>] message
++}
++```
++
++One instance per active strain, on its own hidden GameObject that lives
++exactly as long as the strain is on the run being played. So `Start` /
++`OnDestroy` bracket the strain the way they bracket a gambit's ownership, and
++anything that takes an owner can take `this` - a CrumbleApi handle, say
++(`sample_mods/ExtraStrains/src/ShortFuseStrain.cs`).
++
++### `Strains`
++
++| Member | Meaning |
++| ------ | ------- |
++| `All`, `Get(id)`, `IsRegistered(id)` | The registry, in registration order. |
++| `Register(def)`, `Unregister(id)` | `Unregister` puts an active strain away first; the player's pick and the saved run keep the id, so registering it again brings everything back. |
++| `IsSelected(id)`, `Selected`, `SetSelected(id, bool)`, `ClearSelection()` | The picks for the next run. Picking one unpicks its incompatibles. Never touches the run being played. |
++| `IsRunInProgress`, `IsGameInProgress` | From a run starting or being continued until the player leaves it for the main menu; a game being played within it. |
++| `IsActive(id)`, `Active` | Strains on the run being played. |
++| `GetBehaviour(id)`, `GetBehaviour<T>()` | The live behaviour of an active strain. |
++| `Apply(id, out error)`, `Remove(id, out error)` | Put a strain on (or take it off) the run being played, now. `Apply` gives it what a run started with it would have seen by now: activation, `OnRunStarted`, and `OnGameStarted` if a game is on. The saved run remembers. For testing and cheats. |
++| `IsVanillaActive(Strain)`, `VanillaActive` | The game's own strains, read from the flag the game checks (`StrainManager.ActivatedStrain`): `Strains.IsVanillaActive(Strain.TILE_EXHAUST)`. Between runs it still holds the last run's. |
++| `IsBound` | StrainApi has found the game's `GameManager` and is following it. |
++| `OnRunStarted`, `OnRunResumed`, `OnRunLeft`, `OnSelectionChanged` | Events. `OnRunLeft` fires on the way back to the main menu, whether the player quit, lost or won - the game does not say which, and a run left mid-way can still be continued. |
++
++### How it follows the run
++
++The game raises no "run started" event. StrainApi watches
++`GameManager.onStateChanged` (and polls `CurrentState`) and reads each state as
++a phase: `MENU` leaves the run (every way out of a run ends there), `LOAD_RUN`
++means Continue, `PIECE_SELECTION`/`BOARD_PLACEMENT`/`INGAME`/`WIN`/`RESULT`/
++`LOSE`/`SHOP` and the between-games screens only happen inside a run, and
++everything else - `PAUSE`, `SETTINGS`, `RUN_INFO`, `PROMOTION` - changes
++nothing (the game re-enters `INGAME` when they close; same game). A run state
++while not in a run starts a new run, unless the game just passed through
++`LOAD_RUN`. As a fallback, `ChessDataManager.CurrentWave` going backwards also
++means a new run. That logic lives in `RunTracker`, which is plain C# with unit
++tests: `dotnet test sample_mods/StrainApi/Tests`.
++
++Things to know:
++
++- The player's picks and the strains each run started with are saved to
++  `<Application.persistentDataPath>/GambonanzaMods/StrainApi.json` - outside
++  the mod folder, which the manager replaces on every update.
++- A strain whose mod is missing when a run is continued is skipped (and
++  logged); reinstalling the mod brings it back on the next Continue.
++- `wave set` to an earlier wave in the console looks like a new run to the
++  fallback above.
++- Like everything in this framework it binds to game members by name; a game
++  update that renames `StrainManager.ActivatedStrain`, `TurnManager.OnPlayerTurn`
++  or a `State` member breaks the build the way it breaks any mod compiled
++  against the game.
++
++---
++
+ ## `Gambonanza.GameUI.Pixel`
+ 
+ Static factory for in-game-styled UI. Clones live game prefabs where possible,
+diff --git a/Console-Commands.md b/Console-Commands.md
+index c06d772..bbab4d5 100644
+--- a/Console-Commands.md
++++ b/Console-Commands.md
+@@ -116,6 +116,27 @@ The console's own freeze/block/delay are separate handles from any gambit's, so
+ `crumble freeze off` never releases a card's freeze. Full API:
+ [API Reference](API-Reference#gambonanzacrumbleapicrumble).
+ 
++### Strain Creation API
++
++Installed with any mod that adds strains. Picks made here are the same ones the
++**MOD STRAINS** button on the home screen shows.
++
++| Command | What it does |
++| ------- | ------------ |
++| `strain` | What is picked for your next run, and what is on the run in progress - the game's own strains included. |
++| `strain list` | Every modded strain, marked `[picked]` and `[on this run]`. |
++| `strain info <id>` | A strain's full description, the mod it comes from, and what it cannot be combined with. |
++| `strain on <id>` | Pick a strain for your next run (unpicks anything it cannot be combined with). |
++| `strain off <id\|all>` | Unpick one, or all of them. |
++| `strain apply <id>` | Put a strain on the run you are playing, right now - it gets what a run started with it would have seen by now. The quickest way to try one. |
++| `strain remove <id>` | Take a strain off the run you are playing, right now. |
++| `strain picker` | Open the MOD STRAINS picker from anywhere. |
++
++Picks only ever change your *next* run; the run in progress keeps the strains it
++started with (use `apply`/`remove` for that). Ids tab-complete, and names work
++too: `strain on short fuse`. Full API:
++[API Reference](API-Reference#gambonanzastrainapi).
++
+ ---
+ 
+ ## Registering your own
+diff --git a/Example-Mods.md b/Example-Mods.md
+index 0e39557..ed6801a 100644
+--- a/Example-Mods.md
++++ b/Example-Mods.md
+@@ -22,6 +22,8 @@ Two sources:
+ | **Better Collection** (`Ben`) | Pure performance work, plus a console command (`collection outlines <0-4>`) driving a persisted setting. |
+ | **GambitApi** (`Ben`) | A library mod. Also `CollectionPaginationPatch.cs`, the canonical MonoBehaviour-as-patch reference. |
+ | **CrumbleApi** (`Ben`) | A second library mod. `CrumbleCore.cs` shows how to hook *before and after* a private game method by re-ordering a multicast delegate, and handles that release themselves when their owner is destroyed. |
++| **StrainApi** (`Ben`) | A library mod for strains. `RunTracker.cs` follows the player in and out of runs from nothing but state changes, and is plain C# with real unit tests - the pattern for testing mod logic without the game. |
++| **Extra Strains** (`Ben`) | Two strains, one of each style: Taxman is three builder calls and a delegate, Short Fuse a `StrainBehaviour` with per-game state built on CrumbleApi. Registers in `OnEnable`, unregisters in `OnDisable` - hot-toggling for free. |
+ | **En Passant's Gambit** (`Agent15`) | The best worked example of a non-trivial gambit in the wild. Detailed below. |
+ | **'Point A' Manager** (`Agent15`) | Shipping reusable game knowledge as a library other mods depend on. |
+ 
+diff --git a/Home.md b/Home.md
+index 8a54cdc..d9c4b54 100644
+--- a/Home.md
++++ b/Home.md
+@@ -53,7 +53,9 @@ Read these in order:
+    console command and a keybind. ~30 minutes.
+ 4. **[Your First Gambit](Your-First-Gambit)** — a real custom card in the shop,
+    via the `GambitApi` library mod. ~45 minutes.
+-5. **[Publishing Your Mod](Publishing-Your-Mod)** — get it into everyone's mod
++5. **[Your First Strain](Your-First-Strain)** — a run modifier players pick
++   before a run, via the `StrainApi` library mod. ~30 minutes.
++6. **[Publishing Your Mod](Publishing-Your-Mod)** — get it into everyone's mod
+    manager, and keep it updated with nothing but GitHub releases.
+ 
+ ## 📚 Reference
+diff --git a/How-Modding-Works.md b/How-Modding-Works.md
+index 05992b6..3eb5838 100644
+--- a/How-Modding-Works.md
++++ b/How-Modding-Works.md
+@@ -88,6 +88,8 @@ gameplay scene has loaded. Use it to:
+ - Spawn `MonoBehaviour`s with `DontDestroyOnLoad`.
+ - Register custom gambits via `GambitApi` (registration is queued internally
+   and fires once `GambitLibrary` has finished initialising).
++- Register custom strains via `StrainApi` (immediate: a strain needs nothing
++  from the game until a run starts).
+ 
+ Things you should **not** do in `OnLoad`:
+ 
+diff --git a/Publishing-Your-Mod.md b/Publishing-Your-Mod.md
+index 5a79939..6abaf57 100644
+--- a/Publishing-Your-Mod.md
++++ b/Publishing-Your-Mod.md
+@@ -110,8 +110,9 @@ Worth filling in beyond the minimum:
+ | ----- | --- |
+ | `description` | The detail panel. A few sentences on what it actually does and any surprising interaction. |
+ | `dependencies` | Registry ids of mods yours needs (`gambit-api`, `point-a-mngr`). The manager installs them first, automatically. |
+-| `tags` | Up to 5 of: `gameplay`, `gambits`, `quality-of-life`, `ui`, `visual`, `audio`, `cheats`, `library`, `tools`. |
++| `tags` | Up to 5 of: `gameplay`, `gambits`, `strains`, `quality-of-life`, `ui`, `visual`, `audio`, `cheats`, `library`, `tools`. |
+ | `gambits` | **If your mod adds gambits, fill this in.** See below. |
++| `strains` | **If your mod adds strains, fill this in.** See below. |
+ | `frameworkVersion` | e.g. `>=1.2.0`, if you use something recent. |
+ | `icon` | Square PNG on GitHub, ≤ 256×256. |
+ 
+@@ -147,6 +148,28 @@ Mirror exactly what you passed to `GambitBuilder`. Two constraints:
+ - `sprite` **must** be a `raw.githubusercontent.com` URL — the only image host
+   the manager's content policy allows. Point it at the same PNG your mod ships.
+ 
++### Strain lists
++
++If your mod adds strains through [StrainApi](Your-First-Strain), the `strains`
++array makes the manager list them on your mod's page - and on the page of any
++modpack that includes it - the way the game shows its own: a name and its rule,
++in the strain purple. Tag the entry `strains` too, so players browsing for
++strains find it.
++
++```json
++"strains": [
++  {
++    "id": "taxman",
++    "name": "Taxman",
++    "description": "Every game costs <color=*>$1</color> to start."
++  }
++]
++```
++
++Mirror what you passed to `StrainBuilder`: `name` is required, `id` (what
++`strain on <id>` takes) and `description` (markup and all) are optional. No
++sprite - strains have no art.
++
+ ---
+ 
+ ## The rules
+diff --git a/Troubleshooting.md b/Troubleshooting.md
+index 96d9c5d..2e40503 100644
+--- a/Troubleshooting.md
++++ b/Troubleshooting.md
+@@ -126,6 +126,25 @@ If you depend on a library mod that also reacts to the same event, add a small
+ coroutine delay (0.1 s) so it has updated before you read it. See
+ [Example Mods](Example-Mods#the-gambit-idiom).
+ 
++## My strain does nothing
++
++Work down `strain` in the console - it shows what is picked and what is on the
++run in progress:
++
++1. **Not in `strain list`?** It never registered: an id with capitals or
++   spaces is rejected (lowercase letters, digits, `-` and `_` only), and so is
++   a second strain with an id another mod already took. The log says which.
++2. **`[picked]` but not `[on this run]`?** Working as intended: picks apply
++   from your *next* run, and the run in progress keeps the strains it started
++   with. `strain apply <id>` puts it on the current run to test.
++3. **On the run, but a hook never fires?** The "started" hooks fire only when
++   something actually starts - a continued run gets no `OnRunStarted`, and a
++   run continued mid-game gets no `OnGameStarted` for that game. Do live setup
++   in `Awake`/`Start`, which run either way.
++4. **`this run: not following the game yet`** for more than a moment after
++   boot means StrainApi could not find the game's `GameManager`; a game update
++   is the usual suspect.
++
+ ## `NullReferenceException` from `OnLoad`
+ 
+ You touched a singleton before it existed. `OnLoad` runs before any gameplay
+diff --git a/Your-First-Strain.md b/Your-First-Strain.md
+new file mode 100644
+index 0000000..0ae25b6
+--- /dev/null
++++ b/Your-First-Strain.md
+@@ -0,0 +1,303 @@
++# Your First Strain
++
++A **strain** is one of the game's run modifiers: No Queen, Tile Exhauster,
++Heavy Landing, Time is money! The player picks them before a run and they hold
++for the whole of it. Vanilla keeps its strains in `StrainManager`.
++
++Custom strains go in through the **StrainApi** library mod, which gives you a
++fluent `StrainBuilder` in the same style as GambitApi's. By the end of this
++page you will have a working strain named **Overtime**: after ten turns in a
++game, every turn costs a dollar.
++
++Players pick modded strains from a **MOD STRAINS** button StrainApi adds to the
++home screen (next to Settings), or with `strain on <id>` in the console. Picks
++lock in when the next run starts, and the run keeps them - through quitting
++and continuing - until another run starts.
++
++Prerequisite: [Your First Mod](Your-First-Mod).
++
++---
++
++## 1. Project setup
++
++Create `sample_mods/Overtime/`, same shape as before. The csproj references
++`StrainApi` and the game's own code:
++
++```xml
++<Project Sdk="Microsoft.NET.Sdk">
++
++  <PropertyGroup>
++    <TargetFramework>netstandard2.1</TargetFramework>
++    <AssemblyName>Overtime</AssemblyName>
++    <RootNamespace>Overtime</RootNamespace>
++    <LangVersion>latest</LangVersion>
++    <Nullable>disable</Nullable>
++    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
++    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
++  </PropertyGroup>
++
++  <ItemGroup>
++    <ProjectReference Include="..\..\src\ModSdk\ModSdk.csproj">
++      <Private>false</Private>
++    </ProjectReference>
++    <ProjectReference Include="..\StrainApi\StrainApi.csproj">
++      <Private>false</Private>
++    </ProjectReference>
++  </ItemGroup>
++
++  <ItemGroup>
++    <Reference Include="Assembly-CSharp">
++      <HintPath>..\..\refs\Assembly-CSharp.dll</HintPath>
++      <Private>false</Private>
++    </Reference>
++    <Reference Include="UnityEngine.CoreModule">
++      <HintPath>..\..\refs\UnityEngine.CoreModule.dll</HintPath>
++      <Private>false</Private>
++    </Reference>
++  </ItemGroup>
++
++</Project>
++```
++
++`mod.json` - the **dependency** makes ModHost load StrainApi first:
++
++```json
++{
++    "id":           "Overtime",
++    "name":         "Overtime",
++    "version":      "1.0.0",
++    "author":       "you",
++    "entry":        "Overtime.OvertimeMod",
++    "enabled":      true,
++    "gameVersion":  ">=1.0",
++    "dependencies": ["StrainApi"],
++    "description":  "A strain: after ten turns in a game, every turn costs $1."
++}
++```
++
++---
++
++## 2. Write the strain
++
++A strain that keeps state gets a `StrainBehaviour` - a `MonoBehaviour` that
++StrainApi creates when a run starts with the strain on it (or a saved run with
++it is continued) and destroys when the player leaves that run. Its lifetime
++*is* the strain's stay on the run.
++
++`OvertimeStrain.cs`:
++
++```csharp
++using Blukulele.CHE;
++using Blukulele.Core;
++using Gambonanza.StrainApi;
++
++namespace Overtime
++{
++    /// <summary>After FreeTurns turns in a game, every turn costs $1.</summary>
++    public sealed class OvertimeStrain : StrainBehaviour
++    {
++        public const int FreeTurns = 10;
++
++        private int _turns;
++
++        // A fresh count for every game.
++        protected override void OnGameStarted() => _turns = 0;
++
++        protected override void OnPlayerTurn()
++        {
++            if (++_turns <= FreeTurns) return;
++            if (!SingletonMonoBehaviour<ChessDataManager>.IsCreated()) return;
++            var chess = SingletonMonoBehaviour<ChessDataManager>.Instance;
++            if (chess != null && chess.Coins >= 1) chess.DecreaseCoin(1);   // how the game spends money
++        }
++    }
++}
++```
++
++Two things to internalise:
++
++- **The hooks fire when something actually starts.** `OnGameStarted` runs once
++  per game; a run continued in the middle of a game does *not* get it again
++  (the game's own state was saved; yours was not). Here that means a continued
++  game restarts the count - fine for Overtime. If a strain must know it came
++  back mid-game, check `Strains.IsGameInProgress` in `Start`.
++- **Guard singletons.** `ChessDataManager` is not there on the title screen.
++  `IsCreated()` keeps the strain safe in every context.
++
++---
++
++## 3. Register it
++
++`OvertimeMod.cs`:
++
++```csharp
++using Gambonanza.ModSdk;
++using Gambonanza.StrainApi;
++
++namespace Overtime
++{
++    public sealed class OvertimeMod : IMod, IModLifecycle
++    {
++        public void OnLoad(IModContext ctx) { }
++
++        public void OnEnable()
++        {
++            StrainBuilder.Create("overtime")               // permanent: picks and saved runs use it
++                .WithName("Overtime")
++                .WithDescription($"After {OvertimeStrain.FreeTurns} turns in a game, every turn costs <color=*>$1</color>.")
++                .WithBehaviour<OvertimeStrain>()
++                .Register();
++        }
++
++        public void OnDisable() => Strains.Unregister("overtime");
++    }
++}
++```
++
++A strain needs nothing from the game to be registered, so registration is
++immediate and safe anywhere, `OnLoad` included. Doing it in `OnEnable` and
++unregistering in `OnDisable` is all it takes for `mods disable Overtime` to
++work mid-session: a strain on the run being played is put away cleanly, and
++the player's pick is kept for when it comes back.
++
++### The hooks
++
++Each exists both as a `StrainBehaviour` override and as a builder delegate
++(`.OnGameStart(strain => ...)`); the override runs first.
++
++| Override | Builder | When |
++| -------- | ------- | ---- |
++| `Awake` / `Start` | `.OnActivate` | The strain came alive on the run: a new run started with it, or a saved run with it was continued. Subscribe to game events, take handles. |
++| `OnRunStarted` | `.OnRunStart` | A **new** run started with it. Once per run, never on Continue - the place for one-time changes to the run itself. |
++| `OnGameStarted` | `.OnGameStart` | A game (one match) began. Once per game. |
++| `OnPlayerTurn` | `.OnPlayerTurn` | The start of each of the player's turns during a game. |
++| `OnGameEnded` | `.OnGameEnd` | The game is over: won, lost, or left mid-way. |
++| `OnShopOpened` | `.OnShopOpen` | The shop opened after a game. |
++| `OnDestroy` | `.OnDeactivate` | The strain is being put away: the player left the run, it was taken off, or StrainApi was disabled. Undo what activation set up. |
++
++### Writing strain text
++
++Descriptions use the game's own markup, which the mod manager renders the way
++the game does. Copy the vanilla strains' voice - one short sentence - and
++their colours:
++
++| Markup | Used by vanilla for |
++| ------ | ------------------- |
++| `<color=*>$1</color>` | money ("WAITING costs $1") |
++| `<color=©>LAND</color>` | landing ("You can only LAND a piece on the first row.") |
++| `<color=µ>WAITING</color>` | waiting |
++| `<shake>Crumble Mode</shake>` | the crumble |
++| `<sprite=10> <color=^>QUEEN</color>` | a piece, with its glyph |
++
++The MOD STRAINS picker and the console show descriptions as plain text, so
++keep the sentence readable without the colours.
++
++### `WithBehaviour<T>()` vs builder delegates
++
++Stateless strains don't need a class. The ExtraStrains sample's **Taxman** is
++the whole strain:
++
++```csharp
++StrainBuilder.Create("taxman")
++    .WithName("Taxman")
++    .WithDescription("Every game costs <color=*>$1</color> to start.")
++    .OnGameStart(_ => PayTheTaxman())
++    .Register();
++```
++
++The moment you need a field (a counter, a flag, a handle), write a
++`StrainBehaviour`. Both can be combined.
++
++### Strains that cannot be combined
++
++```csharp
++.IncompatibleWith("taxman", "some-other-mods-strain")
++```
++
++Picking either side for the next run unpicks the other. Declaring it on one
++side is enough, and unknown ids are fine - the rule applies once both are
++registered.
++
++---
++
++## 4. Build, install, test
++
++```bash
++./sample_mods/build.sh --install
++```
++
++In game, open the console (<kbd>`</kbd> / <kbd>F10</kbd>):
++
++```
++strain list               confirm it registered
++strain on overtime        pick it for your next run
++strain                    what is picked, and what is on the run in progress
++```
++
++Then start a run. Or, to skip that, start one first and put the strain on it
++right now:
++
++```
++strain apply overtime     on the run you are playing, immediately
++strain remove overtime    and off again
++```
++
++`strain apply` gives the strain what a run started with it would have seen by
++now: activation, `OnRunStarted`, and `OnGameStarted` if a game is on. The
++MOD STRAINS button on the home screen does the same picking with a mouse.
++
++---
++
++## 5. Play nicely with the game's own strains
++
++`Strains.IsVanillaActive(Strain.X)` reads the flag the game itself checks
++(`StrainManager.ActivatedStrain`), for a strain - or a gambit - that should
++defer to a vanilla one:
++
++```csharp
++// Vanilla "Time is money!" already charges for waiting; don't double-dip.
++if (Strains.IsVanillaActive(Strain.COSTLY_WAIT)) return;
++```
++
++`strain` in the console lists the game's strains on the run in progress
++alongside the modded ones.
++
++---
++
++## 6. Publish it
++
++Two extras matter for strain mods:
++
++- **Fill in the `strains` array in your registry entry**, and tag it
++  `strains`. The manager shows each strain on your mod's page - name, and its
++  rule in the game's colours - so players know what they are picking. Mirror
++  what you passed to `StrainBuilder`:
++  ```json
++  "tags": ["strains", "gameplay"],
++  "strains": [
++    { "id": "overtime", "name": "Overtime",
++      "description": "After 10 turns in a game, every turn costs <color=*>$1</color>." }
++  ]
++  ```
++- **Depend on `strain-api`** in the entry, so the manager installs it first.
++
++Everything else: [Publishing Your Mod](Publishing-Your-Mod).
++
++---
++
++## Common pitfalls
++
++- **Ids are forever.** The player's picks and their saved run refer to the
++  strain by the id passed to `Create`. Ids are lowercase letters, digits, `-`
++  and `_`; anything else is rejected with a log line.
++- **Undo live changes, not run changes.** Money, pieces and gambits you change
++  in `OnRunStarted` are part of the run, and the game saves them with it -
++  leave them. Event subscriptions, handles and anything else you set up in
++  `Awake`/`Start` must be undone in `OnDestroy`.
++- **Don't count on `OnGameStarted` after Continue.** See section 2.
++- **Picks live outside your mod folder** (`<persistentDataPath>/GambonanzaMods/StrainApi.json`),
++  because the manager replaces a mod's folder when it updates it. You never
++  need to touch that file.
++- **Modded strains are not in the game's strain screen.** They sit next to it,
++  in the MOD STRAINS picker; vanilla difficulty levels and medals know nothing
++  about them.
+diff --git a/_Sidebar.md b/_Sidebar.md
+index 78bed0e..5a913da 100644
+--- a/_Sidebar.md
++++ b/_Sidebar.md
+@@ -11,6 +11,7 @@
+ - [How Modding Works](How-Modding-Works)
+ - [Your First Mod](Your-First-Mod)
+ - [Your First Gambit](Your-First-Gambit)
++- [Your First Strain](Your-First-Strain)
+ - [Example Mods](Example-Mods)
+ - [Publishing Your Mod](Publishing-Your-Mod)
+ 
+-- 
+2.43.0
+

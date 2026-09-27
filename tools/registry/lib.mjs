@@ -27,7 +27,7 @@ const DATE_RE = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 const ICON_RE = /^https:\/\/(raw\.githubusercontent\.com|github\.com|user-images\.githubusercontent\.com)\//;
 
 const KNOWN_TAGS = [
-  'gameplay', 'gambits', 'quality-of-life', 'ui',
+  'gameplay', 'gambits', 'strains', 'quality-of-life', 'ui',
   'visual', 'audio', 'cheats', 'library', 'tools',
 ];
 
@@ -35,7 +35,7 @@ const KNOWN_FIELDS = new Set([
   'id', 'name', 'author', 'summary', 'description', 'repo', 'asset', 'folder',
   'tagPattern', 'prerelease', 'manifest', 'tags', 'homepage', 'icon',
   'gameVersion', 'frameworkVersion', 'dependencies', 'pending', 'submittedBy',
-  'addedAt', 'gambits',
+  'addedAt', 'gambits', 'strains',
 ]);
 
 /** The game's Rarity enum, lowercased - the manager maps these to colors. */
@@ -43,6 +43,12 @@ const KNOWN_RARITIES = ['common', 'rare', 'epic', 'legendary', 'strain'];
 
 /** Per-gambit fields a "gambits" array item may carry. */
 const KNOWN_GAMBIT_FIELDS = new Set(['id', 'name', 'description', 'rarity', 'price', 'sprite']);
+
+/** Per-strain fields a "strains" array item may carry. */
+const KNOWN_STRAIN_FIELDS = new Set(['id', 'name', 'description']);
+
+/** StrainBuilder.Create's id rule (Strain Creation API): what `strain on <id>` takes. */
+const STRAIN_ID_RE = /^[a-z0-9][a-z0-9_-]{0,39}$/;
 
 /**
  * Sprites must live on raw.githubusercontent.com specifically - it is the
@@ -151,47 +157,63 @@ export function validateEntry(entry, fileName) {
     }
   }
 
-  if (entry.gambits !== undefined) {
-    if (!Array.isArray(entry.gambits)) fail('"gambits" must be an array');
-    else {
-      if (entry.gambits.length > 24) fail('"gambits" allows at most 24 entries');
-      entry.gambits.forEach((g, i) => {
-        const where = `gambits[${i}]`;
-        if (typeof g !== 'object' || g === null || Array.isArray(g)) {
-          fail(`${where} must be an object`);
+  // "gambits" and "strains" are arrays of small objects describing what the mod adds
+  // to the game, for the manager to show. Same shape of checks for both.
+  const eachItem = (listField, knownFields, check) => {
+    const list = entry[listField];
+    if (list === undefined) return;
+    if (!Array.isArray(list)) { fail(`"${listField}" must be an array`); return; }
+    if (list.length > 24) fail(`"${listField}" allows at most 24 entries`);
+    list.forEach((item, i) => {
+      const where = `${listField}[${i}]`;
+      if (typeof item !== 'object' || item === null || Array.isArray(item)) {
+        fail(`${where} must be an object`);
+        return;
+      }
+      for (const key of Object.keys(item)) {
+        if (!knownFields.has(key)) fail(`${where}: unknown field "${key}"`);
+      }
+      const itemStr = (field, { required = false, max = 300, re = null, reHint = '' } = {}) => {
+        const v = item[field];
+        if (v === undefined || v === null || v === '') {
+          if (required) fail(`${where}: "${field}" is required`);
           return;
         }
-        for (const key of Object.keys(g)) {
-          if (!KNOWN_GAMBIT_FIELDS.has(key)) fail(`${where}: unknown field "${key}"`);
-        }
-        const gstr = (field, { required = false, max = 300, re = null, reHint = '' } = {}) => {
-          const v = g[field];
-          if (v === undefined || v === null || v === '') {
-            if (required) fail(`${where}: "${field}" is required`);
-            return;
-          }
-          if (typeof v !== 'string') { fail(`${where}: "${field}" must be a string`); return; }
-          if (v.length > max) fail(`${where}: "${field}" is too long (max ${max} characters)`);
-          if (re && !re.test(v)) fail(`${where}: "${field}" is malformed${reHint ? ` - ${reHint}` : ''}`);
-        };
-        gstr('id', { max: 40 });
-        gstr('name', { required: true, max: 48 });
-        gstr('description', { max: 300 });
-        gstr('sprite', {
-          required: true,
-          max: 300,
-          re: SPRITE_RE,
-          reHint: 'gambit sprites must be raw.githubusercontent.com URLs (the app\'s CSP only allows images from there)',
-        });
-        if (g.rarity !== undefined && !KNOWN_RARITIES.includes(g.rarity)) {
-          fail(`${where}: unknown rarity "${g.rarity}" (pick from: ${KNOWN_RARITIES.join(', ')})`);
-        }
-        if (g.price !== undefined && (!Number.isInteger(g.price) || g.price < 0 || g.price > 99)) {
-          fail(`${where}: "price" must be a whole number between 0 and 99`);
-        }
-      });
+        if (typeof v !== 'string') { fail(`${where}: "${field}" must be a string`); return; }
+        if (v.length > max) fail(`${where}: "${field}" is too long (max ${max} characters)`);
+        if (re && !re.test(v)) fail(`${where}: "${field}" is malformed${reHint ? ` - ${reHint}` : ''}`);
+      };
+      check(item, where, itemStr);
+    });
+  };
+
+  eachItem('gambits', KNOWN_GAMBIT_FIELDS, (g, where, gstr) => {
+    gstr('id', { max: 40 });
+    gstr('name', { required: true, max: 48 });
+    gstr('description', { max: 300 });
+    gstr('sprite', {
+      required: true,
+      max: 300,
+      re: SPRITE_RE,
+      reHint: 'gambit sprites must be raw.githubusercontent.com URLs (the app\'s CSP only allows images from there)',
+    });
+    if (g.rarity !== undefined && !KNOWN_RARITIES.includes(g.rarity)) {
+      fail(`${where}: unknown rarity "${g.rarity}" (pick from: ${KNOWN_RARITIES.join(', ')})`);
     }
-  }
+    if (g.price !== undefined && (!Number.isInteger(g.price) || g.price < 0 || g.price > 99)) {
+      fail(`${where}: "price" must be a whole number between 0 and 99`);
+    }
+  });
+
+  eachItem('strains', KNOWN_STRAIN_FIELDS, (_strain, _where, sstr) => {
+    sstr('id', {
+      max: 40,
+      re: STRAIN_ID_RE,
+      reHint: 'strain ids use lowercase letters, digits, "-" and "_" (what the mod passes to StrainBuilder.Create)',
+    });
+    sstr('name', { required: true, max: 48 });
+    sstr('description', { max: 300 });
+  });
 
   return errors;
 }

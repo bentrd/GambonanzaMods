@@ -1,0 +1,10 @@
+{
+    "id": "StrainApi",
+    "name": "Strain Creation API",
+    "version": "1.0.0",
+    "author": "Ben",
+    "entry": "Gambonanza.StrainApi.StrainApiMod",
+    "enabled": true,
+    "gameVersion": ">=1.0",
+    "description": "Streamlined API for creating custom strains - run modifiers you pick before a run. Other mods reference Gambonanza.StrainApi.dll and use StrainBuilder; players pick modded strains from the MOD STRAINS button on the home screen or the 'strain' console commands."
+}

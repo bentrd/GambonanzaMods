@@ -1,0 +1,11 @@
+{
+    "id": "ExtraStrains",
+    "name": "Extra Strains",
+    "version": "1.0.0",
+    "author": "Ben",
+    "entry": "Gambonanza.ExtraStrains.ExtraStrainsMod",
+    "enabled": true,
+    "gameVersion": ">=1.0",
+    "description": "Two more strains to pick before a run: Taxman (every game costs $1 to start) and Short Fuse (the crumble countdown starts 2 turns in). Also the reference example for the Strain Creation API.",
+    "dependencies": ["StrainApi", "CrumbleApi"]
+}

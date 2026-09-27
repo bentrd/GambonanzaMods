@@ -8,6 +8,7 @@ on:
       - 'tools/registry/**'
       - 'registry/**'
       - 'tools/package-framework.sh'
+      - 'sample_mods/StrainApi/**'
       - '.github/workflows/ci.yml'
   pull_request:
     paths:
@@ -15,6 +16,7 @@ on:
       - 'tools/registry/**'
       - 'registry/**'
       - 'tools/package-framework.sh'
+      - 'sample_mods/StrainApi/**'
       - '.github/workflows/ci.yml'
 
 permissions:
@@ -62,3 +64,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: bash -n build.sh tools/package-framework.sh sample_mods/build.sh
+
+  strain-tracker:
+    # The one piece of a mod here that needs no game install: StrainApi's run
+    # tracker is plain C#, so its tests run on a bare .NET SDK.
+    name: StrainApi run tracker tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Unit tests
+        run: dotnet test sample_mods/StrainApi/Tests

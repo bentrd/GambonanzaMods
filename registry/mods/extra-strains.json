@@ -1,0 +1,36 @@
+{
+  "id": "extra-strains",
+  "name": "Extra Strains",
+  "author": "Ben",
+  "summary": "Two more strains to pick before a run: Taxman and Short Fuse.",
+  "description": "Two run modifiers for players who find the game's own strains too gentle. Pick them from the MOD STRAINS button on the home screen before you start a run.\n\nTaxman: every game costs $1 to start (nothing if you are broke). Short Fuse: every game, the crumble countdown starts 2 turns in, so the board starts falling that much sooner.\n\nAlso the reference example for the Strain Creation API: one strain written with the builder's hooks, one as a StrainBehaviour built on the Crumble Control API. Both libraries install alongside it.",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "ExtraStrains.zip",
+  "folder": "ExtraStrains",
+  "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/ExtraStrains",
+  "tags": [
+    "strains",
+    "gameplay"
+  ],
+  "dependencies": [
+    "strain-api",
+    "crumble-api"
+  ],
+  "frameworkVersion": ">=1.5.2",
+  "gameVersion": ">=1.0",
+  "strains": [
+    {
+      "id": "taxman",
+      "name": "Taxman",
+      "description": "Every game costs <color=*>$1</color> to start."
+    },
+    {
+      "id": "short-fuse",
+      "name": "Short Fuse",
+      "description": "Every game, the <shake>Crumble</shake> countdown starts 2 turns in."
+    }
+  ],
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-09-27"
+}

@@ -73,7 +73,7 @@ body:
     id: tags
     attributes:
       label: Tags
-      description: 'Comma-separated, up to 5 of: gameplay, gambits, quality-of-life, ui, visual, audio, cheats, library, tools'
+      description: 'Comma-separated, up to 5 of: gameplay, gambits, strains, quality-of-life, ui, visual, audio, cheats, library, tools'
       placeholder: gameplay, gambits
   - type: input
     id: entry-type

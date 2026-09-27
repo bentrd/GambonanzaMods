@@ -8,8 +8,10 @@ can build on.
 sample_mods/
 ├── GambitApi/                Library mod - builder for adding new gambits.
 ├── CrumbleApi/               Library mod - freeze, block, delay, start or stop the crumble.
+├── StrainApi/                Library mod - builder for adding new strains (run modifiers).
 ├── KamikazeGambit/           Custom gambit built on GambitApi.
 ├── SpikesGambit/             Custom gambit by TGM: trap tiles capture enemies.
+├── ExtraStrains/             Two custom strains built on StrainApi (and CrumbleApi).
 ├── EnemyThreatOverlay/       Keybind-driven enemy threat display overlay.
 ├── MightyKasparovEveryStage/ Debug/sample boss-stage modifier.
 ├── BetterCollection/         Pure performance mod - smooths the collection screen.
@@ -184,6 +186,63 @@ crumble step for anything else. Add `"dependencies": ["CrumbleApi"]` to your
 Also adds the `crumble` console commands (status, `freeze`, `block`,
 `delay <n>`, `start`, `stop`, `counter <n>`, `shake`, `calm`), which double as
 the API's test bench.
+
+### StrainApi - a library for strains
+
+[`StrainApi/`](StrainApi/) - multi-file project.
+
+Strains are the game's run modifiers - No Queen, Tile Exhauster, Heavy Landing:
+rules the player picks before a run that hold for all of it. StrainApi lets a
+mod add its own, with the same fluent style as GambitApi:
+
+```csharp
+using Gambonanza.StrainApi;
+
+StrainBuilder.Create("taxman")
+    .WithName("Taxman")
+    .WithDescription("Every game costs <color=*>$1</color> to start.")
+    .OnGameStart(strain => PayTheTaxman())
+    .Register();
+```
+
+Hooks cover the moments a strain cares about - `OnRunStart` (once, never on
+Continue), `OnGameStart` / `OnGameEnd` (each match), `OnPlayerTurn`,
+`OnShopOpen`, and `OnActivate` / `OnDeactivate` around the strain's whole
+stay on a run. For anything with state, `.WithBehaviour<T>()` takes a
+`StrainBehaviour` subclass: a MonoBehaviour that lives exactly as long as the
+strain is on the run being played, so `Start`/`OnDestroy` are its lifetime and
+it can own a CrumbleApi handle with `this`. `Strains` answers the questions
+(`IsActive("taxman")`, `IsVanillaActive(Strain.TILE_EXHAUST)`, `Selected`,
+`IsRunInProgress`) and raises `OnRunStarted` / `OnRunResumed` / `OnRunLeft`.
+Add `"dependencies": ["StrainApi"]` to your `mod.json`.
+
+Players pick modded strains from a **MOD STRAINS** button the library adds to
+the home screen, or with the `strain` console commands (`strain list`,
+`strain on <id>`, `strain apply <id>` to put one on the run you are playing
+right now). Picks lock in when the next run starts, and the run keeps them
+through Continue. Worth stealing:
+
+- **Following the run without a "run started" event.** The game has none.
+  `StrainCore` maps each `GameManager.onStateChanged` state to a phase (menu,
+  loading a save, opening a game, in a game, shop, between games, or nothing)
+  and `RunTracker` turns the sequence into new run / continued run / left run
+  and game start / end. `RunTracker` is plain C# with no Unity or game types,
+  so it has real unit tests: `dotnet test sample_mods/StrainApi/Tests` runs
+  anywhere, no game install needed.
+- **A GameObject per active strain, created inactive.** `AddComponent` on an
+  inactive object defers `Awake` until it is switched on, which is how the
+  behaviour's `Definition` is already set when the author's `Awake` runs.
+
+### ExtraStrains - custom strains
+
+[`ExtraStrains/`](ExtraStrains/)
+
+Two strains, one of each style. **Taxman** (every game costs $1 to start) is
+three builder calls and a delegate. **Short Fuse** (every game, the crumble
+countdown starts 2 turns in) is a `StrainBehaviour` with per-game state that
+builds on a second library, CrumbleApi. The mod registers them in `OnEnable`
+and unregisters them in `OnDisable`, which is all it takes to support being
+switched on and off mid-session.
 
 ### KamikazeGambit - a real custom gambit
 
