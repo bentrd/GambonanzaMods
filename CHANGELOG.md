@@ -24,10 +24,9 @@ changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
   `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a
   strain on the run you are playing, or take it off, right now - the quickest
   way to try one).
-- New mod - **Extra Strains**, two strains to try it with. **Taxman** (heat 1):
-  every game costs $1 to start. **Short Fuse** (heat 2): every game, the
-  crumble countdown starts 2 turns in. Built on the Strain Creation API and the Crumble Control
-  API, which install alongside it.
+- To try it, **Extra Strains** in the Mod Manager's browser adds two:
+  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**
+  (heat 2), every game the crumble countdown starts 2 turns in.
 
 ## 1.5.2
 
