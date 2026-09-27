@@ -137,6 +137,12 @@ namespace Gambonanza.StrainApi
         private void OnDisable()
         {
             StrainCore.SelectionChanged -= OnSelectionChanged;
+            // Closed on a modded page: put the game's page back now, while its title and
+            // explanation are still remembered. OnEnable forgets them, so waiting until
+            // the screen reopens would leave "Mod Strains" over the game's grid.
+            if (!_bound || _page == 0) return;
+            try { ShowPage(0); }
+            catch (Exception ex) { StrainCore.Log("could not put the game's strain page back on close: " + ex.Message); }
         }
 
         private void LateUpdate()
@@ -206,7 +212,14 @@ namespace Gambonanza.StrainApi
         private void Rebuild()
         {
             _builtVersion = StrainRegistry.Version;
-            foreach (var card in _cards) if (card) Destroy(card.gameObject);
+            foreach (var card in _cards)
+            {
+                if (!card) continue;
+                // Inactive first: Destroy lands at the end of the frame, and the grid
+                // would lay the old cards out next to the new ones until then.
+                card.gameObject.SetActive(false);
+                Destroy(card.gameObject);
+            }
             _cards.Clear();
 
             var all = StrainRegistry.All;
