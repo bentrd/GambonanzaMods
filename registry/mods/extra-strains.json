@@ -4,10 +4,10 @@
   "author": "Ben",
   "summary": "Two more strains to pick before a run: Taxman and Short Fuse.",
   "description": "Two run modifiers for players who find the game's own strains too gentle. Pick them on the Custom strain screen before a run: the arrows by the STRAINS title page over to them.\n\nTaxman (heat 1): every game costs $1 to start (nothing if you are broke). Short Fuse (heat 2): every game, the crumble countdown starts 2 turns in, so the board starts falling that much sooner.\n\nAlso the reference example for the Strain Creation API: one strain written with the builder's hooks, one as a StrainBehaviour built on the Crumble Control API. Both libraries install alongside it.",
-  "repo": "bentrd/GambonanzaMods",
+  "repo": "ben-gambo/mods",
   "asset": "ExtraStrains.zip",
   "folder": "ExtraStrains",
-  "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/ExtraStrains",
+  "homepage": "https://github.com/ben-gambo/mods/tree/main/ExtraStrains",
   "tags": [
     "strains",
     "gameplay"
@@ -31,6 +31,6 @@
     }
   ],
   "pending": true,
-  "submittedBy": "bentrd",
+  "submittedBy": "ben-gambo",
   "addedAt": "2026-09-27"
 }

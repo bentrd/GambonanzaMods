@@ -11,7 +11,6 @@ sample_mods/
 ├── StrainApi/                Library mod - builder for adding new strains (run modifiers).
 ├── KamikazeGambit/           Custom gambit built on GambitApi.
 ├── SpikesGambit/             Custom gambit by TGM: trap tiles capture enemies.
-├── ExtraStrains/             Two custom strains built on StrainApi (and CrumbleApi).
 ├── EnemyThreatOverlay/       Keybind-driven enemy threat display overlay.
 ├── MightyKasparovEveryStage/ Debug/sample boss-stage modifier.
 ├── BetterCollection/         Pure performance mod - smooths the collection screen.
@@ -245,10 +244,8 @@ Worth stealing:
   inactive object defers `Awake` until it is switched on, which is how the
   behaviour's `Definition` is already set when the author's `Awake` runs.
 
-### ExtraStrains - custom strains
-
-[`ExtraStrains/`](ExtraStrains/)
-
+The reference example lives with the other mods of mine, in
+[ben-gambo/mods: ExtraStrains](https://github.com/ben-gambo/mods/tree/main/ExtraStrains).
 Two strains, one of each style. **Taxman** (every game costs $1 to start) is
 three builder calls and a delegate. **Short Fuse** (every game, the crumble
 countdown starts 2 turns in) is a `StrainBehaviour` with per-game state that

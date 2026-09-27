@@ -1,4 +1,4 @@
-From 020d9f11f9210426ffe08fb11df0dcf44ca5ac08 Mon Sep 17 00:00:00 2001
+From ff7477ab0a23c97e1b5fa65bc414fd88a7715171 Mon Sep 17 00:00:00 2001
 From: bentrd <benj.tordjman@gmail.com>
 Date: Mon, 28 Sep 2026 00:41:38 +0200
 Subject: [PATCH] wiki: document the Strain Creation API, with a Your First
@@ -32,7 +32,7 @@ does nothing") point at it.
  create mode 100644 Your-First-Strain.md
 
 diff --git a/API-Reference.md b/API-Reference.md
-index 08a3a46..09290ec 100644
+index 08a3a46..0796452 100644
 --- a/API-Reference.md
 +++ b/API-Reference.md
 @@ -1,9 +1,11 @@
@@ -153,7 +153,7 @@ index 08a3a46..09290ec 100644
 +exactly as long as the strain is on the run being played. So `Start` /
 +`OnDestroy` bracket the strain the way they bracket a gambit's ownership, and
 +anything that takes an owner can take `this` - a CrumbleApi handle, say
-+(`sample_mods/ExtraStrains/src/ShortFuseStrain.cs`).
++([Extra Strains' `ShortFuseStrain.cs`](https://github.com/ben-gambo/mods/blob/main/ExtraStrains/src/ShortFuseStrain.cs)).
 +
 +### `Strains`
 +
@@ -351,7 +351,7 @@ index 96d9c5d..2e40503 100644
  You touched a singleton before it existed. `OnLoad` runs before any gameplay
 diff --git a/Your-First-Strain.md b/Your-First-Strain.md
 new file mode 100644
-index 0000000..8119fe3
+index 0000000..34d536f
 --- /dev/null
 +++ b/Your-First-Strain.md
 @@ -0,0 +1,316 @@
@@ -561,7 +561,7 @@ index 0000000..8119fe3
 +
 +### `WithBehaviour<T>()` vs builder delegates
 +
-+Stateless strains don't need a class. The ExtraStrains sample's **Taxman** is
++Stateless strains don't need a class. [Extra Strains](https://github.com/ben-gambo/mods/tree/main/ExtraStrains)' **Taxman** is
 +the whole strain:
 +
 +```csharp
