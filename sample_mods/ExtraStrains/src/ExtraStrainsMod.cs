@@ -33,6 +33,10 @@ namespace Gambonanza.ExtraStrains
                 .WithName("Taxman")
                 // Descriptions use the game's own markup; <color=*> is its money colour.
                 .WithDescription("Every game costs <color=*>$1</color> to start.")
+                // Heat on the Custom screen's gauge, like the game's own strains (1 to 3).
+                .WithHeat(1)
+                // A 33x27 PNG next to the DLL, the size of the game's own strain icons.
+                .WithIconFile("taxman.png")
                 // Once per game: a run continued in the middle of a game is not charged again.
                 .OnGameStart(_ => PayTheTaxman())
                 .Register();
@@ -40,10 +44,12 @@ namespace Gambonanza.ExtraStrains
             StrainBuilder.Create(ShortFuseStrain.StrainId)
                 .WithName("Short Fuse")
                 .WithDescription($"Every game, the <shake>Crumble</shake> countdown starts {ShortFuseStrain.TurnsSooner} turns in.")
+                .WithHeat(2)
+                .WithIconFile("short-fuse.png")
                 .WithBehaviour<ShortFuseStrain>()
                 .Register();
 
-            _ctx?.LogLine("strains registered - pick them from MOD STRAINS on the home screen, or 'strain on taxman' in the console.");
+            _ctx?.LogLine("strains registered - pick them on the Custom strain screen (the arrows by STRAINS), or 'strain on taxman' in the console.");
         }
 
         public void OnDisable()

@@ -12,12 +12,16 @@ namespace Gambonanza.StrainApi
     internal static class StrainRegistry
     {
         private static readonly Regex IdPattern = new Regex("^[a-z0-9][a-z0-9_-]*$", RegexOptions.CultureInvariant);
+        private static readonly Regex Markup = new Regex("<[^>]*>", RegexOptions.CultureInvariant);
 
         private static readonly List<StrainDefinition> _ordered = new List<StrainDefinition>();
         private static readonly Dictionary<string, StrainDefinition> _byId = new Dictionary<string, StrainDefinition>(StringComparer.Ordinal);
 
         internal static IReadOnlyList<StrainDefinition> All => _ordered.ToArray();
         internal static int Count => _ordered.Count;
+
+        /// <summary>Bumped on every register and unregister, so the strain screen knows to rebuild its cards.</summary>
+        internal static int Version { get; private set; }
 
         internal static StrainDefinition Get(string id)
             => id != null && _byId.TryGetValue(id, out var def) ? def : null;
@@ -39,6 +43,7 @@ namespace Gambonanza.StrainApi
 
             _ordered.Add(def);
             _byId.Add(def.Id, def);
+            Version++;
             StrainCore.Log($"registered strain '{def.Id}' ({def.Name}) from {def.Source}.");
             StrainCore.OnRegistered(def);
             return true;
@@ -51,6 +56,7 @@ namespace Gambonanza.StrainApi
             StrainCore.OnUnregistering(def);
             _ordered.Remove(def);
             _byId.Remove(def.Id);
+            Version++;
             StrainCore.Log($"unregistered strain '{def.Id}'.");
             return true;
         }
@@ -70,6 +76,10 @@ namespace Gambonanza.StrainApi
                 if (Loose(def.Id) == q || Loose(def.Name) == q) return def;
             return null;
         }
+
+        /// <summary>Plain text for places that do not run the game's text markup (the console).</summary>
+        internal static string PlainText(string text)
+            => string.IsNullOrEmpty(text) ? "" : Markup.Replace(text, "").Replace("  ", " ").Trim();
 
         private static string Loose(string s)
             => (s ?? "").ToLowerInvariant().Replace(" ", "").Replace("-", "").Replace("_", "").Replace("'", "");

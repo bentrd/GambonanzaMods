@@ -1,6 +1,6 @@
-From e5c6958d17d17bb1db0d6bc933641876fd0bf824 Mon Sep 17 00:00:00 2001
-From: Claude <noreply@anthropic.com>
-Date: Sun, 27 Sep 2026 21:47:56 +0000
+From 020d9f11f9210426ffe08fb11df0dcf44ca5ac08 Mon Sep 17 00:00:00 2001
+From: bentrd <benj.tordjman@gmail.com>
+Date: Mon, 28 Sep 2026 00:41:38 +0200
 Subject: [PATCH] wiki: document the Strain Creation API, with a Your First
  Strain tutorial
 
@@ -12,30 +12,27 @@ unregistering in OnDisable, the hook table and when each fires (the
 markup, incompatible strains, testing with 'strain apply', reading the
 game's own strains, and publishing with the registry's "strains" list.
 
-API Reference gains a Gambonanza.StrainApi section: StrainBuilder, the
-hooks, StrainBehaviour, every Strains member, and how the API follows the
+API Reference gains a Gambonanza.StrainApi section: StrainBuilder (heat
+and icons included), the hooks, StrainBehaviour, every Strains member, and how the API follows the
 run from GameManager state changes. Console Commands lists the 'strain'
 family; Example Mods, Home, the sidebar, How Modding Works, Publishing
 Your Mod (the "strains" field and tag) and Troubleshooting ("My strain
 does nothing") point at it.
-
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
-Claude-Session: https://claude.ai/code/session_01CV8znuUeBk2tv2Me4SdDvH
 ---
- API-Reference.md       | 149 +++++++++++++++++++-
- Console-Commands.md    |  21 +++
+ API-Reference.md       | 154 +++++++++++++++++++-
+ Console-Commands.md    |  20 +++
  Example-Mods.md        |   2 +
  Home.md                |   4 +-
  How-Modding-Works.md   |   2 +
  Publishing-Your-Mod.md |  25 +++-
  Troubleshooting.md     |  19 +++
- Your-First-Strain.md   | 303 +++++++++++++++++++++++++++++++++++++++++
+ Your-First-Strain.md   | 316 +++++++++++++++++++++++++++++++++++++++++
  _Sidebar.md            |   1 +
- 9 files changed, 521 insertions(+), 5 deletions(-)
+ 9 files changed, 538 insertions(+), 5 deletions(-)
  create mode 100644 Your-First-Strain.md
 
 diff --git a/API-Reference.md b/API-Reference.md
-index 08a3a46..5cf1a5e 100644
+index 08a3a46..09290ec 100644
 --- a/API-Reference.md
 +++ b/API-Reference.md
 @@ -1,9 +1,11 @@
@@ -53,7 +50,7 @@ index 08a3a46..5cf1a5e 100644
  
  ---
  
-@@ -419,6 +421,147 @@ Things to know:
+@@ -419,6 +421,152 @@ Things to know:
  
  ---
  
@@ -66,11 +63,13 @@ index 08a3a46..5cf1a5e 100644
 +your `mod.json`, and build strains with `StrainBuilder`. Walkthrough:
 +[Your First Strain](Your-First-Strain).
 +
-+Modded strains sit next to the game's strain screen rather than inside it. The
-+player picks them from a **MOD STRAINS** button StrainApi adds to the home
-+screen (next to Settings) or with `strain on <id>` in the console. Picks lock
-+in when the next run starts, and the run keeps them - through quitting and
-+continuing - until another run starts.
++Modded strains go on the game's own Custom strain screen: StrainApi adds arrows
++either side of the STRAINS title that page over to **MOD STRAINS**, 15 cards a
++page, drawn like the game's own. Their heat counts on the gauge like any other
++strain (and may take it past 30). They come with Custom runs only; the preset
++difficulties are left alone. The console's `strain on <id>` picks too. Picks
++lock in when the next run starts, and the run keeps them - through quitting
++and continuing - until another run starts.
 +
 +Three words, used precisely throughout: **registered** (a loaded mod defined
 +it this session), **selected** (the player picked it for their next run - a
@@ -101,7 +100,10 @@ index 08a3a46..5cf1a5e 100644
 +| ---- | ----- |
 +| `Create(string id)` | Lowercase letters, digits, `-` and `_`, up to 40 characters. **Permanent**: the player's picks and saved runs refer to it. |
 +| `.WithName(string)` | Display name. Defaults to the id. |
-+| `.WithDescription(string)` | One sentence, in the game's markup (`<color=*>$1</color>`). Shown as plain text in the picker and the console. |
++| `.WithDescription(string)` | One sentence, in the game's markup (`<color=*>$1</color>`). The card's tooltip renders it like the game's own; the console shows it as plain text. |
++| `.WithHeat(int)` | What the strain adds to the heat gauge, like the game's own (1 to 3). 0 to `Strains.MaxHeat` (9); defaults to 1. |
++| `.WithIconFile(string path)` | The card's icon, a PNG in your mod's folder (path relative to it). Point-filtered; the game's own strain icons are 33x27 pixel art. |
++| `.WithIcon(Sprite)` / `.WithGameIcon(string spriteName)` | The icon as a sprite you made, or borrowed from one of the game's sprites by name. With none of the three, the card shows a question mark. |
 +| `.IncompatibleWith(params string[] ids)` | Picking either side unpicks the other. One side is enough; unknown ids are fine. |
 +| `.WithBehaviour<T>()` | `T : StrainBehaviour`, spawned while the strain is active. |
 +| `.OnActivate` / `.OnDeactivate` | `Action<StrainBehaviour>` around the strain's stay on a run. |
@@ -202,28 +204,27 @@ index 08a3a46..5cf1a5e 100644
  
  Static factory for in-game-styled UI. Clones live game prefabs where possible,
 diff --git a/Console-Commands.md b/Console-Commands.md
-index c06d772..bbab4d5 100644
+index c06d772..8ace6a2 100644
 --- a/Console-Commands.md
 +++ b/Console-Commands.md
-@@ -116,6 +116,27 @@ The console's own freeze/block/delay are separate handles from any gambit's, so
+@@ -116,6 +116,26 @@ The console's own freeze/block/delay are separate handles from any gambit's, so
  `crumble freeze off` never releases a card's freeze. Full API:
  [API Reference](API-Reference#gambonanzacrumbleapicrumble).
  
 +### Strain Creation API
 +
 +Installed with any mod that adds strains. Picks made here are the same ones the
-+**MOD STRAINS** button on the home screen shows.
++MOD STRAINS page of the Custom strain screen shows.
 +
 +| Command | What it does |
 +| ------- | ------------ |
 +| `strain` | What is picked for your next run, and what is on the run in progress - the game's own strains included. |
 +| `strain list` | Every modded strain, marked `[picked]` and `[on this run]`. |
 +| `strain info <id>` | A strain's full description, the mod it comes from, and what it cannot be combined with. |
-+| `strain on <id>` | Pick a strain for your next run (unpicks anything it cannot be combined with). |
++| `strain on <id>` | Pick a strain for your next Custom run (unpicks anything it cannot be combined with). |
 +| `strain off <id\|all>` | Unpick one, or all of them. |
 +| `strain apply <id>` | Put a strain on the run you are playing, right now - it gets what a run started with it would have seen by now. The quickest way to try one. |
 +| `strain remove <id>` | Take a strain off the run you are playing, right now. |
-+| `strain picker` | Open the MOD STRAINS picker from anywhere. |
 +
 +Picks only ever change your *next* run; the run in progress keeps the strains it
 +started with (use `apply`/`remove` for that). Ids tab-complete, and names work
@@ -350,10 +351,10 @@ index 96d9c5d..2e40503 100644
  You touched a singleton before it existed. `OnLoad` runs before any gameplay
 diff --git a/Your-First-Strain.md b/Your-First-Strain.md
 new file mode 100644
-index 0000000..0ae25b6
+index 0000000..8119fe3
 --- /dev/null
 +++ b/Your-First-Strain.md
-@@ -0,0 +1,303 @@
+@@ -0,0 +1,316 @@
 +# Your First Strain
 +
 +A **strain** is one of the game's run modifiers: No Queen, Tile Exhauster,
@@ -365,10 +366,11 @@ index 0000000..0ae25b6
 +page you will have a working strain named **Overtime**: after ten turns in a
 +game, every turn costs a dollar.
 +
-+Players pick modded strains from a **MOD STRAINS** button StrainApi adds to the
-+home screen (next to Settings), or with `strain on <id>` in the console. Picks
-+lock in when the next run starts, and the run keeps them - through quitting
-+and continuing - until another run starts.
++Players pick modded strains on the game's own Custom strain screen - arrows
++either side of the STRAINS title page over to **MOD STRAINS** - or with
++`strain on <id>` in the console. They come with Custom runs only. Picks lock
++in when the next run starts, and the run keeps them - through quitting and
++continuing - until another run starts.
 +
 +Prerequisite: [Your First Mod](Your-First-Mod).
 +
@@ -545,8 +547,17 @@ index 0000000..0ae25b6
 +| `<shake>Crumble Mode</shake>` | the crumble |
 +| `<sprite=10> <color=^>QUEEN</color>` | a piece, with its glyph |
 +
-+The MOD STRAINS picker and the console show descriptions as plain text, so
-+keep the sentence readable without the colours.
++The card's tooltip renders the markup like the game's own strains; the console
++shows descriptions as plain text, so keep the sentence readable without the
++colours.
++
++### Heat and icon
++
++Every strain adds to the Custom screen's heat gauge. The game's own add 1 to 3;
++`.WithHeat(n)` sets yours (default 1). The card's icon is `.WithIconFile("overtime.png")`,
++a PNG next to your DLL - pixel art at the game's own 33x27 fits best - or
++`.WithGameIcon("SPR_Ascend_Lock")` to borrow one of the game's sprites. Without
++either, the card shows a question mark.
 +
 +### `WithBehaviour<T>()` vs builder delegates
 +
@@ -557,6 +568,8 @@ index 0000000..0ae25b6
 +StrainBuilder.Create("taxman")
 +    .WithName("Taxman")
 +    .WithDescription("Every game costs <color=*>$1</color> to start.")
++    .WithHeat(1)
++    .WithIconFile("taxman.png")
 +    .OnGameStart(_ => PayTheTaxman())
 +    .Register();
 +```
@@ -599,8 +612,9 @@ index 0000000..0ae25b6
 +```
 +
 +`strain apply` gives the strain what a run started with it would have seen by
-+now: activation, `OnRunStarted`, and `OnGameStarted` if a game is on. The
-+MOD STRAINS button on the home screen does the same picking with a mouse.
++now: activation, `OnRunStarted`, and `OnGameStarted` if a game is on. For the
++real thing, pick it on the Custom strain screen (the arrows by STRAINS) and
++start a run.
 +
 +---
 +
@@ -654,9 +668,9 @@ index 0000000..0ae25b6
 +- **Picks live outside your mod folder** (`<persistentDataPath>/GambonanzaMods/StrainApi.json`),
 +  because the manager replaces a mod's folder when it updates it. You never
 +  need to touch that file.
-+- **Modded strains are not in the game's strain screen.** They sit next to it,
-+  in the MOD STRAINS picker; vanilla difficulty levels and medals know nothing
-+  about them.
++- **Modded strains only come with Custom runs.** They live on their own pages
++  of the Custom strain screen; the preset difficulties (Pawn to King) and the
++  medals know nothing about them.
 diff --git a/_Sidebar.md b/_Sidebar.md
 index 78bed0e..5a913da 100644
 --- a/_Sidebar.md
@@ -670,5 +684,5 @@ index 78bed0e..5a913da 100644
  - [Publishing Your Mod](Publishing-Your-Mod)
  
 -- 
-2.43.0
+2.50.1 (Apple Git-155)
 

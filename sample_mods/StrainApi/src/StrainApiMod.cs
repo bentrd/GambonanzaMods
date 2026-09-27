@@ -9,8 +9,9 @@ namespace Gambonanza.StrainApi
     /// Entry point of the Strain Creation API. A library mod like GambitApi and CrumbleApi:
     /// other mods reference Gambonanza.StrainApi.dll, register strains with
     /// <see cref="StrainBuilder"/> and ask about them through <see cref="Strains"/>. It
-    /// also adds the MOD STRAINS picker to the home screen and a `strain` family of
-    /// console commands - the quickest way to try a strain while writing it.
+    /// puts modded strains on pages of the game's own Custom strain screen, and adds a
+    /// `strain` family of console commands - the quickest way to try a strain while
+    /// writing it.
     /// </summary>
     public sealed class StrainApiMod : IMod, IModLifecycle
     {
@@ -22,7 +23,7 @@ namespace Gambonanza.StrainApi
         private static readonly string[] Commands =
         {
             "strain", "strain list", "strain info", "strain on", "strain off",
-            "strain apply", "strain remove", "strain picker",
+            "strain apply", "strain remove",
         };
 
         public void OnLoad(IModContext context)
@@ -59,18 +60,18 @@ namespace Gambonanza.StrainApi
             var console = _ctx?.Console;
             if (console == null) return;
 
-            console.RegisterCommand("strain", "mod strains: what is picked and what is on this run (see: strain list|info|on|off|apply|remove|picker)",
+            console.RegisterCommand("strain", "mod strains: what is picked and what is on this run (see: strain list|info|on|off|apply|remove)",
                 args =>
                 {
                     // Longest-first matching routes any unknown subcommand here with it as args[0].
                     if (args.Length > 0)
                     {
-                        console.PrintError($"unknown strain command '{args[0]}'. Try: list | info <id> | on <id> | off <id|all> | apply <id> | remove <id> | picker");
+                        console.PrintError($"unknown strain command '{args[0]}'. Try: list | info <id> | on <id> | off <id|all> | apply <id> | remove <id>");
                         return;
                     }
                     PrintStatus(console);
                 },
-                (args, i) => i == 0 ? new[] { "list", "info", "on", "off", "apply", "remove", "picker" } : null);
+                (args, i) => i == 0 ? new[] { "list", "info", "on", "off", "apply", "remove" } : null);
 
             console.RegisterCommand("strain list", "every registered mod strain, with what is picked and what is on this run",
                 _ => PrintList(console));
@@ -80,28 +81,28 @@ namespace Gambonanza.StrainApi
                 {
                     var def = Resolve(console, args, "strain info <id>");
                     if (def == null) return;
-                    console.PrintInfo($"{def.Name} ({def.Id}) - from {def.Source}");
-                    console.PrintInfo("  " + (string.IsNullOrEmpty(def.Description) ? "(no description)" : StrainPicker.PlainText(def.Description)));
+                    console.PrintInfo($"{def.Name} ({def.Id}) - heat {def.Heat}, from {def.Source}");
+                    console.PrintInfo("  " + (string.IsNullOrEmpty(def.Description) ? "(no description)" : StrainRegistry.PlainText(def.Description)));
                     if (def.IncompatibleWith.Count > 0) console.PrintInfo("  incompatible with: " + string.Join(", ", def.IncompatibleWith));
                     console.PrintInfo($"  picked for next run: {(Strains.IsSelected(def.Id) ? "yes" : "no")} | on this run: {(Strains.IsActive(def.Id) ? "yes" : "no")}");
                 },
                 CompleteIds);
 
-            console.RegisterCommand("strain on", "pick a strain for your next run: strain on <id>",
+            console.RegisterCommand("strain on", "pick a strain for your next Custom run: strain on <id>",
                 args =>
                 {
                     var def = Resolve(console, args, "strain on <id>");
                     if (def == null) return;
                     var dropped = Strains.Selected.Where(s => s.ConflictsWith(def)).Select(s => s.Id).ToList();
                     Strains.SetSelected(def.Id, true);
-                    console.PrintInfo($"'{def.Id}' picked for your next run." +
+                    console.PrintInfo($"'{def.Id}' picked for your next Custom run." +
                                       (dropped.Count > 0 ? $" Unpicked (incompatible): {string.Join(", ", dropped)}." : ""));
                     if (Strains.IsRunInProgress && !Strains.IsActive(def.Id))
                         console.PrintInfo($"(this run keeps its own strains; 'strain apply {def.Id}' puts it on now)");
                 },
                 CompleteIds);
 
-            console.RegisterCommand("strain off", "unpick a strain for your next run: strain off <id|all>",
+            console.RegisterCommand("strain off", "unpick a strain for your next Custom run: strain off <id|all>",
                 args =>
                 {
                     if (args.Length == 1 && args[0].Equals("all", StringComparison.OrdinalIgnoreCase))
@@ -112,7 +113,7 @@ namespace Gambonanza.StrainApi
                     var def = Resolve(console, args, "strain off <id|all>");
                     if (def == null) return;
                     Strains.SetSelected(def.Id, false);
-                    console.PrintInfo($"'{def.Id}' unpicked for your next run.");
+                    console.PrintInfo($"'{def.Id}' unpicked for your next Custom run.");
                 },
                 (args, i) => i == 0 ? new[] { "all" }.Concat(Ids()) : null);
 
@@ -136,13 +137,6 @@ namespace Gambonanza.StrainApi
                 },
                 (args, i) => i == 0 ? Strains.Active.Select(d => d.Id) : null);
 
-            console.RegisterCommand("strain picker", "open the MOD STRAINS picker (also on the home screen)",
-                _ =>
-                {
-                    if (Strains.All.Count == 0) { console.PrintWarn("no mod has registered a strain yet."); return; }
-                    console.Close();
-                    StrainPicker.Open();
-                });
         }
 
         private static StrainDefinition Resolve(IConsoleApi console, string[] args, string usage)
@@ -167,8 +161,8 @@ namespace Gambonanza.StrainApi
                 : $"StrainApi: {n} strain(s) from {mods} mod(s). 'strain list' shows them.");
 
             var picked = Strains.Selected;
-            console.PrintInfo("next run: " + (picked.Count == 0 ? "none picked" : string.Join(", ", picked.Select(d => d.Id))) +
-                              "  (MOD STRAINS on the home screen, or 'strain on|off <id>')");
+            console.PrintInfo("next Custom run: " + (picked.Count == 0 ? "none picked" : string.Join(", ", picked.Select(d => d.Id))) +
+                              "  (New Run > Custom > the arrows by STRAINS, or 'strain on|off <id>')");
 
             if (!Strains.IsBound)
                 console.PrintInfo("this run: not following the game yet (it binds a moment after boot).");
@@ -192,7 +186,7 @@ namespace Gambonanza.StrainApi
             foreach (var def in all)
             {
                 var marks = (Strains.IsSelected(def.Id) ? "[picked]" : "") + (Strains.IsActive(def.Id) ? "[on this run]" : "");
-                console.PrintInfo($"  {def.Id} - {def.Name} {marks}".TrimEnd());
+                console.PrintInfo($"  {def.Id} - {def.Name} (heat {def.Heat}) {marks}".TrimEnd());
             }
             console.PrintInfo("'strain info <id>' for details, 'strain on <id>' to pick one.");
         }

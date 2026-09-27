@@ -201,6 +201,8 @@ using Gambonanza.StrainApi;
 StrainBuilder.Create("taxman")
     .WithName("Taxman")
     .WithDescription("Every game costs <color=*>$1</color> to start.")
+    .WithHeat(1)                    // on the heat gauge, like the game's 1-3
+    .WithIconFile("taxman.png")     // 33x27 pixel art next to your DLL
     .OnGameStart(strain => PayTheTaxman())
     .Register();
 ```
@@ -216,12 +218,22 @@ it can own a CrumbleApi handle with `this`. `Strains` answers the questions
 `IsRunInProgress`) and raises `OnRunStarted` / `OnRunResumed` / `OnRunLeft`.
 Add `"dependencies": ["StrainApi"]` to your `mod.json`.
 
-Players pick modded strains from a **MOD STRAINS** button the library adds to
-the home screen, or with the `strain` console commands (`strain list`,
-`strain on <id>`, `strain apply <id>` to put one on the run you are playing
-right now). Picks lock in when the next run starts, and the run keeps them
-through Continue. Worth stealing:
+Players pick modded strains on the game's own Custom strain screen: StrainApi
+adds arrows either side of the STRAINS title that page over to MOD STRAINS, 15
+cards a page. They only come with Custom runs; the preset difficulties are left
+alone. The `strain` console commands work too (`strain list`, `strain on <id>`,
+`strain apply <id>` to put one on the run you are playing right now). Picks
+lock in when the next run starts, and the run keeps them through Continue.
+Worth stealing:
 
+- **Adding to a screen built for a fixed count.** The Custom screen is a 5x3
+  grid of the game's 15 strains under a 30-point gauge. `StrainScreen` adds a
+  copy of the grid for the modded pages and fills it with clones of the game's
+  own `StrainButton`, with the vanilla component swapped out: the clone's
+  `EventTrigger` calls to `StrainButton.OnClick/Show/Hide` are muted and routed
+  to `ModStrainCard`, while its hover and press feedback keep theirs. Heat goes
+  through the screen's own `IncreaseStrainScore`/`DecreaseStrainScore`, so the
+  gauge, its markers and the run's recorded heat all count modded strains.
 - **Following the run without a "run started" event.** The game has none.
   `StrainCore` maps each `GameManager.onStateChanged` state to a phase (menu,
   loading a save, opening a game, in a game, shop, between games, or nothing)

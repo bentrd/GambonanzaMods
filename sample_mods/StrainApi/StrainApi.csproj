@@ -15,13 +15,12 @@
   <ItemGroup>
     <!-- Tests/ is its own project (plain .NET, no game needed): dotnet test sample_mods/StrainApi/Tests -->
     <Compile Remove="Tests\**" />
+    <!-- The icon a strain's card shows when its mod gives none. -->
+    <EmbeddedResource Include="res\default-strain.png" LogicalName="Gambonanza.StrainApi.default-strain.png" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\ModSdk\ModSdk.csproj">
-      <Private>false</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\GameUI\GameUI.csproj">
       <Private>false</Private>
     </ProjectReference>
   </ItemGroup>
@@ -31,12 +30,24 @@
       <HintPath>..\..\refs\UnityEngine.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\refs\UnityEngine.AudioModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\..\refs\UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\refs\UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
       <HintPath>..\..\refs\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\refs\UnityEngine.TextRenderingModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
@@ -49,6 +60,10 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>..\..\refs\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>..\..\refs\DOTween.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Assembly-CSharp">

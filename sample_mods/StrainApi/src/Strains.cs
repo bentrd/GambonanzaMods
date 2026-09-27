@@ -29,6 +29,9 @@ namespace Gambonanza.StrainApi
         /// <summary>Longest id <see cref="StrainBuilder.Create"/> accepts.</summary>
         public const int MaxIdLength = 40;
 
+        /// <summary>Most heat one strain can add (<see cref="StrainBuilder.WithHeat"/>); the game's own add 1 to 3.</summary>
+        public const int MaxHeat = 9;
+
         // ----- registry ------------------------------------------------------
 
         /// <summary>Every registered strain, in registration order.</summary>

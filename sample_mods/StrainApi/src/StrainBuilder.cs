@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using UnityEngine;
 
 namespace Gambonanza.StrainApi
 {
@@ -11,7 +13,9 @@ namespace Gambonanza.StrainApi
     /// <code>
     /// StrainBuilder.Create("taxman")
     ///     .WithName("Taxman")
-    ///     .WithDescription("Every game costs $1 to start.")
+    ///     .WithDescription("Every game costs <color=*>$1</color> to start.")
+    ///     .WithHeat(1)
+    ///     .WithIconFile("taxman.png")
     ///     .OnGameStart(strain => ChargeOneDollar())
     ///     .Register();
     /// </code>
@@ -25,9 +29,11 @@ namespace Gambonanza.StrainApi
     {
         private readonly StrainDefinition _def;
 
-        private StrainBuilder(string id, string source)
+        private StrainBuilder(string id, Assembly caller)
         {
-            _def = new StrainDefinition(id?.Trim(), source);
+            string directory = null;
+            try { directory = Path.GetDirectoryName(caller.Location); } catch { }
+            _def = new StrainDefinition(id?.Trim(), caller.GetName().Name, directory);
         }
 
         /// <summary>
@@ -37,7 +43,7 @@ namespace Gambonanza.StrainApi
         /// </summary>
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static StrainBuilder Create(string id)
-            => new StrainBuilder(id, Assembly.GetCallingAssembly().GetName().Name);
+            => new StrainBuilder(id, Assembly.GetCallingAssembly());
 
         /// <summary>Display name. Defaults to the id.</summary>
         public StrainBuilder WithName(string name)
@@ -50,6 +56,42 @@ namespace Gambonanza.StrainApi
         public StrainBuilder WithDescription(string description)
         {
             _def.Description = description?.Trim() ?? "";
+            return this;
+        }
+
+        /// <summary>
+        /// What the strain adds to the heat gauge when picked, like the game's own strains
+        /// (1 for a nuisance, 2 for a real handicap, 3 for a brutal one). 0 to
+        /// <see cref="Strains.MaxHeat"/>; defaults to 1.
+        /// </summary>
+        public StrainBuilder WithHeat(int heat)
+        {
+            _def.Heat = Mathf.Clamp(heat, 0, Strains.MaxHeat);
+            return this;
+        }
+
+        /// <summary>The icon on the strain's card. Pixel art the size of the game's own (33x27) fits best.</summary>
+        public StrainBuilder WithIcon(Sprite icon)
+        {
+            _def.Icon = icon;
+            return this;
+        }
+
+        /// <summary>
+        /// The icon on the strain's card, from a PNG shipped in your mod's folder (the path
+        /// is relative to it): <c>.WithIconFile("taxman.png")</c>. Loaded with point
+        /// filtering, like the game's pixel art; the game's own strain icons are 33x27.
+        /// </summary>
+        public StrainBuilder WithIconFile(string relativePath)
+        {
+            _def.IconFile = string.IsNullOrWhiteSpace(relativePath) ? null : relativePath.Trim();
+            return this;
+        }
+
+        /// <summary>The icon on the strain's card, borrowed from one of the game's sprites by name ("SPR_Ascend_Lock").</summary>
+        public StrainBuilder WithGameIcon(string spriteName)
+        {
+            _def.GameIconName = string.IsNullOrWhiteSpace(spriteName) ? null : spriteName.Trim();
             return this;
         }
 

@@ -101,7 +101,7 @@ namespace Gambonanza.StrainApi
                 }
                 UnhookTurns();
                 if (_gm) _gm.onStateChanged = (Action<State>)Delegate.Remove(_gm.onStateChanged, _onState);
-                StrainPicker.Teardown();
+                StrainScreen.Detach();
             }
             catch (Exception ex) { Log("disable cleanup failed: " + ex.Message); }
 
@@ -123,7 +123,7 @@ namespace Gambonanza.StrainApi
                 PollState();
                 EnsureTurnHook();
                 PruneDestroyed();
-                if (_gm && _gm.CurrentState == State.MENU) StrainPicker.EnsureHomeButton();
+                StrainScreen.EnsureAttached();
             }
             catch (Exception ex)
             {
@@ -207,6 +207,13 @@ namespace Gambonanza.StrainApi
             }
         }
 
+        /// <summary>The run being started was set up on the Custom strain screen (not a preset difficulty).</summary>
+        private static bool IsCustomDifficulty()
+        {
+            try { return DataManager.Instance == null || DataManager.Instance.Data.CurrentDifficulty == DIFFICULTY.CUSTOM; }
+            catch { return true; }
+        }
+
         /// <summary>ChessDataManager.CurrentWave, the run's 0-based game index; -1 when there is none.</summary>
         private static int ReadWave()
         {
@@ -225,9 +232,12 @@ namespace Gambonanza.StrainApi
         {
             var data = StrainStore.Data;
             var picked = new List<StrainDefinition>();
+            // Modded strains are picked on the Custom strain screen, next to the game's; a
+            // preset difficulty (Pawn to King) is its own fixed set of strains.
+            bool custom = IsCustomDifficulty();
             foreach (var def in StrainRegistry.All)
             {
-                if (!data.selected.Contains(def.Id)) continue;
+                if (!custom || !data.selected.Contains(def.Id)) continue;
                 var clash = picked.Find(p => p.ConflictsWith(def));
                 if (clash != null) { Log($"'{def.Id}' cannot be combined with '{clash.Id}'; left off this run."); continue; }
                 picked.Add(def);
@@ -238,7 +248,9 @@ namespace Gambonanza.StrainApi
 
             EnsureTurnHook();
             foreach (var def in picked) Spawn(def);
-            Log(picked.Count == 0 ? "new run, no mod strains on it." : $"new run with {picked.Count} mod strain(s): {Names(picked)}.");
+            Log(picked.Count > 0 ? $"new run with {picked.Count} mod strain(s): {Names(picked)}."
+                : !custom && data.selected.Count > 0 ? "new run on a preset difficulty: mod strains only come with Custom runs, none on it."
+                : "new run, no mod strains on it.");
             Broadcast(StrainEvent.RunStarted);
             RaiseEvent(RunStarted, "OnRunStarted");
         }

@@ -286,7 +286,7 @@ function gambitCard(g, { size = '', index = 0, from = null } = {}) {
 // shows the way the game shows its strains: a name and a rule, in the purple
 // of the game's Strain capsule.
 
-const STRAIN_HINT = 'Pick them before a run: MOD STRAINS on the game\u2019s home screen.';
+const STRAIN_HINT = 'Pick them before a run: New Run \u203a Custom, then the arrows by STRAINS.';
 
 /** The strains' names as small chips, for mod cards and pack member rows. */
 function strainChips(strains) {
