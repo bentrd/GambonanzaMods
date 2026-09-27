@@ -5,7 +5,7 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
-## Unreleased
+## 1.5.3
 
 - New library mod - **Strain Creation API** (`StrainApi`). Mods can now add
   their own strains: rules you pick before a run, like the game's No Queen or
