@@ -610,6 +610,50 @@ textarea.game-input { resize: vertical; min-height: 64px; }
 .pack-card:has(.gcard:hover),
 .mod-row:has(.gcard:hover) { z-index: 40; }
 .pack-member .info { display: flex; flex-direction: column; gap: 3px; }
+
+/* ------------------------------------------------------------------ strains
+   Run modifiers a mod adds through the Strain Creation API. A strain has no
+   art, so it is a name and a rule, tinted with the game's own Strain capsule
+   purple (RARITY_COLORS.strain, from the Library) on the gambit-tooltip
+   panel look. */
+
+.strain-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.strain-chip {
+  background: #7900ab; color: #f3e6fa;
+  border: 2px solid var(--ink); border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 11px; letter-spacing: 0.6px;
+  cursor: default;
+}
+
+.strain-wrap { margin: 16px 0 6px; }
+.strain-list {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 12px 0 4px; max-width: 720px;
+}
+.strain-item {
+  background: #1a0e12;
+  border: 3px solid #090a14; border-radius: 12px;
+  box-shadow: 0 0 0 2px rgba(155, 105, 176, 0.45), 0 4px 0 0 #090a14;
+  padding: 9px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.strain-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.strain-cap {
+  color: #fff;
+  border: 2px solid; border-radius: 999px;
+  padding: 1px 10px;
+  font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+}
+.strain-name { color: #f2e4ae; font-size: 15px; letter-spacing: 0.6px; }
+.strain-id {
+  margin-left: auto;
+  font-family: var(--font-mono); font-size: 14px;
+  color: rgba(242, 228, 174, 0.55);
+}
+.strain-desc { color: #f2e4ae; font-size: 12.5px; line-height: 1.45; }
+.strain-desc .gglyph { font-size: 14px; }
+.strain-from { font-size: 10px; color: rgba(242, 228, 174, 0.5); text-transform: uppercase; letter-spacing: 0.8px; }
 .pack-member .nm .ver { font-family: var(--font-mono); font-size: 12.5px; color: rgba(90, 34, 48, 0.6); }
 .pack-member .psum { font-size: 12.5px; line-height: 1.4; }
 .pack-member .side {

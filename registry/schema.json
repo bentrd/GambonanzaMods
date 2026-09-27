@@ -85,6 +85,7 @@
         "enum": [
           "gameplay",
           "gambits",
+          "strains",
           "quality-of-life",
           "ui",
           "visual",
@@ -167,6 +168,33 @@
             "pattern": "^https://raw\\.githubusercontent\\.com/",
             "maxLength": 300,
             "description": "The gambit's sprite PNG on raw.githubusercontent.com (the only image host the manager's CSP allows). Point it at the same PNG the mod ships."
+          }
+        }
+      }
+    },
+    "strains": {
+      "type": "array",
+      "maxItems": 24,
+      "description": "Strains this mod adds through the Strain Creation API (StrainApi), so the manager can list them. Mirror the values the mod passes to StrainBuilder; the description keeps the game's TextMeshPro markup verbatim.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]{0,39}$",
+            "description": "The strain's id (StrainBuilder.Create(id)); what 'strain on <id>' takes in the console."
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 48,
+            "description": "The display name (WithName)."
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 300,
+            "description": "What the strain does, with its game markup, verbatim (WithDescription)."
           }
         }
       }

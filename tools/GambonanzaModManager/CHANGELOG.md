@@ -4,6 +4,17 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## Unreleased
+
+- **Mods that add strains now say so.** A mod built on the new Strain Creation
+  API can list its strains in the registry, and the manager shows them the way
+  the game shows its own: purple chips with their names on the mod's card, and
+  a "strains inside" section on the mod's page (and on the page of any modpack
+  that includes it) with each strain's rule in the game's own colours. Browse
+  them all with the new **strains** tag. For mod authors: it is the optional
+  `strains` field on a registry entry, next to `gambits` -
+  see `docs/MOD_PUBLISHING.md`.
+
 ## 1.7.3
 
 - **"Open submission on GitHub" now hands over the whole form.** The Registry

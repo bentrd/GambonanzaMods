@@ -8,7 +8,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  parseSubmissionIssue, parseModpackSubmissionIssue, validateModpackEntry,
+  parseSubmissionIssue, parseModpackSubmissionIssue, validateEntry, validateModpackEntry,
 } from './lib.mjs';
 
 /** GitHub renders an issue form as "### <label>\n\n<value>" blocks. */
@@ -145,4 +145,66 @@ test('the length limits hold', () => {
     id: 'x-y', name: 'Xy', author: 'a', summary: 'short', mods: ['kamikaze-gambit'],
   }, 'x-y.json', MODS, SKINS);
   assert.match(long.join(' '), /"summary" is too short/);
+});
+
+// ---------------------------------------------------------------------------
+// Mod entries: the "strains" list (mods built on the Strain Creation API)
+// ---------------------------------------------------------------------------
+
+/** A minimal valid mod entry, as registry/mods/extra-strains.json would hold it. */
+const strainMod = (over = {}) => ({
+  id: 'extra-strains',
+  name: 'Extra Strains',
+  author: 'Ben',
+  summary: 'Two more strains to pick before a run.',
+  repo: 'bentrd/GambonanzaMods',
+  asset: 'ExtraStrains.zip',
+  folder: 'ExtraStrains',
+  tags: ['strains', 'gameplay'],
+  strains: [
+    { id: 'taxman', name: 'Taxman', description: 'Every game costs <color=*>$1</color> to start.' },
+    { id: 'short-fuse', name: 'Short Fuse' },
+  ],
+  ...over,
+});
+
+test('a mod can list the strains it adds, and tag itself "strains"', () => {
+  assert.deepEqual(validateEntry(strainMod(), 'extra-strains.json'), []);
+});
+
+test('each listed strain needs a name, and ids follow StrainBuilder\'s rule', () => {
+  const problems = validateEntry(strainMod({
+    strains: [{ id: 'Tax Man' }, { name: 'Ok', id: 'under_score-ok' }],
+  }), 'extra-strains.json').join(' ');
+  assert.match(problems, /strains\[0\]: "name" is required/);
+  assert.match(problems, /strains\[0\]: "id" is malformed/);
+  assert.doesNotMatch(problems, /strains\[1\]/);
+});
+
+test('strain items refuse unknown fields and over-long text', () => {
+  const problems = validateEntry(strainMod({
+    strains: [{ name: 'X', sprite: 'https://raw.githubusercontent.com/a/b/c.png', description: 'd'.repeat(301) }],
+  }), 'extra-strains.json').join(' ');
+  assert.match(problems, /strains\[0\]: unknown field "sprite"/);
+  assert.match(problems, /strains\[0\]: "description" is too long/);
+});
+
+test('the strains list is an array of objects, capped like gambits', () => {
+  assert.match(validateEntry(strainMod({ strains: 'taxman' }), 'extra-strains.json').join(' '),
+    /"strains" must be an array/);
+  assert.match(validateEntry(strainMod({ strains: ['taxman'] }), 'extra-strains.json').join(' '),
+    /strains\[0\] must be an object/);
+  const many = Array.from({ length: 25 }, (_, i) => ({ name: `S${i}` }));
+  assert.match(validateEntry(strainMod({ strains: many }), 'extra-strains.json').join(' '),
+    /"strains" allows at most 24 entries/);
+});
+
+test('gambits keep their own checks after sharing the list plumbing with strains', () => {
+  const problems = validateEntry(strainMod({
+    strains: undefined,
+    gambits: [{ name: 'G', sprite: 'https://example.com/g.png', rarity: 'mythic', price: 100 }],
+  }), 'extra-strains.json').join(' ');
+  assert.match(problems, /gambits\[0\]: "sprite" is malformed/);
+  assert.match(problems, /gambits\[0\]: unknown rarity "mythic"/);
+  assert.match(problems, /gambits\[0\]: "price" must be a whole number/);
 });

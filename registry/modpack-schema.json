@@ -60,7 +60,7 @@
       "maxItems": 5,
       "items": {
         "type": "string",
-        "enum": ["gameplay", "gambits", "quality-of-life", "ui", "visual", "audio", "cheats", "library", "tools"]
+        "enum": ["gameplay", "gambits", "strains", "quality-of-life", "ui", "visual", "audio", "cheats", "library", "tools"]
       },
       "description": "Same vocabulary as mod tags."
     },

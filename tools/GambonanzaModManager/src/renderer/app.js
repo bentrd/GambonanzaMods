@@ -279,6 +279,47 @@ function gambitCard(g, { size = '', index = 0, from = null } = {}) {
 }
 
 // ---------------------------------------------------------------------------
+// Strains
+// ---------------------------------------------------------------------------
+// Mods built on the Strain Creation API list the run modifiers they add in the
+// registry's optional "strains" field. A strain has no art of its own, so it
+// shows the way the game shows its strains: a name and a rule, in the purple
+// of the game's Strain capsule.
+
+const STRAIN_HINT = 'Pick them before a run: New Run \u203a Custom, then the arrows by STRAINS.';
+
+/** The strains' names as small chips, for mod cards and pack member rows. */
+function strainChips(strains) {
+  if (!(strains || []).length) return null;
+  return el('div', { class: 'strain-chips' },
+    ...strains.map((s) => el('span', {
+      class: 'strain-chip',
+      title: s.description ? renderGambitMarkup(s.description).textContent : s.name,
+    }, s.name)));
+}
+
+/** One strain in full: capsule, name, console id, and its rule in the game's markup. */
+function strainItem(s, { from = null } = {}) {
+  const rar = RARITY_COLORS.strain;
+  return el('div', { class: 'strain-item' },
+    el('div', { class: 'strain-head' },
+      el('span', { class: 'strain-cap', style: `background:${rar.main}; border-color:${rar.secondary}` }, 'Strain'),
+      el('span', { class: 'strain-name' }, s.name),
+      s.id ? el('span', { class: 'strain-id', title: `In the game's console: strain on ${s.id}` }, s.id) : null),
+    s.description ? el('div', { class: 'strain-desc' }, renderGambitMarkup(s.description)) : null,
+    from ? el('div', { class: 'strain-from' }, `from ${from}`) : null);
+}
+
+/** "The strains inside" for a mod or pack page, from `{ s, from }` pairs; null when empty. */
+function strainSection(items) {
+  if (!items.length) return null;
+  return el('div', { class: 'strain-wrap' },
+    el('div', { class: 'section-band' }, `The strains inside · ${items.length}`),
+    el('div', { class: 'strain-list' }, ...items.map(({ s, from }) => strainItem(s, { from }))),
+    el('div', { class: 'tiny muted', style: 'margin-top:4px' }, STRAIN_HINT));
+}
+
+// ---------------------------------------------------------------------------
 // Toasts + modal
 // ---------------------------------------------------------------------------
 
@@ -672,7 +713,7 @@ async function applyManagerUpdate(mgr) {
 // Browse
 // ---------------------------------------------------------------------------
 
-const TAGS = ['gameplay', 'gambits', 'quality-of-life', 'ui', 'visual', 'audio', 'cheats', 'library', 'tools'];
+const TAGS = ['gameplay', 'gambits', 'strains', 'quality-of-life', 'ui', 'visual', 'audio', 'cheats', 'library', 'tools'];
 
 function renderBrowse() {
   const mods = state.data?.registry?.mods || [];
@@ -779,6 +820,7 @@ function renderModCard(mod, tiers) {
     (mod.gambits || []).length
       ? el('div', { class: 'gambit-minis' }, ...mod.gambits.map((g, i) => gambitCard(g, { size: 'mini', index: i })))
       : null,
+    strainChips(mod.strains),
     statsRow(mod, tiers),
     deps,
     foot);
@@ -878,6 +920,7 @@ function renderModDetail(mod, tiers) {
           el('div', { class: 'tiny muted', style: 'margin-top:4px' },
             'Hover a card - these are the real in-game sprites, straight from the mod.'))
       : null,
+    strainSection((mod.strains || []).map((s) => ({ s }))),
     (mod.dependencies || []).length
       ? el('div', { class: 'inset-row tiny', style: 'margin-top:10px' },
           `Needs ${mod.dependencies.join(', ')} - installed automatically with it.`)
@@ -1541,6 +1584,7 @@ function renderPackDetail(pack) {
           m.latest?.version ? el('span', { class: 'ver' }, `v${m.latest.version}`) : null),
         el('div', { class: 'meta' }, `by ${m.author}`),
         el('div', { class: 'psum' }, m.summary || ''),
+        strainChips(m.strains),
         statsRow(m, tiers)),
       el('div', { class: 'side' },
         el('div', { class: 'badges' }, badges),
@@ -1576,6 +1620,7 @@ function renderPackDetail(pack) {
           `${ms.skinsMissing.length} of its texture packs ${ms.skinsMissing.length === 1 ? 'is' : 'are'} no longer in the registry and will be skipped: ${ms.skinsMissing.join(', ')}.`)
       : null,
     packGambitShelf(members),
+    strainSection(members.flatMap((m) => (m.strains || []).map((s) => ({ s, from: m.name })))),
     el('div', { class: 'pack-actions' },
       packActionButton(pack, ms, { size: '' }),
       pack.installable && (members.length || skins.length)

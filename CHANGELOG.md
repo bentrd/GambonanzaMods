@@ -5,6 +5,30 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## Unreleased
+
+- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add
+  their own strains: rules you pick before a run, like the game's No Queen or
+  Tile Exhauster, that hold for the whole run. Modded strains live on the
+  game's own Custom strain screen: once you have a mod that adds strains,
+  arrows appear either side of the STRAINS title and page over to **MOD
+  STRAINS** - same cards, same tooltips, and their heat counts on the gauge
+  like any other strain (it can go past 30 now). They come with Custom runs
+  only; the preset difficulties stay what they are. A run keeps the strains it
+  started with - through quitting and continuing - until you start another
+  one, and your picks are saved outside the mod folders, so updating a mod
+  never forgets them. Nothing changed in the patcher and no re-patch is
+  needed. The console (F10) gets a `strain` family too: `strain` shows what is
+  picked and what is on the run in progress (the game's own strains included),
+  then `strain list`, `strain info <id>`, `strain on <id>`,
+  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a
+  strain on the run you are playing, or take it off, right now - the quickest
+  way to try one).
+- New mod - **Extra Strains**, two strains to try it with. **Taxman** (heat 1):
+  every game costs $1 to start. **Short Fuse** (heat 2): every game, the
+  crumble countdown starts 2 turns in. Built on the Strain Creation API and the Crumble Control
+  API, which install alongside it.
+
 ## 1.5.2
 
 - New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod

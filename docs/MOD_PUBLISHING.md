@@ -138,6 +138,31 @@ usual entry is just:
 
 Validate locally with `node tools/registry/validate.mjs`.
 
+### Showing what your mod adds: `gambits` and `strains`
+
+Two optional lists let the manager show players what is inside your mod before
+they install it. Mirror what the mod itself registers, markup and all - the
+manager renders the game's `<color=X>`, `<br>`, `<i>` and `<sprite=N>` the way
+the game does.
+
+- **`gambits`** - one object per gambit built with `GambitBuilder`: `name`,
+  `sprite` (a raw.githubusercontent.com URL to the PNG the mod ships), and
+  optionally `id`, `description`, `rarity` and `price`. Shown as in-game
+  collection tiles.
+- **`strains`** - one object per strain built with the Strain Creation API's
+  `StrainBuilder`: `name`, and optionally `id` (what `strain on <id>` takes)
+  and `description`. Shown as the game shows its strains: a name and a rule,
+  in the strain purple. Add the `strains` tag too, so players browsing for
+  strains find it.
+
+```json
+"tags": ["strains", "gameplay"],
+"dependencies": ["strain-api"],
+"strains": [
+  { "id": "taxman", "name": "Taxman", "description": "Every game costs <color=*>$1</color> to start." }
+]
+```
+
 ## Download counts
 
 Every mod card shows a lifetime download count and a popularity icon (hot /

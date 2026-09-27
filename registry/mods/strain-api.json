@@ -1,0 +1,20 @@
+{
+  "id": "strain-api",
+  "name": "Strain Creation API",
+  "author": "Ben",
+  "summary": "Library that lets mods add strains - run modifiers you pick before a run - to the game's own Custom strain screen.",
+  "description": "Not much to look at on its own - install it because a strain mod asked for it. It lets mods add their own strains: rules you choose before a run, like the game's own No Queen or Tile Exhauster, that hold for the whole run.\n\nModded strains go on the game's own Custom strain screen: arrows either side of the STRAINS title page over to MOD STRAINS, with the same cards and tooltips as the game's, and their heat counts on the gauge like any other. They come with Custom runs only - the preset difficulties stay as they are. A run keeps the strains it started with through quitting and continuing, until you start another one.\n\nIt also adds console commands (F10): `strain` shows what is picked and what is on the run in progress, then `strain list`, `strain info <id>`, `strain on <id>`, `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a strain on the current run, or take it off, right now).",
+  "repo": "bentrd/GambonanzaMods",
+  "asset": "StrainApi.zip",
+  "folder": "StrainApi",
+  "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/StrainApi",
+  "tags": [
+    "library",
+    "strains"
+  ],
+  "frameworkVersion": ">=1.5.2",
+  "gameVersion": ">=1.0",
+  "pending": true,
+  "submittedBy": "bentrd",
+  "addedAt": "2026-09-27"
+}
