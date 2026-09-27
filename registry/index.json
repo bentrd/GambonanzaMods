@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-27T22:17:55.665Z",
-  "count": 55,
+  "generatedAt": "2026-09-27T22:45:10.587Z",
+  "count": 57,
   "releases": {
     "framework": {
       "tag": "v1.5.2",
@@ -324,7 +324,7 @@
       },
       "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T21:49:33Z",
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -510,7 +510,7 @@
       },
       "downloads": 11,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T21:49:33Z",
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -880,7 +880,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T21:49:33Z",
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -934,6 +934,50 @@
       "downloads": 9,
       "stars": 0,
       "repoPushedAt": "2026-09-22T22:04:41Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "extra-strains",
+      "name": "Extra Strains",
+      "author": "Ben",
+      "summary": "Two more strains to pick before a run: Taxman and Short Fuse.",
+      "description": "Two run modifiers for players who find the game's own strains too gentle. Pick them on the Custom strain screen before a run: the arrows by the STRAINS title page over to them.\n\nTaxman (heat 1): every game costs $1 to start (nothing if you are broke). Short Fuse (heat 2): every game, the crumble countdown starts 2 turns in, so the board starts falling that much sooner.\n\nAlso the reference example for the Strain Creation API: one strain written with the builder's hooks, one as a StrainBehaviour built on the Crumble Control API. Both libraries install alongside it.",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "ExtraStrains.zip",
+      "folder": "ExtraStrains",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/ExtraStrains",
+      "tags": [
+        "strains",
+        "gameplay"
+      ],
+      "dependencies": [
+        "strain-api",
+        "crumble-api"
+      ],
+      "frameworkVersion": ">=1.5.2",
+      "gameVersion": ">=1.0",
+      "strains": [
+        {
+          "id": "taxman",
+          "name": "Taxman",
+          "description": "Every game costs <color=*>$1</color> to start."
+        },
+        {
+          "id": "short-fuse",
+          "name": "Short Fuse",
+          "description": "Every game, the <shake>Crumble</shake> countdown starts 2 turns in."
+        }
+      ],
+      "submittedBy": "bentrd",
+      "addedAt": "2026-09-27",
+      "official": true,
+      "reviewed": true,
+      "latest": null,
+      "downloads": 0,
+      "pending": true,
+      "stars": 5,
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1134,7 +1178,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T21:49:33Z",
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1718,7 +1762,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T21:49:33Z",
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1865,7 +1909,7 @@
       },
       "downloads": 30,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T21:49:33Z",
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -2403,7 +2447,7 @@
       },
       "downloads": 34,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T21:49:33Z",
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -2511,6 +2555,34 @@
       "downloads": 14,
       "stars": 0,
       "repoPushedAt": "2026-09-06T05:00:42Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "strain-api",
+      "name": "Strain Creation API",
+      "author": "Ben",
+      "summary": "Library that lets mods add strains - run modifiers you pick before a run - to the game's own Custom strain screen.",
+      "description": "Not much to look at on its own - install it because a strain mod asked for it. It lets mods add their own strains: rules you choose before a run, like the game's own No Queen or Tile Exhauster, that hold for the whole run.\n\nModded strains go on the game's own Custom strain screen: arrows either side of the STRAINS title page over to MOD STRAINS, with the same cards and tooltips as the game's, and their heat counts on the gauge like any other. They come with Custom runs only - the preset difficulties stay as they are. A run keeps the strains it started with through quitting and continuing, until you start another one.\n\nIt also adds console commands (F10): `strain` shows what is picked and what is on the run in progress, then `strain list`, `strain info <id>`, `strain on <id>`, `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a strain on the current run, or take it off, right now).",
+      "repo": "bentrd/GambonanzaMods",
+      "asset": "StrainApi.zip",
+      "folder": "StrainApi",
+      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/StrainApi",
+      "tags": [
+        "library",
+        "strains"
+      ],
+      "frameworkVersion": ">=1.5.2",
+      "gameVersion": ">=1.0",
+      "submittedBy": "bentrd",
+      "addedAt": "2026-09-27",
+      "official": true,
+      "reviewed": true,
+      "latest": null,
+      "downloads": 0,
+      "pending": true,
+      "stars": 5,
+      "repoPushedAt": "2026-09-27T22:44:29Z",
       "license": "MIT",
       "archived": false
     },
