@@ -1,93 +1,99 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-27T22:45:10.587Z",
+  "generatedAt": "2026-09-27T22:55:03.594Z",
   "count": 57,
   "releases": {
     "framework": {
-      "tag": "v1.5.2",
-      "version": "1.5.2",
-      "publishedAt": "2026-09-04T15:39:29Z",
-      "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+      "tag": "v1.5.3",
+      "version": "1.5.3",
+      "publishedAt": "2026-09-27T22:53:45Z",
+      "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/BetterCollection.zip",
           "size": 7897,
-          "sha256": "50e799ac65d7c97ac89e2f18aaaf9ab70c717f4c8e8de04a58564be4c91c475c"
+          "sha256": "56f7cb5d08f2db9d8a9f721c55dc4a5b30254e3e322967f25be9bcb93272038b"
         },
         {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "de4887fb524fa14545523ee4c07035d459e91dd458894d4d4e284d200c3ddece"
+          "sha256": "46419a0fa92d9b2980c9e230b3e8c64595c4adb7ae1e56ac17a65c3b429a8562"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "c0ef8dab812af66031601be8e34147f52b95e2c803c0cc2bec3be896b2a70d97"
+          "sha256": "bc5bc2ef1ede84712ce12372b94342a9e3bd1ee8c543cec57edcb0d0e546af58"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/GambitApi.zip",
           "size": 19924,
-          "sha256": "32c2ec926b4b438384bbd8580d751dadbd68de84f41e7c129355a60606f278d8"
+          "sha256": "b7e2a2f5d55b56aa51e48ce165f9bd0126b1e1a541c29c0d5e67166e443b0021"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-linux-arm64.zip",
-          "size": 28397037,
-          "sha256": "58a1f680b69ba3606ca15c2eb473c370bda2e37439d51bbaf5d5845593f855cd"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-linux-arm64.zip",
+          "size": 28409222,
+          "sha256": "6ae3ff80c68507c58a82e51e7123e9dc87a58b556c0d0674e9613206530fc19a"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-linux-x64.zip",
-          "size": 29638971,
-          "sha256": "40e3a9119a4f0492b55bb2b190f91e6a6906f3f30ad445986758024838701de0"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-linux-x64.zip",
+          "size": 29634111,
+          "sha256": "e124de62cba4d081a9d41b45896d3ffd5774058c8494947056e863c4544c1b99"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-osx-arm64.zip",
-          "size": 28622933,
-          "sha256": "2d77b04278e07ac8b81586c44391b058643c150d75d4d79792c3860b0bf9a087"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-osx-arm64.zip",
+          "size": 28613128,
+          "sha256": "a45bd0f7ad0d8242b26a030749ca3bee75fd0aea8f73893b4e7cec715102625c"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-osx-x64.zip",
-          "size": 29985429,
-          "sha256": "b1e0958feba28ce0d673b36943a8c2fd07807a44f69b6fa28dbbdf90aca091aa"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-osx-x64.zip",
+          "size": 29985135,
+          "sha256": "5a871f23a173a03e79ca014e54550b6d65df0ee70dedc0ed067d0d64bfe181d7"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-win-arm64.zip",
-          "size": 28871763,
-          "sha256": "17fb3fff45369798f184ab1852ecbc673e6d5cf5b51f521f759a9f353d62708b"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-win-arm64.zip",
+          "size": 28862141,
+          "sha256": "5c2bf5ace9c0f337e663dc8b988c24223431cff744de38a3410fb620aab272e4"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/gambonanza-framework-win-x64.zip",
-          "size": 29941442,
-          "sha256": "de20239e7d857454c06f2cbda261c3da4237218975d625fcbdc6c1f9baf43fae"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-win-x64.zip",
+          "size": 29941125,
+          "sha256": "597bc8f893599e99839e09178abc75cabffa46c91d839c7a20f4bf0dd6c87b50"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "92d5480a41654a88452860bbb313b16c87e92f9fc9e86c36f3b87845231fee33"
+          "sha256": "ad947228d1b4e0ecae89e76e19afe7a92fd1c42a267e26e442fdccd3d28e2cd3"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "0f66727ccefb7a29806ab087622936b885d54948c906c38aeb16cde84c888cd2"
+          "sha256": "f2ffecb14fb69fa9287d226fc1f3dcf129bd00ca52403b15a6ff5e862e72e161"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "7c6558e974f079f3104191a1c9c205f6e23b7fc6e819ac95286ec7e470e4f058"
+          "sha256": "4ef068044b4f5d47ad31f02b61cf134c5659d4acd3cf456f7fc8a077487718f2"
+        },
+        {
+          "name": "StrainApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/StrainApi.zip",
+          "size": 26951,
+          "sha256": "743f4ac4056d467008da8b1907d98af423177c3710d7112278305ec3b99b771b"
         }
       ]
     },
@@ -283,7 +289,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T15:57:11Z",
+      "repoPushedAt": "2026-09-27T22:53:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -308,23 +314,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.2",
+        "tag": "v1.5.3",
         "version": "1.1.0",
-        "publishedAt": "2026-09-04T15:39:29Z",
-        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+        "publishedAt": "2026-09-27T22:53:45Z",
+        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/BetterCollection.zip",
           "size": 7897,
-          "sha256": "50e799ac65d7c97ac89e2f18aaaf9ab70c717f4c8e8de04a58564be4c91c475c"
+          "sha256": "56f7cb5d08f2db9d8a9f721c55dc4a5b30254e3e322967f25be9bcb93272038b"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "repoPushedAt": "2026-09-27T22:52:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -469,7 +475,7 @@
       },
       "downloads": 20,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T15:57:11Z",
+      "repoPushedAt": "2026-09-27T22:53:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -494,23 +500,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.2",
+        "tag": "v1.5.3",
         "version": "1.0.0",
-        "publishedAt": "2026-09-04T15:39:29Z",
-        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+        "publishedAt": "2026-09-27T22:53:45Z",
+        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
         "asset": {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "de4887fb524fa14545523ee4c07035d459e91dd458894d4d4e284d200c3ddece"
+          "sha256": "46419a0fa92d9b2980c9e230b3e8c64595c4adb7ae1e56ac17a65c3b429a8562"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 11,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "repoPushedAt": "2026-09-27T22:52:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -723,7 +729,7 @@
       },
       "downloads": 17,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T15:57:11Z",
+      "repoPushedAt": "2026-09-27T22:53:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -785,7 +791,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T15:57:11Z",
+      "repoPushedAt": "2026-09-27T22:53:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -864,23 +870,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.2",
+        "tag": "v1.5.3",
         "version": "1.2.0",
-        "publishedAt": "2026-09-04T15:39:29Z",
-        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+        "publishedAt": "2026-09-27T22:53:45Z",
+        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "c0ef8dab812af66031601be8e34147f52b95e2c803c0cc2bec3be896b2a70d97"
+          "sha256": "bc5bc2ef1ede84712ce12372b94342a9e3bd1ee8c543cec57edcb0d0e546af58"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "repoPushedAt": "2026-09-27T22:52:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -943,10 +949,10 @@
       "author": "Ben",
       "summary": "Two more strains to pick before a run: Taxman and Short Fuse.",
       "description": "Two run modifiers for players who find the game's own strains too gentle. Pick them on the Custom strain screen before a run: the arrows by the STRAINS title page over to them.\n\nTaxman (heat 1): every game costs $1 to start (nothing if you are broke). Short Fuse (heat 2): every game, the crumble countdown starts 2 turns in, so the board starts falling that much sooner.\n\nAlso the reference example for the Strain Creation API: one strain written with the builder's hooks, one as a StrainBehaviour built on the Crumble Control API. Both libraries install alongside it.",
-      "repo": "bentrd/GambonanzaMods",
+      "repo": "ben-gambo/mods",
       "asset": "ExtraStrains.zip",
       "folder": "ExtraStrains",
-      "homepage": "https://github.com/bentrd/GambonanzaMods/tree/main/sample_mods/ExtraStrains",
+      "homepage": "https://github.com/ben-gambo/mods/tree/main/ExtraStrains",
       "tags": [
         "strains",
         "gameplay"
@@ -969,15 +975,28 @@
           "description": "Every game, the <shake>Crumble</shake> countdown starts 2 turns in."
         }
       ],
-      "submittedBy": "bentrd",
+      "submittedBy": "ben-gambo",
       "addedAt": "2026-09-27",
-      "official": true,
+      "official": false,
       "reviewed": true,
-      "latest": null,
+      "latest": {
+        "tag": "ExtraStrains-v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-09-27T22:53:07Z",
+        "notes": "Two more strains to pick before a run: Taxman (every game costs $1 to start) and Short Fuse (the crumble countdown starts 2 turns in). Also the reference example for the Strain Creation API.\n\nUnzip into your game's `Mods/` folder.\n\nSource for this exact build: [`ExtraStrains/`](../../tree/ExtraStrains-v1.0.0/ExtraStrains)\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/ExtraStrains-v1.0.0",
+        "asset": {
+          "name": "ExtraStrains.zip",
+          "url": "https://github.com/ben-gambo/mods/releases/download/ExtraStrains-v1.0.0/ExtraStrains.zip",
+          "size": 5150,
+          "sha256": "893a0f2627512d384368a5f65b048c2c678ebb4bc0c2a4c5f861e52515eb51b7"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
+      },
       "downloads": 0,
-      "pending": true,
-      "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "stars": 0,
+      "repoPushedAt": "2026-09-27T22:53:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1031,7 +1050,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T15:57:11Z",
+      "repoPushedAt": "2026-09-27T22:53:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1162,23 +1181,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.2",
+        "tag": "v1.5.3",
         "version": "1.4.1",
-        "publishedAt": "2026-09-04T15:39:29Z",
-        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+        "publishedAt": "2026-09-27T22:53:45Z",
+        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/GambitApi.zip",
           "size": 19924,
-          "sha256": "32c2ec926b4b438384bbd8580d751dadbd68de84f41e7c129355a60606f278d8"
+          "sha256": "b7e2a2f5d55b56aa51e48ce165f9bd0126b1e1a541c29c0d5e67166e443b0021"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "repoPushedAt": "2026-09-27T22:52:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1552,7 +1571,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-09-04T15:57:11Z",
+      "repoPushedAt": "2026-09-27T22:53:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1746,23 +1765,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.2",
+        "tag": "v1.5.3",
         "version": "1.3.0",
-        "publishedAt": "2026-09-04T15:39:29Z",
-        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+        "publishedAt": "2026-09-27T22:53:45Z",
+        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "92d5480a41654a88452860bbb313b16c87e92f9fc9e86c36f3b87845231fee33"
+          "sha256": "ad947228d1b4e0ecae89e76e19afe7a92fd1c42a267e26e442fdccd3d28e2cd3"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "repoPushedAt": "2026-09-27T22:54:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -1893,23 +1912,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.2",
+        "tag": "v1.5.3",
         "version": "1.1.0",
-        "publishedAt": "2026-09-04T15:39:29Z",
-        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+        "publishedAt": "2026-09-27T22:53:45Z",
+        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "0f66727ccefb7a29806ab087622936b885d54948c906c38aeb16cde84c888cd2"
+          "sha256": "f2ffecb14fb69fa9287d226fc1f3dcf129bd00ca52403b15a6ff5e862e72e161"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 30,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "repoPushedAt": "2026-09-27T22:54:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -2431,23 +2450,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.2",
+        "tag": "v1.5.3",
         "version": "1.1.0",
-        "publishedAt": "2026-09-04T15:39:29Z",
-        "notes": "\n- New library mod - **Crumble Control API** (`CrumbleApi`). Gambit and mod\n  authors can now do things to the crumble that the game keeps private: a\n  gambit can freeze it (the countdown stops, nothing falls, nothing new\n  shakes), block it from ever starting, or lengthen the countdown by any\n  number of turns - each as a handle tied to the gambit, so selling the card\n  undoes it on its own - and it can start or stop the crumble outright.\n  Nothing changed in the patcher and no re-patch is needed - the library\n  reads the private `CrumbleManager` state by reflection and wraps the game's\n  own per-turn crumble step. It also adds console (F10) commands you can use\n  directly: `crumble` shows the live countdown and who is holding it, then\n  `crumble freeze`, `crumble block`, `crumble delay <n>`, `crumble start`,\n  `crumble stop`, `crumble counter <n>`, `crumble shake` and `crumble calm`.\n- Recorded Gambonanza build 25059529 (the update Steam shipped on\n  2026-09-04) as the supported one. It changes eight game types, none of\n  which the framework or the bundled mods bind to: a 16:9 letterbox for odd\n  window sizes, the graveyard surviving a stalemate retry, and two vanilla\n  gambits' state checks. The framework DLLs in this release are built\n  against it.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.2",
+        "publishedAt": "2026-09-27T22:53:45Z",
+        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.2/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "7c6558e974f079f3104191a1c9c205f6e23b7fc6e819ac95286ec7e470e4f058"
+          "sha256": "4ef068044b4f5d47ad31f02b61cf134c5659d4acd3cf456f7fc8a077487718f2"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 34,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "repoPushedAt": "2026-09-27T22:54:43Z",
       "license": "MIT",
       "archived": false
     },
@@ -2578,11 +2597,24 @@
       "addedAt": "2026-09-27",
       "official": true,
       "reviewed": true,
-      "latest": null,
+      "latest": {
+        "tag": "v1.5.3",
+        "version": "1.0.0",
+        "publishedAt": "2026-09-27T22:53:45Z",
+        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "asset": {
+          "name": "StrainApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/StrainApi.zip",
+          "size": 26951,
+          "sha256": "743f4ac4056d467008da8b1907d98af423177c3710d7112278305ec3b99b771b"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
+      },
       "downloads": 0,
-      "pending": true,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:44:29Z",
+      "repoPushedAt": "2026-09-27T22:54:43Z",
       "license": "MIT",
       "archived": false
     },
