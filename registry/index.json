@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-28T01:44:25.541Z",
+  "generatedAt": "2026-09-28T07:23:31.219Z",
   "count": 57,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:56:43Z",
+      "repoPushedAt": "2026-09-28T07:22:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -516,7 +516,7 @@
       },
       "downloads": 12,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:56:43Z",
+      "repoPushedAt": "2026-09-28T07:22:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -886,7 +886,7 @@
       },
       "downloads": 49,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:56:43Z",
+      "repoPushedAt": "2026-09-28T07:22:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -1197,7 +1197,7 @@
       },
       "downloads": 54,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:56:43Z",
+      "repoPushedAt": "2026-09-28T07:22:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -1781,7 +1781,7 @@
       },
       "downloads": 43,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:56:43Z",
+      "repoPushedAt": "2026-09-28T07:22:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -1928,7 +1928,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:56:43Z",
+      "repoPushedAt": "2026-09-28T07:22:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -2466,7 +2466,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:56:43Z",
+      "repoPushedAt": "2026-09-28T07:22:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -2614,7 +2614,7 @@
       },
       "downloads": 2,
       "stars": 5,
-      "repoPushedAt": "2026-09-27T22:56:43Z",
+      "repoPushedAt": "2026-09-28T07:22:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -3265,6 +3265,37 @@
         }
       },
       "downloads": 2
+    },
+    {
+      "id": "dracula-botezzaro",
+      "name": "Dracula Botezzaro",
+      "author": "FRO_PWR",
+      "summary": "Re-skins the boss Botezzaro into Count Dracula from Castlevania.",
+      "description": "Re-skins the Botezzaro boss sprite sheet into Count Dracula from the Castlevania series, and renames him \"Count Dracula, Lord of a Dark Kingdom\" in every language.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "Dracula_Botezzaro.zip",
+      "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/Dracula_Botezzaro/tp-df89a7f6/images/spr-onikaru-v2.png",
+      "tags": [
+        "visual"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-09-28",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added Dracula Botezarro",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "Dracula_Botezzaro.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/Dracula_Botezzaro.zip",
+          "size": 17810,
+          "sha256": "da7ee5f9a2fa9bfff489b228a4107d8ee86ece1c6afb75c13c6b095b6831065e"
+        }
+      },
+      "downloads": 0
     },
     {
       "id": "halloween-blood-pumpkin-pieces",
