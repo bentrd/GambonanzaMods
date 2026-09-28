@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-28T07:23:31.219Z",
+  "generatedAt": "2026-09-28T08:46:20.115Z",
   "count": 57,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-09-28T07:22:48Z",
+      "repoPushedAt": "2026-09-28T07:23:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -516,7 +516,7 @@
       },
       "downloads": 12,
       "stars": 5,
-      "repoPushedAt": "2026-09-28T07:22:48Z",
+      "repoPushedAt": "2026-09-28T07:23:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -886,7 +886,7 @@
       },
       "downloads": 49,
       "stars": 5,
-      "repoPushedAt": "2026-09-28T07:22:48Z",
+      "repoPushedAt": "2026-09-28T07:23:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1197,7 +1197,7 @@
       },
       "downloads": 54,
       "stars": 5,
-      "repoPushedAt": "2026-09-28T07:22:48Z",
+      "repoPushedAt": "2026-09-28T07:23:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1781,7 +1781,7 @@
       },
       "downloads": 43,
       "stars": 5,
-      "repoPushedAt": "2026-09-28T07:22:48Z",
+      "repoPushedAt": "2026-09-28T07:23:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1928,7 +1928,7 @@
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-28T07:22:48Z",
+      "repoPushedAt": "2026-09-28T07:23:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2466,7 +2466,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-09-28T07:22:48Z",
+      "repoPushedAt": "2026-09-28T07:23:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2614,7 +2614,7 @@
       },
       "downloads": 2,
       "stars": 5,
-      "repoPushedAt": "2026-09-28T07:22:48Z",
+      "repoPushedAt": "2026-09-28T07:23:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -3295,7 +3295,7 @@
           "sha256": "da7ee5f9a2fa9bfff489b228a4107d8ee86ece1c6afb75c13c6b095b6831065e"
         }
       },
-      "downloads": 0
+      "downloads": 2
     },
     {
       "id": "halloween-blood-pumpkin-pieces",
