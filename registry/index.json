@@ -1,99 +1,99 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-09-30T08:57:36.900Z",
+  "generatedAt": "2026-09-30T08:58:52.102Z",
   "count": 57,
   "releases": {
     "framework": {
-      "tag": "v1.5.3",
-      "version": "1.5.3",
-      "publishedAt": "2026-09-27T22:53:45Z",
-      "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+      "tag": "v1.6.0",
+      "version": "1.6.0",
+      "publishedAt": "2026-09-30T08:58:06Z",
+      "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/BetterCollection.zip",
           "size": 7897,
-          "sha256": "56f7cb5d08f2db9d8a9f721c55dc4a5b30254e3e322967f25be9bcb93272038b"
+          "sha256": "0d2f0ded6c7262cc82c9cd711a8c09a76a87218fa6371232dda428735447a6b0"
         },
         {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "46419a0fa92d9b2980c9e230b3e8c64595c4adb7ae1e56ac17a65c3b429a8562"
+          "sha256": "09115ad2c1e5eabc8c6aaf766a0a29916a0c63a4ef869483440aace578565c9d"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "bc5bc2ef1ede84712ce12372b94342a9e3bd1ee8c543cec57edcb0d0e546af58"
+          "sha256": "9c3cd61b807b5d0ccb5a801c07f3e8e7bf942670744f0666f6ffdf215354915f"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/GambitApi.zip",
           "size": 19924,
-          "sha256": "b7e2a2f5d55b56aa51e48ce165f9bd0126b1e1a541c29c0d5e67166e443b0021"
+          "sha256": "5355eb12f695aec9e1263773bccca889fc8f65f9683351d6eb8032f79b9d93eb"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-linux-arm64.zip",
-          "size": 28409222,
-          "sha256": "6ae3ff80c68507c58a82e51e7123e9dc87a58b556c0d0674e9613206530fc19a"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-linux-arm64.zip",
+          "size": 28410499,
+          "sha256": "2d0e41cfe9f82e01c48edcd02d12aded1e5ed4cacccc9f05c42af02f1f9847e2"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-linux-x64.zip",
-          "size": 29634111,
-          "sha256": "e124de62cba4d081a9d41b45896d3ffd5774058c8494947056e863c4544c1b99"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-linux-x64.zip",
+          "size": 29638088,
+          "sha256": "1f2dc214f6925bab2b4481a1650b0cc6cfa4659a02eff1e3dbfef76b43d6b7bd"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-osx-arm64.zip",
-          "size": 28613128,
-          "sha256": "a45bd0f7ad0d8242b26a030749ca3bee75fd0aea8f73893b4e7cec715102625c"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-osx-arm64.zip",
+          "size": 28611960,
+          "sha256": "418233fef69a3358ac44903ab6b1c64d3124b613d3ab6a385216dcd2658cce7c"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-osx-x64.zip",
-          "size": 29985135,
-          "sha256": "5a871f23a173a03e79ca014e54550b6d65df0ee70dedc0ed067d0d64bfe181d7"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-osx-x64.zip",
+          "size": 29989036,
+          "sha256": "5f895d9d337f862ecd60be09500dc71181bff4f923fe35d4970d22468c12a392"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-win-arm64.zip",
-          "size": 28862141,
-          "sha256": "5c2bf5ace9c0f337e663dc8b988c24223431cff744de38a3410fb620aab272e4"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-win-arm64.zip",
+          "size": 28863062,
+          "sha256": "721c645835a7028126a35ed2a9110f6a17fb5e333ef8bb9022fba2eb0587b5e2"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/gambonanza-framework-win-x64.zip",
-          "size": 29941125,
-          "sha256": "597bc8f893599e99839e09178abc75cabffa46c91d839c7a20f4bf0dd6c87b50"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-win-x64.zip",
+          "size": 29944108,
+          "sha256": "4104ec812c9349e011648025b2c58e2639f13ad9b0fe98981598708892a12f77"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "ad947228d1b4e0ecae89e76e19afe7a92fd1c42a267e26e442fdccd3d28e2cd3"
+          "sha256": "f7d73f08b60378c8c2719730ff9df9ef9a318e969ab1010066dcfd60136abf1b"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "f2ffecb14fb69fa9287d226fc1f3dcf129bd00ca52403b15a6ff5e862e72e161"
+          "sha256": "4a88aa2a6e1e71010d01ab9a859661e87c87aafe2cd5d99d0f6bc9bf92a79404"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "4ef068044b4f5d47ad31f02b61cf134c5659d4acd3cf456f7fc8a077487718f2"
+          "sha256": "fd14e2b72324ae41bd386b4c8c14ba3117fc193dba2c6344f94e0cb16d1a7f87"
         },
         {
           "name": "StrainApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/StrainApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/StrainApi.zip",
           "size": 26951,
-          "sha256": "743f4ac4056d467008da8b1907d98af423177c3710d7112278305ec3b99b771b"
+          "sha256": "544b9cc44d946de1b05b88de5d857f5ea5f9e8bb7c222a062163c6b8350b836a"
         }
       ]
     },
@@ -314,23 +314,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.3",
+        "tag": "v1.6.0",
         "version": "1.1.0",
-        "publishedAt": "2026-09-27T22:53:45Z",
-        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "publishedAt": "2026-09-30T08:58:06Z",
+        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/BetterCollection.zip",
           "size": 7897,
-          "sha256": "56f7cb5d08f2db9d8a9f721c55dc4a5b30254e3e322967f25be9bcb93272038b"
+          "sha256": "0d2f0ded6c7262cc82c9cd711a8c09a76a87218fa6371232dda428735447a6b0"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 51,
       "stars": 5,
-      "repoPushedAt": "2026-09-30T08:56:52Z",
+      "repoPushedAt": "2026-09-30T08:57:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -500,23 +500,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.3",
+        "tag": "v1.6.0",
         "version": "1.0.0",
-        "publishedAt": "2026-09-27T22:53:45Z",
-        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "publishedAt": "2026-09-30T08:58:06Z",
+        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
         "asset": {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "46419a0fa92d9b2980c9e230b3e8c64595c4adb7ae1e56ac17a65c3b429a8562"
+          "sha256": "09115ad2c1e5eabc8c6aaf766a0a29916a0c63a4ef869483440aace578565c9d"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 14,
       "stars": 5,
-      "repoPushedAt": "2026-09-30T08:56:52Z",
+      "repoPushedAt": "2026-09-30T08:57:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -870,23 +870,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.3",
+        "tag": "v1.6.0",
         "version": "1.2.0",
-        "publishedAt": "2026-09-27T22:53:45Z",
-        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "publishedAt": "2026-09-30T08:58:06Z",
+        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "bc5bc2ef1ede84712ce12372b94342a9e3bd1ee8c543cec57edcb0d0e546af58"
+          "sha256": "9c3cd61b807b5d0ccb5a801c07f3e8e7bf942670744f0666f6ffdf215354915f"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 52,
       "stars": 5,
-      "repoPushedAt": "2026-09-30T08:56:52Z",
+      "repoPushedAt": "2026-09-30T08:57:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1181,23 +1181,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.3",
+        "tag": "v1.6.0",
         "version": "1.4.1",
-        "publishedAt": "2026-09-27T22:53:45Z",
-        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "publishedAt": "2026-09-30T08:58:06Z",
+        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/GambitApi.zip",
           "size": 19924,
-          "sha256": "b7e2a2f5d55b56aa51e48ce165f9bd0126b1e1a541c29c0d5e67166e443b0021"
+          "sha256": "5355eb12f695aec9e1263773bccca889fc8f65f9683351d6eb8032f79b9d93eb"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 57,
       "stars": 5,
-      "repoPushedAt": "2026-09-30T08:56:52Z",
+      "repoPushedAt": "2026-09-30T08:57:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1765,23 +1765,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.3",
+        "tag": "v1.6.0",
         "version": "1.3.0",
-        "publishedAt": "2026-09-27T22:53:45Z",
-        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "publishedAt": "2026-09-30T08:58:06Z",
+        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "ad947228d1b4e0ecae89e76e19afe7a92fd1c42a267e26e442fdccd3d28e2cd3"
+          "sha256": "f7d73f08b60378c8c2719730ff9df9ef9a318e969ab1010066dcfd60136abf1b"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-09-30T08:56:52Z",
+      "repoPushedAt": "2026-09-30T08:57:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1912,23 +1912,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.3",
+        "tag": "v1.6.0",
         "version": "1.1.0",
-        "publishedAt": "2026-09-27T22:53:45Z",
-        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "publishedAt": "2026-09-30T08:58:06Z",
+        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "f2ffecb14fb69fa9287d226fc1f3dcf129bd00ca52403b15a6ff5e862e72e161"
+          "sha256": "4a88aa2a6e1e71010d01ab9a859661e87c87aafe2cd5d99d0f6bc9bf92a79404"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 31,
       "stars": 5,
-      "repoPushedAt": "2026-09-30T08:56:52Z",
+      "repoPushedAt": "2026-09-30T08:57:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -2450,23 +2450,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.3",
+        "tag": "v1.6.0",
         "version": "1.1.0",
-        "publishedAt": "2026-09-27T22:53:45Z",
-        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "publishedAt": "2026-09-30T08:58:06Z",
+        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "4ef068044b4f5d47ad31f02b61cf134c5659d4acd3cf456f7fc8a077487718f2"
+          "sha256": "fd14e2b72324ae41bd386b4c8c14ba3117fc193dba2c6344f94e0cb16d1a7f87"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 37,
       "stars": 5,
-      "repoPushedAt": "2026-09-30T08:56:52Z",
+      "repoPushedAt": "2026-09-30T08:57:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -2598,23 +2598,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.5.3",
+        "tag": "v1.6.0",
         "version": "1.0.0",
-        "publishedAt": "2026-09-27T22:53:45Z",
-        "notes": "\n- New library mod - **Strain Creation API** (`StrainApi`). Mods can now add\n  their own strains: rules you pick before a run, like the game's No Queen or\n  Tile Exhauster, that hold for the whole run. Modded strains live on the\n  game's own Custom strain screen: once you have a mod that adds strains,\n  arrows appear either side of the STRAINS title and page over to **MOD\n  STRAINS** - same cards, same tooltips, and their heat counts on the gauge\n  like any other strain (it can go past 30 now). They come with Custom runs\n  only; the preset difficulties stay what they are. A run keeps the strains it\n  started with - through quitting and continuing - until you start another\n  one, and your picks are saved outside the mod folders, so updating a mod\n  never forgets them. Nothing changed in the patcher and no re-patch is\n  needed. The console (F10) gets a `strain` family too: `strain` shows what is\n  picked and what is on the run in progress (the game's own strains included),\n  then `strain list`, `strain info <id>`, `strain on <id>`,\n  `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a\n  strain on the run you are playing, or take it off, right now - the quickest\n  way to try one).\n- To try it, **Extra Strains** in the Mod Manager's browser adds two:\n  **Taxman** (heat 1), every game costs $1 to start, and **Short Fuse**\n  (heat 2), every game the crumble countdown starts 2 turns in.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.5.3",
+        "publishedAt": "2026-09-30T08:58:06Z",
+        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
         "asset": {
           "name": "StrainApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.5.3/StrainApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/StrainApi.zip",
           "size": 26951,
-          "sha256": "743f4ac4056d467008da8b1907d98af423177c3710d7112278305ec3b99b771b"
+          "sha256": "544b9cc44d946de1b05b88de5d857f5ea5f9e8bb7c222a062163c6b8350b836a"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 3,
       "stars": 5,
-      "repoPushedAt": "2026-09-30T08:56:52Z",
+      "repoPushedAt": "2026-09-30T08:57:37Z",
       "license": "MIT",
       "archived": false
     },
