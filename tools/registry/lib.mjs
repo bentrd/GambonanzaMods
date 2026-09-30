@@ -545,7 +545,7 @@ export function parseModpackSubmissionIssue(body, { author = '', createdAt = '' 
     .split(',').map((m) => m.trim().toLowerCase()).filter(Boolean);
   // Comma-separated and ORDERED: the first one listed wins where two packs
   // change the same thing, which is part of what the setup is.
-  const skins = (fields['texture packs'] || '')
+  const skins = (fields['resource packs'] ?? fields['texture packs'] ?? '')
     .split(',').map((t) => t.trim().toLowerCase()).filter(Boolean);
 
   return {

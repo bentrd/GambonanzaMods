@@ -5,6 +5,23 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## 1.6.0
+
+- **Resource packs can replace sounds and music.** Choose a clip in the Mod
+  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,
+  pitch and random selection; music keeps its looping behavior. Replacement
+  clips load when first played, and a missing or invalid file falls back to
+  the original sound.
+- Verified the framework against Steam build 25386882.
+- Packs now use the **Resource packs** name. Existing texture packs and
+  legacy manifests still work, and images and text can be mixed with audio in
+  the same pack. Where several worn packs change the same sound, the highest
+  one wins.
+- **Update the framework through Set up to install the audio hook**, then
+  restart the game. Image and text overrides keep working before you update.
+  The F10 console accepts `resourcepack`, `resourcepack list` and
+  `resourcepack reapply`; the older `texturepack` commands remain available.
+
 ## 1.5.3
 
 - New library mod - **Strain Creation API** (`StrainApi`). Mods can now add

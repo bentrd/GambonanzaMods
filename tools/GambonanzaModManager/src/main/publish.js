@@ -208,31 +208,31 @@ function submitModpack(token, entry, opts = {}) {
       mods.length ? 'Mods in the pack:' : 'No mods - this pack is a look, not a loadout.',
       ...mods.map((id) => `- \`${id}\``),
       ...(entry.texturepacks?.length
-        ? ['', 'Texture packs, highest precedence first:', ...entry.texturepacks.map((id) => `- \`${id}\``)]
+        ? ['', 'Resource packs, highest precedence first:', ...entry.texturepacks.map((id) => `- \`${id}\``)]
         : []),
       '',
-      '_A modpack is metadata only - it points at mods and a texture pack that are',
+      '_A modpack is metadata only - it points at mods and a resource pack that are',
       'already in the registry, each downloaded and checksum-verified on its own._',
       '_Submitted from the Gambonanza Mod Manager._',
     ].join('\n'),
   }, opts);
 }
 
-/** Submit one texture pack entry as registry/texturepacks/<id>.json. */
+/** Submit one resource pack entry as registry/texturepacks/<id>.json. */
 function submitTexturePack(token, entry, opts = {}) {
   return submitRegistryFile(token, {
     branch: `registry/texturepack-${entry.id}`,
     filePath: `registry/texturepacks/${entry.id}.json`,
     json: entry,
-    commitMessage: `registry: add texture pack ${entry.name}`,
-    prTitle: `Registry: add texture pack ${entry.name}`,
+    commitMessage: `registry: add resource pack ${entry.name}`,
+    prTitle: `Registry: add resource pack ${entry.name}`,
     prBody: [
-      `Adds the **${entry.name}** texture pack by ${entry.author} to the registry.`,
+      `Adds the **${entry.name}** resource pack by ${entry.author} to the registry.`,
       '',
       `- Repository: https://github.com/${entry.repo}`,
       `- Release asset: \`${entry.asset}\``,
       '',
-      '_A texture pack contains art and localised strings only - no code. The framework',
+      '_A resource pack contains art and localised strings only - no code. The framework',
       'applies it at runtime; nothing in the game install is rewritten._',
       '_Submitted from the Gambonanza Mod Manager._',
     ].join('\n'),
@@ -292,10 +292,10 @@ function modpackIssueUrl(entry) {
   return `https://github.com/${HOME_REPO}/issues/new?${params.toString()}`;
 }
 
-/** Pre-filled new-issue URL for a texture pack, for the no-sign-in path. */
+/** Pre-filled new-issue URL for a resource pack, for the no-sign-in path. */
 function texturePackIssueUrl(entry) {
   const params = new URLSearchParams({
-    title: `[Texture pack] ${entry.name || ''}`,
+    title: `[Resource pack] ${entry.name || ''}`,
     body: [
       `**Name:** ${entry.name || ''}`,
       `**Author:** ${entry.author || ''}`,

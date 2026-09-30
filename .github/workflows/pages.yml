@@ -39,11 +39,13 @@ jobs:
           cp registry/schema.json _site/registry/schema.json
           cp registry/modpack-schema.json _site/registry/modpack-schema.json
           cp registry/texturepack-schema.json _site/registry/texturepack-schema.json
-          # The asset catalogue the mod manager's Texture packs tab browses:
+          # The asset catalogue the mod manager's Resource packs tab browses:
           # every sprite and texture with the rectangle it occupies on its
           # sheet, plus every localised string. Generated from a game install
           # by tools/build-asset-catalog.py and refreshed on game updates.
           cp registry/assets/catalog.json _site/registry/assets/catalog.json
+          cp registry/assets/audio.json _site/registry/assets/audio.json
+          cp -r registry/assets/audio _site/registry/assets/audio
           cp registry/assets/texts.json _site/registry/assets/texts.json
 
       # One static page per registry entry at /<type>/<id>/, so a pasted link

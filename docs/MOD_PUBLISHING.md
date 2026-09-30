@@ -104,7 +104,7 @@ Every listed mod gets its own page, twice over:
   `gmm://mod/<id>`), with an Install button. Its **Copy link** button copies
   the web URL above.
 
-Modpacks and texture packs get the same pair of pages at `/modpack/<id>/` and
+Modpacks and resource packs get the same pair of pages at `/modpack/<id>/` and
 `/texturepack/<id>/`.
 
 ## Rules
@@ -175,7 +175,7 @@ repo's Releases page, that's the exact number the manager shows.
 ## Modpacks
 
 A modpack is somebody's whole setup: a name, a blurb, the registry ids of the
-mods in it, and the registry ids of the texture packs it wears in precedence
+mods in it, and the registry ids of the resource packs it wears in precedence
 order (the first one listed wins where two of them change the same thing).
 There is no cap on either list - a pack is as big as your setup. Packs contain
 **no code** - installing one installs each member through the exact same
@@ -184,7 +184,7 @@ automatically.
 
 Sharing yours takes one click from the manager's **My modpacks** tab. There is
 no list to curate: the form ships what you actually have installed, in the
-versions you have, plus the texture packs you are wearing, in precedence order.
+versions you have, plus the resource packs you are wearing, in precedence order.
 
 - **Signed in with GitHub**: "Share it" opens a registry pull request adding
   `registry/modpacks/<id>.json` for you.
@@ -201,7 +201,7 @@ is taken.
 
 Two things that get **left out** of what you share, with a note in the form
 saying so: mods you installed by hand rather than from the registry, and a
-texture pack that only exists on your disk. Publish those first and they come
+resource pack that only exists on your disk. Publish those first and they come
 along next time.
 
 A pack **may** contain unreviewed mods - people share what they really play,

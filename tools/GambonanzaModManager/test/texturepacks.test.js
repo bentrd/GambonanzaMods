@@ -251,11 +251,11 @@ test('applying a pack writes only the runtime payload into the game folder', asy
   await packs.setActive({ ids: [id], modsDir });
 
   const dir = packs.gamePackDir(modsDir);
-  assert.ok(fs.existsSync(path.join(dir, 'texturepack.json')));
+  assert.ok(fs.existsSync(path.join(dir, 'resourcepack.json')));
   assert.ok(fs.existsSync(path.join(dir, 'atlases', 'sheet.png')));
   assert.equal(fs.existsSync(path.join(dir, 'images')), false, 'source art stays in the library');
 
-  const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'texturepack.json'), 'utf8'));
+  const manifest = JSON.parse(fs.readFileSync(path.join(dir, 'resourcepack.json'), 'utf8'));
   assert.equal(manifest.textures.length, 1);
   assert.equal(manifest.textures[0].name, 'SHEET');
   assert.equal(manifest.textures[0].width, 16);
@@ -310,7 +310,7 @@ function appliedSheet(name = 'sheet') {
 }
 
 function appliedManifest() {
-  return JSON.parse(fs.readFileSync(path.join(packs.gamePackDir(modsDir), 'texturepack.json'), 'utf8'));
+  return JSON.parse(fs.readFileSync(path.join(packs.gamePackDir(modsDir), 'resourcepack.json'), 'utf8'));
 }
 
 const RED = [255, 0, 0, 255];
@@ -476,7 +476,7 @@ test('importing a zip that is not a pack says so', async () => {
   const dest = path.join(os.tmpdir(), `gmm-notapack-${Date.now()}.zip`);
   fs.writeFileSync(dest, archive.toBuffer());
 
-  await assert.rejects(packs.importPack({ zipPath: dest }), /does not contain a texture pack/);
+  await assert.rejects(packs.importPack({ zipPath: dest }), /does not contain a resource pack/);
   fs.rmSync(dest, { force: true });
 });
 
@@ -545,9 +545,9 @@ test('a registry pack with no release at all is refused', async () => {
 
 test('summary reports which registry entry a pack came from', async () => {
   const { id } = await packs.create({ name: 'From the registry' });
-  const manifest = JSON.parse(fs.readFileSync(path.join(paths.texturePacksDir(), id, 'texturepack.json'), 'utf8'));
+  const manifest = JSON.parse(fs.readFileSync(path.join(paths.texturePacksDir(), id, 'resourcepack.json'), 'utf8'));
   manifest.registryId = 'noir-board';
-  fs.writeFileSync(path.join(paths.texturePacksDir(), id, 'texturepack.json'), JSON.stringify(manifest));
+  fs.writeFileSync(path.join(paths.texturePacksDir(), id, 'resourcepack.json'), JSON.stringify(manifest));
 
   const listed = (await packs.summary()).packs.find((p) => p.id === id);
   assert.equal(listed.registryId, 'noir-board');
@@ -558,7 +558,7 @@ test('a sheet id that tries to escape the pack folder is refused', async () => {
   await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(4, 4, [1, 2, 3, 255])) });
 
   // Doctor the manifest the way a hostile catalogue or a hand-edited pack could.
-  const file = path.join(paths.texturePacksDir(), id, 'texturepack.json');
+  const file = path.join(paths.texturePacksDir(), id, 'resourcepack.json');
   const manifest = JSON.parse(fs.readFileSync(file, 'utf8'));
   manifest.images[0].atlasId = '../../escape';
   await assert.rejects(packs.recomposeAll(manifest), /not a valid asset id/);
@@ -601,4 +601,98 @@ test('a failed removal leaves the override in place rather than orphaning it', a
   fs.writeFileSync(cached, keep);
   const after = await packs.removeImage({ id, assetId: 'left' });
   assert.equal(after.images.length, 1);
+});
+
+function wave(sample = 1000) {
+  const b = Buffer.alloc(48);
+  b.write('RIFF'); b.writeUInt32LE(40, 4); b.write('WAVE', 8);
+  b.write('fmt ', 12); b.writeUInt32LE(16, 16); b.writeUInt16LE(1, 20);
+  b.writeUInt16LE(1, 22); b.writeUInt32LE(44100, 24); b.writeUInt32LE(88200, 28);
+  b.writeUInt16LE(2, 32); b.writeUInt16LE(16, 34);
+  b.write('data', 36); b.writeUInt32LE(4, 40); b.writeInt16LE(sample, 44); b.writeInt16LE(sample, 46);
+  return b;
+}
+function seedAudio() {
+  fs.writeFileSync(path.join(paths.cacheDir(), 'assets', 'audio.json'), JSON.stringify({ fetchedAt: Date.now(),
+    data: { build: BUILD, entries: [{ id: 'audio-tone', name: 'TONE', label: 'Tone' }] } }));
+}
+
+test('audio-only packs export/import, preserve validated metadata and sync to the game', async () => {
+  seedAudio();
+  const { id } = await packs.create({ name: 'Sound pack' });
+  await packs.setAudio({ id, assetId: 'audio-tone', bytes: wave() });
+  assert.equal((await packs.summary()).packs.find((p) => p.id === id).audioCount, 1);
+  const dest = path.join(paths.tempDir(), 'audio-only.zip');
+  await packs.exportPack({ id, destPath: dest });
+  const imported = await packs.importPack({ zipPath: dest });
+  assert.equal(imported.audio, 1);
+  await packs.setActive({ ids: [imported.id], modsDir });
+  assert.deepEqual(fs.readFileSync(path.join(packs.gamePackDir(modsDir), 'audio/audio-tone.wav')), wave());
+  assert.equal(appliedManifest().audio[0].name, 'TONE');
+  await packs.removeAudio({ id: imported.id, assetId: 'audio-tone' });
+  await packs.reapply({ modsDir });
+  assert.equal(appliedManifest().audio.length, 0);
+  assert.equal(fs.existsSync(path.join(packs.gamePackDir(modsDir), 'audio/audio-tone.wav')), false);
+});
+
+test('audio stack: first pack wins conflicts, cached merge retains audio, removing winner restores next', async () => {
+  seedAudio();
+  const a = await packs.create({ name: 'A' });
+  const b = await packs.create({ name: 'B' });
+  await packs.setAudio({ id: a.id, assetId: 'audio-tone', bytes: wave(100) });
+  await packs.setAudio({ id: b.id, assetId: 'audio-tone', bytes: wave(200) });
+  const target = path.join(packs.gamePackDir(modsDir), 'audio/audio-tone.wav');
+  await packs.setActive({ ids: [a.id, b.id], modsDir });
+  assert.deepEqual(fs.readFileSync(target), wave(100));
+  await packs.reapply({ modsDir });
+  assert.deepEqual(fs.readFileSync(target), wave(100));
+  await packs.removeAudio({ id: a.id, assetId: 'audio-tone' });
+  await packs.reapply({ modsDir });
+  assert.deepEqual(fs.readFileSync(target), wave(200));
+});
+
+test('rejecting invalid WAV preserves the existing audio override', async () => {
+  seedAudio();
+  const { id } = await packs.create({ name: 'Valid audio' });
+  await packs.setAudio({ id, assetId: 'audio-tone', bytes: wave() });
+  await assert.rejects(packs.setAudio({ id, assetId: 'audio-tone', bytes: Buffer.from('not audio') }), /valid WAV/);
+  assert.deepEqual(fs.readFileSync(path.join(paths.texturePacksDir(), id, 'audio/audio-tone.wav')), wave());
+  await assert.rejects(packs.setAudio({ id, assetId: '../tone', bytes: wave() }), /valid asset id/);
+});
+
+test('legacy texturepack manifests stay editable and migrate when saved', async () => {
+  const { id } = await packs.create({ name: 'Legacy' });
+  const dir = path.join(paths.texturePacksDir(), id);
+  fs.renameSync(path.join(dir, 'resourcepack.json'), path.join(dir, 'texturepack.json'));
+  assert.equal((await packs.detail(id)).name, 'Legacy');
+  assert.equal((await packs.summary()).packs.find((p) => p.id === id).name, 'Legacy');
+  await packs.rename({ id, name: 'Migrated' });
+  assert.equal(JSON.parse(fs.readFileSync(path.join(dir, 'resourcepack.json'))).name, 'Migrated');
+});
+
+test('sync retires the old game TexturePacks payload so disabling restores vanilla', async () => {
+  const old = path.join(path.dirname(modsDir), 'TexturePacks');
+  fs.mkdirSync(old, { recursive: true });
+  fs.writeFileSync(path.join(old, 'texturepack.json'), '{}');
+  await packs.setActive({ ids: [], modsDir });
+  assert.equal(fs.existsSync(old), false);
+  assert.equal(fs.existsSync(packs.gamePackDir(modsDir)), false);
+});
+
+test('older frameworks retain image and text overrides through the legacy runtime mirror', async () => {
+  seedAudio();
+  const { id } = await packs.create({ name: 'Compatible' });
+  await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(4, 4, RED)) });
+  await packs.setText({ id, section: 'utils', key: 'launch', value: 'GO!' });
+  await packs.setAudio({ id, assetId: 'audio-tone', bytes: wave() });
+  await packs.setActive({ ids: [id], modsDir });
+  const legacy = path.join(path.dirname(modsDir), 'TexturePacks');
+  const manifest = JSON.parse(fs.readFileSync(path.join(legacy, 'texturepack.json')));
+  assert.deepEqual(manifest.textures, appliedManifest().textures);
+  assert.deepEqual(manifest.texts, appliedManifest().texts);
+  assert.equal(manifest.audio, undefined);
+  assert.deepEqual(fs.readFileSync(path.join(legacy, 'atlases/sheet.png')),
+    fs.readFileSync(path.join(packs.gamePackDir(modsDir), 'atlases/sheet.png')));
+  await packs.setActive({ ids: [], modsDir });
+  assert.equal(fs.existsSync(legacy), false);
 });

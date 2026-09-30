@@ -38,8 +38,8 @@ const token = process.env.GITHUB_TOKEN;
 /** Refuse to hash anything absurd - mods are a few hundred KB at most. */
 const MAX_ASSET_BYTES = 64 * 1024 * 1024;
 
-/** Texture packs are art: one 2048x2048 sheet alone can be several MB. */
-const MAX_TEXTUREPACK_BYTES = 160 * 1024 * 1024;
+/** Resource packs can include WAV music as well as composited sheets. */
+const MAX_TEXTUREPACK_BYTES = 192 * 1024 * 1024;
 
 const previous = await readJson(INDEX_PATH);
 const previousById = new Map((previous?.mods || []).map((m) => [m.id, m]));

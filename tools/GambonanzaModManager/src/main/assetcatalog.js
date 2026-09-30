@@ -48,7 +48,8 @@ const TTL_MS = 12 * 60 * 60 * 1000;
 /** A single asset PNG. The biggest in the game is a 1920x1080 boss sheet. */
 const MAX_IMAGE_BYTES = 24 * 1024 * 1024;
 
-const memory = { catalog: null, texts: null };
+const memory = { catalog: null, texts: null, audio: null };
+const AUDIO_URLS = CATALOG_URLS.map((url) => url.replace('catalog.json', 'audio.json'));
 
 function cacheDir() {
   return path.join(paths.cacheDir(), 'assets');
@@ -244,7 +245,66 @@ async function imageDataUrls(ids) {
   return out;
 }
 
+async function browseAudio({ force = false } = {}) {
+  const record = await fetchWithCache('audio', AUDIO_URLS, validCatalog, { force });
+  if (!record) {
+    const bundled = await readJson(path.join(__dirname, '../../assets/audio-catalog.json'));
+    const local = bundled || await readJson(path.join(__dirname, '../../../../registry/assets/audio.json'));
+    if (validCatalog(local)) {
+      memory.audio = { data: local, fetchedAt: Date.now(), source: 'bundled', stale: true };
+      return { ...local, source: 'bundled', stale: true };
+    }
+    throw new Error('could not load the audio catalogue - check your connection and try again');
+  }
+  return { ...record.data, stale: !!record.stale };
+}
+
+async function findAudioEntry(id) {
+  const data = await browseAudio();
+  const entry = data.entries.find((e) => e.id === id);
+  if (!entry) throw new Error(`"${id}" is not in the audio catalogue`);
+  return entry;
+}
+
+const AUDIO_BASE = 'https://bentrd.github.io/GambonanzaMods/registry/assets/audio';
+const MAX_AUDIO_PREVIEW_BYTES = 24 * 1024 * 1024;
+async function audioDataUrl(id) {
+  const clean = safeId(id);
+  await findAudioEntry(clean);
+  const data = await browseAudio();
+  const file = path.join(cacheDir(), 'audio', safeId(String(data.build || 'unknown')), `${clean}.mp3`);
+  try { await fsp.access(file); }
+  catch {
+    const held = inFlight.get(file);
+    if (held) await held;
+    else {
+      const pending = (async () => {
+        // Source checkout previews let maintainers test without publishing.
+        const local = path.join(__dirname, '../../../../registry/assets/audio', `${clean}.mp3`);
+        try {
+          const bytes = await fsp.readFile(local);
+          if (bytes.length > MAX_AUDIO_PREVIEW_BYTES) throw new Error('preview is too large');
+          await fsp.mkdir(path.dirname(file), { recursive: true });
+          await fsp.writeFile(file, bytes);
+        } catch (err) {
+          if (err.code !== 'ENOENT') throw err;
+          await net.download(`${AUDIO_BASE}/${clean}.mp3`, file, {
+            maxBytes: MAX_AUDIO_PREVIEW_BYTES, timeoutMs: 60000,
+          });
+        }
+      })().finally(() => inFlight.delete(file));
+      inFlight.set(file, pending);
+      await pending;
+    }
+  }
+  const bytes = await fsp.readFile(file);
+  return `data:audio/mpeg;base64,${bytes.toString('base64')}`;
+}
+
 module.exports = {
+  audioDataUrl,
+  browseAudio,
+  findAudioEntry,
   getCatalog,
   getTexts,
   browseCatalog,

@@ -37,12 +37,13 @@ jobs:
             ' tools/GambonanzaModManager/CHANGELOG.md > /tmp/notes.md
           fi
           [ -s /tmp/notes.md ] || echo "Gambonanza Mod Manager $tag." > /tmp/notes.md
-      - name: Create the release (empty, assets attach below)
+      - name: Create a draft release (assets attach below)
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 || \
             gh release create "$GITHUB_REF_NAME" \
+              --draft \
               --title "Mod Manager ${GITHUB_REF_NAME#manager-v}" \
               --notes-file /tmp/notes.md
 
@@ -100,10 +101,20 @@ jobs:
           fi
           gh release upload "$GITHUB_REF_NAME" "${files[@]}" --clobber
 
+  publish:
+    # Keep incomplete builds out of the download site and update checks.
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish the complete release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release edit "$GITHUB_REF_NAME" --draft=false -R "$GITHUB_REPOSITORY"
+
   refresh-registry:
     # The index embeds latest-release info (incl. asset checksums the
     # self-updater verifies) - refresh it as soon as all builds are attached.
-    needs: build
+    needs: publish
     runs-on: ubuntu-latest
     steps:
       - name: Kick the registry refresh

@@ -10,11 +10,18 @@
 #   2. Launch the game, open the console (F10), run `mods` and `list gambits`.
 #   3. If everything works, update the two values below and note what changed.
 
-steamBuildId=25059529
-assemblySha256=15610e2a591e5183935919660c430388699c8cc6072cbb8b8c6800c77af4b5e0
+steamBuildId=25386882
+assemblySha256=03a056ad54e151c7086915219853a11113eadc9e13549edd5655ca82baeab065
 unityVersion=6000.4.3f1
-verifiedOn=2026-09-04
+verifiedOn=2026-09-30
 
+# Build 25386882 (verified 2026-09-30): framework and patcher Release builds
+# compile cleanly against the installed game. Re-patched an isolated app copy,
+# preserving the vanilla backup hash, and verified resource-pack effect and
+# menu-music replacements in-game. The game reaches the home menu without
+# exceptions; Unity version unchanged. This is a runtime smoke check, not a
+# per-type diff of this game update.
+#
 # Build 25059529 (verified 2026-09-04): clean per-type ILSpy diff against
 # 24858528, both decompiled with the same reference set (a first pass without
 # one produced 676 files of op_Implicit noise - always pass -r <Managed>).

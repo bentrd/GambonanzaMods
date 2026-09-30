@@ -1,11 +1,11 @@
-# Texture packs
+# Resource packs
 
-A texture pack is art and wording layered over Gambonanza: replacement images
-for any sprite or sheet, and replacement text for any of the game's 1229
-strings, in any of its 11 languages. It contains no code, and it changes
+A resource pack customizes Gambonanza with images, sounds, music and text:
+replacement PNGs for any sprite or sheet, WAVs for any named audio clip, and
+text for any of the game's 1229 strings, in any of its 11 languages. It contains no code, and it changes
 nothing in your game install.
 
-Players never read this file - they open the mod manager's **Texture packs**
+Players never read this file - they open the mod manager's **Resource packs**
 tab and click things. This is for anyone working on the feature, hand-editing
 a pack, or wondering why it was built this way.
 
@@ -71,8 +71,9 @@ png.paste(sheet, art, x, sheet.height - y - h);
 
 ```
 MyPack/
-├── texturepack.json     the manifest
+├── resourcepack.json    the manifest
 ├── images/<assetId>.png the artwork you supplied, at the asset's own size
+├── audio/<assetId>.wav  replacement sounds and music
 └── atlases/<sheetId>.png the composited sheets - derived, regenerated on every edit
 ```
 
@@ -148,9 +149,9 @@ whose `Value` setter does nothing at all.
 
 **Diagnostics.** Open the console (F10):
 
-- `texturepack` - what is on, how much of it applied, and any problems
-- `texturepack list` - every override and whether it landed
-- `texturepack reapply` - put it all back on without restarting
+- `resourcepack` - what is on, how much of it applied, and any problems
+- `resourcepack list` - every override and whether it landed
+- `resourcepack reapply` - reapply images and text (audio needs a restart)
 
 Everything also lands in `Player.log` behind `[TexturePacks]`.
 
@@ -218,3 +219,51 @@ replaced the patched files and took your art with them, and sharing meant
 zipping a folder and explaining where to put it.
 
 It is kept in the tree for reference. Nothing points players at it any more.
+
+## Audio overrides
+
+The **＋ → Audio** editor browses the game's 213 named audio clips, including
+music and randomized effect variants. Search, choose a clip, and choose or drop
+a WAV. Saved replacements can be played in the editor and removed to restore
+the original. Restart the game after edits. Apply an updated framework through
+**Set up** to install the audio playback hook.
+
+Supported WAVs are PCM 16-bit or IEEE float 32-bit, mono or stereo, 8–192 kHz,
+up to 128 MB per file. Replacement duration and sample rate may differ from the
+original. Existing volume, pitch, mixer routing, random selection and looping
+stay under the game's control. Music loops should have seamless endpoints;
+layered music should retain matching lengths so its layers stay synchronized.
+The editor has matching Original and Replacement players. Original audio is downloaded as MP3 previews, cached per game build, and remains playable offline once cached. Playing either preview pauses the other.
+
+The manifest's `audio` array contains `{ assetId, name, label, file, channels,
+sampleRate, duration, bits }`; files live at `audio/<assetId>.wav`. Both sharing
+and installation support audio-only packs. Stack conflicts resolve per clip,
+with the highest pack winning, independently of image and text overrides.
+Imported clip names and paths are rebuilt from the catalogue and WAV contents
+are validated. No executable code is accepted as an audio payload.
+
+`ResourcePackAudio.Resolve` is injected into `AudioManager.ChooseRandomClip`
+before its returns. Clips decode lazily at first playback into new Unity
+AudioClips, allowing compressed vanilla clips and arbitrary replacement lengths.
+Invalid/missing WAVs log a problem and fall back to the original. This hook
+covers the game's audio manager; mods playing AudioSources directly do not go
+through it. The framework must be updated/repatched for audio support.
+
+New runtime payloads use `<game>/ResourcePacks/resourcepack.json`. Existing
+`texturepack.json` imports and library records remain readable; editing them
+writes the new manifest. The manager keeps its existing `texturepacks/` library,
+modpack keys, IPC names and registry routes for compatibility. Sync refreshes an image/text mirror in `<game>/TexturePacks` so older frameworks
+keep existing packs working before the audio framework update. Disabling packs
+removes both runtime folders. The runtime also reads legacy payloads and
+`GAMBONANZA_TEXTUREPACK_DIR`, with `GAMBONANZA_RESOURCEPACK_DIR` preferred.
+
+`tools/build-asset-catalog.py` generates `registry/assets/audio.json` and the
+manager's bundled metadata fallback from the same install as the image catalogue.
+The default run produces metadata. With `--audio-previews`, it also converts
+the original clips to MP3; Pages ships these previews alongside the catalogue.
+
+Maintainers generate original audio previews with
+`python3 tools/build-asset-catalog.py --audio-previews` (UnityPy and ffmpeg).
+The generated `registry/assets/audio/<id>.mp3` files are deployed by Pages.
+A source checkout reads these files locally, so testing requires no push.
+The launcher needs no Python, ffmpeg or game-asset parser for playback.

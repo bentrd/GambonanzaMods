@@ -10,10 +10,10 @@ using UnityEngine.SceneManagement;
 namespace Gambonanza.ModHost
 {
     /// <summary>
-    /// Texture packs: re-skins applied at runtime, with no patching of the game's
+    /// Resource packs: re-skins applied at runtime, with no patching of the game's
     /// asset files at all.
     ///
-    /// A pack is data, not code - a folder next to Mods/ holding texturepack.json,
+    /// A pack is data, not code - a folder next to Mods/ holding resourcepack.json,
     /// one PNG per game texture it replaces, and a list of localised strings to
     /// override. The mod manager writes it; this reads it.
     ///
@@ -32,8 +32,8 @@ namespace Gambonanza.ModHost
     /// </summary>
     internal static class TexturePacks
     {
-        public const string DirName = "TexturePacks";
-        public const string ManifestName = "texturepack.json";
+        public const string DirName = "ResourcePacks";
+        public const string ManifestName = "resourcepack.json";
 
         // ---- manifest -------------------------------------------------------
 
@@ -91,7 +91,7 @@ namespace Gambonanza.ModHost
             {
                 FormatVersion = TinyJson.Int(root, "formatVersion", 1),
                 Id = TinyJson.Str(root, "id", ""),
-                Name = TinyJson.Str(root, "name", "Texture pack"),
+                Name = TinyJson.Str(root, "name", "Resource pack"),
                 Author = TinyJson.Str(root, "author", ""),
                 Version = TinyJson.Str(root, "version", ""),
                 GameBuild = TinyJson.Str(root, "gameBuild", ""),
@@ -176,7 +176,7 @@ namespace Gambonanza.ModHost
 
         /// <summary>
         /// Called from ModHost.LoadAll with the resolved Mods directory. The pack
-        /// folder is its sibling, so a texture pack travels with the install the
+        /// folder is its sibling, so a resource pack travels with the install the
         /// same way mods do.
         /// </summary>
         public static void Load(string modsDirectory, ModConsole console)
@@ -191,6 +191,7 @@ namespace Gambonanza.ModHost
                 if (_packDir == null) return;
 
                 var manifestPath = Path.Combine(_packDir, ManifestName);
+                if (!File.Exists(manifestPath)) manifestPath = Path.Combine(_packDir, "texturepack.json");
                 if (!File.Exists(manifestPath))
                 {
                     ModHost.LogLine($"[TexturePacks] no pack installed ({manifestPath} not found).");
@@ -198,11 +199,12 @@ namespace Gambonanza.ModHost
                 }
 
                 _manifest = ReadManifest(File.ReadAllText(manifestPath));
+                ResourcePackAudio.Load(TinyJson.AsObject(TinyJson.Parse(File.ReadAllText(manifestPath))), ResolveInPack);
 
                 foreach (var t in _manifest.Textures) _wantedTextureNames.Add(t.Name);
 
                 ModHost.LogLine($"[TexturePacks] \"{_manifest.Name}\" - {_manifest.Textures.Count} texture(s), {_manifest.Texts.Count} text override(s).");
-                _console?.PrintInfo($"Texture pack \"{_manifest.Name}\" loaded - {_manifest.Textures.Count} image(s), {_manifest.Texts.Count} text(s). Type 'texturepack' for details.");
+                _console?.PrintInfo($"Resource pack \"{_manifest.Name}\" loaded - {_manifest.Textures.Count} image(s), {_manifest.Texts.Count} text(s). Type 'resourcepack' for details.");
 
                 TexturePackRunner.Spawn();
             }
@@ -210,7 +212,7 @@ namespace Gambonanza.ModHost
             {
                 _manifest = null;
                 ModHost.LogLine("[TexturePacks] failed to load: " + ex);
-                _console?.PrintWarn("Texture pack failed to load: " + ex.Message);
+                _console?.PrintWarn("Resource pack failed to load: " + ex.Message);
             }
         }
 
@@ -239,26 +241,31 @@ namespace Gambonanza.ModHost
             catch { return null; }
         }
 
-        /// <summary>Mods/ sits next to the executable; TexturePacks/ sits next to Mods/.</summary>
+        /// <summary>Mods/ sits next to the executable; ResourcePacks/ sits next to Mods/.</summary>
         private static string ResolvePackDir(string modsDirectory)
         {
             try
             {
-                var env = Environment.GetEnvironmentVariable("GAMBONANZA_TEXTUREPACK_DIR");
+                var env = Environment.GetEnvironmentVariable("GAMBONANZA_RESOURCEPACK_DIR")
+                    ?? Environment.GetEnvironmentVariable("GAMBONANZA_TEXTUREPACK_DIR");
                 if (!string.IsNullOrEmpty(env)) return env;
                 var parent = Path.GetDirectoryName(modsDirectory);
-                return string.IsNullOrEmpty(parent) ? null : Path.Combine(parent, DirName);
+                if (string.IsNullOrEmpty(parent)) return null;
+                var resource = Path.Combine(parent, DirName);
+                return Directory.Exists(resource) ? resource : Path.Combine(parent, "TexturePacks");
             }
             catch { return null; }
         }
 
         public static void RegisterCommands(ModConsole console)
         {
-            console.RegisterCommand("texturepack", "show the active texture pack and what it replaced", _ => PrintStatus(console));
-            console.RegisterCommand("texturepack list", "list every override in the active texture pack", _ => PrintList(console));
-            console.RegisterCommand("texturepack reapply", "re-apply the active texture pack right now", _ =>
+            console.RegisterCommand("resourcepack", "show the active resource pack", _ => PrintStatus(console));
+            console.RegisterCommand("resourcepack list", "list resource overrides", _ => PrintList(console));
+            console.RegisterCommand("texturepack", "show the active resource pack and what it replaced", _ => PrintStatus(console));
+            console.RegisterCommand("texturepack list", "list every override in the active resource pack", _ => PrintList(console));
+            Action<string[]> reapply = _ =>
             {
-                if (!Active) { console.PrintWarn("No texture pack is installed."); return; }
+                if (!Active) { console.PrintWarn("No resource pack is installed."); return; }
                 _patchedIds.Clear();
                 _appliedTextureNames.Clear();
                 _settledTextureNames.Clear();
@@ -268,21 +275,24 @@ namespace Gambonanza.ModHost
                 _lastTraductionRoot = null;
                 int images = ApplyTextures();
                 int texts = ApplyTexts();
-                console.PrintInfo($"Re-applied: {images} image(s), {texts} text override(s).");
+                console.PrintInfo($"Re-applied: {images} image(s), {texts} text override(s). Audio changes require restarting the game.");
                 foreach (var p in _problems) console.PrintWarn(p);
-            });
+            };
+            console.RegisterCommand("resourcepack reapply", "re-apply resource images and texts", reapply);
+            console.RegisterCommand("texturepack reapply", "re-apply resource images and texts (legacy alias)", reapply);
         }
 
         private static void PrintStatus(ModConsole console)
         {
             if (!Active)
             {
-                console.PrintInfo($"No texture pack installed. Drop one in {_packDir ?? "<Gambonanza>/" + DirName} - the mod manager does this for you.");
+                console.PrintInfo($"No resource pack installed. Drop one in {_packDir ?? "<Gambonanza>/" + DirName} - the mod manager does this for you.");
                 return;
             }
-            console.PrintInfo($"Texture pack: {_manifest.Name}"
+            console.PrintInfo($"Resource pack: {_manifest.Name}"
                 + (string.IsNullOrEmpty(_manifest.Author) ? "" : $" by {_manifest.Author}")
                 + (string.IsNullOrEmpty(_manifest.Version) ? "" : $" v{_manifest.Version}"));
+            console.PrintInfo($"  audio : {ResourcePackAudio.AppliedCount} replacement(s) loaded on demand");
             console.PrintInfo($"  images: {_appliedTextureNames.Count}/{_manifest.Textures.Count} applied");
             console.PrintInfo($"  texts : {_textsWritten}/{_manifest.Texts.Count} written (current language {CurrentLanguageCode() ?? "?"})");
             if (!string.IsNullOrEmpty(_manifest.GameBuild)) console.PrintInfo($"  built against Steam build {_manifest.GameBuild}");
@@ -291,7 +301,7 @@ namespace Gambonanza.ModHost
 
         private static void PrintList(ModConsole console)
         {
-            if (!Active) { console.PrintInfo("No texture pack installed."); return; }
+            if (!Active) { console.PrintInfo("No resource pack installed."); return; }
             foreach (var t in _manifest.Textures)
             {
                 var mark = _appliedTextureNames.Contains(t.Name) ? "ok " : ".. ";
@@ -663,7 +673,7 @@ namespace Gambonanza.ModHost
             if (_problems.Contains(message)) return;
             _problems.Add(message);
             ModHost.LogLine("[TexturePacks] " + message);
-            _console?.PrintWarn("Texture pack: " + message);
+            _console?.PrintWarn("Resource pack: " + message);
         }
     }
 

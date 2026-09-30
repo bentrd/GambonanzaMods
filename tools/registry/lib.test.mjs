@@ -208,3 +208,10 @@ test('gambits keep their own checks after sharing the list plumbing with strains
   assert.match(problems, /gambits\[0\]: unknown rarity "mythic"/);
   assert.match(problems, /gambits\[0\]: "price" must be a whole number/);
 });
+
+// Form labels changed with resource packs; old submissions stay readable.
+test('modpack submissions accept Resource packs and preserve precedence', () => {
+  const entry = parsePack({ 'Resource packs': 'hud-tweaks, midnight-chess' });
+  assert.deepEqual(entry.texturepacks, ['hud-tweaks', 'midnight-chess']);
+  assert.equal(parsePack({ 'Resource packs': '' }).texturepacks, undefined);
+});

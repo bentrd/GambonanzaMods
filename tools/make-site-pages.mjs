@@ -68,7 +68,7 @@ const index = JSON.parse(await readFile(path.join(outRoot, 'registry', 'index.js
 const collections = [
   ['mod', 'Mod', index.mods],
   ['modpack', 'Modpack', index.modpacks],
-  ['texturepack', 'Texture pack', index.texturepacks],
+  ['texturepack', 'Resource pack', index.texturepacks],
 ];
 
 let written = 0;

@@ -208,7 +208,7 @@
   }
   .mod-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; image-rendering: pixelated; }
 
-  /* -------- detail pages (one mod / modpack / texture pack) -------- */
+  /* -------- detail pages (one mod / modpack / resource pack) -------- */
   .detail-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin: 4px 0 2px; }
   .detail-head h2 {
     font-family: var(--font-mono); font-size: clamp(30px, 5vw, 44px);
@@ -329,7 +329,7 @@
   </section>
 
   <section class="card" id="tpSection" hidden>
-    <span class="title">Texture packs</span>
+    <span class="title">Resource packs</span>
     <div class="mod-grid" id="tpGrid"></div>
   </section>
 
@@ -750,7 +750,7 @@
   var TYPE_META = {
     mod: { title: 'Mod', listKey: 'mods', back: 'All mods' },
     modpack: { title: 'Modpack', listKey: 'modpacks', back: 'All modpacks' },
-    texturepack: { title: 'Texture pack', listKey: 'texturepacks', back: 'All texture packs' },
+    texturepack: { title: 'Resource pack', listKey: 'texturepacks', back: 'All resource packs' },
   };
 
   var detailRoot = document.getElementById('detailRoot');

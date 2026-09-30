@@ -376,6 +376,74 @@ def build_texts(data_dir: Path, build: str) -> dict:
 
 # ---------------------------------------------------------------------------
 
+def build_audio(data_dir: Path, build: str) -> dict:
+    import UnityPy
+    by_name = {}
+    for file_key in ASSET_FILES:
+        source = data_dir / file_key
+        if not source.exists():
+            continue
+        for obj in UnityPy.load(str(source)).objects:
+            if obj.type.name != "AudioClip":
+                continue
+            d = obj.read()
+            name = d.m_Name or ""
+            if not name:
+                continue
+            # Runtime targets Unity clip names. Duplicate names are one target.
+            by_name.setdefault(name, {"name": name, "label": name.replace("_", " "),
+                "channels": d.m_Channels, "sampleRate": d.m_Frequency,
+                "duration": round(d.m_Length, 3), "category": "Audio"})
+    used = set()
+    entries = []
+    for name, entry in sorted(by_name.items()):
+        base = "audio-" + slug(name)
+        asset_id = base
+        suffix = 2
+        while asset_id in used:
+            asset_id = f"{base}-{suffix}"
+            suffix += 1
+        used.add(asset_id)
+        entries.append({"id": asset_id, **entry})
+    return {"build": build, "entries": entries, "counts": {"audio": len(entries)}}
+
+
+def build_audio_previews(data_dir: Path, audio: dict, output: Path) -> None:
+    """Maintainer-only conversion. The launcher uses browser-native MP3 previews."""
+    import UnityPy
+    import shutil
+    import subprocess
+    if not shutil.which("ffmpeg"):
+        raise RuntimeError("--audio-previews requires ffmpeg on the maintainer's machine")
+    output.mkdir(parents=True, exist_ok=True)
+    by_name = {entry["name"]: entry for entry in audio["entries"]}
+    done = set()
+    for file_key in ASSET_FILES:
+        source = data_dir / file_key
+        if not source.exists():
+            continue
+        for obj in UnityPy.load(str(source)).objects:
+            if obj.type.name != "AudioClip":
+                continue
+            clip = obj.read()
+            entry = by_name.get(clip.m_Name)
+            if not entry or entry["id"] in done:
+                continue
+            samples = clip.samples
+            if len(samples) != 1:
+                raise RuntimeError(f"{clip.m_Name}: expected one audio sample")
+            dest = output / f"{entry['id']}.mp3"
+            temporary = dest.with_suffix(".tmp.mp3")
+            subprocess.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
+                "-i", "pipe:0", "-map_metadata", "-1", "-codec:a", "libmp3lame",
+                "-b:a", "128k", str(temporary)], input=next(iter(samples.values())), check=True)
+            temporary.replace(dest)
+            done.add(entry["id"])
+            print(f"  audio preview {len(done)}/{len(by_name)}: {clip.m_Name}")
+    if len(done) != len(by_name):
+        raise RuntimeError("some catalogue audio clips have no preview")
+
+
 def check_live(catalog: dict) -> None:
     """Diff our ids against the deployed site's, so a drift is loud, not silent."""
     print(f"\nchecking ids against {LIVE_CATALOG_URL} …")
@@ -404,6 +472,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Build the asset catalogue for the mod manager.")
     ap.add_argument("--game", help="Path to the Gambonanza install folder")
     ap.add_argument("--check-live", action="store_true", help="Diff ids against the deployed site catalogue")
+    ap.add_argument("--audio-previews", action="store_true", help="Generate MP3 originals for the audio browser (requires ffmpeg)")
     ap.add_argument("--texts-only", action="store_true")
     args = ap.parse_args()
 
@@ -427,6 +496,15 @@ def main() -> None:
               f"-> {OUT_DIR / 'catalog.json'}")
         if args.check_live:
             check_live(catalog)
+
+    audio = build_audio(data_dir, build)
+    (OUT_DIR / "audio.json").write_text(json.dumps(audio, separators=(",", ":")))
+    bundled = ROOT / "tools/GambonanzaModManager/assets/audio-catalog.json"
+    bundled.parent.mkdir(parents=True, exist_ok=True)
+    bundled.write_text(json.dumps(audio, separators=(",", ":")))
+    print(f"wrote {len(audio['entries'])} audio clips")
+    if args.audio_previews:
+        build_audio_previews(data_dir, audio, OUT_DIR / "audio")
 
     print("\nreading localised texts …")
     texts = build_texts(data_dir, build)

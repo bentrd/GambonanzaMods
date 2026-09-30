@@ -218,7 +218,7 @@ async function currentGameInfo() {
 }
 
 /**
- * Put a stack of texture packs on (or take them all off) without letting one
+ * Put a stack of resource packs on (or take them all off) without letting one
  * missing pack break the thing that asked. A modpack can name a pack the user
  * has since deleted from the library; that means "wear the rest", not "refuse
  * to switch", so the dead ids are dropped and forgotten and the survivors go
@@ -268,13 +268,13 @@ async function installPackSkins(pack, { report, signal, modsDir }) {
 
       let target = have;
       if (!target) {
-        report({ step: 'skin', message: `Getting the ${entry.name} texture pack…`, percent: null });
+        report({ step: 'skin', message: `Getting the ${entry.name} resource pack…`, percent: null });
         target = await texturePacks.installFromRegistry({ entry, onProgress: report, signal });
       }
       worn.push(target.id);
       names.push(entry.name);
     } catch (err) {
-      log.warn('modpacks', `could not install texture pack ${id}: ${err.message}`);
+      log.warn('modpacks', `could not install resource pack ${id}: ${err.message}`);
       failed.push(err.message);
     }
   }
@@ -305,7 +305,7 @@ async function fullState({ forceRegistry = false } = {}) {
   const installed = gameInfo?.valid ? await modsApi.listInstalled(gameInfo.modsDir) : [];
   const packs = await modpacks.summary({ modsDir: gameInfo?.valid ? gameInfo.modsDir : null });
   const skins = await texturePacks.summary().catch((err) => {
-    log.warn('texturepacks', `could not list texture packs: ${err.message}`);
+    log.warn('texturepacks', `could not list resource packs: ${err.message}`);
     return { activeIds: [], packs: [] };
   });
   return {
@@ -323,7 +323,7 @@ async function fullState({ forceRegistry = false } = {}) {
       generatedAt: reg.index.generatedAt || null,
       mods: modsApi.mergeState(reg.index.mods || [], installed),
       // Older cached indexes predate modpacks entirely - an empty list just
-      // renders the tab's "nothing here yet" note. Same for texture packs.
+      // renders the tab's "nothing here yet" note. Same for resource packs.
       modpacks: reg.index.modpacks || [],
       texturepacks: reg.index.texturepacks || [],
     },
@@ -486,7 +486,7 @@ function registerIpc() {
   // ---- Modpacks ----------------------------------------------------------
   //
   // A modpack owns both halves of a setup: the mods in its Mods/ folder and
-  // the texture packs it wears. Selecting one therefore always moves both -
+  // the resource packs it wears. Selecting one therefore always moves both -
   // never the mods alone, or the tab would show a setup the game isn't in.
 
   handle('modpacks:create', ({ name, author, summary, description, texturePackIds, registryId } = {}) =>
@@ -502,7 +502,7 @@ function registerIpc() {
     return result;
   });
 
-  // ---- Texture packs -----------------------------------------------------
+  // ---- Resource packs -----------------------------------------------------
   //
   // Every edit re-applies the selected pack straight away: there is no Apply
   // button and no way to be looking at a pack the game is not wearing. The
@@ -592,6 +592,35 @@ function registerIpc() {
     return afterPackEdit(id);
   });
 
+  handle('texturepacks:originalAudio', ({ assetId } = {}) => assetCatalog.audioDataUrl(assetId));
+  handle('texturepacks:audioCatalog', (payload = {}) => assetCatalog.browseAudio(payload));
+  handle('texturepacks:pickAudio', async ({ id, assetId } = {}) => {
+    const result = await dialog.showOpenDialog(win, {
+      title: 'Choose replacement audio', filters: [{ name: 'WAV audio', extensions: ['wav'] }],
+      properties: ['openFile'],
+    });
+    if (result.canceled || !result.filePaths[0]) return null;
+    const file = result.filePaths[0];
+    if ((await fsp.stat(file)).size > require('./wav').MAX_BYTES) throw new Error('Audio must be under 128 MB');
+    const outcome = await texturePacks.setAudio({ id, assetId, bytes: await fsp.readFile(file) });
+    return { ...outcome, pack: await afterPackEdit(id) };
+  });
+  handle('texturepacks:setAudio', async ({ id, assetId, bytes } = {}) => {
+    const outcome = await texturePacks.setAudio({ id, assetId, bytes: Buffer.from(bytes || []) });
+    return { ...outcome, pack: await afterPackEdit(id) };
+  });
+  handle('texturepacks:removeAudio', async ({ id, assetId } = {}) => {
+    await texturePacks.removeAudio({ id, assetId });
+    return afterPackEdit(id);
+  });
+  handle('texturepacks:audioPreview', async ({ id, assetId } = {}) => {
+    const pack = await texturePacks.detail(id);
+    const record = pack.audio.find((a) => a.assetId === assetId);
+    if (!record) return null;
+    const bytes = await fsp.readFile(path.join(paths.texturePacksDir(), texturePacks.safePackId(id), 'audio', `${assetCatalog.safeId(assetId)}.wav`));
+    return `data:audio/wav;base64,${bytes.toString('base64')}`;
+  });
+
   handle('texturepacks:setText', async ({ id, section, key, lang, value, original } = {}) => {
     const outcome = await texturePacks.setText({ id, section, key, lang, value, original });
     return { ...outcome, pack: await afterPackEdit(id) };
@@ -617,7 +646,7 @@ function registerIpc() {
   handle('texturepacks:export', async ({ id } = {}) => {
     const pack = await texturePacks.detail(id);
     const result = await dialog.showSaveDialog(win, {
-      title: 'Export texture pack',
+      title: 'Export resource pack',
       defaultPath: `${String(pack.name).replace(/[^A-Za-z0-9._-]/g, '_') || 'texture-pack'}.zip`,
       filters: [{ name: 'Zip archive', extensions: ['zip'] }],
     });
@@ -627,8 +656,8 @@ function registerIpc() {
 
   handle('texturepacks:import', async () => {
     const result = await dialog.showOpenDialog(win, {
-      title: 'Import a texture pack',
-      message: 'Pick a texture pack zip someone shared with you',
+      title: 'Import a resource pack',
+      message: 'Pick a resource pack zip someone shared with you',
       filters: [{ name: 'Zip archive', extensions: ['zip'] }],
       properties: ['openFile'],
     });
@@ -639,7 +668,7 @@ function registerIpc() {
   handle('texturepacks:install', async ({ id, operationId } = {}) => {
     const reg = await registry.getIndex({});
     const entry = (reg.index.texturepacks || []).find((p) => p.id === id);
-    if (!entry) throw new Error('that texture pack is no longer in the registry');
+    if (!entry) throw new Error('that resource pack is no longer in the registry');
     const controller = beginOperation(operationId);
     try {
       return await texturePacks.installFromRegistry({
@@ -784,7 +813,7 @@ function registerIpc() {
    * you try theirs without losing yours. `into: 'active'` merges it into the
    * setup you are already in for people who just want the mods.
    *
-   * The texture pack comes along: a setup is how the game plays AND how it
+   * The resource pack comes along: a setup is how the game plays AND how it
    * looks, and downloading half of one would be a strange thing to ship.
    */
   handle('modpacks:install', async ({ id, operationId, into = 'new' } = {}) => {
@@ -1020,9 +1049,9 @@ function sanitizeModpackEntry(raw, { partial = false } = {}) {
       throw new Error('the id must be lowercase letters, digits and dashes, like "my-first-pack"');
     }
     // A setup is worth sharing as soon as it changes something. One mod, or
-    // no mods and a texture pack, are both real answers to "what is my game".
+    // no mods and a resource pack, are both real answers to "what is my game".
     if (!entry.mods?.length && !entry.texturepacks?.length) {
-      throw new Error('a modpack needs at least one mod or a texture pack in it');
+      throw new Error('a modpack needs at least one mod or a resource pack in it');
     }
     entry.submittedBy = store.get('githubLogin') || undefined;
     entry.addedAt = new Date().toISOString().slice(0, 10);
@@ -1030,7 +1059,7 @@ function sanitizeModpackEntry(raw, { partial = false } = {}) {
   return entry;
 }
 
-/** Same job again, for the texture pack shape. */
+/** Same job again, for the resource pack shape. */
 function sanitizeTexturePackEntry(raw, { partial = false } = {}) {
   const entry = {};
   const take = (key, max = 200) => {
@@ -1110,15 +1139,15 @@ if (!gotLock) {
     await fsp.mkdir(paths.tempDir(), { recursive: true });
 
     // Exactly once per upgrade: setups migrated from the old "instances" world
-    // have no opinion about texture packs yet, so whatever the game is wearing
+    // have no opinion about resource packs yet, so whatever the game is wearing
     // is credited to the active one. Without it, the first switch after
     // upgrading would quietly undress the game. Two small file reads, and it
     // happens before the window can ask for state - otherwise the first paint
-    // could show "no texture pack" for a setup that is wearing one.
+    // could show "no resource pack" for a setup that is wearing one.
     await (async () => {
       const skins = await texturePacks.summary().catch(() => null);
       await modpacks.adoptTexturePacks(skins?.activeIds || []);
-    })().catch((err) => log.warn('modpacks', `could not adopt the worn texture pack: ${err.message}`));
+    })().catch((err) => log.warn('modpacks', `could not adopt the worn resource pack: ${err.message}`));
 
     registerIpc();
     // A link that cold-started the app on Windows/Linux is in our own argv;
@@ -1126,7 +1155,7 @@ if (!gotLock) {
     handleDeepLinkUrl(deepLinkInArgv(process.argv));
     createWindow();
 
-    // Self-heal the applied texture pack: a game reinstall, a moved install or
+    // Self-heal the applied resource pack: a game reinstall, a moved install or
     // a Steam "verify integrity" can take the folder with it, and the tab would
     // otherwise keep claiming a pack is on when the game has nothing to load.
     (async () => {

@@ -4,7 +4,21 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
-## Unreleased
+## 1.8.0
+
+- **Texture packs are now Resource packs**, and they can change sounds and
+  music as well as images and text. Browse or search the game's 213 clips,
+  choose one, then drop a WAV or click the dashed drop zone to pick a file.
+  Packs can contain audio alone, and sharing, importing, modpack switching
+  and stack precedence all include audio. Existing packs stay readable.
+- **Compare the original with your replacement** using players styled to
+  match the app. Play, pause, seek or mute either preview; starting one pauses
+  the other. Original previews are cached so they remain playable offline
+  after the first download.
+- Audio requires **framework 1.6.0 or later**. The editor tells you when to
+  update through Set up; restart the game after changing its sounds. Images
+  and text keep working with older frameworks while you update.
+
 
 - **Mods that add strains now say so.** A mod built on the new Strain Creation
   API can list its strains in the registry, and the manager shows them the way

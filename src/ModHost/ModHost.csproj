@@ -36,6 +36,10 @@
       <HintPath>..\..\refs\UnityEngine.JSONSerializeModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\refs\UnityEngine.AudioModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <!-- Texture2D.LoadImage, for texture packs. -->
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>..\..\refs\UnityEngine.ImageConversionModule.dll</HintPath>

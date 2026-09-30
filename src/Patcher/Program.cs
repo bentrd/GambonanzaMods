@@ -8,12 +8,13 @@ using Mono.Cecil.Cil;
 namespace Gambonanza.Patcher;
 
 /// <summary>
-/// Generic Cecil patcher. Injects four hooks into Assembly-CSharp.dll:
+/// Generic Cecil patcher. Injects five hooks into Assembly-CSharp.dll:
 ///   1. Gambonanza.ModHost.ModHost.LoadAll()                       at GameManager.Start
 ///   2. Gambonanza.ModHost.ModHost.OnSettingsOpenedInvoke(this)    at SettingsCanvas.OnEnable
 ///   3. Gambonanza.ModHost.ModHost.OnHomeMenuOpenedInvoke(this)    at CanvasMenu.OnEnable
 ///   4. Gambonanza.ModHost.ModHost.ShouldBlockAchievement(name)    guarding AchievementManager
 ///      .UnlockAchievement / .IncreaseAchievement (early-returns while a mod is enabled)
+///   5. Gambonanza.ModHost.ResourcePackAudio.Resolve(clip)          at AudioManager.ChooseRandomClip returns
 ///
 /// All mod-specific logic lives in mods loaded by ModHost at runtime - this patcher
 /// has no knowledge of any individual mod.
@@ -244,6 +245,29 @@ internal static class Program
                 Console.WriteLine($"  patched -> Blukulele.CHE.AchievementManager.{name} (guarded by ModHost.ShouldBlockAchievement)");
             }
         }
+
+        // Resolve the selected clip before playback. This preserves random selection,
+        // mixer routing, loop/pitch/volume and covers the game's effects and music.
+        var audioManager = module.GetType("Blukulele.Module.Audio.AudioManager");
+        var chooseClip = audioManager?.Methods.FirstOrDefault(m => m.Name == "ChooseRandomClip"
+            && m.ReturnType.FullName == "UnityEngine.AudioClip" && m.HasBody);
+        if (chooseClip == null)
+        {
+            Console.Error.WriteLine("Could not find AudioManager.ChooseRandomClip - aborting (resource audio hook required).");
+            return 3;
+        }
+        var audioType = new TypeReference("Gambonanza.ModHost", "ResourcePackAudio", module, modHostAsmRef);
+        var resolveAudio = new MethodReference("Resolve", chooseClip.ReturnType, audioType) { HasThis = false };
+        resolveAudio.Parameters.Add(new ParameterDefinition(chooseClip.ReturnType));
+        var audioIL = chooseClip.Body.GetILProcessor();
+        foreach (var ret in chooseClip.Body.Instructions.Where(i => i.OpCode == OpCodes.Ret).ToArray())
+        {
+            // Change ret in place so branches to it also pass through Resolve.
+            ret.OpCode = OpCodes.Call;
+            ret.Operand = resolveAudio;
+            audioIL.InsertAfter(ret, audioIL.Create(OpCodes.Ret));
+        }
+        Console.WriteLine("  patched -> AudioManager.ChooseRandomClip (resource pack audio)");
 
         // 9. Add idempotency marker.
         AddMarker(asm);

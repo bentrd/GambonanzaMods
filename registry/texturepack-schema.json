@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://bentrd.github.io/GambonanzaMods/registry/texturepack-schema.json",
-  "title": "Gambonanza texture pack registry entry",
-  "description": "One file per texture pack in registry/texturepacks/<id>.json. A texture pack is art and wording, never code: the zip holds PNGs and a manifest, and the framework applies it at runtime without touching the game's own files. The zip lives on the author's own GitHub release; the registry only records where it is and what it hashed to when a human reviewed it.",
+  "title": "Gambonanza resource pack registry entry",
+  "description": "One file per resource pack in registry/texturepacks/<id>.json. A resource pack is images, sounds, music and wording, never code: the zip holds PNGs, WAVs and a manifest, and the framework applies it at runtime without touching the game's own files. The zip lives on the author's own GitHub release; the registry only records where it is and what it hashed to when a human reviewed it.",
   "type": "object",
   "additionalProperties": false,
   "required": ["id", "name", "author", "summary", "repo", "asset"],

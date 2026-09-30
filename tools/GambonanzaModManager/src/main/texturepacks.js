@@ -9,16 +9,17 @@ const log = require('./log');
 const net = require('./net');
 const png = require('./png');
 const zip = require('./zip');
+const wav = require('./wav');
 const catalog = require('./assetcatalog');
 
-// Texture packs: named sets of art and text overrides, exactly one applied at
-// a time. A modpack points at one of these; switching modpacks switches the
+// Resource packs: named sets of image, audio and text overrides, worn in
+// precedence order. A modpack points at one of these; switching modpacks switches the
 // art with the mods, because "my setup" is both.
 //
 // On disk:
 //
 //   <userData>/texturepacks/state.json          which packs are worn, in order
-//   <userData>/texturepacks/<id>/texturepack.json
+//   <userData>/texturepacks/<id>/resourcepack.json
 //   <userData>/texturepacks/<id>/images/<assetId>.png    what the user drew
 //   <userData>/texturepacks/<id>/atlases/<atlasId>.png   what the game loads
 //   <userData>/texturepacks/.merged/                     the stack, flattened
@@ -43,10 +44,14 @@ const catalog = require('./assetcatalog');
 // winner per asset across the stack, then composite those onto the pristine
 // sheet exactly once. See buildMerged().
 
-const MANIFEST = 'texturepack.json';
+const MANIFEST = 'resourcepack.json';
+const LEGACY_MANIFEST = 'texturepack.json';
+async function manifestIn(dir) {
+  return (await readJson(path.join(dir, MANIFEST))) || readJson(path.join(dir, LEGACY_MANIFEST));
+}
 const FORMAT_VERSION = 1;
 
-/** A pack is art. This is generous for art and stingy for a zip bomb. */
+/** Combined download limit for images, text and audio. */
 const MAX_PACK_BYTES = 192 * 1024 * 1024;
 
 // ---------------------------------------------------------------------------
@@ -74,13 +79,13 @@ function safePackId(id) {
 
 function cleanName(name) {
   const n = String(name || '').trim().slice(0, 48);
-  if (!n) throw new Error('a texture pack needs a name');
+  if (!n) throw new Error('a resource pack needs a name');
   return n;
 }
 
 /** Where the game reads the applied pack from: a sibling of Mods/. */
 function gamePackDir(modsDir) {
-  return path.join(path.dirname(modsDir), 'TexturePacks');
+  return path.join(path.dirname(modsDir), 'ResourcePacks');
 }
 
 async function readJson(file) {
@@ -118,15 +123,17 @@ function emptyManifest({ id, name, author = '', gameBuild = null }) {
     images: [],
     texts: [],
     textures: [],
+    audio: [],
   };
 }
 
 async function readManifest(id) {
-  const manifest = await readJson(path.join(packDir(id), MANIFEST));
-  if (!manifest) throw new Error('that texture pack no longer exists');
+  const manifest = await manifestIn(packDir(id));
+  if (!manifest) throw new Error('that resource pack no longer exists');
   manifest.images ||= [];
   manifest.texts ||= [];
   manifest.textures ||= [];
+  manifest.audio ||= [];
   return manifest;
 }
 
@@ -170,7 +177,7 @@ async function dirBytes(dir) {
   return total;
 }
 
-/** Everything the Texture packs tab renders from. */
+/** Everything the Resource packs tab renders from. */
 async function summary() {
   const state = await readState();
   const root = paths.texturePacksDir();
@@ -184,7 +191,7 @@ async function summary() {
   const packs = [];
   for (const entry of entries) {
     if (!entry.isDirectory() || entry.name.startsWith('.')) continue;
-    const manifest = await readJson(path.join(root, entry.name, MANIFEST));
+    const manifest = await manifestIn(path.join(root, entry.name));
     if (!manifest || manifest.id !== entry.name) continue;
     packs.push({
       id: manifest.id,
@@ -199,6 +206,7 @@ async function summary() {
       updatedAt: manifest.updatedAt,
       imageCount: manifest.images?.length || 0,
       textCount: manifest.texts?.length || 0,
+      audioCount: manifest.audio?.length || 0,
       bytes: await dirBytes(path.join(root, entry.name)),
     });
   }
@@ -295,7 +303,7 @@ async function setActive({ ids = [], modsDir = null }) {
 
   await writeState({ activeIds: wanted });
   if (modsDir) await syncToGame({ ids: wanted, modsDir });
-  log.info('texturepacks', wanted.length ? `wearing ${wanted.join(' > ')}` : 'turned texture packs off');
+  log.info('texturepacks', wanted.length ? `wearing ${wanted.join(' > ')}` : 'turned resource packs off');
   return { activeIds: wanted };
 }
 
@@ -310,6 +318,7 @@ async function syncToGame({ ids = [], modsDir }) {
   const stack = (Array.isArray(ids) ? ids : [ids]).filter(Boolean);
   const target = gamePackDir(modsDir);
   await fsp.rm(target, { recursive: true, force: true });
+  await fsp.rm(path.join(path.dirname(modsDir), 'TexturePacks'), { recursive: true, force: true });
   if (!stack.length) return { applied: [] };
 
   const { dir, manifest } = stack.length === 1
@@ -317,14 +326,14 @@ async function syncToGame({ ids = [], modsDir }) {
     : await buildMerged(stack);
 
   await fsp.mkdir(path.join(target, 'atlases'), { recursive: true });
-  for (const texture of manifest.textures) {
+  for (const texture of [...manifest.textures, ...manifest.audio]) {
     const to = path.join(target, texture.file);
     await fsp.mkdir(path.dirname(to), { recursive: true });
     await fsp.copyFile(path.join(dir, texture.file), to);
   }
 
   // The framework reads only what it needs; editor metadata stays home.
-  await writeJson(path.join(target, MANIFEST), {
+  const runtime = {
     formatVersion: FORMAT_VERSION,
     id: manifest.id,
     name: manifest.name,
@@ -332,10 +341,26 @@ async function syncToGame({ ids = [], modsDir }) {
     version: manifest.version,
     gameBuild: manifest.gameBuild,
     textures: manifest.textures,
+    audio: manifest.audio,
     texts: manifest.texts.map((t) => ({ section: t.section, key: t.key, values: t.values })),
-  });
+  };
+  await writeJson(path.join(target, MANIFEST), runtime);
 
-  return { applied: stack, textures: manifest.textures.length, texts: manifest.texts.length };
+  // A manager update can arrive before the framework update. Keep images and
+  // text working in older frameworks, which only read TexturePacks/. The new
+  // runtime prefers ResourcePacks/; audio never needs a second copy.
+  if (runtime.textures.length || runtime.texts.length) {
+    const legacy = path.join(path.dirname(modsDir), 'TexturePacks');
+    for (const texture of runtime.textures) {
+      const to = path.join(legacy, texture.file);
+      await fsp.mkdir(path.dirname(to), { recursive: true });
+      await fsp.copyFile(path.join(target, texture.file), to);
+    }
+    const { audio, ...legacyRuntime } = runtime;
+    await writeJson(path.join(legacy, LEGACY_MANIFEST), legacyRuntime);
+  }
+
+  return { applied: stack, textures: manifest.textures.length, texts: manifest.texts.length, audio: manifest.audio.length };
 }
 
 /** Re-copy whatever is worn. Called after every edit and on startup. */
@@ -501,6 +526,7 @@ function mergedDir() {
  * layering their finished sheets would have thrown the earlier one away.
  */
 async function resolveStack(ids) {
+  const audio = new Map();
   const images = new Map();   // assetId -> { record, dir }
   const texts = new Map();    // section/key/lang -> { section, key, value }
   const packs = [];
@@ -508,6 +534,9 @@ async function resolveStack(ids) {
   for (const id of ids) {
     const manifest = await readManifest(id);
     packs.push(manifest);
+    for (const record of manifest.audio) {
+      if (!audio.has(record.assetId)) audio.set(record.assetId, { record, dir: packDir(id) });
+    }
     for (const record of manifest.images) {
       if (!images.has(record.assetId)) images.set(record.assetId, { record, dir: packDir(id) });
     }
@@ -530,7 +559,7 @@ async function resolveStack(ids) {
     byKey.get(id).values.push(value);
   }
 
-  return { images, texts: [...byKey.values()], packs };
+  return { images, audio, texts: [...byKey.values()], packs };
 }
 
 /**
@@ -586,7 +615,7 @@ async function composeMergedTarget(images, targetId, outDir) {
  * that on every startup and every unrelated edit would be felt.
  */
 async function buildMerged(ids) {
-  const { images, texts, packs } = await resolveStack(ids);
+  const { images, audio, texts, packs } = await resolveStack(ids);
   const signature = packs.map((m) => `${m.id}@${m.updatedAt || ''}`).join('|');
   const dir = mergedDir();
   const stampFile = path.join(dir, 'build.json');
@@ -604,11 +633,13 @@ async function buildMerged(ids) {
     gameBuild: packs.map((m) => m.gameBuild).filter(Boolean).sort().pop() || null,
     texts,
     textures: [],
+    audio: [],
   };
 
   const cached = await readJson(stampFile);
-  if (cached?.signature === signature && Array.isArray(cached.textures)) {
+  if (cached?.signature === signature && Array.isArray(cached.textures) && Array.isArray(cached.audio)) {
     manifest.textures = cached.textures;
+    manifest.audio = cached.audio || [];
     return { dir, manifest };
   }
 
@@ -619,7 +650,12 @@ async function buildMerged(ids) {
     if (record) manifest.textures.push(record);
   }
 
-  await writeJson(stampFile, { signature, textures: manifest.textures });
+  for (const { record, dir: source } of audio.values()) {
+    await fsp.mkdir(path.join(dir, 'audio'), { recursive: true });
+    await fsp.copyFile(path.join(source, record.file), path.join(dir, record.file));
+    manifest.audio.push(record);
+  }
+  await writeJson(stampFile, { signature, textures: manifest.textures, audio: manifest.audio });
   log.info('texturepacks', `flattened ${ids.length} packs into ${manifest.textures.length} sheet(s)`);
   return { dir, manifest };
 }
@@ -702,7 +738,7 @@ function markupWarnings(text) {
  */
 async function exportPack({ id, destPath }) {
   const manifest = await readManifest(id);
-  if (!manifest.images.length && !manifest.texts.length) {
+  if (!manifest.images.length && !manifest.texts.length && !manifest.audio.length) {
     throw new Error('this pack is empty - add something to it first');
   }
   const bytes = await zip.create(packDir(id), destPath, { root: manifest.id });
@@ -721,9 +757,9 @@ async function importPack({ zipPath }) {
   try {
     await zip.extract(zipPath, scratch);
     const root = await findPackRoot(scratch);
-    if (!root) throw new Error('that zip does not contain a texture pack (no texturepack.json inside)');
+    if (!root) throw new Error('that zip does not contain a resource pack (no resourcepack.json or texturepack.json inside)');
 
-    const incoming = await readJson(path.join(root, MANIFEST));
+    const incoming = await manifestIn(root);
     if (!incoming || typeof incoming !== 'object') throw new Error('the pack manifest is unreadable');
 
     const id = newId();
@@ -773,6 +809,18 @@ async function importPack({ zipPath }) {
       }
     }
 
+    for (const raw of Array.isArray(incoming.audio) ? incoming.audio : []) {
+      try {
+        const entry = await catalog.findAudioEntry(catalog.safeId(raw?.assetId));
+        const bytes = await fsp.readFile(path.join(root, 'audio', `${entry.id}.wav`));
+        const info = wav.inspect(bytes);
+        const file = `audio/${entry.id}.wav`;
+        await fsp.mkdir(path.join(packDir(id), 'audio'), { recursive: true });
+        await fsp.writeFile(path.join(packDir(id), file), bytes);
+        manifest.audio.push({ assetId: entry.id, name: entry.name, label: entry.label, file, ...info });
+      } catch (err) { skipped++; log.warn('texturepacks', `import skipped audio: ${err.message}`); }
+    }
+
     for (const raw of Array.isArray(incoming.texts) ? incoming.texts : []) {
       const section = String(raw?.section || '').trim();
       const key = String(raw?.key || '').trim();
@@ -784,14 +832,14 @@ async function importPack({ zipPath }) {
       manifest.texts.push({ section, key, values, original: String(raw.original || '').slice(0, 2000) });
     }
 
-    if (!manifest.images.length && !manifest.texts.length) {
+    if (!manifest.images.length && !manifest.texts.length && !manifest.audio.length) {
       throw new Error('nothing in that pack could be matched to this version of the game');
     }
 
     await recomposeAll(manifest);
     await saveManifest(manifest);
     log.info('texturepacks', `imported "${manifest.name}" (${id})`, { skipped });
-    return { id, name: manifest.name, images: manifest.images.length, texts: manifest.texts.length, skipped };
+    return { id, name: manifest.name, images: manifest.images.length, texts: manifest.texts.length, audio: manifest.audio.length, skipped };
   } finally {
     await fsp.rm(scratch, { recursive: true, force: true }).catch(() => {});
   }
@@ -807,7 +855,7 @@ async function importPack({ zipPath }) {
  * and every sheet is recomposited locally rather than trusted.
  */
 async function installFromRegistry({ entry, onProgress = () => {}, signal } = {}) {
-  if (!entry?.latest?.asset?.url) throw new Error('that texture pack has no release to download yet');
+  if (!entry?.latest?.asset?.url) throw new Error('that resource pack has no release to download yet');
   // No checksum means CI never got to hash this release, so there is nothing
   // to compare the bytes against. Mods refuse that; so does this.
   if (!entry.latest.asset.sha256) {
@@ -857,7 +905,7 @@ async function findPackRoot(dir, depth = 0) {
   } catch {
     return null;
   }
-  if (entries.some((e) => e.isFile() && e.name === MANIFEST)) return dir;
+  if (entries.some((e) => e.isFile() && (e.name === MANIFEST || e.name === LEGACY_MANIFEST))) return dir;
   for (const sub of entries.filter((e) => e.isDirectory() && !e.name.startsWith('__MACOSX'))) {
     const found = await findPackRoot(path.join(dir, sub.name), depth + 1);
     if (found) return found;
@@ -865,7 +913,33 @@ async function findPackRoot(dir, depth = 0) {
   return null;
 }
 
+async function setAudio({ id, assetId, bytes }) {
+  const manifest = await readManifest(id);
+  const entry = await catalog.findAudioEntry(catalog.safeId(assetId));
+  const buffer = Buffer.from(bytes);
+  const info = wav.inspect(buffer);
+  const file = `audio/${entry.id}.wav`;
+  await fsp.mkdir(path.join(packDir(id), 'audio'), { recursive: true });
+  await fsp.writeFile(path.join(packDir(id), file), buffer);
+  const record = { assetId: entry.id, name: entry.name, label: entry.label, file, ...info };
+  manifest.audio = manifest.audio.filter((a) => a.assetId !== entry.id).concat(record);
+  await saveManifest(manifest);
+  return { entry: record };
+}
+
+async function removeAudio({ id, assetId }) {
+  const manifest = await readManifest(id);
+  const record = manifest.audio.find((a) => a.assetId === assetId);
+  if (!record) return detail(id);
+  manifest.audio = manifest.audio.filter((a) => a !== record);
+  await saveManifest(manifest);
+  await fsp.rm(path.join(packDir(id), record.file), { force: true });
+  return detail(id);
+}
+
 module.exports = {
+  setAudio,
+  removeAudio,
   MAX_PACK_BYTES,
   FORMAT_VERSION,
   gamePackDir,

@@ -7,7 +7,7 @@
 # and checked against its own checksum. Committing the file to
 # registry/modpacks/ and closing the issue is how a pack graduates to curated.
 name: Share a modpack
-description: Share your whole setup - the mods you play with and the texture pack you wear. Modpacks contain no code, just a list of things already in the registry.
+description: Share your whole setup - the mods you play with and the resource pack you wear. Modpacks contain no code, just a list of things already in the registry.
 title: '[Modpack] '
 labels: [modpack-submission]
 body:
@@ -16,9 +16,9 @@ body:
       value: |
         A modpack is a setup other people can install in one click: a name, a
         blurb, the registry ids of the mods in it, and optionally the registry
-        ids of the texture packs it wears. Rules:
-        - at least **one mod, or a texture pack** (both is the usual case)
-        - as many mods and texture packs as your setup actually has
+        ids of the resource packs it wears. Rules:
+        - at least **one mod, or a resource pack** (both is the usual case)
+        - as many mods and resource packs as your setup actually has
         - everything must already be **listed in the registry** - open the mod
           manager and check that each one shows up under Browse mods
         - dependencies (like `gambit-api`) come along automatically, no need
@@ -50,9 +50,9 @@ body:
   - type: input
     id: texturepacks
     attributes:
-      label: Texture packs
+      label: Resource packs
       description: >-
-        Optional. Registry ids of the texture packs this setup wears, comma-separated,
+        Optional. Registry ids of the resource packs this setup wears, comma-separated,
         HIGHEST PRECEDENCE FIRST - where two packs change the same sprite or line, the
         first one listed wins. They install and get worn along with the mods.
       placeholder: my-hud-tweaks, midnight-chess
@@ -74,5 +74,5 @@ body:
     attributes:
       label: Checklist
       options:
-        - label: Every mod and texture pack listed above is already visible in the manager (reviewed or not).
+        - label: Every mod and resource pack listed above is already visible in the manager (reviewed or not).
           required: true

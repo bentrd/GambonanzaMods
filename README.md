@@ -15,7 +15,7 @@ a loader into `Managed/`. After that, a mod is a plain .NET DLL in
 
 Download the **[Gambonanza Mod Manager](https://bentrd.github.io/GambonanzaMods/)**
 (macOS, Windows, Linux). It finds your game, backs it up, patches it, and
-installs mods, modpacks and texture packs from the community registry. It tells
+installs mods, modpacks and resource packs from the community registry. It tells
 you when anything needs updating and fixes it with one more click. Restore puts
 your game back byte for byte.
 
@@ -95,12 +95,13 @@ Open the manager's **Publish** tab, or read
 [Publishing Your Mod](https://github.com/bentrd/GambonanzaMods/wiki/Publishing-Your-Mod)
 / [docs/MOD_PUBLISHING.md](docs/MOD_PUBLISHING.md).
 
-## Texture packs
+## Resource packs
 
-Change how the game looks, without writing anything. The manager's **Texture
-packs** tab has every sprite the game ships - all ~200 gambit icons, both piece
+Change the game's images, sounds, music and text without writing code. The
+manager's **Resource packs** tab has every sprite the game ships - all ~200 gambit icons, both piece
 sets, every boss, the tiles, the title art - and all 1229 of its strings in 11
-languages. Repaint one, drop it back in, wear it. Wear several at once.
+languages, plus 213 sounds and music clips. Repaint a sprite or replace a sound
+with a WAV, preview it, and wear the pack. Wear several at once.
 
 Nothing in your install is rewritten: the framework applies the pack while the
 game runs, so a Steam update can't wipe it and turning it off is instant. Packs
@@ -114,7 +115,7 @@ are zips you can hand to anyone, or publish to the registry.
 
 ```
 src/ModSdk/       Public API - IMod, IModContext, IModLifecycle, IConsoleApi.
-src/ModHost/      Runtime loader, in-game console, texture pack application.
+src/ModHost/      Runtime loader, in-game console, resource pack application.
 src/GameUI/       Pixel.* helpers for cloning game UI into mods.
 src/Patcher/      Cecil-based one-shot patcher.
 sample_mods/      GambitApi, CrumbleApi, StrainApi, custom gambits and strains,

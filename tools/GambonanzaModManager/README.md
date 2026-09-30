@@ -45,7 +45,7 @@ src/
 │   ├── game.js          find the install, inspect its patch state
 │   ├── framework.js     download bundle → backup → run patcher → verify
 │   ├── mods.js          install/update/remove/toggle mods (staged + atomic swap)
-│   ├── modpacks.js      named setups: mods + a texture pack, one active at a time
+│   ├── modpacks.js      named setups: mods + a resource pack, one active at a time
 │   ├── texturepacks.js  the pack library: edit, composite sheets, wear, share
 │   ├── assetcatalog.js  the game's sprites/textures/strings, fetched + cached
 │   ├── png.js           an exact PNG codec (see below)
@@ -63,7 +63,7 @@ src/
 
 ## Modpacks
 
-A modpack is a whole setup - the mods it loads and the texture packs it wears -
+A modpack is a whole setup - the mods it loads and the resource packs it wears -
 and exactly one is active. The trick that keeps everything else oblivious: the
 active modpack's mods simply **are** the game's `Mods/` folder. Inactive ones
 park theirs under the manager's own data directory, and switching is a handful
@@ -73,20 +73,20 @@ That is what makes installs need no special casing (writing to `Mods/` writes
 to the active modpack), and what makes launching straight from Steam load the
 right thing - there is no "the launcher forgot to sync" failure mode.
 
-Several texture packs can be worn at once, first in the list winning. They are
+Several resource packs can be worn at once, first in the list winning. They are
 flattened into one payload here rather than handed to the game as a list,
 because a pack's sheets are WHOLE sheets: two packs that each replace one icon
 on the same atlas have to be merged override-by-override, or the second sheet
 paints over the first one's icon. See `buildMerged()` in `texturepacks.js`.
 
 Publishing one is metadata only: the registry stores the ids of the mods and
-the texture packs, never a binary. Installing someone else's modpack builds it
+the resource packs, never a binary. Installing someone else's modpack builds it
 as a new local modpack and switches to it, downloading each part from its own
 author's release and checking it against the checksum the registry recorded.
 
-## Texture packs
+## Resource packs
 
-A texture pack is art and wording, never code. The interesting part is that
+A resource pack contains images, WAV audio and wording, never code. The interesting part is that
 the game does not draw sprites from files - it draws them from big shared
 sheets, 210 gambit icons on one 512x512 texture. So replacing one icon means
 rewriting that sheet.
@@ -120,3 +120,8 @@ their registry entry, and verifies the SHA-256 recorded at review time before
 anything is unpacked; `zip.js` refuses path-traversal entries; the patcher
 backs up `Assembly-CSharp.dll` before every change and `Restore` puts the
 original back byte for byte.
+
+The audio browser previews both originals and replacements with the app's own
+player. WAVs are validated before saving; the game decodes replacements lazily
+at playback. Audio needs framework 1.6.0 or later and a game restart after edits.
+Image and text overrides are mirrored for older frameworks until they update.

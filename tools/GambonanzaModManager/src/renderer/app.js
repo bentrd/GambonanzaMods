@@ -18,7 +18,7 @@ const state = {
   tag: '',
   packDetail: null,    // modpack id whose detail page is open, or null
   modDetail: null,     // registry mod id whose detail page is open, or null
-  tpRegistryDetail: null, // community texture pack id whose page is open, or null
+  tpRegistryDetail: null, // community resource pack id whose page is open, or null
   busy: new Map(),     // operationId -> {label}
   publish: {
     signedIn: false,
@@ -51,7 +51,7 @@ const state = {
     selectedId: null,    // modpack the contents panel is showing
   },
   tp: {
-    selectedId: null,    // texture pack the bottom panel is showing
+    selectedId: null,    // resource pack the bottom panel is showing
     detail: null,        // its full manifest
     catalog: null,       // the game's sprites + textures (fetched once)
     texts: null,         // the game's localised strings (fetched once)
@@ -954,12 +954,12 @@ function renderModDetail(mod, tiers) {
 // ---------------------------------------------------------------------------
 // Modpacks
 // ---------------------------------------------------------------------------
-// A modpack is a whole setup: the mods it loads AND the texture packs it wears.
+// A modpack is a whole setup: the mods it loads AND the resource packs it wears.
 // One is active at a time, its mods live in the game's Mods/ folder, and
 // installing anything lands in it - so "the active modpack" and "my game right
 // now" are the same sentence.
 //
-// This tab is laid out like Texture packs, because they answer the same kind
+// This tab is laid out like Resource packs, because they answer the same kind
 // of question: a shelf of the setups you own on top, the contents of the one
 // you are looking at underneath, then the ones other people published, then
 // the form that turns yours into one of those.
@@ -1078,7 +1078,7 @@ async function selectModpack(id) {
 async function createModpackFlow({ name = '' } = {}) {
   const chosen = await promptModal({
     title: 'New modpack',
-    body: 'A modpack is its own set of mods and its own texture packs - switch between them any time from the bar up top.',
+    body: 'A modpack is its own set of mods and its own resource packs - switch between them any time from the bar up top.',
     placeholder: 'e.g. Vanilla+, Gambit chaos…',
     initial: name,
     confirmLabel: 'Create',
@@ -1110,7 +1110,7 @@ async function deleteModpackFlow(mp) {
   const yes = await confirmModal({
     title: `Delete "${mp.name}"?`,
     body: mp.modCount
-      ? `Its ${mp.modCount} mod${mp.modCount === 1 ? '' : 's'} are deleted with it. Your other modpacks keep their own copies of everything, and no texture pack is touched.`
+      ? `Its ${mp.modCount} mod${mp.modCount === 1 ? '' : 's'} are deleted with it. Your other modpacks keep their own copies of everything, and no resource pack is touched.`
       : 'The modpack is empty - nothing else is touched.',
     confirmLabel: 'Delete',
   });
@@ -1163,7 +1163,7 @@ function renderModpackCards() {
     const unreviewed = mp.mods.filter((m) => entryFor(m)?.reviewed === false);
     const bits = [`${mp.modCount} mod${mp.modCount === 1 ? '' : 's'}`];
     if (worn.length === 1) bits.push(worn[0].name);
-    else if (worn.length) bits.push(`${worn.length} texture packs`);
+    else if (worn.length) bits.push(`${worn.length} resource packs`);
     if (mp.lastPlayedAt) bits.push(`played ${new Date(mp.lastPlayedAt).toLocaleDateString()}`);
 
     return el('div', {
@@ -1208,7 +1208,7 @@ function unreviewedMark(names) {
 }
 
 /**
- * The contents of the selected setup: the texture packs it wears in the head,
+ * The contents of the selected setup: the resource packs it wears in the head,
  * then one small tile per mod. Deliberately mute - someone with twenty mods
  * should see a shelf, not a table - with every detail on hover and the
  * actions one click in.
@@ -1261,7 +1261,7 @@ function renderModpackPanel() {
 
   foot.hidden = false;
   if (!mp.mods.length) {
-    foot.textContent = 'An empty modpack is still a modpack: give it a texture pack and it re-skins the game on its own.';
+    foot.textContent = 'An empty modpack is still a modpack: give it a resource pack and it re-skins the game on its own.';
   } else if (!mp.active) {
     foot.textContent = 'You are looking at a modpack the game is not loading. Switch to it and its mods move back into the game folder.';
   } else {
@@ -1356,7 +1356,7 @@ function mpAddTile() {
       el('span', { class: 'plus' }, '＋'),
       open ? null : el('span', { class: 'tp-tip' },
         el('div', { class: 't' }, 'Add to this modpack'),
-        el('div', { class: 'd' }, 'A mod, or a texture pack'))),
+        el('div', { class: 'd' }, 'A mod, or a resource pack'))),
     el('div', { class: 'menu' },
       el('button', {
         class: 'mi',
@@ -1365,12 +1365,12 @@ function mpAddTile() {
       el('button', {
         class: 'mi',
         onclick: (ev) => { ev.stopPropagation(); state.ui.mpAddMenu = false; show('textures'); },
-      }, el('span', { class: 'micon', html: TP_ICONS.image }), 'Texture packs →')));
+      }, el('span', { class: 'micon', html: TP_ICONS.image }), 'Resource packs →')));
 }
 
 /**
- * The active setup's texture packs, as a checklist in the panel head. Several
- * can be on at once; the order lives on the Texture packs tab, where the cards
+ * The active setup's resource packs, as a checklist in the panel head. Several
+ * can be on at once; the order lives on the Resource packs tab, where the cards
  * you are reordering are the ones you can see.
  */
 function skinPicker(mp) {
@@ -1379,8 +1379,8 @@ function skinPicker(mp) {
   const stack = mp.texturePackIds || [];
   const worn = stack.map((id) => packs.find((p) => p.id === id)).filter(Boolean);
 
-  const label = worn.length === 0 ? 'No texture pack'
-    : (worn.length === 1 ? worn[0].name : `${worn.length} texture packs`);
+  const label = worn.length === 0 ? 'No resource pack'
+    : (worn.length === 1 ? worn[0].name : `${worn.length} resource packs`);
 
   const row = (p) => {
     const at = stack.indexOf(p.id);
@@ -1397,14 +1397,14 @@ function skinPicker(mp) {
   return el('span', { class: `dropdown mp-skin${open ? ' open' : ''}` },
     el('button', {
       class: 'btn btn-cream small',
-      title: 'The texture packs this modpack wears - switch modpacks and the look switches with them',
+      title: 'The resource packs this modpack wears - switch modpacks and the look switches with them',
       onclick: (ev) => { ev.stopPropagation(); state.ui.mpSkinMenu = !open; renderModpackPanel(); },
     },
       el('span', { class: 'micon', html: TP_ICONS.image }),
       label,
       el('span', { class: 'caret' }, '▾')),
     el('div', { class: 'menu' },
-      el('div', { class: 'mhead' }, packs.length ? 'Texture packs · tick as many as you like' : 'Texture packs'),
+      el('div', { class: 'mhead' }, packs.length ? 'Resource packs · tick as many as you like' : 'Resource packs'),
       ...packs.map(row),
       worn.length
         ? el('button', {
@@ -1414,7 +1414,7 @@ function skinPicker(mp) {
         : null,
       el('div', { class: 'msep' }),
       worn.length > 1
-        ? el('div', { class: 'mnote' }, `Wearing ${worn.map((p) => p.name).join(' over ')}. Reorder on the Texture packs tab.`)
+        ? el('div', { class: 'mnote' }, `Wearing ${worn.map((p) => p.name).join(' over ')}. Reorder on the Resource packs tab.`)
         : null,
       el('button', {
         class: 'mi',
@@ -1494,8 +1494,8 @@ function renderCommunityCard(pack) {
   const previewNames = members.slice(0, 3).map((m) => m.name).join(', ');
   const more = members.length > 3 ? ` +${members.length - 3} more` : '';
   const what = [`${members.length} mod${members.length === 1 ? '' : 's'}`];
-  if (skins.length === 1) what.push(`the ${skins[0].name} texture pack`);
-  else if (skins.length) what.push(`${skins.length} texture packs`);
+  if (skins.length === 1) what.push(`the ${skins[0].name} resource pack`);
+  else if (skins.length) what.push(`${skins.length} resource packs`);
 
   return el('div', {
     class: 'mod-card pack-card',
@@ -1606,7 +1606,7 @@ function renderPackDetail(pack) {
     el('div', { class: 'pack-detail-head' },
       el('h2', {}, pack.name),
       el('div', { class: 'badges' }, packBadges(ms)),
-      el('div', { class: 'by' }, `by ${pack.author} · ${members.length} mods${skins.length ? ` · ${skins.length} texture pack${skins.length === 1 ? '' : 's'}` : ''}`)),
+      el('div', { class: 'by' }, `by ${pack.author} · ${members.length} mods${skins.length ? ` · ${skins.length} resource pack${skins.length === 1 ? '' : 's'}` : ''}`)),
     (pack.description || pack.summary)
       ? el('p', { class: 'pack-desc' }, pack.description || pack.summary)
       : null,
@@ -1617,7 +1617,7 @@ function renderPackDetail(pack) {
       : null,
     ms.skinsMissing.length
       ? el('div', { class: 'inset-row tiny', style: 'margin-top:6px' },
-          `${ms.skinsMissing.length} of its texture packs ${ms.skinsMissing.length === 1 ? 'is' : 'are'} no longer in the registry and will be skipped: ${ms.skinsMissing.join(', ')}.`)
+          `${ms.skinsMissing.length} of its resource packs ${ms.skinsMissing.length === 1 ? 'is' : 'are'} no longer in the registry and will be skipped: ${ms.skinsMissing.join(', ')}.`)
       : null,
     packGambitShelf(members),
     strainSection(members.flatMap((m) => (m.strains || []).map((s) => ({ s, from: m.name })))),
@@ -1637,9 +1637,9 @@ function renderPackDetail(pack) {
     ...skins.map((t, i) => el('div', { class: 'mod-row pack-member' },
       el('div', { class: 'info' },
         el('div', { class: 'nm' }, t.name, ' ',
-          el('span', { class: 'ver' }, skins.length > 1 ? `texture pack · worn ${ordinal(i)}` : 'texture pack')),
+          el('span', { class: 'ver' }, skins.length > 1 ? `resource pack · worn ${ordinal(i)}` : 'resource pack')),
         el('div', { class: 'meta' }, `by ${t.author || 'unknown'}`),
-        el('div', { class: 'psum' }, t.summary || 'Art and wording only - a texture pack cannot contain code.')),
+        el('div', { class: 'psum' }, t.summary || 'Art, audio and wording only - a resource pack cannot contain code.')),
       el('div', { class: 'side' },
         el('div', { class: 'row-btns' },
           el('button', {
@@ -1690,7 +1690,7 @@ async function installModpackNow(pack, { into = 'new' } = {}) {
     const n = result.installed.length;
     const tp = result.texturePacks;
     const on = tp?.names?.length ? ` ${tp.names.join(' over ')} ${tp.names.length === 1 ? 'is' : 'are'} on.` : '';
-    const failed = tp?.error ? ` Some texture packs could not be installed: ${tp.error}` : '';
+    const failed = tp?.error ? ` Some resource packs could not be installed: ${tp.error}` : '';
     toast(`${pack.name}: ${n} mod${n === 1 ? '' : 's'} installed.${on}${failed}`, tp?.error ? 'warn' : 'ok');
     closePackDetail();
   } catch (err) {
@@ -1785,14 +1785,14 @@ function renderSharePackForm() {
       field('Author', 'author', { placeholder: 'you' }),
       field('One-line summary', 'summary', { placeholder: 'What is this modpack FOR?' }),
       el('div', { class: 'field full' },
-        el('label', {}, `What gets shared (${shareable.length} mod${shareable.length === 1 ? '' : 's'}${shareableSkins.length ? ` + ${shareableSkins.length} texture pack${shareableSkins.length === 1 ? '' : 's'}` : ''})`),
+        el('label', {}, `What gets shared (${shareable.length} mod${shareable.length === 1 ? '' : 's'}${shareableSkins.length ? ` + ${shareableSkins.length} resource pack${shareableSkins.length === 1 ? '' : 's'}` : ''})`),
         el('div', { class: 'chip-row' },
           ...shareable.map((m) => el('span', { class: `chip on${m.reviewed === false ? ' warn' : ''}`, title: m.summary || '' }, m.name)),
           ...shareableSkins.map((t, i) => el('span', {
             class: 'chip on',
             title: shareableSkins.length > 1
-              ? `Texture pack, worn ${ordinal(i)} - the order goes with the modpack`
-              : 'The texture pack this modpack wears',
+              ? `Resource pack, worn ${ordinal(i)} - the order goes with the modpack`
+              : 'The resource pack this modpack wears',
           }, `🎨 ${t.name}`))),
         el('div', { class: 'help' },
           'This is what you have installed - there is no list to curate. Dependencies (like the Gambit API) install automatically.')),
@@ -1803,7 +1803,7 @@ function renderSharePackForm() {
       : null,
     privateSkins.length
       ? el('div', { class: 'inset-row tiny', style: 'margin-top:6px' },
-          `${privateSkins.map((t) => `"${t.name}"`).join(' and ')} ${privateSkins.length === 1 ? 'is' : 'are'} only on this computer. Publish ${privateSkins.length === 1 ? 'it' : 'them'} from the Texture packs tab and ${privateSkins.length === 1 ? 'it' : 'they'} will ship with this modpack.`)
+          `${privateSkins.map((t) => `"${t.name}"`).join(' and ')} ${privateSkins.length === 1 ? 'is' : 'are'} only on this computer. Publish ${privateSkins.length === 1 ? 'it' : 'them'} from the Resource packs tab and ${privateSkins.length === 1 ? 'it' : 'they'} will ship with this modpack.`)
       : null,
     unreviewed.length
       ? el('div', { class: 'inset-row tiny warn-row', style: 'margin-top:6px' },
@@ -1855,7 +1855,7 @@ async function openPackIssueSubmission() {
 }
 
 // ---------------------------------------------------------------------------
-// Texture packs
+// Resource packs
 // ---------------------------------------------------------------------------
 
 // A pack re-skins the game: replacement art for any sprite or sheet, and
@@ -1953,6 +1953,7 @@ function renderTpCards() {
   const cards = ordered.map((p) => {
     const bits = [];
     if (p.imageCount) bits.push(`${p.imageCount} image${p.imageCount === 1 ? '' : 's'}`);
+    if (p.audioCount) bits.push(`${p.audioCount} audio`);
     if (p.textCount) bits.push(`${p.textCount} text${p.textCount === 1 ? '' : 's'}`);
     if (!bits.length) bits.push('empty');
     bits.push(fmtBytes(p.bytes));
@@ -1998,7 +1999,7 @@ function renderTpCards() {
   });
 
   cards.push(el('button', { class: 'shelf-card new', onclick: () => createTpFlow() },
-    el('span', { class: 'plus' }, '＋'), 'New texture pack'));
+    el('span', { class: 'plus' }, '＋'), 'New resource pack'));
   grid.replaceChildren(...cards);
 }
 
@@ -2014,7 +2015,7 @@ function renderTpPanel() {
     title.textContent = 'Contents';
     head.replaceChildren();
     tiles.replaceChildren(el('div', { class: 'empty-note' },
-      'No texture packs yet. Make one above, or import one someone sent you.'));
+      'No resource packs yet. Make one above, or import one someone sent you.'));
     foot.hidden = true;
     return;
   }
@@ -2029,7 +2030,7 @@ function renderTpPanel() {
   let status;
   if (!chosen.active) status = 'Not worn. Press Wear on its card to put it on.';
   else if (!game?.valid) status = `Worn, but no game folder is set up yet - open Set up first.${place}`;
-  else if (!ready) status = `Worn, but the game is not patched - texture packs need the framework (Set up).${place}`;
+  else if (!ready) status = `Worn, but the game is not patched - resource packs need the framework (Set up).${place}`;
   else status = `Worn - the game loads this the next time it starts.${place}`;
 
   head.replaceChildren(
@@ -2051,13 +2052,14 @@ function renderTpPanel() {
 
   const squares = [];
   for (const image of detail.images) squares.push(imageTile(chosen, image));
+  for (const audio of detail.audio || []) squares.push(audioTile(chosen, audio));
   for (const text of detail.texts) squares.push(textTile(chosen, text));
   squares.push(tpAddTile(chosen));
   tiles.replaceChildren(...squares);
 
   foot.hidden = false;
-  if (!detail.images.length && !detail.texts.length) {
-    foot.textContent = 'Nothing in this pack yet. Press ＋ to replace a picture or reword some text.';
+  if (!detail.images.length && !detail.texts.length && !detail.audio?.length) {
+    foot.textContent = 'Nothing in this pack yet. Press ＋ to replace a picture, replace a sound, or reword some text.';
   } else if (chosen.active && worn.length > 1 && chosen.order > 0) {
     foot.textContent = `Every change is saved and applied straight away. ${worn.length} packs are on: where another one higher up the stack changes the same thing, that one wins.`;
   } else if (!chosen.active) {
@@ -2097,6 +2099,145 @@ function imageTile(pack, image) {
         image.compressed ? ' · compressed sheet' : '')));
 }
 
+function audioTile(pack, audio) {
+  return el('button', { class: 'tp-tile text', onclick: () => openAudioBrowser(pack, audio.assetId) },
+    el('span', { class: 'glyph' }, '♫'),
+    el('span', { class: 'tp-tip' }, el('div', { class: 't' }, audio.label || audio.name),
+      el('div', { class: 'd' }, `${audio.duration.toFixed(2)} s · ${audio.channels === 1 ? 'mono' : 'stereo'}`)));
+}
+
+function packAudioPlayer(label = 'Replacement') {
+  const audio = el('audio', { preload: 'metadata' });
+  const clock = (seconds) => {
+    const safe = Number.isFinite(seconds) ? Math.max(0, seconds) : 0;
+    return `${Math.floor(safe / 60)}:${Math.floor(safe % 60).toString().padStart(2, '0')}${safe < 10 ? `.${Math.floor(safe * 10) % 10}` : ''}`;
+  };
+  const play = el('button', { class: 'btn btn-cream small', type: 'button', 'aria-label': `Play ${label.toLowerCase()} audio`, disabled: true }, '▶ Play');
+  const seek = el('input', { class: 'tp-audio-seek', type: 'range', min: 0, max: 1, step: 0.01, value: 0,
+    'aria-label': `Seek ${label.toLowerCase()} audio`, disabled: true });
+  const time = el('span', { class: 'tp-audio-time' }, '0:00 / 0:00');
+  const mute = el('button', { class: 'btn btn-cream small', type: 'button', 'aria-label': 'Mute audio preview', 'aria-pressed': 'false' }, 'Mute');
+  const status = el('span', { class: 'tp-audio-status', role: 'status' }, 'Loading preview…');
+  const sync = () => {
+    play.textContent = audio.paused ? '▶ Play' : 'Ⅱ Pause';
+    play.setAttribute('aria-label', `${audio.paused ? 'Play' : 'Pause'} ${label.toLowerCase()} audio`);
+    const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
+    seek.max = duration || 1;
+    seek.value = audio.currentTime;
+    seek.style.setProperty('--played', `${duration ? audio.currentTime / duration * 100 : 0}%`);
+    time.textContent = `${clock(audio.currentTime)} / ${clock(duration)}`;
+    seek.setAttribute('aria-valuetext', `${clock(audio.currentTime)} of ${clock(duration)}`);
+  };
+  audio.addEventListener('loadedmetadata', () => { play.disabled = false; seek.disabled = false; status.textContent = `${label} preview`; sync(); });
+  for (const event of ['play', 'pause', 'ended', 'timeupdate']) audio.addEventListener(event, sync);
+  audio.addEventListener('error', () => { status.textContent = 'Preview unavailable'; play.disabled = true; seek.disabled = true; });
+  play.addEventListener('click', async () => {
+    if (!audio.paused) { audio.pause(); return; }
+    document.querySelectorAll('.tp-audio-player audio').forEach((other) => { if (other !== audio) other.pause(); });
+    try { await audio.play(); } catch (err) { status.textContent = 'Could not play preview'; toast(err.message, 'err'); }
+  });
+  seek.addEventListener('input', () => { audio.currentTime = Number(seek.value); sync(); });
+  mute.addEventListener('click', () => {
+    audio.muted = !audio.muted; mute.textContent = audio.muted ? 'Unmute' : 'Mute';
+    mute.setAttribute('aria-pressed', String(audio.muted));
+    mute.setAttribute('aria-label', audio.muted ? 'Unmute audio preview' : 'Mute audio preview');
+  });
+  return { audio, status, element: el('div', { class: 'tp-audio-player' }, audio,
+    el('div', { class: 'tp-audio-controls' }, play, seek, mute),
+    el('div', { class: 'tp-audio-caption' }, status, time)) };
+}
+
+async function openAudioBrowser(pack, preselect = null) {
+  const list = el('div', { class: 'ab-left', style: 'overflow:auto' });
+  const pane = el('div', { class: 'ab-right' });
+  const session = { packId: pack.id, selected: preselect, search: '' };
+  state.tp.browser = session;
+  const live = () => state.tp.browser === session;
+  const search = el('input', { class: 'game-input', type: 'search', placeholder: 'Search sounds and music…', oninput: (ev) => { session.search = ev.target.value; paintList(); } });
+  browserFrame({ title: 'Replace audio', head: [search], left: list, right: pane,
+    onClose: () => { pane.querySelectorAll('audio').forEach((a) => a.pause()); state.tp.browser = null; } });
+  let entries = [];
+  let detail;
+  try {
+    detail = await call(api.packDetail, { id: pack.id });
+    entries = (await call(api.assetAudio, {})).entries;
+  }
+  catch (err) { if (live()) fill(list, browserError(err, () => { modal.close(); openAudioBrowser(pack, preselect); })); return; }
+  if (!live()) return;
+  function paintList() {
+    if (!live()) return;
+    const query = session.search.toLowerCase();
+    const found = entries.filter((e) => `${e.name} ${e.label}`.toLowerCase().includes(query));
+    list.replaceChildren(...found.map((entry) => el('button', {
+      class: 'btn btn-cream', style: 'display:block;width:100%;margin-bottom:6px;text-align:left',
+      onclick: () => { session.selected = entry.id; paintDetail(); },
+    }, `${detail.audio.some((a) => a.assetId === entry.id) ? '✓ ' : ''}${entry.label} · ${entry.duration.toFixed(2)} s`)));
+    if (!found.length) list.textContent = 'No matching sounds.';
+  }
+  const needsAudioFramework = () => !state.data?.game?.patched
+    || compareVersionStrings(state.data.game.frameworkVersion, '1.6.0') < 0;
+  async function save(action, payload) {
+    try {
+      const result = await call(action, payload);
+      if (!result || !live()) return;
+      detail = result.pack || result;
+      state.tp.detail = detail;
+      await refresh();
+      if (!live()) return;
+      paintList(); paintDetail();
+      toast(needsAudioFramework()
+        ? 'Audio saved. Update the framework in Set up, then restart the game to hear it.'
+        : 'Audio saved. Restart the game to hear it.', 'ok');
+    } catch (err) { toast(err.message, 'err'); }
+  }
+  async function paintDetail() {
+    const entry = entries.find((e) => e.id === session.selected);
+    if (!entry) { pane.textContent = 'Choose a sound or music clip to replace.'; return; }
+    const selected = entry.id;
+    const override = detail.audio.find((a) => a.assetId === selected);
+    pane.querySelectorAll('audio').forEach((a) => a.pause());
+    const originalPlayer = packAudioPlayer('Original');
+    const player = packAudioPlayer();
+    const drop = el('button', { class: 'ab-drop', type: 'button',
+      onclick: () => save(api.pickPackAudio, { id: pack.id, assetId: selected }) },
+      el('b', {}, 'Drop a WAV here'),
+      'or click to choose one · PCM 16-bit or float 32-bit, mono/stereo, up to 128 MB. Any duration; music keeps the game’s loop behavior.');
+    drop.addEventListener('dragover', (ev) => { ev.preventDefault(); drop.classList.add('over'); });
+    drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+    drop.addEventListener('drop', async (ev) => {
+      ev.preventDefault(); drop.classList.remove('over'); const file = ev.dataTransfer.files[0];
+      if (!file) return;
+      if (!/\.wav$/i.test(file.name) || file.size > 128 * 1024 * 1024) { toast('Choose a WAV under 128 MB.', 'err'); return; }
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      if (live()) save(api.setPackAudio, { id: pack.id, assetId: selected, bytes });
+    });
+    fill(pane, el('h3', {}, entry.label),
+      el('p', {}, `Original: ${entry.duration.toFixed(2)} s · ${entry.sampleRate} Hz · ${entry.channels} channel(s)`),
+      needsAudioFramework() ? el('p', { class: 'ab-note' }, 'Audio replacements need framework 1.6.0 or later. Update it in Set up, then restart the game.') : null,
+      originalPlayer.element,
+      override ? player.element : el('p', {}, 'Using the game’s original audio.'), drop,
+      el('button', { class: 'btn btn-cream', onclick: () => save(api.pickPackAudio, { id: pack.id, assetId: selected }) }, override ? 'Replace WAV…' : 'Choose WAV…'),
+      override ? el('button', { class: 'btn btn-cream', onclick: () => save(api.removePackAudio, { id: pack.id, assetId: selected }) }, 'Remove override') : null);
+    const loadPreview = async (target, action, payload) => {
+      try {
+        const url = await call(action, payload);
+        if (live() && session.selected === selected && pane.contains(target.element) && url) target.audio.src = url;
+      } catch (err) {
+        if (live() && pane.contains(target.element)) {
+          target.status.textContent = 'Preview unavailable';
+          const retry = el('button', { class: 'btn btn-cream small', onclick: () => { retry.remove(); loadPreview(target, action, payload); } }, 'Retry preview');
+          target.element.append(retry);
+        }
+      }
+    };
+    await Promise.all([
+      loadPreview(originalPlayer, api.originalAudioPreview, { assetId: selected }),
+      override ? loadPreview(player, api.packAudioPreview, { id: pack.id, assetId: selected }) : Promise.resolve(),
+    ]);
+  }
+  paintList(); paintDetail().catch((err) => { if (live()) toast(err.message, 'err'); });
+}
+
 function textTile(pack, text) {
   const shown = text.values.find((v) => v.lang === '*') || text.values[0];
   return el('button', {
@@ -2123,7 +2264,7 @@ function tpAddTile(pack) {
       el('span', { class: 'plus' }, '＋'),
       open ? null : el('span', { class: 'tp-tip' },
         el('div', { class: 't' }, 'Add an override'),
-        el('div', { class: 'd' }, 'A picture, or a line of text'))),
+        el('div', { class: 'd' }, 'A picture, a sound, or a line of text'))),
     el('span', { class: 'menu' },
       el('button', {
         class: 'mi',
@@ -2132,7 +2273,8 @@ function tpAddTile(pack) {
       el('button', {
         class: 'mi',
         onclick: (ev) => { ev.stopPropagation(); state.ui.tpAddMenuOpen = false; renderTpPanel(); openTextBrowser(pack); },
-      }, el('span', { class: 'micon', html: TP_ICONS.text }), 'Text')));
+      }, el('span', { class: 'micon', html: TP_ICONS.text }), 'Text'),
+      el('button', { class: 'mi', onclick: (ev) => { ev.stopPropagation(); state.ui.tpAddMenuOpen = false; renderTpPanel(); openAudioBrowser(pack); } }, '♫ Audio')));
 }
 
 // ---- pack actions ---------------------------------------------------------
@@ -2178,8 +2320,8 @@ async function loadTpPreviews(packId, assetIds) {
 
 async function createTpFlow() {
   const name = await promptModal({
-    title: 'New texture pack',
-    body: 'A texture pack is your own art and wording layered over the game. You can wear one at a time, and share it as a zip.',
+    title: 'New resource pack',
+    body: 'A resource pack is your own art, audio and wording layered over the game. You can stack several at a time, and share it as a zip.',
     placeholder: 'e.g. Midnight chess, Cursed pieces…',
     confirmLabel: 'Create',
   });
@@ -2198,7 +2340,7 @@ async function createTpFlow() {
 
 async function renameTpFlow(pack) {
   const name = await promptModal({
-    title: 'Rename texture pack', body: '', placeholder: 'New name', initial: pack.name, confirmLabel: 'Rename',
+    title: 'Rename resource pack', body: '', placeholder: 'New name', initial: pack.name, confirmLabel: 'Rename',
   });
   if (!name || name === pack.name) return;
   try { await call(api.renamePack, { id: pack.id, name }); } catch (err) { toast(err.message, 'err'); }
@@ -2206,7 +2348,7 @@ async function renameTpFlow(pack) {
 }
 
 async function deleteTpFlow(pack) {
-  const count = pack.imageCount + pack.textCount;
+  const count = pack.imageCount + pack.textCount + (pack.audioCount || 0);
   const yes = await confirmModal({
     title: `Delete "${pack.name}"?`,
     body: count
@@ -2237,7 +2379,7 @@ async function wearTp(ids) {
     const worn = result.activeIds;
     const game = state.data?.game;
     const many = worn.length > 1 ? ` ${worn.length} packs on, top of the stack wins.` : '';
-    if (!worn.length) toast('Texture packs off - the game’s own art is back.', 'ok');
+    if (!worn.length) toast('Resource packs off - the game’s own art is back.', 'ok');
     else if (!game?.valid) toast(`Saved.${many} Set up your game folder and it will be applied.`, 'ok');
     else if (game.state !== 'patched') toast(`Saved.${many} Patch the game and it will be applied.`, 'ok');
     else if (worn.length === previous.length) toast(`Order changed.${many} Restart the game to see it.`, 'ok');
@@ -2356,7 +2498,7 @@ function compareVersionStrings(a, b) {
 }
 
 // ---------------------------------------------------------------------------
-// Community texture pack detail page - where gmm://texturepack/<id> lands
+// Community resource pack detail page - where gmm://texturepack/<id> lands
 // ---------------------------------------------------------------------------
 
 function openTpRegistryDetail(id) {
@@ -2379,7 +2521,7 @@ function renderTpRegistryDetail(entry) {
 
   const badges = [];
   if (entry.reviewed === false) {
-    badges.push(el('span', { class: 'tag red', title: 'Community submission awaiting review. A texture pack is art and wording only - it can never contain code - but nobody has looked at this one yet.' }, 'unreviewed'));
+    badges.push(el('span', { class: 'tag red', title: 'Community submission awaiting review. A resource pack is art, audio and wording only - it can never contain code - but nobody has looked at this one yet.' }, 'unreviewed'));
   }
   if (entry.official) badges.push(el('span', { class: 'tag gold' }, 'official'));
   if (mine && !behind) badges.push(el('span', { class: 'tag green' }, 'in library'));
@@ -2400,9 +2542,9 @@ function renderTpRegistryDetail(entry) {
   }
 
   fill(box, el('div', { class: 'card-window' },
-    el('span', { class: 'window-title' }, 'Texture pack'),
+    el('span', { class: 'window-title' }, 'Resource pack'),
     el('div', { class: 'pack-detail-top' },
-      el('button', { class: 'btn btn-cream small', onclick: closeTpRegistryDetail }, '← All texture packs'),
+      el('button', { class: 'btn btn-cream small', onclick: closeTpRegistryDetail }, '← All resource packs'),
       el('span', { class: 'grow' }),
       shareButton('texturepack', entry.id)),
     el('div', { class: 'pack-detail-head' },
@@ -2417,7 +2559,7 @@ function renderTpRegistryDetail(entry) {
       ? el('p', { class: 'pack-desc' }, entry.description || entry.summary)
       : null,
     el('div', { class: 'inset-row tiny', style: 'margin-top:6px' },
-      'Art and wording only - a texture pack cannot contain code. It is downloaded from the author\u2019s own release, checked against the checksum recorded at review, and applied while the game runs; your install is never rewritten.'),
+      'Art, audio and wording only - a resource pack cannot contain code. It is downloaded from the author\u2019s own release, checked against the checksum recorded at review, and applied while the game runs; your install is never rewritten.'),
     el('div', { class: 'pack-actions', style: 'margin-top:14px' },
       action,
       el('button', {
@@ -2475,7 +2617,7 @@ async function installRegistryTp(entry, existing = null) {
 function renderTpPublish() {
   const auth = $('tpPublishAuth');
   if (!auth) return;
-  auth.replaceChildren(authBox('texture pack'));
+  auth.replaceChildren(authBox('resource pack'));
   renderTpPublishFields();
 }
 
@@ -2875,7 +3017,7 @@ async function openImageBrowser(pack, preselect = null) {
   async function dropImage(ev, entry) {
     const file = ev.dataTransfer?.files?.[0];
     if (!file) return;
-    if (!/\.png$/i.test(file.name)) { toast('Texture packs take PNG files.', 'err'); return; }
+    if (!/\.png$/i.test(file.name)) { toast('Resource packs take PNG files.', 'err'); return; }
     const bytes = new Uint8Array(await file.arrayBuffer());
     await applyBytes(entry, bytes, file.name);
   }
@@ -3719,7 +3861,7 @@ async function applyRoute(route) {
   };
   const lookup = lists[route.type];
   if (!lookup) return;
-  const spoken = route.type === 'texturepack' ? 'texture pack' : route.type;
+  const spoken = route.type === 'texturepack' ? 'resource pack' : route.type;
   let entry = lookup().find((e) => e.id === route.id);
   if (!entry) {
     await refresh({ forceRegistry: true });
