@@ -1,99 +1,99 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-01T07:13:51.821Z",
+  "generatedAt": "2026-10-01T14:34:23.307Z",
   "count": 57,
   "releases": {
     "framework": {
-      "tag": "v1.6.0",
-      "version": "1.6.0",
-      "publishedAt": "2026-09-30T08:58:06Z",
-      "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+      "tag": "v1.7.0",
+      "version": "1.7.0",
+      "publishedAt": "2026-10-01T14:33:28Z",
+      "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/BetterCollection.zip",
           "size": 7897,
-          "sha256": "0d2f0ded6c7262cc82c9cd711a8c09a76a87218fa6371232dda428735447a6b0"
+          "sha256": "839689eb2421b35b4198055ddee24dc95702a8a8350c1cd494b130bf0157ae6e"
         },
         {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "09115ad2c1e5eabc8c6aaf766a0a29916a0c63a4ef869483440aace578565c9d"
+          "sha256": "069d6b10b5400fa6c85e7ace9c65dc342f23954b6369c8028ae7c624835e052c"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "9c3cd61b807b5d0ccb5a801c07f3e8e7bf942670744f0666f6ffdf215354915f"
+          "sha256": "e169803238ea614c37479663ea28f9122842c847374cfffb9154e1493b998220"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/GambitApi.zip",
           "size": 19924,
-          "sha256": "5355eb12f695aec9e1263773bccca889fc8f65f9683351d6eb8032f79b9d93eb"
+          "sha256": "7e1de6796c6e080c1e4765f8914656970acabb9bd77795ea7316ec5515de45d9"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-linux-arm64.zip",
-          "size": 28410499,
-          "sha256": "2d0e41cfe9f82e01c48edcd02d12aded1e5ed4cacccc9f05c42af02f1f9847e2"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-linux-arm64.zip",
+          "size": 28413997,
+          "sha256": "492ffc01aa9aa4343cf77693754f86fa1dfd849a20bb27a13187cf49accd719a"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-linux-x64.zip",
-          "size": 29638088,
-          "sha256": "1f2dc214f6925bab2b4481a1650b0cc6cfa4659a02eff1e3dbfef76b43d6b7bd"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-linux-x64.zip",
+          "size": 29641366,
+          "sha256": "4c52b966f38c368d20ff5ec3b059f6f99feb8f1d1d383cf5e7201dc8dbd11089"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-osx-arm64.zip",
-          "size": 28611960,
-          "sha256": "418233fef69a3358ac44903ab6b1c64d3124b613d3ab6a385216dcd2658cce7c"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-osx-arm64.zip",
+          "size": 28615085,
+          "sha256": "f8447d6fb6b91e0e2cbf8d9fdd607299a609e75c36ce504ea699221753bf6213"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-osx-x64.zip",
-          "size": 29989036,
-          "sha256": "5f895d9d337f862ecd60be09500dc71181bff4f923fe35d4970d22468c12a392"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-osx-x64.zip",
+          "size": 29992731,
+          "sha256": "5dd3fdd0efeaaca62a8b1761af84dc73d4ce05190588c6cbb3d28247c8f0ec35"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-win-arm64.zip",
-          "size": 28863062,
-          "sha256": "721c645835a7028126a35ed2a9110f6a17fb5e333ef8bb9022fba2eb0587b5e2"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-win-arm64.zip",
+          "size": 28866330,
+          "sha256": "8951e4fcbd6ca315062ecc36aab5f79edb5cc65aab748f92787d3ebb9549447e"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/gambonanza-framework-win-x64.zip",
-          "size": 29944108,
-          "sha256": "4104ec812c9349e011648025b2c58e2639f13ad9b0fe98981598708892a12f77"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-win-x64.zip",
+          "size": 29947485,
+          "sha256": "35919f9fd4c3d129e1229e9f6fb84fd7031f2ec4e380831825bc2d263fedd9c6"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "f7d73f08b60378c8c2719730ff9df9ef9a318e969ab1010066dcfd60136abf1b"
+          "sha256": "99e42a9491c91c2c65746e6e9e9fc40a7f1cebe6cc9d319cc5ee222604eb2da5"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "4a88aa2a6e1e71010d01ab9a859661e87c87aafe2cd5d99d0f6bc9bf92a79404"
+          "sha256": "82b8f2faded04bcbb3675b62878721f77b97fdfe5f3bb82e989fa8d65be414b2"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "fd14e2b72324ae41bd386b4c8c14ba3117fc193dba2c6344f94e0cb16d1a7f87"
+          "sha256": "79121d6aa5b933e7d0a5027a1e4aadb746184e101a26d2f10c1faccb374f4c30"
         },
         {
           "name": "StrainApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/StrainApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/StrainApi.zip",
           "size": 26951,
-          "sha256": "544b9cc44d946de1b05b88de5d857f5ea5f9e8bb7c222a062163c6b8350b836a"
+          "sha256": "b3e20cea5a55e27211092e71bf7a8b602395b3d75e8f412672efd768eff9da5e"
         }
       ]
     },
@@ -314,23 +314,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.6.0",
+        "tag": "v1.7.0",
         "version": "1.1.0",
-        "publishedAt": "2026-09-30T08:58:06Z",
-        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+        "publishedAt": "2026-10-01T14:33:28Z",
+        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/BetterCollection.zip",
           "size": 7897,
-          "sha256": "0d2f0ded6c7262cc82c9cd711a8c09a76a87218fa6371232dda428735447a6b0"
+          "sha256": "839689eb2421b35b4198055ddee24dc95702a8a8350c1cd494b130bf0157ae6e"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 55,
+      "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T00:36:14Z",
+      "repoPushedAt": "2026-10-01T14:32:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -500,23 +500,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.6.0",
+        "tag": "v1.7.0",
         "version": "1.0.0",
-        "publishedAt": "2026-09-30T08:58:06Z",
-        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+        "publishedAt": "2026-10-01T14:33:28Z",
+        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
         "asset": {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "09115ad2c1e5eabc8c6aaf766a0a29916a0c63a4ef869483440aace578565c9d"
+          "sha256": "069d6b10b5400fa6c85e7ace9c65dc342f23954b6369c8028ae7c624835e052c"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 15,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T00:36:14Z",
+      "repoPushedAt": "2026-10-01T14:32:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -870,23 +870,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.6.0",
+        "tag": "v1.7.0",
         "version": "1.2.0",
-        "publishedAt": "2026-09-30T08:58:06Z",
-        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+        "publishedAt": "2026-10-01T14:33:28Z",
+        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "9c3cd61b807b5d0ccb5a801c07f3e8e7bf942670744f0666f6ffdf215354915f"
+          "sha256": "e169803238ea614c37479663ea28f9122842c847374cfffb9154e1493b998220"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 55,
+      "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T00:36:14Z",
+      "repoPushedAt": "2026-10-01T14:32:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -1181,23 +1181,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.6.0",
+        "tag": "v1.7.0",
         "version": "1.4.1",
-        "publishedAt": "2026-09-30T08:58:06Z",
-        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+        "publishedAt": "2026-10-01T14:33:28Z",
+        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/GambitApi.zip",
           "size": 19924,
-          "sha256": "5355eb12f695aec9e1263773bccca889fc8f65f9683351d6eb8032f79b9d93eb"
+          "sha256": "7e1de6796c6e080c1e4765f8914656970acabb9bd77795ea7316ec5515de45d9"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 59,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T00:36:14Z",
+      "repoPushedAt": "2026-10-01T14:32:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -1765,23 +1765,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.6.0",
+        "tag": "v1.7.0",
         "version": "1.3.0",
-        "publishedAt": "2026-09-30T08:58:06Z",
-        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+        "publishedAt": "2026-10-01T14:33:28Z",
+        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "f7d73f08b60378c8c2719730ff9df9ef9a318e969ab1010066dcfd60136abf1b"
+          "sha256": "99e42a9491c91c2c65746e6e9e9fc40a7f1cebe6cc9d319cc5ee222604eb2da5"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 46,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T00:36:14Z",
+      "repoPushedAt": "2026-10-01T14:32:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -1912,23 +1912,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.6.0",
+        "tag": "v1.7.0",
         "version": "1.1.0",
-        "publishedAt": "2026-09-30T08:58:06Z",
-        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+        "publishedAt": "2026-10-01T14:33:28Z",
+        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "4a88aa2a6e1e71010d01ab9a859661e87c87aafe2cd5d99d0f6bc9bf92a79404"
+          "sha256": "82b8f2faded04bcbb3675b62878721f77b97fdfe5f3bb82e989fa8d65be414b2"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 32,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T00:36:14Z",
+      "repoPushedAt": "2026-10-01T14:32:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -2450,23 +2450,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.6.0",
+        "tag": "v1.7.0",
         "version": "1.1.0",
-        "publishedAt": "2026-09-30T08:58:06Z",
-        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+        "publishedAt": "2026-10-01T14:33:28Z",
+        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "fd14e2b72324ae41bd386b4c8c14ba3117fc193dba2c6344f94e0cb16d1a7f87"
+          "sha256": "79121d6aa5b933e7d0a5027a1e4aadb746184e101a26d2f10c1faccb374f4c30"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T00:36:14Z",
+      "repoPushedAt": "2026-10-01T14:32:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -2598,23 +2598,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.6.0",
+        "tag": "v1.7.0",
         "version": "1.0.0",
-        "publishedAt": "2026-09-30T08:58:06Z",
-        "notes": "\n- **Resource packs can replace sounds and music.** Choose a clip in the Mod\n  Manager, drop in a WAV and wear the pack. Effects keep the game's volume,\n  pitch and random selection; music keeps its looping behavior. Replacement\n  clips load when first played, and a missing or invalid file falls back to\n  the original sound.\n- Verified the framework against Steam build 25386882.\n- Packs now use the **Resource packs** name. Existing texture packs and\n  legacy manifests still work, and images and text can be mixed with audio in\n  the same pack. Where several worn packs change the same sound, the highest\n  one wins.\n- **Update the framework through Set up to install the audio hook**, then\n  restart the game. Image and text overrides keep working before you update.\n  The F10 console accepts `resourcepack`, `resourcepack list` and\n  `resourcepack reapply`; the older `texturepack` commands remain available.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.6.0",
+        "publishedAt": "2026-10-01T14:33:28Z",
+        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
         "asset": {
           "name": "StrainApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.6.0/StrainApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/StrainApi.zip",
           "size": 26951,
-          "sha256": "544b9cc44d946de1b05b88de5d857f5ea5f9e8bb7c222a062163c6b8350b836a"
+          "sha256": "b3e20cea5a55e27211092e71bf7a8b602395b3d75e8f412672efd768eff9da5e"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 4,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T00:36:14Z",
+      "repoPushedAt": "2026-10-01T14:32:18Z",
       "license": "MIT",
       "archived": false
     },
@@ -3114,7 +3114,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 317,
+      "downloads": 318,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3154,7 +3154,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 439,
+      "downloads": 440,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3202,7 +3202,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 110,
+      "downloads": 112,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3226,7 +3226,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 212,
+      "downloads": 213,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
