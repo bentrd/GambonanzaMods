@@ -696,3 +696,198 @@ test('older frameworks retain image and text overrides through the legacy runtim
   await packs.setActive({ ids: [], modsDir });
   assert.equal(fs.existsSync(legacy), false);
 });
+
+// ---------------------------------------------------------------------------
+// Re-cut sprites
+// ---------------------------------------------------------------------------
+
+function runtimeManifest() {
+  return JSON.parse(fs.readFileSync(path.join(path.dirname(modsDir), 'ResourcePacks', 'resourcepack.json'), 'utf8'));
+}
+
+test('a cut is saved with the names the framework matches on, and reaches the game', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  const { entry } = await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+  assert.deepEqual(entry.rect, [0, 0, 8, 6]);
+  assert.deepEqual(entry.original, [2, 0, 4, 4]);
+
+  await packs.setActive({ ids: [id], modsDir });
+  assert.deepEqual(runtimeManifest().sprites, [{ name: 'LEFT', texture: 'SHEET', rect: [0, 0, 8, 6] }]);
+
+  // A cut is not pixels: no sheet is built for it.
+  assert.deepEqual(runtimeManifest().textures, []);
+  assert.equal((await packs.summary()).packs[0].cutCount, 1);
+});
+
+test('a cut that is malformed, empty or off the sheet is refused', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await assert.rejects(packs.setCut({ id, assetId: 'left', rect: [0, 0, 8] }), /four whole numbers/);
+  await assert.rejects(packs.setCut({ id, assetId: 'left', rect: [0, 0, 8.5, 4] }), /four whole numbers/);
+  await assert.rejects(packs.setCut({ id, assetId: 'left', rect: ['0', 0, 8, 4] }), /four whole numbers/);
+  await assert.rejects(packs.setCut({ id, assetId: 'left', rect: [0, 0, 0, 4] }), /at least one pixel/);
+  await assert.rejects(packs.setCut({ id, assetId: 'left', rect: [-1, 0, 4, 4] }), /off the edge/);
+  await assert.rejects(packs.setCut({ id, assetId: 'left', rect: [10, 0, 7, 4] }), /off the edge/);
+  await assert.rejects(packs.setCut({ id, assetId: 'left', rect: [0, 13, 4, 4] }), /off the edge/);
+  assert.deepEqual((await packs.detail(id)).sprites, []);
+});
+
+test('a whole sheet has no cut to change', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await assert.rejects(packs.setCut({ id, assetId: 'sheet', rect: [0, 0, 4, 4] }), /only a sprite has a cut/);
+});
+
+test('setting a cut twice keeps one, and removing it goes back to the game\'s own', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+  await packs.setCut({ id, assetId: 'left', rect: [1, 0, 6, 5] });
+  assert.deepEqual((await packs.detail(id)).sprites.map((s) => s.rect), [[1, 0, 6, 5]]);
+
+  const after = await packs.removeCut({ id, assetId: 'left' });
+  assert.deepEqual(after.sprites, []);
+});
+
+test('art for a re-cut sprite fills the cut, not the catalogue rectangle', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+  const result = await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(8, 6, [255, 0, 0, 255])) });
+  assert.equal(result.resized, false);
+  assert.deepEqual(result.entry.rect, [0, 0, 8, 6]);
+  assert.equal(result.entry.width, 8);
+
+  const sheet = readAtlas(id, 'sheet');
+  // [0, 0, 8, 6] from the bottom left is columns 0-7 of the bottom six rows.
+  assert.deepEqual(pixel(sheet, 0, 10), [255, 0, 0, 255]);
+  assert.deepEqual(pixel(sheet, 7, 15), [255, 0, 0, 255]);
+  assert.deepEqual(pixel(sheet, 8, 15), [128, 128, 128, 255]);
+  assert.deepEqual(pixel(sheet, 0, 9), [128, 128, 128, 255]);
+});
+
+test('moving the cut afterwards leaves art that is already painted where it is', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(4, 4, [255, 0, 0, 255])) });
+  await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+
+  const sheet = readAtlas(id, 'sheet');
+  assert.deepEqual(pixel(sheet, 2, 12), [255, 0, 0, 255]);
+  assert.deepEqual(pixel(sheet, 0, 12), [128, 128, 128, 255]);
+  assert.deepEqual((await packs.detail(id)).images[0].rect, [2, 0, 4, 4]);
+});
+
+test('the original of a re-cut sprite is the cut\'s worth of the vanilla sheet', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  // Without a cut it is the catalogue's own picture.
+  assert.equal(png.decode(await packs.originalBytes({ id, assetId: 'left' })).width, 4);
+
+  await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+  const original = png.decode(await packs.originalBytes({ id, assetId: 'left' }));
+  assert.equal(original.width, 8);
+  assert.equal(original.height, 6);
+  assert.deepEqual(pixel(original, 0, 0), [128, 128, 128, 255]);
+});
+
+test('the sheet preview is the pack\'s own composite once it has one', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  assert.deepEqual(pixel(png.decode(await packs.sheetBytes({ id, assetId: 'sheet' })), 2, 12), [128, 128, 128, 255]);
+  await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(4, 4, [255, 0, 0, 255])) });
+  assert.deepEqual(pixel(png.decode(await packs.sheetBytes({ id, assetId: 'sheet' })), 2, 12), [255, 0, 0, 255]);
+  await assert.rejects(packs.sheetBytes({ id, assetId: 'left' }), /not a sheet/);
+});
+
+test('the cut guide outlines every sprite, with this pack\'s cuts in their own colour', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+  const guide = png.decode(await packs.guideBytes({ id, assetId: 'sheet' }));
+  assert.equal(guide.width, 16);
+
+  // RIGHT keeps the game's cut [10, 12, 4, 4]: the top four rows, columns 10-13.
+  assert.deepEqual(pixel(guide, 10, 0), [255, 0, 255, 255]);
+  assert.deepEqual(pixel(guide, 13, 3), [255, 0, 255, 255]);
+  assert.deepEqual(pixel(guide, 11, 1), [0, 0, 0, 0], 'the inside of a cut stays see-through');
+  assert.deepEqual(pixel(guide, 14, 0), [0, 0, 0, 0]);
+
+  // LEFT is drawn where the pack cut it, not where the game did.
+  assert.deepEqual(pixel(guide, 0, 10), [0, 200, 255, 255]);
+  assert.deepEqual(pixel(guide, 7, 15), [0, 200, 255, 255]);
+  assert.deepEqual(pixel(guide, 2, 12), [0, 0, 0, 0]);
+});
+
+test('cuts survive export and import, and are re-checked on the way in', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+  await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(8, 6, [255, 0, 0, 255])) });
+  await packs.setCut({ id, assetId: 'right', rect: [8, 10, 8, 6] });
+
+  // Doctor the manifest the way a hand-edited zip could: one cut off the sheet.
+  const manifestPath = path.join(paths.texturePacksDir(), id, 'resourcepack.json');
+  const doctored = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+  doctored.sprites.find((s) => s.assetId === 'right').rect = [8, 10, 80, 6];
+  fs.writeFileSync(manifestPath, JSON.stringify(doctored));
+
+  const zipPath = path.join(os.tmpdir(), `gmm-tp-cuts-${Date.now()}.zip`);
+  await packs.exportPack({ id, destPath: zipPath });
+  const imported = await packs.importPack({ zipPath });
+  assert.equal(imported.cuts, 1);
+  assert.equal(imported.skipped, 1);
+
+  const detail = await packs.detail(imported.id);
+  assert.deepEqual(detail.sprites.map((s) => [s.assetId, s.name, s.texture, s.rect]), [['left', 'LEFT', 'SHEET', [0, 0, 8, 6]]]);
+  // The 8x6 art came back at 8x6, in the cut it was painted for.
+  assert.deepEqual(detail.images[0].rect, [0, 0, 8, 6]);
+  assert.deepEqual(pixel(readAtlas(imported.id, 'sheet'), 7, 10), [255, 0, 0, 255]);
+});
+
+test('a pack holding nothing but a cut still exports', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+  const zipPath = path.join(os.tmpdir(), `gmm-tp-cutonly-${Date.now()}.zip`);
+  await packs.exportPack({ id, destPath: zipPath });
+  assert.equal((await packs.importPack({ zipPath })).cuts, 1);
+});
+
+test('stacked packs: the highest cut wins, and a higher repaint drops a lower pack\'s cut', async () => {
+  const a = await packs.create({ name: 'A' });
+  const b = await packs.create({ name: 'B' });
+  await packs.setCut({ id: a.id, assetId: 'left', rect: [0, 0, 8, 6] });
+  await packs.setCut({ id: b.id, assetId: 'left', rect: [1, 0, 6, 5] });
+  await packs.setCut({ id: b.id, assetId: 'right', rect: [8, 10, 8, 6] });
+  // A repaints RIGHT at the game's own size, so B's wider cut would frame A's art wrongly.
+  await packs.setImage({ id: a.id, assetId: 'right', bytes: png.encode(solid(4, 4, [0, 0, 255, 255])) });
+
+  await packs.setActive({ ids: [a.id, b.id], modsDir });
+  assert.deepEqual(runtimeManifest().sprites, [{ name: 'LEFT', texture: 'SHEET', rect: [0, 0, 8, 6] }]);
+
+  await packs.setActive({ ids: [b.id, a.id], modsDir });
+  assert.deepEqual(runtimeManifest().sprites.map((s) => [s.name, s.rect]).sort(),
+    [['LEFT', [1, 0, 6, 5]], ['RIGHT', [8, 10, 8, 6]]]);
+});
+
+test('older frameworks get the pack without cuts tripping them up', async () => {
+  const { id } = await packs.create({ name: 'Pack' });
+  await packs.setImage({ id, assetId: 'left', bytes: png.encode(solid(4, 4, [255, 0, 0, 255])) });
+  await packs.setCut({ id, assetId: 'left', rect: [0, 0, 8, 6] });
+  await packs.setActive({ ids: [id], modsDir });
+  const legacy = JSON.parse(fs.readFileSync(path.join(path.dirname(modsDir), 'TexturePacks', 'texturepack.json'), 'utf8'));
+  assert.equal(legacy.textures.length, 1);
+});
+
+test('a higher whole-sheet repaint suppresses lower cuts', async () => {
+  const a = await packs.create({ name: 'A' });
+  const b = await packs.create({ name: 'B' });
+  await packs.setImage({ id: a.id, assetId: 'sheet', bytes: png.encode(solid(16, 16, [0, 0, 255, 255])) });
+  await packs.setCut({ id: b.id, assetId: 'left', rect: [0, 0, 8, 6] });
+  await packs.setActive({ ids: [a.id, b.id], modsDir });
+  assert.deepEqual(runtimeManifest().sprites, []);
+});
+
+test('overlapping sprite art follows pack precedence', async () => {
+  const a = await packs.create({ name: 'A' });
+  const b = await packs.create({ name: 'B' });
+  await packs.setCut({ id: a.id, assetId: 'right', rect: [0, 0, 8, 6] });
+  await packs.setImage({ id: a.id, assetId: 'right', bytes: png.encode(solid(8, 6, [255, 0, 0, 255])) });
+  await packs.setImage({ id: b.id, assetId: 'left', bytes: png.encode(solid(4, 4, [0, 0, 255, 255])) });
+  for (const [ids, colour] of [[[a.id, b.id], [255, 0, 0, 255]], [[b.id, a.id], [0, 0, 255, 255]]]) {
+    await packs.setActive({ ids, modsDir });
+    const sheet = png.decode(fs.readFileSync(path.join(path.dirname(modsDir), 'ResourcePacks', 'atlases', 'sheet.png')));
+    assert.deepEqual(pixel(sheet, 2, 12), colour);
+  }
+});

@@ -163,3 +163,24 @@ test('clone does not share its buffer', () => {
   copy.data[0] = 99;
   assert.equal(image.data[0], 1);
 });
+
+test('crop copies a rectangle and leaves what hangs off the edge transparent', () => {
+  const image = { width: 3, height: 2, data: Buffer.from([
+    1, 1, 1, 255, 2, 2, 2, 255, 3, 3, 3, 255,
+    4, 4, 4, 255, 5, 5, 5, 255, 6, 6, 6, 255,
+  ]) };
+  const inside = png.crop(image, 1, 0, 2, 2);
+  assert.deepEqual([...inside.data], [2, 2, 2, 255, 3, 3, 3, 255, 5, 5, 5, 255, 6, 6, 6, 255]);
+
+  const hanging = png.crop(image, 2, 1, 2, 2);
+  assert.deepEqual([...hanging.data], [6, 6, 6, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+});
+
+test('outline draws the ring just inside a rectangle and clips at the edge', () => {
+  const image = { width: 4, height: 4, data: Buffer.alloc(64) };
+  png.outline(image, 1, 1, 3, 3, [9, 9, 9, 255]);
+  const lit = [];
+  for (let y = 0; y < 4; y++) for (let x = 0; x < 4; x++) if (image.data[(y * 4 + x) * 4 + 3]) lit.push(`${x},${y}`);
+  assert.deepEqual(lit, ['1,1', '2,1', '3,1', '1,2', '3,2', '1,3', '2,3', '3,3']);
+  assert.doesNotThrow(() => png.outline(image, 2, 2, 10, 10, [1, 1, 1, 255]));
+});

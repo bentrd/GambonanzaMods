@@ -592,6 +592,35 @@ function registerIpc() {
     return afterPackEdit(id);
   });
 
+  /** Re-cut a sprite: which rectangle of its sheet the game takes it from. */
+  handle('texturepacks:setCut', async ({ id, assetId, rect } = {}) => {
+    const outcome = await texturePacks.setCut({ id, assetId, rect });
+    return { ...outcome, pack: await afterPackEdit(id) };
+  });
+
+  handle('texturepacks:removeCut', async ({ id, assetId } = {}) => {
+    await texturePacks.removeCut({ id, assetId });
+    return afterPackEdit(id);
+  });
+
+  /** A sheet as the pack leaves it, for the sheet view to draw cuts over. */
+  handle('texturepacks:sheet', async ({ id, assetId } = {}) => {
+    const bytes = await texturePacks.sheetBytes({ id, assetId });
+    return `data:image/png;base64,${bytes.toString('base64')}`;
+  });
+
+  handle('texturepacks:downloadGuide', async ({ id, assetId, name } = {}) => {
+    const suggested = `${String(name || assetId).replace(/[^A-Za-z0-9._-]/g, '_')}_cuts.png`;
+    const result = await dialog.showSaveDialog(win, {
+      title: 'Save the cut guide',
+      defaultPath: suggested,
+      filters: [{ name: 'PNG image', extensions: ['png'] }],
+    });
+    if (result.canceled || !result.filePath) return null;
+    await fsp.writeFile(result.filePath, await texturePacks.guideBytes({ id, assetId }));
+    return { path: result.filePath };
+  });
+
   handle('texturepacks:originalAudio', ({ assetId } = {}) => assetCatalog.audioDataUrl(assetId));
   handle('texturepacks:audioCatalog', (payload = {}) => assetCatalog.browseAudio(payload));
   handle('texturepacks:pickAudio', async ({ id, assetId } = {}) => {
@@ -631,7 +660,7 @@ function registerIpc() {
     return afterPackEdit(id);
   });
 
-  handle('texturepacks:downloadOriginal', async ({ assetId, name } = {}) => {
+  handle('texturepacks:downloadOriginal', async ({ id, assetId, name } = {}) => {
     const suggested = `${String(name || assetId).replace(/[^A-Za-z0-9._-]/g, '_')}.png`;
     const result = await dialog.showSaveDialog(win, {
       title: 'Save the original image',
@@ -639,7 +668,8 @@ function registerIpc() {
       filters: [{ name: 'PNG image', extensions: ['png'] }],
     });
     if (result.canceled || !result.filePath) return null;
-    await fsp.writeFile(result.filePath, await assetCatalog.imageBytes(assetId));
+    // Through the pack, so a re-cut sprite saves at the size of its cut.
+    await fsp.writeFile(result.filePath, await texturePacks.originalBytes({ id, assetId }));
     return { path: result.filePath };
   });
 

@@ -58,6 +58,7 @@ const state = {
     previews: new Map(), // assetId -> data URL, or null when the site has none
     pending: new Set(),
     browser: null,       // open asset-browser modal state
+    showCuts: true,      // the sheet view's outline toggle, kept between visits
   },
 };
 
@@ -1872,6 +1873,7 @@ async function openPackIssueSubmission() {
 const TP_ICONS = {
   image: pix('M1 2h10v1H1zM1 3h1v6H1zM10 3h1v6h-1zM1 9h10v1H1zM8 4h1v1H8zM5 5h1v1H5zM4 6h3v1H4zM3 7h5v1H3zM2 8h8v1H2z'),
   text: pix('M2 2h2v1H2zM1 3h1v7H1zM4 3h1v7H4zM2 6h2v1H2zM8 4h2v1H8zM7 5h1v1H7zM10 5h1v5h-1zM8 7h2v1H8zM7 8h1v1H7zM8 9h2v1H8z'),
+  cut: pix('M1 1h4v1H1zM1 2h1v3H1zM7 1h4v1H7zM10 2h1v3h-1zM1 7h1v3H1zM1 10h4v1H1zM10 7h1v3h-1zM7 10h4v1H7zM5 5h2v2H5z'),
 };
 
 /** The game's own language codes - the ones its trad_<code> tables use. */
@@ -1953,6 +1955,7 @@ function renderTpCards() {
   const cards = ordered.map((p) => {
     const bits = [];
     if (p.imageCount) bits.push(`${p.imageCount} image${p.imageCount === 1 ? '' : 's'}`);
+    if (p.cutCount) bits.push(`${p.cutCount} cut${p.cutCount === 1 ? '' : 's'}`);
     if (p.audioCount) bits.push(`${p.audioCount} audio`);
     if (p.textCount) bits.push(`${p.textCount} text${p.textCount === 1 ? '' : 's'}`);
     if (!bits.length) bits.push('empty');
@@ -2052,13 +2055,14 @@ function renderTpPanel() {
 
   const squares = [];
   for (const image of detail.images) squares.push(imageTile(chosen, image));
+  for (const cut of detail.sprites || []) squares.push(cutTile(chosen, cut));
   for (const audio of detail.audio || []) squares.push(audioTile(chosen, audio));
   for (const text of detail.texts) squares.push(textTile(chosen, text));
   squares.push(tpAddTile(chosen));
   tiles.replaceChildren(...squares);
 
   foot.hidden = false;
-  if (!detail.images.length && !detail.texts.length && !detail.audio?.length) {
+  if (!detail.images.length && !detail.sprites?.length && !detail.texts.length && !detail.audio?.length) {
     foot.textContent = 'Nothing in this pack yet. Press ＋ to replace a picture, replace a sound, or reword some text.';
   } else if (chosen.active && worn.length > 1 && chosen.order > 0) {
     foot.textContent = `Every change is saved and applied straight away. ${worn.length} packs are on: where another one higher up the stack changes the same thing, that one wins.`;
@@ -2097,6 +2101,20 @@ function imageTile(pack, image) {
         `${image.width}×${image.height} · ${image.category}`,
         image.kind === 'sprite' ? ` · on ${image.atlasName}` : ' · whole sheet',
         image.compressed ? ' · compressed sheet' : '')));
+}
+
+/** A re-cut sprite: no art of its own, just a different rectangle of its sheet. */
+function cutTile(pack, cut) {
+  const [, , w, h] = cut.rect;
+  const [, , ow, oh] = cut.original || cut.rect;
+  return el('button', {
+    class: 'tp-tile text',
+    onclick: () => openImageBrowser(pack, cut.assetId, { sheet: true }),
+  },
+    el('span', { class: 'glyph', html: TP_ICONS.cut }),
+    el('span', { class: 'tp-tip' },
+      el('div', { class: 't' }, cut.label || cut.name),
+      el('div', { class: 'd' }, `cut ${w}×${h} out of ${cut.texture} · the game cuts ${ow}×${oh}`)));
 }
 
 function audioTile(pack, audio) {
@@ -2348,7 +2366,7 @@ async function renameTpFlow(pack) {
 }
 
 async function deleteTpFlow(pack) {
-  const count = pack.imageCount + pack.textCount + (pack.audioCount || 0);
+  const count = pack.imageCount + pack.textCount + (pack.audioCount || 0) + (pack.cutCount || 0);
   const yes = await confirmModal({
     title: `Delete "${pack.name}"?`,
     body: count
@@ -2424,7 +2442,8 @@ async function importTpFlow() {
     state.tp.selectedId = result.id;
     state.tp.detail = null;
     const skipped = result.skipped ? ` ${result.skipped} override${result.skipped === 1 ? '' : 's'} didn't match this version of the game and were dropped.` : '';
-    toast(`Imported "${result.name}" - ${result.images} image(s), ${result.texts} text(s).${skipped}`, 'ok');
+    const cuts = result.cuts ? `, ${result.cuts} cut(s)` : '';
+    toast(`Imported "${result.name}" - ${result.images} image(s)${cuts}, ${result.texts} text(s).${skipped}`, 'ok');
     await refresh();
     loadTpDetail(result.id);
   } catch (err) {
@@ -2785,12 +2804,19 @@ function browserFrame({ title, head, left, right, onClose }) {
 
 // ---- images ---------------------------------------------------------------
 
-async function openImageBrowser(pack, preselect = null) {
+/** Framework release that learned to re-cut sprites. */
+const CUTS_FRAMEWORK = '1.7.0';
+
+/** Sheet-view magnifications. A sheet too big to fit at 1x also gets "whole sheet". */
+const SHEET_ZOOMS = [1, 2, 3, 4, 6, 8, 12, 16];
+const SHEET_PAD = 12;
+
+async function openImageBrowser(pack, preselect = null, { sheet: startOnSheet = false } = {}) {
   const grid = el('div', { class: 'ab-grid' });
   const detail = el('div', { class: 'ab-right' });
   const search = el('input', {
     class: 'game-input', type: 'search', placeholder: 'Search the game’s art…',
-    oninput: (ev) => { session.search = ev.target.value; paintGrid(); },
+    oninput: (ev) => { session.search = ev.target.value; session.view = 'grid'; paintLeft(); },
   });
   const chips = el('div', { class: 'chip-row' });
   const head = [
@@ -2799,7 +2825,12 @@ async function openImageBrowser(pack, preselect = null) {
   ];
   const left = el('div', { class: 'ab-left' }, grid);
 
-  state.tp.browser = { mode: 'image', packId: pack.id, search: '', category: '', selected: preselect };
+  state.tp.browser = {
+    mode: 'image', packId: pack.id, search: '', category: '', selected: preselect,
+    // The left pane is either the grid of everything, or one sheet drawn large
+    // with every sprite's cut outlined on it.
+    view: 'grid', sheetId: null, zoom: null, draft: null,
+  };
   // Closing the dialog nulls state.tp.browser, and opening the other one
   // replaces it. Every continuation below compares against this object, so a
   // slow save that lands after either can bail instead of painting into
@@ -2807,7 +2838,7 @@ async function openImageBrowser(pack, preselect = null) {
   const session = state.tp.browser;
   const live = () => state.tp.browser === session;
 
-  browserFrame({
+  const frame = browserFrame({
     title: 'Replace a picture',
     head,
     left,
@@ -2853,12 +2884,544 @@ async function openImageBrowser(pack, preselect = null) {
     chips.replaceChildren(
       el('button', {
         class: `chip${category ? '' : ' on'}`,
-        onclick: () => { session.category = ''; paintChips(); paintGrid(); },
+        onclick: () => { session.category = ''; session.view = 'grid'; paintChips(); paintLeft(); },
       }, `Everything (${catalog.counts.total})`),
       ...catalog.categories.map((c) => el('button', {
         class: `chip${category === c.name ? ' on' : ''}`,
-        onclick: () => { session.category = c.name; paintChips(); paintGrid(); },
+        onclick: () => { session.category = c.name; session.view = 'grid'; paintChips(); paintLeft(); },
       }, `${c.name} (${c.count})`)));
+  }
+
+  // ---- cuts ----------------------------------------------------------------
+  //
+  // A sprite is a rectangle cut out of a sheet. Rects travel in the game's own
+  // convention - [x, y, w, h] from the BOTTOM left - and are flipped only where
+  // they meet the screen, because every image editor counts from the top.
+
+  const packCut = (id) => (state.tp.detail?.sprites || []).find((c) => c.assetId === id) || null;
+  const rectFor = (entry) => packCut(entry.id)?.rect || entry.rect;
+  const spritesOn = (sheetId) => catalog.entries.filter((e) => e.kind === 'sprite' && e.atlasId === sheetId && e.rect);
+  const sheetOf = (entry) => catalog.entries.find((e) => e.id === (entry.kind === 'sprite' ? entry.atlasId : entry.id));
+  const sheetKey = (sheetId) => `sheet:${pack.id}:${sheetId}`;
+  const needsCutFramework = () => !state.data?.game?.patched
+    || compareVersionStrings(state.data.game.frameworkVersion, CUTS_FRAMEWORK) < 0;
+
+  /** The sprite whose cut the sheet view is editing, if it is on that sheet. */
+  function cutTarget() {
+    if (session.view !== 'sheet') return null;
+    const entry = catalog.entries.find((e) => e.id === session.selected);
+    return entry && entry.kind === 'sprite' && entry.atlasId === session.sheetId ? entry : null;
+  }
+
+  /** What is wrong with a cut, or null. Mirrors the check the main process makes. */
+  function cutProblem(rect, sheet) {
+    if (!rect || !rect.every(Number.isInteger)) return 'Whole numbers only.';
+    const [x, y, w, h] = rect;
+    if (w < 1 || h < 1) return 'A cut needs to be at least one pixel each way.';
+    if (x < 0 || y < 0 || x + w > sheet.width || y + h > sheet.height) return `That runs off the edge of the ${sheet.width}×${sheet.height} sheet.`;
+    return null;
+  }
+
+  /** Other sprites this rectangle takes a bite out of. */
+  function cutNeighbours(entry, [x, y, w, h]) {
+    return spritesOn(entry.atlasId).filter((other) => {
+      if (other.id === entry.id) return false;
+      const [ox, oy, ow, oh] = rectFor(other);
+      return x < ox + ow && ox < x + w && y < oy + oh && oy < y + h;
+    });
+  }
+
+  const sameRect = (a, b) => !!a && !!b && a.every((v, i) => v === b[i]);
+
+  function openSheet(sheetId, select = null) {
+    session.view = 'sheet';
+    session.sheetId = sheetId;
+    session.selected = select || sheetId;
+    session.draft = null;
+    session.confirmRemove = null;
+    // Arriving for one sprite zooms in on it; arriving for the sheet shows it all.
+    session.zoom = null;
+    session.focus = select;
+    session.scroll = null;
+    paintLeft();
+    paintDetail();
+  }
+
+  function paintLeft() {
+    if (!live()) return;
+    // The search and the category chips sort the grid; over a sheet they would
+    // only take a fifth of the dialog away from the thing being looked at.
+    frame.classList.toggle('sheet', session.view === 'sheet');
+    if (session.view === 'sheet') { paintSheet(); return; }
+    session.overlay = null;
+    session.scroll = null;
+    fill(left, grid);
+    paintGrid();
+  }
+
+  /** Room for the sheet inside the left pane, under its toolbar and legend. */
+  const sheetRoom = () => [
+    Math.max(120, left.clientWidth - 2 * SHEET_PAD - 4),
+    Math.max(120, left.clientHeight - 84 - 2 * SHEET_PAD - 4),
+  ];
+
+  /** The magnification that shows the whole sheet: whole numbers once it fits at 1x. */
+  function fitZoom(sheet) {
+    const [w, h] = sheetRoom();
+    const raw = Math.min(w / sheet.width, h / sheet.height);
+    // Near enough to 1:1 is shown at 1:1 - a few pixels of scrolling beat the
+    // uneven pixels of a 512-wide sheet drawn at 98%.
+    if (raw < 0.85) return Math.max(0.05, Math.floor(raw * 100) / 100);
+    return SHEET_ZOOMS.filter((z) => z <= Math.max(1, raw)).pop();
+  }
+
+  function paintSheet() {
+    if (!live()) return;
+    const sheet = catalog.entries.find((e) => e.id === session.sheetId);
+    if (!sheet) { session.view = 'grid'; paintLeft(); return; }
+    const sprites = spritesOn(sheet.id);
+    const W = sheet.width;
+    const H = sheet.height;
+
+    // The pack's own composite when it has one, so the outlines sit on the art
+    // as the game will load it rather than on the vanilla sheet.
+    const key = sheetKey(sheet.id);
+    const src = state.tp.previews.get(key);
+    if (src === undefined && !state.tp.pending.has(key)) {
+      state.tp.pending.add(key);
+      call(api.packSheet, { id: pack.id, assetId: sheet.id })
+        .then((url) => state.tp.previews.set(key, url), () => state.tp.previews.set(key, null))
+        .finally(() => { state.tp.pending.delete(key); if (live() && session.view === 'sheet') paintSheet(); });
+    }
+
+    const fit = fitZoom(sheet);
+    const steps = fit < 1 ? [fit, ...[0.5, ...SHEET_ZOOMS].filter((z) => z > fit)] : SHEET_ZOOMS;
+
+    // Everything below is rebuilt on every repaint - a zoom, the toggle, the
+    // picture arriving - so remember what the view was looking at, or each of
+    // those would throw it back to the top-left corner.
+    let anchor = session.anchor || null;
+    session.anchor = null;
+    const before = session.scroll;
+    if (!anchor && before?.node.isConnected) {
+      const n = before.node;
+      anchor = { sheet: [(n.scrollLeft + n.clientWidth / 2 - SHEET_PAD) / before.zoom, (n.scrollTop + n.clientHeight / 2 - SHEET_PAD) / before.zoom] };
+    }
+    if (session.focus) {
+      const sprite = sprites.find((e) => e.id === session.focus);
+      session.focus = null;
+      if (sprite) {
+        const [x, y, w, h] = rectFor(sprite);
+        const [roomW, roomH] = sheetRoom();
+        const close = SHEET_ZOOMS.filter((z) => z <= Math.min((roomW * 0.4) / w, (roomH * 0.4) / h, 8)).pop() || 1;
+        if (close > (session.zoom || fit)) session.zoom = close;
+        anchor = { sheet: [x + w / 2, H - y - h / 2] };
+      }
+    }
+    const zoom = session.zoom || fit;
+
+    const zoomTo = (next, around = null) => {
+      if (next === zoom) return;
+      session.zoom = next === fit ? null : next;
+      session.anchor = around;
+      paintSheet();
+    };
+    const step = (by, around = null) => {
+      let at = steps.indexOf(zoom);
+      if (at < 0) at = Math.max(0, steps.findIndex((z) => z >= zoom));
+      zoomTo(steps[Math.min(steps.length - 1, Math.max(0, at + by))], around);
+    };
+
+    const hover = el('span', { class: 'sv-hover' });
+    const cutsLayer = el('div', { class: 'sv-layer' });
+    const editLayer = el('div', { class: 'sv-layer' });
+    const stage = el('div', { class: 'sv-stage', style: `width:${W * zoom}px;height:${H * zoom}px` },
+      src ? el('img', { src, alt: '', draggable: 'false' })
+        : el('span', { class: 'ph' }, src === null ? 'This sheet isn’t published yet.' : 'Loading…'),
+      cutsLayer, editLayer);
+    const scroll = el('div', { class: 'sv-scroll' }, stage);
+
+    const box = ([x, y, w, h], cls, ...kids) => el('div', {
+      class: `sv-cut ${cls}`,
+      style: `left:${x * zoom}px;top:${(H - y - h) * zoom}px;width:${w * zoom}px;height:${h * zoom}px`,
+    }, ...kids);
+
+    /** The rectangle being edited: the unsaved one while there is one. */
+    const current = () => {
+      const target = cutTarget();
+      if (!target) return null;
+      return session.draft && !cutProblem(session.draft, sheet) ? session.draft : rectFor(target);
+    };
+
+    const paintCuts = () => {
+      const boxes = [];
+      if (state.tp.showCuts) {
+        for (const sprite of sprites) {
+          if (sprite.id === session.selected) continue; // the edit layer draws it
+          const mine = packCut(sprite.id);
+          if (mine) boxes.push(box(sprite.rect, 'was'));
+          boxes.push(box(rectFor(sprite), mine ? 'mine' : ''));
+        }
+      }
+      cutsLayer.replaceChildren(...boxes);
+    };
+
+    const paintEdit = () => {
+      const target = cutTarget();
+      const rect = current();
+      if (!target || !rect) { editLayer.replaceChildren(); return; }
+      const ghost = state.tp.previews.get(target.id);
+      if (ghost === undefined) ensurePreviews([target.id], () => { if (live() && session.view === 'sheet') session.overlay?.(); });
+      // Handles only where there is room for them not to sit on each other.
+      const wide = rect[2] * zoom;
+      const tall = rect[3] * zoom;
+      const dots = [
+        ...(wide >= 14 && tall >= 14 ? ['nw', 'ne', 'sw', 'se'] : []),
+        ...(wide >= 40 ? ['n', 's'] : []),
+        ...(tall >= 40 ? ['w', 'e'] : [])];
+      editLayer.replaceChildren(
+        // The game's own cut with the game's own art in it, always: these are
+        // the pixels that keep their place on screen whatever the cut becomes.
+        box(target.rect, 'ghost', ghost ? el('img', { src: ghost, alt: '' }) : null),
+        box(rect, `edit${sameRect(rect, target.rect) ? '' : ' mine'}`,
+          ...dots.map((d) => el('i', { class: `dot ${d}` })),
+          el('span', { class: 'size' }, `${rect[2]}×${rect[3]}`)));
+    };
+
+    session.overlay = () => { paintCuts(); paintEdit(); };
+    session.overlay();
+
+    // ---- pointer -----------------------------------------------------------
+    //
+    // Everything is worked out in sheet pixels measured from the top left, as
+    // edges {l, t, r, b}, and turned back into a bottom-left rect at the end.
+
+    const at = (ev) => {
+      const r = stage.getBoundingClientRect();
+      return [(ev.clientX - r.left) / zoom, (ev.clientY - r.top) / zoom];
+    };
+    const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+    const edgesOf = ([x, y, w, h]) => ({ l: x, t: H - y - h, r: x + w, b: H - y });
+    const rectOfEdges = ({ l, t, r, b }) => [l, H - b, r - l, b - t];
+
+    const spriteAt = ([px, py]) => {
+      const y = H - py;
+      let best = null;
+      for (const sprite of sprites) {
+        const [rx, ry, rw, rh] = rectFor(sprite);
+        if (px < rx || px >= rx + rw || y <= ry || y > ry + rh) continue;
+        // Cuts can overlap; the smallest one under the pointer is the one meant.
+        if (!best || rw * rh < best.area) best = { sprite, area: rw * rh };
+      }
+      return best?.sprite || null;
+    };
+
+    /** Which part of the cut being edited the pointer is on: an edge, a corner, the inside, or nothing. */
+    const zoneAt = ([sx, sy]) => {
+      const rect = current();
+      if (!rect) return null;
+      const e = edgesOf(rect);
+      const reach = 6 / zoom;
+      if (sx < e.l - reach || sx > e.r + reach || sy < e.t - reach || sy > e.b + reach) return null;
+      // Inside a small cut the grab band shrinks, so there is still a middle to move it by.
+      const inX = Math.min(reach, (e.r - e.l) / 4);
+      const inY = Math.min(reach, (e.b - e.t) / 4);
+      const ns = sy <= e.t + inY ? 'n' : sy >= e.b - inY ? 's' : '';
+      const we = sx <= e.l + inX ? 'w' : sx >= e.r - inX ? 'e' : '';
+      return ns + we || 'move';
+    };
+    const CURSORS = { n: 'ns-resize', s: 'ns-resize', w: 'ew-resize', e: 'ew-resize', nw: 'nwse-resize', se: 'nwse-resize', ne: 'nesw-resize', sw: 'nesw-resize', move: 'move' };
+
+    const resized = (start, zone, [nx, ny], ev) => {
+      const w0 = start.r - start.l;
+      const h0 = start.b - start.t;
+      const cx = (start.l + start.r) / 2;
+      const cy = (start.t + start.b) / 2;
+      const X = clamp(Math.round(nx), 0, W);
+      const Y = clamp(Math.round(ny), 0, H);
+      const west = zone.includes('w');
+      const east = zone.includes('e');
+      const north = zone.includes('n');
+      const south = zone.includes('s');
+      // Alt grows from the middle: the far side mirrors the one being dragged.
+      let w = west ? (ev.altKey ? 2 * (cx - X) : start.r - X) : east ? (ev.altKey ? 2 * (X - cx) : X - start.l) : w0;
+      let h = north ? (ev.altKey ? 2 * (cy - Y) : start.b - Y) : south ? (ev.altKey ? 2 * (Y - cy) : Y - start.t) : h0;
+      w = Math.max(1, Math.round(w));
+      h = Math.max(1, Math.round(h));
+      // Shift on a corner keeps the proportions the cut had when the drag began.
+      if (ev.shiftKey && zone.length === 2) {
+        const scale = Math.max(w / w0, h / h0);
+        w = Math.max(1, Math.round(w0 * scale));
+        h = Math.max(1, Math.round(h0 * scale));
+      }
+      let { l, t, r, b } = start;
+      if (west || east) {
+        if (ev.altKey) { l = Math.round(cx - w / 2); r = l + w; } else if (west) l = r - w; else r = l + w;
+      }
+      if (north || south) {
+        if (ev.altKey) { t = Math.round(cy - h / 2); b = t + h; } else if (north) t = b - h; else b = t + h;
+      }
+      l = clamp(l, 0, W - 1); t = clamp(t, 0, H - 1);
+      return { l, t, r: clamp(r, l + 1, W), b: clamp(b, t + 1, H) };
+    };
+
+    const moved = (start, dx, dy, ev) => {
+      // Shift keeps the move straight: along whichever axis it has gone furthest.
+      if (ev.shiftKey) { if (Math.abs(dx) >= Math.abs(dy)) dy = 0; else dx = 0; }
+      const mx = clamp(Math.round(dx), -start.l, W - start.r);
+      const my = clamp(Math.round(dy), -start.t, H - start.b);
+      return { l: start.l + mx, t: start.t + my, r: start.r + mx, b: start.b + my };
+    };
+
+    const drawn = (from, now, ev) => {
+      let x0 = Math.floor(Math.min(from[0], now[0]));
+      let x1 = Math.ceil(Math.max(from[0], now[0]));
+      let y0 = Math.floor(Math.min(from[1], now[1]));
+      let y1 = Math.ceil(Math.max(from[1], now[1]));
+      if (ev.shiftKey) {
+        const side = Math.max(x1 - x0, y1 - y0);
+        if (now[0] < from[0]) x0 = x1 - side; else x1 = x0 + side;
+        if (now[1] < from[1]) y0 = y1 - side; else y1 = y0 + side;
+      }
+      x0 = clamp(x0, 0, W - 1); y0 = clamp(y0, 0, H - 1);
+      return { l: x0, t: y0, r: clamp(x1, x0 + 1, W), b: clamp(y1, y0 + 1, H) };
+    };
+
+    // One gesture, three meanings. On the cut being edited: its border resizes,
+    // its inside moves. Anywhere else: a click picks the sprite under the
+    // pointer, and a drag draws the picked sprite a new cut from scratch.
+    let gesture = null;
+    stage.addEventListener('pointerdown', (ev) => {
+      if (ev.button !== 0) return;
+      const from = at(ev);
+      const rect = current();
+      gesture = { from, zone: zoneAt(from), start: rect && edgesOf(rect), dragging: false };
+      stage.setPointerCapture(ev.pointerId);
+    });
+    stage.addEventListener('pointermove', (ev) => {
+      const now = at(ev);
+      if (!gesture) {
+        const zone = zoneAt(now);
+        const under = spriteAt(now);
+        stage.style.cursor = zone ? CURSORS[zone] : under ? 'pointer' : cutTarget() ? 'crosshair' : 'default';
+        const [, , w, h] = under ? rectFor(under) : [];
+        hover.textContent = under ? `${under.label} · ${w}×${h}` : '';
+        return;
+      }
+      if (!cutTarget()) return;
+      const dx = now[0] - gesture.from[0];
+      const dy = now[1] - gesture.from[1];
+      if (!gesture.dragging && Math.hypot(dx, dy) * zoom < 4) return;
+      gesture.dragging = true;
+      const edges = gesture.zone === 'move' ? moved(gesture.start, dx, dy, ev)
+        : gesture.zone ? resized(gesture.start, gesture.zone, now, ev)
+          : drawn(gesture.from, now, ev);
+      session.draft = rectOfEdges(edges);
+      paintEdit();
+      session.cutUi?.show(session.draft);
+    });
+    stage.addEventListener('pointerup', (ev) => {
+      if (!gesture) return;
+      const { dragging } = gesture;
+      gesture = null;
+      if (dragging) return;
+      const under = spriteAt(at(ev));
+      const next = under ? under.id : sheet.id;
+      if (next === session.selected) return;
+      session.selected = next;
+      session.draft = null;
+      session.confirmRemove = null;
+      paintDetail();
+      // A sprite too small to take hold of at this size gets the view brought
+      // to it - a four-pixel-tall mouth is no target for a border drag.
+      const [, , w, h] = under ? rectFor(under) : [0, 0, Infinity, Infinity];
+      if (Math.min(w, h) * zoom < 40) { session.focus = next; paintSheet(); return; }
+      session.overlay();
+    });
+    stage.addEventListener('pointercancel', () => { gesture = null; });
+    stage.addEventListener('pointerleave', () => { if (!gesture) hover.textContent = ''; });
+
+    // Pinch, or Ctrl/Cmd + wheel, zooms about the pointer; a plain wheel scrolls.
+    let lastZoom = 0;
+    scroll.addEventListener('wheel', (ev) => {
+      if (!ev.ctrlKey && !ev.metaKey) return;
+      ev.preventDefault();
+      if (ev.timeStamp - lastZoom < 160 || !ev.deltaY) return;
+      lastZoom = ev.timeStamp;
+      const r = scroll.getBoundingClientRect();
+      step(ev.deltaY < 0 ? 1 : -1, { sheet: at(ev), view: [ev.clientX - r.left, ev.clientY - r.top] });
+    }, { passive: false });
+
+    const percent = `${Math.round(zoom * 100)}%`;
+    fill(left,
+      el('div', { class: 'sv-bar' },
+        el('button', {
+          class: 'btn btn-cream small',
+          onclick: () => { session.view = 'grid'; session.draft = null; paintLeft(); paintDetail(); },
+        }, '← All art'),
+        el('div', { class: 'sv-name' }, el('b', {}, sheet.label), ` ${W}×${H}`, hover),
+        el('button', {
+          class: `chip${state.tp.showCuts ? ' on' : ''}`,
+          'aria-pressed': state.tp.showCuts ? 'true' : 'false',
+          disabled: !sprites.length,
+          title: sprites.length
+            ? 'Show or hide where the game cuts each sprite out of this sheet'
+            : 'Nothing is cut out of this sheet - the game draws it whole',
+          onclick: () => { state.tp.showCuts = !state.tp.showCuts; paintSheet(); },
+        }, state.tp.showCuts ? 'Outlines: on' : 'Outlines: off'),
+        el('button', { class: 'btn btn-cream small', 'aria-label': 'Zoom out', title: 'Zoom out (or pinch)', disabled: zoom <= steps[0], onclick: () => step(-1) }, '−'),
+        el('button', {
+          class: 'sv-zoom', title: 'Show the whole sheet', disabled: zoom === fit,
+          onclick: () => zoomTo(fit),
+        }, percent),
+        el('button', { class: 'btn btn-cream small', 'aria-label': 'Zoom in', title: 'Zoom in (or pinch)', disabled: zoom >= steps[steps.length - 1], onclick: () => step(1) }, '+')),
+      scroll,
+      el('div', { class: 'sv-legend' },
+        el('span', { class: 'key game' }), 'the game’s cut',
+        el('span', { class: 'key mine' }), 'changed by this pack',
+        el('span', { class: 'key ghost' }), 'where it was',
+        el('span', { class: 'grow' }),
+        sprites.length ? 'Outlines show catalogued sprites; other art may be used by UI or effects.' : null));
+
+    session.scroll = { node: scroll, zoom };
+    if (anchor) {
+      const [vx, vy] = anchor.view || [scroll.clientWidth / 2, scroll.clientHeight / 2];
+      scroll.scrollLeft = anchor.sheet[0] * zoom + SHEET_PAD - vx;
+      scroll.scrollTop = anchor.sheet[1] * zoom + SHEET_PAD - vy;
+    }
+  }
+
+  /** The cut section of a sprite's detail: a summary, or the editor on its sheet. */
+  function cutBlock(entry) {
+    const sheet = sheetOf(entry);
+    if (!sheet || !entry.rect) return null;
+    const mine = packCut(entry.id);
+    const saved = rectFor(entry);
+    const editing = cutTarget() === entry;
+
+    if (!editing) {
+      const [, , w, h] = saved;
+      session.cutUi = null;
+      return el('div', { class: 'ab-cut' },
+        el('div', { class: 'cap' }, 'Cut out of the sheet'),
+        el('div', { class: 'ab-cut-line' },
+          el('span', {}, `${w}×${h} of ${entry.atlas}`),
+          mine ? el('span', { class: 'tag green' }, `resized from ${entry.rect[2]}×${entry.rect[3]}`) : null,
+          el('button', {
+            class: 'btn btn-cream small',
+            title: 'See this sprite on its sheet and drag its outline - for art that needs more room than the game gave it',
+            onclick: () => openSheet(entry.atlasId, entry.id),
+          }, 'Resize on the sheet…')));
+    }
+
+    // Image-editor numbers: left and top from the top-left corner of the sheet.
+    const input = (label) => {
+      const field = el('input', { class: 'game-input', type: 'number', min: '0', step: '1', inputmode: 'numeric' });
+      return { field, wrap: el('label', { class: 'ab-cut-field' }, el('span', {}, label), field) };
+    };
+    const boxes = [input('Left'), input('Top'), input('Width'), input('Height')];
+    const fields = boxes.map((b) => b.field);
+    const status = el('div', { class: 'ab-cut-status' });
+    const apply = el('button', { class: 'btn btn-green small', onclick: () => applyCut(entry) }, 'Save this cut');
+    const discard = el('button', {
+      class: 'btn btn-cream small',
+      title: 'Forget the change you have not saved',
+      onclick: () => { session.draft = null; session.overlay?.(); show(saved); },
+    }, 'Undo');
+
+    const judge = () => {
+      const rect = session.draft || saved;
+      const problem = cutProblem(rect, sheet);
+      const bites = problem ? [] : cutNeighbours(entry, rect);
+      const changed = !sameRect(rect, saved);
+      apply.disabled = !!problem || !changed;
+      discard.disabled = !changed;
+      status.className = `ab-cut-status${problem ? ' bad' : bites.length ? ' warn' : ''}`;
+      status.textContent = problem
+        || (bites.length
+          ? `Overlaps ${bites.slice(0, 3).map((b) => b.label).join(', ')}${bites.length > 3 ? ` and ${bites.length - 3} more` : ''} - whatever is painted there shows up in this sprite too.`
+          : changed ? 'Not saved yet.' : '');
+      status.hidden = !status.textContent;
+    };
+    function show([x, y, w, h]) {
+      const values = [x, sheet.height - y - h, w, h];
+      fields.forEach((field, i) => { if (document.activeElement !== field) field.value = String(values[i]); });
+      judge();
+    }
+    const read = () => {
+      const [l, t, w, h] = fields.map((field) => (field.value.trim() === '' ? NaN : Number(field.value)));
+      session.draft = [l, sheet.height - t - h, w, h];
+      session.overlay?.();
+      judge();
+    };
+    fields.forEach((field) => field.addEventListener('input', read));
+    session.cutUi = { show };
+    show(session.draft || saved);
+
+    return el('div', { class: 'ab-cut editing' },
+      el('div', { class: 'cap' }, 'Cut out of the sheet'),
+      el('div', { class: 'ab-cut-how' },
+        'Drag the outline’s ', el('b', {}, 'edges'), ' to resize it, or its ', el('b', {}, 'middle'), ' to move it. ',
+        el('kbd', {}, 'Shift'), ' keeps the shape (or the move straight), ',
+        el('kbd', {}, 'Alt'), ' resizes from the centre.'),
+      el('div', { class: 'ab-cut-fields' }, boxes.map((b) => b.wrap)),
+      status,
+      el('div', { class: 'ab-actions' },
+        apply,
+        discard,
+        mine ? el('button', {
+          class: 'btn btn-cream small',
+          title: `Back to the ${entry.rect[2]}×${entry.rect[3]} rectangle the game uses`,
+          onclick: () => resetCut(entry),
+        }, 'Use the game’s cut') : null),
+      needsCutFramework() ? el('div', { class: 'ab-note' },
+        `Resized cuts need framework ${CUTS_FRAMEWORK} or later. Update it in Set up, then restart the game.`) : null,
+      el('div', { class: 'ab-note quiet' },
+        'The faded original stays put on screen; a bigger cut shows more of the sheet around it. '
+        + 'For sprites on the board and in scenes - menu and HUD pictures keep their size.'));
+  }
+
+  async function applyCut(entry) {
+    const rect = session.draft;
+    if (!rect) return;
+    try {
+      const result = await call(api.setPackCut, { id: pack.id, assetId: entry.id, rect });
+      if (!live()) return;
+      state.tp.detail = result.pack;
+      session.draft = null;
+      session.overlay?.();
+      paintDetail();
+      await refresh();
+      toast(needsCutFramework()
+        ? 'Cut saved. Update the framework in Set up, then restart the game to see it.'
+        : `${entry.label} is now cut ${rect[2]}×${rect[3]}. Restart the game to see it.`, 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
+  }
+
+  async function resetCut(entry) {
+    try {
+      const updated = await call(api.removePackCut, { id: pack.id, assetId: entry.id });
+      if (!live()) return;
+      state.tp.detail = updated;
+      session.draft = null;
+      session.overlay?.();
+      paintDetail();
+      await refresh();
+      toast(`${entry.label} is back to the game’s own cut.`, 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
+  }
+
+  async function saveGuide(entry) {
+    try {
+      const result = await call(api.downloadGuide, { id: pack.id, assetId: entry.id, name: entry.name });
+      if (result) toast('Saved. Drop it over the sheet as a layer in your image editor.', 'ok');
+    } catch (err) {
+      toast(err.message, 'err');
+    }
   }
 
   const GRID_CAP = 400;
@@ -2872,7 +3435,10 @@ async function openImageBrowser(pack, preselect = null) {
       grid.replaceChildren(el('div', { class: 'ab-cell' }, el('span', { class: 'ph' }, 'Nothing matches')));
       return;
     }
-    const edited = new Set((state.tp.detail?.images || []).map((i) => i.assetId));
+    const edited = new Set([
+      ...(state.tp.detail?.images || []).map((i) => i.assetId),
+      ...(state.tp.detail?.sprites || []).map((c) => c.assetId),
+    ]);
     grid.replaceChildren(...shown.map((entry) => {
       const preview = state.tp.previews.get(entry.id);
       const cell = el('button', {
@@ -2904,6 +3470,8 @@ async function openImageBrowser(pack, preselect = null) {
     }
     const entry = catalog.entries.find((e) => e.id === id);
     if (!entry) return;
+    // A re-cut sprite is as big as its cut - that is the size art has to be.
+    const [, , fitW, fitH] = entry.kind === 'sprite' && entry.rect ? rectFor(entry) : [0, 0, entry.width, entry.height];
     ensurePreviews([id], paintDetail);
     const original = state.tp.previews.get(id);
     // `null` means we asked and the site had nothing; `undefined` means we
@@ -2928,9 +3496,15 @@ async function openImageBrowser(pack, preselect = null) {
 
       el('div', { class: 'ab-facts' },
         el('b', {}, entry.label), el('br'),
-        `${entry.width}×${entry.height} · ${entry.format || 'unknown format'}`,
+        fitW === entry.width && fitH === entry.height
+          ? `${entry.width}×${entry.height}`
+          : `${fitW}×${fitH} (${entry.width}×${entry.height} in the game)`,
+        ` · ${entry.format || 'unknown format'}`,
         entry.kind === 'sprite' ? ` · one sprite on ${entry.atlas}` : ` · a whole sheet${entry.spriteCount ? ` (${entry.spriteCount} sprites on it)` : ''}`,
         el('br'), el('span', { class: 'muted' }, entry.name)),
+
+      // On its sheet a sprite is here to be re-cut, so that comes first.
+      entry.kind === 'sprite' && session.view === 'sheet' ? cutBlock(entry) : null,
 
       // Order by what someone came here to do: drop art in, then the buttons
       // beside it, and only then the notes. On a short window it is the
@@ -2947,7 +3521,7 @@ async function openImageBrowser(pack, preselect = null) {
           ondrop: (ev) => { ev.preventDefault(); ev.currentTarget.classList.remove('over'); dropImage(ev, entry); },
         },
           el('b', {}, existing ? 'Replace your image' : 'Drop a PNG here'),
-          `or click to choose one · ${entry.width}×${entry.height} fits exactly`),
+          `or click to choose one · ${fitW}×${fitH} fits exactly`),
 
       el('div', { class: 'ab-actions' },
         el('button', {
@@ -2956,6 +3530,17 @@ async function openImageBrowser(pack, preselect = null) {
           title: unavailable ? 'Not published for this game build yet' : 'Save the game’s own version, to paint over',
           onclick: () => saveOriginal(entry),
         }, '⬇ Save the original'),
+        entry.kind === 'texture' && entry.spriteCount && session.view !== 'sheet' ? el('button', {
+          class: 'btn btn-cream small',
+          title: 'See the whole sheet with an outline around every sprite the game cuts out of it',
+          onclick: () => openSheet(entry.id),
+        }, 'Show the outlines') : null,
+        entry.kind === 'texture' && entry.spriteCount ? el('button', {
+          class: 'btn btn-cream small',
+          disabled: unavailable,
+          title: 'A see-through PNG of every outline, to lay over the sheet as a layer in your image editor',
+          onclick: () => saveGuide(entry),
+        }, '⬇ Save the outlines') : null,
         existing ? el('button', {
           class: `btn small ${session.confirmRemove === entry.id ? 'btn-red' : 'btn-cream'}`,
           title: 'Deletes your image for this asset from the pack',
@@ -2972,6 +3557,12 @@ async function openImageBrowser(pack, preselect = null) {
           },
         }, session.confirmRemove === entry.id ? 'Delete my image?' : 'Remove from pack') : null),
 
+      entry.kind === 'sprite' && session.view !== 'sheet' ? cutBlock(entry) : null,
+
+      entry.kind === 'texture' && entry.spriteCount && session.view === 'sheet' ? el('div', { class: 'ab-note quiet' },
+        'Each outline is one sprite: the part of this sheet the game cuts out and draws. '
+        + 'Click one to resize it - for art that needs more room than the game gave it.') : null,
+
       entry.compressed ? el('div', { class: 'ab-note' },
         'This sheet is block-compressed. Replacing anything on it re-encodes the whole sheet, so colours elsewhere on it can shift very slightly.') : null,
 
@@ -2983,13 +3574,13 @@ async function openImageBrowser(pack, preselect = null) {
     try {
       const result = await call(api.setPackImage, { id: pack.id, assetId: entry.id, bytes });
       state.tp.detail = result.pack;
-      state.tp.previews.delete(`pack:${pack.id}:${entry.id}`);
+      forgetArt(entry);
       await loadTpPreviews(pack.id, [entry.id]);
-      paintGrid();
+      paintLeft();
       paintDetail();
       await refresh();
       toast(result.resized
-        ? `${from || 'Image'} was ${result.given.width}×${result.given.height} - scaled to ${entry.width}×${entry.height}.`
+        ? `${from || 'Image'} was ${result.given.width}×${result.given.height} - scaled to ${result.entry.width}×${result.entry.height}.`
         : `${entry.label} replaced.`, 'ok');
     } catch (err) {
       toast(err.message, 'err');
@@ -3001,13 +3592,13 @@ async function openImageBrowser(pack, preselect = null) {
       const result = await call(api.pickPackImage, { id: pack.id, assetId: entry.id });
       if (!result) return;
       state.tp.detail = result.pack;
-      state.tp.previews.delete(`pack:${pack.id}:${entry.id}`);
+      forgetArt(entry);
       await loadTpPreviews(pack.id, [entry.id]);
-      paintGrid();
+      paintLeft();
       paintDetail();
       await refresh();
       toast(result.resized
-        ? `${result.from} was ${result.given.width}×${result.given.height} - scaled to ${entry.width}×${entry.height}.`
+        ? `${result.from} was ${result.given.width}×${result.given.height} - scaled to ${result.entry.width}×${result.entry.height}.`
         : `${entry.label} replaced.`, 'ok');
     } catch (err) {
       toast(err.message, 'err');
@@ -3022,9 +3613,15 @@ async function openImageBrowser(pack, preselect = null) {
     await applyBytes(entry, bytes, file.name);
   }
 
+  /** Drop the cached pictures an image edit has just made stale. */
+  function forgetArt(entry) {
+    state.tp.previews.delete(`pack:${pack.id}:${entry.id}`);
+    state.tp.previews.delete(sheetKey(entry.kind === 'sprite' ? entry.atlasId : entry.id));
+  }
+
   async function saveOriginal(entry) {
     try {
-      const result = await call(api.downloadOriginal, { assetId: entry.id, name: entry.name });
+      const result = await call(api.downloadOriginal, { id: pack.id, assetId: entry.id, name: entry.name });
       if (result) toast('Saved. Paint over it and drop it back in.', 'ok');
     } catch (err) {
       toast(err.message, 'err');
@@ -3034,8 +3631,8 @@ async function openImageBrowser(pack, preselect = null) {
   async function dropOverride(entry) {
     try {
       state.tp.detail = await call(api.removePackImage, { id: pack.id, assetId: entry.id });
-      state.tp.previews.delete(`pack:${pack.id}:${entry.id}`);
-      paintGrid();
+      forgetArt(entry);
+      paintLeft();
       paintDetail();
       await refresh();
       toast(`${entry.label} is back to the game’s own art.`, 'ok');
@@ -3045,9 +3642,14 @@ async function openImageBrowser(pack, preselect = null) {
   }
 
   paintChips();
-  paintGrid();
-  paintDetail();
-  setTimeout(() => search.focus(), 0);
+  const first = startOnSheet && catalog.entries.find((e) => e.id === preselect);
+  if (first && first.kind === 'sprite' && first.atlasId) {
+    openSheet(first.atlasId, first.id);
+  } else {
+    paintGrid();
+    paintDetail();
+    setTimeout(() => search.focus(), 0);
+  }
 }
 
 // ---- texts ----------------------------------------------------------------

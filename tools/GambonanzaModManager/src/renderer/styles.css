@@ -1066,7 +1066,9 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   border: 2px solid var(--ink); border-radius: 7px;
   padding: 7px 10px; font-size: 11.5px; line-height: 1.4; flex: 0 0 auto;
 }
-.ab-actions { display: flex; gap: 8px; flex-wrap: wrap; flex: 0 0 auto; }
+/* Buttons throw a 5px shadow below their box. The row keeps that much room for
+   itself, and wraps with it in mind, so nothing sits against the shadow. */
+.ab-actions { display: flex; gap: 13px 8px; flex-wrap: wrap; flex: 0 0 auto; padding-bottom: 5px; }
 
 .ab-drop {
   border: 3px dashed rgba(90, 34, 48, 0.4); border-radius: 9px;
@@ -1089,6 +1091,82 @@ textarea.game-input { resize: vertical; min-height: 64px; }
   background: var(--wine); color: var(--cream); border-radius: 4px;
   padding: 0 4px; margin: 0 1px; vertical-align: 1px;
 }
+/* ---- the sheet view: one sheet drawn large, every sprite's cut outlined ---- */
+
+.ab.sheet .ab-head { display: none; }
+.sv-bar { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; min-width: 0; margin-bottom: 8px; }
+.sv-name { flex: 1; min-width: 0; font-size: 11.5px; color: rgba(90, 34, 48, 0.7); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sv-name b { font-size: 13.5px; color: var(--wine-dark); }
+.sv-hover { margin-left: 10px; color: var(--wine); }
+.sv-zoom {
+  font-family: var(--font-mono); font-size: 15px; min-width: 50px; text-align: center;
+  background: none; border: 0; padding: 2px 0; color: var(--wine-dark); cursor: pointer; border-radius: 5px;
+}
+.sv-zoom:hover:not(:disabled) { background: rgba(184, 142, 92, 0.25); }
+.sv-zoom:disabled { cursor: default; }
+.sv-scroll {
+  flex: 1; min-height: 0; min-width: 0; overflow: auto; display: flex; padding: 12px;
+  background-color: var(--cream-light);
+  background-image:
+    linear-gradient(45deg, rgba(90, 34, 48, 0.10) 25%, transparent 25%, transparent 75%, rgba(90, 34, 48, 0.10) 75%),
+    linear-gradient(45deg, rgba(90, 34, 48, 0.10) 25%, transparent 25%, transparent 75%, rgba(90, 34, 48, 0.10) 75%);
+  background-size: 14px 14px; background-position: 0 0, 7px 7px;
+  border: 2px solid var(--ink); border-radius: 8px;
+}
+/* margin:auto centres the sheet while it fits and lets it scroll from its real
+   top-left once zoomed past the pane, which align/justify-center would clip. */
+.sv-stage { position: relative; flex: 0 0 auto; margin: auto; touch-action: none; user-select: none; }
+.sv-stage img { display: block; width: 100%; height: 100%; image-rendering: pixelated; pointer-events: none; -webkit-user-drag: none; }
+.sv-stage .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; color: rgba(90, 34, 48, 0.55); }
+.sv-layer { position: absolute; inset: 0; pointer-events: none; }
+/* Outlines are drawn INSIDE the cut, like the saved guide: what is on or within
+   the line is in the sprite. The dark second ring keeps them readable on art of
+   any colour. */
+.sv-cut { position: absolute; box-shadow: inset 0 0 0 1px #ff00ff, 0 0 0 1px rgba(26, 14, 18, 0.45); }
+.sv-cut.mine { box-shadow: inset 0 0 0 1px #00c8ff, 0 0 0 1px rgba(26, 14, 18, 0.45); }
+.sv-cut.was { box-shadow: none; outline: 1px dashed rgba(255, 0, 255, 0.8); outline-offset: -1px; }
+/* The sprite as the game cuts it, faded: the part that never moves on screen. */
+.sv-cut.ghost { box-shadow: none; outline: 1px dashed #ff00ff; outline-offset: -1px; background: rgba(255, 0, 255, 0.14); }
+.sv-cut.ghost img { opacity: 0.55; }
+/* The cut being edited. Its border is the handle - the dots only say so. */
+.sv-cut.edit { box-shadow: inset 0 0 0 2px #ff00ff, 0 0 0 1px rgba(26, 14, 18, 0.7); }
+.sv-cut.edit.mine { box-shadow: inset 0 0 0 2px #00c8ff, 0 0 0 1px rgba(26, 14, 18, 0.7); }
+.sv-cut .dot { position: absolute; width: 7px; height: 7px; background: #fff; border: 1px solid var(--ink); box-sizing: border-box; }
+.sv-cut .dot.nw, .sv-cut .dot.n, .sv-cut .dot.ne { top: -4px; }
+.sv-cut .dot.sw, .sv-cut .dot.s, .sv-cut .dot.se { bottom: -4px; }
+.sv-cut .dot.nw, .sv-cut .dot.w, .sv-cut .dot.sw { left: -4px; }
+.sv-cut .dot.ne, .sv-cut .dot.e, .sv-cut .dot.se { right: -4px; }
+.sv-cut .dot.n, .sv-cut .dot.s { left: calc(50% - 3.5px); }
+.sv-cut .dot.w, .sv-cut .dot.e { top: calc(50% - 3.5px); }
+.sv-cut .size {
+  position: absolute; left: 50%; top: 100%; transform: translate(-50%, 7px);
+  font-family: var(--font-mono); font-size: 13px; line-height: 1.25; white-space: nowrap;
+  background: var(--ink); color: var(--cream); padding: 0 6px; border-radius: 4px;
+}
+.sv-legend { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; margin-top: 7px; font-size: 10.5px; color: rgba(90, 34, 48, 0.65); min-width: 0; }
+.sv-legend .grow { flex: 1; }
+.sv-legend .key { width: 12px; height: 10px; margin-left: 8px; flex: 0 0 auto; box-shadow: inset 0 0 0 2px #ff00ff; }
+.sv-legend .key:first-child { margin-left: 0; }
+.sv-legend .key.mine { box-shadow: inset 0 0 0 2px #00c8ff; }
+.sv-legend .key.ghost { box-shadow: none; outline: 1px dashed #ff00ff; outline-offset: -1px; background: rgba(255, 0, 255, 0.2); }
+
+.ab-cut { display: flex; flex-direction: column; gap: 8px; flex: 0 0 auto; }
+.ab-cut .cap { margin-bottom: 0; }
+.ab-cut-line { font-size: 12px; color: var(--wine-dark); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ab-cut-how { font-size: 11.5px; line-height: 1.5; color: rgba(90, 34, 48, 0.8); }
+.ab-cut-how b { color: var(--wine-dark); }
+.ab-cut-how kbd {
+  font-family: var(--font-mono); font-size: 12px; line-height: 1;
+  background: var(--cream-light); border: 1px solid var(--ink); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px;
+}
+.ab-cut-fields { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.ab-cut-field { display: flex; flex-direction: column; gap: 2px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: rgba(90, 34, 48, 0.6); min-width: 0; }
+.ab-cut-field input.game-input { width: 100%; min-width: 0; padding: 5px 6px; font-size: 14px; }
+.ab-cut-status { font-size: 11.5px; line-height: 1.4; color: rgba(90, 34, 48, 0.7); }
+.ab-cut-status.warn { color: #8a5a12; }
+.ab-cut-status.bad { color: #a3351c; }
+.ab-note.quiet { background: none; border-style: dashed; border-color: rgba(90, 34, 48, 0.3); color: rgba(90, 34, 48, 0.7); }
+
 .ab-lang { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; }
 .ab-lang .tiny { flex: 0 0 auto; color: rgba(90, 34, 48, 0.6); }
 .ab-lang select { flex: 1; min-width: 0; }

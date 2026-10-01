@@ -362,4 +362,33 @@ function clone(image) {
   return { width: image.width, height: image.height, data: Buffer.from(image.data) };
 }
 
-module.exports = { decode, encode, size, isPng, resizeNearest, paste, clone, crc32 };
+/**
+ * Copy a rectangle out of an image. `y` is measured from the top, like paste.
+ * Anything hanging off the edge comes back transparent rather than throwing.
+ */
+function crop(image, x, y, width, height) {
+  const out = { width, height, data: Buffer.alloc(width * height * 4) };
+  for (let row = 0; row < height; row++) {
+    const sy = y + row;
+    if (sy < 0 || sy >= image.height) continue;
+    const from = Math.max(0, x);
+    const to = Math.min(image.width, x + width);
+    if (to <= from) continue;
+    image.data.copy(out.data, (row * width + (from - x)) * 4, (sy * image.width + from) * 4, (sy * image.width + to) * 4);
+  }
+  return out;
+}
+
+/** A one-pixel outline just inside a rectangle. `y` is measured from the top. */
+function outline(image, x, y, width, height, [r, g, b, a]) {
+  const put = (px, py) => {
+    if (px < 0 || py < 0 || px >= image.width || py >= image.height) return;
+    const i = (py * image.width + px) * 4;
+    image.data[i] = r; image.data[i + 1] = g; image.data[i + 2] = b; image.data[i + 3] = a;
+  };
+  for (let col = 0; col < width; col++) { put(x + col, y); put(x + col, y + height - 1); }
+  for (let row = 0; row < height; row++) { put(x, y + row); put(x + width - 1, y + row); }
+  return image;
+}
+
+module.exports = { decode, encode, size, isPng, resizeNearest, paste, clone, crop, outline, crc32 };

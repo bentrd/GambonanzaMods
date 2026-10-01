@@ -36,6 +36,11 @@ const catalog = require('./assetcatalog');
 // the framework never has to read pixels back off the GPU, work out a sprite
 // rectangle, or reason about colour space. It calls LoadImage and is done.
 //
+// A pack can also re-cut a sprite: say the game should take it from a different
+// rectangle of its sheet, so art painted past the original one shows up. That
+// is one record in `sprites` - no pixels - which the framework applies to the
+// loaded sprite's mesh. See setCut().
+//
 // Several packs can be worn at once, first in the list winning. That is the
 // reason .merged/ exists, and it is not a nicety: a pack's atlases/ are WHOLE
 // sheets, so handing the game two packs that both touch SPR_Gambits would let
@@ -121,6 +126,7 @@ function emptyManifest({ id, name, author = '', gameBuild = null }) {
     createdAt: now,
     updatedAt: now,
     images: [],
+    sprites: [],
     texts: [],
     textures: [],
     audio: [],
@@ -131,6 +137,7 @@ async function readManifest(id) {
   const manifest = await manifestIn(packDir(id));
   if (!manifest) throw new Error('that resource pack no longer exists');
   manifest.images ||= [];
+  manifest.sprites ||= [];
   manifest.texts ||= [];
   manifest.textures ||= [];
   manifest.audio ||= [];
@@ -205,6 +212,7 @@ async function summary() {
       createdAt: manifest.createdAt,
       updatedAt: manifest.updatedAt,
       imageCount: manifest.images?.length || 0,
+      cutCount: manifest.sprites?.length || 0,
       textCount: manifest.texts?.length || 0,
       audioCount: manifest.audio?.length || 0,
       bytes: await dirBytes(path.join(root, entry.name)),
@@ -341,6 +349,7 @@ async function syncToGame({ ids = [], modsDir }) {
     version: manifest.version,
     gameBuild: manifest.gameBuild,
     textures: manifest.textures,
+    sprites: (manifest.sprites || []).map((s) => ({ name: s.name, texture: s.texture, rect: s.rect })),
     audio: manifest.audio,
     texts: manifest.texts.map((t) => ({ section: t.section, key: t.key, values: t.values })),
   };
@@ -360,7 +369,7 @@ async function syncToGame({ ids = [], modsDir }) {
     await writeJson(path.join(legacy, LEGACY_MANIFEST), legacyRuntime);
   }
 
-  return { applied: stack, textures: manifest.textures.length, texts: manifest.texts.length, audio: manifest.audio.length };
+  return { applied: stack, textures: manifest.textures.length, sprites: runtime.sprites.length, texts: manifest.texts.length, audio: manifest.audio.length };
 }
 
 /** Re-copy whatever is worn. Called after every edit and on startup. */
@@ -395,10 +404,15 @@ function targetOf(entry) {
 async function setImage({ id, assetId, bytes }) {
   const manifest = await readManifest(id);
   const entry = await catalog.findEntry(catalog.safeId(assetId));
+  // A re-cut sprite is as big as its cut: the art fills the rectangle the game
+  // will actually take, not the one the catalogue remembers.
+  const rect = entry.kind === 'sprite' ? rectOf(manifest, entry) : null;
+  const width = rect ? rect[2] : entry.width;
+  const height = rect ? rect[3] : entry.height;
   let image = png.decode(Buffer.from(bytes));
-  const resized = image.width !== entry.width || image.height !== entry.height;
+  const resized = image.width !== width || image.height !== height;
   const given = { width: image.width, height: image.height };
-  if (resized) image = png.resizeNearest(image, entry.width, entry.height);
+  if (resized) image = png.resizeNearest(image, width, height);
 
   const file = path.join('images', `${entry.id}.png`);
   const record = {
@@ -407,13 +421,16 @@ async function setImage({ id, assetId, bytes }) {
     name: entry.name,
     label: entry.label,
     category: entry.category,
-    width: entry.width,
-    height: entry.height,
+    width,
+    height,
     format: entry.format || null,
     compressed: !!entry.compressed,
     atlasId: entry.kind === 'sprite' ? entry.atlasId : entry.id,
     atlasName: entry.kind === 'sprite' ? entry.atlas : entry.name,
-    rect: entry.kind === 'sprite' ? entry.rect : null,
+    // Where this art is pasted, for good. Moving the cut afterwards does not
+    // drag it along: the pixels stay where they were painted.
+    rect,
+    base: entry.kind === 'sprite' ? entry.rect : null,
     file,
     addedAt: new Date().toISOString(),
   };
@@ -445,6 +462,118 @@ async function removeImage({ id, assetId }) {
   await saveManifest(manifest);
   await fsp.rm(path.join(packDir(id), record.file), { force: true });
   return detail(id);
+}
+
+// ---------------------------------------------------------------------------
+// Re-cut sprites
+// ---------------------------------------------------------------------------
+
+/**
+ * `[x, y, width, height]` in whole sheet pixels, measured from the BOTTOM left
+ * like every rect in the catalogue - or a refusal that says what is wrong.
+ */
+function cleanRect(rect, entry) {
+  if (!Array.isArray(rect) || rect.length !== 4 || !rect.every(Number.isInteger)) {
+    throw new Error('a cut is four whole numbers: left, bottom, width, height');
+  }
+  const [x, y, w, h] = rect;
+  if (w < 1 || h < 1) throw new Error('a cut needs to be at least one pixel each way');
+  if (x < 0 || y < 0 || x + w > entry.atlasWidth || y + h > entry.atlasHeight) {
+    throw new Error(`that cut runs off the edge of ${entry.atlas} (${entry.atlasWidth}x${entry.atlasHeight})`);
+  }
+  return [x, y, w, h];
+}
+
+/** The rectangle the game takes a sprite from, in this pack. */
+function rectOf(manifest, entry) {
+  return manifest.sprites.find((s) => s.assetId === entry.id)?.rect || entry.rect;
+}
+
+/**
+ * Re-cut a sprite: tell the game to take it from a different rectangle of its
+ * sheet. This is how a 20x4 mouth becomes a 40x19 one - paint the bigger mouth
+ * on the sheet, then widen the cut to take it all in.
+ *
+ * Nothing is composited. The sheet's pixels are whatever the pack's images
+ * make them; the cut only says which of them belong to this sprite. In the
+ * game the sprite's original pixels stay exactly where they were on screen and
+ * the cut grows (or shrinks) around them.
+ */
+async function setCut({ id, assetId, rect }) {
+  const manifest = await readManifest(id);
+  const entry = await catalog.findEntry(catalog.safeId(assetId));
+  if (entry.kind !== 'sprite') throw new Error('only a sprite has a cut - a whole sheet is drawn as it is');
+  const record = {
+    assetId: entry.id,
+    name: entry.name,
+    label: entry.label,
+    category: entry.category,
+    atlasId: entry.atlasId,
+    texture: entry.atlas,
+    rect: cleanRect(rect, entry),
+    original: entry.rect,
+  };
+  manifest.sprites = manifest.sprites.filter((s) => s.assetId !== entry.id).concat(record);
+  await saveManifest(manifest);
+  return { entry: record };
+}
+
+async function removeCut({ id, assetId }) {
+  const manifest = await readManifest(id);
+  if (!manifest.sprites.some((s) => s.assetId === assetId)) return detail(id);
+  manifest.sprites = manifest.sprites.filter((s) => s.assetId !== assetId);
+  await saveManifest(manifest);
+  return detail(id);
+}
+
+/**
+ * The game's own art for one asset, to paint over. For a re-cut sprite that is
+ * the cut's worth of the vanilla sheet rather than the catalogue's PNG, so the
+ * canvas is the size the pack will ask for and the original sits in it exactly
+ * where it will stay on screen.
+ */
+async function originalBytes({ id = null, assetId }) {
+  const entry = await catalog.findEntry(catalog.safeId(assetId));
+  const cut = id && entry.kind === 'sprite'
+    ? (await readManifest(id)).sprites.find((s) => s.assetId === entry.id)
+    : null;
+  if (!cut) return catalog.imageBytes(entry.id);
+  const sheet = png.decode(await catalog.imageBytes(entry.atlasId));
+  const [x, y, w, h] = cut.rect;
+  return png.encode(png.crop(sheet, x, sheet.height - y - h, w, h));
+}
+
+/** A sheet as this pack leaves it: its composited copy, or the game's own. */
+async function sheetBytes({ id, assetId }) {
+  const manifest = await readManifest(id);
+  const entry = await catalog.findEntry(catalog.safeId(assetId));
+  if (entry.kind !== 'texture') throw new Error(`${entry.name} is a sprite, not a sheet`);
+  const built = manifest.textures.find((t) => t.targetId === entry.id);
+  return built ? fsp.readFile(path.join(packDir(id), built.file)) : catalog.imageBytes(entry.id);
+}
+
+const GUIDE_GAME = [255, 0, 255, 255];
+const GUIDE_PACK = [0, 200, 255, 255];
+
+/**
+ * A see-through image the size of a sheet with every sprite's cut outlined on
+ * it - a layer to drop over the sheet in an image editor. The outline is the
+ * outermost ring of pixels INSIDE each cut: paint on or within it and the game
+ * shows it, paint past it and it does not. Cuts this pack changed are drawn in
+ * a second colour.
+ */
+async function guideBytes({ id = null, assetId }) {
+  const sheet = await catalog.findEntry(catalog.safeId(assetId));
+  if (sheet.kind !== 'texture') throw new Error(`${sheet.name} is a sprite, not a sheet`);
+  const cuts = id ? (await readManifest(id)).sprites : [];
+  const { data } = await catalog.getCatalog({});
+  const guide = { width: sheet.width, height: sheet.height, data: Buffer.alloc(sheet.width * sheet.height * 4) };
+  const draw = ([x, y, w, h], colour) => png.outline(guide, x, sheet.height - y - h, w, h, colour);
+  const sprites = data.entries.filter((e) => e.kind === 'sprite' && e.atlasId === sheet.id);
+  // The pack's own cuts go on last so they are never hidden under a neighbour.
+  for (const sprite of sprites) if (!cuts.some((c) => c.assetId === sprite.id)) draw(sprite.rect, GUIDE_GAME);
+  for (const cut of cuts) if (cut.atlasId === sheet.id) draw(cut.rect, GUIDE_PACK);
+  return png.encode(guide);
 }
 
 /**
@@ -528,6 +657,7 @@ function mergedDir() {
 async function resolveStack(ids) {
   const audio = new Map();
   const images = new Map();   // assetId -> { record, dir }
+  const cuts = new Map();     // assetId -> record
   const texts = new Map();    // section/key/lang -> { section, key, value }
   const packs = [];
 
@@ -536,6 +666,14 @@ async function resolveStack(ids) {
     packs.push(manifest);
     for (const record of manifest.audio) {
       if (!audio.has(record.assetId)) audio.set(record.assetId, { record, dir: packDir(id) });
+    }
+    // A cut belongs with the art it was drawn for. Where a higher pack already
+    // repainted the sprite, its cut (or its lack of one) is the one that fits
+    // those pixels - a lower pack's would frame somebody else's drawing.
+    for (const record of manifest.sprites) {
+      const ownArt = manifest.images.some((i) => i.assetId === record.assetId);
+      const repainted = images.has(record.assetId) || (images.has(record.atlasId) && !ownArt);
+      if (!cuts.has(record.assetId) && !repainted) cuts.set(record.assetId, record);
     }
     for (const record of manifest.images) {
       if (!images.has(record.assetId)) images.set(record.assetId, { record, dir: packDir(id) });
@@ -559,7 +697,7 @@ async function resolveStack(ids) {
     byKey.get(id).values.push(value);
   }
 
-  return { images, audio, texts: [...byKey.values()], packs };
+  return { images, cuts, audio, texts: [...byKey.values()], packs };
 }
 
 /**
@@ -584,7 +722,7 @@ async function composeMergedTarget(images, targetId, outDir) {
   }
 
   const sheet = png.clone(base);
-  for (const { record, dir } of sprites) {
+  for (const { record, dir } of [...sprites].reverse()) {
     const art = png.decode(await fsp.readFile(path.join(dir, record.file)));
     const [x, y, w, h] = record.rect;
     png.paste(sheet, art, x, sheet.height - y - h);
@@ -615,7 +753,7 @@ async function composeMergedTarget(images, targetId, outDir) {
  * that on every startup and every unrelated edit would be felt.
  */
 async function buildMerged(ids) {
-  const { images, audio, texts, packs } = await resolveStack(ids);
+  const { images, cuts, audio, texts, packs } = await resolveStack(ids);
   const signature = packs.map((m) => `${m.id}@${m.updatedAt || ''}`).join('|');
   const dir = mergedDir();
   const stampFile = path.join(dir, 'build.json');
@@ -632,6 +770,7 @@ async function buildMerged(ids) {
     // report; the stack claims the newest one anybody built against.
     gameBuild: packs.map((m) => m.gameBuild).filter(Boolean).sort().pop() || null,
     texts,
+    sprites: [...cuts.values()],
     textures: [],
     audio: [],
   };
@@ -738,7 +877,7 @@ function markupWarnings(text) {
  */
 async function exportPack({ id, destPath }) {
   const manifest = await readManifest(id);
-  if (!manifest.images.length && !manifest.texts.length && !manifest.audio.length) {
+  if (!manifest.images.length && !manifest.sprites.length && !manifest.texts.length && !manifest.audio.length) {
     throw new Error('this pack is empty - add something to it first');
   }
   const bytes = await zip.create(packDir(id), destPath, { root: manifest.id });
@@ -777,14 +916,48 @@ async function importPack({ zipPath }) {
     await fsp.mkdir(path.join(packDir(id), 'atlases'), { recursive: true });
 
     let skipped = 0;
+    for (const raw of Array.isArray(incoming.sprites) ? incoming.sprites : []) {
+      try {
+        const entry = await catalog.findEntry(catalog.safeId(raw?.assetId));
+        if (entry.kind !== 'sprite') throw new Error(`${entry.name} is not a sprite`);
+        manifest.sprites = manifest.sprites.filter((s) => s.assetId !== entry.id).concat({
+          assetId: entry.id,
+          name: entry.name,
+          label: entry.label,
+          category: entry.category,
+          atlasId: entry.atlasId,
+          texture: entry.atlas,
+          rect: cleanRect(raw.rect, entry),
+          original: entry.rect,
+        });
+      } catch (err) {
+        skipped++;
+        log.warn('texturepacks', `import skipped a cut: ${err.message}`);
+      }
+    }
+
     for (const raw of Array.isArray(incoming.images) ? incoming.images : []) {
       try {
         const entry = await catalog.findEntry(catalog.safeId(raw?.assetId));
         const source = path.join(root, 'images', `${entry.id}.png`);
         const image = png.decode(await fsp.readFile(source));
-        const fitted = image.width === entry.width && image.height === entry.height
+        // Art for a re-cut sprite was fitted to the cut it was painted for, which
+        // need not be the cut the pack ends up with. Its own rectangle is taken
+        // at its word only when it stays on the sheet and is exactly the size of
+        // the picture; anything else goes back in at the catalogue's size.
+        let rect = entry.kind === 'sprite' ? entry.rect : null;
+        const sameBase = Array.isArray(raw.base) && raw.base.length === 4 && raw.base.every((v, i) => v === entry.rect?.[i]);
+        if (rect && sameBase) {
+          try {
+            const claimed = cleanRect(raw.rect, entry);
+            if (claimed[2] === image.width && claimed[3] === image.height) rect = claimed;
+          } catch { /* not a usable rectangle - the catalogue's it is */ }
+        }
+        const width = rect ? rect[2] : entry.width;
+        const height = rect ? rect[3] : entry.height;
+        const fitted = image.width === width && image.height === height
           ? image
-          : png.resizeNearest(image, entry.width, entry.height);
+          : png.resizeNearest(image, width, height);
         const file = path.join('images', `${entry.id}.png`);
         await fsp.writeFile(path.join(packDir(id), file), png.encode(fitted));
         manifest.images.push({
@@ -793,13 +966,14 @@ async function importPack({ zipPath }) {
           name: entry.name,
           label: entry.label,
           category: entry.category,
-          width: entry.width,
-          height: entry.height,
+          width,
+          height,
           format: entry.format || null,
           compressed: !!entry.compressed,
           atlasId: entry.kind === 'sprite' ? entry.atlasId : entry.id,
           atlasName: entry.kind === 'sprite' ? entry.atlas : entry.name,
-          rect: entry.kind === 'sprite' ? entry.rect : null,
+          rect,
+          base: entry.kind === 'sprite' ? entry.rect : null,
           file,
           addedAt: new Date().toISOString(),
         });
@@ -832,14 +1006,14 @@ async function importPack({ zipPath }) {
       manifest.texts.push({ section, key, values, original: String(raw.original || '').slice(0, 2000) });
     }
 
-    if (!manifest.images.length && !manifest.texts.length && !manifest.audio.length) {
+    if (!manifest.images.length && !manifest.sprites.length && !manifest.texts.length && !manifest.audio.length) {
       throw new Error('nothing in that pack could be matched to this version of the game');
     }
 
     await recomposeAll(manifest);
     await saveManifest(manifest);
     log.info('texturepacks', `imported "${manifest.name}" (${id})`, { skipped });
-    return { id, name: manifest.name, images: manifest.images.length, texts: manifest.texts.length, audio: manifest.audio.length, skipped };
+    return { id, name: manifest.name, images: manifest.images.length, cuts: manifest.sprites.length, texts: manifest.texts.length, audio: manifest.audio.length, skipped };
   } finally {
     await fsp.rm(scratch, { recursive: true, force: true }).catch(() => {});
   }
@@ -954,6 +1128,11 @@ module.exports = {
   syncToGame,
   setImage,
   removeImage,
+  setCut,
+  removeCut,
+  originalBytes,
+  sheetBytes,
+  guideBytes,
   setText,
   removeText,
   markupWarnings,

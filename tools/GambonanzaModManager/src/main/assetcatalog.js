@@ -134,9 +134,9 @@ async function getTexts({ force = false } = {}) {
 }
 
 /**
- * What the renderer browses. Entries are trimmed to the fields the UI needs;
- * rects and atlas ids stay in the main process, which is the only side that
- * composites anything.
+ * What the renderer browses. Entries are trimmed to the fields the UI needs.
+ * A sprite's rect and atlas id go along so the sheet view can draw where each
+ * one is cut; compositing still only ever happens in the main process.
  */
 async function browseCatalog({ force = false } = {}) {
   const { data, source, stale } = await getCatalog({ force });
@@ -157,6 +157,8 @@ async function browseCatalog({ force = false } = {}) {
       format: e.format,
       compressed: !!e.compressed,
       atlas: e.atlas || null,
+      atlasId: e.atlasId || null,
+      rect: e.kind === 'sprite' ? e.rect : null,
       spriteCount: e.spriteCount || 0,
     })),
   };

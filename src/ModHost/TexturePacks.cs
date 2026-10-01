@@ -199,11 +199,13 @@ namespace Gambonanza.ModHost
                 }
 
                 _manifest = ReadManifest(File.ReadAllText(manifestPath));
-                ResourcePackAudio.Load(TinyJson.AsObject(TinyJson.Parse(File.ReadAllText(manifestPath))), ResolveInPack);
+                var root = TinyJson.AsObject(TinyJson.Parse(File.ReadAllText(manifestPath)));
+                ResourcePackAudio.Load(root, ResolveInPack);
+                ResourcePackSprites.Load(root, Problem);
 
                 foreach (var t in _manifest.Textures) _wantedTextureNames.Add(t.Name);
 
-                ModHost.LogLine($"[TexturePacks] \"{_manifest.Name}\" - {_manifest.Textures.Count} texture(s), {_manifest.Texts.Count} text override(s).");
+                ModHost.LogLine($"[TexturePacks] \"{_manifest.Name}\" - {_manifest.Textures.Count} texture(s), {ResourcePackSprites.Count} re-cut sprite(s), {_manifest.Texts.Count} text override(s).");
                 _console?.PrintInfo($"Resource pack \"{_manifest.Name}\" loaded - {_manifest.Textures.Count} image(s), {_manifest.Texts.Count} text(s). Type 'resourcepack' for details.");
 
                 TexturePackRunner.Spawn();
@@ -273,13 +275,16 @@ namespace Gambonanza.ModHost
                 _fruitlessPasses = 0;
                 _problems.Clear();
                 _lastTraductionRoot = null;
+                ResourcePackSprites.Reset();
                 int images = ApplyTextures();
+                int cuts = ResourcePackSprites.Apply(Problem);
                 int texts = ApplyTexts();
-                console.PrintInfo($"Re-applied: {images} image(s), {texts} text override(s). Audio changes require restarting the game.");
+                console.PrintInfo($"Re-applied: {images} image(s), {cuts} re-cut sprite(s), {texts} text override(s). Changed cuts and audio require restarting the game.");
                 foreach (var p in _problems) console.PrintWarn(p);
             };
             console.RegisterCommand("resourcepack reapply", "re-apply resource images and texts", reapply);
             console.RegisterCommand("texturepack reapply", "re-apply resource images and texts (legacy alias)", reapply);
+            console.RegisterCommand("resourcepack cut", "try a sprite re-cut live: resourcepack cut <sprite> <sheet> <x> <y> <width> <height>", args => Cut(console, args));
         }
 
         private static void PrintStatus(ModConsole console)
@@ -294,6 +299,8 @@ namespace Gambonanza.ModHost
                 + (string.IsNullOrEmpty(_manifest.Version) ? "" : $" v{_manifest.Version}"));
             console.PrintInfo($"  audio : {ResourcePackAudio.AppliedCount} replacement(s) loaded on demand");
             console.PrintInfo($"  images: {_appliedTextureNames.Count}/{_manifest.Textures.Count} applied");
+            if (ResourcePackSprites.Count > 0)
+                console.PrintInfo($"  cuts  : {ResourcePackSprites.AppliedCount}/{ResourcePackSprites.Count} sprite(s) re-cut (the rest are not loaded yet)");
             console.PrintInfo($"  texts : {_textsWritten}/{_manifest.Texts.Count} written (current language {CurrentLanguageCode() ?? "?"})");
             if (!string.IsNullOrEmpty(_manifest.GameBuild)) console.PrintInfo($"  built against Steam build {_manifest.GameBuild}");
             foreach (var p in _problems) console.PrintWarn("  " + p);
@@ -307,8 +314,40 @@ namespace Gambonanza.ModHost
                 var mark = _appliedTextureNames.Contains(t.Name) ? "ok " : ".. ";
                 console.PrintInfo($"  {mark} {t.Name}  {t.Width}x{t.Height} {t.Format}");
             }
+            foreach (var f in ResourcePackSprites.All)
+                console.PrintInfo($"  {(f.Applied ? "ok " : ".. ")} {f.Name}  cut {f.X},{f.Y} {f.W}x{f.H} on {f.Texture}");
             foreach (var t in _manifest.Texts)
                 console.PrintInfo($"  txt  {t.Section}/{t.Key}");
+        }
+
+        /// <summary>
+        /// Re-cut one sprite from the console, for trying rectangles out with the
+        /// game running. Nothing is saved - the pack is what makes it stick.
+        /// </summary>
+        private static void Cut(ModConsole console, string[] args)
+        {
+            int x = 0, y = 0, w = 0, h = 0;
+            if (args == null || args.Length != 6
+                || !int.TryParse(args[2], out x) || !int.TryParse(args[3], out y)
+                || !int.TryParse(args[4], out w) || !int.TryParse(args[5], out h))
+            {
+                console.PrintWarn("Usage: resourcepack cut <sprite> <sheet> <x> <y> <width> <height> - sheet pixels, measured from the bottom left.");
+                return;
+            }
+            var frame = new ResourcePackSprites.Frame { Name = args[0], Texture = args[1], X = x, Y = y, W = w, H = h };
+            var previous = ResourcePackSprites.All.FirstOrDefault(f => f.Key == frame.Key);
+            ResourcePackSprites.Add(frame);
+            // Straight to the console rather than through Problem(): that one
+            // records each message once, and a second try deserves a second answer.
+            bool refused = false;
+            int cuts = ResourcePackSprites.Apply(message => { refused = true; console.PrintWarn(message); }, frame);
+            if (!frame.Applied)
+            {
+                ResourcePackSprites.Remove(frame);
+                if (previous != null) ResourcePackSprites.Add(previous);
+            }
+            if (frame.Applied) console.PrintInfo($"Re-cut {args[0]} on {args[1]} to {x},{y} {w}x{h}. Not saved - set it in the mod manager to keep it.");
+            else if (!refused) console.PrintWarn($"No loaded sprite is called {args[0]} on a sheet called {args[1]} (names are case-sensitive, and the sprite has to be on screen or loaded).");
         }
 
         /// <summary>Stop looking for this one - it either landed or never will.</summary>
@@ -323,20 +362,31 @@ namespace Gambonanza.ModHost
             try { ApplyTexts(); }
             catch (Exception ex) { Problem("text overrides failed: " + ex.Message); }
 
-            // Nothing left to look for: every sheet either landed or was given up on.
-            if (_settledTextureNames.Count >= _wantedTextureNames.Count) return;
+            // Nothing left to look for: every sheet either landed or was given up
+            // on. Re-cut sprites never settle that way - the same sprite can come
+            // back as a new object with a later scene - so they keep the sweep alive.
+            bool sheetsLeft = _settledTextureNames.Count < _wantedTextureNames.Count;
+            bool cuts = ResourcePackSprites.Count > 0;
+            if (!sheetsLeft && !cuts) return;
             // Otherwise sweep while it is still paying off. A pack naming a texture
             // the game never loads would otherwise scan every loaded Texture2D every
             // five seconds for the rest of the session; a scene load (which is when
             // new sheets actually arrive) starts it up again.
             if (!rescanTextures && _fruitlessPasses >= FruitlessLimit) return;
 
-            try
+            int hits = 0;
+            if (sheetsLeft)
             {
-                if (ApplyTextures() > 0) _fruitlessPasses = 0;
-                else _fruitlessPasses++;
+                try { hits += ApplyTextures(); }
+                catch (Exception ex) { Problem("image overrides failed: " + ex.Message); }
             }
-            catch (Exception ex) { Problem("image overrides failed: " + ex.Message); }
+            if (cuts)
+            {
+                try { hits += ResourcePackSprites.Apply(Problem); }
+                catch (Exception ex) { Problem("sprite re-cuts failed: " + ex.Message); }
+            }
+            if (hits > 0) _fruitlessPasses = 0;
+            else _fruitlessPasses++;
         }
 
         /// <summary>Sweeps without a single hit before we stop until something changes.</summary>

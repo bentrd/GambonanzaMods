@@ -98,6 +98,11 @@ and what stops two edits to the same sheet from stacking.
 
   "images": [ { "assetId": "spr-gambits-warlock", "kind": "sprite", "...": "editor metadata" } ],
 
+  "sprites": [
+    { "assetId": "computerboss-mouth", "name": "ComputerBoss_Mouth",
+      "texture": "SPR_Boss_Computer", "rect": [5, 88, 40, 19], "original": [14, 88, 20, 4] }
+  ],
+
   "textures": [
     { "targetId": "spr-gambits", "name": "SPR_Gambits",
       "width": 512, "height": 512, "file": "atlases/spr-gambits.png" }
@@ -110,9 +115,11 @@ and what stops two edits to the same sheet from stacking.
 }
 ```
 
-The framework reads only `textures` and `texts`. `name` in a `textures` entry
-is the Unity object name of the texture to replace - that, and the PNG, is the
-whole contract.
+The framework reads only `textures`, `sprites` and `texts`. `name` in a
+`textures` entry is the Unity object name of the texture to replace - that, and
+the PNG, is the whole contract. A `sprites` entry is a re-cut: `name` and
+`texture` identify the sprite, `rect` is where the game should take it from
+now (see [Re-cutting a sprite](#re-cutting-a-sprite)).
 
 `lang` is a game language code (`en`, `fr`, `ge`, `sp`, `pt_br`, `ru`, `pl`,
 `tr`, `jp`, `ko`, `zh`) or `*` for every language. A specific language wins
@@ -130,6 +137,10 @@ the first 90, then every five, plus immediately on scene load. Sampler state
 `LoadImage` resets it and a pixel-art game that loses `filterMode.Point` looks
 like a bug report. Dimensions are checked before and after: every sprite on the
 sheet addresses it in normalised UVs, so a resized sheet shifts all of them.
+
+**Re-cuts.** Sweep every loaded `Sprite` on the same schedule, match on name
+*and* sheet name, and rewrite its mesh in place - see
+[Re-cutting a sprite](#re-cutting-a-sprite).
 
 **Text.** `LocalizationManager.GetTraduction()` returns a live SimpleJSON tree
 that the game re-indexes on every draw, so writing into it changes what gets
@@ -151,9 +162,82 @@ whose `Value` setter does nothing at all.
 
 - `resourcepack` - what is on, how much of it applied, and any problems
 - `resourcepack list` - every override and whether it landed
-- `resourcepack reapply` - reapply images and text (audio needs a restart)
+- `resourcepack reapply` - reapply loaded images, re-cuts and text (changed cuts and audio need a restart)
+- `resourcepack cut <sprite> <sheet> <x> <y> <width> <height>` - try a re-cut
+  with the game running. Sheet pixels from the bottom left; nothing is saved.
 
 Everything also lands in `Player.log` behind `[TexturePacks]`.
+
+## Re-cutting a sprite
+
+Replacing a sheet changes pixels and nothing else. Each sprite is still the
+rectangle it always was, so a 40x19 mouth painted over the Computer boss's
+20x4 one shows up in the game as a 20x4 slice of itself. A re-cut moves the
+rectangle: "this sprite is *that* part of the sheet now".
+
+**In the manager.** Open a sheet and press **Show the outlines**, or open a
+sprite and press **Resize on the sheet**. The left pane becomes the sheet,
+drawn large, with an outline around every sprite the game cuts out of it:
+
+- **Outlines: on/off** shows or hides them. Outlines show catalogued sprites; other artwork may still be used by
+  UI or effects.
+- Click a sprite to pick it. Drag its outline's **edges or corners** to resize
+  it, its **middle** to move it, or type Left / Top / Width / Height - the
+  numbers an image editor shows, counted from the top left. **Shift** on a
+  corner keeps the proportions, and keeps a move straight; **Alt** resizes
+  from the centre. **Save this cut** writes it to the pack.
+- The faded copy underneath is the sprite as the game cuts it. It is always
+  there, because it is the part that matters for placement (below).
+- **Save the outlines** writes a see-through PNG of every outline, sheet-sized,
+  to drop over the sheet as a layer in an image editor. The line is the
+  outermost ring of pixels *inside* each cut.
+
+A sprite with a cut is as big as its cut everywhere else in the manager: its
+**Save the original** is that much of the vanilla sheet, and a PNG dropped on
+it is fitted to the cut and pasted there. Art already in the pack stays where
+it was painted when the cut is changed afterwards - each image remembers its
+own rectangle.
+
+**Where it lands on screen.** The sprite's original pixels stay exactly where
+they were, and the cut grows (or shrinks) around them. Unity positions a sprite
+by its pivot; the framework works out where that pivot sits on the sheet and
+keeps it there. So to make the mouth taller *upwards*, extend the cut upwards.
+
+**In the framework** (`src/ModHost/ResourcePackSprites.cs`). A `Sprite`'s
+rectangle is read-only, `Sprite.OverrideGeometry` refuses vertices outside it,
+and a new sprite from `Sprite.Create` would lose to the game: prefabs, fields
+and animation clips still hold the original and assign it straight back. So
+the original is edited in place - `SpriteDataAccessExtensions` writes its
+vertex buffer directly, with no rectangle check, as one quad over the new
+rectangle:
+
+```
+anchor   = textureRect.position - textureRectOffset + pivot      (sheet pixels)
+position = (corner - anchor) / pixelsPerUnit
+uv       = corner / sheet size
+```
+
+Every `SpriteRenderer` sharing the sprite draws the new quad without being
+touched. Before writing anything the existing mesh is checked against that
+anchor, vertex by vertex; a sprite that does not agree (a rotated atlas
+packing, say) is left alone and reported. All 927 sprites the game loads agree.
+
+**What it does not reach.**
+
+- **UI images.** A uGUI `Image` builds its own quad from the sprite's rectangle
+  and its `RectTransform`, and never looks at the mesh. Menu, HUD and shop
+  pictures keep their size; the same goes for a `SpriteRenderer` in sliced or
+  tiled mode. Bosses, pieces, the board and effects are plain sprite renderers.
+- **Culling.** Unity does not recompute a sprite's bounds after its mesh is
+  rewritten, so a much bigger cut is still culled by its original rectangle.
+  It only shows at the very edge of the screen.
+- **Older frameworks** ignore `sprites` and draw the original cut. The manager
+  says so while the installed framework is older than the one that added it.
+
+Several worn packs resolve one cut per sprite, highest pack first - except
+that a higher pack which repaints the sprite itself takes the cut with it: its
+art was drawn for its own rectangle, and a lower pack's cut would frame it
+wrong.
 
 ## Things worth knowing
 
@@ -165,11 +249,18 @@ sheets - most of the pixel art - are exact.
 **Silhouettes.** Sprites carry a tight mesh baked from their original alpha.
 For sprites the game draws with a `SpriteRenderer`, pixels outside the original
 silhouette are not rasterised, so a replacement can recolour freely but cannot
-change a shape's outline. UI images are drawn as quads and are unaffected.
+change a shape's outline - unless the sprite is re-cut. A re-cut replaces the
+mesh with a plain rectangle, so saving a cut (even one a pixel bigger) is how
+to draw outside the old silhouette. UI images are drawn as quads and are
+unaffected.
+
+**Tint.** Some sprite renderers multiply the art by a colour - the Computer
+boss's face is drawn white on the sheet and tinted in the scene. Paint those
+in white and greys; a coloured replacement comes out multiplied.
 
 **Trimmed sprites.** The packer strips transparent margins, so the rectangle
-you are painting into is the trimmed one. You cannot paint into margin the
-packer removed.
+you are painting into is the trimmed one. To paint into margin the packer
+removed, re-cut the sprite to take it back in.
 
 **Fonts.** The SDF font atlases are excluded from the catalogue. Painting on
 one garbles every letter in the game.

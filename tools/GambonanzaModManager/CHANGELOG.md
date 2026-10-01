@@ -4,6 +4,31 @@ Release notes for the desktop app (tags `manager-v*`). The app shows the
 relevant section in its update panel, and the release workflow refuses a tag
 without a matching `package.json` version - keep both honest.
 
+## 1.9.0
+
+- **See where the game cuts each sprite out of a sheet.** Open a sheet in a
+  resource pack and press **Show the outlines**: the sheet is drawn large with
+  an outline around every sprite on it. Switch the outlines on and off, zoom
+  with the buttons or a pinch, and hover a sprite for its name. Outlines show catalogued sprites; other artwork may still be used by
+  UI or effects.
+- **Resize a sprite.** Click a sprite on the sheet and drag its outline: the
+  edges and corners resize it, the middle moves it. Shift keeps the
+  proportions (and a move straight), Alt resizes from the centre, and the
+  Left / Top / Width / Height boxes take the numbers your image editor shows.
+  The faded copy is the sprite as the game cuts it - that part stays where it
+  is on screen, and the rest of the cut grows around it. For art that needs
+  more room than the game gave it: a bigger mouth, a taller hat.
+- **Save the outlines** gives you a see-through PNG of every outline to lay
+  over the sheet in your image editor, so you can see the limits while you
+  paint.
+- A resized sprite is its new size everywhere: **Save the original** gives you
+  that much of the sheet, and a PNG you drop on it is fitted to the new cut.
+  Resized sprites show as their own tile in the pack and travel with it when
+  you share, import or stack packs.
+- Resizing needs **framework 1.7.0 or later** - the editor tells you when to
+  update through Set up. It reaches everything on the board and in scenes;
+  menu and HUD pictures keep their size.
+
 ## 1.8.0
 
 - **Texture packs are now Resource packs**, and they can change sounds and

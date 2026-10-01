@@ -5,6 +5,25 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## 1.7.0
+
+- **Resource packs can resize a sprite.** Until now a replacement had to fit
+  the exact rectangle the game cuts a sprite out of its sheet with - paint a
+  bigger mouth on a boss and only a slice of it showed. A pack can now move
+  and resize that cut, so art that needs more room gets it. The sprite's
+  original pixels stay where they were on screen and the cut grows around
+  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the
+  sheet**), wear the pack and restart the game.
+- This reaches everything drawn on the board and in scenes - bosses, pieces,
+  effects. Menu and HUD pictures keep their size.
+- A resized sprite is also free of its old silhouette: the game no longer
+  clips it to the outline of the original art.
+- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>
+  <height>` for trying a cut with the game running, and `resourcepack`,
+  `resourcepack list` and `resourcepack reapply` now cover cuts too.
+- **Update the framework through Set up** to get it. Packs that use cuts still
+  load on older frameworks - their sprites are just drawn at the original size.
+
 ## 1.6.0
 
 - **Resource packs can replace sounds and music.** Choose a clip in the Mod
