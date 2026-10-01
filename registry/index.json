@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-01T14:34:23.307Z",
+  "generatedAt": "2026-10-01T14:36:21.735Z",
   "count": 57,
   "releases": {
     "framework": {
@@ -98,47 +98,47 @@
       ]
     },
     "manager": {
-      "tag": "manager-v1.8.0",
-      "version": "1.8.0",
-      "publishedAt": "2026-09-30T09:01:26Z",
-      "notes": "\n- **Texture packs are now Resource packs**, and they can change sounds and\n  music as well as images and text. Browse or search the game's 213 clips,\n  choose one, then drop a WAV or click the dashed drop zone to pick a file.\n  Packs can contain audio alone, and sharing, importing, modpack switching\n  and stack precedence all include audio. Existing packs stay readable.\n- **Compare the original with your replacement** using players styled to\n  match the app. Play, pause, seek or mute either preview; starting one pauses\n  the other. Original previews are cached so they remain playable offline\n  after the first download.\n- Audio requires **framework 1.6.0 or later**. The editor tells you when to\n  update through Set up; restart the game after changing its sounds. Images\n  and text keep working with older frameworks while you update.\n\n\n- **Mods that add strains now say so.** A mod built on the new Strain Creation\n  API can list its strains in the registry, and the manager shows them the way\n  the game shows its own: purple chips with their names on the mod's card, and\n  a \"strains inside\" section on the mod's page (and on the page of any modpack\n  that includes it) with each strain's rule in the game's own colours. Browse\n  them all with the new **strains** tag. For mod authors: it is the optional\n  `strains` field on a registry entry, next to `gambits` -\n  see `docs/MOD_PUBLISHING.md`.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.8.0",
+      "tag": "manager-v1.9.0",
+      "version": "1.9.0",
+      "publishedAt": "2026-10-01T14:35:00Z",
+      "notes": "\n- **See where the game cuts each sprite out of a sheet.** Open a sheet in a\n  resource pack and press **Show the outlines**: the sheet is drawn large with\n  an outline around every sprite on it. Switch the outlines on and off, zoom\n  with the buttons or a pinch, and hover a sprite for its name. Outlines show catalogued sprites; other artwork may still be used by\n  UI or effects.\n- **Resize a sprite.** Click a sprite on the sheet and drag its outline: the\n  edges and corners resize it, the middle moves it. Shift keeps the\n  proportions (and a move straight), Alt resizes from the centre, and the\n  Left / Top / Width / Height boxes take the numbers your image editor shows.\n  The faded copy is the sprite as the game cuts it - that part stays where it\n  is on screen, and the rest of the cut grows around it. For art that needs\n  more room than the game gave it: a bigger mouth, a taller hat.\n- **Save the outlines** gives you a see-through PNG of every outline to lay\n  over the sheet in your image editor, so you can see the limits while you\n  paint.\n- A resized sprite is its new size everywhere: **Save the original** gives you\n  that much of the sheet, and a PNG you drop on it is fitted to the new cut.\n  Resized sprites show as their own tile in the pack and travel with it when\n  you share, import or stack packs.\n- Resizing needs **framework 1.7.0 or later** - the editor tells you when to\n  update through Set up. It reaches everything on the board and in scenes;\n  menu and HUD pictures keep their size.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/manager-v1.9.0",
       "assets": [
         {
-          "name": "Gambonanza.Mod.Manager-1.8.0-arm64-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.8.0/Gambonanza.Mod.Manager-1.8.0-arm64-mac.zip",
-          "size": 119693308,
-          "sha256": "fc5529bba9ead93d67d0c6eee7137136b3e0bfa3793ea5e50d0a8be2f0ef0ffb"
+          "name": "Gambonanza.Mod.Manager-1.9.0-arm64-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.9.0/Gambonanza.Mod.Manager-1.9.0-arm64-mac.zip",
+          "size": 119705963,
+          "sha256": "f0f2aa53ee8956785f145c706e06fa65b515ec0ae95ae6d4c68dd1064f21b0ee"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.8.0-arm64.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.8.0/Gambonanza.Mod.Manager-1.8.0-arm64.dmg",
-          "size": 119594865,
-          "sha256": "92ffa3296edbd7aab27cf41074fa33224126ff67ee03f0ff6b195c9c98d87f4a"
+          "name": "Gambonanza.Mod.Manager-1.9.0-arm64.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.9.0/Gambonanza.Mod.Manager-1.9.0-arm64.dmg",
+          "size": 119603866,
+          "sha256": "94fdfdac3d61094cb839e1f6175e3e49e6e1cffeb15426e8abeae2d60e4df3b6"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.8.0-mac.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.8.0/Gambonanza.Mod.Manager-1.8.0-mac.zip",
-          "size": 121819851,
-          "sha256": "5c582c4136eae2aaf06397a0d1957fc0020623960ca3dd3ba36cc34e7234b5c4"
+          "name": "Gambonanza.Mod.Manager-1.9.0-mac.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.9.0/Gambonanza.Mod.Manager-1.9.0-mac.zip",
+          "size": 121832506,
+          "sha256": "b73460a7924c9aeba26ba05daac7d8096009cfa602dd142d7c617af645b7d035"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.8.0.AppImage",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.8.0/Gambonanza.Mod.Manager-1.8.0.AppImage",
-          "size": 127938083,
-          "sha256": "a879ffe4c0ba0ddbd1450eefae3157f8b166603b31092a7791dd1c09c32bd81e"
+          "name": "Gambonanza.Mod.Manager-1.9.0.AppImage",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.9.0/Gambonanza.Mod.Manager-1.9.0.AppImage",
+          "size": 127950452,
+          "sha256": "da3cc0d0a9465e1a08989f41079cd64e54ed474c0ccae71bb7a67173d130fff6"
         },
         {
-          "name": "Gambonanza.Mod.Manager-1.8.0.dmg",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.8.0/Gambonanza.Mod.Manager-1.8.0.dmg",
-          "size": 121682529,
-          "sha256": "c07865da9ed9aa138abdf84c9509ab58a6f6ae9d503efcf0eac1efddcd74f6e7"
+          "name": "Gambonanza.Mod.Manager-1.9.0.dmg",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.9.0/Gambonanza.Mod.Manager-1.9.0.dmg",
+          "size": 121676879,
+          "sha256": "3fd3324ef0eff6f2acdd4b47c96a6dfd2ec92dbfa7f78232578e761527d534c5"
         },
         {
-          "name": "Gambonanza.Mod.Manager.Setup.1.8.0.exe",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.8.0/Gambonanza.Mod.Manager.Setup.1.8.0.exe",
-          "size": 99800582,
-          "sha256": "e38fbe4cfc26c633052039e1cba4f7eaeefa3f9900bbb66d40075f847483a7dd"
+          "name": "Gambonanza.Mod.Manager.Setup.1.9.0.exe",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/manager-v1.9.0/Gambonanza.Mod.Manager.Setup.1.9.0.exe",
+          "size": 99810873,
+          "sha256": "3e08974c56fdef98679b49421debff9a9d329215e4428b2630b15897f0eeb943"
         }
       ]
     }
@@ -330,7 +330,7 @@
       },
       "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T14:32:18Z",
+      "repoPushedAt": "2026-10-01T14:34:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -516,7 +516,7 @@
       },
       "downloads": 15,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T14:32:18Z",
+      "repoPushedAt": "2026-10-01T14:34:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -886,7 +886,7 @@
       },
       "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T14:32:18Z",
+      "repoPushedAt": "2026-10-01T14:34:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1197,7 +1197,7 @@
       },
       "downloads": 59,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T14:32:18Z",
+      "repoPushedAt": "2026-10-01T14:34:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1781,7 +1781,7 @@
       },
       "downloads": 46,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T14:32:18Z",
+      "repoPushedAt": "2026-10-01T14:34:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -1928,7 +1928,7 @@
       },
       "downloads": 32,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T14:32:18Z",
+      "repoPushedAt": "2026-10-01T14:34:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -2466,7 +2466,7 @@
       },
       "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T14:32:18Z",
+      "repoPushedAt": "2026-10-01T14:34:24Z",
       "license": "MIT",
       "archived": false
     },
@@ -2614,7 +2614,7 @@
       },
       "downloads": 4,
       "stars": 5,
-      "repoPushedAt": "2026-10-01T14:32:18Z",
+      "repoPushedAt": "2026-10-01T14:34:24Z",
       "license": "MIT",
       "archived": false
     },
