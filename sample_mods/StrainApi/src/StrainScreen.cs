@@ -20,10 +20,10 @@ namespace Gambonanza.StrainApi
     /// The screen is built for the game's 15 strains: a fixed 5x3 grid under a 30-point
     /// heat gauge. So modded strains get pages of their own. ◀ ▶ arrows either side of
     /// the STRAINS title switch between the game's page and pages of up to 15 modded
-    /// strains, laid out by a copy of the game's grid. Each modded card is a clone of one
-    /// of the game's strain buttons (same card, icon, heat chip, check mark and tooltip)
-    /// with its StrainButton swapped for <see cref="ModStrainCard"/>, which toggles the
-    /// player's pick instead of a vanilla strain.
+    /// strains and four bonuses, laid out by copies of the game's grids. Vanilla bonuses
+    /// stay on the vanilla page; modded bonuses use that column on modded pages. Cards
+    /// clone the matching native strain or bonus button, with its component replaced by
+    /// <see cref="ModStrainCard"/> to toggle the player's saved pick.
     ///
     /// Heat goes through the screen's own IncreaseStrainScore/DecreaseStrainScore, so
     /// the gauge, its markers and the run's recorded heat all count modded strains - and
@@ -34,28 +34,36 @@ namespace Gambonanza.StrainApi
     internal sealed class StrainScreen : MonoBehaviour
     {
         private const int PageSize = 15;
+        private const int BonusPageSize = 4;
         private const string ModdedTitle = "Mod Strains";
-        private const string ModdedExplanation = "Strains added by mods. Their heat counts like any other!";
+        private const string ModdedExplanation = "Strains and bonuses added by mods. Bonuses add no heat.";
 
         private static StrainScreen _instance;
 
         private static readonly BindingFlags Private = BindingFlags.NonPublic | BindingFlags.Instance;
         private static readonly FieldInfo GridField = typeof(CanvasStrainModifier).GetField("m_Grid", Private);
+        private static readonly FieldInfo BonusGridField = typeof(CanvasStrainModifier).GetField("m_GridBonuses", Private);
         private static readonly FieldInfo HeaderField = typeof(CanvasStrainModifier).GetField("m_Header", Private);
         private static readonly FieldInfo MixAndMatchField = typeof(CanvasStrainModifier).GetField("m_MixAndMatch", Private);
         private static readonly FieldInfo SelectAllField = typeof(CanvasStrainModifier).GetField("m_BTN_SelectAll", Private);
         private static readonly FieldInfo DeselectAllField = typeof(CanvasStrainModifier).GetField("m_BTN_UnselectAll", Private);
+        private static readonly FieldInfo SelectAllBonusField = typeof(CanvasStrainModifier).GetField("m_BTN_SelectAll_Bonus", Private);
+        private static readonly FieldInfo DeselectAllBonusField = typeof(CanvasStrainModifier).GetField("m_BTN_UnselectAll_Bonus", Private);
 
         private CanvasStrainModifier _canvas;
         private Transform _grid;                 // the game's grid of 15 StrainButtons
+        private Transform _bonusGrid;            // the game's column of four StrainBonusButtons
         private TMP_Text _header;
         private TMP_Text _explanation;
         private bool _bound;
         private bool _bindFailed;
 
         private RectTransform _modGrid;          // our copy of the grid, for the modded pages
+        private RectTransform _modBonusGrid;
         private readonly List<ModStrainCard> _cards = new List<ModStrainCard>();
+        private readonly List<ModStrainCard> _bonusCards = new List<ModStrainCard>();
         private readonly List<GameObject> _spacers = new List<GameObject>();
+        private readonly List<GameObject> _bonusSpacers = new List<GameObject>();
         private GameObject _prev;
         private GameObject _next;
         private int _builtVersion = -1;
@@ -70,7 +78,8 @@ namespace Gambonanza.StrainApi
         private readonly List<KeyValuePair<UnityEvent<BaseEventData>, UnityAction<BaseEventData>>> _hooks =
             new List<KeyValuePair<UnityEvent<BaseEventData>, UnityAction<BaseEventData>>>();
 
-        private int PageCount => 1 + (_cards.Count + PageSize - 1) / PageSize;
+        private int PageCount => 1 + Math.Max((_cards.Count + PageSize - 1) / PageSize,
+                                              (_bonusCards.Count + BonusPageSize - 1) / BonusPageSize);
 
         // ----- attaching ------------------------------------------------------
 
@@ -102,11 +111,14 @@ namespace Gambonanza.StrainApi
             {
                 _canvas = GetComponent<CanvasStrainModifier>();
                 _grid = GridField?.GetValue(_canvas) as Transform;
+                _bonusGrid = BonusGridField?.GetValue(_canvas) as Transform;
                 _header = HeaderField?.GetValue(_canvas) as TMP_Text;
                 _explanation = MixAndMatchField?.GetValue(_canvas) as TMP_Text;
-                if (!_canvas || !_grid || !_header) throw new MissingMemberException("CanvasStrainModifier.m_Grid/m_Header");
-                HookBulkButton(SelectAllField?.GetValue(_canvas) as Transform, "SelectAll", SelectAllModded);
-                HookBulkButton(DeselectAllField?.GetValue(_canvas) as Transform, "DeselectAll", () => StrainCore.ClearSelection());
+                if (!_canvas || !_grid || !_bonusGrid || !_header) throw new MissingMemberException("CanvasStrainModifier.m_Grid/m_GridBonuses/m_Header");
+                HookBulkButton(SelectAllField?.GetValue(_canvas) as Transform, "SelectAll", () => SelectModded(false, true));
+                HookBulkButton(DeselectAllField?.GetValue(_canvas) as Transform, "DeselectAll", () => SelectModded(false, false));
+                HookBulkButton(SelectAllBonusField?.GetValue(_canvas) as Transform, "SelectAll_Bonuses", () => SelectModded(true, true));
+                HookBulkButton(DeselectAllBonusField?.GetValue(_canvas) as Transform, "DeselectAll_Bonuses", () => SelectModded(true, false));
                 _bound = true;
             }
             catch (Exception ex)
@@ -132,6 +144,7 @@ namespace Gambonanza.StrainApi
             _vanillaHeader = _vanillaExplanation = null;
             if (_modGrid) ShowPage(0);
             foreach (var card in _cards) if (card) card.Refresh(animate: false);
+            foreach (var card in _bonusCards) if (card) card.Refresh(animate: false);
         }
 
         private void OnDisable()
@@ -168,7 +181,9 @@ namespace Gambonanza.StrainApi
                 _appliedHeat = 0;
                 if (_page != 0) ShowPage(0);
                 if (_grid) _grid.gameObject.SetActive(true);
+                if (_bonusGrid) _bonusGrid.gameObject.SetActive(true);
                 if (_modGrid) Destroy(_modGrid.gameObject);
+                if (_modBonusGrid) Destroy(_modBonusGrid.gameObject);
                 if (_prev) Destroy(_prev);
                 if (_next) Destroy(_next);
             }
@@ -178,6 +193,7 @@ namespace Gambonanza.StrainApi
         private void OnSelectionChanged()
         {
             foreach (var card in _cards) if (card) card.Refresh(animate: true);
+            foreach (var card in _bonusCards) if (card) card.Refresh(animate: true);
             _heatDirty = true;
         }
 
@@ -195,10 +211,11 @@ namespace Gambonanza.StrainApi
             _appliedHeat = wanted;
         }
 
-        private static void SelectAllModded()
+        private static void SelectModded(bool bonuses, bool selected)
         {
             foreach (var def in StrainRegistry.All)
-                if (!StrainCore.IsSelected(def.Id)) StrainCore.SetSelected(def, true);
+                if (def.IsBonus == bonuses && StrainCore.IsSelected(def.Id) != selected)
+                    StrainCore.SetSelected(def, selected);
         }
 
         // ----- building -------------------------------------------------------
@@ -208,23 +225,29 @@ namespace Gambonanza.StrainApi
             _builtVersion = StrainRegistry.Version;
             foreach (var card in _cards) if (card) Destroy(card.gameObject);
             _cards.Clear();
+            foreach (var card in _bonusCards) if (card) Destroy(card.gameObject);
+            _bonusCards.Clear();
 
             var all = StrainRegistry.All;
             if (all.Count > 0)
             {
-                if (!_modGrid) BuildGrid();
+                if (!_modGrid) _modGrid = BuildGrid(_grid, "StrainApi_ModStrains", PageSize, _spacers, false);
+                if (!_modBonusGrid) _modBonusGrid = BuildGrid(_bonusGrid, "StrainApi_ModBonuses", BonusPageSize, _bonusSpacers, true);
                 if (!_prev) _prev = BuildArrow("StrainApi_PrevPage", "<", -1);
                 if (!_next) _next = BuildArrow("StrainApi_NextPage", ">", +1);
                 var template = TemplateButton();
+                var bonusTemplate = TemplateBonusButton();
                 foreach (var def in all)
                 {
-                    var card = ModStrainCard.Create(template, _modGrid, def);
-                    if (card) _cards.Add(card);
+                    var card = ModStrainCard.Create(def.IsBonus ? (Component)bonusTemplate : template,
+                        def.IsBonus ? _modBonusGrid : _modGrid, def);
+                    if (card) (def.IsBonus ? _bonusCards : _cards).Add(card);
                 }
                 foreach (var spacer in _spacers) spacer.transform.SetAsLastSibling();
+                foreach (var spacer in _bonusSpacers) spacer.transform.SetAsLastSibling();
             }
 
-            bool any = _cards.Count > 0;
+            bool any = _cards.Count > 0 || _bonusCards.Count > 0;
             if (_prev) _prev.SetActive(any);
             if (_next) _next.SetActive(any);
             ShowPage(Mathf.Clamp(_page, 0, PageCount - 1));
@@ -241,30 +264,54 @@ namespace Gambonanza.StrainApi
             throw new MissingMemberException("no StrainButton in the strain grid to copy");
         }
 
-        /// <summary>
-        /// A copy of the game's grid - same rect, same GridLayoutGroup - filled from the top
-        /// left. Each page always holds 15 children (cards, then spacers), so the block is
-        /// laid out exactly where the game's own 5x3 sits, over its column backgrounds.
-        /// </summary>
-        private void BuildGrid()
+        private StrainBonusButton TemplateBonusButton()
         {
-            var source = (RectTransform)_grid;
-            var go = new GameObject("StrainApi_ModStrains", typeof(RectTransform));
-            _modGrid = (RectTransform)go.transform;
-            _modGrid.SetParent(source.parent, false);
-            _modGrid.SetSiblingIndex(source.GetSiblingIndex() + 1);
-            _modGrid.anchorMin = source.anchorMin;
-            _modGrid.anchorMax = source.anchorMax;
-            _modGrid.pivot = source.pivot;
-            _modGrid.anchoredPosition = source.anchoredPosition;
-            _modGrid.sizeDelta = source.sizeDelta;
-            _modGrid.localScale = source.localScale;
-            _modGrid.localRotation = source.localRotation;
+            foreach (Transform child in _bonusGrid)
+            {
+                var button = child.GetComponent<StrainBonusButton>();
+                if (button) return button;
+            }
+            throw new MissingMemberException("no StrainBonusButton in the bonus grid to copy");
+        }
+
+        /// <summary>
+        /// Copy the native panel's rect, background and layout. Regular strains use
+        /// its 5x3 GridLayoutGroup; bonuses use its four-slot VerticalLayoutGroup.
+        /// Matching spacers keep partial pages in the same positions as full pages.
+        /// </summary>
+        private static RectTransform BuildGrid(Transform original, string name, int pageSize, List<GameObject> spacers, bool bonusColumn)
+        {
+            var source = (RectTransform)original;
+            var go = new GameObject(name, typeof(RectTransform));
+            var grid = (RectTransform)go.transform;
+            grid.SetParent(source.parent, false);
+            grid.SetSiblingIndex(source.GetSiblingIndex() + 1);
+            grid.anchorMin = source.anchorMin;
+            grid.anchorMax = source.anchorMax;
+            grid.pivot = source.pivot;
+            grid.anchoredPosition = source.anchoredPosition;
+            grid.sizeDelta = source.sizeDelta;
+            grid.localScale = source.localScale;
+            grid.localRotation = source.localRotation;
+
+            var background = source.GetComponent<Image>();
+            if (background)
+            {
+                var image = go.AddComponent<Image>();
+                image.sprite = background.sprite;
+                image.color = background.color;
+                image.material = background.material;
+                image.type = background.type;
+                image.preserveAspect = background.preserveAspect;
+                image.fillCenter = background.fillCenter;
+                image.pixelsPerUnitMultiplier = background.pixelsPerUnitMultiplier;
+                image.raycastTarget = false;
+            }
 
             var vanilla = source.GetComponent<GridLayoutGroup>();
-            var layout = go.AddComponent<GridLayoutGroup>();
             if (vanilla)
             {
+                var layout = go.AddComponent<GridLayoutGroup>();
                 layout.padding = new RectOffset(vanilla.padding.left, vanilla.padding.right, vanilla.padding.top, vanilla.padding.bottom);
                 layout.cellSize = vanilla.cellSize;
                 layout.spacing = vanilla.spacing;
@@ -272,19 +319,60 @@ namespace Gambonanza.StrainApi
                 layout.childAlignment = vanilla.childAlignment;
                 layout.constraint = vanilla.constraint;
                 layout.constraintCount = vanilla.constraintCount;
+                // Strains read from the top left instead of the game's cost order.
+                layout.startCorner = GridLayoutGroup.Corner.UpperLeft;
+                layout.startAxis = bonusColumn ? GridLayoutGroup.Axis.Vertical : GridLayoutGroup.Axis.Horizontal;
             }
-            // The game fills its grid from the bottom right (cheapest strains first); a
-            // modded page reads like a page: from the top left.
-            layout.startCorner = GridLayoutGroup.Corner.UpperLeft;
-            layout.startAxis = GridLayoutGroup.Axis.Horizontal;
+            else
+            {
+                // The native bonus column uses a VerticalLayoutGroup, with four
+                // 200x150 button rects filling its 200x630 panel (15px padding).
+                var vertical = source.GetComponent<VerticalLayoutGroup>();
+                if (!vertical) throw new MissingMemberException("the strain/bonus grid has no supported layout");
+                var layout = go.AddComponent<VerticalLayoutGroup>();
+                layout.padding = new RectOffset(vertical.padding.left, vertical.padding.right, vertical.padding.top, vertical.padding.bottom);
+                layout.spacing = vertical.spacing;
+                layout.childAlignment = vertical.childAlignment;
+                layout.childForceExpandWidth = vertical.childForceExpandWidth;
+                layout.childForceExpandHeight = vertical.childForceExpandHeight;
+                layout.childControlWidth = vertical.childControlWidth;
+                layout.childControlHeight = vertical.childControlHeight;
+                layout.childScaleWidth = vertical.childScaleWidth;
+                layout.childScaleHeight = vertical.childScaleHeight;
+                layout.reverseArrangement = vertical.reverseArrangement;
+            }
 
-            for (int i = 0; i < PageSize; i++)
+            RectTransform slot = null;
+            if (bonusColumn)
+                foreach (Transform child in source)
+                    if (child.GetComponent<StrainBonusButton>()) { slot = child as RectTransform; break; }
+
+            for (int i = 0; i < pageSize; i++)
             {
                 var spacer = new GameObject("Empty", typeof(RectTransform));
-                spacer.transform.SetParent(_modGrid, false);
-                _spacers.Add(spacer);
+                spacer.transform.SetParent(grid, false);
+                if (slot)
+                {
+                    var rect = (RectTransform)spacer.transform;
+                    rect.sizeDelta = slot.sizeDelta;
+                    var sizing = slot.GetComponent<LayoutElement>();
+                    if (sizing)
+                    {
+                        var copy = spacer.AddComponent<LayoutElement>();
+                        copy.ignoreLayout = sizing.ignoreLayout;
+                        copy.minWidth = sizing.minWidth;
+                        copy.minHeight = sizing.minHeight;
+                        copy.preferredWidth = sizing.preferredWidth;
+                        copy.preferredHeight = sizing.preferredHeight;
+                        copy.flexibleWidth = sizing.flexibleWidth;
+                        copy.flexibleHeight = sizing.flexibleHeight;
+                        copy.layoutPriority = sizing.layoutPriority;
+                    }
+                }
+                spacers.Add(spacer);
             }
             go.SetActive(false);
+            return grid;
         }
 
         /// <summary>
@@ -401,7 +489,7 @@ namespace Gambonanza.StrainApi
 
         private void Turn(int delta)
         {
-            if (_cards.Count == 0) return;
+            if (_cards.Count == 0 && _bonusCards.Count == 0) return;
             AudioManager.Play(AudioEvents.UI_Toggle, loop: false, UnityEngine.Random.Range(0.9f, 1.1f));
             int n = PageCount;
             ShowPage(((_page + delta) % n + n) % n);
@@ -419,7 +507,9 @@ namespace Gambonanza.StrainApi
 
             bool modded = page > 0 && _modGrid;
             _grid.gameObject.SetActive(!modded);
+            _bonusGrid.gameObject.SetActive(!modded);
             if (_modGrid) _modGrid.gameObject.SetActive(modded);
+            if (_modBonusGrid) _modBonusGrid.gameObject.SetActive(modded);
 
             if (!modded)
             {
@@ -438,6 +528,17 @@ namespace Gambonanza.StrainApi
                 _cards[i].gameObject.SetActive(on);
             }
             for (int i = 0; i < _spacers.Count; i++) _spacers[i].SetActive(i < PageSize - shown);
+
+            int firstBonus = (page - 1) * BonusPageSize;
+            int shownBonuses = 0;
+            for (int i = 0; i < _bonusCards.Count; i++)
+            {
+                bool on = i >= firstBonus && i < firstBonus + BonusPageSize;
+                if (on) { shownBonuses++; _bonusCards[i].Refresh(animate: false); }
+                else _bonusCards[i].HideInfoNow();
+                _bonusCards[i].gameObject.SetActive(on);
+            }
+            for (int i = 0; i < _bonusSpacers.Count; i++) _bonusSpacers[i].SetActive(i < BonusPageSize - shownBonuses);
 
             int moddedPages = PageCount - 1;
             _header.text = moddedPages > 1 ? $"{ModdedTitle} {page}/{moddedPages}" : ModdedTitle;
@@ -463,13 +564,13 @@ namespace Gambonanza.StrainApi
 
         internal string Id => _def?.Id;
 
-        internal static ModStrainCard Create(StrainButton template, Transform parent, StrainDefinition def)
+        internal static ModStrainCard Create(Component template, Transform parent, StrainDefinition def)
         {
             GameObject go = null;
             try
             {
                 go = CardSurgery.CloneInactive(template.gameObject, parent, "ModStrain " + def.Id);
-                var vanilla = go.GetComponent<StrainButton>();
+                var vanilla = go.GetComponent(template.GetType());
                 var card = go.AddComponent<ModStrainCard>();
                 card._def = def;
                 card._check = CardSurgery.Field<Transform>(vanilla, "m_Check");
@@ -496,7 +597,16 @@ namespace Gambonanza.StrainApi
                 var icon = go.transform.Find("Visual/Icon");
                 var iconImage = icon ? icon.GetComponent<Image>() : null;
                 if (iconImage) iconImage.sprite = StrainIcons.For(def);
-                if (cost) cost.text = def.Heat.ToString();
+                if (cost)
+                {
+                    cost.text = def.Heat.ToString();
+                }
+                if (def.IsBonus)
+                {
+                    var chip = go.transform.Find("Visual/Cost");
+                    if (chip) chip.gameObject.SetActive(false);
+                    else if (cost) cost.gameObject.SetActive(false);
+                }
                 if (name) name.text = def.Name;
                 if (description) description.text = Rewrite(def.Description);
                 if (chain) chain.SetActive(false);
@@ -635,7 +745,7 @@ namespace Gambonanza.StrainApi
         /// card is muted. The card's hover and press feedback (RotationButton, ShadowButton)
         /// keeps its own listeners.
         /// </summary>
-        internal static void Redirect(EventTrigger.Entry entry, StrainButton vanilla, Transform root, ModStrainCard card)
+        internal static void Redirect(EventTrigger.Entry entry, Component vanilla, Transform root, ModStrainCard card)
         {
             var callback = entry?.callback;
             if (callback == null) return;

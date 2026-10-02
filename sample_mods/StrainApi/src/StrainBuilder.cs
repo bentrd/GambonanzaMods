@@ -62,11 +62,22 @@ namespace Gambonanza.StrainApi
         /// <summary>
         /// What the strain adds to the heat gauge when picked, like the game's own strains
         /// (1 for a nuisance, 2 for a real handicap, 3 for a brutal one). 0 to
-        /// <see cref="Strains.MaxHeat"/>; defaults to 1.
+        /// <see cref="Strains.MaxHeat"/>; defaults to 1. Bonuses always have zero heat.
         /// </summary>
         public StrainBuilder WithHeat(int heat)
         {
-            _def.Heat = Mathf.Clamp(heat, 0, Strains.MaxHeat);
+            _def.Heat = _def.IsBonus ? 0 : Mathf.Clamp(heat, 0, Strains.MaxHeat);
+            return this;
+        }
+
+        /// <summary>
+        /// Make this a helpful bonus, displayed in the bonus column on modded Custom
+        /// pages. Its heat is zero, regardless of the order of WithHeat calls.
+        /// </summary>
+        public StrainBuilder AsBonus()
+        {
+            _def.IsBonus = true;
+            _def.Heat = 0;
             return this;
         }
 

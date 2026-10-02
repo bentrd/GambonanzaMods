@@ -16,6 +16,8 @@
 
   <ItemGroup>
     <Compile Include="..\src\RunTracker.cs" Link="RunTracker.cs" />
+    <Compile Include="..\src\StrainBuilder.cs" Link="StrainBuilder.cs" />
+    <Compile Include="..\src\StrainDefinition.cs" Link="StrainDefinition.cs" />
   </ItemGroup>
 
   <ItemGroup>

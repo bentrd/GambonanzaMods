@@ -1,10 +1,10 @@
 {
     "id": "StrainApi",
     "name": "Strain Creation API",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": "Ben",
     "entry": "Gambonanza.StrainApi.StrainApiMod",
     "enabled": true,
     "gameVersion": ">=1.0",
-    "description": "Streamlined API for creating custom strains - run modifiers you pick before a run. Other mods reference Gambonanza.StrainApi.dll and use StrainBuilder; players pick modded strains on the game's Custom strain screen (the arrows by STRAINS) or with the 'strain' console commands."
+    "description": "Streamlined API for creating custom strains and bonus strains. Use StrainBuilder and AsBonus() for bonuses with no added heat. Mod pages have their own bonus column; vanilla bonuses stay on the vanilla page. Pick before a Custom run or use the 'strain' console commands."
 }

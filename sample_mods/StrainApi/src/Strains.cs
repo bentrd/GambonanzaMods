@@ -11,9 +11,9 @@ namespace Gambonanza.StrainApi
     /// <see cref="StrainBuilder"/>, and use this class to ask about them.
     ///
     /// A strain is a run modifier the player picks before a run, like the game's own
-    /// strains. Modded strains live next to the vanilla ones rather than inside the
-    /// game's strain screen: the player picks them from the MOD STRAINS button on the
-    /// home screen (or <c>strain on &lt;id&gt;</c> in the console), and the picks are
+    /// strains. The arrows on the Custom strain screen open MOD STRAINS pages, with
+    /// regular strains in the main grid and zero-heat bonuses in the bonus column
+    /// (or use <c>strain on &lt;id&gt;</c> in the console). The picks are
     /// locked in when the next run starts. From then on the run keeps them - through
     /// quitting and continuing - until another run starts.
     ///

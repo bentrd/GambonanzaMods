@@ -38,6 +38,13 @@ namespace Gambonanza.StrainApi
         public int Heat { get; internal set; } = 1;
 
         /// <summary>
+        /// A helpful modifier displayed in the bonus column on modded Custom pages.
+        /// Bonuses add no heat; selection, incompatibilities and run hooks work exactly
+        /// as they do for ordinary strains.
+        /// </summary>
+        public bool IsBonus { get; internal set; }
+
+        /// <summary>
         /// The icon on the strain's card, if one was given as a sprite. Icons given as a
         /// file or a game sprite name are loaded when the card is first shown.
         /// </summary>
