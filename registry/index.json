@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-02T18:23:09.056Z",
+  "generatedAt": "2026-10-02T18:29:33.291Z",
   "count": 58,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 63,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:22:27Z",
+      "repoPushedAt": "2026-10-02T18:28:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -568,7 +568,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:22:27Z",
+      "repoPushedAt": "2026-10-02T18:28:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -938,7 +938,7 @@
       },
       "downloads": 62,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:22:27Z",
+      "repoPushedAt": "2026-10-02T18:28:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1249,7 +1249,7 @@
       },
       "downloads": 63,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:22:27Z",
+      "repoPushedAt": "2026-10-02T18:28:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1833,7 +1833,7 @@
       },
       "downloads": 49,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:22:27Z",
+      "repoPushedAt": "2026-10-02T18:28:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1980,7 +1980,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:22:27Z",
+      "repoPushedAt": "2026-10-02T18:28:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -2518,7 +2518,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:22:27Z",
+      "repoPushedAt": "2026-10-02T18:28:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -2647,26 +2647,27 @@
       "gameVersion": ">=1.0",
       "submittedBy": "bentrd",
       "addedAt": "2026-09-27",
+      "tagPattern": "StrainApi-v*",
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.8.0",
-        "version": "1.0.0",
-        "publishedAt": "2026-10-02T17:23:51Z",
-        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+        "tag": "StrainApi-v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-10-02T18:21:15Z",
+        "notes": "Adds first-class custom bonus strains with `.AsBonus()` and `IsBonus`. Bonuses add no heat and use the native blue bonus cards.\n\nMod Strains pages now hide vanilla bonuses and show up to four custom bonuses per page, so custom cards fit above the controls. Regular strains retain 15 slots per page. Select/deselect controls handle their own category.\n\nUnzip `StrainApi.zip` into the game’s `Mods/` folder, replacing the old `StrainApi` folder, then restart the game. Required by Cashback 1.0.0; compatible with existing strain mods.\n\nValidation: build succeeds without warnings, 20 API tests pass, native bonus layout and icon path verified.\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/StrainApi-v1.1.0",
         "asset": {
           "name": "StrainApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/StrainApi.zip",
-          "size": 26951,
-          "sha256": "c0ac59b5446465c8487a2db3dae32b34758e3579f15197932f8cff4cececeac6"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/StrainApi-v1.1.0/StrainApi.zip",
+          "size": 28213,
+          "sha256": "49414e1fd5d2e371faf6bb5808c1f525b92c9be4d196998a9349f36531a3fd82"
         },
-        "manifestVersion": "1.0.0",
+        "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 8,
+      "downloads": 0,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:22:27Z",
+      "repoPushedAt": "2026-10-02T18:28:46Z",
       "license": "MIT",
       "archived": false
     },
