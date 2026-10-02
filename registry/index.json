@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-02T17:24:36.894Z",
+  "generatedAt": "2026-10-02T18:21:36.763Z",
   "count": 57,
   "releases": {
     "framework": {
@@ -328,9 +328,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 62,
+      "downloads": 63,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T17:20:36Z",
+      "repoPushedAt": "2026-10-02T18:20:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -514,9 +514,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 18,
+      "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T17:20:36Z",
+      "repoPushedAt": "2026-10-02T18:20:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -884,9 +884,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 61,
+      "downloads": 62,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T17:20:36Z",
+      "repoPushedAt": "2026-10-02T18:20:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1195,9 +1195,9 @@
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 62,
+      "downloads": 63,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T17:20:36Z",
+      "repoPushedAt": "2026-10-02T18:20:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1779,9 +1779,9 @@
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 48,
+      "downloads": 49,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T17:20:36Z",
+      "repoPushedAt": "2026-10-02T18:21:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -1926,9 +1926,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 34,
+      "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T17:20:36Z",
+      "repoPushedAt": "2026-10-02T18:21:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -2464,9 +2464,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
-      "downloads": 40,
+      "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T17:20:36Z",
+      "repoPushedAt": "2026-10-02T18:21:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -2581,8 +2581,8 @@
       "id": "strain-api",
       "name": "Strain Creation API",
       "author": "Ben",
-      "summary": "Library that lets mods add strains - run modifiers you pick before a run - to the game's own Custom strain screen.",
-      "description": "Not much to look at on its own - install it because a strain mod asked for it. It lets mods add their own strains: rules you choose before a run, like the game's own No Queen or Tile Exhauster, that hold for the whole run.\n\nModded strains go on the game's own Custom strain screen: arrows either side of the STRAINS title page over to MOD STRAINS, with the same cards and tooltips as the game's, and their heat counts on the gauge like any other. They come with Custom runs only - the preset difficulties stay as they are. A run keeps the strains it started with through quitting and continuing, until you start another one.\n\nIt also adds console commands (F10): `strain` shows what is picked and what is on the run in progress, then `strain list`, `strain info <id>`, `strain on <id>`, `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` (put a strain on the current run, or take it off, right now).",
+      "summary": "Library that lets mods add strains and zero-heat bonuses to the game's own Custom strain screen.",
+      "description": "Install it when a strain mod requires it. Mods can add rules and helpful bonuses you choose before a run, with saved selection and run behavior. Version 1.1.0 adds support for custom bonuses.\n\nOn the Custom strain screen, arrows beside the STRAINS title open MOD STRAINS pages. Regular strains use the main grid and add their heat to the gauge. Mod bonuses use the blue bonus column and add no heat; vanilla bonuses stay on the vanilla page. A run keeps its chosen mod strains and bonuses through quitting and continuing.\n\nConsole commands (F10): `strain` shows the next run's picks and the active run's modifiers. Use `strain list`, `strain info <id>`, `strain on <id>`, `strain off <id|all>`, `strain apply <id>` and `strain remove <id>` to inspect or change them. Screen selection applies to Custom runs; `strain apply` can add a modifier to an existing run.",
       "repo": "bentrd/GambonanzaMods",
       "asset": "StrainApi.zip",
       "folder": "StrainApi",
@@ -2612,9 +2612,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T17:20:36Z",
+      "repoPushedAt": "2026-10-02T18:21:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -3114,7 +3114,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 328,
+      "downloads": 331,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3154,7 +3154,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 449,
+      "downloads": 451,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3181,7 +3181,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 167,
+      "downloads": 169,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3202,7 +3202,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 123,
+      "downloads": 125,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3226,7 +3226,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 222,
+      "downloads": 224,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
