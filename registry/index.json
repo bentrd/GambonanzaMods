@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-02T19:23:33.239Z",
+  "generatedAt": "2026-10-02T21:26:46.177Z",
   "count": 58,
   "releases": {
     "framework": {
@@ -289,7 +289,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -328,9 +328,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 63,
+      "downloads": 65,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:29:34Z",
+      "repoPushedAt": "2026-10-02T21:25:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -443,51 +443,41 @@
       "id": "cashback-strain",
       "name": "Cashback",
       "author": "Ben",
-      "summary": "A bonus strain: expiring gambits pay their sell value.",
-      "description": "Pick Cashback in the blue bonus column on the Mod Strains page before a Custom run. It adds no heat and pays a gambit's sell value when the game's Gambit Expiry strain makes it expire. With expiry off, it has no effect.\n\nIncludes Collector's accumulated value and Boss Tooth's current value. Gambits disappear at their usual time; cashback does not trigger sale-only effects. Requires Strain Creation API 1.1.0 or newer.",
+      "summary": "QoL: expiring gambits pay their sell value, including in King runs.",
+      "description": "Enable Cashback as a regular QoL mod. It works in preset runs, including King, without adding a strain or bonus or changing the run's difficulty and native gambit completion tracking. No Strain Creation API dependency.\n\nPays a gambit's sell value when the game's Gambit Expiry rule makes it expire. With expiry off, it has no effect. Includes Collector's accumulated value and Boss Tooth's current value. Gambits disappear at their usual time; cashback does not trigger sale-only effects.\n\nVersion 2.0 replaces the former bonus strain. Update and restart the game; an existing Custom run keeps its original difficulty.",
       "repo": "ben-gambo/mods",
       "asset": "CashbackStrain.zip",
       "folder": "CashbackStrain",
       "tagPattern": "CashbackStrain-v*",
       "homepage": "https://github.com/ben-gambo/mods/tree/main/CashbackStrain",
       "tags": [
-        "strains",
+        "quality-of-life",
         "gameplay"
-      ],
-      "dependencies": [
-        "strain-api"
       ],
       "frameworkVersion": ">=1.5.2",
       "gameVersion": ">=1.0",
-      "strains": [
-        {
-          "id": "cashback",
-          "name": "Cashback",
-          "description": "Expiring gambits pay their <color=*>sell value</color>."
-        }
-      ],
       "submittedBy": "ben-gambo",
       "addedAt": "2026-10-02",
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "CashbackStrain-v1.0.0",
-        "version": "1.0.0",
-        "publishedAt": "2026-10-02T18:21:50Z",
-        "notes": "## Cashback 1.0.0\n\n- Adds Cashback as an optional bonus on the Mod Strains page, with no\n  added heat.\n- Gambits removed by the Gambit Expiry strain pay their current sell value,\n  including Collector and Boss Tooth.\n- Pays once per expired gambit, without triggering manual-sale effects.\n- Keeps the bonus through saving and continuing a run.\n\nRequires StrainApi 1.1.0 or newer and the GambonanzaMods framework. Unpack\n`CashbackStrain.zip` into your game's `Mods/` folder.\n",
-        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/CashbackStrain-v1.0.0",
+        "tag": "CashbackStrain-v2.0.0",
+        "version": "2.0.0",
+        "publishedAt": "2026-10-02T21:23:57Z",
+        "notes": "## Cashback 2.0.0\n\n- Cashback is now a regular QoL mod, active whenever enabled. It works in\n  preset runs, including King, without adding a strain or bonus or changing\n  native difficulty and in-game gambit completion tracking.\n- Removes the Cashback bonus card and the Strain Creation API dependency.\n- Expiring gambits still pay their current sell value, including Collector\n  and Boss Tooth, once per gambit and without triggering manual-sale effects.\n- Disabling Cashback immediately restores normal expiry behavior.\n\nUpdate the existing `CashbackStrain` folder with this ZIP and restart the\ngame. Only the GambonanzaMods framework is required. An existing Custom run\nkeeps its original difficulty; use a King preset for King completion marks.\nThe framework's separate Steam achievement setting remains unchanged.\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/CashbackStrain-v2.0.0",
         "asset": {
           "name": "CashbackStrain.zip",
-          "url": "https://github.com/ben-gambo/mods/releases/download/CashbackStrain-v1.0.0/CashbackStrain.zip",
-          "size": 7438,
-          "sha256": "4b8947b26145243c813a072c9a69d72621f3872380a5799bcd3f63cea65bace6"
+          "url": "https://github.com/ben-gambo/mods/releases/download/CashbackStrain-v2.0.0/CashbackStrain.zip",
+          "size": 7305,
+          "sha256": "56a43ae62c5166075ca6684d9c1db46b285d435b399ba0c04ea6c118db9e6267"
         },
-        "manifestVersion": "1.0.0",
+        "manifestVersion": "2.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -527,7 +517,7 @@
       },
       "downloads": 20,
       "stars": 0,
-      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -566,9 +556,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 19,
+      "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:29:34Z",
+      "repoPushedAt": "2026-10-02T21:25:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -781,7 +771,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -843,7 +833,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -936,9 +926,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 62,
+      "downloads": 63,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:29:34Z",
+      "repoPushedAt": "2026-10-02T21:25:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1048,7 +1038,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1102,7 +1092,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1247,9 +1237,9 @@
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 63,
+      "downloads": 64,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:29:34Z",
+      "repoPushedAt": "2026-10-02T21:25:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1623,7 +1613,7 @@
       },
       "downloads": 16,
       "stars": 0,
-      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1833,7 +1823,7 @@
       },
       "downloads": 49,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:29:34Z",
+      "repoPushedAt": "2026-10-02T21:25:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1980,7 +1970,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:29:34Z",
+      "repoPushedAt": "2026-10-02T21:25:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2518,7 +2508,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:29:34Z",
+      "repoPushedAt": "2026-10-02T21:25:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2665,9 +2655,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 2,
+      "downloads": 4,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:29:34Z",
+      "repoPushedAt": "2026-10-02T21:25:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2815,7 +2805,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 0,
       "repoPushedAt": "2026-10-02T01:11:08Z",
       "license": "MIT",
@@ -3167,7 +3157,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 331,
+      "downloads": 334,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3207,7 +3197,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 451,
+      "downloads": 454,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3255,7 +3245,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 125,
+      "downloads": 128,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3279,7 +3269,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 224,
+      "downloads": 227,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
