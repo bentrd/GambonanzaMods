@@ -1,6 +1,5 @@
-// Unit tests for the parts of lib.mjs that read UNTRUSTED input: the two issue
-// parsers and the validators standing behind them. Everything else in this
-// file talks to GitHub and is covered by validate.mjs running in CI.
+// Unit tests for registry input parsing, validation, and release selection.
+// Network resolution is covered by validate.mjs running in CI.
 //
 //     node --test tools/registry/lib.test.mjs
 
@@ -9,7 +8,33 @@ import assert from 'node:assert/strict';
 
 import {
   parseSubmissionIssue, parseModpackSubmissionIssue, validateEntry, validateModpackEntry,
+  selectHomeReleases,
 } from './lib.mjs';
+
+test('a newer standalone library release never replaces the framework release', () => {
+  const library = { tag_name: 'StrainApi-v1.1.0', assets: [{ name: 'StrainApi.zip' }] };
+  const framework = { tag_name: 'v1.8.0', assets: [{ name: 'GambonanzaMods.zip' }] };
+  const manager = { tag_name: 'manager-v1.9.0' };
+  assert.deepEqual(selectHomeReleases([
+    library,
+    { tag_name: 'GambitApi-v2.0.0' },
+    { tag_name: 'v1.9.0', draft: true },
+    { tag_name: 'v1.8.1', prerelease: true },
+    manager,
+    framework,
+    { tag_name: 'v1.7.0' },
+    { tag_name: 'manager-v1.8.0' },
+  ]), { framework, manager });
+});
+
+test('release tags outside the framework version format leave its result empty', () => {
+  assert.deepEqual(selectHomeReleases([
+    { tag_name: 'StrainApi-v1.1.0' },
+    { tag_name: 'release-v2.0.0' },
+    { tag_name: 'v2.0' },
+    { tag_name: 'v2.0.0-preview' },
+  ]), { framework: null, manager: null });
+});
 
 /** GitHub renders an issue form as "### <label>\n\n<value>" blocks. */
 const form = (fields) => Object.entries(fields)

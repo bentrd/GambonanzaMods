@@ -432,6 +432,16 @@ export function versionFromTag(tag) {
   return m ? m[1] : tag;
 }
 
+/** Select stable framework and manager releases from GitHub's newest-first list. */
+export function selectHomeReleases(releases) {
+  const stable = (release) => !release.draft && !release.prerelease;
+  return {
+    // Libraries share this repo, but only vMAJOR.MINOR.PATCH tags ship the framework.
+    framework: releases.find((release) => stable(release) && /^v\d+\.\d+\.\d+$/.test(release.tag_name)) ?? null,
+    manager: releases.find((release) => stable(release) && release.tag_name.startsWith('manager-v')) ?? null,
+  };
+}
+
 /**
  * Compare two dotted versions. Returns >0 if a is newer, <0 if older, 0 if equal.
  * Numeric segments compare numerically; anything non-numeric compares as a

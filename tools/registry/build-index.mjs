@@ -23,7 +23,7 @@ import {
   INDEX_PATH, HOME_REPO, MODPACKS_DIR, TEXTUREPACKS_DIR, loadEntries, validateEntry,
   validateModpackEntry, validateTexturePackEntry,
   parseSubmissionIssue, parseModpackSubmissionIssue,
-  resolveLatestRelease, githubFetch, sha256, versionFromTag,
+  resolveLatestRelease, githubFetch, sha256, versionFromTag, selectHomeReleases,
   manifestVersionFromZip, manifestAuthorFromZip,
 } from './lib.mjs';
 
@@ -383,7 +383,7 @@ async function collectSubmissionModpacks(committed, resolve, knownModIds, knownS
   return out;
 }
 
-/** Newest stable framework (v*) and manager (manager-v*) releases. */
+/** Newest stable framework (vMAJOR.MINOR.PATCH) and manager (manager-v*) releases. */
 async function resolveHomeReleases() {
   try {
     const res = await githubFetch(`/repos/${HOME_REPO}/releases?per_page=30`, { token });
@@ -405,8 +405,7 @@ async function resolveHomeReleases() {
         sha256: typeof a.digest === 'string' && a.digest.startsWith('sha256:') ? a.digest.slice(7) : null,
       })),
     });
-    const framework = rels.find((r) => !r.draft && !r.prerelease && !r.tag_name.startsWith('manager-v'));
-    const manager = rels.find((r) => !r.draft && !r.prerelease && r.tag_name.startsWith('manager-v'));
+    const { framework, manager } = selectHomeReleases(rels);
     if (!framework && !manager && (previous?.releases?.framework || previous?.releases?.manager)) {
       // Same guard as the per-mod path: a release list that suddenly reads
       // empty is a degraded GitHub answering 200, not a maintainer deleting
