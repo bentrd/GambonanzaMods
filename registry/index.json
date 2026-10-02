@@ -1,99 +1,99 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-02T13:56:13.563Z",
+  "generatedAt": "2026-10-02T17:24:36.894Z",
   "count": 57,
   "releases": {
     "framework": {
-      "tag": "v1.7.0",
-      "version": "1.7.0",
-      "publishedAt": "2026-10-01T14:33:28Z",
-      "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+      "tag": "v1.8.0",
+      "version": "1.8.0",
+      "publishedAt": "2026-10-02T17:23:51Z",
+      "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/BetterCollection.zip",
           "size": 7897,
-          "sha256": "839689eb2421b35b4198055ddee24dc95702a8a8350c1cd494b130bf0157ae6e"
+          "sha256": "46414fbf514198ea40277d1c3191520789a217785ceee62f5b8fda5639aacc89"
         },
         {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "069d6b10b5400fa6c85e7ace9c65dc342f23954b6369c8028ae7c624835e052c"
+          "sha256": "0a02f70bc20d59f31c43abedc98a3f1bba4f97e87caec2f634ec6343db748221"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "e169803238ea614c37479663ea28f9122842c847374cfffb9154e1493b998220"
+          "sha256": "a95708e255fcdc248aa79bfbcf7323239cf7c2bdd496a5e04ae690ef15a2a510"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/GambitApi.zip",
           "size": 19924,
-          "sha256": "7e1de6796c6e080c1e4765f8914656970acabb9bd77795ea7316ec5515de45d9"
+          "sha256": "e06dcf1f4ea49c59e4cde99315c7939df4a3a7a1926c91e53b6e4ceafd4d34fb"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-linux-arm64.zip",
-          "size": 28413997,
-          "sha256": "492ffc01aa9aa4343cf77693754f86fa1dfd849a20bb27a13187cf49accd719a"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-linux-arm64.zip",
+          "size": 28413119,
+          "sha256": "5517d8d0647d8cbeb022b3ff226383db360267b25454f5e9763767ec0001acfa"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-linux-x64.zip",
-          "size": 29641366,
-          "sha256": "4c52b966f38c368d20ff5ec3b059f6f99feb8f1d1d383cf5e7201dc8dbd11089"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-linux-x64.zip",
+          "size": 29640479,
+          "sha256": "3480ac2e72c8c5c812a930449dd6bc806ae31a66151caf1810fd45c6c740c3f7"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-osx-arm64.zip",
-          "size": 28615085,
-          "sha256": "f8447d6fb6b91e0e2cbf8d9fdd607299a609e75c36ce504ea699221753bf6213"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-osx-arm64.zip",
+          "size": 28617427,
+          "sha256": "53090c18ce0a4b080f2575be056bb84350d5912aa304fe82f3f875d0bd98ef10"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-osx-x64.zip",
-          "size": 29992731,
-          "sha256": "5dd3fdd0efeaaca62a8b1761af84dc73d4ce05190588c6cbb3d28247c8f0ec35"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-osx-x64.zip",
+          "size": 29989976,
+          "sha256": "4f4f4f9fb9a0bae563fd811a2093a7aa96c3c7e3b4d8b186fa09db3f899018ee"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-win-arm64.zip",
-          "size": 28866330,
-          "sha256": "8951e4fcbd6ca315062ecc36aab5f79edb5cc65aab748f92787d3ebb9549447e"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-win-arm64.zip",
+          "size": 28870961,
+          "sha256": "558c70565ed454bc3b9b91fec1d2776030502cd3549908e922ee858b18112426"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/gambonanza-framework-win-x64.zip",
-          "size": 29947485,
-          "sha256": "35919f9fd4c3d129e1229e9f6fb84fd7031f2ec4e380831825bc2d263fedd9c6"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-win-x64.zip",
+          "size": 29946612,
+          "sha256": "329224385aa908416ff27f05d6df97d1306bad7f23a0a6d4613ef38f25e69334"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "99e42a9491c91c2c65746e6e9e9fc40a7f1cebe6cc9d319cc5ee222604eb2da5"
+          "sha256": "e11f01f6b316e1ae8daf56eb342938b5ffe7bf6dbe806341d9b189203902f2a5"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "82b8f2faded04bcbb3675b62878721f77b97fdfe5f3bb82e989fa8d65be414b2"
+          "sha256": "a5ce684df84420584a4d0dab191c336b43c01273b88e217f809f7b82d537bf85"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "79121d6aa5b933e7d0a5027a1e4aadb746184e101a26d2f10c1faccb374f4c30"
+          "sha256": "e016550cc7001d9cb296c70bb35500550243566d24d450c86966d09361384c33"
         },
         {
           "name": "StrainApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/StrainApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/StrainApi.zip",
           "size": 26951,
-          "sha256": "b3e20cea5a55e27211092e71bf7a8b602395b3d75e8f412672efd768eff9da5e"
+          "sha256": "c0ac59b5446465c8487a2db3dae32b34758e3579f15197932f8cff4cececeac6"
         }
       ]
     },
@@ -314,23 +314,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.7.0",
+        "tag": "v1.8.0",
         "version": "1.1.0",
-        "publishedAt": "2026-10-01T14:33:28Z",
-        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+        "publishedAt": "2026-10-02T17:23:51Z",
+        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/BetterCollection.zip",
           "size": 7897,
-          "sha256": "839689eb2421b35b4198055ddee24dc95702a8a8350c1cd494b130bf0157ae6e"
+          "sha256": "46414fbf514198ea40277d1c3191520789a217785ceee62f5b8fda5639aacc89"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 61,
+      "downloads": 62,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T07:04:05Z",
+      "repoPushedAt": "2026-10-02T17:20:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -500,23 +500,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.7.0",
+        "tag": "v1.8.0",
         "version": "1.0.0",
-        "publishedAt": "2026-10-01T14:33:28Z",
-        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+        "publishedAt": "2026-10-02T17:23:51Z",
+        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
         "asset": {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "069d6b10b5400fa6c85e7ace9c65dc342f23954b6369c8028ae7c624835e052c"
+          "sha256": "0a02f70bc20d59f31c43abedc98a3f1bba4f97e87caec2f634ec6343db748221"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 18,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T07:04:05Z",
+      "repoPushedAt": "2026-10-02T17:20:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -870,23 +870,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.7.0",
+        "tag": "v1.8.0",
         "version": "1.2.0",
-        "publishedAt": "2026-10-01T14:33:28Z",
-        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+        "publishedAt": "2026-10-02T17:23:51Z",
+        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "e169803238ea614c37479663ea28f9122842c847374cfffb9154e1493b998220"
+          "sha256": "a95708e255fcdc248aa79bfbcf7323239cf7c2bdd496a5e04ae690ef15a2a510"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 60,
+      "downloads": 61,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T07:04:05Z",
+      "repoPushedAt": "2026-10-02T17:20:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -1181,23 +1181,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.7.0",
+        "tag": "v1.8.0",
         "version": "1.4.1",
-        "publishedAt": "2026-10-01T14:33:28Z",
-        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+        "publishedAt": "2026-10-02T17:23:51Z",
+        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/GambitApi.zip",
           "size": 19924,
-          "sha256": "7e1de6796c6e080c1e4765f8914656970acabb9bd77795ea7316ec5515de45d9"
+          "sha256": "e06dcf1f4ea49c59e4cde99315c7939df4a3a7a1926c91e53b6e4ceafd4d34fb"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 62,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T07:04:05Z",
+      "repoPushedAt": "2026-10-02T17:20:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -1765,23 +1765,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.7.0",
+        "tag": "v1.8.0",
         "version": "1.3.0",
-        "publishedAt": "2026-10-01T14:33:28Z",
-        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+        "publishedAt": "2026-10-02T17:23:51Z",
+        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "99e42a9491c91c2c65746e6e9e9fc40a7f1cebe6cc9d319cc5ee222604eb2da5"
+          "sha256": "e11f01f6b316e1ae8daf56eb342938b5ffe7bf6dbe806341d9b189203902f2a5"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T07:04:05Z",
+      "repoPushedAt": "2026-10-02T17:20:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -1912,23 +1912,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.7.0",
+        "tag": "v1.8.0",
         "version": "1.1.0",
-        "publishedAt": "2026-10-01T14:33:28Z",
-        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+        "publishedAt": "2026-10-02T17:23:51Z",
+        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "82b8f2faded04bcbb3675b62878721f77b97fdfe5f3bb82e989fa8d65be414b2"
+          "sha256": "a5ce684df84420584a4d0dab191c336b43c01273b88e217f809f7b82d537bf85"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 34,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T07:04:05Z",
+      "repoPushedAt": "2026-10-02T17:20:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -2450,23 +2450,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.7.0",
+        "tag": "v1.8.0",
         "version": "1.1.0",
-        "publishedAt": "2026-10-01T14:33:28Z",
-        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+        "publishedAt": "2026-10-02T17:23:51Z",
+        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "79121d6aa5b933e7d0a5027a1e4aadb746184e101a26d2f10c1faccb374f4c30"
+          "sha256": "e016550cc7001d9cb296c70bb35500550243566d24d450c86966d09361384c33"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 40,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T07:04:05Z",
+      "repoPushedAt": "2026-10-02T17:20:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -2598,23 +2598,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.7.0",
+        "tag": "v1.8.0",
         "version": "1.0.0",
-        "publishedAt": "2026-10-01T14:33:28Z",
-        "notes": "\n- **Resource packs can resize a sprite.** Until now a replacement had to fit\n  the exact rectangle the game cuts a sprite out of its sheet with - paint a\n  bigger mouth on a boss and only a slice of it showed. A pack can now move\n  and resize that cut, so art that needs more room gets it. The sprite's\n  original pixels stay where they were on screen and the cut grows around\n  them. Set it in the Mod Manager (Resource packs → a sprite → **Resize on the\n  sheet**), wear the pack and restart the game.\n- This reaches everything drawn on the board and in scenes - bosses, pieces,\n  effects. Menu and HUD pictures keep their size.\n- A resized sprite is also free of its old silhouette: the game no longer\n  clips it to the outline of the original art.\n- The F10 console gains `resourcepack cut <sprite> <sheet> <x> <y> <width>\n  <height>` for trying a cut with the game running, and `resourcepack`,\n  `resourcepack list` and `resourcepack reapply` now cover cuts too.\n- **Update the framework through Set up** to get it. Packs that use cuts still\n  load on older frameworks - their sprites are just drawn at the original size.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.7.0",
+        "publishedAt": "2026-10-02T17:23:51Z",
+        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
         "asset": {
           "name": "StrainApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.7.0/StrainApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/StrainApi.zip",
           "size": 26951,
-          "sha256": "b3e20cea5a55e27211092e71bf7a8b602395b3d75e8f412672efd768eff9da5e"
+          "sha256": "c0ac59b5446465c8487a2db3dae32b34758e3579f15197932f8cff4cececeac6"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 7,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T07:04:05Z",
+      "repoPushedAt": "2026-10-02T17:20:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -3114,7 +3114,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 327,
+      "downloads": 328,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3154,7 +3154,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 448,
+      "downloads": 449,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3202,7 +3202,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 121,
+      "downloads": 123,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3226,7 +3226,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 221,
+      "downloads": 222,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
