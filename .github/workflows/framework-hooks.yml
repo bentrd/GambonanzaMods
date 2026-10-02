@@ -1,0 +1,31 @@
+name: Framework hooks
+
+on:
+  push:
+    paths:
+      - 'src/ModSdk/**'
+      - 'src/ModHost/**'
+      - 'src/Patcher/**'
+      - 'tests/FrameworkHooks.Tests/**'
+      - '.github/workflows/framework-hooks.yml'
+  pull_request:
+    paths:
+      - 'src/ModSdk/**'
+      - 'src/ModHost/**'
+      - 'src/Patcher/**'
+      - 'tests/FrameworkHooks.Tests/**'
+      - '.github/workflows/framework-hooks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Check dispatch and patched defeat behavior
+        run: dotnet run --project tests/FrameworkHooks.Tests -c Release

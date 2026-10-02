@@ -10,10 +10,20 @@
 #   2. Launch the game, open the console (F10), run `mods` and `list gambits`.
 #   3. If everything works, update the two values below and note what changed.
 
-steamBuildId=25386882
-assemblySha256=03a056ad54e151c7086915219853a11113eadc9e13549edd5655ca82baeab065
+steamBuildId=25623616
+assemblySha256=65777b6c5511512c359d5f31eadfb415b94807b2f9cea695c494c629a62a6633
 unityVersion=6000.4.3f1
-verifiedOn=2026-09-30
+verifiedOn=2026-10-02
+
+# Build 25623616 (verified 2026-10-02): framework and patcher Release builds
+# compile cleanly. Patched an isolated copy of the current game and invoked
+# GameManager.Lose twice through the new cancellable hook in the native player.
+# Both vetoes preserved current/previous state, m_HasLost, loss counters and all
+# persistent save files. Verified first-rescue priority, handler exception
+# isolation, same-manager recursive suppression, later-call dispatch and
+# unsubscribe fallback. Re-patching produced a byte-identical DLL and preserved
+# the vanilla backup. The 15 automated hook checks also pass. This validates the
+# hook and boot on this build; it is not a full audit of every bundled mod.
 
 # Build 25386882 (verified 2026-09-30): framework and patcher Release builds
 # compile cleanly against the installed game. Re-patched an isolated app copy,

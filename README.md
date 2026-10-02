@@ -3,7 +3,7 @@
 A modding framework for the Steam game **Gambonanza**, and the desktop app
 that installs it for you.
 
-The patcher adds four call sites to the game's `Assembly-CSharp.dll` and drops
+The patcher adds six hooks to the game's `Assembly-CSharp.dll` and drops
 a loader into `Managed/`. After that, a mod is a plain .NET DLL in
 `Gambonanza/Mods/<ModName>/`. No Harmony, no MonoMod, no Unity Editor.
 
@@ -68,7 +68,7 @@ public sealed class HelloMod : Gambonanza.ModSdk.IMod
 
 ## How it works
 
-Four hooks, and that's the entire footprint. Everything else runs as vanilla.
+Six hooks, and that's the entire footprint. Everything else runs as vanilla.
 
 | Where in `Assembly-CSharp.dll` | Hook |
 | --- | --- |
@@ -76,6 +76,12 @@ Four hooks, and that's the entire footprint. Everything else runs as vanilla.
 | `Blukulele.CHE.CanvasMenu.OnEnable` | `ModHost.OnHomeMenuOpenedInvoke(this)` - the CONSOLE button. |
 | `Blukulele.CHE.SettingsCanvas.OnEnable` | `ModHost.OnSettingsOpenedInvoke(this)` - fans out to mods. |
 | `AchievementManager.UnlockAchievement` / `.IncreaseAchievement` | `ModHost.ShouldBlockAchievement(name)` - pauses Steam achievements while any mod is enabled. |
+| `AudioManager.ChooseRandomClip` | `ResourcePackAudio.Resolve(clip)` - resource pack sound and music replacements. |
+| `Blukulele.Core.GameManager.Lose` | `ModHost.ShouldCancelLoss(this)` - lets the first accepting mod cancel defeat before statistics, state changes and save deletion. |
+
+Mods can subscribe to `IModLossHooks.OnBeforeLose` through their context. See
+[Defeat interception](docs/GAMEPLAY_HOOKS.md) for the contract and lifecycle example.
+Installing this hook requires rebuilding and re-patching the framework.
 
 A marker class `__GambonanzaModHostPatched` keeps the patcher idempotent. The
 in-game console opens with `F10` or backtick; type `help`.

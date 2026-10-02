@@ -39,7 +39,7 @@ Unity - you can spawn `MonoBehaviour`s, hook into game classes via reflection,
 swap `SpriteRenderer` materials, anything Unity allows.
 
 There is no Harmony. The framework deliberately stays small: the patcher only
-adds three call sites to `Assembly-CSharp.dll` and the rest is plain C#
+adds six hooks to `Assembly-CSharp.dll` and the rest is plain C#
 reflection. If you need to patch a method, do it the hard way (replace the
 field, watch a value in `LateUpdate`, instantiate a `MonoBehaviour` that wraps
 the target). The samples here show several variations of this pattern.
@@ -94,8 +94,13 @@ public sealed class MyModEntry : IMod
   custom rows (the `Gambonanza.GameUI.Pixel` helpers in
   [docs/UI_API.md](../docs/UI_API.md) clone real game widgets for this).
 
-That is the entire public API. Everything else is your code reaching into the
-game via reflection.
+Mods can implement `IModLifecycle` to support hot enable/disable: subscribe in
+`OnEnable` and unsubscribe in `OnDisable`. The optional `IModLossHooks` context
+interface also exposes a cancellable event before `GameManager.Lose()`; see
+[Gameplay hooks](../docs/GAMEPLAY_HOOKS.md) for its timing, lifecycle example,
+and framework installation requirements (framework 1.8.0+).
+
+For other game behaviour, your code reaches into the game via reflection.
 
 ---
 

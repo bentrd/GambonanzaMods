@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RollForward>LatestMajor</RollForward>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../src/ModSdk/*.cs" Link="Production/ModSdk/%(Filename)%(Extension)" />
+    <Compile Include="../../src/ModHost/ModContext.cs" Link="Production/ModContext.cs" />
+    <Compile Include="../../src/ModHost/ModRegistry.cs" Link="Production/ModRegistry.cs" />
+    <Compile Include="../../src/ModHost/ModManifest.cs" Link="Production/ModManifest.cs" />
+    <Compile Include="../../src/ModHost/ModHost.cs" Link="Production/ModHost.cs" />
+    <ProjectReference Include="../../src/Patcher/Patcher.csproj" ReferenceOutputAssembly="false" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.6" />
+  </ItemGroup>
+  <Target Name="CopyPatcher" AfterTargets="Build">
+    <ItemGroup><PatcherFiles Include="../../src/Patcher/bin/$(Configuration)/net8.0/*" /></ItemGroup>
+    <Copy SourceFiles="@(PatcherFiles)" DestinationFolder="$(OutDir)patcher" />
+  </Target>
+</Project>

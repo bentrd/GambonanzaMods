@@ -8,13 +8,14 @@ using Mono.Cecil.Cil;
 namespace Gambonanza.Patcher;
 
 /// <summary>
-/// Generic Cecil patcher. Injects five hooks into Assembly-CSharp.dll:
+/// Generic Cecil patcher. Injects six hooks into Assembly-CSharp.dll:
 ///   1. Gambonanza.ModHost.ModHost.LoadAll()                       at GameManager.Start
 ///   2. Gambonanza.ModHost.ModHost.OnSettingsOpenedInvoke(this)    at SettingsCanvas.OnEnable
 ///   3. Gambonanza.ModHost.ModHost.OnHomeMenuOpenedInvoke(this)    at CanvasMenu.OnEnable
 ///   4. Gambonanza.ModHost.ModHost.ShouldBlockAchievement(name)    guarding AchievementManager
 ///      .UnlockAchievement / .IncreaseAchievement (early-returns while a mod is enabled)
 ///   5. Gambonanza.ModHost.ResourcePackAudio.Resolve(clip)          at AudioManager.ChooseRandomClip returns
+///   6. Gambonanza.ModHost.ModHost.ShouldCancelLoss(this)           guarding GameManager.Lose
 ///
 /// All mod-specific logic lives in mods loaded by ModHost at runtime - this patcher
 /// has no knowledge of any individual mod.
@@ -165,10 +166,30 @@ internal static class Program
             Console.Error.WriteLine("Could not find Blukulele.Core.GameManager.Start - aborting.");
             return 3;
         }
+        var loseMethod = gameManager.Methods.FirstOrDefault(m => m.Name == "Lose"
+            && !m.IsStatic && m.HasBody && m.Parameters.Count == 0
+            && m.ReturnType.FullName == "System.Void");
+        if (loseMethod == null)
+        {
+            Console.Error.WriteLine("Could not find GameManager.Lose() - aborting (defeat hook required).");
+            return 3;
+        }
         var ilStart = startMethod.Body.GetILProcessor();
         var firstInstr = startMethod.Body.Instructions.First();
         ilStart.InsertBefore(firstInstr, ilStart.Create(OpCodes.Call, loadAllRef));
         Console.WriteLine("  patched -> Blukulele.Core.GameManager.Start (prepended ModHost.LoadAll)");
+
+        // Cancel before vanilla mutates loss statistics/state or deletes the run save.
+        var shouldCancelLossRef = new MethodReference(
+            "ShouldCancelLoss", module.TypeSystem.Boolean, modHostTypeRef) { HasThis = false };
+        shouldCancelLossRef.Parameters.Add(new ParameterDefinition(monoBehaviourRef));
+        var ilLose = loseMethod.Body.GetILProcessor();
+        var firstLose = loseMethod.Body.Instructions.First();
+        ilLose.InsertBefore(firstLose, ilLose.Create(OpCodes.Ldarg_0));
+        ilLose.InsertBefore(firstLose, ilLose.Create(OpCodes.Call, shouldCancelLossRef));
+        ilLose.InsertBefore(firstLose, ilLose.Create(OpCodes.Brfalse, firstLose));
+        ilLose.InsertBefore(firstLose, ilLose.Create(OpCodes.Ret));
+        Console.WriteLine("  patched -> Blukulele.Core.GameManager.Lose (guarded by ModHost.ShouldCancelLoss)");
 
         // 6. Patch SettingsCanvas.OnEnable - append ModHost.OnSettingsOpenedInvoke(this) before every ret.
         var settingsCanvas = module.GetType("Blukulele.CHE.SettingsCanvas");

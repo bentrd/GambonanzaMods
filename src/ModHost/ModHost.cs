@@ -10,6 +10,7 @@ namespace Gambonanza.ModHost
     /// Single static entry point. The Cecil patcher injects:
     ///   - ModHost.LoadAll()                              at GameManager.Start
     ///   - ModHost.OnSettingsOpenedInvoke(this)           at SettingsCanvas.OnEnable
+    ///   - ModHost.ShouldCancelLoss(this)                 guarding GameManager.Lose
     /// </summary>
     public static class ModHost
     {
@@ -18,6 +19,8 @@ namespace Gambonanza.ModHost
         private static string _modsDirectory;
         private static ModConsole _console;
         private static ConsoleMenuInjector _consoleMenuInjector;
+        private static readonly System.Collections.Generic.List<MonoBehaviour> _lossDispatchStack
+            = new System.Collections.Generic.List<MonoBehaviour>();
 
         public static void LoadAll()
         {
@@ -127,6 +130,28 @@ namespace Gambonanza.ModHost
             if (!_loaded) LoadAll();
             try { _consoleMenuInjector?.InjectButton(canvasMenu); }
             catch (Exception ex) { LogLine("console button injection failed: " + ex); }
+        }
+
+        /// <summary>
+        /// Called before GameManager.Lose performs any defeat effects. True skips
+        /// vanilla loss; no registry/handlers or a dispatch failure falls open.
+        /// </summary>
+        public static bool ShouldCancelLoss(MonoBehaviour gameManager)
+        {
+            if (ReferenceEquals(gameManager, null)) return false;
+            // A rescue handler may indirectly call Lose again. Running vanilla loss
+            // inside that handler would erase the run before it can claim the rescue.
+            foreach (var dispatching in _lossDispatchStack)
+                if (ReferenceEquals(dispatching, gameManager)) return true;
+
+            _lossDispatchStack.Add(gameManager);
+            try { return _registry?.DispatchBeforeLose(gameManager) ?? false; }
+            catch (Exception ex)
+            {
+                LogLine("ShouldCancelLoss failed: " + ex);
+                return false;
+            }
+            finally { _lossDispatchStack.RemoveAt(_lossDispatchStack.Count - 1); }
         }
 
         internal static void OpenConsole()

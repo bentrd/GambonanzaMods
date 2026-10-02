@@ -6,6 +6,7 @@ namespace Gambonanza.ModSdk
     /// <summary>
     /// Per-mod runtime context, supplied by ModHost during OnLoad.
     /// Use the events to subscribe to game lifecycle hooks the patcher routes through ModHost.
+    /// Optional defeat interception is available by casting to IModLossHooks.
     /// </summary>
     public interface IModContext
     {

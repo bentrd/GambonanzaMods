@@ -5,6 +5,18 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## 1.8.0
+
+- Mods can intercept defeat before the game records a loss or deletes the
+  run save. This gives extra-life and second-chance mods a supported way to
+  replace defeat. The first mod that handles it takes priority, and disabled
+  mods cannot intercept it. Requires updating the framework and re-patching
+  the game; the hook does not itself add an extra-life strain.
+- Verified the hook against Steam build 25623616, including an isolated
+  native game check that cancellation preserves the run save, loss counters,
+  and game state. Ordinary defeat, multiple rescue handlers and failed
+  handlers are covered by automated checks.
+
 ## 1.7.0
 
 - **Resource packs can resize a sprite.** Until now a replacement had to fit

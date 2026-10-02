@@ -223,6 +223,17 @@ namespace Gambonanza.ModHost
             }
         }
 
+        public bool DispatchBeforeLose(MonoBehaviour gameManager)
+        {
+            // A callback can rescan/toggle mods. Keep this attempt's load order stable.
+            foreach (var mod in _mods.ToArray())
+            {
+                if (mod.IsActive && mod.Context != null && mod.Context.RaiseBeforeLose(gameManager))
+                    return true;
+            }
+            return false;
+        }
+
         // ----- Internals ----------------------------------------------------
 
         private LoadedMod LoadAndConstruct(string modDirectory, ModManifest manifest)
