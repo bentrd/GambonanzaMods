@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-02T21:26:46.177Z",
+  "generatedAt": "2026-10-02T23:50:53.530Z",
   "count": 58,
   "releases": {
     "framework": {
@@ -328,9 +328,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 65,
+      "downloads": 66,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T21:25:52Z",
+      "repoPushedAt": "2026-10-02T21:26:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -475,7 +475,7 @@
         "manifestVersion": "2.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 3,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
@@ -558,7 +558,7 @@
       },
       "downloads": 20,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T21:25:52Z",
+      "repoPushedAt": "2026-10-02T21:26:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -926,9 +926,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 63,
+      "downloads": 64,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T21:25:52Z",
+      "repoPushedAt": "2026-10-02T21:26:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 64,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T21:25:52Z",
+      "repoPushedAt": "2026-10-02T21:26:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 49,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T21:25:52Z",
+      "repoPushedAt": "2026-10-02T21:26:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -1970,7 +1970,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T21:25:52Z",
+      "repoPushedAt": "2026-10-02T21:26:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -2508,7 +2508,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T21:25:52Z",
+      "repoPushedAt": "2026-10-02T21:26:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -2657,7 +2657,7 @@
       },
       "downloads": 4,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T21:25:52Z",
+      "repoPushedAt": "2026-10-02T21:26:47Z",
       "license": "MIT",
       "archived": false
     },
@@ -2805,7 +2805,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 0,
       "repoPushedAt": "2026-10-02T01:11:08Z",
       "license": "MIT",
@@ -3157,7 +3157,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 334,
+      "downloads": 336,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3197,7 +3197,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 454,
+      "downloads": 455,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3245,7 +3245,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 128,
+      "downloads": 130,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3269,7 +3269,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 227,
+      "downloads": 228,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3400,7 +3400,7 @@
           "sha256": "32fccbd2b5d7ad604dc3b37333f798fd260d134eae7a553317926f27c50823f5"
         }
       },
-      "downloads": 3
+      "downloads": 4
     },
     {
       "id": "slimer-hikarul",
