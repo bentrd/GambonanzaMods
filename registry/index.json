@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-02T18:21:36.763Z",
-  "count": 57,
+  "generatedAt": "2026-10-02T18:23:09.056Z",
+  "count": 58,
   "releases": {
     "framework": {
       "tag": "v1.8.0",
@@ -289,7 +289,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-09-27T22:53:07Z",
+      "repoPushedAt": "2026-10-02T18:21:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -330,7 +330,7 @@
       },
       "downloads": 63,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:20:54Z",
+      "repoPushedAt": "2026-10-02T18:22:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -440,6 +440,58 @@
       "archived": false
     },
     {
+      "id": "cashback-strain",
+      "name": "Cashback",
+      "author": "Ben",
+      "summary": "A bonus strain: expiring gambits pay their sell value.",
+      "description": "Pick Cashback in the blue bonus column on the Mod Strains page before a Custom run. It adds no heat and pays a gambit's sell value when the game's Gambit Expiry strain makes it expire. With expiry off, it has no effect.\n\nIncludes Collector's accumulated value and Boss Tooth's current value. Gambits disappear at their usual time; cashback does not trigger sale-only effects. Requires Strain Creation API 1.1.0 or newer.",
+      "repo": "ben-gambo/mods",
+      "asset": "CashbackStrain.zip",
+      "folder": "CashbackStrain",
+      "tagPattern": "CashbackStrain-v*",
+      "homepage": "https://github.com/ben-gambo/mods/tree/main/CashbackStrain",
+      "tags": [
+        "strains",
+        "gameplay"
+      ],
+      "dependencies": [
+        "strain-api"
+      ],
+      "frameworkVersion": ">=1.5.2",
+      "gameVersion": ">=1.0",
+      "strains": [
+        {
+          "id": "cashback",
+          "name": "Cashback",
+          "description": "Expiring gambits pay their <color=*>sell value</color>."
+        }
+      ],
+      "submittedBy": "ben-gambo",
+      "addedAt": "2026-10-02",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "CashbackStrain-v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-10-02T18:21:50Z",
+        "notes": "## Cashback 1.0.0\n\n- Adds Cashback as an optional bonus on the Mod Strains page, with no\n  added heat.\n- Gambits removed by the Gambit Expiry strain pay their current sell value,\n  including Collector and Boss Tooth.\n- Pays once per expired gambit, without triggering manual-sale effects.\n- Keeps the bonus through saving and continuing a run.\n\nRequires StrainApi 1.1.0 or newer and the GambonanzaMods framework. Unpack\n`CashbackStrain.zip` into your game's `Mods/` folder.\n",
+        "releaseUrl": "https://github.com/ben-gambo/mods/releases/tag/CashbackStrain-v1.0.0",
+        "asset": {
+          "name": "CashbackStrain.zip",
+          "url": "https://github.com/ben-gambo/mods/releases/download/CashbackStrain-v1.0.0/CashbackStrain.zip",
+          "size": 7438,
+          "sha256": "4b8947b26145243c813a072c9a69d72621f3872380a5799bcd3f63cea65bace6"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Ben"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-10-02T18:21:49Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "coop",
       "name": "Co-op",
       "author": "Ben",
@@ -475,7 +527,7 @@
       },
       "downloads": 20,
       "stars": 0,
-      "repoPushedAt": "2026-09-27T22:53:07Z",
+      "repoPushedAt": "2026-10-02T18:21:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -516,7 +568,7 @@
       },
       "downloads": 19,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:20:54Z",
+      "repoPushedAt": "2026-10-02T18:22:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -729,7 +781,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-09-27T22:53:07Z",
+      "repoPushedAt": "2026-10-02T18:21:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -791,7 +843,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-09-27T22:53:07Z",
+      "repoPushedAt": "2026-10-02T18:21:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -886,7 +938,7 @@
       },
       "downloads": 62,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:20:54Z",
+      "repoPushedAt": "2026-10-02T18:22:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -996,7 +1048,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-09-27T22:53:07Z",
+      "repoPushedAt": "2026-10-02T18:21:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -1050,7 +1102,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-09-27T22:53:07Z",
+      "repoPushedAt": "2026-10-02T18:21:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -1197,7 +1249,7 @@
       },
       "downloads": 63,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:20:54Z",
+      "repoPushedAt": "2026-10-02T18:22:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -1571,7 +1623,7 @@
       },
       "downloads": 16,
       "stars": 0,
-      "repoPushedAt": "2026-09-27T22:53:07Z",
+      "repoPushedAt": "2026-10-02T18:21:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -1781,7 +1833,7 @@
       },
       "downloads": 49,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:21:15Z",
+      "repoPushedAt": "2026-10-02T18:22:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -1928,7 +1980,7 @@
       },
       "downloads": 35,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:21:15Z",
+      "repoPushedAt": "2026-10-02T18:22:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -2466,7 +2518,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:21:15Z",
+      "repoPushedAt": "2026-10-02T18:22:27Z",
       "license": "MIT",
       "archived": false
     },
@@ -2614,7 +2666,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-10-02T18:21:15Z",
+      "repoPushedAt": "2026-10-02T18:22:27Z",
       "license": "MIT",
       "archived": false
     },
