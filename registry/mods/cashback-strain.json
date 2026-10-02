@@ -2,29 +2,19 @@
   "id": "cashback-strain",
   "name": "Cashback",
   "author": "Ben",
-  "summary": "A bonus strain: expiring gambits pay their sell value.",
-  "description": "Pick Cashback in the blue bonus column on the Mod Strains page before a Custom run. It adds no heat and pays a gambit's sell value when the game's Gambit Expiry strain makes it expire. With expiry off, it has no effect.\n\nIncludes Collector's accumulated value and Boss Tooth's current value. Gambits disappear at their usual time; cashback does not trigger sale-only effects. Requires Strain Creation API 1.1.0 or newer.",
+  "summary": "QoL: expiring gambits pay their sell value, including in King runs.",
+  "description": "Enable Cashback as a regular QoL mod. It works in preset runs, including King, without adding a strain or bonus or changing the run's difficulty and native gambit completion tracking. No Strain Creation API dependency.\n\nPays a gambit's sell value when the game's Gambit Expiry rule makes it expire. With expiry off, it has no effect. Includes Collector's accumulated value and Boss Tooth's current value. Gambits disappear at their usual time; cashback does not trigger sale-only effects.\n\nVersion 2.0 replaces the former bonus strain. Update and restart the game; an existing Custom run keeps its original difficulty.",
   "repo": "ben-gambo/mods",
   "asset": "CashbackStrain.zip",
   "folder": "CashbackStrain",
   "tagPattern": "CashbackStrain-v*",
   "homepage": "https://github.com/ben-gambo/mods/tree/main/CashbackStrain",
   "tags": [
-    "strains",
+    "quality-of-life",
     "gameplay"
-  ],
-  "dependencies": [
-    "strain-api"
   ],
   "frameworkVersion": ">=1.5.2",
   "gameVersion": ">=1.0",
-  "strains": [
-    {
-      "id": "cashback",
-      "name": "Cashback",
-      "description": "Expiring gambits pay their <color=*>sell value</color>."
-    }
-  ],
   "submittedBy": "ben-gambo",
   "addedAt": "2026-10-02"
 }
