@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-04T20:17:27.280Z",
-  "count": 60,
+  "generatedAt": "2026-10-04T20:19:06.294Z",
+  "count": 61,
   "releases": {
     "framework": {
       "tag": "v1.8.0",
@@ -330,7 +330,7 @@
       },
       "downloads": 69,
       "stars": 5,
-      "repoPushedAt": "2026-10-04T19:41:51Z",
+      "repoPushedAt": "2026-10-04T20:17:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 21,
       "stars": 5,
-      "repoPushedAt": "2026-10-04T19:41:51Z",
+      "repoPushedAt": "2026-10-04T20:17:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 67,
       "stars": 5,
-      "repoPushedAt": "2026-10-04T19:41:51Z",
+      "repoPushedAt": "2026-10-04T20:17:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 66,
       "stars": 5,
-      "repoPushedAt": "2026-10-04T19:41:51Z",
+      "repoPushedAt": "2026-10-04T20:17:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 51,
       "stars": 5,
-      "repoPushedAt": "2026-10-04T19:41:51Z",
+      "repoPushedAt": "2026-10-04T20:17:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -1970,7 +1970,7 @@
       },
       "downloads": 36,
       "stars": 5,
-      "repoPushedAt": "2026-10-04T19:41:51Z",
+      "repoPushedAt": "2026-10-04T20:17:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -2538,6 +2538,45 @@
       "archived": false
     },
     {
+      "id": "spiders-gambit",
+      "name": "Spider's Gambit",
+      "author": "FRO_PWR",
+      "summary": "After moving a knight, trap every piece it can capture.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "SpidersGambit.zip",
+      "folder": "SpidersGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-10-04",
+      "official": false,
+      "reviewed": false,
+      "issue": 83,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/83",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "SpidersGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/SpidersGambit.zip",
+          "size": 4553,
+          "sha256": "cf4d792ce86b9faf7cb4b7c1be8b3be391b59486c41949b3b890bde5ad583953"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-10-04T20:07:01Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "spikes-gambit",
       "name": "Spikes' Gambit",
       "author": "TGM",
@@ -2586,7 +2625,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-10-04T19:41:51Z",
+      "repoPushedAt": "2026-10-04T20:17:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -2735,7 +2774,7 @@
       },
       "downloads": 4,
       "stars": 5,
-      "repoPushedAt": "2026-10-04T19:41:51Z",
+      "repoPushedAt": "2026-10-04T20:17:28Z",
       "license": "MIT",
       "archived": false
     },
