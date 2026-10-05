@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-05T09:12:25.232Z",
+  "generatedAt": "2026-10-05T18:33:40.091Z",
   "count": 61,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 69,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T02:07:41Z",
+      "repoPushedAt": "2026-10-05T09:12:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -475,7 +475,7 @@
         "manifestVersion": "2.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
@@ -556,9 +556,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 21,
+      "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T02:07:41Z",
+      "repoPushedAt": "2026-10-05T09:12:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 67,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T02:07:41Z",
+      "repoPushedAt": "2026-10-05T09:12:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1237,9 +1237,9 @@
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 66,
+      "downloads": 67,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T02:07:41Z",
+      "repoPushedAt": "2026-10-05T09:12:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1290,9 +1290,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1452,7 +1452,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 51,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T02:07:41Z",
+      "repoPushedAt": "2026-10-05T09:12:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1970,7 +1970,7 @@
       },
       "downloads": 36,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T02:07:41Z",
+      "repoPushedAt": "2026-10-05T09:12:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -2117,7 +2117,7 @@
       },
       "downloads": 17,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2224,7 +2224,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2332,7 +2332,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2533,7 +2533,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2625,7 +2625,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T02:07:41Z",
+      "repoPushedAt": "2026-10-05T09:12:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -2732,7 +2732,7 @@
       },
       "downloads": 16,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2774,7 +2774,7 @@
       },
       "downloads": 4,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T02:07:41Z",
+      "repoPushedAt": "2026-10-05T09:12:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -2829,7 +2829,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2883,7 +2883,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2908,23 +2908,23 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "2.0.1",
-        "version": "2.0.1",
-        "publishedAt": "2026-10-03T02:21:59Z",
-        "notes": "Updated Tile Console to add a \"fall\" command opposed to the crumble command.",
-        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/2.0.1",
+        "tag": "v2.0.2",
+        "version": "2.0.2",
+        "publishedAt": "2026-10-05T18:27:58Z",
+        "notes": "it don don me that i zipped the unbuild 1.1 directory on accident",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v2.0.2",
         "asset": {
           "name": "TileConsole.zip",
-          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/2.0.1/TileConsole.zip",
-          "size": 38012,
-          "sha256": "32cf7f5e65dfad1cea4f9dc357e2d0d3833af7f5909aa222ffbe21a82ebda3b2"
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v2.0.2/TileConsole.zip",
+          "size": 5582,
+          "sha256": "6fa60ad779af33373f89b4dfc5997a22e4e7bfc4044bfc65ce750113e5494dbd"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2979,7 +2979,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -3086,7 +3086,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -3141,7 +3141,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-10-03T02:21:59Z",
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -3274,7 +3274,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 350,
+      "downloads": 351,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3314,7 +3314,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 461,
+      "downloads": 462,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3386,7 +3386,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 241,
+      "downloads": 243,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3424,7 +3424,7 @@
           "sha256": "4a569419a1b21bf05b0b979d120c52af34b74a172c498d5a55ee6f958b828596"
         }
       },
-      "downloads": 2
+      "downloads": 3
     },
     {
       "id": "dracula-botezzaro",
