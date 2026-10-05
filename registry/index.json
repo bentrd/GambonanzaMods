@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-05T18:33:40.091Z",
-  "count": 61,
+  "generatedAt": "2026-10-05T18:34:36.922Z",
+  "count": 62,
   "releases": {
     "framework": {
       "tag": "v1.8.0",
@@ -330,7 +330,7 @@
       },
       "downloads": 69,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T09:12:26Z",
+      "repoPushedAt": "2026-10-05T18:33:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 22,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T09:12:26Z",
+      "repoPushedAt": "2026-10-05T18:33:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 67,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T09:12:26Z",
+      "repoPushedAt": "2026-10-05T18:33:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 67,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T09:12:26Z",
+      "repoPushedAt": "2026-10-05T18:33:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,45 @@
       },
       "downloads": 51,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T09:12:26Z",
+      "repoPushedAt": "2026-10-05T18:33:42Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "kev-borclick-unblue",
+      "name": "Kev Borclick Unblue",
+      "author": "Minty",
+      "summary": "Removes blue glow beneath Kev Borclick's eyes (useful for reskins)",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "KevBorclickUnblue.zip",
+      "folder": "KevBorclickUnblue",
+      "tags": [
+        "visual"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-10-05",
+      "official": false,
+      "reviewed": false,
+      "issue": 84,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/84",
+      "latest": {
+        "tag": "v2.0.3",
+        "version": "2.0.3",
+        "publishedAt": "2026-10-05T18:29:05Z",
+        "notes": "Removes blue glow beneath Kev Borclick's eyes (usefull for reskins)",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v2.0.3",
+        "asset": {
+          "name": "KevBorclickUnblue.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v2.0.3/KevBorclickUnblue.zip",
+          "size": 4738,
+          "sha256": "3016a5ebbaa22a7974930fd3f7de40463855e17af85beeebffd8be60917a07e3"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-10-05T18:29:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1970,7 +2008,7 @@
       },
       "downloads": 36,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T09:12:26Z",
+      "repoPushedAt": "2026-10-05T18:33:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2625,7 +2663,7 @@
       },
       "downloads": 42,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T09:12:26Z",
+      "repoPushedAt": "2026-10-05T18:33:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2774,7 +2812,7 @@
       },
       "downloads": 4,
       "stars": 5,
-      "repoPushedAt": "2026-10-05T09:12:26Z",
+      "repoPushedAt": "2026-10-05T18:33:42Z",
       "license": "MIT",
       "archived": false
     },
