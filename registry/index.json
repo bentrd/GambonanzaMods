@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-10T20:08:47.047Z",
+  "generatedAt": "2026-10-10T23:38:27.686Z",
   "count": 62,
   "releases": {
     "framework": {
@@ -221,7 +221,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BackStabbersGambit.zip",
@@ -330,7 +330,7 @@
       },
       "downloads": 71,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T15:27:04Z",
+      "repoPushedAt": "2026-10-10T20:08:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -422,7 +422,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T15:27:04Z",
+      "repoPushedAt": "2026-10-10T20:08:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -704,7 +704,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "DootsGambit.zip",
@@ -928,7 +928,7 @@
       },
       "downloads": 69,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T15:27:04Z",
+      "repoPushedAt": "2026-10-10T20:08:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -968,7 +968,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EvangelistsGambit.zip",
@@ -1185,7 +1185,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "FrankensteinsGambit.zip",
@@ -1239,7 +1239,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T15:27:04Z",
+      "repoPushedAt": "2026-10-10T20:08:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -1385,7 +1385,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GuardianAngelsGambit.zip",
@@ -1492,7 +1492,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HeadlessHorsemansGambit.zip",
@@ -1546,7 +1546,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HydraulicPresssGambit.zip",
@@ -1651,7 +1651,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "InternsGambit.zip",
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T15:27:04Z",
+      "repoPushedAt": "2026-10-10T20:08:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -2008,7 +2008,7 @@
       },
       "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T15:27:04Z",
+      "repoPushedAt": "2026-10-10T20:08:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -2087,7 +2087,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "NegativeGambit.zip",
@@ -2195,7 +2195,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "PossessionsGambit.zip",
@@ -2410,7 +2410,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -2449,7 +2449,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SkeletonsGambit.zip",
@@ -2597,7 +2597,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SpidersGambit.zip",
@@ -2663,7 +2663,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T15:27:04Z",
+      "repoPushedAt": "2026-10-10T20:08:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -2703,7 +2703,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -2812,7 +2812,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T15:27:04Z",
+      "repoPushedAt": "2026-10-10T20:08:48Z",
       "license": "MIT",
       "archived": false
     },
@@ -3057,7 +3057,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "TortoisesGambit.zip",
@@ -3219,7 +3219,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "VampiresGambit.zip",
@@ -3272,7 +3272,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "ZombiesGambit.zip",
@@ -3453,7 +3453,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "ClassicChessPieces.zip",
@@ -3484,7 +3484,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "Dracula_Botezzaro.zip",
@@ -3515,7 +3515,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BloodPumpkinPieces.zip",
@@ -3546,7 +3546,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "KatChessPieces.zip",
@@ -3577,7 +3577,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Negative Gambit\r\n- Skeleton's Gambit\r\n- Spider's Gambit",
+        "notes": "Added HAL Mechagnus",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SlimerHikarul.zip",
