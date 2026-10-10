@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-10T15:27:02.943Z",
+  "generatedAt": "2026-10-10T20:08:47.047Z",
   "count": 62,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 71,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T08:37:18Z",
+      "repoPushedAt": "2026-10-10T15:27:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T08:37:18Z",
+      "repoPushedAt": "2026-10-10T15:27:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 69,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T08:37:18Z",
+      "repoPushedAt": "2026-10-10T15:27:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T08:37:18Z",
+      "repoPushedAt": "2026-10-10T15:27:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T08:37:18Z",
+      "repoPushedAt": "2026-10-10T15:27:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2006,9 +2006,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 37,
+      "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T08:37:18Z",
+      "repoPushedAt": "2026-10-10T15:27:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2663,7 +2663,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T08:37:18Z",
+      "repoPushedAt": "2026-10-10T15:27:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2812,7 +2812,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-10T08:37:18Z",
+      "repoPushedAt": "2026-10-10T15:27:04Z",
       "license": "MIT",
       "archived": false
     },
