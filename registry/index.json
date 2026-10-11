@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-11T17:51:50.719Z",
+  "generatedAt": "2026-10-11T18:09:08.997Z",
   "count": 63,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 71,
       "stars": 5,
-      "repoPushedAt": "2026-10-11T13:03:03Z",
+      "repoPushedAt": "2026-10-11T17:51:51Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-11T13:03:03Z",
+      "repoPushedAt": "2026-10-11T17:51:51Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 69,
       "stars": 5,
-      "repoPushedAt": "2026-10-11T13:03:03Z",
+      "repoPushedAt": "2026-10-11T17:51:51Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-11T13:03:03Z",
+      "repoPushedAt": "2026-10-11T17:51:51Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-11T13:03:03Z",
+      "repoPushedAt": "2026-10-11T17:51:51Z",
       "license": "MIT",
       "archived": false
     },
@@ -2003,7 +2003,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-11T17:41:45Z",
       "license": "MIT",
@@ -2046,7 +2046,7 @@
       },
       "downloads": 38,
       "stars": 5,
-      "repoPushedAt": "2026-10-11T13:03:03Z",
+      "repoPushedAt": "2026-10-11T17:51:51Z",
       "license": "MIT",
       "archived": false
     },
@@ -2701,7 +2701,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-10-11T13:03:03Z",
+      "repoPushedAt": "2026-10-11T17:51:51Z",
       "license": "MIT",
       "archived": false
     },
@@ -2850,7 +2850,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-11T13:03:03Z",
+      "repoPushedAt": "2026-10-11T17:51:51Z",
       "license": "MIT",
       "archived": false
     },
