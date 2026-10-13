@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-13T17:39:28.073Z",
+  "generatedAt": "2026-10-13T22:53:12.679Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -178,7 +178,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 22,
+      "downloads": 23,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -232,7 +232,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -330,7 +330,7 @@
       },
       "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T13:24:29Z",
+      "repoPushedAt": "2026-10-13T17:39:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -370,7 +370,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "BougiesGambit.zip",
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T13:24:29Z",
+      "repoPushedAt": "2026-10-13T17:39:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -598,7 +598,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "CrybabysGambit.zip",
@@ -651,7 +651,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "DominoEffectsGambit.zip",
@@ -715,7 +715,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 8,
+      "downloads": 9,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -874,7 +874,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "EnPassantsGambit.zip",
@@ -928,7 +928,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T13:24:29Z",
+      "repoPushedAt": "2026-10-13T17:39:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1132,7 +1132,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "FishingNetsGambit.zip",
@@ -1185,7 +1185,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "FrankensteinsGambit.zip",
@@ -1196,7 +1196,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -1237,9 +1237,9 @@
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 77,
+      "downloads": 78,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T13:24:29Z",
+      "repoPushedAt": "2026-10-13T17:39:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1332,7 +1332,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "GrandMasCookiesGambit.zip",
@@ -1492,7 +1492,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "HeadlessHorsemansGambit.zip",
@@ -1503,7 +1503,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -1704,7 +1704,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "JumperCablesGambit.zip",
@@ -1757,7 +1757,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "JunksGambit.zip",
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T13:24:29Z",
+      "repoPushedAt": "2026-10-13T17:39:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -1860,7 +1860,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2005,7 +2005,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2048,7 +2048,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T13:24:29Z",
+      "repoPushedAt": "2026-10-13T17:39:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -2088,7 +2088,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "MysterysGambit.zip",
@@ -2261,7 +2261,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2303,7 +2303,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "PossessionsGambit.zip",
@@ -2314,7 +2314,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -2572,7 +2572,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "SkeletonsGambit.zip",
@@ -2583,7 +2583,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -2735,7 +2735,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "SpidersGambit.zip",
@@ -2746,7 +2746,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -2801,7 +2801,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T13:24:29Z",
+      "repoPushedAt": "2026-10-13T17:39:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T13:24:29Z",
+      "repoPushedAt": "2026-10-13T17:39:29Z",
       "license": "MIT",
       "archived": false
     },
@@ -3260,7 +3260,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 5,
+      "downloads": 6,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -3411,7 +3411,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "VampiresGambit.zip",
@@ -3422,7 +3422,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -3464,7 +3464,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "ZombiesGambit.zip",
@@ -3475,7 +3475,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 4,
+      "downloads": 5,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -3504,7 +3504,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 386,
+      "downloads": 388,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3544,7 +3544,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 506,
+      "downloads": 508,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3614,7 +3614,7 @@
       "description": "The complete Halloween expansion of Gambonanza, all in one modpack.\nIncludes contributions from:\n\nFRO_PWR\n- Zombie's Gambit\n- Headless Horseman's Gambit\n- Vampire's Gambit\n- Frankenstein's Gambit\n- Possession's Gambit\n- Back-stabber's Gambit\n- Doot's Gambit\n- Spider's Gambit\n- Skeleton's Gambit\n- Transylvania's Gambit\n- Slimer Hikarul\n- Drakula Botezzaro\n- Xenomorph Tal\n- HAL Mechagnus\n- GamBOOnanza Title\n- GamBOOnanza Tiles\n- Halloween Blood/Pumpkin Pieces\n- Point A Manager\n\nMinty:\n- Paranormal Activity's Gambit\n- Majora's Moon\n- W. D. Gaster\n- Grim Reaper\n- Kev Broclick Unblue\n- Mechagnus Untext\n\nMediumKey\n- Guardian Jawby\n\nBen\n- Gambit Creation API\n- The whole mod manager lol",
       "submittedBy": "Agent15",
       "addedAt": "2026-10-13",
-      "downloads": 167,
+      "downloads": 182,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3636,7 +3636,7 @@
       "description": "No one's tried making a modpack with a resource pack in it yet. I want to test to confirm that it works",
       "submittedBy": "Agent15",
       "addedAt": "2026-10-13",
-      "downloads": 80,
+      "downloads": 81,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3683,7 +3683,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 268,
+      "downloads": 270,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3721,7 +3721,7 @@
           "sha256": "4a569419a1b21bf05b0b979d120c52af34b74a172c498d5a55ee6f958b828596"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "dracula-botezzaro",
@@ -3743,7 +3743,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "Dracula_Botezzaro.zip",
@@ -3772,16 +3772,16 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added: \r\n- Transylvania's Gambit\r\n- HAL Mechagnus\r\n- Guardian Jawby\r\n- GamBOOnanza Title\r\n- GamBOOnanza Tiles",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "GamBOOnanza_Tiles.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/GamBOOnanza_Tiles.zip",
-          "size": 511018,
-          "sha256": "33abe6efe3543467cf5528ab94fd20608a973a255d88a0f1d0d5cf52c989df7d"
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/GamBOOnanza_Tiles.zip",
+          "size": 868854,
+          "sha256": "275738dc34ac91acf2a6aa13b444f74929c0f2ccabdd20cab491628f6916c18a"
         }
       },
       "downloads": 4
@@ -4062,7 +4062,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "SlimerHikarul.zip",
@@ -4071,7 +4071,7 @@
           "sha256": "421c065d2664ff280bfc865ca7bc4b9baf7daed4196c223c0e89bb6a1afc18ba"
         }
       },
-      "downloads": 4
+      "downloads": 7
     },
     {
       "id": "w-d-gaster",
@@ -4128,7 +4128,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "Xenomorph_Tal.zip",
