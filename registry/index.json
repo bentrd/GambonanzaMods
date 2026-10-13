@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-13T10:38:40.543Z",
+  "generatedAt": "2026-10-13T12:39:54.263Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T10:37:52Z",
+      "repoPushedAt": "2026-10-13T12:38:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T10:37:52Z",
+      "repoPushedAt": "2026-10-13T12:38:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T10:37:52Z",
+      "repoPushedAt": "2026-10-13T12:38:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 74,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T10:37:52Z",
+      "repoPushedAt": "2026-10-13T12:38:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T10:37:52Z",
+      "repoPushedAt": "2026-10-13T12:38:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T10:37:52Z",
+      "repoPushedAt": "2026-10-13T12:38:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2801,7 +2801,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T10:37:52Z",
+      "repoPushedAt": "2026-10-13T12:38:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T10:37:52Z",
+      "repoPushedAt": "2026-10-13T12:38:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -3739,7 +3739,7 @@
           "sha256": "33abe6efe3543467cf5528ab94fd20608a973a255d88a0f1d0d5cf52c989df7d"
         }
       },
-      "downloads": 0
+      "downloads": 2
     },
     {
       "id": "gamboonanza-title",
@@ -3772,7 +3772,7 @@
           "sha256": "9053a8d5b701e1af1cf61bbdd02f8e41e96063e2e777e7c42a861852e812c111"
         }
       },
-      "downloads": 0
+      "downloads": 2
     },
     {
       "id": "grim-reaper",
@@ -3802,6 +3802,70 @@
           "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v2.0.7/Grim_Reaper.zip",
           "size": 295802,
           "sha256": "b513e2536ad1d1d04e8eda8807d855f8e6865d6a2c4d63ccaa2c27b39ff3bdef"
+        }
+      },
+      "downloads": 2
+    },
+    {
+      "id": "guardian-jawby",
+      "name": "Guardian Jawby",
+      "author": "FRO_PWR",
+      "summary": "Re-skins Jawby into an Elder Guardian",
+      "description": "Replaces Jawby Fisher’s sprite sheet and boss portrait with Elder Guardian artwork from Minecraft, with adjusted head and flipper cuts. Includes four replacement boss sounds plus a new name, subtitle and lore in every language.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "Guardian_Jawby.zip",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/releases",
+      "tags": [
+        "visual",
+        "audio"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added: \r\n- Transylvania's Gambit\r\n- HAL Mechagnus\r\n- Guardian Jawby\r\n- GamBOOnanza Title\r\n- GamBOOnanza Tiles",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "Guardian_Jawby.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/Guardian_Jawby.zip",
+          "size": 2242924,
+          "sha256": "adb16101055459b1096a0958087e286940aca79c04ee0cfa1112a5e9a59c797b"
+        }
+      },
+      "downloads": 0
+    },
+    {
+      "id": "hal-mechagnus",
+      "name": "HAL Mechagnus",
+      "author": "FRO_PWR",
+      "summary": "Re-skins Mechagnus into HAL 9000",
+      "description": "Replaces M3CH4GNUS C4RLS3N’s sprite sheet and boss portrait with HAL 9000 artwork, with adjusted sprite cuts for the new design. Includes replacement entrance and death sounds plus a new boss name, subtitle and lore in every language.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "HAL_Mechagnus.zip",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/releases",
+      "tags": [
+        "visual",
+        "audio"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added: \r\n- Transylvania's Gambit\r\n- HAL Mechagnus\r\n- Guardian Jawby\r\n- GamBOOnanza Title\r\n- GamBOOnanza Tiles",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "HAL_Mechagnus.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/HAL_Mechagnus.zip",
+          "size": 4451238,
+          "sha256": "4a4d8abb6c1ed03829ca5758b7078cf70f65c450ff69fca9fbb6b07477cedf20"
         }
       },
       "downloads": 0
@@ -3899,7 +3963,7 @@
           "sha256": "9c369efac2eb3633d668b2ceedc35b52fc1444e752d38fa87243a33b9b9d1e87"
         }
       },
-      "downloads": 0
+      "downloads": 2
     },
     {
       "id": "rin-pieces",
@@ -3931,7 +3995,7 @@
           "sha256": "f1b0aeb7fa557d0d68dac0a0c0fd8fc4c82540e4509aae97635e79e2fc93df1f"
         }
       },
-      "downloads": 1
+      "downloads": 3
     },
     {
       "id": "slimer-hikarul",
@@ -3995,7 +4059,7 @@
           "sha256": "63c7e0ce33f1b3d736e4b885e4c7c8086ce20ea2eb02f67d125d95a2e622eaf4"
         }
       },
-      "downloads": 0
+      "downloads": 2
     },
     {
       "id": "xenomorph-tal",
@@ -4028,7 +4092,7 @@
           "sha256": "157b1a991d379fbe146946a36034ee18b410c009374f719243d5fe8a8c9540f9"
         }
       },
-      "downloads": 0
+      "downloads": 2
     }
   ]
 }
