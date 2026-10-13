@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-13T09:32:19.911Z",
+  "generatedAt": "2026-10-13T10:38:40.543Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:48:47Z",
+      "repoPushedAt": "2026-10-13T10:37:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:48:47Z",
+      "repoPushedAt": "2026-10-13T10:37:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:48:47Z",
+      "repoPushedAt": "2026-10-13T10:37:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 74,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:48:47Z",
+      "repoPushedAt": "2026-10-13T10:37:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:48:47Z",
+      "repoPushedAt": "2026-10-13T10:37:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:48:47Z",
+      "repoPushedAt": "2026-10-13T10:37:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2801,7 +2801,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:48:47Z",
+      "repoPushedAt": "2026-10-13T10:37:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:48:47Z",
+      "repoPushedAt": "2026-10-13T10:37:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -3710,6 +3710,103 @@
       "downloads": 4
     },
     {
+      "id": "gamboonanza-tiles",
+      "name": "GamBOOnanza Tiles",
+      "author": "FRO_PWR",
+      "summary": "Replaces the various tiles with Halloween-themed reskins",
+      "description": "Re-skins protection, blessing and trap tiles as bones, bats and spider webs, with matching icons and tile artwork. Includes three replacement sounds for the corresponding tile effects.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "GamBOOnanza_Tiles.zip",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/releases",
+      "tags": [
+        "visual",
+        "audio"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added: \r\n- Transylvania's Gambit\r\n- HAL Mechagnus\r\n- Guardian Jawby\r\n- GamBOOnanza Title\r\n- GamBOOnanza Tiles",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "GamBOOnanza_Tiles.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/GamBOOnanza_Tiles.zip",
+          "size": 511018,
+          "sha256": "33abe6efe3543467cf5528ab94fd20608a973a255d88a0f1d0d5cf52c989df7d"
+        }
+      },
+      "downloads": 0
+    },
+    {
+      "id": "gamboonanza-title",
+      "name": "GamBOOnanza Title",
+      "author": "FRO_PWR",
+      "summary": "Replaces the title screen with GamBOOnanza",
+      "description": "Gives the title screen a Halloween theme with a GamBOOnanza logo and background artwork. Also replaces the opening audio and turns the hidden pawn in the title into a ghost-themed piece.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "GamBOOnanza_Title.zip",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/releases",
+      "tags": [
+        "visual",
+        "ui",
+        "audio"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added: \r\n- Transylvania's Gambit\r\n- HAL Mechagnus\r\n- Guardian Jawby\r\n- GamBOOnanza Title\r\n- GamBOOnanza Tiles",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "GamBOOnanza_Title.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/GamBOOnanza_Title.zip",
+          "size": 4881203,
+          "sha256": "9053a8d5b701e1af1cf61bbdd02f8e41e96063e2e777e7c42a861852e812c111"
+        }
+      },
+      "downloads": 0
+    },
+    {
+      "id": "grim-reaper",
+      "name": "Grim Reaper",
+      "author": "Minty",
+      "summary": "Reskins Mighty Kasparov",
+      "description": "Re-skins Mighty Kasparov as the Grim Reaper, including his sprite sheet and boss portrait. Changes the boss name, subtitle and lore in every language.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "Grim_Reaper.zip",
+      "preview": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/ResoursePacks/Grim_Reaper/tp-6ce30a57/images/boss-8.png",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/ResoursePacks/Grim_Reaper/tp-6ce30a57",
+      "tags": [
+        "visual"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v2.0.7",
+        "version": "2.0.7",
+        "publishedAt": "2026-10-13T00:38:21Z",
+        "notes": "Added:\r\n- Grim Reaper (Mighty Kasparov reskin)\r\n- Majora's Moon (Kev Borclick reskin)\r\n- W. D. Gaster (Judit Polgeisha reskin)",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v2.0.7",
+        "asset": {
+          "name": "Grim_Reaper.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v2.0.7/Grim_Reaper.zip",
+          "size": 295802,
+          "sha256": "b513e2536ad1d1d04e8eda8807d855f8e6865d6a2c4d63ccaa2c27b39ff3bdef"
+        }
+      },
+      "downloads": 0
+    },
+    {
       "id": "halloween-blood-pumpkin-pieces",
       "name": "Halloween Blood/Pumpkin Pieces",
       "author": "FRO_PWR",
@@ -3772,6 +3869,71 @@
       "downloads": 4
     },
     {
+      "id": "majora-s-moon",
+      "name": "Majora's Moon",
+      "author": "Minty",
+      "summary": "Reskins Kev Borclick",
+      "description": "Re-skins Kev Borclick as Majora’s Moon, with boss and portrait artwork, clock details and an icon replacement. Includes five boss sound replacements and changes the boss name, subtitle and lore in every language.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "Majora_s_Moon.zip",
+      "preview": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/ResoursePacks/Majora_s_Moon/tp-1ccd804b/images/boss-5-2.png",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/ResoursePacks/Majora_s_Moon/tp-1ccd804b",
+      "tags": [
+        "visual",
+        "audio"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v2.0.7",
+        "version": "2.0.7",
+        "publishedAt": "2026-10-13T00:38:21Z",
+        "notes": "Added:\r\n- Grim Reaper (Mighty Kasparov reskin)\r\n- Majora's Moon (Kev Borclick reskin)\r\n- W. D. Gaster (Judit Polgeisha reskin)",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v2.0.7",
+        "asset": {
+          "name": "Majora_s_Moon.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v2.0.7/Majora_s_Moon.zip",
+          "size": 2562704,
+          "sha256": "9c369efac2eb3633d668b2ceedc35b52fc1444e752d38fa87243a33b9b9d1e87"
+        }
+      },
+      "downloads": 0
+    },
+    {
+      "id": "rin-pieces",
+      "name": "Rin Pieces",
+      "author": "Minty",
+      "summary": "Reskinned player pieces to look like Rin's designs",
+      "description": "Re-skins the player chess pieces to match Rin’s designs. Includes adjusted sprite cuts for the taller pawn, rook, knight, queen and king artwork.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "Rin_Pieces.zip",
+      "preview": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/ResoursePacks/Rin_Pieces/tp-e0c13502/images/spr-chesspieces.png",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/ResoursePacks/Rin_Pieces/tp-e0c13502",
+      "tags": [
+        "visual"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "2.0.0",
+        "version": "2.0.0",
+        "publishedAt": "2026-10-02T01:11:09Z",
+        "notes": "Added Rin Pieces Texture Pack",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/2.0.0",
+        "asset": {
+          "name": "Rin_Pieces.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/2.0.0/Rin_Pieces.zip",
+          "size": 6055,
+          "sha256": "f1b0aeb7fa557d0d68dac0a0c0fd8fc4c82540e4509aae97635e79e2fc93df1f"
+        }
+      },
+      "downloads": 1
+    },
+    {
       "id": "slimer-hikarul",
       "name": "Slimer Hikarul",
       "author": "FRO_PWR",
@@ -3801,6 +3963,72 @@
         }
       },
       "downloads": 2
+    },
+    {
+      "id": "w-d-gaster",
+      "name": "W. D. Gaster",
+      "author": "Minty",
+      "summary": "Reskins Judit Polgeisha",
+      "description": "Re-skins Judit Polgeisha as W. D. Gaster, with replacement body, puppet, fan and portrait artwork. Includes seventeen boss sound replacements and changes the boss name, subtitle and lore in every language.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "W._D._Gaster.zip",
+      "preview": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/ResoursePacks/W._D._Gaster/tp-9ffd95f1/images/boss-2.png",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/ResoursePacks/W._D._Gaster/tp-9ffd95f1",
+      "tags": [
+        "visual",
+        "audio"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v2.0.7",
+        "version": "2.0.7",
+        "publishedAt": "2026-10-13T00:38:21Z",
+        "notes": "Added:\r\n- Grim Reaper (Mighty Kasparov reskin)\r\n- Majora's Moon (Kev Borclick reskin)\r\n- W. D. Gaster (Judit Polgeisha reskin)",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v2.0.7",
+        "asset": {
+          "name": "W._D._Gaster.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v2.0.7/W._D._Gaster.zip",
+          "size": 3297949,
+          "sha256": "63c7e0ce33f1b3d736e4b885e4c7c8086ce20ea2eb02f67d125d95a2e622eaf4"
+        }
+      },
+      "downloads": 0
+    },
+    {
+      "id": "xenomorph-tal",
+      "name": "Xenomorph Tal",
+      "author": "FRO_PWR",
+      "summary": "Re-skins Tal into Xenomorph",
+      "description": "Re-skins Tal the Cursed as a Xenomorph from the Alien series, including his sprite sheet, boss portrait and cursed tiles. Also replaces three boss sounds and the boss name, subtitle and lore in every language.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "Xenomorph_Tal.zip",
+      "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/Xenomorph_Tal/tp-8b0811f8/images/spr-boss-tal.png",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/Reskins/Xenomorph_Tal/tp-8b0811f8",
+      "tags": [
+        "visual",
+        "audio"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": true,
+      "latest": {
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "asset": {
+          "name": "Xenomorph_Tal.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/Xenomorph_Tal.zip",
+          "size": 1332814,
+          "sha256": "157b1a991d379fbe146946a36034ee18b410c009374f719243d5fe8a8c9540f9"
+        }
+      },
+      "downloads": 0
     }
   ]
 }
