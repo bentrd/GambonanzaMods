@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-13T00:31:33.719Z",
+  "generatedAt": "2026-10-13T01:04:29.336Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:52:15Z",
+      "repoPushedAt": "2026-10-13T01:03:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:52:15Z",
+      "repoPushedAt": "2026-10-13T01:03:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:52:15Z",
+      "repoPushedAt": "2026-10-13T01:03:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:52:15Z",
+      "repoPushedAt": "2026-10-13T01:03:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -1292,7 +1292,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1452,7 +1452,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:52:15Z",
+      "repoPushedAt": "2026-10-13T01:03:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -1832,18 +1832,19 @@
       "name": "Kev Borclick Unblue",
       "author": "Minty",
       "summary": "Removes blue glow beneath Kev Borclick's eyes (useful for reskins)",
+      "description": "Removes the blue glow beneath Kev Borclick’s eyes. Applies the visual adjustment when the boss loads, making it useful for boss reskins.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "KevBorclickUnblue.zip",
       "folder": "KevBorclickUnblue",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/KevBorclickUnblue",
       "tags": [
         "visual"
       ],
+      "gameVersion": ">=1.0",
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-10-05",
+      "addedAt": "2026-10-13",
       "official": false,
-      "reviewed": false,
-      "issue": 84,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/84",
+      "reviewed": true,
       "latest": {
         "tag": "v2.0.3",
         "version": "2.0.3",
@@ -1861,7 +1862,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -1976,18 +1977,19 @@
       "name": "Mechagnus Untext",
       "author": "Minty",
       "summary": "Removes all text, static, and broken pixels from M3CH4GNUS C4RLS3N (useful for reskins)",
+      "description": "Removes the text, static, broken pixels, and face halo from M3CH4GNUS C4RLS3N. Applies the visual changes when the boss loads, making it useful for boss reskins.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "MechagnusUntext.zip",
       "folder": "MechagnusUntext",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/MechagnusUntext",
       "tags": [
         "visual"
       ],
+      "gameVersion": ">=1.0",
       "submittedBy": "Craftyman6",
-      "addedAt": "2026-10-11",
+      "addedAt": "2026-10-13",
       "official": false,
-      "reviewed": false,
-      "issue": 85,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/85",
+      "reviewed": true,
       "latest": {
         "tag": "v2.0.5",
         "version": "2.0.5",
@@ -2005,7 +2007,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2046,7 +2048,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:52:15Z",
+      "repoPushedAt": "2026-10-13T01:03:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -2108,19 +2110,34 @@
       "name": "Negative Gambit",
       "author": "FRO_PWR",
       "summary": "Other gambits can be placed on top of this",
+      "description": "Adds a legendary utility gambit that lets another gambit be placed over its occupied slot. It is automatically unlocked and costs 15 coins.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "NegativeGambit.zip",
       "folder": "NegativeGambit",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/sample_mods/NegativeGambit",
       "tags": [
         "gameplay",
         "gambits"
       ],
+      "gameVersion": ">=1.0",
+      "dependencies": [
+        "gambit-api"
+      ],
+      "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/NegativeGambit/Negative.png",
+      "gambits": [
+        {
+          "id": "negative",
+          "name": "Negative Gambit",
+          "description": "Other gambits can be placed on top of this.",
+          "rarity": "legendary",
+          "price": 15,
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/NegativeGambit/Negative.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-10-03",
+      "addedAt": "2026-10-13",
       "official": false,
-      "reviewed": false,
-      "issue": 81,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/81",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -2193,7 +2210,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2202,18 +2219,33 @@
       "name": "Paranormal Activity's Gambit",
       "author": "Minty",
       "summary": "Selling a gambit gives Ghost's Gambit. 6/66 chance of giving Demon's Gambit instead.",
+      "description": "Adds a rare gambit that gives Ghost’s Gambit when you sell another gambit, with a 6/66 chance to give Demon’s Gambit instead. Selling Ghost’s Gambit does not trigger the effect, and a gambit slot must be available.",
       "repo": "Craftyman6/Mintys-Custom-Gambits",
       "asset": "ParanormalActivitysGambit.zip",
       "folder": "ParanormalActivitysGambit",
+      "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/ParanormalActivitysGambit",
       "tags": [
         "gambits"
+      ],
+      "gameVersion": ">=1.0",
+      "dependencies": [
+        "gambit-api"
+      ],
+      "icon": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/ParanormalActivitysGambit/ParanormalActivity.png",
+      "gambits": [
+        {
+          "id": "ParanormalActivity",
+          "name": "Paranormal Activity's Gambit",
+          "description": "Selling a gambit gives <color=€>GHOST'S GAMBIT</color>. <color=£><wave>6/66</wave></color> chance to give <color=ƒ>DEMON'S GAMBIT</color> instead.",
+          "rarity": "rare",
+          "price": 12,
+          "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/ParanormalActivitysGambit/ParanormalActivity.png"
+        }
       ],
       "submittedBy": "Craftyman6",
       "addedAt": "2026-10-13",
       "official": false,
-      "reviewed": false,
-      "issue": 89,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/89",
+      "reviewed": true,
       "latest": {
         "tag": "v2.0.6",
         "version": "2.0.6",
@@ -2229,9 +2261,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2338,7 +2370,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2446,7 +2478,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2508,19 +2540,34 @@
       "name": "Skeleton's Gambit",
       "author": "FRO_PWR",
       "summary": "If you have 1 piece on the board, 1/3 chance to protect it each turn.",
+      "description": "Adds a rare gambit that has a 1/3 chance to protect your piece each turn when you have exactly one piece on the board. It is automatically unlocked and costs 8 coins.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "SkeletonsGambit.zip",
       "folder": "SkeletonsGambit",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/sample_mods/SkeletonsGambit",
       "tags": [
         "gameplay",
         "gambits"
       ],
+      "gameVersion": ">=1.0",
+      "dependencies": [
+        "gambit-api"
+      ],
+      "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SkeletonsGambit/Skeleton.png",
+      "gambits": [
+        {
+          "id": "skeleton",
+          "name": "Skeleton's Gambit",
+          "description": "If you only have 1 piece on the board, <color=Ø>1/3 chance</color> to <color=æ>PROTECT</color> it each turn.",
+          "rarity": "rare",
+          "price": 8,
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SkeletonsGambit/Skeleton.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-10-04",
+      "addedAt": "2026-10-13",
       "official": false,
-      "reviewed": false,
-      "issue": 82,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/82",
+      "reviewed": true,
       "latest": {
         "tag": "v1.1.0",
         "version": "1.1.0",
@@ -2647,7 +2694,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2656,19 +2703,34 @@
       "name": "Spider's Gambit",
       "author": "FRO_PWR",
       "summary": "After moving a knight, trap every piece it can capture.",
+      "description": "Adds an epic gambit that traps enemy pieces a knight can capture after the knight moves. Promoted pieces also qualify while Pegasus is active; traps last one turn.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "SpidersGambit.zip",
       "folder": "SpidersGambit",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/sample_mods/SpidersGambit",
       "tags": [
         "gameplay",
         "gambits"
       ],
+      "gameVersion": ">=1.0",
+      "dependencies": [
+        "gambit-api"
+      ],
+      "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SpidersGambit/Spider.png",
+      "gambits": [
+        {
+          "id": "spider",
+          "name": "Spider's Gambit",
+          "description": "After moving a <sprite=7> <color=|>KNIGHT</color>, <color=◊>TRAP</color>, every enemy piece it can capture.",
+          "rarity": "epic",
+          "price": 11,
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SpidersGambit/Spider.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-10-04",
+      "addedAt": "2026-10-13",
       "official": false,
-      "reviewed": false,
-      "issue": 83,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/83",
+      "reviewed": true,
       "latest": {
         "tag": "v1.1.0",
         "version": "1.1.0",
@@ -2739,7 +2801,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:52:15Z",
+      "repoPushedAt": "2026-10-13T01:03:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -2846,7 +2908,7 @@
       },
       "downloads": 17,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2888,7 +2950,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:52:15Z",
+      "repoPushedAt": "2026-10-13T01:03:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -2943,7 +3005,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -2997,7 +3059,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -3038,7 +3100,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -3093,7 +3155,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -3155,19 +3217,34 @@
       "name": "Transylvania's Gambit",
       "author": "FRO_PWR",
       "summary": "Selling this gambit earns 3 random Halloween-themed gambits.",
+      "description": "Adds a legendary gambit that gives up to three random Halloween-themed gambits when sold, stopping when your gambit slots are full. Its reward also runs when the gambit is destroyed during play.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "TransylvaniasGambit.zip",
       "folder": "TransylvaniasGambit",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/sample_mods/TransylvaniasGambit",
       "tags": [
         "gameplay",
         "gambits"
       ],
+      "gameVersion": ">=1.0",
+      "dependencies": [
+        "gambit-api"
+      ],
+      "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/TransylvaniasGambit/Transylvania.png",
+      "gambits": [
+        {
+          "id": "transylvania",
+          "name": "Transylvania's Gambit",
+          "description": "Selling this gambit earns 3 random Halloween-themed gambits.",
+          "rarity": "legendary",
+          "price": 12,
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/TransylvaniasGambit/Transylvania.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-10-12",
+      "addedAt": "2026-10-13",
       "official": false,
-      "reviewed": false,
-      "issue": 88,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/88",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -3239,7 +3316,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
@@ -3294,7 +3371,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
       "archived": false
     },
