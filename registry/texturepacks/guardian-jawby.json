@@ -1,0 +1,16 @@
+{
+  "id": "guardian-jawby",
+  "name": "Guardian Jawby",
+  "author": "FRO_PWR",
+  "summary": "Re-skins Jawby into an Elder Guardian",
+  "description": "Replaces Jawby Fisher’s sprite sheet and boss portrait with Elder Guardian artwork from Minecraft, with adjusted head and flipper cuts. Includes four replacement boss sounds plus a new name, subtitle and lore in every language.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "Guardian_Jawby.zip",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/releases",
+  "tags": [
+    "visual",
+    "audio"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}

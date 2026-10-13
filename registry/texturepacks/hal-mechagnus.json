@@ -1,0 +1,16 @@
+{
+  "id": "hal-mechagnus",
+  "name": "HAL Mechagnus",
+  "author": "FRO_PWR",
+  "summary": "Re-skins Mechagnus into HAL 9000",
+  "description": "Replaces M3CH4GNUS C4RLS3N’s sprite sheet and boss portrait with HAL 9000 artwork, with adjusted sprite cuts for the new design. Includes replacement entrance and death sounds plus a new boss name, subtitle and lore in every language.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "HAL_Mechagnus.zip",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/releases",
+  "tags": [
+    "visual",
+    "audio"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}
