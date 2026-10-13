@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-12T19:52:14.319Z",
-  "count": 64,
+  "generatedAt": "2026-10-13T00:31:33.719Z",
+  "count": 65,
   "releases": {
     "framework": {
       "tag": "v1.8.0",
@@ -330,7 +330,7 @@
       },
       "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:42:58Z",
+      "repoPushedAt": "2026-10-12T19:52:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:42:58Z",
+      "repoPushedAt": "2026-10-12T19:52:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:42:58Z",
+      "repoPushedAt": "2026-10-12T19:52:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -1196,7 +1196,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-12T15:02:22Z",
       "license": "MIT",
@@ -1239,7 +1239,7 @@
       },
       "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:42:58Z",
+      "repoPushedAt": "2026-10-12T19:52:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -1292,7 +1292,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -1452,7 +1452,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -1503,7 +1503,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-12T15:02:22Z",
       "license": "MIT",
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:42:58Z",
+      "repoPushedAt": "2026-10-12T19:52:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -1861,7 +1861,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -2005,7 +2005,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -2046,7 +2046,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:42:58Z",
+      "repoPushedAt": "2026-10-12T19:52:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -2193,7 +2193,45 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "paranormal-activitys-gambit",
+      "name": "Paranormal Activity's Gambit",
+      "author": "Minty",
+      "summary": "Selling a gambit gives Ghost's Gambit. 6/66 chance of giving Demon's Gambit instead.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "ParanormalActivitysGambit.zip",
+      "folder": "ParanormalActivitysGambit",
+      "tags": [
+        "gambits"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-10-13",
+      "official": false,
+      "reviewed": false,
+      "issue": 89,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/89",
+      "latest": {
+        "tag": "v2.0.6",
+        "version": "2.0.6",
+        "publishedAt": "2026-10-13T00:06:24Z",
+        "notes": "Added Paranormal Activity's Gambit",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v2.0.6",
+        "asset": {
+          "name": "ParanormalActivitysGambit.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v2.0.6/ParanormalActivitysGambit.zip",
+          "size": 5870,
+          "sha256": "1096cb0981dfec610611044f393b68b6120c7555cbd4d8666163fc1af707c3de"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -2244,7 +2282,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-12T15:02:22Z",
       "license": "MIT",
@@ -2300,7 +2338,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -2408,7 +2446,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -2498,7 +2536,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-12T15:02:22Z",
       "license": "MIT",
@@ -2609,7 +2647,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -2646,7 +2684,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-12T15:02:22Z",
       "license": "MIT",
@@ -2701,7 +2739,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:42:58Z",
+      "repoPushedAt": "2026-10-12T19:52:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -2808,7 +2846,7 @@
       },
       "downloads": 17,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -2850,7 +2888,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-12T19:42:58Z",
+      "repoPushedAt": "2026-10-12T19:52:15Z",
       "license": "MIT",
       "archived": false
     },
@@ -2905,7 +2943,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -2959,7 +2997,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -3000,7 +3038,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -3055,7 +3093,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -3145,7 +3183,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-12T15:02:22Z",
       "license": "MIT",
@@ -3201,7 +3239,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -3256,7 +3294,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T00:24:03Z",
+      "repoPushedAt": "2026-10-13T00:25:41Z",
       "license": "MIT",
       "archived": false
     },
@@ -3307,7 +3345,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-12T15:02:22Z",
       "license": "MIT",
@@ -3360,7 +3398,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-10-12T15:02:22Z",
       "license": "MIT",
@@ -3570,7 +3608,7 @@
           "sha256": "f46305731f74b27b5e63f3a51e8e4248bf46d6f5a95f8788d7ed894ccbdc79a8"
         }
       },
-      "downloads": 3
+      "downloads": 4
     },
     {
       "id": "halloween-blood-pumpkin-pieces",
