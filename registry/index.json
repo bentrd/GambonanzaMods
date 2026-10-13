@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-13T02:47:51.082Z",
+  "generatedAt": "2026-10-13T02:48:45.947Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:42:42Z",
+      "repoPushedAt": "2026-10-13T02:47:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:42:42Z",
+      "repoPushedAt": "2026-10-13T02:47:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:42:42Z",
+      "repoPushedAt": "2026-10-13T02:47:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:42:42Z",
+      "repoPushedAt": "2026-10-13T02:47:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:42:42Z",
+      "repoPushedAt": "2026-10-13T02:47:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:42:42Z",
+      "repoPushedAt": "2026-10-13T02:47:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2801,7 +2801,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:42:42Z",
+      "repoPushedAt": "2026-10-13T02:47:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T02:42:42Z",
+      "repoPushedAt": "2026-10-13T02:47:52Z",
       "license": "MIT",
       "archived": false
     },
@@ -3575,6 +3575,28 @@
       "installable": true,
       "unreviewed": [],
       "reviewed": true
+    },
+    {
+      "id": "modpack-test",
+      "name": "Modpack Test",
+      "author": "Agent15",
+      "summary": "Test the use of resource packs in modpacks",
+      "mods": [
+        "gambit-api",
+        "negative-gambit"
+      ],
+      "texturepacks": [
+        "classic-chess-pieces"
+      ],
+      "description": "No one's tried making a modpack with a resource pack in it yet. I want to test to confirm that it works",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-10-13",
+      "downloads": 75,
+      "installable": true,
+      "unreviewed": [],
+      "reviewed": false,
+      "issue": 93,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/93"
     },
     {
       "id": "quality-of-life-pack",
