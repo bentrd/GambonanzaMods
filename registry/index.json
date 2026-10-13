@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-13T12:39:54.263Z",
+  "generatedAt": "2026-10-13T13:24:28.076Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -180,7 +180,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -234,7 +234,7 @@
       },
       "downloads": 4,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -330,7 +330,7 @@
       },
       "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T12:38:55Z",
+      "repoPushedAt": "2026-10-13T12:39:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -383,7 +383,7 @@
       },
       "downloads": 25,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -435,7 +435,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T12:38:55Z",
+      "repoPushedAt": "2026-10-13T12:39:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -611,7 +611,7 @@
       },
       "downloads": 24,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -664,7 +664,7 @@
       },
       "downloads": 26,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -717,7 +717,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -887,7 +887,7 @@
       },
       "downloads": 5,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T12:38:55Z",
+      "repoPushedAt": "2026-10-13T12:39:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -981,7 +981,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1145,7 +1145,7 @@
       },
       "downloads": 27,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1198,7 +1198,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 74,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T12:38:55Z",
+      "repoPushedAt": "2026-10-13T12:39:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1345,7 +1345,7 @@
       },
       "downloads": 27,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1398,7 +1398,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1505,7 +1505,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1559,7 +1559,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1664,7 +1664,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1717,7 +1717,7 @@
       },
       "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1770,7 +1770,7 @@
       },
       "downloads": 20,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T12:38:55Z",
+      "repoPushedAt": "2026-10-13T12:39:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1915,7 +1915,7 @@
       },
       "downloads": 8,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -1968,7 +1968,7 @@
       },
       "downloads": 17,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T12:38:55Z",
+      "repoPushedAt": "2026-10-13T12:39:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2101,7 +2101,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2155,7 +2155,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2316,7 +2316,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2424,7 +2424,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2531,7 +2531,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2585,7 +2585,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2639,7 +2639,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2748,7 +2748,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2801,7 +2801,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T12:38:55Z",
+      "repoPushedAt": "2026-10-13T12:39:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2854,7 +2854,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T12:38:55Z",
+      "repoPushedAt": "2026-10-13T12:39:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -3208,7 +3208,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -3262,7 +3262,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -3424,7 +3424,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     },
@@ -3477,7 +3477,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-10-12T15:02:22Z",
+      "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
       "archived": false
     }
@@ -3575,6 +3575,51 @@
       "installable": true,
       "unreviewed": [],
       "reviewed": true
+    },
+    {
+      "id": "gamboonanza",
+      "name": "GamBOOnanza",
+      "author": "Agent15",
+      "summary": "The complete Gambonanza Halloween modpack",
+      "mods": [
+        "back-stabbers-gambit",
+        "doots-gambit",
+        "frankenstein",
+        "gambit-api",
+        "headless-horseman",
+        "kev-borclick-unblue",
+        "mechagnus-untext",
+        "paranormal-activitys-gambit",
+        "point-a-mngr",
+        "possession",
+        "skeletons-gambit",
+        "spiders-gambit",
+        "transylvanias-gambit",
+        "vampire",
+        "zombie"
+      ],
+      "texturepacks": [
+        "slimer-hikarul",
+        "dracula-botezzaro",
+        "gamboonanza-tiles",
+        "gamboonanza-title",
+        "grim-reaper",
+        "guardian-jawby",
+        "hal-mechagnus",
+        "halloween-blood-pumpkin-pieces",
+        "majora-s-moon",
+        "w-d-gaster",
+        "xenomorph-tal"
+      ],
+      "description": "The complete Halloween expansion of Gambonanza, all in one modpack.\nIncludes contributions from:\n\nFRO_PWR\n- Zombie's Gambit\n- Headless Horseman's Gambit\n- Vampire's Gambit\n- Frankenstein's Gambit\n- Possession's Gambit\n- Back-stabber's Gambit\n- Doot's Gambit\n- Spider's Gambit\n- Skeleton's Gambit\n- Transylvania's Gambit\n- Slimer Hikarul\n- Drakula Botezzaro\n- Xenomorph Tal\n- HAL Mechagnus\n- GamBOOnanza Title\n- GamBOOnanza Tiles\n- Halloween Blood/Pumpkin Pieces\n- Point A Manager\n\nMinty:\n- Paranormal Activity's Gambit\n- Majora's Moon\n- W. D. Gaster\n- Grim Reaper\n- Kev Broclick Unblue\n- Mechagnus Untext\n\nMediumKey\n- Guardian Jawby\n\nBen\n- Gambit Creation API\n- The whole mod manager lol",
+      "submittedBy": "Agent15",
+      "addedAt": "2026-10-13",
+      "downloads": 122,
+      "installable": true,
+      "unreviewed": [],
+      "reviewed": false,
+      "issue": 96,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/96"
     },
     {
       "id": "modpack-test",
@@ -3707,7 +3752,7 @@
           "sha256": "f46305731f74b27b5e63f3a51e8e4248bf46d6f5a95f8788d7ed894ccbdc79a8"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "gamboonanza-tiles",
@@ -3739,7 +3784,7 @@
           "sha256": "33abe6efe3543467cf5528ab94fd20608a973a255d88a0f1d0d5cf52c989df7d"
         }
       },
-      "downloads": 2
+      "downloads": 3
     },
     {
       "id": "gamboonanza-title",
@@ -3772,7 +3817,7 @@
           "sha256": "9053a8d5b701e1af1cf61bbdd02f8e41e96063e2e777e7c42a861852e812c111"
         }
       },
-      "downloads": 2
+      "downloads": 3
     },
     {
       "id": "grim-reaper",
@@ -3804,7 +3849,7 @@
           "sha256": "b513e2536ad1d1d04e8eda8807d855f8e6865d6a2c4d63ccaa2c27b39ff3bdef"
         }
       },
-      "downloads": 2
+      "downloads": 3
     },
     {
       "id": "guardian-jawby",
@@ -3836,7 +3881,7 @@
           "sha256": "adb16101055459b1096a0958087e286940aca79c04ee0cfa1112a5e9a59c797b"
         }
       },
-      "downloads": 0
+      "downloads": 3
     },
     {
       "id": "hal-mechagnus",
@@ -3868,7 +3913,7 @@
           "sha256": "4a4d8abb6c1ed03829ca5758b7078cf70f65c450ff69fca9fbb6b07477cedf20"
         }
       },
-      "downloads": 0
+      "downloads": 3
     },
     {
       "id": "halloween-blood-pumpkin-pieces",
@@ -3899,7 +3944,7 @@
           "sha256": "3ff10640a9833b941a5d786ee97c77b21e4aeeb02aa709da850b943f8bca27c2"
         }
       },
-      "downloads": 3
+      "downloads": 4
     },
     {
       "id": "kat-chess-pieces",
@@ -3963,7 +4008,7 @@
           "sha256": "9c369efac2eb3633d668b2ceedc35b52fc1444e752d38fa87243a33b9b9d1e87"
         }
       },
-      "downloads": 2
+      "downloads": 3
     },
     {
       "id": "rin-pieces",
@@ -4026,7 +4071,7 @@
           "sha256": "4b6377f2b9d0235c100799d1b26966884e528e7e5fe0258821ce7226fe39d85b"
         }
       },
-      "downloads": 2
+      "downloads": 3
     },
     {
       "id": "w-d-gaster",
@@ -4059,7 +4104,7 @@
           "sha256": "63c7e0ce33f1b3d736e4b885e4c7c8086ce20ea2eb02f67d125d95a2e622eaf4"
         }
       },
-      "downloads": 2
+      "downloads": 3
     },
     {
       "id": "xenomorph-tal",
@@ -4092,7 +4137,7 @@
           "sha256": "157b1a991d379fbe146946a36034ee18b410c009374f719243d5fe8a8c9540f9"
         }
       },
-      "downloads": 2
+      "downloads": 3
     }
   ]
 }
