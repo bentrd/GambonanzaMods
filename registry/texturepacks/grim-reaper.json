@@ -1,0 +1,16 @@
+{
+  "id": "grim-reaper",
+  "name": "Grim Reaper",
+  "author": "Minty",
+  "summary": "Reskins Mighty Kasparov",
+  "description": "Re-skins Mighty Kasparov as the Grim Reaper, including his sprite sheet and boss portrait. Changes the boss name, subtitle and lore in every language.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "Grim_Reaper.zip",
+  "preview": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/ResoursePacks/Grim_Reaper/tp-6ce30a57/images/boss-8.png",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/ResoursePacks/Grim_Reaper/tp-6ce30a57",
+  "tags": [
+    "visual"
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-10-13"
+}

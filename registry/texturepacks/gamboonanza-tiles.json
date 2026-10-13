@@ -1,0 +1,16 @@
+{
+  "id": "gamboonanza-tiles",
+  "name": "GamBOOnanza Tiles",
+  "author": "FRO_PWR",
+  "summary": "Replaces the various tiles with Halloween-themed reskins",
+  "description": "Re-skins protection, blessing and trap tiles as bones, bats and spider webs, with matching icons and tile artwork. Includes three replacement sounds for the corresponding tile effects.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "GamBOOnanza_Tiles.zip",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/releases",
+  "tags": [
+    "visual",
+    "audio"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}

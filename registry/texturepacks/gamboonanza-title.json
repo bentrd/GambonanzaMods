@@ -1,0 +1,17 @@
+{
+  "id": "gamboonanza-title",
+  "name": "GamBOOnanza Title",
+  "author": "FRO_PWR",
+  "summary": "Replaces the title screen with GamBOOnanza",
+  "description": "Gives the title screen a Halloween theme with a GamBOOnanza logo and background artwork. Also replaces the opening audio and turns the hidden pawn in the title into a ghost-themed piece.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "GamBOOnanza_Title.zip",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/releases",
+  "tags": [
+    "visual",
+    "ui",
+    "audio"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "majora-s-moon",
+  "name": "Majora's Moon",
+  "author": "Minty",
+  "summary": "Reskins Kev Borclick",
+  "description": "Re-skins Kev Borclick as Majora’s Moon, with boss and portrait artwork, clock details and an icon replacement. Includes five boss sound replacements and changes the boss name, subtitle and lore in every language.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "Majora_s_Moon.zip",
+  "preview": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/ResoursePacks/Majora_s_Moon/tp-1ccd804b/images/boss-5-2.png",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/ResoursePacks/Majora_s_Moon/tp-1ccd804b",
+  "tags": [
+    "visual",
+    "audio"
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-10-13"
+}

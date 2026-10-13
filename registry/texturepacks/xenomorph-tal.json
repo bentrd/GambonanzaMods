@@ -1,0 +1,17 @@
+{
+  "id": "xenomorph-tal",
+  "name": "Xenomorph Tal",
+  "author": "FRO_PWR",
+  "summary": "Re-skins Tal into Xenomorph",
+  "description": "Re-skins Tal the Cursed as a Xenomorph from the Alien series, including his sprite sheet, boss portrait and cursed tiles. Also replaces three boss sounds and the boss name, subtitle and lore in every language.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "Xenomorph_Tal.zip",
+  "preview": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/Reskins/Xenomorph_Tal/tp-8b0811f8/images/spr-boss-tal.png",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/Reskins/Xenomorph_Tal/tp-8b0811f8",
+  "tags": [
+    "visual",
+    "audio"
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}

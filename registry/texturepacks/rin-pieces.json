@@ -1,0 +1,16 @@
+{
+  "id": "rin-pieces",
+  "name": "Rin Pieces",
+  "author": "Minty",
+  "summary": "Reskinned player pieces to look like Rin's designs",
+  "description": "Re-skins the player chess pieces to match Rin’s designs. Includes adjusted sprite cuts for the taller pawn, rook, knight, queen and king artwork.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "Rin_Pieces.zip",
+  "preview": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/ResoursePacks/Rin_Pieces/tp-e0c13502/images/spr-chesspieces.png",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/ResoursePacks/Rin_Pieces/tp-e0c13502",
+  "tags": [
+    "visual"
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-10-13"
+}
