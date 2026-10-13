@@ -1,0 +1,32 @@
+{
+  "id": "negative-gambit",
+  "name": "Negative Gambit",
+  "author": "FRO_PWR",
+  "summary": "Other gambits can be placed on top of this",
+  "description": "Adds a legendary utility gambit that lets another gambit be placed over its occupied slot. It is automatically unlocked and costs 15 coins.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "NegativeGambit.zip",
+  "folder": "NegativeGambit",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/sample_mods/NegativeGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "gameVersion": ">=1.0",
+  "dependencies": [
+    "gambit-api"
+  ],
+  "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/NegativeGambit/Negative.png",
+  "gambits": [
+    {
+      "id": "negative",
+      "name": "Negative Gambit",
+      "description": "Other gambits can be placed on top of this.",
+      "rarity": "legendary",
+      "price": 15,
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/NegativeGambit/Negative.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}

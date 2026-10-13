@@ -1,0 +1,32 @@
+{
+  "id": "skeletons-gambit",
+  "name": "Skeleton's Gambit",
+  "author": "FRO_PWR",
+  "summary": "If you have 1 piece on the board, 1/3 chance to protect it each turn.",
+  "description": "Adds a rare gambit that has a 1/3 chance to protect your piece each turn when you have exactly one piece on the board. It is automatically unlocked and costs 8 coins.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "SkeletonsGambit.zip",
+  "folder": "SkeletonsGambit",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/sample_mods/SkeletonsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "gameVersion": ">=1.0",
+  "dependencies": [
+    "gambit-api"
+  ],
+  "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SkeletonsGambit/Skeleton.png",
+  "gambits": [
+    {
+      "id": "skeleton",
+      "name": "Skeleton's Gambit",
+      "description": "If you only have 1 piece on the board, <color=Ø>1/3 chance</color> to <color=æ>PROTECT</color> it each turn.",
+      "rarity": "rare",
+      "price": 8,
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SkeletonsGambit/Skeleton.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}

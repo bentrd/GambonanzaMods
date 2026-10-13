@@ -1,0 +1,32 @@
+{
+  "id": "transylvanias-gambit",
+  "name": "Transylvania's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Selling this gambit earns 3 random Halloween-themed gambits.",
+  "description": "Adds a legendary gambit that gives up to three random Halloween-themed gambits when sold, stopping when your gambit slots are full. Its reward also runs when the gambit is destroyed during play.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "TransylvaniasGambit.zip",
+  "folder": "TransylvaniasGambit",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/sample_mods/TransylvaniasGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "gameVersion": ">=1.0",
+  "dependencies": [
+    "gambit-api"
+  ],
+  "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/TransylvaniasGambit/Transylvania.png",
+  "gambits": [
+    {
+      "id": "transylvania",
+      "name": "Transylvania's Gambit",
+      "description": "Selling this gambit earns 3 random Halloween-themed gambits.",
+      "rarity": "legendary",
+      "price": 12,
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/TransylvaniasGambit/Transylvania.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "mechagnus-untext",
+  "name": "Mechagnus Untext",
+  "author": "Minty",
+  "summary": "Removes all text, static, and broken pixels from M3CH4GNUS C4RLS3N (useful for reskins)",
+  "description": "Removes the text, static, broken pixels, and face halo from M3CH4GNUS C4RLS3N. Applies the visual changes when the boss loads, making it useful for boss reskins.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "MechagnusUntext.zip",
+  "folder": "MechagnusUntext",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/MechagnusUntext",
+  "tags": [
+    "visual"
+  ],
+  "gameVersion": ">=1.0",
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-10-13"
+}

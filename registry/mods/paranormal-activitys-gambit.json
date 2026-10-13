@@ -1,0 +1,31 @@
+{
+  "id": "paranormal-activitys-gambit",
+  "name": "Paranormal Activity's Gambit",
+  "author": "Minty",
+  "summary": "Selling a gambit gives Ghost's Gambit. 6/66 chance of giving Demon's Gambit instead.",
+  "description": "Adds a rare gambit that gives Ghost’s Gambit when you sell another gambit, with a 6/66 chance to give Demon’s Gambit instead. Selling Ghost’s Gambit does not trigger the effect, and a gambit slot must be available.",
+  "repo": "Craftyman6/Mintys-Custom-Gambits",
+  "asset": "ParanormalActivitysGambit.zip",
+  "folder": "ParanormalActivitysGambit",
+  "homepage": "https://github.com/Craftyman6/Mintys-Custom-Gambits/tree/main/sample_mods/ParanormalActivitysGambit",
+  "tags": [
+    "gambits"
+  ],
+  "gameVersion": ">=1.0",
+  "dependencies": [
+    "gambit-api"
+  ],
+  "icon": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/ParanormalActivitysGambit/ParanormalActivity.png",
+  "gambits": [
+    {
+      "id": "ParanormalActivity",
+      "name": "Paranormal Activity's Gambit",
+      "description": "Selling a gambit gives <color=€>GHOST'S GAMBIT</color>. <color=£><wave>6/66</wave></color> chance to give <color=ƒ>DEMON'S GAMBIT</color> instead.",
+      "rarity": "rare",
+      "price": 12,
+      "sprite": "https://raw.githubusercontent.com/Craftyman6/Mintys-Custom-Gambits/main/sample_mods/ParanormalActivitysGambit/ParanormalActivity.png"
+    }
+  ],
+  "submittedBy": "Craftyman6",
+  "addedAt": "2026-10-13"
+}

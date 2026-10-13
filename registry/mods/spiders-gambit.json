@@ -1,0 +1,32 @@
+{
+  "id": "spiders-gambit",
+  "name": "Spider's Gambit",
+  "author": "FRO_PWR",
+  "summary": "After moving a knight, trap every piece it can capture.",
+  "description": "Adds an epic gambit that traps enemy pieces a knight can capture after the knight moves. Promoted pieces also qualify while Pegasus is active; traps last one turn.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "SpidersGambit.zip",
+  "folder": "SpidersGambit",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/main/sample_mods/SpidersGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "gameVersion": ">=1.0",
+  "dependencies": [
+    "gambit-api"
+  ],
+  "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SpidersGambit/Spider.png",
+  "gambits": [
+    {
+      "id": "spider",
+      "name": "Spider's Gambit",
+      "description": "After moving a <sprite=7> <color=|>KNIGHT</color>, <color=◊>TRAP</color>, every enemy piece it can capture.",
+      "rarity": "epic",
+      "price": 11,
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/main/sample_mods/SpidersGambit/Spider.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-10-13"
+}
