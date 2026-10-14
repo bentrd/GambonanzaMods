@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-14T18:42:35.415Z",
+  "generatedAt": "2026-10-14T22:21:40.805Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T13:49:27Z",
+      "repoPushedAt": "2026-10-14T18:42:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T13:49:27Z",
+      "repoPushedAt": "2026-10-14T18:42:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 71,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T13:49:27Z",
+      "repoPushedAt": "2026-10-14T18:42:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 79,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T13:49:27Z",
+      "repoPushedAt": "2026-10-14T18:42:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 54,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T13:49:27Z",
+      "repoPushedAt": "2026-10-14T18:42:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -1902,7 +1902,7 @@
         "tag": "v1.2.0",
         "version": "1.2.0",
         "publishedAt": "2026-08-16T20:16:23Z",
-        "notes": "Added Lobbyist's Gambit",
+        "notes": "Added Dracula Botezzaro",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
         "asset": {
           "name": "LobbyistsGambit.zip",
@@ -2048,7 +2048,7 @@
       },
       "downloads": 40,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T13:49:27Z",
+      "repoPushedAt": "2026-10-14T18:42:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -2411,7 +2411,7 @@
         "tag": "v1.2.0",
         "version": "1.2.0",
         "publishedAt": "2026-08-16T20:16:23Z",
-        "notes": "Added Lobbyist's Gambit",
+        "notes": "Added Dracula Botezzaro",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
         "asset": {
           "name": "RecursionsGambit.zip",
@@ -2626,7 +2626,7 @@
         "tag": "v1.2.0",
         "version": "1.2.0",
         "publishedAt": "2026-08-16T20:16:23Z",
-        "notes": "Added Lobbyist's Gambit",
+        "notes": "Added Dracula Botezzaro",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
         "asset": {
           "name": "SnipersGambit.zip",
@@ -2801,7 +2801,7 @@
       },
       "downloads": 46,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T13:49:27Z",
+      "repoPushedAt": "2026-10-14T18:42:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 6,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T13:49:27Z",
+      "repoPushedAt": "2026-10-14T18:42:36Z",
       "license": "MIT",
       "archived": false
     },
@@ -3740,19 +3740,19 @@
       "official": false,
       "reviewed": true,
       "latest": {
-        "tag": "v1.1.0",
-        "version": "1.1.0",
-        "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
+        "tag": "v1.2.0",
+        "version": "1.2.0",
+        "publishedAt": "2026-08-16T20:16:23Z",
+        "notes": "Added Dracula Botezzaro",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.2.0",
         "asset": {
           "name": "Dracula_Botezzaro.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/Dracula_Botezzaro.zip",
-          "size": 3645186,
-          "sha256": "f46305731f74b27b5e63f3a51e8e4248bf46d6f5a95f8788d7ed894ccbdc79a8"
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.2.0/Dracula_Botezzaro.zip",
+          "size": 3650838,
+          "sha256": "8981994e3ee73a7617001d093104c4e077c3ef6ea7509cb8c4bd543ec247c52e"
         }
       },
-      "downloads": 5
+      "downloads": 6
     },
     {
       "id": "gamboonanza-tiles",
