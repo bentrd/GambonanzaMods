@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-14T01:58:31.155Z",
+  "generatedAt": "2026-10-14T07:45:43.277Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T22:53:13Z",
+      "repoPushedAt": "2026-10-14T01:58:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 23,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T22:53:13Z",
+      "repoPushedAt": "2026-10-14T01:58:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 70,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T22:53:13Z",
+      "repoPushedAt": "2026-10-14T01:58:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 78,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T22:53:13Z",
+      "repoPushedAt": "2026-10-14T01:58:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 53,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T22:53:13Z",
+      "repoPushedAt": "2026-10-14T01:58:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T22:53:13Z",
+      "repoPushedAt": "2026-10-14T01:58:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2801,7 +2801,7 @@
       },
       "downloads": 45,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T22:53:13Z",
+      "repoPushedAt": "2026-10-14T01:58:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 5,
       "stars": 5,
-      "repoPushedAt": "2026-10-13T22:53:13Z",
+      "repoPushedAt": "2026-10-14T01:58:32Z",
       "license": "MIT",
       "archived": false
     },
@@ -3752,7 +3752,7 @@
           "sha256": "f46305731f74b27b5e63f3a51e8e4248bf46d6f5a95f8788d7ed894ccbdc79a8"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "gamboonanza-tiles",
