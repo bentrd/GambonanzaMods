@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-14T22:21:40.805Z",
+  "generatedAt": "2026-10-15T01:33:15.586Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -178,7 +178,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 24,
+      "downloads": 25,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -232,7 +232,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -330,7 +330,7 @@
       },
       "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T18:42:36Z",
+      "repoPushedAt": "2026-10-14T22:21:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 24,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T18:42:36Z",
+      "repoPushedAt": "2026-10-14T22:21:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -715,7 +715,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -928,7 +928,7 @@
       },
       "downloads": 71,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T18:42:36Z",
+      "repoPushedAt": "2026-10-14T22:21:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1196,7 +1196,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -1237,9 +1237,9 @@
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 79,
+      "downloads": 80,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T18:42:36Z",
+      "repoPushedAt": "2026-10-14T22:21:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1503,7 +1503,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -1823,7 +1823,7 @@
       },
       "downloads": 54,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T18:42:36Z",
+      "repoPushedAt": "2026-10-14T22:21:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -1860,7 +1860,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2005,7 +2005,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 8,
+      "downloads": 9,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2048,7 +2048,7 @@
       },
       "downloads": 40,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T18:42:36Z",
+      "repoPushedAt": "2026-10-14T22:21:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2261,7 +2261,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2314,7 +2314,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -2583,7 +2583,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -2746,7 +2746,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -2801,7 +2801,7 @@
       },
       "downloads": 46,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T18:42:36Z",
+      "repoPushedAt": "2026-10-14T22:21:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 6,
       "stars": 5,
-      "repoPushedAt": "2026-10-14T18:42:36Z",
+      "repoPushedAt": "2026-10-14T22:21:42Z",
       "license": "MIT",
       "archived": false
     },
@@ -3260,7 +3260,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 7,
+      "downloads": 8,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -3422,7 +3422,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -3475,7 +3475,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -3504,7 +3504,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 400,
+      "downloads": 402,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3544,7 +3544,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 531,
+      "downloads": 533,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3614,7 +3614,7 @@
       "description": "The complete Halloween expansion of Gambonanza, all in one modpack.\nIncludes contributions from:\n\nFRO_PWR\n- Zombie's Gambit\n- Headless Horseman's Gambit\n- Vampire's Gambit\n- Frankenstein's Gambit\n- Possession's Gambit\n- Back-stabber's Gambit\n- Doot's Gambit\n- Spider's Gambit\n- Skeleton's Gambit\n- Transylvania's Gambit\n- Slimer Hikarul\n- Drakula Botezzaro\n- Xenomorph Tal\n- HAL Mechagnus\n- GamBOOnanza Title\n- GamBOOnanza Tiles\n- Halloween Blood/Pumpkin Pieces\n- Point A Manager\n\nMinty:\n- Paranormal Activity's Gambit\n- Majora's Moon\n- W. D. Gaster\n- Grim Reaper\n- Kev Broclick Unblue\n- Mechagnus Untext\n\nMediumKey\n- Guardian Jawby\n\nBen\n- Gambit Creation API\n- The whole mod manager lol",
       "submittedBy": "Agent15",
       "addedAt": "2026-10-13",
-      "downloads": 197,
+      "downloads": 212,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3636,7 +3636,7 @@
       "description": "No one's tried making a modpack with a resource pack in it yet. I want to test to confirm that it works",
       "submittedBy": "Agent15",
       "addedAt": "2026-10-13",
-      "downloads": 83,
+      "downloads": 84,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3683,7 +3683,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 279,
+      "downloads": 281,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3752,7 +3752,7 @@
           "sha256": "8981994e3ee73a7617001d093104c4e077c3ef6ea7509cb8c4bd543ec247c52e"
         }
       },
-      "downloads": 6
+      "downloads": 9
     },
     {
       "id": "gamboonanza-tiles",
@@ -3784,7 +3784,7 @@
           "sha256": "275738dc34ac91acf2a6aa13b444f74929c0f2ccabdd20cab491628f6916c18a"
         }
       },
-      "downloads": 5
+      "downloads": 6
     },
     {
       "id": "gamboonanza-title",
@@ -3817,7 +3817,7 @@
           "sha256": "9053a8d5b701e1af1cf61bbdd02f8e41e96063e2e777e7c42a861852e812c111"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "grim-reaper",
@@ -3849,7 +3849,7 @@
           "sha256": "b513e2536ad1d1d04e8eda8807d855f8e6865d6a2c4d63ccaa2c27b39ff3bdef"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "guardian-jawby",
@@ -3881,7 +3881,7 @@
           "sha256": "adb16101055459b1096a0958087e286940aca79c04ee0cfa1112a5e9a59c797b"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "hal-mechagnus",
@@ -3913,7 +3913,7 @@
           "sha256": "4a4d8abb6c1ed03829ca5758b7078cf70f65c450ff69fca9fbb6b07477cedf20"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "halloween-blood-pumpkin-pieces",
@@ -3944,7 +3944,7 @@
           "sha256": "3ff10640a9833b941a5d786ee97c77b21e4aeeb02aa709da850b943f8bca27c2"
         }
       },
-      "downloads": 5
+      "downloads": 6
     },
     {
       "id": "kat-chess-pieces",
@@ -4008,7 +4008,7 @@
           "sha256": "9c369efac2eb3633d668b2ceedc35b52fc1444e752d38fa87243a33b9b9d1e87"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "rin-pieces",
@@ -4071,7 +4071,7 @@
           "sha256": "421c065d2664ff280bfc865ca7bc4b9baf7daed4196c223c0e89bb6a1afc18ba"
         }
       },
-      "downloads": 7
+      "downloads": 8
     },
     {
       "id": "w-d-gaster",
@@ -4104,7 +4104,7 @@
           "sha256": "63c7e0ce33f1b3d736e4b885e4c7c8086ce20ea2eb02f67d125d95a2e622eaf4"
         }
       },
-      "downloads": 4
+      "downloads": 5
     },
     {
       "id": "xenomorph-tal",
@@ -4137,7 +4137,7 @@
           "sha256": "157b1a991d379fbe146946a36034ee18b410c009374f719243d5fe8a8c9540f9"
         }
       },
-      "downloads": 5
+      "downloads": 6
     }
   ]
 }
