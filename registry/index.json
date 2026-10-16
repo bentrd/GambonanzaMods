@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-16T18:09:01.867Z",
+  "generatedAt": "2026-10-16T21:19:59.674Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -328,9 +328,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 73,
+      "downloads": 74,
       "stars": 5,
-      "repoPushedAt": "2026-10-16T13:19:32Z",
+      "repoPushedAt": "2026-10-16T18:09:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -556,9 +556,9 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 24,
+      "downloads": 25,
       "stars": 5,
-      "repoPushedAt": "2026-10-16T13:19:32Z",
+      "repoPushedAt": "2026-10-16T18:09:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -926,9 +926,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 71,
+      "downloads": 72,
       "stars": 5,
-      "repoPushedAt": "2026-10-16T13:19:32Z",
+      "repoPushedAt": "2026-10-16T18:09:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -1237,9 +1237,9 @@
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
-      "downloads": 80,
+      "downloads": 81,
       "stars": 5,
-      "repoPushedAt": "2026-10-16T13:19:32Z",
+      "repoPushedAt": "2026-10-16T18:09:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -1821,9 +1821,9 @@
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
-      "downloads": 54,
+      "downloads": 55,
       "stars": 5,
-      "repoPushedAt": "2026-10-16T13:19:32Z",
+      "repoPushedAt": "2026-10-16T18:09:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -1860,7 +1860,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2005,7 +2005,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2046,9 +2046,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 40,
+      "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-10-16T13:19:32Z",
+      "repoPushedAt": "2026-10-16T18:09:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -2261,7 +2261,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 8,
+      "downloads": 9,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -2799,9 +2799,9 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
-      "downloads": 46,
+      "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-10-16T13:19:32Z",
+      "repoPushedAt": "2026-10-16T18:09:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 6,
       "stars": 5,
-      "repoPushedAt": "2026-10-16T13:19:32Z",
+      "repoPushedAt": "2026-10-16T18:09:03Z",
       "license": "MIT",
       "archived": false
     },
@@ -3098,7 +3098,7 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 24,
+      "downloads": 25,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -3260,7 +3260,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 0,
       "repoPushedAt": "2026-10-13T12:59:07Z",
       "license": "MIT",
@@ -3504,7 +3504,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 410,
+      "downloads": 414,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3544,7 +3544,7 @@
       "description": "This is a collection of every gambit mod from the Gambit PWR_PACK repo as of 9/1/2026, As well as the Gambit API and Better Collection mods for compatibility and presentation (Thanks Ben <3)",
       "submittedBy": "Agent15",
       "addedAt": "2026-09-02",
-      "downloads": 554,
+      "downloads": 556,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3571,7 +3571,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 195,
+      "downloads": 197,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3614,7 +3614,7 @@
       "description": "The complete Halloween expansion of Gambonanza, all in one modpack.\nIncludes contributions from:\n\nFRO_PWR\n- Zombie's Gambit\n- Headless Horseman's Gambit\n- Vampire's Gambit\n- Frankenstein's Gambit\n- Possession's Gambit\n- Back-stabber's Gambit\n- Doot's Gambit\n- Spider's Gambit\n- Skeleton's Gambit\n- Transylvania's Gambit\n- Slimer Hikarul\n- Drakula Botezzaro\n- Xenomorph Tal\n- HAL Mechagnus\n- GamBOOnanza Title\n- GamBOOnanza Tiles\n- Halloween Blood/Pumpkin Pieces\n- Point A Manager\n\nMinty:\n- Paranormal Activity's Gambit\n- Majora's Moon\n- W. D. Gaster\n- Grim Reaper\n- Kev Broclick Unblue\n- Mechagnus Untext\n\nMediumKey\n- Guardian Jawby\n\nBen\n- Gambit Creation API\n- The whole mod manager lol",
       "submittedBy": "Agent15",
       "addedAt": "2026-10-13",
-      "downloads": 224,
+      "downloads": 229,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3636,7 +3636,7 @@
       "description": "No one's tried making a modpack with a resource pack in it yet. I want to test to confirm that it works",
       "submittedBy": "Agent15",
       "addedAt": "2026-10-13",
-      "downloads": 85,
+      "downloads": 86,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3659,7 +3659,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 144,
+      "downloads": 146,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
@@ -3683,7 +3683,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 282,
+      "downloads": 284,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3849,7 +3849,7 @@
           "sha256": "b513e2536ad1d1d04e8eda8807d855f8e6865d6a2c4d63ccaa2c27b39ff3bdef"
         }
       },
-      "downloads": 5
+      "downloads": 6
     },
     {
       "id": "guardian-jawby",
@@ -4008,7 +4008,7 @@
           "sha256": "9c369efac2eb3633d668b2ceedc35b52fc1444e752d38fa87243a33b9b9d1e87"
         }
       },
-      "downloads": 5
+      "downloads": 6
     },
     {
       "id": "rin-pieces",
@@ -4104,7 +4104,7 @@
           "sha256": "63c7e0ce33f1b3d736e4b885e4c7c8086ce20ea2eb02f67d125d95a2e622eaf4"
         }
       },
-      "downloads": 5
+      "downloads": 6
     },
     {
       "id": "xenomorph-tal",
