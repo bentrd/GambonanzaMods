@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-18T01:10:22.304Z",
+  "generatedAt": "2026-10-18T06:01:33.844Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 75,
       "stars": 5,
-      "repoPushedAt": "2026-10-17T23:12:05Z",
+      "repoPushedAt": "2026-10-18T01:10:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 25,
       "stars": 5,
-      "repoPushedAt": "2026-10-17T23:12:05Z",
+      "repoPushedAt": "2026-10-18T01:10:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -926,9 +926,9 @@
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
-      "downloads": 72,
+      "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-10-17T23:12:05Z",
+      "repoPushedAt": "2026-10-18T01:10:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 82,
       "stars": 5,
-      "repoPushedAt": "2026-10-17T23:12:05Z",
+      "repoPushedAt": "2026-10-18T01:10:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 55,
       "stars": 5,
-      "repoPushedAt": "2026-10-17T23:12:05Z",
+      "repoPushedAt": "2026-10-18T01:10:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 41,
       "stars": 5,
-      "repoPushedAt": "2026-10-17T23:12:05Z",
+      "repoPushedAt": "2026-10-18T01:10:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2801,7 +2801,7 @@
       },
       "downloads": 47,
       "stars": 5,
-      "repoPushedAt": "2026-10-17T23:12:05Z",
+      "repoPushedAt": "2026-10-18T01:10:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 6,
       "stars": 5,
-      "repoPushedAt": "2026-10-17T23:12:05Z",
+      "repoPushedAt": "2026-10-18T01:10:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -3504,7 +3504,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 416,
+      "downloads": 417,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -3659,7 +3659,7 @@
       ],
       "submittedBy": "bentrd",
       "addedAt": "2026-08-17",
-      "downloads": 147,
+      "downloads": 148,
       "installable": true,
       "unreviewed": [],
       "reviewed": true
