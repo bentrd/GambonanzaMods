@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-10-24T22:33:27.926Z",
+  "generatedAt": "2026-10-25T01:16:10.882Z",
   "count": 65,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 77,
       "stars": 5,
-      "repoPushedAt": "2026-10-24T19:32:51Z",
+      "repoPushedAt": "2026-10-24T22:33:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -515,7 +515,7 @@
         "manifestVersion": "0.0.8",
         "manifestAuthor": "Ben"
       },
-      "downloads": 26,
+      "downloads": 28,
       "stars": 0,
       "repoPushedAt": "2026-10-02T21:23:57Z",
       "license": "MIT",
@@ -558,7 +558,7 @@
       },
       "downloads": 27,
       "stars": 5,
-      "repoPushedAt": "2026-10-24T19:32:51Z",
+      "repoPushedAt": "2026-10-24T22:33:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 75,
       "stars": 5,
-      "repoPushedAt": "2026-10-24T19:32:51Z",
+      "repoPushedAt": "2026-10-24T22:33:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 85,
       "stars": 5,
-      "repoPushedAt": "2026-10-24T19:32:51Z",
+      "repoPushedAt": "2026-10-24T22:33:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-10-24T19:32:51Z",
+      "repoPushedAt": "2026-10-24T22:33:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-10-24T19:32:51Z",
+      "repoPushedAt": "2026-10-24T22:33:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -2801,7 +2801,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-10-24T19:32:51Z",
+      "repoPushedAt": "2026-10-24T22:33:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -2950,7 +2950,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-10-24T19:32:51Z",
+      "repoPushedAt": "2026-10-24T22:33:28Z",
       "license": "MIT",
       "archived": false
     },
@@ -3504,7 +3504,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 440,
+      "downloads": 442,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
