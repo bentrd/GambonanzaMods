@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-05T06:58:39.866Z",
+  "generatedAt": "2026-11-05T14:29:18.183Z",
   "count": 68,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 79,
       "stars": 5,
-      "repoPushedAt": "2026-11-04T23:46:01Z",
+      "repoPushedAt": "2026-11-05T14:27:53Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-11-04T23:46:01Z",
+      "repoPushedAt": "2026-11-05T14:27:53Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 76,
       "stars": 5,
-      "repoPushedAt": "2026-11-04T23:46:01Z",
+      "repoPushedAt": "2026-11-05T14:27:53Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 88,
       "stars": 5,
-      "repoPushedAt": "2026-11-04T23:46:01Z",
+      "repoPushedAt": "2026-11-05T14:27:53Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-11-04T23:46:01Z",
+      "repoPushedAt": "2026-11-05T14:27:53Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-11-04T23:46:01Z",
+      "repoPushedAt": "2026-11-05T14:27:53Z",
       "license": "MIT",
       "archived": false
     },
@@ -2056,20 +2056,35 @@
       "id": "moeny-trees-gambit",
       "name": "Money Tree's Gambit",
       "author": "FRO_PWR",
-      "summary": "At the end of a game, earn $1 (Increases by +$1 each game).",
+      "summary": "Earn $1 on your first win. The payout grows by $1 after each win.",
+      "description": "This common gambit pays out when you win a game. It starts at $1 and adds $1 to its next payout after every win.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "MoneyTreesGambit.zip",
       "folder": "MoneyTreesGambit",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/sample_mods/MoneyTreesGambit",
       "tags": [
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "gameVersion": ">=1.0",
+      "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/MoneyTreesGambit/MoneyTree.png",
+      "gambits": [
+        {
+          "id": "money-tree",
+          "name": "MoneyTree's Gambit",
+          "rarity": "common",
+          "price": 5,
+          "description": "At the end of a game, earn <color=*>$1</color> (Increases by <color=*>+$1</color> each game).",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/MoneyTreesGambit/MoneyTree.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-10-28",
+      "addedAt": "2026-11-05",
       "official": false,
-      "reviewed": false,
-      "issue": 97,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/97",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -2085,7 +2100,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 2,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-11-05T00:36:46Z",
       "license": "MIT",
@@ -2311,19 +2326,34 @@
       "name": "Poison Pawn's Gambit",
       "author": "FRO_PWR",
       "summary": "If one of your pawns is captured by a non-pawn piece, skip the enemy's turn.",
+      "description": "This rare gambit skips the enemy’s turn when one of its non-pawn pieces captures one of your pawns. A hint appears when the gambit causes the skip.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "PoisonPawnsGambit.zip",
       "folder": "PoisonPawnsGambit",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/sample_mods/PoisonPawnsGambit",
       "tags": [
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "gameVersion": ">=1.0",
+      "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/PoisonPawnsGambit/PoisonPawn.png",
+      "gambits": [
+        {
+          "id": "poison-pawn",
+          "name": "Poison Pawn's Gambit",
+          "rarity": "rare",
+          "price": 7,
+          "description": "If one of your <sprite=5> <color=&>PAWNS</color> is captured by a non <sprite=5> <color=&>PAWN</color> piece, skip the enemy's turn.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/PoisonPawnsGambit/PoisonPawn.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-10-29",
+      "addedAt": "2026-11-05",
       "official": false,
-      "reviewed": false,
-      "issue": 98,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/98",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -2339,7 +2369,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 1,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-11-05T00:36:46Z",
       "license": "MIT",
@@ -2879,7 +2909,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-11-04T23:46:01Z",
+      "repoPushedAt": "2026-11-05T14:27:53Z",
       "license": "MIT",
       "archived": false
     },
@@ -3028,7 +3058,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-11-04T23:46:01Z",
+      "repoPushedAt": "2026-11-05T14:27:53Z",
       "license": "MIT",
       "archived": false
     },
@@ -3510,20 +3540,35 @@
       "id": "vultures-gambit",
       "name": "Vulture's Gambit",
       "author": "FRO_PWR",
-      "summary": "Capturing a trapped piece traps every piece that was defending it",
+      "summary": "Capturing a trapped piece traps every enemy piece that was defending it.",
+      "description": "This epic gambit triggers when you capture an already trapped enemy. After the board updates, it traps every enemy piece that can move to the capture square.",
       "repo": "Agent15/Gambit_PWR_PACK",
       "asset": "VulturesGambit.zip",
       "folder": "VulturesGambit",
+      "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/sample_mods/VulturesGambit",
       "tags": [
         "gameplay",
         "gambits"
       ],
+      "dependencies": [
+        "gambit-api"
+      ],
+      "gameVersion": ">=1.0",
+      "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/VulturesGambit/Vulture.png",
+      "gambits": [
+        {
+          "id": "vulture",
+          "name": "Vulture's Gambit",
+          "rarity": "epic",
+          "price": 7,
+          "description": "Capturing a <color=◊>TRAPPED</color> piece <color=◊>TRAPS</color> every piece that was defending it.",
+          "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/VulturesGambit/Vulture.png"
+        }
+      ],
       "submittedBy": "Agent15",
-      "addedAt": "2026-11-03",
+      "addedAt": "2026-11-05",
       "official": false,
-      "reviewed": false,
-      "issue": 99,
-      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/99",
+      "reviewed": true,
       "latest": {
         "tag": "v1.0.0",
         "version": "1.0.0",
@@ -3539,7 +3584,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 1,
+      "downloads": 3,
       "stars": 0,
       "repoPushedAt": "2026-11-05T00:36:46Z",
       "license": "MIT",
