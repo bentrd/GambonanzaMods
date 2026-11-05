@@ -1,0 +1,32 @@
+{
+  "id": "poison-pawns-gambit",
+  "name": "Poison Pawn's Gambit",
+  "author": "FRO_PWR",
+  "summary": "If one of your pawns is captured by a non-pawn piece, skip the enemy's turn.",
+  "description": "This rare gambit skips the enemy’s turn when one of its non-pawn pieces captures one of your pawns. A hint appears when the gambit causes the skip.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "PoisonPawnsGambit.zip",
+  "folder": "PoisonPawnsGambit",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/sample_mods/PoisonPawnsGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "gameVersion": ">=1.0",
+  "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/PoisonPawnsGambit/PoisonPawn.png",
+  "gambits": [
+    {
+      "id": "poison-pawn",
+      "name": "Poison Pawn's Gambit",
+      "rarity": "rare",
+      "price": 7,
+      "description": "If one of your <sprite=5> <color=&>PAWNS</color> is captured by a non <sprite=5> <color=&>PAWN</color> piece, skip the enemy's turn.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/PoisonPawnsGambit/PoisonPawn.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-11-05"
+}

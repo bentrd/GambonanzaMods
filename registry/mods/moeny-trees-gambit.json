@@ -1,0 +1,32 @@
+{
+  "id": "moeny-trees-gambit",
+  "name": "Money Tree's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Earn $1 on your first win. The payout grows by $1 after each win.",
+  "description": "This common gambit pays out when you win a game. It starts at $1 and adds $1 to its next payout after every win.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "MoneyTreesGambit.zip",
+  "folder": "MoneyTreesGambit",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/sample_mods/MoneyTreesGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "gameVersion": ">=1.0",
+  "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/MoneyTreesGambit/MoneyTree.png",
+  "gambits": [
+    {
+      "id": "money-tree",
+      "name": "MoneyTree's Gambit",
+      "rarity": "common",
+      "price": 5,
+      "description": "At the end of a game, earn <color=*>$1</color> (Increases by <color=*>+$1</color> each game).",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/MoneyTreesGambit/MoneyTree.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-11-05"
+}

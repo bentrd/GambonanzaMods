@@ -1,0 +1,32 @@
+{
+  "id": "vultures-gambit",
+  "name": "Vulture's Gambit",
+  "author": "FRO_PWR",
+  "summary": "Capturing a trapped piece traps every enemy piece that was defending it.",
+  "description": "This epic gambit triggers when you capture an already trapped enemy. After the board updates, it traps every enemy piece that can move to the capture square.",
+  "repo": "Agent15/Gambit_PWR_PACK",
+  "asset": "VulturesGambit.zip",
+  "folder": "VulturesGambit",
+  "homepage": "https://github.com/Agent15/Gambit_PWR_PACK/tree/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/sample_mods/VulturesGambit",
+  "tags": [
+    "gameplay",
+    "gambits"
+  ],
+  "dependencies": [
+    "gambit-api"
+  ],
+  "gameVersion": ">=1.0",
+  "icon": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/VulturesGambit/Vulture.png",
+  "gambits": [
+    {
+      "id": "vulture",
+      "name": "Vulture's Gambit",
+      "rarity": "epic",
+      "price": 7,
+      "description": "Capturing a <color=◊>TRAPPED</color> piece <color=◊>TRAPS</color> every piece that was defending it.",
+      "sprite": "https://raw.githubusercontent.com/Agent15/Gambit_PWR_PACK/67cbece87e0a4ff9c4a77bc0b6fe189cef95899b/Mods/VulturesGambit/Vulture.png"
+    }
+  ],
+  "submittedBy": "Agent15",
+  "addedAt": "2026-11-05"
+}
