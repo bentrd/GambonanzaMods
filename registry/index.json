@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-05T22:06:45.379Z",
+  "generatedAt": "2026-11-06T02:33:28.822Z",
   "count": 68,
   "releases": {
     "framework": {
@@ -180,7 +180,7 @@
       },
       "downloads": 31,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -234,7 +234,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -330,7 +330,7 @@
       },
       "downloads": 79,
       "stars": 5,
-      "repoPushedAt": "2026-11-05T15:35:56Z",
+      "repoPushedAt": "2026-11-05T22:06:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -383,7 +383,7 @@
       },
       "downloads": 30,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -435,7 +435,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-11-05T15:35:56Z",
+      "repoPushedAt": "2026-11-05T22:06:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -611,7 +611,7 @@
       },
       "downloads": 28,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -664,7 +664,7 @@
       },
       "downloads": 30,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -717,7 +717,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -887,7 +887,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 76,
       "stars": 5,
-      "repoPushedAt": "2026-11-05T15:35:56Z",
+      "repoPushedAt": "2026-11-05T22:06:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -981,7 +981,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1145,7 +1145,7 @@
       },
       "downloads": 31,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1198,7 +1198,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 88,
       "stars": 5,
-      "repoPushedAt": "2026-11-05T15:35:56Z",
+      "repoPushedAt": "2026-11-05T22:06:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1345,7 +1345,7 @@
       },
       "downloads": 33,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1398,7 +1398,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1505,7 +1505,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1559,7 +1559,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1664,7 +1664,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1717,7 +1717,7 @@
       },
       "downloads": 25,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1770,7 +1770,7 @@
       },
       "downloads": 24,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-11-05T15:35:56Z",
+      "repoPushedAt": "2026-11-05T22:06:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -1915,7 +1915,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -1968,7 +1968,7 @@
       },
       "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-11-05T15:35:56Z",
+      "repoPushedAt": "2026-11-05T22:06:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -2102,7 +2102,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2155,7 +2155,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2209,7 +2209,7 @@
       },
       "downloads": 6,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2371,7 +2371,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2424,7 +2424,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2532,7 +2532,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2639,7 +2639,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2693,7 +2693,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2747,7 +2747,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2856,7 +2856,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -2909,7 +2909,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-11-05T15:35:56Z",
+      "repoPushedAt": "2026-11-05T22:06:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -2962,7 +2962,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -3058,7 +3058,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-11-05T15:35:56Z",
+      "repoPushedAt": "2026-11-05T22:06:46Z",
       "license": "MIT",
       "archived": false
     },
@@ -3316,7 +3316,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -3370,7 +3370,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -3532,7 +3532,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -3586,7 +3586,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     },
@@ -3639,7 +3639,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-05T00:36:46Z",
+      "repoPushedAt": "2026-11-06T00:47:33Z",
       "license": "MIT",
       "archived": false
     }
