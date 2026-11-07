@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-07T13:04:36.001Z",
-  "count": 69,
+  "generatedAt": "2026-11-07T13:06:49.054Z",
+  "count": 70,
   "releases": {
     "framework": {
       "tag": "v1.8.0",
@@ -330,7 +330,7 @@
       },
       "downloads": 79,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T10:24:40Z",
+      "repoPushedAt": "2026-11-07T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T10:24:40Z",
+      "repoPushedAt": "2026-11-07T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 76,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T10:24:40Z",
+      "repoPushedAt": "2026-11-07T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 88,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T10:24:40Z",
+      "repoPushedAt": "2026-11-07T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T10:24:40Z",
+      "repoPushedAt": "2026-11-07T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T10:24:40Z",
+      "repoPushedAt": "2026-11-07T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -2318,6 +2318,45 @@
       "downloads": 11,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "pit-stops-gambit",
+      "name": "Pit Stop's Gambit",
+      "author": "FRO_PWR",
+      "summary": "If a game ends in stalemate, earn $10 and return to the shop.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "PitStopsGambit.zip",
+      "folder": "PitStopsGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-11-07",
+      "official": false,
+      "reviewed": false,
+      "issue": 101,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/101",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "PitStopsGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/PitStopsGambit.zip",
+          "size": 5493,
+          "sha256": "7ab1a1c23632cfeb9f1864a7c78317cabaa133c3c6f4def85d06ff057e99add2"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-11-07T12:56:49Z",
       "license": "MIT",
       "archived": false
     },
@@ -2909,7 +2948,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T10:24:40Z",
+      "repoPushedAt": "2026-11-07T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
@@ -3058,7 +3097,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T10:24:40Z",
+      "repoPushedAt": "2026-11-07T13:04:37Z",
       "license": "MIT",
       "archived": false
     },
