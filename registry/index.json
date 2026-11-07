@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-07T13:06:49.054Z",
+  "generatedAt": "2026-11-07T16:53:54.741Z",
   "count": 70,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 79,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T13:04:37Z",
+      "repoPushedAt": "2026-11-07T13:06:50Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T13:04:37Z",
+      "repoPushedAt": "2026-11-07T13:06:50Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 76,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T13:04:37Z",
+      "repoPushedAt": "2026-11-07T13:06:50Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 88,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T13:04:37Z",
+      "repoPushedAt": "2026-11-07T13:06:50Z",
       "license": "MIT",
       "archived": false
     },
@@ -1662,7 +1662,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 9,
+      "downloads": 10,
       "stars": 0,
       "repoPushedAt": "2026-11-07T12:56:49Z",
       "license": "MIT",
@@ -1823,7 +1823,7 @@
       },
       "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T13:04:37Z",
+      "repoPushedAt": "2026-11-07T13:06:50Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2048,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T13:04:37Z",
+      "repoPushedAt": "2026-11-07T13:06:50Z",
       "license": "MIT",
       "archived": false
     },
@@ -2207,7 +2207,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 6,
+      "downloads": 7,
       "stars": 0,
       "repoPushedAt": "2026-11-07T12:56:49Z",
       "license": "MIT",
@@ -2354,7 +2354,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-11-07T12:56:49Z",
       "license": "MIT",
@@ -2948,7 +2948,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T13:04:37Z",
+      "repoPushedAt": "2026-11-07T13:06:50Z",
       "license": "MIT",
       "archived": false
     },
@@ -3097,7 +3097,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T13:04:37Z",
+      "repoPushedAt": "2026-11-07T13:06:50Z",
       "license": "MIT",
       "archived": false
     },
@@ -3662,7 +3662,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
-      "downloads": 0,
+      "downloads": 1,
       "stars": 0,
       "repoPushedAt": "2026-11-07T12:56:49Z",
       "license": "MIT",
@@ -3876,7 +3876,7 @@
       "description": "No one's tried making a modpack with a resource pack in it yet. I want to test to confirm that it works",
       "submittedBy": "Agent15",
       "addedAt": "2026-10-13",
-      "downloads": 94,
+      "downloads": 95,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
