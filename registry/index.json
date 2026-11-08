@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-07T20:57:39.846Z",
-  "count": 70,
+  "generatedAt": "2026-11-08T00:42:59.840Z",
+  "count": 71,
   "releases": {
     "framework": {
       "tag": "v1.8.0",
@@ -180,7 +180,7 @@
       },
       "downloads": 31,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -221,7 +221,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BackStabbersGambit.zip",
@@ -234,7 +234,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -330,7 +330,7 @@
       },
       "downloads": 79,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T16:53:55Z",
+      "repoPushedAt": "2026-11-07T20:57:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -383,7 +383,7 @@
       },
       "downloads": 30,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -422,7 +422,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BountyHuntersGambit.zip",
@@ -435,7 +435,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 29,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T16:53:55Z",
+      "repoPushedAt": "2026-11-07T20:57:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -611,7 +611,7 @@
       },
       "downloads": 28,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -664,7 +664,7 @@
       },
       "downloads": 30,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -704,7 +704,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "DootsGambit.zip",
@@ -717,7 +717,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -887,7 +887,7 @@
       },
       "downloads": 9,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 76,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T16:53:55Z",
+      "repoPushedAt": "2026-11-07T20:57:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -968,7 +968,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "EvangelistsGambit.zip",
@@ -981,7 +981,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1145,7 +1145,7 @@
       },
       "downloads": 31,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1198,7 +1198,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 88,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T16:53:55Z",
+      "repoPushedAt": "2026-11-07T20:57:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -1345,7 +1345,7 @@
       },
       "downloads": 33,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1385,7 +1385,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GuardianAngelsGambit.zip",
@@ -1398,7 +1398,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1505,7 +1505,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1546,7 +1546,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HydraulicPresssGambit.zip",
@@ -1559,7 +1559,7 @@
       },
       "downloads": 14,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1651,7 +1651,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "InternsGambit.zip",
@@ -1664,7 +1664,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1717,7 +1717,7 @@
       },
       "downloads": 25,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1770,7 +1770,7 @@
       },
       "downloads": 24,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 56,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T16:53:55Z",
+      "repoPushedAt": "2026-11-07T20:57:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -1863,6 +1863,45 @@
       "downloads": 13,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
+      "id": "linemans-gambit",
+      "name": "Lineman's Gambit",
+      "author": "FRO_PWR",
+      "summary": "Protect all your pawns with an enemy pawn directly in front of them.",
+      "repo": "Agent15/Gambit_PWR_PACK",
+      "asset": "LinemansGambit.zip",
+      "folder": "LinemansGambit",
+      "tags": [
+        "gameplay",
+        "gambits"
+      ],
+      "submittedBy": "Agent15",
+      "addedAt": "2026-11-08",
+      "official": false,
+      "reviewed": false,
+      "issue": 102,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/102",
+      "latest": {
+        "tag": "v1.0.0",
+        "version": "1.0.0",
+        "publishedAt": "2026-08-18T23:13:10Z",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "asset": {
+          "name": "LinemansGambit.zip",
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/LinemansGambit.zip",
+          "size": 5915,
+          "sha256": "8b837902198e59253b110dbe95e569731f5a91b1d4560803138643b81d3e0b64"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "FRO_PWR"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1915,7 +1954,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -1968,7 +2007,7 @@
       },
       "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2048,7 +2087,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T16:53:55Z",
+      "repoPushedAt": "2026-11-07T20:57:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -2089,7 +2128,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "MoneyTreesGambit.zip",
@@ -2102,7 +2141,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2155,7 +2194,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2196,7 +2235,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "NegativeGambit.zip",
@@ -2209,7 +2248,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2343,7 +2382,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "PitStopsGambit.zip",
@@ -2356,7 +2395,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2397,7 +2436,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "PoisonPawnsGambit.zip",
@@ -2410,7 +2449,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2463,7 +2502,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2571,7 +2610,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2665,7 +2704,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "SchrodingersGambit.zip",
@@ -2678,7 +2717,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2732,7 +2771,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2786,7 +2825,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2895,7 +2934,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -2948,7 +2987,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T16:53:55Z",
+      "repoPushedAt": "2026-11-07T20:57:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -2988,7 +3027,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "StarterPacksGambit.zip",
@@ -3001,7 +3040,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -3097,7 +3136,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-11-07T16:53:55Z",
+      "repoPushedAt": "2026-11-07T20:57:40Z",
       "license": "MIT",
       "archived": false
     },
@@ -3342,7 +3381,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "TortoisesGambit.zip",
@@ -3355,7 +3394,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -3409,7 +3448,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -3571,7 +3610,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -3612,7 +3651,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "VulturesGambit.zip",
@@ -3625,7 +3664,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -3651,7 +3690,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "WhiteFlagsGambit.zip",
@@ -3664,7 +3703,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     },
@@ -3717,7 +3756,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-07T12:56:49Z",
+      "repoPushedAt": "2026-11-08T00:38:54Z",
       "license": "MIT",
       "archived": false
     }
@@ -3952,7 +3991,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "ClassicChessPieces.zip",
@@ -4048,7 +4087,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "GamBOOnanza_Title.zip",
@@ -4112,7 +4151,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "Guardian_Jawby.zip",
@@ -4144,7 +4183,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "HAL_Mechagnus.zip",
@@ -4175,7 +4214,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "BloodPumpkinPieces.zip",
@@ -4206,7 +4245,7 @@
         "tag": "v1.0.0",
         "version": "1.0.0",
         "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit",
+        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
         "asset": {
           "name": "KatChessPieces.zip",
