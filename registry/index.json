@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-08T20:33:54.842Z",
+  "generatedAt": "2026-11-09T00:59:25.584Z",
   "count": 71,
   "releases": {
     "framework": {
@@ -180,7 +180,7 @@
       },
       "downloads": 32,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -234,7 +234,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -330,7 +330,7 @@
       },
       "downloads": 79,
       "stars": 5,
-      "repoPushedAt": "2026-11-08T15:20:46Z",
+      "repoPushedAt": "2026-11-08T20:33:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -370,7 +370,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "BougiesGambit.zip",
@@ -383,7 +383,7 @@
       },
       "downloads": 31,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -435,7 +435,7 @@
       },
       "downloads": 24,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 30,
       "stars": 5,
-      "repoPushedAt": "2026-11-08T15:20:46Z",
+      "repoPushedAt": "2026-11-08T20:33:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -598,7 +598,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "CrybabysGambit.zip",
@@ -611,7 +611,7 @@
       },
       "downloads": 29,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -651,7 +651,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "DominoEffectsGambit.zip",
@@ -664,7 +664,7 @@
       },
       "downloads": 31,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -717,7 +717,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -874,7 +874,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "EnPassantsGambit.zip",
@@ -887,7 +887,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 76,
       "stars": 5,
-      "repoPushedAt": "2026-11-08T15:20:46Z",
+      "repoPushedAt": "2026-11-08T20:33:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -981,7 +981,7 @@
       },
       "downloads": 16,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1132,7 +1132,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "FishingNetsGambit.zip",
@@ -1145,7 +1145,7 @@
       },
       "downloads": 32,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1185,7 +1185,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "FrankensteinsGambit.zip",
@@ -1198,7 +1198,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 89,
       "stars": 5,
-      "repoPushedAt": "2026-11-08T15:20:46Z",
+      "repoPushedAt": "2026-11-08T20:33:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1332,7 +1332,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "GrandMasCookiesGambit.zip",
@@ -1345,7 +1345,7 @@
       },
       "downloads": 34,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1398,7 +1398,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1492,7 +1492,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "HeadlessHorsemansGambit.zip",
@@ -1505,7 +1505,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1559,7 +1559,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1664,7 +1664,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1704,7 +1704,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "JumperCablesGambit.zip",
@@ -1717,7 +1717,7 @@
       },
       "downloads": 26,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1757,7 +1757,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "JunksGambit.zip",
@@ -1770,7 +1770,7 @@
       },
       "downloads": 24,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 57,
       "stars": 5,
-      "repoPushedAt": "2026-11-08T15:20:46Z",
+      "repoPushedAt": "2026-11-08T20:33:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -1885,23 +1885,23 @@
       "issue": 102,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/102",
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "LinemansGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/LinemansGambit.zip",
-          "size": 5915,
-          "sha256": "8b837902198e59253b110dbe95e569731f5a91b1d4560803138643b81d3e0b64"
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/LinemansGambit.zip",
+          "size": 5910,
+          "sha256": "71abe4fee2c724cb8fda26bcd2d77e398910b41fcaf10023d08bcf9280c447d0"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -1954,7 +1954,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2007,7 +2007,7 @@
       },
       "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2087,7 +2087,7 @@
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-11-08T15:20:46Z",
+      "repoPushedAt": "2026-11-08T20:33:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -2141,7 +2141,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2181,7 +2181,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "MysterysGambit.zip",
@@ -2194,7 +2194,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2248,7 +2248,7 @@
       },
       "downloads": 7,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2379,23 +2379,23 @@
       "issue": 101,
       "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/101",
       "latest": {
-        "tag": "v1.0.0",
-        "version": "1.0.0",
-        "publishedAt": "2026-08-18T23:13:10Z",
-        "notes": "Added:\r\n- Money Tree's Gambit\r\n- Poison Pawn's Gambit\r\n- Vulture's Gambit\r\n- White Flag's Gambit\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
-        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.0.0",
+        "tag": "v1.1.0",
+        "version": "1.1.0",
+        "publishedAt": "2026-08-13T00:41:34Z",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
+        "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "PitStopsGambit.zip",
-          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.0.0/PitStopsGambit.zip",
-          "size": 5493,
-          "sha256": "7ab1a1c23632cfeb9f1864a7c78317cabaa133c3c6f4def85d06ff057e99add2"
+          "url": "https://github.com/Agent15/Gambit_PWR_PACK/releases/download/v1.1.0/PitStopsGambit.zip",
+          "size": 5498,
+          "sha256": "318834f541301f17bf3f83208f2eb14f4fc03385ed909a3d07da3393a26a542a"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "FRO_PWR"
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2449,7 +2449,7 @@
       },
       "downloads": 2,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2489,7 +2489,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "PossessionsGambit.zip",
@@ -2502,7 +2502,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2610,7 +2610,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2717,7 +2717,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2758,7 +2758,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "SkeletonsGambit.zip",
@@ -2771,7 +2771,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2825,7 +2825,7 @@
       },
       "downloads": 22,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2921,7 +2921,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "SpidersGambit.zip",
@@ -2934,7 +2934,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -2987,7 +2987,7 @@
       },
       "downloads": 48,
       "stars": 5,
-      "repoPushedAt": "2026-11-08T15:20:46Z",
+      "repoPushedAt": "2026-11-08T20:33:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -3040,7 +3040,7 @@
       },
       "downloads": 18,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -3136,7 +3136,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-11-08T15:20:46Z",
+      "repoPushedAt": "2026-11-08T20:33:55Z",
       "license": "MIT",
       "archived": false
     },
@@ -3394,7 +3394,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -3435,7 +3435,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "TransylvaniasGambit.zip",
@@ -3448,7 +3448,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -3597,7 +3597,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "VampiresGambit.zip",
@@ -3610,7 +3610,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -3664,7 +3664,7 @@
       },
       "downloads": 3,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -3703,7 +3703,7 @@
       },
       "downloads": 1,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     },
@@ -3743,7 +3743,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "ZombiesGambit.zip",
@@ -3756,7 +3756,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-11-08T00:38:54Z",
+      "repoPushedAt": "2026-11-09T00:37:04Z",
       "license": "MIT",
       "archived": false
     }
@@ -4054,7 +4054,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "GamBOOnanza_Tiles.zip",
@@ -4341,7 +4341,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "SlimerHikarul.zip",
@@ -4407,7 +4407,7 @@
         "tag": "v1.1.0",
         "version": "1.1.0",
         "publishedAt": "2026-08-13T00:41:34Z",
-        "notes": "Added:\r\n- Zombie's Gambit\r\n- Vampire's Gambit\r\n- Headless Horseman's Gambit\r\n- Frankenstein's Gambit\r\n- Possession's Gambit\r\n- Spider's Gambit\r\n- Skeleton's Gambit\r\n- Slimer Hikarul\r\n- Dracula Botezzaro\r\n- Xenomorph Tal\r\n- GamBOOnanza Tiles\r\n- Transylvania's Gambit",
+        "notes": "Added:\r\n- Pit Stop's Gambit\r\n- Lineman's Gambit",
         "releaseUrl": "https://github.com/Agent15/Gambit_PWR_PACK/releases/tag/v1.1.0",
         "asset": {
           "name": "Xenomorph_Tal.zip",
