@@ -2,11 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Gambonanza.ModHost
 {
     /// <summary>
-    /// A small JSON reader, used for texture pack manifests.
+    /// A small JSON reader and writer for framework manifests.
     ///
     /// Unity ships JsonUtility, and it was the obvious choice - but it is the
     /// Inspector's serializer wearing a JSON hat, and it quietly declined to
@@ -20,7 +21,8 @@ namespace Gambonanza.ModHost
     /// update able to break texture packs for no reason.
     ///
     /// Produces plain CLR values: Dictionary&lt;string, object&gt;, List&lt;object&gt;,
-    /// string, double, bool, null.
+    /// string, double, bool, null. Callers that round-trip a manifest can
+    /// retain the original number text to avoid rounding metadata they do not own.
     /// </summary>
     internal static class TinyJson
     {
@@ -31,16 +33,24 @@ namespace Gambonanza.ModHost
         /// it. No real manifest nests past three levels.
         /// </summary>
         private const int MaxDepth = 64;
+        private static readonly Regex NumberPattern = new Regex(@"\A-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\z");
 
-        public static object Parse(string text)
+        public static object Parse(string text, bool preserveNumberText = false)
         {
             if (text == null) throw new FormatException("empty document");
             int index = 0;
             SkipWhitespace(text, ref index);
-            var value = ParseValue(text, ref index, 0);
+            var value = ParseValue(text, ref index, 0, preserveNumberText);
             SkipWhitespace(text, ref index);
             if (index != text.Length) throw new FormatException($"trailing characters at position {index}");
             return value;
+        }
+
+        public static string Serialize(object value)
+        {
+            var json = new StringBuilder();
+            WriteValue(json, value, 0);
+            return json.Append('\n').ToString();
         }
 
         // -- typed helpers, so callers never cast by hand ---------------------
@@ -75,23 +85,23 @@ namespace Gambonanza.ModHost
 
         // -- the parser -------------------------------------------------------
 
-        private static object ParseValue(string text, ref int index, int depth)
+        private static object ParseValue(string text, ref int index, int depth, bool preserveNumberText)
         {
             if (index >= text.Length) throw new FormatException("document ended early");
             if (depth > MaxDepth) throw new FormatException($"nested more than {MaxDepth} levels deep at position {index}");
             switch (text[index])
             {
-                case '{': return ParseObject(text, ref index, depth);
-                case '[': return ParseArray(text, ref index, depth);
+                case '{': return ParseObject(text, ref index, depth, preserveNumberText);
+                case '[': return ParseArray(text, ref index, depth, preserveNumberText);
                 case '"': return ParseString(text, ref index);
                 case 't': Expect(text, ref index, "true"); return true;
                 case 'f': Expect(text, ref index, "false"); return false;
                 case 'n': Expect(text, ref index, "null"); return null;
-                default: return ParseNumber(text, ref index);
+                default: return ParseNumber(text, ref index, preserveNumberText);
             }
         }
 
-        private static Dictionary<string, object> ParseObject(string text, ref int index, int depth)
+        private static Dictionary<string, object> ParseObject(string text, ref int index, int depth, bool preserveNumberText)
         {
             var result = new Dictionary<string, object>(StringComparer.Ordinal);
             index++; // {
@@ -107,7 +117,7 @@ namespace Gambonanza.ModHost
                 if (index >= text.Length || text[index] != ':') throw new FormatException($"expected ':' at position {index}");
                 index++;
                 SkipWhitespace(text, ref index);
-                result[key] = ParseValue(text, ref index, depth + 1);
+                result[key] = ParseValue(text, ref index, depth + 1, preserveNumberText);
                 SkipWhitespace(text, ref index);
                 if (index >= text.Length) throw new FormatException("object was never closed");
                 if (text[index] == ',') { index++; continue; }
@@ -116,7 +126,7 @@ namespace Gambonanza.ModHost
             }
         }
 
-        private static List<object> ParseArray(string text, ref int index, int depth)
+        private static List<object> ParseArray(string text, ref int index, int depth, bool preserveNumberText)
         {
             var result = new List<object>();
             index++; // [
@@ -126,7 +136,7 @@ namespace Gambonanza.ModHost
             while (true)
             {
                 SkipWhitespace(text, ref index);
-                result.Add(ParseValue(text, ref index, depth + 1));
+                result.Add(ParseValue(text, ref index, depth + 1, preserveNumberText));
                 SkipWhitespace(text, ref index);
                 if (index >= text.Length) throw new FormatException("array was never closed");
                 if (text[index] == ',') { index++; continue; }
@@ -170,16 +180,86 @@ namespace Gambonanza.ModHost
             }
         }
 
-        private static double ParseNumber(string text, ref int index)
+        private static object ParseNumber(string text, ref int index, bool preserveNumberText)
         {
             int start = index;
             if (index < text.Length && (text[index] == '-' || text[index] == '+')) index++;
             while (index < text.Length && (char.IsDigit(text[index]) || text[index] == '.'
                 || text[index] == 'e' || text[index] == 'E' || text[index] == '-' || text[index] == '+')) index++;
             var slice = text.Substring(start, index - start);
-            if (!double.TryParse(slice, NumberStyles.Float, CultureInfo.InvariantCulture, out var value))
-                throw new FormatException($"'{slice}' is not a number (position {start})");
-            return value;
+            if (preserveNumberText && NumberPattern.IsMatch(slice)) return new NumberToken(slice);
+            if (!preserveNumberText && double.TryParse(slice, NumberStyles.Float, CultureInfo.InvariantCulture, out var value)) return value;
+            throw new FormatException($"'{slice}' is not a number (position {start})");
+        }
+
+        private sealed class NumberToken
+        {
+            public readonly string Text;
+
+            public NumberToken(string text) => Text = text;
+        }
+
+        private static void WriteValue(StringBuilder json, object value, int depth)
+        {
+            switch (value)
+            {
+                case null:
+                    json.Append("null");
+                    break;
+                case string text:
+                    WriteString(json, text);
+                    break;
+                case bool flag:
+                    json.Append(flag ? "true" : "false");
+                    break;
+                case NumberToken number:
+                    json.Append(number.Text);
+                    break;
+                case double number when !double.IsInfinity(number) && !double.IsNaN(number):
+                    json.Append(number.ToString("R", CultureInfo.InvariantCulture));
+                    break;
+                case Dictionary<string, object> fields:
+                    json.Append('{');
+                    var index = 0;
+                    foreach (var field in fields)
+                    {
+                        if (index++ > 0) json.Append(',');
+                        WriteIndent(json, depth + 1);
+                        WriteString(json, field.Key);
+                        json.Append(": ");
+                        WriteValue(json, field.Value, depth + 1);
+                    }
+                    if (fields.Count > 0) WriteIndent(json, depth);
+                    json.Append('}');
+                    break;
+                case List<object> items:
+                    json.Append('[');
+                    for (int i = 0; i < items.Count; i++)
+                    {
+                        if (i > 0) json.Append(',');
+                        WriteIndent(json, depth + 1);
+                        WriteValue(json, items[i], depth + 1);
+                    }
+                    if (items.Count > 0) WriteIndent(json, depth);
+                    json.Append(']');
+                    break;
+                default:
+                    throw new ArgumentException($"unsupported JSON value type {value.GetType()}");
+            }
+        }
+
+        private static void WriteIndent(StringBuilder json, int depth) => json.Append('\n').Append(' ', depth * 2);
+
+        private static void WriteString(StringBuilder json, string text)
+        {
+            json.Append('"');
+            foreach (char c in text)
+            {
+                if (c == '"' || c == '\\') json.Append('\\').Append(c);
+                else if (c < ' ' || char.IsSurrogate(c)) json.Append("\\u").Append(((int)c).ToString("x4", CultureInfo.InvariantCulture));
+                else json.Append(c);
+            }
+            json.Append('"');
         }
 
         private static void Expect(string text, ref int index, string literal)

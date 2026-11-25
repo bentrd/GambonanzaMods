@@ -21,6 +21,8 @@ internal static class Program
             ("host: throwing handlers and failed logging do not strand guard", HostGuardCleanup),
             ("host: dispatch failure falls open and releases guard", HostDispatchFailure),
             ("SDK: existing IModContext implementations remain valid", OptionalCapability),
+            ("manifest: custom keybinds load and survive a rebind", ManifestTests.CustomKeybinds),
+            ("manifest: legacy defaults preserve explicit overlay bindings", ManifestTests.OverlayDefault),
             ("patcher: executed veto skips all loss effects", PatcherTests.Veto),
             ("patcher: executed false preserves loss order", PatcherTests.Allow),
             ("patcher: reinstall keeps a single loss hook", PatcherTests.Idempotent),

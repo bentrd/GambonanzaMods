@@ -38,9 +38,12 @@ namespace Gambonanza.ModHost
             EnsureKeybindArray(mod.Manifest);
             var kb = mod.Manifest.keybinds.FirstOrDefault(k => string.Equals(k.name, name, StringComparison.OrdinalIgnoreCase));
             if (kb == null) { error = $"'{mod.Manifest.id}' has no keybind named '{name}'"; return false; }
+            var previousKey = kb.key;
             kb.key = NormalizeKey(key);
-            WriteManifest(mod);
-            return true;
+            if (TryWriteManifest(mod, out error)) return true;
+
+            kb.key = previousKey;
+            return false;
         }
 
         public string GetKeybind(string modId, string name)
@@ -63,22 +66,10 @@ namespace Gambonanza.ModHost
                 ? new List<ModKeybindManifest>()
                 : manifest.keybinds.Where(k => k != null && !string.IsNullOrWhiteSpace(k.name)).ToList();
 
-            foreach (var known in KnownDefaultKeybinds(manifest.id))
-            {
-                if (!existing.Any(k => string.Equals(k.name, known.name, StringComparison.OrdinalIgnoreCase)))
-                    existing.Add(known);
-            }
-
             if (!existing.Any(k => string.Equals(k.name, "toggle", StringComparison.OrdinalIgnoreCase)))
                 existing.Insert(0, new ModKeybindManifest { name = "toggle", description = "default toggle", key = ModKeybinds.Unset });
 
             manifest.keybinds = existing.ToArray();
-        }
-
-        private static IEnumerable<ModKeybindManifest> KnownDefaultKeybinds(string modId)
-        {
-            if (string.Equals(modId, "EnemyThreatOverlay", StringComparison.OrdinalIgnoreCase))
-                yield return new ModKeybindManifest { name = "threatDisplay", description = "hold to show enemy threat overlay", key = "Space" };
         }
 
         private static string NormalizeKey(string key) => ModKeybinds.IsUnset(key) ? ModKeybinds.Unset : key.Trim();
@@ -96,6 +87,7 @@ namespace Gambonanza.ModHost
         public void LoadMod(string modDirectory, ModManifest manifest)
         {
             _seenDirs.Add(modDirectory);
+            BundledModKeybinds.RestoreMissing(manifest);
 
             // A disabled mod must be completely inert - most mods do their real
             // work (registering gambits, spawning runners) in OnLoad, which
@@ -143,7 +135,7 @@ namespace Gambonanza.ModHost
             if (!mod.IsActive) return true;
             mod.IsActive = false;
             mod.Manifest.enabled = false;
-            WriteManifest(mod);
+            TryWriteManifest(mod, out _);
             if (mod.Lifecycle == null) { error = "mod has no IModLifecycle; restart required to fully disable"; return true; }
             try { mod.Lifecycle.OnDisable(); }
             catch (Exception ex) { error = "OnDisable threw: " + ex.Message; mod.Context.LogLine(error); }
@@ -178,7 +170,7 @@ namespace Gambonanza.ModHost
 
             mod.IsActive = true;
             mod.Manifest.enabled = true;
-            WriteManifest(mod);
+            TryWriteManifest(mod, out _);
             if (mod.Lifecycle == null) { error = "mod has no IModLifecycle; restart required to fully enable"; return true; }
             try { mod.Lifecycle.OnEnable(); }
             catch (Exception ex) { error = "OnEnable threw: " + ex.Message; mod.Context.LogLine(error); }
@@ -280,14 +272,28 @@ namespace Gambonanza.ModHost
             };
         }
 
-        private static void WriteManifest(LoadedMod mod)
+        private static bool TryWriteManifest(LoadedMod mod, out string error)
         {
+            var tempPath = mod.ManifestPath + "." + Guid.NewGuid().ToString("N") + ".tmp";
             try
             {
-                var json = JsonUtility.ToJson(mod.Manifest, prettyPrint: true);
-                File.WriteAllText(mod.ManifestPath, json);
+                File.WriteAllText(tempPath, mod.Manifest.ToJson());
+                if (File.Exists(mod.ManifestPath)) File.Replace(tempPath, mod.ManifestPath, null);
+                else File.Move(tempPath, mod.ManifestPath);
+                error = null;
+                return true;
             }
-            catch (Exception ex) { ModHost.LogLine($"failed to write {mod.ManifestPath}: {ex.Message}"); }
+            catch (Exception ex)
+            {
+                error = $"failed to write {mod.ManifestPath}: {ex.Message}";
+                ModHost.LogLine(error);
+                return false;
+            }
+            finally
+            {
+                try { File.Delete(tempPath); }
+                catch (Exception ex) { ModHost.LogLine($"failed to clean up {tempPath}: {ex.Message}"); }
+            }
         }
 
         // ----- LoadedMod ----------------------------------------------------

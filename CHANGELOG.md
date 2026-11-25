@@ -5,6 +5,15 @@ mod manager shows the relevant section when it offers an update, so say what
 changed in terms of what they'll notice. The manager app keeps its own
 changelog in `tools/GambonanzaModManager/CHANGELOG.md`.
 
+## 1.8.1
+
+- Mod keybinds declared in `mod.json` show up in the F10 console and work in
+  game, including middle-click (`Mouse2`). Rebinding in the console saves
+  the new key for the next launch and keeps the rest of the manifest intact.
+- Enemy Threat Overlay uses the binding in its own manifest. If an older
+  framework erased that declaration, the update restores the shipped Space
+  binding. Explicit changes to the binding still take precedence.
+
 ## 1.8.0
 
 - Mods can intercept defeat before the game records a loss or deletes the

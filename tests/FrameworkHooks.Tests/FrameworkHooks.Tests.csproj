@@ -13,6 +13,9 @@
     <Compile Include="../../src/ModHost/ModRegistry.cs" Link="Production/ModRegistry.cs" />
     <Compile Include="../../src/ModHost/ModManifest.cs" Link="Production/ModManifest.cs" />
     <Compile Include="../../src/ModHost/ModHost.cs" Link="Production/ModHost.cs" />
+    <Compile Include="../../src/ModHost/TinyJson.cs" Link="Production/TinyJson.cs" />
+    <Compile Include="../../src/ModHost/BundledModKeybinds.cs" Link="Production/BundledModKeybinds.cs" />
+    <EmbeddedResource Include="../../Mods/**/mod.json" LogicalName="Gambonanza.ModHost.BundledMods.%(RecursiveDir)%(Filename)%(Extension)" />
     <ProjectReference Include="../../src/Patcher/Patcher.csproj" ReferenceOutputAssembly="false" />
     <PackageReference Include="Mono.Cecil" Version="0.11.6" />
   </ItemGroup>
