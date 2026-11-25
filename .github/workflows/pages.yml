@@ -14,6 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -64,7 +65,25 @@ jobs:
         with:
           enablement: true
       - uses: actions/upload-pages-artifact@v5
+        id: pages-artifact
         with:
           path: _site
+      - name: Wait for the Pages artifact to be available
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PAGES_ARTIFACT_ID: ${{ steps.pages-artifact.outputs.artifact_id }}
+        run: |
+          # Upload can finish before the artifact is visible to deployment.
+          for attempt in {1..12}; do
+            if gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" \
+              --jq '.artifacts[] | select(.name == "github-pages" and (.expired | not)) | .id' \
+              | grep -Fqx "$PAGES_ARTIFACT_ID"; then
+              sleep 5
+              exit 0
+            fi
+            sleep 3
+          done
+          echo "::error::GitHub did not make Pages artifact $PAGES_ARTIFACT_ID available"
+          exit 1
       - id: deployment
         uses: actions/deploy-pages@v5.0.1
