@@ -1,99 +1,99 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-25T19:24:38.644Z",
+  "generatedAt": "2026-11-25T22:00:51.149Z",
   "count": 72,
   "releases": {
     "framework": {
-      "tag": "v1.8.0",
-      "version": "1.8.0",
-      "publishedAt": "2026-10-02T17:23:51Z",
-      "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+      "tag": "v1.8.1",
+      "version": "1.8.1",
+      "publishedAt": "2026-11-25T21:59:51Z",
+      "notes": "\n- Mod keybinds declared in `mod.json` show up in the F10 console and work in\n  game, including middle-click (`Mouse2`). Rebinding in the console saves\n  the new key for the next launch and keeps the rest of the manifest intact.\n- Enemy Threat Overlay uses the binding in its own manifest. If an older\n  framework erased that declaration, the update restores the shipped Space\n  binding. Explicit changes to the binding still take precedence.\n\n",
+      "url": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.1",
       "assets": [
         {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/BetterCollection.zip",
           "size": 7897,
-          "sha256": "46414fbf514198ea40277d1c3191520789a217785ceee62f5b8fda5639aacc89"
+          "sha256": "315db76be0fb9571425350aba040e8a4766a2bddef2befa18c3f43ea6fb70242"
         },
         {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "0a02f70bc20d59f31c43abedc98a3f1bba4f97e87caec2f634ec6343db748221"
+          "sha256": "41b124a0048690539d24e7cfad29bdc3cc5aa2e128fb8e2c818349526b85a780"
         },
         {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "a95708e255fcdc248aa79bfbcf7323239cf7c2bdd496a5e04ae690ef15a2a510"
+          "sha256": "7ac95bd773fabbcc1f5171d8cfe7536649d36712aec38f649e61aa65b2390295"
         },
         {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/GambitApi.zip",
           "size": 19924,
-          "sha256": "e06dcf1f4ea49c59e4cde99315c7939df4a3a7a1926c91e53b6e4ceafd4d34fb"
+          "sha256": "1b37c3385c26004399118b93a89e258a2774bc8a2b66544afd86520680ae31ea"
         },
         {
           "name": "gambonanza-framework-linux-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-linux-arm64.zip",
-          "size": 28413119,
-          "sha256": "5517d8d0647d8cbeb022b3ff226383db360267b25454f5e9763767ec0001acfa"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/gambonanza-framework-linux-arm64.zip",
+          "size": 28412521,
+          "sha256": "9801c7cfa0d5c8647b0b1658347744d201a70aade23b7eef00c097dbbc052184"
         },
         {
           "name": "gambonanza-framework-linux-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-linux-x64.zip",
-          "size": 29640479,
-          "sha256": "3480ac2e72c8c5c812a930449dd6bc806ae31a66151caf1810fd45c6c740c3f7"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/gambonanza-framework-linux-x64.zip",
+          "size": 29645491,
+          "sha256": "d8fb51fd5c531b92f44ab2ce927ec5c6da285fa95bbfc66c76e7fa8d325cf101"
         },
         {
           "name": "gambonanza-framework-osx-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-osx-arm64.zip",
-          "size": 28617427,
-          "sha256": "53090c18ce0a4b080f2575be056bb84350d5912aa304fe82f3f875d0bd98ef10"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/gambonanza-framework-osx-arm64.zip",
+          "size": 28233287,
+          "sha256": "f09bdfb01e87e0d7c0aaf92af80e424f82de28b3db8164d1a842d4a748cacc14"
         },
         {
           "name": "gambonanza-framework-osx-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-osx-x64.zip",
-          "size": 29989976,
-          "sha256": "4f4f4f9fb9a0bae563fd811a2093a7aa96c3c7e3b4d8b186fa09db3f899018ee"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/gambonanza-framework-osx-x64.zip",
+          "size": 30018865,
+          "sha256": "64195b2556273e156301dd19bac3c2a9489720fc4ccb0a2b5e9419df206b8a72"
         },
         {
           "name": "gambonanza-framework-win-arm64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-win-arm64.zip",
-          "size": 28870961,
-          "sha256": "558c70565ed454bc3b9b91fec1d2776030502cd3549908e922ee858b18112426"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/gambonanza-framework-win-arm64.zip",
+          "size": 28884685,
+          "sha256": "b96fa90858519861b369859f10c3647c02db2679ae1f3b4f6ee5e675864a64f5"
         },
         {
           "name": "gambonanza-framework-win-x64.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/gambonanza-framework-win-x64.zip",
-          "size": 29946612,
-          "sha256": "329224385aa908416ff27f05d6df97d1306bad7f23a0a6d4613ef38f25e69334"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/gambonanza-framework-win-x64.zip",
+          "size": 29969601,
+          "sha256": "36796a3d340c7daa5ec6700efbec9819899233704b4134b2078ddcad64e622de"
         },
         {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "e11f01f6b316e1ae8daf56eb342938b5ffe7bf6dbe806341d9b189203902f2a5"
+          "sha256": "334a1e1cd306ea76a17c78ab48a6869996911eef721bd9f1cc2a333e24ded2c5"
         },
         {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "a5ce684df84420584a4d0dab191c336b43c01273b88e217f809f7b82d537bf85"
+          "sha256": "2c4bd00b9785d9bbea712d04265838687cf92c7ffc586ba624318a0a17a38947"
         },
         {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "e016550cc7001d9cb296c70bb35500550243566d24d450c86966d09361384c33"
+          "sha256": "94e95f45c39fb3a5840eab5079f85678af101407ff1af7ede549e08491699e31"
         },
         {
           "name": "StrainApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/StrainApi.zip",
-          "size": 26951,
-          "sha256": "c0ac59b5446465c8487a2db3dae32b34758e3579f15197932f8cff4cececeac6"
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/StrainApi.zip",
+          "size": 28495,
+          "sha256": "a6c69e988bbd7277358245a3949e3349dac9449f1d41768e9e949d78f5e0b615"
         }
       ]
     },
@@ -314,23 +314,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.8.0",
+        "tag": "v1.8.1",
         "version": "1.1.0",
-        "publishedAt": "2026-10-02T17:23:51Z",
-        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+        "publishedAt": "2026-11-25T21:59:51Z",
+        "notes": "\n- Mod keybinds declared in `mod.json` show up in the F10 console and work in\n  game, including middle-click (`Mouse2`). Rebinding in the console saves\n  the new key for the next launch and keeps the rest of the manifest intact.\n- Enemy Threat Overlay uses the binding in its own manifest. If an older\n  framework erased that declaration, the update restores the shipped Space\n  binding. Explicit changes to the binding still take precedence.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.1",
         "asset": {
           "name": "BetterCollection.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/BetterCollection.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/BetterCollection.zip",
           "size": 7897,
-          "sha256": "46414fbf514198ea40277d1c3191520789a217785ceee62f5b8fda5639aacc89"
+          "sha256": "315db76be0fb9571425350aba040e8a4766a2bddef2befa18c3f43ea6fb70242"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 80,
       "stars": 5,
-      "repoPushedAt": "2026-11-25T08:47:58Z",
+      "repoPushedAt": "2026-11-25T21:58:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -542,23 +542,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.8.0",
+        "tag": "v1.8.1",
         "version": "1.0.0",
-        "publishedAt": "2026-10-02T17:23:51Z",
-        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+        "publishedAt": "2026-11-25T21:59:51Z",
+        "notes": "\n- Mod keybinds declared in `mod.json` show up in the F10 console and work in\n  game, including middle-click (`Mouse2`). Rebinding in the console saves\n  the new key for the next launch and keeps the rest of the manifest intact.\n- Enemy Threat Overlay uses the binding in its own manifest. If an older\n  framework erased that declaration, the update restores the shipped Space\n  binding. Explicit changes to the binding still take precedence.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.1",
         "asset": {
           "name": "CrumbleApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/CrumbleApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/CrumbleApi.zip",
           "size": 15555,
-          "sha256": "0a02f70bc20d59f31c43abedc98a3f1bba4f97e87caec2f634ec6343db748221"
+          "sha256": "41b124a0048690539d24e7cfad29bdc3cc5aa2e128fb8e2c818349526b85a780"
         },
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 32,
       "stars": 5,
-      "repoPushedAt": "2026-11-25T08:47:58Z",
+      "repoPushedAt": "2026-11-25T21:58:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -912,23 +912,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.8.0",
+        "tag": "v1.8.1",
         "version": "1.2.0",
-        "publishedAt": "2026-10-02T17:23:51Z",
-        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+        "publishedAt": "2026-11-25T21:59:51Z",
+        "notes": "\n- Mod keybinds declared in `mod.json` show up in the F10 console and work in\n  game, including middle-click (`Mouse2`). Rebinding in the console saves\n  the new key for the next launch and keeps the rest of the manifest intact.\n- Enemy Threat Overlay uses the binding in its own manifest. If an older\n  framework erased that declaration, the update restores the shipped Space\n  binding. Explicit changes to the binding still take precedence.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.1",
         "asset": {
           "name": "EnemyThreatOverlay.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/EnemyThreatOverlay.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/EnemyThreatOverlay.zip",
           "size": 7619,
-          "sha256": "a95708e255fcdc248aa79bfbcf7323239cf7c2bdd496a5e04ae690ef15a2a510"
+          "sha256": "7ac95bd773fabbcc1f5171d8cfe7536649d36712aec38f649e61aa65b2390295"
         },
         "manifestVersion": "1.2.0",
         "manifestAuthor": "nikaakaa"
       },
       "downloads": 81,
       "stars": 5,
-      "repoPushedAt": "2026-11-25T08:47:58Z",
+      "repoPushedAt": "2026-11-25T21:58:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1223,23 +1223,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.8.0",
+        "tag": "v1.8.1",
         "version": "1.4.1",
-        "publishedAt": "2026-10-02T17:23:51Z",
-        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+        "publishedAt": "2026-11-25T21:59:51Z",
+        "notes": "\n- Mod keybinds declared in `mod.json` show up in the F10 console and work in\n  game, including middle-click (`Mouse2`). Rebinding in the console saves\n  the new key for the next launch and keeps the rest of the manifest intact.\n- Enemy Threat Overlay uses the binding in its own manifest. If an older\n  framework erased that declaration, the update restores the shipped Space\n  binding. Explicit changes to the binding still take precedence.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.1",
         "asset": {
           "name": "GambitApi.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/GambitApi.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/GambitApi.zip",
           "size": 19924,
-          "sha256": "e06dcf1f4ea49c59e4cde99315c7939df4a3a7a1926c91e53b6e4ceafd4d34fb"
+          "sha256": "1b37c3385c26004399118b93a89e258a2774bc8a2b66544afd86520680ae31ea"
         },
         "manifestVersion": "1.4.1",
         "manifestAuthor": "Ben"
       },
       "downloads": 91,
       "stars": 5,
-      "repoPushedAt": "2026-11-25T08:47:58Z",
+      "repoPushedAt": "2026-11-25T21:58:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -1807,23 +1807,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.8.0",
+        "tag": "v1.8.1",
         "version": "1.3.0",
-        "publishedAt": "2026-10-02T17:23:51Z",
-        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+        "publishedAt": "2026-11-25T21:59:51Z",
+        "notes": "\n- Mod keybinds declared in `mod.json` show up in the F10 console and work in\n  game, including middle-click (`Mouse2`). Rebinding in the console saves\n  the new key for the next launch and keeps the rest of the manifest intact.\n- Enemy Threat Overlay uses the binding in its own manifest. If an older\n  framework erased that declaration, the update restores the shipped Space\n  binding. Explicit changes to the binding still take precedence.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.1",
         "asset": {
           "name": "KamikazeGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/KamikazeGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/KamikazeGambit.zip",
           "size": 8775,
-          "sha256": "e11f01f6b316e1ae8daf56eb342938b5ffe7bf6dbe806341d9b189203902f2a5"
+          "sha256": "334a1e1cd306ea76a17c78ab48a6869996911eef721bd9f1cc2a333e24ded2c5"
         },
         "manifestVersion": "1.3.0",
         "manifestAuthor": "Ben"
       },
       "downloads": 57,
       "stars": 5,
-      "repoPushedAt": "2026-11-25T08:47:58Z",
+      "repoPushedAt": "2026-11-25T21:58:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -2071,23 +2071,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.8.0",
+        "tag": "v1.8.1",
         "version": "1.1.0",
-        "publishedAt": "2026-10-02T17:23:51Z",
-        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+        "publishedAt": "2026-11-25T21:59:51Z",
+        "notes": "\n- Mod keybinds declared in `mod.json` show up in the F10 console and work in\n  game, including middle-click (`Mouse2`). Rebinding in the console saves\n  the new key for the next launch and keeps the rest of the manifest intact.\n- Enemy Threat Overlay uses the binding in its own manifest. If an older\n  framework erased that declaration, the update restores the shipped Space\n  binding. Explicit changes to the binding still take precedence.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.1",
         "asset": {
           "name": "MightyKasparovEveryStage.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/MightyKasparovEveryStage.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/MightyKasparovEveryStage.zip",
           "size": 4356,
-          "sha256": "a5ce684df84420584a4d0dab191c336b43c01273b88e217f809f7b82d537bf85"
+          "sha256": "2c4bd00b9785d9bbea712d04265838687cf92c7ffc586ba624318a0a17a38947"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
       "downloads": 44,
       "stars": 5,
-      "repoPushedAt": "2026-11-25T08:47:58Z",
+      "repoPushedAt": "2026-11-25T21:58:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -3010,23 +3010,23 @@
       "official": true,
       "reviewed": true,
       "latest": {
-        "tag": "v1.8.0",
+        "tag": "v1.8.1",
         "version": "1.1.0",
-        "publishedAt": "2026-10-02T17:23:51Z",
-        "notes": "\n- Mods can intercept defeat before the game records a loss or deletes the\n  run save. This gives extra-life and second-chance mods a supported way to\n  replace defeat. The first mod that handles it takes priority, and disabled\n  mods cannot intercept it. Requires updating the framework and re-patching\n  the game; the hook does not itself add an extra-life strain.\n- Verified the hook against Steam build 25623616, including an isolated\n  native game check that cancellation preserves the run save, loss counters,\n  and game state. Ordinary defeat, multiple rescue handlers and failed\n  handlers are covered by automated checks.\n\n",
-        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.0",
+        "publishedAt": "2026-11-25T21:59:51Z",
+        "notes": "\n- Mod keybinds declared in `mod.json` show up in the F10 console and work in\n  game, including middle-click (`Mouse2`). Rebinding in the console saves\n  the new key for the next launch and keeps the rest of the manifest intact.\n- Enemy Threat Overlay uses the binding in its own manifest. If an older\n  framework erased that declaration, the update restores the shipped Space\n  binding. Explicit changes to the binding still take precedence.\n\n",
+        "releaseUrl": "https://github.com/bentrd/GambonanzaMods/releases/tag/v1.8.1",
         "asset": {
           "name": "SpikesGambit.zip",
-          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.0/SpikesGambit.zip",
+          "url": "https://github.com/bentrd/GambonanzaMods/releases/download/v1.8.1/SpikesGambit.zip",
           "size": 6498,
-          "sha256": "e016550cc7001d9cb296c70bb35500550243566d24d450c86966d09361384c33"
+          "sha256": "94e95f45c39fb3a5840eab5079f85678af101407ff1af7ede549e08491699e31"
         },
         "manifestVersion": "1.1.0",
         "manifestAuthor": "TGM"
       },
       "downloads": 49,
       "stars": 5,
-      "repoPushedAt": "2026-11-25T08:47:58Z",
+      "repoPushedAt": "2026-11-25T21:58:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -3175,7 +3175,7 @@
       },
       "downloads": 8,
       "stars": 5,
-      "repoPushedAt": "2026-11-25T08:47:58Z",
+      "repoPushedAt": "2026-11-25T21:58:57Z",
       "license": "MIT",
       "archived": false
     },
@@ -3323,7 +3323,7 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 29,
+      "downloads": 30,
       "stars": 0,
       "repoPushedAt": "2026-10-13T00:38:21Z",
       "license": "MIT",
@@ -3822,7 +3822,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 477,
+      "downloads": 478,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
