@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-26T12:49:24.816Z",
-  "count": 72,
+  "generatedAt": "2026-11-26T15:42:10.281Z",
+  "count": 73,
   "releases": {
     "framework": {
       "tag": "v1.8.1",
@@ -330,7 +330,7 @@
       },
       "downloads": 94,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T02:54:26Z",
+      "repoPushedAt": "2026-11-26T12:49:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -558,7 +558,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T02:54:26Z",
+      "repoPushedAt": "2026-11-26T12:49:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +928,7 @@
       },
       "downloads": 99,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T02:54:26Z",
+      "repoPushedAt": "2026-11-26T12:49:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1239,7 @@
       },
       "downloads": 107,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T02:54:26Z",
+      "repoPushedAt": "2026-11-26T12:49:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1292,7 +1292,7 @@
       },
       "downloads": 19,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -1452,7 +1452,7 @@
       },
       "downloads": 10,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1823,7 @@
       },
       "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T02:54:26Z",
+      "repoPushedAt": "2026-11-26T12:49:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -1862,7 +1862,7 @@
       },
       "downloads": 13,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2046,7 +2046,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2087,7 +2087,7 @@
       },
       "downloads": 60,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T02:54:26Z",
+      "repoPushedAt": "2026-11-26T12:49:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -2303,7 +2303,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2356,7 +2356,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2556,7 +2556,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2703,7 +2703,7 @@
       },
       "downloads": 17,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -2919,7 +2919,7 @@
       },
       "downloads": 16,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -3026,7 +3026,7 @@
       },
       "downloads": 65,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T02:54:26Z",
+      "repoPushedAt": "2026-11-26T12:49:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -3084,6 +3084,44 @@
       "archived": false
     },
     {
+      "id": "stockswap",
+      "name": "Stock Swap",
+      "author": "Minty",
+      "summary": "Assigns a keybind (middle click) that quickly moves pieces between the stock and the board",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "StockSwap.zip",
+      "folder": "StockSwap",
+      "tags": [
+        "quality-of-life"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-11-26",
+      "official": false,
+      "reviewed": false,
+      "issue": 104,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/104",
+      "latest": {
+        "tag": "v3.0.0",
+        "version": "3.0.0",
+        "publishedAt": "2026-11-26T15:39:23Z",
+        "notes": "Created StockSwap and Completionist mods",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v3.0.0",
+        "asset": {
+          "name": "StockSwap.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v3.0.0/StockSwap.zip",
+          "size": 4455,
+          "sha256": "ef32efcfe3084a4251e1a537e04be3f018298b5b27b467e42b2dabff52bf4b14"
+        },
+        "manifestVersion": "1.0.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-11-26T15:39:23Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "stop-signs-gambit",
       "name": "Stop Sign's Gambit",
       "author": "Minty",
@@ -3133,7 +3171,7 @@
       },
       "downloads": 21,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -3175,7 +3213,7 @@
       },
       "downloads": 9,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T02:54:26Z",
+      "repoPushedAt": "2026-11-26T12:49:26Z",
       "license": "MIT",
       "archived": false
     },
@@ -3230,7 +3268,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -3284,7 +3322,7 @@
       },
       "downloads": 11,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -3325,7 +3363,7 @@
       },
       "downloads": 30,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -3380,7 +3418,7 @@
       },
       "downloads": 15,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -3541,7 +3579,7 @@
       },
       "downloads": 12,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
@@ -3596,7 +3634,7 @@
       },
       "downloads": 23,
       "stars": 0,
-      "repoPushedAt": "2026-10-13T00:38:21Z",
+      "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
       "archived": false
     },
