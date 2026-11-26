@@ -1,8 +1,8 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-26T15:42:10.281Z",
-  "count": 73,
+  "generatedAt": "2026-11-26T15:43:37.634Z",
+  "count": 74,
   "releases": {
     "framework": {
       "tag": "v1.8.1",
@@ -330,7 +330,7 @@
       },
       "downloads": 94,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T12:49:26Z",
+      "repoPushedAt": "2026-11-26T15:42:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -522,6 +522,44 @@
       "archived": false
     },
     {
+      "id": "completionist",
+      "name": "Completionist",
+      "author": "Minty",
+      "summary": "Creates a console command (completionist) that gives a review of gambits currently without king medals.",
+      "repo": "Craftyman6/Mintys-Custom-Gambits",
+      "asset": "Completionist.zip",
+      "folder": "Completionist",
+      "tags": [
+        "quality-of-life"
+      ],
+      "submittedBy": "Craftyman6",
+      "addedAt": "2026-11-26",
+      "official": false,
+      "reviewed": false,
+      "issue": 105,
+      "issueUrl": "https://github.com/bentrd/GambonanzaMods/issues/105",
+      "latest": {
+        "tag": "v3.0.0",
+        "version": "3.0.0",
+        "publishedAt": "2026-11-26T15:39:23Z",
+        "notes": "Created StockSwap and Completionist mods",
+        "releaseUrl": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/tag/v3.0.0",
+        "asset": {
+          "name": "Completionist.zip",
+          "url": "https://github.com/Craftyman6/Mintys-Custom-Gambits/releases/download/v3.0.0/Completionist.zip",
+          "size": 4174,
+          "sha256": "1a92068f9dd6691ef99bb002a0fcc358ebbdfade2ff4c4355202104040d7f892"
+        },
+        "manifestVersion": "1.1.0",
+        "manifestAuthor": "Minty"
+      },
+      "downloads": 0,
+      "stars": 0,
+      "repoPushedAt": "2026-11-26T15:39:23Z",
+      "license": "MIT",
+      "archived": false
+    },
+    {
       "id": "crumble-api",
       "name": "Crumble Control API",
       "author": "Ben",
@@ -558,7 +596,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T12:49:26Z",
+      "repoPushedAt": "2026-11-26T15:42:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -928,7 +966,7 @@
       },
       "downloads": 99,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T12:49:26Z",
+      "repoPushedAt": "2026-11-26T15:42:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -1239,7 +1277,7 @@
       },
       "downloads": 107,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T12:49:26Z",
+      "repoPushedAt": "2026-11-26T15:42:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -1823,7 +1861,7 @@
       },
       "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T12:49:26Z",
+      "repoPushedAt": "2026-11-26T15:42:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -2087,7 +2125,7 @@
       },
       "downloads": 60,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T12:49:26Z",
+      "repoPushedAt": "2026-11-26T15:42:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -3026,7 +3064,7 @@
       },
       "downloads": 65,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T12:49:26Z",
+      "repoPushedAt": "2026-11-26T15:42:11Z",
       "license": "MIT",
       "archived": false
     },
@@ -3213,7 +3251,7 @@
       },
       "downloads": 9,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T12:49:26Z",
+      "repoPushedAt": "2026-11-26T15:42:11Z",
       "license": "MIT",
       "archived": false
     },
