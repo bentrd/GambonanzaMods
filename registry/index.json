@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "frameworkRepo": "bentrd/GambonanzaMods",
-  "generatedAt": "2026-11-26T15:43:37.634Z",
+  "generatedAt": "2026-11-26T22:25:12.040Z",
   "count": 74,
   "releases": {
     "framework": {
@@ -330,7 +330,7 @@
       },
       "downloads": 94,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T15:42:11Z",
+      "repoPushedAt": "2026-11-26T15:43:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -553,7 +553,7 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 0,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -596,7 +596,7 @@
       },
       "downloads": 39,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T15:42:11Z",
+      "repoPushedAt": "2026-11-26T15:43:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -966,7 +966,7 @@
       },
       "downloads": 99,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T15:42:11Z",
+      "repoPushedAt": "2026-11-26T15:43:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -1277,7 +1277,7 @@
       },
       "downloads": 107,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T15:42:11Z",
+      "repoPushedAt": "2026-11-26T15:43:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -1328,7 +1328,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 19,
+      "downloads": 20,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -1488,7 +1488,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 10,
+      "downloads": 11,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -1861,7 +1861,7 @@
       },
       "downloads": 73,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T15:42:11Z",
+      "repoPushedAt": "2026-11-26T15:43:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -1898,7 +1898,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 13,
+      "downloads": 14,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -2082,7 +2082,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 12,
+      "downloads": 14,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -2125,7 +2125,7 @@
       },
       "downloads": 60,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T15:42:11Z",
+      "repoPushedAt": "2026-11-26T15:43:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -2339,7 +2339,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 23,
+      "downloads": 26,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -2392,7 +2392,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 11,
+      "downloads": 12,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -2592,7 +2592,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -2739,7 +2739,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 17,
+      "downloads": 18,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -2955,7 +2955,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 16,
+      "downloads": 17,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3064,7 +3064,7 @@
       },
       "downloads": 65,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T15:42:11Z",
+      "repoPushedAt": "2026-11-26T15:43:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -3153,7 +3153,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 0,
+      "downloads": 2,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3207,7 +3207,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 21,
+      "downloads": 23,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3251,7 +3251,7 @@
       },
       "downloads": 9,
       "stars": 5,
-      "repoPushedAt": "2026-11-26T15:42:11Z",
+      "repoPushedAt": "2026-11-26T15:43:38Z",
       "license": "MIT",
       "archived": false
     },
@@ -3304,7 +3304,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 12,
+      "downloads": 13,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3358,7 +3358,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 11,
+      "downloads": 12,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3399,7 +3399,7 @@
         "manifestVersion": "1.1.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 30,
+      "downloads": 33,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3454,7 +3454,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 15,
+      "downloads": 16,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3615,7 +3615,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 12,
+      "downloads": 14,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3670,7 +3670,7 @@
         "manifestVersion": "1.0.0",
         "manifestAuthor": "Minty"
       },
-      "downloads": 23,
+      "downloads": 27,
       "stars": 0,
       "repoPushedAt": "2026-11-26T15:39:23Z",
       "license": "MIT",
@@ -3898,7 +3898,7 @@
       ],
       "submittedBy": "sanchezvilla101512-hue",
       "addedAt": "2026-09-12",
-      "downloads": 528,
+      "downloads": 531,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -4008,7 +4008,7 @@
       "description": "The complete Halloween expansion of Gambonanza, all in one modpack.\nIncludes contributions from:\n\nFRO_PWR\n- Zombie's Gambit\n- Headless Horseman's Gambit\n- Vampire's Gambit\n- Frankenstein's Gambit\n- Possession's Gambit\n- Back-stabber's Gambit\n- Doot's Gambit\n- Spider's Gambit\n- Skeleton's Gambit\n- Transylvania's Gambit\n- Slimer Hikarul\n- Drakula Botezzaro\n- Xenomorph Tal\n- HAL Mechagnus\n- GamBOOnanza Title\n- GamBOOnanza Tiles\n- Halloween Blood/Pumpkin Pieces\n- Point A Manager\n\nMinty:\n- Paranormal Activity's Gambit\n- Majora's Moon\n- W. D. Gaster\n- Grim Reaper\n- Kev Broclick Unblue\n- Mechagnus Untext\n\nMediumKey\n- Guardian Jawby\n\nBen\n- Gambit Creation API\n- The whole mod manager lol",
       "submittedBy": "Agent15",
       "addedAt": "2026-10-13",
-      "downloads": 309,
+      "downloads": 313,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -4077,7 +4077,7 @@
       "description": "6 custom gambits themed around the road with varying abilities. Many of these involve taking advantage of FRO_PWR's PointAMngr.",
       "submittedBy": "Craftyman6",
       "addedAt": "2026-08-27",
-      "downloads": 354,
+      "downloads": 366,
       "installable": true,
       "unreviewed": [],
       "reviewed": false,
@@ -4243,7 +4243,7 @@
           "sha256": "b513e2536ad1d1d04e8eda8807d855f8e6865d6a2c4d63ccaa2c27b39ff3bdef"
         }
       },
-      "downloads": 7
+      "downloads": 8
     },
     {
       "id": "guardian-jawby",
@@ -4402,7 +4402,7 @@
           "sha256": "9c369efac2eb3633d668b2ceedc35b52fc1444e752d38fa87243a33b9b9d1e87"
         }
       },
-      "downloads": 7
+      "downloads": 8
     },
     {
       "id": "rin-pieces",
@@ -4434,7 +4434,7 @@
           "sha256": "f1b0aeb7fa557d0d68dac0a0c0fd8fc4c82540e4509aae97635e79e2fc93df1f"
         }
       },
-      "downloads": 3
+      "downloads": 4
     },
     {
       "id": "slimer-hikarul",
@@ -4498,7 +4498,7 @@
           "sha256": "63c7e0ce33f1b3d736e4b885e4c7c8086ce20ea2eb02f67d125d95a2e622eaf4"
         }
       },
-      "downloads": 7
+      "downloads": 8
     },
     {
       "id": "xenomorph-tal",
